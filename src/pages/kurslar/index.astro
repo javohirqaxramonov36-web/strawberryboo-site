@@ -1,0 +1,41 @@
+---
+layout: "../../layouts/Base.astro"
+title: "Kurslar — Strawberryboo"
+description: "Pullik kurslar: Prompt Engineering, Obsidian, AI Agentlar"
+---
+
+<h1>📚 Kurslar</h1>
+
+<div class="course-list">
+  <article class="course">
+    <h2>🎯 Prompt Engineering (To'liq Kurs)</h2>
+    <p><strong>Nima uchun kerak?</strong> AI nima uchun prompt ga ehtiyoj sezadi — tushunasiz.</p>
+    <p><strong>Qanday foyda?</strong> Vaqt tejash, sifatli natija, pul ishlash.</p>
+    <p><strong>Qayerda qo'llash?</strong> Yozish, kod, tadqiqot, biznes, o'qish.</p>
+    <p class="price">💎 $29</p>
+    <a href="/kurslar/prompt-engineering" class="enroll">Batafsil →</a>
+  </article>
+
+  <article class="course">
+    <h2>📚 Obsidian PKM</h2>
+    <p>Shaxsiy bilim bazasi qurish. Strawberryboo bilan avtomatik capture.</p>
+    <p class="price">💎 $19</p>
+    <a href="/kurslar/obsidian" class="enroll">Batafsil →</a>
+  </article>
+
+  <article class="course">
+    <h2>🤖 AI Agentlar (CrewAI, LangGraph)</h2>
+    <p>O'z agent'laringizni yarating — ko'p bosqichli vazifalar uchun.</p>
+    <p class="price">💎 $39</p>
+    <a href="/kurslar/ai-agentlar" class="enroll">Batafsil →</a>
+  </article>
+
+</div>
+
+<style>
+  .course-list { display: grid; gap: 1.5rem; margin-top: 2rem; }
+  .course { background: #1a1a22; padding: 1.5rem; border-radius: 12px; border-left: 4px solid var(--accent); }
+  .course h2 { margin-top: 0; color: var(--accent); }
+  .enroll { display: inline-block; margin-top: 1rem; color: var(--accent); text-decoration: none; font-weight: bold; }
+  .price { font-size: 1.4rem; color: #ffd700; font-weight: bold; margin: 0.5rem 0; }
+</style>

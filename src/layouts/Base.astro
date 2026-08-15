@@ -1,0 +1,48 @@
+---
+const title = Astro.props.title || 'Strawberryboo';
+const description = Astro.props.description || '';
+---
+
+<!doctype html>
+<html lang="uz">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+  </head>
+  <body>
+    <header class="site-header">
+      <a href="/" class="logo">🍓 Strawberryboo</a>
+      <nav>
+        <a href="/kurslar">Kurslar</a>
+        <a href="/blog">Blog</a>
+        <a href="/bog-lanish">Bog'lanish</a>
+      </nav>
+    </header>
+    <main>
+      <slot />
+    </main>
+    <footer>
+      <p>© 2026 Strawberryboo. Barcha huquqlar himoyalangan.</p>
+    </footer>
+    <style is:global>
+      :root { --bg: #0f0f14; --fg: #e8e8ea; --accent: #ff5c8a; }
+      * { box-sizing: border-box; }
+      body { margin: 0; font-family: system-ui, sans-serif; background: var(--bg); color: var(--fg); line-height: 1.6; }
+      .site-header { display: flex; justify-content: space-between; padding: 1rem 2rem; border-bottom: 1px solid #222; }
+      .logo { font-weight: bold; color: var(--accent); text-decoration: none; font-size: 1.2rem; }
+      nav a { color: var(--fg); text-decoration: none; margin-left: 1.5rem; }
+      nav a:hover { color: var(--accent); }
+      main { max-width: 800px; margin: 0 auto; padding: 2rem; }
+      .hero { text-align: center; padding: 3rem 0; }
+      .hero h1 { font-size: 2.5rem; margin-bottom: 1rem; }
+      .lead { font-size: 1.2rem; color: #aaa; }
+      .cta { display: inline-block; margin-top: 1.5rem; padding: 0.8rem 2rem; background: var(--accent); color: #fff; border-radius: 8px; text-decoration: none; }
+      .features { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem; margin-top: 3rem; }
+      .card { background: #1a1a22; padding: 1.5rem; border-radius: 12px; }
+      .card h2 { color: var(--accent); margin-top: 0; }
+      footer { text-align: center; padding: 2rem; color: #666; border-top: 1px solid #222; }
+    </style>
+  </body>
+</html>
