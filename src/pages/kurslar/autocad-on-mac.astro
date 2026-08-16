@@ -2,200 +2,125 @@
 import Base from "../../layouts/Base.astro";
 import TelegramCTA from "../../components/TelegramCTA.astro";
 import Quiz from "../../components/Quiz.astro";
+
 const title = "AutoCAD on Mac — O'rganamiz";
-const description = "Mac'da AutoCAD: o'rnatish, interfeys farqlari, asosiy chizish buyruqlari va bepul talaba litsenziyasi.";
+const description = "Mac'da AutoCAD: rasmiy o'rnatish, Education access, interfeys, aniq chizish, layerlar, layout va floor-plan workflow.";
 const questions = [
-  { q: "Mac'da AutoCAD ishlatish uchun nima kerak?", opts: ["Windows .exe fayli", "AutoCAD for Mac (macOS versiyasi)", "Android ilovasi", "Faqat brauzer"], answer: 1 },
-  { q: "Buyruqlar satrini Mac'da ko'rsatish/yashirish shortcut'i?", opts: ["Command+9", "Ctrl+9", "Alt+9", "Command+1"], answer: 0 },
-  { q: "Bepul talaba litsenziyasi qayerdan olinadi?", opts: ["edu.autodesk.com", "apple.com", "github.com", "microsoft.com"], answer: 0 }
+  { q: "Mac uchun qaysi AutoCAD versiyasini tanlash kerak?", opts: ["Windows .exe", "AutoCAD for Mac", "Android ilovasi", "Faqat brauzer"], answer: 1 },
+  { q: "Layerlar nima uchun kerak?", opts: ["Chizmani tartibga solish va elementlarni ajratish uchun", "Fayl hajmini oshirish uchun", "Faqat rang tanlash uchun", "PDFni bloklash uchun"], answer: 0 },
+  { q: "Talaba Education accessidan foydalanishdan oldin nima tekshiriladi?", opts: ["Eligibility", "Instagram akkaunti", "Bank kartasi", "Windows litsenziyasi"], answer: 0 }
 ];
 ---
 
 <Base title={title} description={description}>
-
-<article class="lesson">
-  <div class="course-hero">
-    <h1>AutoCAD on Mac</h1>
-    <div class="price">
-      <span class="now">$29</span>
-      <span class="old">$49</span>
-      <span class="badge badge-new">-41%</span>
-      <span class="badge badge-cert">Sertifikat</span>
-      <span class="uzs">≈ 360 000 so'm</span>
+  <article class="lesson">
+    <div class="course-hero">
+      <h1>AutoCAD on Mac</h1>
+      <div class="price">
+        <span class="now">$29</span>
+        <span class="old">$49</span>
+        <span class="badge badge-new">-41%</span>
+        <span class="badge badge-cert">Sertifikat</span>
+        <span class="uzs">≈ 360 000 so'm</span>
+      </div>
     </div>
-  </div>
 
-  <p class="lead">
-    <span data-i18n="ac.lead1">Mac'da AutoCAD bilan ishlash — Windows'dan farqli o'ziga xos xususiyatlarga ega. Bu kursda o'rnatish, interfeys, asosiy buyruqlar va Autodesk'dan</span> <b data-i18n="ac.leadBold">bepul talaba litsenziyasi</b> <span data-i18n="ac.lead2">qanday olinishini o'rganasiz.</span>
-  </p>
-
-  <section>
-    <h2 data-i18n="ac.modules">Kurs modullari</h2>
-    <ol class="modules">
-      <li data-i18n="ac.mod1">Mac'da o'rnatish — AutoCAD for Mac, tizim talablari (macOS 12+)</li>
-      <li data-i18n="ac.mod2">Interfeys farqlari (Mac vs Windows) va Mac-specific shortcut'lar</li>
-      <li data-i18n="ac.mod3">Asosiy chizish buyruqlari — LINE, CIRCLE, TRIM, OFFSET, LAYER</li>
-      <li data-i18n="ac.mod4">8-qadamli workflow: UNITS → LIMITS → LAYER → chizish → PLOT</li>
-      <li data-i18n="ac.mod5">Autodesk bepul talaba litsenziyasi (edu.autodesk.com) — 1 yilga</li>
-      <li data-i18n="ac.mod6">Amaliy loyiha — birinchi chizmani Model'dan Layout'ga chiqarish</li>
-      <li data-i18n="ac.mod7">Pro tips — CUI sozlamalari, OSNAP, suv belgisi (watermark) haqida</li>
-    </ol>
-  </section>
-
-  <section>
-    <h2>1. Mac'da o'rnatish va interfeys</h2>
-    <p>
-      Autodesk'dan Mac uchun maxsus <b>AutoCAD for Mac</b> versiyasini yuklab oling —
-      Windows <code>.exe</code> fayli Mac'da ishlamaydi. Tizim talabi: macOS 12 (Monterey)
-      yoki undan yangiroq, ~4 GB bo'sh joy. O'rnatishdan oldin Autodesk hisobingiz
-      bo'lishi kerak (qarang: 5-modul, bepul litsenziya).
-    </p>
-    <h3>Asosiy farqlar</h3>
-    <ul>
-      <li>Buyruqlar satri: Windows'da <code>Ctrl+9</code>, Mac'da <b>Command+9</b></li>
-      <li>Hotkey: <code>Ctrl+C</code> o'rniga <b>Command+C</b> (Mac'da odat)</li>
-      <li>Asosiy menyu: Ribbon o'rniga Mac menyusi + Tool Set (ChZPP)</li>
-      <li>Tashqi fayl: <code>.WMF</code> yo'q — PDF yoki PNG ishlating</li>
-    </ul>
-    <p class="quiz-hint">Eng katta odat o'zgarishi — <b>Ctrl → Command</b>. Shortcut'larni <code>CUI</code> orqali moslashtirish mumkin.</p>
-  </section>
-
-  <section>
-    <h2>2. Asosiy chizish buyruqlari va workflow</h2>
-    <p>Eng ko'p ishlatiladigan buyruqlar: <code>L</code> (LINE), <code>C</code> (CIRCLE),
-      <code>REC</code> (RECTANGLE), <code>TR</code> (TRIM), <code>O</code> (OFFSET),
-      <code>LA</code> (LAYER), <code>DLI</code>/<code>DRA</code> (o'lcham).</p>
-    <p>Tavsiya etilgan workflow ketma-ketligi: <b>UNITS → LIMITS → LAYER → chizish →
-      tahrirlash → annotatsiya → Layout → PLOT</b>. Har doim <b>OSNAP</b> yoqib qo'ying —
-      nuqtalar aniq ulanishi uchun.</p>
-  </section>
-
-  <section>
-    <h2>3. Autodesk'dan bepul talaba litsenziyasi</h2>
-    <p>
-      Bu — <b>rasmiy va bepul</b> yo'l. <code>education.autodesk.com</code> sahifasiga o'ting,
-      talaba sifatida ro'yxatdan o'ting va tasdiqlang (.edu email yoki tasdiqlovchi hujjat bilan).
-      Litsenziya odatda <b>1 yil</b> amal qiladi va qayta tasdiqlash orqali uzaytiriladi.
-      Chiqarilgan chizmalarda "Educational" suv belgisi bo'lishi mumkin — bu tijorat uchun emas,
-      o'quv maqsadida.
-    </p>
-    <p class="quiz-hint">Hech qanday crack shart emas — bu yo'l qonuniy va bepul.</p>
-  </section>
-
-  <section>
-    <h2>Tashqi manbalar orqali o'rganish — Jaycad (YouTube) + Autodesk</h2>
-    <p>
-      Quyidagi o'quv yo'li <b>Jay Cad</b> kanalidagi "AutoCAD Mac Course — Zero To Hero"
-      (6 bo'lim, 67 dars) va <b>Autodesk</b> rasmiy sahifalari asosida tuzilgan. Har bir
-      bo'limda tegishli darsga havola va o'z so'zlarim bilan qisqacha izoh berilgan. YouTube
-      avtomatik ro'yxatlash cheklovi tufayli har bir dars alohida emas, kanal darajasida
-      bog'langan — kerakli bo'limni kanal ichidan topishingiz mumkin.
+    <p class="lead">
+      Mac'da AutoCAD bilan ishlashni aniq va tartibli workflow orqali o'rganing: moslikni tekshirishdan boshlab, layerlar, annotatsiya, layout va yakuniy floor plan'ga qadar.
     </p>
 
-    <h3>0-bo'lim — O'rnatish va bepul talaba litsenziyasi</h3>
-    <p>
-      Ushbu bo'limda Autodesk'ning rasmiy "How do I install AutoCAD for MAC" va "Education"
-      sahifalaridan foydalaning.
-    </p>
-    <p>
-      Mac uchun alohida "AutoCAD for Mac" build kerak (Windows <code>.exe</code> fayli Mac'da
-      ishlamaydi). Talabalar <code>education.autodesk.com</code> orqali ro'yxatdan o'tib, .edu
-      email yoki talaba hujjati bilan tasdiqlanib, 1 yillik bepul litsenziya oladi — bu pullik
-      $1,690/yil versiyasidan qonuniy va bepul alternativa.
-    </p>
-    <p class="src">manba: Autodesk — Install AutoCAD for Mac, <a href="https://www.autodesk.com/support/technical/article/caas/sfdcarticles/sfdcarticles/How-do-I-install-AutoCAD-for-MAC.html">havola</a> ; Autodesk Education, <a href="https://www.autodesk.com/education/edu-software/overview">havola</a></p>
+    <section>
+      <h2>Kurs modullari</h2>
+      <ol class="modules">
+        <li>Mac mosligi, o'rnatish va talaba accessi</li>
+        <li>Interfeys va loyiha oldi sozlamalari</li>
+        <li>Birliklar, Line va Polyline bilan aniq chizish</li>
+        <li>Layerlar va toza chizma tizimi</li>
+        <li>Blocklar, eshik-deraza va qayta foydalaniladigan elementlar</li>
+        <li>Matn, o'lcham va title block</li>
+        <li>Scale, Layout va PDFga chiqarish</li>
+        <li>To'liq floor-plan workflow</li>
+        <li>AutoLISP bilan takrorlanadigan ishni avtomatlashtirish</li>
+        <li>Mac workflow: shortcut, template va tezlik</li>
+      </ol>
+    </section>
 
-    <h3>1-bo'lim — Asoslar (The Essentials, Lectures 1–9)</h3>
-    <p>
-      Ushbu bo'limda Jay Cad'ning "AutoCAD Mac Course — Zero To Hero" kursining 1-bo'limi
-      (Introduction → Importing Dimension Styles) darslaridan foydalaning:
-      <a href="https://www.youtube.com/jaycad">youtube.com/jaycad</a>.
-    </p>
-    <p>
-      Bu bo'lim dastur bilan birinchi tanishuv — status bar, birlik sozlamalari va eng ko'p
-      ishlatiladigan chizish/tahrirlash buyruqlari. Oxirida o'lchamlar (dimensions) va ularning
-      uslublarini import qilish ko'rsatiladi.
-    </p>
-    <p class="src">manba: Jay Cad (YouTube), <a href="https://www.youtube.com/jaycad">youtube.com/jaycad</a> ; Autodesk — Beginner Tutorials for AutoCAD for Mac, <a href="https://www.autodesk.com/support/technical/article/caas/sfdcarticles/sfdcarticles/Beginner-Tutorials-for-AutoCAD-for-Mac.html">havola</a></p>
+    <section>
+      <h2>1. Mac mosligi, o'rnatish va talaba accessi</h2>
+      <p><b>Ushbu bo'limda Autodesk'ning rasmiy o'rnatish sahifasidan foydalaning.</b> Avval AutoCAD versiyasi Mac'ingiz va macOS'ingiz bilan mosligini tekshiring, keyin Autodesk Account orqali Mac uchun mo'ljallangan installer'ni yuklab oling. Education access talaba yoki o'qituvchi eligibilitysi tasdiqlangan foydalanuvchilar uchun ta'lim maqsadida beriladi; u tijoriy ish uchun litsenziya emas.</p>
+      <p class="src">manba: Autodesk, <a href="https://www.autodesk.com/support/technical/article/caas/sfdcarticles/sfdcarticles/System-requirements-for-AutoCAD-for-Mac.html">System requirements for AutoCAD for Mac</a> · Autodesk, <a href="https://www.autodesk.com/support/technical/article/caas/sfdcarticles/sfdcarticles/How-do-I-install-AutoCAD-for-MAC.html">How to install AutoCAD for Mac</a> · Autodesk, <a href="https://www.autodesk.com/education/edu-software/overview">Education software access</a></p>
+    </section>
 
-    <h3>2-bo'lim — Loyihani boshlash (Starting with The Project, Lectures 10–15)</h3>
-    <p>
-      Ushbu bo'limda Jay Cad'ning kursining 2-bo'limi (Customizing Shortcuts → Importing Text
-      Styles) darslaridan foydalaning:
-      <a href="https://www.youtube.com/jaycad">youtube.com/jaycad</a>.
-    </p>
-    <p>
-      Haqiqiy loyiha ustida ishlash boshlanadi — devorlar offset orqali qalinlashtiriladi,
-      xonalar joylashtiriladi va matn buyrug'i bilan nomlanadi. Trim yordamida ortiqcha
-      chiziqlar tozalanadi.
-    </p>
-    <p class="src">manba: Jay Cad (YouTube), <a href="https://www.youtube.com/jaycad">youtube.com/jaycad</a></p>
+    <section>
+      <h2>2. Interfeys va loyiha oldi sozlamalari</h2>
+      <p><b>Ushbu bo'limda <a href="https://www.youtube.com/watch?v=SJldE9TeR4Y">Autocad Mac - Learn The Interface</a> darsidan foydalaning.</b> Canvas, panellar, layerlar va asosiy navigatsiyani tanib oling. Loyiha boshlashdan avval birliklar hamda ish tartibini bir xil standartga keltirish keyingi tahrirlarni osonlashtiradi.</p>
+      <p class="src">manba: Jay Cad, <a href="https://www.youtube.com/watch?v=SJldE9TeR4Y">Autocad Mac - Learn The Interface</a> · Jay Cad, <a href="https://www.youtube.com/watch?v=tP8Vqua3k5k">4 settings to setup before you start your project</a></p>
+    </section>
 
-    <h3>3-bo'lim — Saqlash va fayl formatlari (Main File Formats, Lecture 16)</h3>
-    <p>
-      Ushbu bo'limda Jay Cad'ning kursining 3-bo'limi (Main File Formats) darsidan foydalaning:
-      <a href="https://www.youtube.com/jaycad">youtube.com/jaycad</a>.
-    </p>
-    <p>
-      Turli vaziyatlar uchun qaysi formatdan foydalanish (masalan, boshqa dasturga o'tkazishda
-      .dxf) tushuntiriladi. To'g'ri format tanlash keyinchalik fayllarni yo'qotishdan saqlaydi.
-    </p>
-    <p class="src">manba: Jay Cad (YouTube), <a href="https://www.youtube.com/jaycad">youtube.com/jaycad</a></p>
+    <section>
+      <h2>3. Birliklar, Line va Polyline bilan aniq chizish</h2>
+      <p><b>Ushbu bo'limda <a href="https://www.youtube.com/watch?v=Xu6qY2oJ1ew">How to Setup The Units</a> va <a href="https://www.youtube.com/watch?v=BKufMF0XGqY">AutoCAD Difference Between Line &amp; Polyline</a> darslaridan foydalaning.</b> Chizmada aniqlik to'g'ri birlik va mos obyekt turini tanlashdan boshlanadi. Kichik plan orqali Line va Polyline qayerda foydaliroq ekanini amalda sinab ko'ring.</p>
+      <p class="src">manba: Jay Cad, <a href="https://www.youtube.com/watch?v=Xu6qY2oJ1ew">How to Setup The Units</a> · Jay Cad, <a href="https://www.youtube.com/watch?v=BKufMF0XGqY">Line &amp; Polyline farqi</a></p>
+    </section>
 
-    <h3>4-bo'lim — Qavat rejasini detallashtirish (Detailing the Floor Plan, Lectures 17–39)</h3>
-    <p>
-      Ushbu bo'limda Jay Cad'ning kursining 4-bo'limi (Creating Openings → Finishing Floor Plan)
-      darslaridan foydalaning: <a href="https://www.youtube.com/jaycad">youtube.com/jaycad</a>.
-    </p>
-    <p>
-      Bu eng uzun bo'lim — qavat rejasi to'liq mebel, jihoz va o'simliklar bilan to'ldiriladi.
-      Layers va Blocks tizimi tartibni saqlash uchun asosiy vosita sifatida tushuntiriladi.
-    </p>
-    <p class="src">manba: Jay Cad (YouTube), <a href="https://www.youtube.com/jaycad">youtube.com/jaycad</a></p>
+    <section>
+      <h2>4. Layerlar va toza chizma tizimi</h2>
+      <p><b>Ushbu bo'limda <a href="https://www.youtube.com/watch?v=zPhk8pQldNk">What Are Layers in Autocad Mac</a> va <a href="https://www.youtube.com/watch?v=BlJO5clu7WY">How to Create Layers in Autocad Mac</a> darslaridan foydalaning.</b> Devor, mebel, o'lcham va izohlarni alohida layerlarda ushlash chizmani o'qish va tahrirlashni ancha soddalashtiradi. Nomlash, rang va line type'ni bir xil mantiqda yuriting.</p>
+      <p class="src">manba: Jay Cad, <a href="https://www.youtube.com/watch?v=zPhk8pQldNk">What Are Layers in Autocad Mac</a> · Jay Cad, <a href="https://www.youtube.com/watch?v=BlJO5clu7WY">How to Create Layers in Autocad Mac</a></p>
+    </section>
 
-    <h3>5-bo'lim — Chop qilish uchun loyiha sozlamalari (Project Setup For Printing, Lectures 40–47)</h3>
-    <p>
-      Ushbu bo'limda Jay Cad'ning kursining 5-bo'limi (Paper Space → Using Titleblock with
-      Attributes) darslaridan foydalaning:
-      <a href="https://www.youtube.com/jaycad">youtube.com/jaycad</a>.
-    </p>
-    <p>
-      Chizmani ekrandan qog'ozga (PDF) chiqarish uchun Paper Space va Viewport tushunchalari
-      o'rganiladi. Titleblock yaratib, masshtabni qulflash orqali bir nechta varaqli loyiha
-      tayyorlanadi.
-    </p>
-    <p class="src">manba: Jay Cad (YouTube), <a href="https://www.youtube.com/jaycad">youtube.com/jaycad</a></p>
+    <section>
+      <h2>5. Blocklar, eshik-deraza va qayta foydalaniladigan elementlar</h2>
+      <p><b>Ushbu bo'limda <a href="https://www.youtube.com/watch?v=jQsNqaYWyT4">How to Create A Block in Autocad Mac</a> darsidan foydalaning.</b> Takrorlanadigan obyektlar block ko'rinishida yaratilsa, plan tezroq tuziladi va elementlar izchil qoladi. Mashqda bitta sodda block yarating hamda undan floor plan ichida qayta foydalaning.</p>
+      <p class="src">manba: Jay Cad, <a href="https://www.youtube.com/watch?v=jQsNqaYWyT4">How to Create A Block</a> · Jay Cad, <a href="https://www.youtube.com/watch?v=La-IYc5Gw6U">How To Add Doors &amp; Windows</a></p>
+    </section>
 
-    <h3>6-bo'lim — Qo'shimcha chizmalar (Adding Additional Drawings, Lectures 48–67)</h3>
-    <p>
-      Ushbu bo'limda Jay Cad'ning kursining 6-bo'limi (Drawing the Roof Plan → Putting the
-      Final Set Together) darslaridan foydalaning:
-      <a href="https://www.youtube.com/jaycad">youtube.com/jaycad</a>.
-    </p>
-    <p>
-      Bitta loyiha doirasida turli chizma turlari (tom rejasi, fasat, kesim, ichki ko'rinish)
-      qanday chizilishi va ularning o'zaro mosligi ko'rsatiladi. Oxirida barcha chizmalar bitta
-      yakuniy to'plamga birlashtiriladi.
-    </p>
-    <p class="src">manba: Jay Cad (YouTube), <a href="https://www.youtube.com/jaycad">youtube.com/jaycad</a></p>
-  </section>
+    <section>
+      <h2>6. Matn, o'lcham va title block</h2>
+      <p><b>Ushbu bo'limda <a href="https://www.youtube.com/watch?v=_yPQ7udAk-8">How to Add Dimension in Autocad Mac</a> darsidan foydalaning.</b> Chizmaning qiymati uning o'qilishi va aniq o'lchamlarida. Matn, dimension va title block'ni bir xil vizual tartibda joylashtirib, boshqa odam ham tushunadigan chizma tayyorlang.</p>
+      <p class="src">manba: Jay Cad, <a href="https://www.youtube.com/watch?v=_yPQ7udAk-8">How to Add Dimension</a> · Jay Cad, <a href="https://www.youtube.com/watch?v=yAZokUBDlfU">How To Create A Titleblock</a></p>
+    </section>
 
-  <a href="/bog-lanish" class="start-btn" style="margin-top:2rem;" data-i18n="ac.buy">Kursni sotib olish →</a>
-  <a href="/kurslar" class="enroll" style="margin-left:1rem;" data-i18n="ac.all">← Barcha kurslar</a>
+    <section>
+      <h2>7. Scale, Layout va PDFga chiqarish</h2>
+      <p><b>Ushbu bo'limda <a href="https://www.youtube.com/watch?v=3qKv8E7R6mg">What is Layout in Autocad Mac</a> darsidan foydalaning.</b> Model Space'dagi chizma yakuniy natija emas; uni kerakli varaq, masshtab va output talabiga moslash kerak. PDF exportdan avval view, scale va annotatsiyalarni alohida tekshirish odatini yarating.</p>
+      <p class="src">manba: Jay Cad, <a href="https://www.youtube.com/watch?v=3qKv8E7R6mg">What is Layout</a> · Jay Cad, <a href="https://www.youtube.com/watch?v=h7QJDY8aqyY">How To Print to PDF in Autocad Mac</a></p>
+    </section>
 
-  <Quiz title="O'z bilimingizni tekshiring" titleI18n="ac.quizTitle" questions={questions} />
-</article>
-<TelegramCTA />
+    <section>
+      <h2>8. To'liq floor-plan workflow</h2>
+      <p><b>Ushbu bo'limda <a href="https://www.youtube.com/watch?v=PQzkb5DjqwE">Autocad Mac Complete Floor Plan Workflow</a> darsidan foydalaning.</b> Avvalgi modullardagi vositalar endi bitta tugallangan amaliy loyihada birlashadi. Units, layerlar, blocklar, annotation va layout yordamida floor plan'ni boshidan PDFgacha olib boring.</p>
+      <p class="src">manba: Jay Cad, <a href="https://www.youtube.com/watch?v=PQzkb5DjqwE">Autocad Mac Complete Floor Plan Workflow</a> · Jay Cad, <a href="https://www.youtube.com/watch?v=ta9M_r32vBI">Clean Floor Plan Workflow — Part 1</a> · <a href="https://www.youtube.com/watch?v=TrHwFHovRIM">Part 2</a> · <a href="https://www.youtube.com/watch?v=KUa5u92_ARE">Part 3</a></p>
+    </section>
 
-<style>
-  .src {
-    font-size: .85rem;
-    color: #7c6bb0;
-    border-left: 3px solid #8b5cf6;
-    padding: .4rem .75rem;
-    margin: .5rem 0 1.25rem;
-    background: rgba(139, 92, 246, .06);
-  }
-  .src a { color: #8b5cf6; text-decoration: underline; }
-</style>
+    <section>
+      <h2>9. AutoLISP bilan takrorlanadigan ishni avtomatlashtirish</h2>
+      <p><b>Ushbu bo'lim Javohirning shaxsiy <code>SimpleHouse2Story.lsp</code> loyihasiga asoslanadi.</b> O'quvchi AutoLISP'ni katta dasturlash mavzusi emas, balki bir necha marta bajariladigan chizma qadamlari uchun kichik avtomatlashtirish vositasi sifatida ko'radi. Misol orqali skriptni yuklash, maxsus buyruqni ishga tushirish va natijani tekshirish jarayoni tushuntiriladi; kursga skript kodi so'zma-so'z ko'chirilmaydi.</p>
+      <p class="src">Obsidian manbasi: <code>03.Academics/2.AutoCAD Mac/SimpleHouse2Story.lsp</code> — Javohirning ikki qavatli uy planini chizadigan shaxsiy AutoLISP amaliy loyihasi.</p>
+    </section>
+
+    <section>
+      <h2>10. Mac workflow: shortcut, template va tezlik</h2>
+      <p><b>Ushbu bo'limda <a href="https://www.youtube.com/watch?v=M1orr592SXU">How to customize Shortcuts</a> darsidan foydalaning.</b> Tezroq ishlash ko'proq buyruq bilish emas, balki takrorlanadigan ishni qayta sozlamaslikdir. O'zingizga mos shortcut va template yaratib, keyingi loyihalarda bir xil tartibdan foydalaning.</p>
+      <p class="src">manba: Jay Cad, <a href="https://www.youtube.com/watch?v=M1orr592SXU">How to customize Shortcuts</a> · Jay Cad, <a href="https://www.youtube.com/watch?v=Zqp5DWhPfu8">How to Create a Template</a> · Jay Cad, <a href="https://www.youtube.com/watch?v=Y8vDE2oB350">4 Ways to Speed Up AutoCAD</a></p>
+    </section>
+
+    <a href="/bog-lanish" class="start-btn" style="margin-top:2rem;">Kursni sotib olish →</a>
+    <a href="/kurslar" class="enroll" style="margin-left:1rem;">← Barcha kurslar</a>
+
+    <Quiz title="O'z bilimingizni tekshiring" questions={questions} />
+  </article>
+  <TelegramCTA />
+
+  <style>
+    .src {
+      font-size: .85rem;
+      color: #7c6bb0;
+      border-left: 3px solid #8b5cf6;
+      padding: .4rem .75rem;
+      margin: .5rem 0 1.25rem;
+      background: rgba(139, 92, 246, .06);
+    }
+    .src a { color: #8b5cf6; text-decoration: underline; }
+  </style>
 </Base>
