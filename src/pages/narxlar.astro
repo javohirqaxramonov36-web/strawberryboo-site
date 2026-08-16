@@ -1,0 +1,72 @@
+---
+import Base from "../layouts/Base.astro";
+const title = "Narxlar — O'rganamiz";
+const description = "Kurslar narxlari: bitta kurs, barcha AI kurslari paketi va to'liq access. Forever access.";
+---
+
+<Base title={title} description={description}>
+
+<article class="lesson">
+  <h1>Narxlar</h1>
+  <p class="lead">Bitta kurs soting yoki barchasini birdaniga oling. Barcha paketlarda <b>forever access</b> — bir marta sotib, doim foydalan.</p>
+
+  <div class="pricing single">
+    <!-- 1. Bitta kurs -->
+    <div class="plan">
+      <span class="plan-name">Bitta kurs</span>
+      <p class="plan-desc">Tanlagan bitta kursingizga to'liq kirish.</p>
+      <div class="plan-price">$19<span class="uzs">≈ 240 000 so'm dan</span></div>
+      <ul>
+        <li>1 ta kurs (Prompt, Obsidian, IELTS va b.)</li>
+        <li>Forever access</li>
+        <li>Sertifikat</li>
+        <li>Telegram orqali savollar</li>
+      </ul>
+      <a href="/kurslar" class="start-btn">Kursni tanlash →</a>
+    </div>
+  </div>
+
+  <h2 class="paket-head">Paketlar</h2>
+  <div class="pricing">
+    <!-- 2. AI Stack (featured) -->
+    <div class="plan featured">
+      <span class="badge badge-new">Eng foydali</span>
+      <span class="plan-name">AI Stack</span>
+      <p class="plan-desc">Prompt Engineering + AI Agentlar + Obsidian PKM — AI yo'nalishida hamma narsa bitta paketda.</p>
+      <div class="plan-price">$70<span class="was">$87</span><span class="uzs">≈ 875 000 so'm</span></div>
+      <p class="save-note">Alohida sotib olishdan tejang: $17 (20%)</p>
+      <ul>
+        <li>Prompt Engineering ($29)</li>
+        <li>AI Agentlar ($39)</li>
+        <li>Obsidian PKM ($19)</li>
+        <li>Forever access + sertifikat</li>
+      </ul>
+      <a href="/bog-lanish" class="start-btn">Sotib olish →</a>
+    </div>
+
+    <!-- 3. Full access -->
+    <div class="plan">
+      <span class="plan-name">Full access</span>
+      <p class="plan-desc">Barcha kurslar — AI, IELTS, Admission, Figma va bepul AI.</p>
+      <div class="plan-price">$99<span class="uzs">≈ 1 240 000 so'm</span></div>
+      <ul>
+        <li>12 ta kursning hammasi</li>
+        <li>Forever access</li>
+        <li>Barchasiga sertifikat</li>
+        <li>Yangi kurslar bepul</li>
+        <li>aloqada $145 o'rniga $99</li>
+      </ul>
+      <a href="/bog-lanish" class="start-btn">Sotib olish →</a>
+    </div>
+  </div>
+
+  <style>
+    .pricing.single { grid-template-columns: minmax(260px, 380px); }
+    .paket-head { margin: 2.5rem 0 .5rem; font: 800 22px var(--font-display); color: var(--text); letter-spacing: -.01em; }
+    .plan-price .was { text-decoration: line-through; color: var(--muted); font-size: .95rem; font-weight: 600; margin-left: 10px; }
+    .save-note { margin: .2rem 0 .9rem; color: var(--accent); font-weight: 600; font-size: .9rem; }
+  </style>
+
+  <p class="quiz-hint" style="margin-top:1.5rem">Qaysi kurs sizga kerakligini bilmayapsizmi? <a href="/kurs-tanlash" style="color:var(--accent)">Kurs tanlash testi →</a></p>
+</article>
+</Base>

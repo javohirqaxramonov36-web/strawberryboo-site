@@ -1,63 +1,61 @@
 ---
-layout: "../../layouts/Base.astro"
-title: "Prompt Engineering — Strawberryboo Kursi"
-description: "Nima uchun kerak, qanday foyda, qayerda qo'llash — amaliy kurs"
+import Base from "../../layouts/Base.astro";
+import TelegramCTA from "../../components/TelegramCTA.astro";
+import Quiz from "../../components/Quiz.astro";
+const title = "Prompt Engineering — O'rganamiz";
+const description = "Nima uchun kerak, qanday foyda, qayerda qo'llash — amaliy kurs";
+const questions = [
+  { q: "Prompt — bu nima?", opts: ["AI ga berilgan ko'rsatma", "Rasm fayli", "Kod qatori", "Ma'lumotlar bazasi"], answer: 0 },
+  { q: "Few-shot usuli nima?", opts: ["Bitta misol", "Misol orqali o'rgatish", "Hech narsa", "Test rejimi"], answer: 1 },
+  { q: "Chain-of-thought qanday yordam beradi?", opts: ["Tezroq yozish uchun", "Murakkab vazifani bosqichlab yechish uchun", "Rang o'zgartirish uchun", "Fayl saqlash uchun"], answer: 1 }
+];
 ---
 
+<Base title={title} description={description}>
+
 <article class="lesson">
-  <h1>🎯 Prompt Engineering — To'liq Kurs</h1>
+  <div class="course-hero">
+    <h1>Prompt Engineering</h1>
+    <div class="price">
+      <span class="now">$29</span>
+      <span class="old">$49</span>
+      <span class="badge badge-new">-40%</span>
+      <span class="badge badge-cert">Sertifikat</span>
+      <span class="uzs">≈ 360 000 so'm</span>
+    </div>
+  </div>
+
+  <p class="lead" data-i18n="pe.lead">
+    AI bilan to'g'ri muloqot qilish san'ati. Nima uchun kerak, qanday foyda olish,
+    qayerda qo'llash — barchasi amaliy misollar bilan.
+  </p>
 
   <section>
-    <h2>1. Nima uchun Prompt Engineering kerak?</h2>
-    <p>
-      AI modellari (ChatGPT, Claude, Gemini) juda kuchli, lekin ular <strong>telepatiya qila olmaydi</strong>.
-      Siz noto'g'ri yozsangiz — noto'g'ri javob olasiz. Prompt Engineering — bu
-      AI bilan <strong>to'g'ri muloqot qilish san'ati</strong>.
-    </p>
-    <p>
-      Oddiy misol: "Menga matn yozing" deb aytsangiz — AI umumiy, zerikarli narsa yozadi.
-      Lekin "IELTS Writing Task 2 uchun 250 so'zli, rasmiy uslubda, 3 paragrafli essay yozing" desangiz —
-      aniq natija olasiz.
-    </p>
+    <h2 data-i18n="pe.modules">Kurs modullari</h2>
+    <ol class="modules">
+      <li data-i18n="pe.mod1">Nima uchun Prompt Engineering kerak? (AI telepatiya qila olmaydi)</li>
+      <li data-i18n="pe.mod2">Prompt tuzilmasi: roll, kontekst, misollar, format</li>
+      <li data-i18n="pe.mod3">Amaliy mashq: IELTS essay yozish prompt'i</li>
+      <li data-i18n="pe.mod4">Chain-of-thought: murakkab vazifalni bo'lish</li>
+      <li data-i18n="pe.mod5">Few-shot: misollar orqali o'rgatish</li>
+      <li data-i18n="pe.mod6">Qayerda qo'llash: yozish, kod, tadqiqot, biznes</li>
+      <li data-i18n="pe.mod7">Strawberryboo orqali avtomatik capture</li>
+    </ol>
   </section>
 
   <section>
-    <h2>2. O'rgansa qanday foyda olasiz?</h2>
+    <h2 data-i18n="pe.benefit">Qanday foyda olasiz?</h2>
     <ul>
-      <li>⏱ <strong>Vaqt tejash:</strong> 1 soatlik ishni 5 daqiqaga tushirosisz</li>
-      <li>💰 <strong>Pul ishlash:</strong> kontent, kod, tarjima — tezroq qilasiz</li>
-      <li>📈 <strong>Sifat:</strong> aniq, strukturaviy natija</li>
-      <li>🧠 <strong>Bilim:</strong> AI ni "hamkor" sifatida ishlata olasiz</li>
+      <li data-i18n="pe.ben1">Vaqt tejash — 1 soatlik ishni 5 daqiqaga</li>
+      <li data-i18n="pe.ben2">Sifatli natija — aniq, strukturaviy</li>
+      <li data-i18n="pe.ben3">Pul ishlash — kontent, kod tezroq</li>
     </ul>
   </section>
 
-  <section>
-    <h2>3. Qayerda qo'llay olasiz?</h2>
-    <div class="use-cases">
-      <div><strong>✍️ Yozish:</strong> maqola, essay, post, email</div>
-      <div><strong>💻 Kod:</strong> Python, JavaScript, debug</div>
-      <div><strong>🔬 Tadqiqot:</strong> ma'lumot yig'ish, xulosa</div>
-      <div><strong>💼 Biznes:</strong> reja, pitch, mijoz xatlar</div>
-      <div><strong>📚 O'qish:</strong> IELTS, Admissions, materiallar</div>
-    </div>
-  </section>
+  <a href="/bog-lanish" class="start-btn" style="margin-top:2rem;" data-i18n="pe.buy">Kursni sotib olish →</a>
+  <a href="/kurslar" class="enroll" style="margin-left:1rem;" data-i18n="pe.all">← Barcha kurslar</a>
 
-  <section>
-    <h2>4. Amaliy mashg'ulot</h2>
-    <p>Quyidagi prompt'ni sinab ko'ring:</p>
-    <pre><code>"Men IELTS 6.5 kerak. Menga 30 kunlik writing rejasi tuzib bering: har kun nima qilishim kerak, qancha vaqt, qanday mashqlar."</code></pre>
-    <p>Natijani Obsidian'ga saqlang (Strawberryboo orqali forward qiling).</p>
-  </section>
-
-  <p class="price">💎 Kurs narxi: <strong>$29</strong> (bir martalik to'lov)</p>
+  <Quiz title="O'z bilimingizni tekshiring" titleI18n="pe.quizTitle" questions={questions} />
 </article>
-
-<style>
-  .lesson { line-height: 1.8; }
-  .lesson h1 { color: var(--accent); }
-  .lesson h2 { margin-top: 2.5rem; border-bottom: 1px solid #333; padding-bottom: 0.5rem; }
-  .use-cases { display: grid; gap: 0.8rem; margin: 1rem 0; }
-  .use-cases div { background: #1a1a22; padding: 1rem; border-radius: 8px; }
-  pre { background: #0a0a0f; padding: 1rem; border-radius: 8px; overflow-x: auto; }
-  .price { font-size: 1.3rem; margin-top: 3rem; text-align: center; }
-</style>
+<TelegramCTA />
+</Base>

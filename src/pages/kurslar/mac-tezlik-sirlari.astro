@@ -1,0 +1,145 @@
+---
+import Base from "../../layouts/Base.astro";
+import TelegramCTA from "../../components/TelegramCTA.astro";
+import Quiz from "../../components/Quiz.astro";
+const title = "Mac'da Tezlik Sirlari — MacBook'dan samarali foydalanish";
+const description = "Raycast, klaviatura shortcut'lari va Mac vositalari bilan kundalik ishlarni 2 baravar tezroq bajarish. Amaliy, bepul kurs.";
+const questions = [
+  { q: "Raycast asosan nima uchun ishlatiladi?", opts: ["Ilovalarni tez ochish, fayl qidirish va vazifalarni bajarish", "Faqat o'yin o'ynash", "Rasm chizish", "Musiqa tinglash"], answer: 0 },
+  { q: "Clipboard History nima qiladi?", opts: ["Oldingi nusxalangan matnlarni ko'rsatadi va qayta joylashtiradi", "Faylni o'chiradi", "Internetni tezlashtiradi", "Batareyani tejaydi"], answer: 0 },
+  { q: "Spotlight va Raycast farqi nima?", opts: ["Raycast kengaytiriladigan (extension'li), Spotlight asosan qidiruv", "Farqi umuman yo'q", "Raycast faqat Windows uchun", "Spotlight pullik"], answer: 0 }
+];
+---
+
+<Base title={title} description={description}>
+
+<article class="lesson">
+  <div class="course-hero">
+    <h1>Mac'da Tezlik Sirlari</h1>
+    <div class="price">
+      <span class="now">Bepul</span>
+      <span class="badge badge-free">Bepul</span>
+      <span class="badge badge-cert">Sertifikat</span>
+    </div>
+  </div>
+
+  <p class="lead">
+    <span data-i18n="mt.lead1">MacBook'dan faqat "foydalanish" yetarli emas — uni</span> <b data-i18n="mt.leadBold">tez va samarali</b> <span data-i18n="mt.lead2">ishlatish ko'nikmasi kunlik vaqtingizning soatlarini tejashi mumkin. Bu bepul amaliy kursta Raycast, klaviatura shortcut'lari va boshqa Mac vositalari orqali kundalik ishlarni qanday tezlashtirishni o'rganasiz.</span>
+  </p>
+
+  <div style="background:var(--accent-soft);border:1px solid var(--accent);border-left:4px solid var(--accent);border-radius:12px;padding:14px 16px;margin:1.5rem 0;font-size:0.95rem;">
+    Bu kurs <b>macOS (MacBook)</b> foydalanuvchilari uchun. Ko'p misollar Raycast'dan
+    foydalanadi — u bepul ham, Pro versiyasi ham mavjud. Asosiy tezlik sirlari bepul
+    qismida ham to'liq ishlaydi.
+  </div>
+
+  <section>
+    <h2 data-i18n="mt.modules">Kurs modullari</h2>
+    <ol class="modules">
+      <li data-i18n="mt.mod1">Raycast asoslari — nima, Spotlight'dan farqi, o'rnatish va sozlash</li>
+      <li data-i18n="mt.mod2">Foydali Raycast extension'lari — vaqtdan tejaydiganlar ro'yxati</li>
+      <li data-i18n="mt.mod3">Shaxsiy workflow misollari — ilovalarni ochish, fayl qidirish, shablonlar</li>
+      <li data-i18n="mt.mod4">Boshqa Mac tezlik vositalari — shortcut'lar, Spotlight, Automator/Shortcuts</li>
+      <li data-i18n="mt.mod5">Natija: nima uchun bu muhim — real vaqt tejash misoli</li>
+    </ol>
+  </section>
+
+  <section>
+    <h2>1. Raycast asoslari</h2>
+    <p>
+      <b>Raycast</b> — macOS uchun "launcher" (ishga tushiruvchi). Bitta tugma bilan
+      ilovalarni ochish, fayllarni topish, hisoblash, matn konvertatsiya qilish va
+      boshqa ko'plab narsalarni bajarish mumkin.
+    </p>
+    <p>
+      <b>Spotlight'dan farqi:</b> Spotlight asosan qidiruv vositasi. Raycast esa
+      <b>kengaytiriladigan</b> — ya'ni "extension"lar orqali har qanday vazifani
+      (clipboard tarixi, snippet'lar, oyna boshqaruvi) bitta joydan bajarish mumkin.
+      Tezroq va kuchliroq.
+    </p>
+
+    <h3>O'rnatish va sozlash — qadam-baqadam</h3>
+    <div style="border-left:3px solid var(--accent);padding:10px 14px;margin:8px 0;background:var(--surface);border-radius:8px;">1. Brauzerda <code>raycast.com</code> oching.</div>
+    <div style="border-left:3px solid var(--accent);padding:10px 14px;margin:8px 0;background:var(--surface);border-radius:8px;">2. "Download" tugmasini bosing va faylni yuklab oling.</div>
+    <div style="border-left:3px solid var(--accent);padding:10px 14px;margin:8px 0;background:var(--surface);border-radius:8px;">3. Yuklangan <code>.dmg</code> faylni oching, Raycast'ni <b>Applications</b> papkasiga sudrab qo'ying.</div>
+    <div style="border-left:3px solid var(--accent);padding:10px 14px;margin:8px 0;background:var(--surface);border-radius:8px;">4. Raycast'ni ishga tushiring. <b>Cmd + Space</b> bosib, qidiruv oynasi ochilishini tekshiring.</div>
+    <div style="border-left:3px solid var(--accent);padding:10px 14px;margin:8px 0;background:var(--surface);border-radius:8px;">5. Raycast ichida <b>Settings → Extensions</b> bo'limidan kerakli extension'larni qo'shing.</div>
+
+    <div style="border:2px dashed var(--border);border-radius:10px;padding:28px;text-align:center;color:var(--muted);font-size:0.9rem;margin:1rem 0;">GIF / skrinshot joyi — Raycast o'rnatish jarayoni (keyinroq qo'shiladi)</div>
+  </section>
+
+  <section>
+    <h2>2. Foydali Raycast extension'lari</h2>
+    <p>Eng ko'p vaqt tejaydigan extension'lar (barchasi bepul asosida mavjud):</p>
+    <ul>
+      <li><b>Clipboard History</b> — oldingi nusxalagan matnlaringizni saqlaydi; kerakli paytda qayta joylashtirasiz (Ctrl/Cmd bilan aylanish).</li>
+      <li><b>Window Management</b> — oynani yarim ekranga, chorak ekranga joylashtirish (mishka bilan sudrab emas, bitta tugma bilan).</li>
+      <li><b>Snippets</b> — tez-tez yozadigan matn shablonlari (manzil, standart email javobi). Kalit so'z yozib darhol joylashtirasiz.</li>
+      <li><b>Calculator</b> — qidiruv oynasiga son yozing, natija paydo bo'ladi (aloqador ilova ochish shart emas).</li>
+      <li><b>1Password / Clipboard / Finder</b> integratsiyalari — parol, fayl va boshqalarni tez topish.</li>
+    </ul>
+
+    <h3>Clipboard History — qadam-baqadam</h3>
+    <div style="border-left:3px solid var(--accent);padding:10px 14px;margin:8px 0;background:var(--surface);border-radius:8px;">1. <b>Cmd + Space</b> bosing (Raycast oynasi ochiladi).</div>
+    <div style="border-left:3px solid var(--accent);padding:10px 14px;margin:8px 0;background:var(--surface);border-radius:8px;">2. "Clipboard" yozing va Enter bosing.</div>
+    <div style="border-left:3px solid var(--accent);padding:10px 14px;margin:8px 0;background:var(--surface);border-radius:8px;">3. Ro'yxatdan kerakli nusxalangan matnni tanlang — u avtomatik joylashadi.</div>
+
+    <div style="border:2px dashed var(--border);border-radius:10px;padding:28px;text-align:center;color:var(--muted);font-size:0.9rem;margin:1rem 0;">GIF / skrinshot joyi — Clipboard History ishlatish (keyinroq qo'shiladi)</div>
+  </section>
+
+  <section>
+    <h2>3. Shaxsiy workflow misollari</h2>
+    <p>Raycast orqali kundalik ishlarni qanday tezlashtirish mumkin — amaliy misollar:</p>
+    <ul>
+      <li><b>Ilovalarni tez ochish:</b> <b>Cmd + Space</b> → "Chrome" yozing → Enter. Dock yoki Launchpad'dan qidirish o'rniga 2 soniya.</li>
+      <li><b>Faylni topish:</b> <b>Cmd + Space</b> → fayl nomini yozing → to'g'ridan-to'g'ri oching (Finder'da katalog bo'ylab yurish shart emas).</li>
+      <li><b>Matn shablonlari:</b> Snippets'da "addr" kalit so'zini "To'liq manzil matni" ga bog'lang; "addr" yozib Enter bosing — butun manzil joylashadi.</li>
+    </ul>
+
+    <h3>Snippet yaratish — qadam-baqadam</h3>
+    <div style="border-left:3px solid var(--accent);padding:10px 14px;margin:8px 0;background:var(--surface);border-radius:8px;">1. <b>Cmd + Space</b> → "Snippets" yozing → Enter.</div>
+    <div style="border-left:3px solid var(--accent);padding:10px 14px;margin:8px 0;background:var(--surface);border-radius:8px;">2. "Create Snippet" tanlang, kalit so'z (masalan <code>addr</code>) va matnni kiriting.</div>
+    <div style="border-left:3px solid var(--accent);padding:10px 14px;margin:8px 0;background:var(--surface);border-radius:8px;">3. Saqlang. Endi istalgan joyda <code>addr</code> yozing va Raycast taklifini tanlang.</div>
+
+    <div style="border:2px dashed var(--border);border-radius:10px;padding:28px;text-align:center;color:var(--muted);font-size:0.9rem;margin:1rem 0;">GIF / skrinshot joyi — snippet joylashtirish (keyinroq qo'shiladi)</div>
+  </section>
+
+  <section>
+    <h2>4. Boshqa Mac tezlik vositalari</h2>
+    <p>Raycast'dan tashqari, Mac'da tayyor mavjud vositalar:</p>
+    <ul>
+      <li><b>Klaviatura shortcut'lari:</b> <code>Cmd + C / V</code> (nusxa/joylash), <code>Cmd + Tab</code> (ilovelar orasida o'tish), <code>Cmd + W</code> (oynani yopish), <code>Cmd + \`</code> (bitta ilovaning oynalari orasida).</li>
+      <li><b>Spotlight:</b> <code>Cmd + Space</code> (agar Raycast o'rnatilmagan bo'lsa) — fayl va ilovalarni tez topish.</li>
+      <li><b>Automator / Shortcuts:</b> qayta-qayta qiladigan vazifalarni avtomatlashtirish (masalan, faylni boshqa formatga o'tkazish, papkaga saralash).</li>
+    </ul>
+    <p class="quiz-hint">
+      Maslahat: bir shortcut'ni har kuni 10 marta ishlatsangiz, bir oyda ancha vaqt tejashadi.
+      Avval eng ko'p ishlatadigan 3 ta shortcut'ni o'rganing.
+    </p>
+  </section>
+
+  <section>
+    <h2>5. Natija: nima uchun bu muhim</h2>
+    <p>
+      Kichik odatlar katta farq qiladi. Real misol:
+    </p>
+    <div style="background:color-mix(in srgb,#34d399 12%,transparent);border:1px solid #34d399;border-radius:12px;padding:16px 18px;margin:1rem 0;">
+      Kuniga <b>10 marta</b> ilovani Dock yoki Launchpad'dan qidirib topish o'rniga,
+      Raycast bilan <b>2 soniyada</b> ochasiz. Har bir qidiruv taxminan 8–10 soniya oladi.
+      <br><br>
+      <b>Hisob:</b> 10 × 8 soniya = 80 soniya/kun ≈ 1,3 daqiqa/kun → ~40 daqiqa/oy →
+      <b>yilda taxminan 8 soat</b> tejash. Faqat bitta odat bilan.
+    </div>
+    <p>
+      Bu — faqat ilova ochish. Clipboard tarixi, snippet'lar va oyna boshqaruvi qo'shilsa,
+      tejalgan vaqt bir necha barobar ortadi. <b>Tezlik — vaqt, vaqt esa eng qimmat resurs.</b>
+    </p>
+  </section>
+
+  <a href="/bog-lanish" class="start-btn" style="margin-top:2rem;" data-i18n="mt.buy">Kursni boshlash →</a>
+  <a href="/kurslar" class="enroll" style="margin-left:1rem;" data-i18n="mt.all">← Barcha kurslar</a>
+
+  <Quiz title="O'z bilimingizni tekshiring" titleI18n="mt.quizTitle" questions={questions} />
+</article>
+<TelegramCTA />
+</Base>

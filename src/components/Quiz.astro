@@ -1,0 +1,56 @@
+---
+const { title = "O'z bilimingizni tekshiring", questions = [], titleI18n = "" } = Astro.props;
+---
+
+<section class="quiz">
+  <div class="sec-head" style="margin-top:0">
+    <h2 class="sec-title">
+      <span class="sec-ic" style="background:linear-gradient(135deg,#0ea5e9,#22c55e)"><svg viewBox="0 0 24 24"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg></span>
+      {titleI18n ? <span data-i18n={titleI18n}>{title}</span> : title}
+    </h2>
+  </div>
+
+  <form class="quiz-form" data-quiz>
+    {questions.map((item, i) => (
+      <div class="q" data-q>
+        <p class="q-t">{i + 1}. {item.q}</p>
+        {item.opts.map((o, j) => (
+          <label class="q-o" data-correct={j === item.answer}>
+            <input type="radio" name={`q${i}`} value={j} /> {o}
+          </label>
+        ))}
+      </div>
+    ))}
+    <button type="button" class="start-btn" data-check data-i18n="quiz.check">Tekshirish</button>
+    <p class="quiz-res" data-res hidden></p>
+    <p class="quiz-hint" data-hint hidden data-i18n="quiz.hint">Har bir savolga javob bering.</p>
+  </form>
+</section>
+
+<script>
+  document.querySelectorAll('[data-quiz]').forEach(form => {
+    const check = form.querySelector('[data-check]');
+    if (!check) return;
+    check.addEventListener('click', () => {
+      const qs = form.querySelectorAll('[data-q]');
+      let correct = 0, answered = 0;
+      qs.forEach(q => {
+        const chosen = q.querySelector('input:checked');
+        const opts = q.querySelectorAll('.q-o');
+        if (chosen) {
+          answered++;
+          const label = chosen.closest('.q-o');
+          opts.forEach(o => o.classList.remove('ok', 'no'));
+          if (label.dataset.correct === 'true') { correct++; label.classList.add('ok'); }
+          else { label.classList.add('no'); const right = q.querySelector('.q-o[data-correct="true"]'); if (right) right.classList.add('ok'); }
+        }
+      });
+      const res = form.querySelector('[data-res]');
+      const hint = form.querySelector('[data-hint]');
+      if (answered < qs.length) { hint.hidden = false; res.hidden = true; return; }
+      hint.hidden = true; res.hidden = false;
+      const pct = Math.round((correct / qs.length) * 100);
+      res.textContent = `Natija: ${correct}/${qs.length} to'g'ri (${pct}%). ${correct === qs.length ? 'Ajoyib! Kursga tayyorsiz.' : 'Yaxshi, lekin kurs sizga foyda beradi.'}`;
+    });
+  });
+</script>

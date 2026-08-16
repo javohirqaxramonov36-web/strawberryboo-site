@@ -1,0 +1,210 @@
+---
+import Base from "../../layouts/Base.astro";
+import TelegramCTA from "../../components/TelegramCTA.astro";
+import Quiz from "../../components/Quiz.astro";
+const title = "Nega chet elda o'qish kerak — O'rganamiz";
+const description = "Chet elda o'qishning 5 asosiy sababi: ta'lim sifati va xalqaro tan olinish, karyera, shaxsiy rivojlanish va bepul o'qish grantlari (El-Yurt Umidi, Chevening, DAAD).";
+const questions = [
+  { q: "QS World University Rankings nima uchun muhim?", opts: ["Faqat sayohat reytingi", "Universitetlarni xalqaro baholaydi va diplom qadrini ko'rsatadi", "Ob-havo prognozi", "O'yin natijalari"], answer: 1 },
+  { q: "El-Yurt Umidi qanday dastur?", opts: ["Xususiy kompaniya", "O'zbekiston davlat granti (chet elga o'qishga)", "Bank krediti", "Tadbirkorlik tanlovi"], answer: 1 },
+  { q: "Chet elda o'qishning asosiy shaxsiy foydasi?", opts: ["Faqat dam olish", "Mustaqillik va madaniyatlararo tajriba", "Hech nima o'zgarmaydi", "Faqat taomlar"], answer: 1 }
+];
+---
+
+<Base title={title} description={description}>
+
+<article class="lesson">
+  <div class="course-hero">
+    <h1>Nega chet elda o'qish kerak?</h1>
+    <div class="price">
+      <span class="now">$0</span>
+      <span class="badge badge-free">Bepul</span>
+      <span class="badge badge-cert">Sertifikat</span>
+      <span class="uzs">Bepul</span>
+    </div>
+  </div>
+
+  <p class="lead">
+    <span data-i18n="ce.lead1">Chet elda o'qish — bu faqat "chetga chiqish" emas, balki hayotingizni sifat jihatdan o'zgartiradigan qaror. Bu bepul kursda 5 ta asosiy sababni batafsil yoritamiz: nima uchun diplomning qadri, karyera va shaxsiy o'sish bunga bog'liq va qanday qilib </span> <b data-i18n="ce.leadBold">arzon yoki bepul</b> <span data-i18n="ce.lead2">o'qish mumkin.</span>
+  </p>
+
+  <section>
+    <h2 data-i18n="ce.modules">Kurs modullari</h2>
+    <ol class="modules">
+      <li data-i18n="ce.mod1">Ta'lim sifati va xalqaro tan olinish (QS reyting, diplom qadri)</li>
+      <li data-i18n="ce.mod2">Karyera imkoniyatlari — xalqaro tajriba, networking, til</li>
+      <li data-i18n="ce.mod3">Shaxsiy rivojlanish — mustaqillik, madaniyatlararo tajriba</li>
+      <li data-i18n="ce.mod4">Moliyaviy imkoniyatlar — grant va stipendiyalar (El-Yurt Umidi, Chevening, DAAD)</li>
+      <li data-i18n="ce.mod5">Real misollar va statistika (taxminiy/umumiy tendensiya)</li>
+    </ol>
+  </section>
+
+  <section>
+    <h2>1. Ta'lim sifati va xalqaro tan olinish</h2>
+    <p>
+      Eng yaxshi universitetlar — AQSh, Buyuk Britaniya, Germaniya, Niderlandiya
+      va boshqa mamlakatlarda — ko'pincha <b>QS World University Rankings</b> kabi
+      xalqaro reyting tizimlarida yuqori o'rinlarni egallaydi. Bu reytinglar shunchaki
+      "obro'" emas: ular tadqiqotdarajasi, professor-o'quvchi nisbati, xalqaro
+      talabalar ulushi va ish beruvchilar bahosiga asoslanadi.
+    </p>
+    <h3>Diplomning qadri</h3>
+    <ul>
+      <li>
+        <b>Xalqaro tan olinish:</b> chet el diplomi ko'pgina davlatlarda va
+        transmilliy kompaniyalarda avtomatik ravishda yuqori baholanadi.
+      </li>
+      <li>
+        <b>Akademik erkinlik:</b> kurslar ko'pincha tanlovli (elective), talaba
+        o'z yo'nalishini moslashtirishi mumkin.
+      </li>
+      <li>
+        <b>Tadqiqot va amaliyot:</b> labaratoriyalar, kutubxona va professorlar
+        bilan ishlash imkoniyati — bu mahalliy oliygohlarda kam uchraydi.
+      </li>
+      <li>
+        <b>QS reytingdagi universitet:</b> masalan, top-100 ga kirgan universitet
+        bitiruvchisi uchun ishga joylashish ehtimoli sezilarli yuqori bo'ladi.
+      </li>
+    </ul>
+    <p class="quiz-hint">
+      Muhim: reyting — faqat bir ko'rsatkich. Tanlashda mutaxassislik, til va
+      moliyaviy tomonni ham hisobga olish kerak (qarang 4-bo'lim, grantlar).
+    </p>
+  </section>
+
+  <section>
+    <h2>2. Karyera imkoniyatlari</h2>
+    <p>
+      Chet elda o'qish — bu kelajakdagi ish joyingizga to'g'ridan-to'g'ri ta'sir
+      qiladigan "sarmoya". Sabablari:
+    </p>
+    <h3>Xalqaro tajriba</h3>
+    <ul>
+      <li>
+        <b>Global work experience:</b> chet el kompaniyasida amaliyot (internship)
+        o'tagan talaba ichki bozorda ustunlikka ega bo'ladi.
+      </li>
+      <li>
+        <b>Networking:</b> xalqaro tarmoq, alumnus (bitiruvchilar) klubi —
+        ko'pincha birinchi ish aynan shu aloqalar orqali topiladi.
+      </li>
+      <li>
+        <b>Til ko'nikmalari:</b> ingliz tilida ishbilarmonlik muloqotiga
+        tayyor bo'lish — bugungi kunda deyarli har bir xalqaro lavozim uchun talab.
+      </li>
+      <li>
+        <b>Soft skills:</b> prezentatsiya, jamoa bilan ishlash, muammo yechish —
+        g'arb ta'limida markaziy o'rin egallaydi.
+      </li>
+    </ul>
+    <p class="quiz-hint">
+      Ko'p ish beruvchilar uchun "chet el tajribasi bor" degan qator — CV'dagi
+      eng kuchli belgilardan biri.
+    </p>
+  </section>
+
+  <section>
+    <h2>3. Shaxsiy rivojlanish</h2>
+    <p>
+      Pul va karyeradan tashqari, chet elda o'qish insonni butunlay boshqacha
+      darajaga olib chiqadi:
+    </p>
+    <ul>
+      <li>
+        <b>Mustaqillik:</b> o'z pulingiz, vaqtingiz va qarorlaringiz uchun
+        mas'ul bo'lish — bu yetuklik maktabidir.
+      </li>
+      <li>
+        <b>Madaniyatlararo tajriba:</b> turli mamlakatlardan odamlar bilan
+        yashash dunyoqarashni kengaytiradi, stereotiplarni bartaraf etadi.
+      </li>
+      <li>
+        <b>Moslashuvchanlik (adaptability):</b> yangi muhitga tez kira olish —
+          bugungi tez o'zgaruvchan dunyoda eng qimmatli ko'nikma.
+      </li>
+      <li>
+        <b>O'ziga ishonch:</b> "men buni ham qila oldim" hissi keyingi barcha
+        rejalarga asos bo'ladi.
+      </li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>4. Moliyaviy imkoniyatlar — grant va stipendiyalar</h2>
+    <p>
+      Eng katta qo'rquv: "qimmat". Aslida, ko'p hollarda chet elda o'qish
+      <b>arzonroq yoki umuman bepul</b> bo'lishi mumkin — agar grant/stipendiya
+      topilsa. Asosiy dasturlar:
+    </p>
+    <h3>O'zbekiston: El-Yurt Umidi</h3>
+    <ul>
+      <li>Davlat granti — O'zbekiston fuqarolarini chet elga o'qishga yuboradi.</li>
+      <li>Qamrab oladi: o'qish to'lovi, ba'zan yashash va sayohat xarajatlari.</li>
+      <li>Talab: tanlov, suhbat, til darajasi (IELTS/TOEFL) va motivatsiya.</li>
+      <li>Batafsil tayyorgarlik kursi — alohida: <a href="/kurslar/el-yurt-umidi" style="color:var(--accent)">"El-Yurt Umidi'ni yutaylik" →</a></li>
+    </ul>
+    <h3>Buyuk Britaniya: Chevening</h3>
+    <ul>
+      <li>UK hukumatining elit stipendiyasi (1 yillik magistratura).</li>
+      <li>To'liq o'qish + yashash + parvoz xarajatlarini qoplaydi.</li>
+      <li>Talab: yetakchilik potensiali, 2 yillik ish tajribasi, IELTS.</li>
+    </ul>
+    <h3>Germaniya: DAAD</h3>
+    <ul>
+      <li>Eng katta akademik almashinuv tashkiloti.</li>
+      <li>Germaniyada ko'p magistratura <b>bepul</b> (faqat semestr to'lovi), DAAD esa yashash stipendiyasini beradi.</li>
+      <li>Talab: a'lo baholar, til (nemis yoki ingliz), tadqiqot rejasi.</li>
+    </ul>
+    <h3>Boshqa mashhur dasturlar</h3>
+    <ul>
+      <li><b>Erasmus+:</b> Evropa ichida almashinuv stipendiyasi.</li>
+      <li><b>Fulbright:</b> AQShga o'qish/tadqiqot granti.</li>
+      <li><b>Turkiya Burslari (Türkiye Scholarships):</b> to'liq qoplama.</li>
+      <li><b>Universitetlarning o'z stipendiyalari:</b> ko'p top universitetlar a'lo talabalarga qisman yoki to'liq grant beradi.</li>
+    </ul>
+    <p class="quiz-hint">
+      Xulosa: to'g'ri grant topilsa, chet elda o'qish mahalliy o'qishdan
+      arzonroq tushishi mumkin. Asosiy ish — vaqtida ariza berish va til darajasini
+      ko'tarish.
+    </p>
+  </section>
+
+  <section>
+    <h2>5. Real misollar va statistika</h2>
+    <p>
+      <b>Eslatma:</b> quyidagi raqamlar <b>taxminiy/umumiy tendensiya</b> sifatida
+      keltirilgan — aniq, rasmiy manba hozircha qo'shilmagan. Ishonchli statistika
+      keyingi yangilanishda ilova qilinadi.
+    </p>
+    <ul>
+      <li>
+        O'zbekistondan chet el universitetlariga o'qishga ketayotgan talabalar
+        soni so'nggi yillarda <b>keskin o'sib bormoqda</b> (umumiy tendensiya).
+      </li>
+      <li>
+        El-Yurt Umidi dasturi orqali har yili <b>minglab</b> talaba chet elga
+        yo'l oladi (taxminiy).
+      </li>
+      <li>
+        QS top-500 universitet bitiruvchilarining ishga joylashish tezligi
+        o'rtacha darajadan <b>yuqori</b> (umumiy kuzatuv).
+      </li>
+      <li>
+        Nemisiyada ko'p magistratura dasturi <b>bepul</b> bo'lgani uchun
+        talabalar faqat yashash xarajatini ko'tarishadi.
+      </li>
+    </ul>
+    <p class="quiz-hint">
+      Aniq raqamlar va rasmiy manbalar (World Bank, UNESCO, Oliy ta'lim
+      vazirligi) qo'shilgach, bu bo'lim yangilanadi.
+    </p>
+  </section>
+
+  <a href="/bog-lanish" class="start-btn" style="margin-top:2rem;" data-i18n="ce.buy">Bepul kursni boshlash →</a>
+  <a href="/kurslar" class="enroll" style="margin-left:1rem;" data-i18n="ce.all">← Barcha kurslar</a>
+
+  <Quiz titleI18n="ce.quizTitle" questions={questions} />
+</article>
+<TelegramCTA />
+</Base>

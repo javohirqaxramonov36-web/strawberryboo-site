@@ -1,48 +1,1042 @@
 ---
-const title = Astro.props.title || 'Strawberryboo';
+const title = Astro.props.title || "O'rganamiz";
 const description = Astro.props.description || '';
+const lang = Astro.props.lang || "uz";
+const canonical = Astro.props.canonical || Astro.url.href;
 ---
 
 <!doctype html>
-<html lang="uz">
+<html lang={lang}>
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{title}</title>
     <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
   </head>
   <body>
-    <header class="site-header">
-      <a href="/" class="logo">🍓 Strawberryboo</a>
-      <nav>
-        <a href="/kurslar">Kurslar</a>
-        <a href="/blog">Blog</a>
-        <a href="/bog-lanish">Bog'lanish</a>
+    <a href="#main" class="skip-link" data-i18n="skip">Asosiyga o'tish</a>
+
+    <aside class="sidebar">
+      <a href="/" class="brand">
+        <span class="logo">O'</span>
+        O'rganamiz
+      </a>
+      <nav class="side-nav">
+        <a href="/"><span data-i18n="nav.home">Bosh sahifa</span></a>
+        <a href="/kurslar"><span data-i18n="nav.courses">Kurslar</span></a>
+        <a href="/narxlar"><span data-i18n="nav.prices">Narxlar</span></a>
+        <a href="/kurs-tanlash"><span data-i18n="nav.reco">Kurs tanlash</span></a>
+        <a href="/mening-yolim"><span data-i18n="nav.journey">Mening yo'lim</span></a>
+        <a href="/bog-lanish"><span data-i18n="nav.contact">Bog'lanish</span></a>
+        <span class="lang-switch side">
+          <a href="#" data-lang="uz" class={lang==='uz'?'active':''}>UZ</a>
+          <a href="#" data-lang="ru" class={lang==='ru'?'active':''}>RU</a>
+          <a href="#" data-lang="en" class={lang==='en'?'active':''}>EN</a>
+        </span>
       </nav>
-    </header>
-    <main>
-      <slot />
-    </main>
-    <footer>
-      <p>© 2026 Strawberryboo. Barcha huquqlar himoyalangan.</p>
-    </footer>
+    </aside>
+
+    <div class="content">
+      <header class="site-header">
+        <button class="menu-toggle" id="menuToggle">☰</button>
+        <span class="mobile-brand">O'rganamiz</span>
+        <nav class="top-nav">
+          <a href="/kurslar"><span data-i18n="nav.courses">Kurslar</span></a>
+          <a href="/narxlar"><span data-i18n="nav.prices">Narxlar</span></a>
+          <a href="/kurs-tanlash"><span data-i18n="nav.reco">Kurs tanlash</span></a>
+          <a href="/mening-yolim"><span data-i18n="nav.journey">Mening yo'lim</span></a>
+          <a href="/bog-lanish"><span data-i18n="nav.contact">Bog'lanish</span></a>
+          <span class="lang-switch">
+            <a href="#" data-lang="uz" class={lang==='uz'?'active':''}>UZ</a>
+            <a href="#" data-lang="ru" class={lang==='ru'?'active':''}>RU</a>
+            <a href="#" data-lang="en" class={lang==='en'?'active':''}>EN</a>
+          </span>
+        </nav>
+      </header>
+      <main id="main">
+        <slot />
+      </main>
+      <footer class="site-footer">
+        <div class="tg-footer-cta">
+          <div class="tg-footer-inner">
+            <div class="tg-footer-ic" aria-hidden="true">
+              <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 4 3 11l5 2 2 5 3-3 4 3 4-13z"/><path d="m8 13 4-4"/></svg>
+            </div>
+            <div class="tg-footer-text">
+              <strong data-i18n="tg.footer.title">Telegram kanalimizga qo'shiling</strong>
+              <span data-i18n="tg.footer.text">Yangi kurslar, bepul materiallar va hamjamiyat — bitta joyda.</span>
+            </div>
+            <a href="#" class="tg-footer-btn" data-i18n="tg.footer.btn">Kanalga qo'shilish →</a>
+          </div>
+        </div>
+        <div class="footer-grid">
+          <div class="footer-brand">
+            <a href="/" class="brand">
+              <span class="logo">O'</span>
+              O'rganamiz
+            </a>
+            <p data-i18n="footer.about">Amaliy onlayn kurslar: AI, IELTS, Admission va shaxsiy bilim bazasi. O'zbek tilida, bepul kurslar ham bor.</p>
+            <div class="footer-social">
+              <a href="#" aria-label="Telegram" data-i18n="footer.social.tg">Telegram</a>
+              <a href="#" aria-label="Instagram" data-i18n="footer.social.ig">Instagram</a>
+            </div>
+          </div>
+          <div class="footer-col">
+            <h4 data-i18n="footer.pages">Sahifalar</h4>
+            <a href="/kurslar"><span data-i18n="nav.courses">Kurslar</span></a>
+            <a href="/narxlar"><span data-i18n="nav.prices">Narxlar</span></a>
+            <a href="/kurs-tanlash"><span data-i18n="nav.reco">Kurs tanlash</span></a>
+            <a href="/mening-yolim"><span data-i18n="nav.journey">Mening yo'lim</span></a>
+            <a href="/bog-lanish"><span data-i18n="nav.contact">Bog'lanish</span></a>
+            <a href="/faq">FAQ</a>
+          </div>
+        </div>
+        <p class="footer-copy" data-i18n="footer.copy">© 2026 O'rganamiz. Barcha huquqlar himoyalangan.</p>
+      </footer>
+    </div>
+
+    <script>
+      const menuToggle = document.getElementById('menuToggle');
+      const sidebar = document.querySelector('.sidebar');
+      menuToggle.addEventListener('click', () => { sidebar.classList.toggle('open'); });
+
+      // QADAM 5 — narx eslatmasi
+      document.querySelectorAll('.uzs').forEach(function (u) {
+        if (/so'm/i.test(u.textContent) && !u.querySelector('.price-note')) {
+          var n = document.createElement('span');
+          n.className = 'price-note';
+          n.textContent = "*taxminiy kurs, to'lov vaqtida aniqlashtiriladi";
+          u.appendChild(n);
+        }
+      });
+
+      // === i18n: JSON dictionary + localStorage (QADAM 1) ===
+      const I18N = {
+        uz: {
+          "skip": "Asosiyga o'tish",
+          "nav.home": "Bosh sahifa",
+          "nav.courses": "Kurslar",
+          "nav.prices": "Narxlar",
+          "nav.reco": "Kurs tanlash",
+          "nav.journey": "Mening yo'lim",
+          "nav.contact": "Bog'lanish",
+          "footer.about": "Amaliy onlayn kurslar: AI, IELTS, Admission va shaxsiy bilim bazasi. O'zbek tilida, bepul kurslar ham bor.",
+          "footer.social.tg": "Telegram",
+          "footer.social.ig": "Instagram",
+          "footer.pages": "Sahifalar",
+          "footer.copy": "© 2026 O'rganamiz. Barcha huquqlar himoyalangan.",
+          "tg.footer.title": "Telegram kanalimizga qo'shiling",
+          "tg.footer.text": "Yangi kurslar, bepul materiallar va hamjamiyat — bitta joyda.",
+          "tg.footer.btn": "Kanalga qo'shilish →",
+          "tg.course.title": "Savolingiz bormi?",
+          "tg.course.sub": "Telegram guruhimizda so'rang — jamoa va boshqa o'quvchilar yordam beradi.",
+          "tg.course.btn": "Telegram guruhiga qo'shilish →",
+          "hero.eyebrow": "AI · IELTS · Admission kurslari",
+          "hero.learn": "O'rganing:",
+          "cta.view": "Kurslarni ko'rish",
+          "cta.which": "Qaysi kurs? →",
+          "spot.badge": "Eng mashhur",
+          "spot.more": "Batafsil →",
+          "sec.courses": "Kurslarimiz",
+          "sec.all": "Barchasini ko'rish",
+          "btn.start": "Kursni boshlash →",
+          "why.title": "Nega biz?",
+          "why.1": "Amaliy — nazariya emas, qilish o'rganasiz",
+          "why.2": "O'zbek tilida — tushunarli tushuntirish",
+          "why.3": "Arzon — $19 dan boshlab",
+          "why.4": "Forever access — bir marta sotib, doim foydalan",
+          "why.5": "Har kursda sertifikat",
+          "pay.title": "To'lov usullari",
+          "pay.click": "Click",
+          "pay.payme": "Payme",
+          "pay.uzum": "Uzum",
+          "pay.card": "Karta (UZS/USD)",
+          "comm.title": "Community",
+          "comm.heading": "Telegram kanalimizda bizga qo'shiling",
+          "comm.text": "talaba bizning Telegram kanalimizda faol — savollar, yangiliklar va bepul materiallar bitta joyda.",
+          "comm.join": "Telegram kanaliga qo'shilish →",
+          "ta.lead": "Pul sarflamasdan, o'z MacBook'ingizda ishlaydigan AI vositalari. Hamma narsa offline (internet shimsiz) ishlaydi.",
+          "ta.modules": "Vositalar ro'yxati",
+          "ta.mod1": "Ollama — local AI model (llama3.2)",
+          "ta.mod2": "CrewAI — jamoa agent'lari",
+          "ta.mod3": "LangGraph — orchestration",
+          "ta.mod4": "Letta / MemGPT — xotira",
+          "ta.mod5": "Obsidian + Strawberryboo — capture",
+          "ta.mod6": "Obsidian'dagi 17 ta AI agent haqida notalar",
+          "ta.all": "← Barcha kurslar",
+          "ta.quizTitle": "O'z bilimingizni tekshiring",
+          "ey.lead": "El-Yurt Umidi davlat granti bo'yicha suhbatga tayyorgarlik kursi — tez orada to'liq material qo'shiladi. Hozircha kursning bo'limlar strukturasi tayyor. To'liq darslar keyingi yangilanishda yuklanadi.",
+          "ey.modules": "Kurs bo'limlari (struktura tayyor)",
+          "ey.mod1": "Suhbatga tayyorgarlik",
+          "ey.mod2": "Bridge texnikasi",
+          "ey.mod3": "Tez-tez so'raladigan savollar",
+          "ey.mod4": "Muvaffaqiyatli case'lar",
+          "ey.all": "← Barcha kurslar",
+          "ce.lead1": "Chet elda o'qish — bu faqat \"chetga chiqish\" emas, balki hayotingizni sifat jihatdan o'zgartiradigan qaror. Bu bepul kursda 5 ta asosiy sababni batafsil yoritamiz: nima uchun diplomning qadri, karyera va shaxsiy o'sish bunga bog'liq va qanday qilib ",
+          "ce.leadBold": "arzon yoki bepul",
+          "ce.lead2": " o'qish mumkin.",
+          "ce.modules": "Kurs modullari",
+          "ce.mod1": "Ta'lim sifati va xalqaro tan olinish (QS reyting, diplom qadri)",
+          "ce.mod2": "Karyera imkoniyatlari — xalqaro tajriba, networking, til",
+          "ce.mod3": "Shaxsiy rivojlanish — mustaqillik, madaniyatlararo tajriba",
+          "ce.mod4": "Moliyaviy imkoniyatlar — grant va stipendiyalar (El-Yurt Umidi, Chevening, DAAD)",
+          "ce.mod5": "Real misollar va statistika (taxminiy/umumiy tendensiya)",
+          "ce.buy": "Bepul kursni boshlash →",
+          "ce.all": "← Barcha kurslar",
+          "ce.quizTitle": "O'z bilimingizni tekshiring",
+          "fl.lead": "Pulni boshqarish, byudjet tuzish va kundalik moliyaviy qarorlar — har bir talaba uchun asosiy hayotiy ko'nikma. Bu kursda mablag'ingizni qanday rejalashtirishni, xatolarga yo'l qo'ymaslikni va kelajakka tayyorgarlik ko'rishni o'rganasiz.",
+          "fl.modules": "Kurs modullari",
+          "fl.mod1": "Asosiy tushunchalar — daromad, xarajat, byudjet, jamg'arma",
+          "fl.mod2": "Talaba byudjeti tuzish — stipendiya/grant pulini oy davomida taqsimlash",
+          "fl.mod3": "Chet elda yashash xarajatlari — rejalashtirish va bank hisobi asoslari",
+          "fl.mod4": "Qarz va kredit tushunchasi — kredit karta, student loan (ogohlantirish bilan)",
+          "fl.mod5": "Jamg'arma va kelajakka rejalashtirish — «avval jamg'ar, keyin sarfla»",
+          "fl.mod6": "Umumiy xatolar — talabalar ko'p qiladigan moliyaviy xatolar",
+          "fl.buy": "Kursni sotib olish →",
+          "fl.all": "← Barcha kurslar",
+          "fl.quizTitle": "O'z bilimingizni tekshiring",
+          "ac.lead1": "Mac'da AutoCAD bilan ishlash — Windows'dan farqli o'ziga xos xususiyatlarga ega. Bu kursda o'rnatish, interfeys, asosiy buyruqlar va Autodesk'dan",
+          "ac.leadBold": "bepul talaba litsenziyasi",
+          "ac.lead2": "qanday olinishini o'rganasiz.",
+          "ac.modules": "Kurs modullari",
+          "ac.mod1": "Mac'da o'rnatish — AutoCAD for Mac, tizim talablari (macOS 12+)",
+          "ac.mod2": "Interfeys farqlari (Mac vs Windows) va Mac-specific shortcut'lar",
+          "ac.mod3": "Asosiy chizish buyruqlari — LINE, CIRCLE, TRIM, OFFSET, LAYER",
+          "ac.mod4": "8-qadamli workflow: UNITS → LIMITS → LAYER → chizish → PLOT",
+          "ac.mod5": "Autodesk bepul talaba litsenziyasi (edu.autodesk.com) — 1 yilga",
+          "ac.mod6": "Amaliy loyiha — birinchi chizmani Model'dan Layout'ga chiqarish",
+          "ac.mod7": "Pro tips — CUI sozlamalari, OSNAP, suv belgisi (watermark) haqida",
+          "ac.buy": "Kursni sotib olish →",
+          "ac.all": "← Barcha kurslar",
+          "ac.quizTitle": "O'z bilimingizni tekshiring",
+
+          "fg.lead": "Dizayn noldan — bepul. Figma'da interfeys chizish, komponentlar yaratish va prototip orqali g'oyangizni jonli ko'rsatish.",
+          "fg.modules": "Kurs modullari",
+          "fg.mod1": "Nima uchun Figma? (brauzerda, bepul)",
+          "fg.mod2": "Frame, shape, text asoslari",
+          "fg.mod3": "Auto-layout: moslashuvchan dizayn",
+          "fg.mod4": "Komponent va variantlar (variants)",
+          "fg.mod5": "Prototype: sahifalarni bog'lash",
+          "fg.mod6": "UI kit va dizayn tizimi",
+          "fg.mod7": "Portfolio uchun birinchi loyiha",
+          "fg.benefit": "Qanday foyda olasiz?",
+          "fg.ben1": "UI/UX ko'nikmasi — eng talab qilinadigan yo'nalish",
+          "fg.ben2": "Mahsulot g'oyangizni jonli prototip qilish",
+          "fg.ben3": "Freelance yoki ish uchun portfolio",
+          "fg.hint": "Kursni yakunlaganingizdan so'ng sertifikat olasiz.",
+          "fg.buy": "Bepul kursni boshlash →",
+          "fg.all": "← Barcha kurslar",
+          "fg.quizTitle": "O'z bilimingizni tekshiring",
+
+          "mt.lead1": "MacBook'dan faqat \"foydalanish\" yetarli emas — uni",
+          "mt.leadBold": "tez va samarali",
+          "mt.lead2": "ishlatish ko'nikmasi kunlik vaqtingizning soatlarini tejashi mumkin. Bu bepul amaliy kursta Raycast, klaviatura shortcut'lari va boshqa Mac vositalari orqali kundalik ishlarni qanday tezlashtirishni o'rganasiz.",
+          "mt.modules": "Kurs modullari",
+          "mt.mod1": "Raycast asoslari — nima, Spotlight'dan farqi, o'rnatish va sozlash",
+          "mt.mod2": "Foydali Raycast extension'lari — vaqtdan tejaydiganlar ro'yxati",
+          "mt.mod3": "Shaxsiy workflow misollari — ilovalarni ochish, fayl qidirish, shablonlar",
+          "mt.mod4": "Boshqa Mac tezlik vositalari — shortcut'lar, Spotlight, Automator/Shortcuts",
+          "mt.mod5": "Natija: nima uchun bu muhim — real vaqt tejash misoli",
+          "mt.buy": "Kursni boshlash →",
+          "mt.all": "← Barcha kurslar",
+          "mt.quizTitle": "O'z bilimingizni tekshiring",
+
+          "ap.lead": "Chet el universitetlariga hujjat topshirish — murakkab jarayon. Noto'g'ri qadam stipendiyani o'tkazib yuborishi mumkin.",
+          "ap.modules": "Kurs modullari",
+          "ap.mod1": "Universitet tanlash: reyting, mutaxassislik, xarajat",
+          "ap.mod2": "Hujjatlar: diplom, transcript, pasport",
+          "ap.mod3": "Motivation Letter / Essay qanday yozish",
+          "ap.mod4": "Interview: tayyorgarlik savollari",
+          "ap.mod5": "Stipendiya: El-Yurt Umidi, Stipendium Hungaricum, KAU",
+          "ap.mod6": "Obsidian'da kuzatuv: muddatlar, eslatmalar",
+          "ap.buy": "Kursni sotib olish →",
+          "ap.all": "← Barcha kurslar",
+          "ap.quizTitle": "O'z bilimingizni tekshiring",
+          "ap.trackerTitle": "Universitet va Stipendiya Tracker Shabloni",
+          "ap.trackerDesc": "UK, AQSH, Koreya, Ispaniya, Kanada universitetlarini kuzatish uchun tayyor shablon. Ariza muddatlari, hujjatlar holati va stipendiya bosqichlarini bitta jadvalda ushlab turing — nima topshirilgani, nima kutayotganingiz va qachon eslatma kerakligini unutmay gensiz.",
+          "ap.trackerBtn": "⬇ Yuklab olish",
+          "ap.trackerNote": "Fayl tez orada yuklanadi — havola hozircha placeholder.",
+
+          "ie.lead": "IELTS Writing, Reading, Speaking — 30 kunlik reja bilan. AI bilan essay yozishni mashq qiling.",
+          "ie.modules": "Kurs modullari",
+          "ie.mod1": "Nima uchun IELTS kerak? (6.0-7.0 band)",
+          "ie.mod2": "Writing Task 1 & 2 — essay strukturasi",
+          "ie.mod3": "Reading — tez o'qish, keyword topish",
+          "ie.mod4": "Speaking — Part 1/2/3 javoblar",
+          "ie.mod5": "Listening — note-taking texnikasi",
+          "ie.mod6": "30 kunlik reja (hafta bo'yicha)",
+          "ie.mod7": "Prompt Engineering bilan AI'dan yaxshiroq javob",
+          "ie.buy": "Kursni sotib olish →",
+          "ie.all": "← Barcha kurslar",
+          "ie.quizTitle": "O'z bilimingizni tekshiring",
+
+          "op.lead": "Shaxsiy bilim bazasi qurish. Strawberryboo bilan Telegram'dan forward qilsangiz — AI xulosalab, Obsidian'ga saqlaydi.",
+          "op.modules": "Kurs modullari",
+          "op.mod1": "Nima uchun Obsidian? (Tashqi xotira)",
+          "op.mod2": "Vault tuzilmasi: MOC, papkalar, link'lar",
+          "op.mod3": "AutoConnect plugin: yangi note'larni avtomatik ulash",
+          "op.mod4": "Strawberryboo: Telegram → Obsidian capture",
+          "op.mod5": "Graph view: bilimlar bog'lanishi",
+          "op.mod6": "Qayerda qo'llash: o'qish, ish, tadqiqot",
+          "op.buy": "Kursni sotib olish →",
+          "op.all": "← Barcha kurslar",
+          "op.quizTitle": "O'z bilimingizni tekshiring",
+
+          "aa.lead": "Oddiy AI (ChatGPT) — bitta savol. Agent esa vazifani o'zi bajarib chiqadi: reja tuzadi, qidiruv qiladi, natijani yozadi.",
+          "aa.modules": "Kurs modullari",
+          "aa.mod1": "Oddiy AI vs Agent — farqi nima?",
+          "aa.mod2": "CrewAI: jamoa agent'lari (Planner, Researcher, Writer)",
+          "aa.mod3": "LangGraph: agent'lar oqimini boshqarish",
+          "aa.mod4": "Letta: agent'ga uzoq muddatli xotira",
+          "aa.mod5": "O'z agent'ingizni yarating (MacBook'da)",
+          "aa.mod6": "Qayerda qo'llash: tadqiqot, kontent, biznes",
+          "aa.mod7": "AI va agentlar nimani tezlashtiradi? (yangi dars)",
+          "aa.buy": "Kursni sotib olish →",
+          "aa.all": "← Barcha kurslar",
+          "aa.quizTitle": "O'z bilimingizni tekshiring",
+
+          "quiz.check": "Tekshirish",
+          "quiz.hint": "Har bir savolga javob bering.",
+          "pe.lead": "AI bilan to'g'ri muloqot qilish san'ati. Nima uchun kerak, qanday foyda olish, qayerda qo'llash — barchasi amaliy misollar bilan.",
+          "pe.modules": "Kurs modullari",
+          "pe.mod1": "Nima uchun Prompt Engineering kerak? (AI telepatiya qila olmaydi)",
+          "pe.mod2": "Prompt tuzilmasi: roll, kontekst, misollar, format",
+          "pe.mod3": "Amaliy mashq: IELTS essay yozish prompt'i",
+          "pe.mod4": "Chain-of-thought: murakkab vazifalni bo'lish",
+          "pe.mod5": "Few-shot: misollar orqali o'rgatish",
+          "pe.mod6": "Qayerda qo'llash: yozish, kod, tadqiqot, biznes",
+          "pe.mod7": "Strawberryboo orqali avtomatik capture",
+          "pe.benefit": "Qanday foyda olasiz?",
+          "pe.ben1": "Vaqt tejash — 1 soatlik ishni 5 daqiqaga",
+          "pe.ben2": "Sifatli natija — aniq, strukturaviy",
+          "pe.ben3": "Pul ishlash — kontent, kod tezroq",
+          "pe.buy": "Kursni sotib olish →",
+          "pe.all": "← Barcha kurslar",
+          "pe.quizTitle": "O'z bilimingizni tekshiring"
+        },
+        ru: {
+          "skip": "Перейти к основному",
+          "nav.home": "Главная",
+          "nav.courses": "Курсы",
+          "nav.prices": "Цены",
+          "nav.reco": "Подобрать курс",
+          "nav.journey": "Мой путь",
+          "nav.contact": "Контакты",
+          "footer.about": "Практические онлайн-курсы: AI, IELTS, Admission и личная база знаний. На узбекском, есть бесплатные курсы.",
+          "footer.social.tg": "Telegram",
+          "footer.social.ig": "Instagram",
+          "footer.pages": "Страницы",
+          "footer.copy": "© 2026 O'rganamiz. Все права защищены.",
+          "tg.footer.title": "Подпишитесь на наш Telegram-канал",
+          "tg.footer.text": "Новые курсы, бесплатные материалы и сообщество — в одном месте.",
+          "tg.footer.btn": "Перейти к каналу →",
+          "tg.course.title": "Есть вопрос?",
+          "tg.course.sub": "Спрашивайте в нашей Telegram-группе — команда и другие ученики помогут.",
+          "tg.course.btn": "Присоединиться к группе →",
+          "hero.eyebrow": "Курсы AI · IELTS · Admission",
+          "hero.learn": "Учите:",
+          "cta.view": "Смотреть курсы",
+          "cta.which": "Какой курс? →",
+          "spot.badge": "Самый популярный",
+          "spot.more": "Подробнее →",
+          "sec.courses": "Наши курсы",
+          "sec.all": "Смотреть все",
+          "btn.start": "Начать курс →",
+          "why.title": "Почему мы?",
+          "why.1": "Практика — учитесь делать, а не теории",
+          "why.2": "На узбекском — понятные объяснения",
+          "why.3": "Дёшево — от $19",
+          "why.4": "Forever access — купили один раз, пользуйтесь вечно",
+          "why.5": "Сертификат в каждом курсе",
+          "pay.title": "Способы оплаты",
+          "pay.click": "Click",
+          "pay.payme": "Payme",
+          "pay.uzum": "Uzum",
+          "pay.card": "Карта (UZS/USD)",
+          "comm.title": "Сообщество",
+          "comm.heading": "Присоединяйтесь к нашему Telegram-каналу",
+          "comm.text": "учеников активны в нашем Telegram-канале — вопросы, новости и бесплатные материалы в одном месте.",
+          "comm.join": "Присоединиться к каналу →",
+          "ta.lead": "AI-инструменты, которые работают прямо на вашем MacBook, без затрат. Всё работает офлайн (без интернета).",
+          "ta.modules": "Список инструментов",
+          "ta.mod1": "Ollama — локальная AI-модель (llama3.2)",
+          "ta.mod2": "CrewAI — командные агенты",
+          "ta.mod3": "LangGraph — оркестрация",
+          "ta.mod4": "Letta / MemGPT — память",
+          "ta.mod5": "Obsidian + Strawberryboo — захват",
+          "ta.mod6": "Заметки об 17 AI-агентах в Obsidian",
+          "ta.all": "← Все курсы",
+          "ta.quizTitle": "Проверьте свои знания",
+          "ey.lead": "Курс подготовки к собеседованию по государственному гранту El-Yurt Umidi — полный материал будет добавлен в ближайшее время. Пока готова структура разделов курса. Полные уроки загрузятся в следующем обновлении.",
+          "ey.modules": "Разделы курса (структура готова)",
+          "ey.mod1": "Подготовка к собеседованию",
+          "ey.mod2": "Техника Bridge",
+          "ey.mod3": "Часто задаваемые вопросы",
+          "ey.mod4": "Успешные кейсы",
+          "ey.all": "← Все курсы",
+          "ce.lead1": "Учёба за рубежом — это не просто «выбраться за границу», а решение, качественно меняющее вашу жизнь. В этом бесплатном курсе мы подробно разберём 5 главных причин: почему ценится диплом, как это связано с карьерой и личным ростом, и как учиться ",
+          "ce.leadBold": "дёшево или бесплатно",
+          "ce.lead2": ".",
+          "ce.modules": "Модули курса",
+          "ce.mod1": "Качество образования и международное признание (QS-рейтинг, ценность диплома)",
+          "ce.mod2": "Карьерные возможности — международный опыт, нетворкинг, язык",
+          "ce.mod3": "Личное развитие — независимость, межкультурный опыт",
+          "ce.mod4": "Финансовые возможности — гранты и стипендии (El-Yurt Umidi, Chevening, DAAD)",
+          "ce.mod5": "Реальные примеры и статистика (ориентировочно/общая тенденция)",
+          "ce.buy": "Начать бесплатный курс →",
+          "ce.all": "← Все курсы",
+          "ce.quizTitle": "Проверьте свои знания",
+          "fl.lead": "Управление деньгами, составление бюджета и ежедневные финансовые решения — базовый жизненный навык для каждого студента. На этом курсе вы узнаете, как планировать свои средства, не допускать ошибок и готовиться к будущему.",
+          "fl.modules": "Модули курса",
+          "fl.mod1": "Основные понятия — доход, расход, бюджет, сбережения",
+          "fl.mod2": "Составление бюджета студента — распределение стипендии/гранта на месяц",
+          "fl.mod3": "Расходы на жизнь за рубежом — планирование и основы банковского счёта",
+          "fl.mod4": "Понятие долга и кредита — кредитная карта, student loan (с осторожностью)",
+          "fl.mod5": "Сбережения и планирование будущего — «сначала копи, потом трать»",
+          "fl.mod6": "Типичные ошибки — финансовые ошибки, которые часто совершают студенты",
+          "fl.buy": "Купить курс →",
+          "fl.all": "← Все курсы",
+          "fl.quizTitle": "Проверьте свои знания",
+          "ac.lead1": "Работа с AutoCAD на Mac имеет свои особенности, отличные от Windows. В этом курсе вы узнаете установку, интерфейс, основные команды и как получить от Autodesk",
+          "ac.leadBold": "бесплатную студенческую лицензию",
+          "ac.lead2": ".",
+          "ac.modules": "Модули курса",
+          "ac.mod1": "Установка на Mac — AutoCAD for Mac, системные требования (macOS 12+)",
+          "ac.mod2": "Различия интерфейса (Mac vs Windows) и Mac-специфичные сочетания клавиш",
+          "ac.mod3": "Основные команды рисования — LINE, CIRCLE, TRIM, OFFSET, LAYER",
+          "ac.mod4": "Пошаговый workflow: UNITS → LIMITS → LAYER → рисование → PLOT",
+          "ac.mod5": "Бесплатная студенческая лицензия Autodesk (edu.autodesk.com) — на 1 год",
+          "ac.mod6": "Практический проект — вывод первого чертежа из Model в Layout",
+          "ac.mod7": "Про-советы — настройки CUI, OSNAP, водяной знак (watermark)",
+          "ac.buy": "Купить курс →",
+          "ac.all": "← Все курсы",
+          "ac.quizTitle": "Проверьте свои знания",
+
+          "fg.lead": "Дизайн с нуля — бесплатно. Рисовать интерфейсы в Figma, создавать компоненты и показывать идею живым прототипом.",
+          "fg.modules": "Модули курса",
+          "fg.mod1": "Зачем нужна Figma? (в браузере, бесплатно)",
+          "fg.mod2": "Основы Frame, shape, text",
+          "fg.mod3": "Auto-layout: адаптивный дизайн",
+          "fg.mod4": "Компоненты и варианты (variants)",
+          "fg.mod5": "Prototype: связывание страниц",
+          "fg.mod6": "UI-kit и дизайн-система",
+          "fg.mod7": "Первый проект для портфолио",
+          "fg.benefit": "Какую пользу вы получите?",
+          "fg.ben1": "Навык UI/UX — самое востребованное направление",
+          "fg.ben2": "Делать живой прототип вашей продуктовой идеи",
+          "fg.ben3": "Портфолио для фриланса или работы",
+          "fg.hint": "После завершения курса вы получите сертификат.",
+          "fg.buy": "Начать бесплатный курс →",
+          "fg.all": "← Все курсы",
+          "fg.quizTitle": "Проверьте свои знания",
+
+          "mt.lead1": "Просто «пользоваться» MacBook недостаточно — умение",
+          "mt.leadBold": "быстро и эффективно",
+          "mt.lead2": "им работать может экономить часы вашего времени каждый день. В этом бесплатном практическом курсе вы узнаете, как ускорить повседневные задачи с помощью Raycast, сочетаний клавиш и других инструментов Mac.",
+          "mt.modules": "Модули курса",
+          "mt.mod1": "Основы Raycast — что это, отличие от Spotlight, установка и настройка",
+          "mt.mod2": "Полезные расширения Raycast — список экономящих время",
+          "mt.mod3": "Примеры личного workflow — запуск приложений, поиск файлов, шаблоны",
+          "mt.mod4": "Другие инструменты скорости Mac — сочетания клавиш, Spotlight, Automator/Shortcuts",
+          "mt.mod5": "Результат: почему это важно — пример реальной экономии времени",
+          "mt.buy": "Начать курс →",
+          "mt.all": "← Все курсы",
+          "mt.quizTitle": "Проверьте свои знания",
+
+          "ap.lead": "Подача документов в зарубежные университеты — сложный процесс. Неверный шаг может стоить стипендии.",
+          "ap.modules": "Модули курса",
+          "ap.mod1": "Выбор университета: рейтинг, специальность, расходы",
+          "ap.mod2": "Документы: диплом, transcript, паспорт",
+          "ap.mod3": "Как написать Motivation Letter / Essay",
+          "ap.mod4": "Interview: подготовительные вопросы",
+          "ap.mod5": "Стипендия: El-Yurt Umidi, Stipendium Hungaricum, KAU",
+          "ap.mod6": "Отслеживание в Obsidian: сроки, напоминания",
+          "ap.buy": "Купить курс →",
+          "ap.all": "← Все курсы",
+          "ap.quizTitle": "Проверьте свои знания",
+          "ap.trackerTitle": "Шаблон трекера университетов и стипендий",
+          "ap.trackerDesc": "Готовый шаблон для отслеживания университетов UK, США, Кореи, Испании, Канады. Ведите в одной таблице сроки подачи, статус документов и этапы стипендии — не забудьте, что подано, что ожидается и когда нужно напоминание.",
+          "ap.trackerBtn": "⬇ Скачать",
+          "ap.trackerNote": "Файл скоро загрузим — ссылка пока placeholder.",
+
+          "ie.lead": "IELTS Writing, Reading, Speaking — план на 30 дней. Практикуйте написание эссе с ИИ.",
+          "ie.modules": "Модули курса",
+          "ie.mod1": "Зачем нужен IELTS? (6.0-7.0 band)",
+          "ie.mod2": "Writing Task 1 и 2 — структура эссе",
+          "ie.mod3": "Reading — быстрое чтение, поиск ключевых слов",
+          "ie.mod4": "Speaking — ответы Part 1/2/3",
+          "ie.mod5": "Listening — техника ведения заметок",
+          "ie.mod6": "План на 30 дней (по неделям)",
+          "ie.mod7": "Лучшие ответы от ИИ с Prompt Engineering",
+          "ie.buy": "Купить курс →",
+          "ie.all": "← Все курсы",
+          "ie.quizTitle": "Проверьте свои знания",
+
+          "op.lead": "Построение личной базы знаний. Если переслать из Telegram через Strawberryboo — ИИ подытожит и сохранит в Obsidian.",
+          "op.modules": "Модули курса",
+          "op.mod1": "Зачем нужен Obsidian? (внешняя память)",
+          "op.mod2": "Структура Vault: MOC, папки, ссылки",
+          "op.mod3": "Плагин AutoConnect: автоматическое связывание новых заметок",
+          "op.mod4": "Strawberryboo: захват Telegram → Obsidian",
+          "op.mod5": "Graph view: связи знаний",
+          "op.mod6": "Где применять: учёба, работа, исследования",
+          "op.buy": "Купить курс →",
+          "op.all": "← Все курсы",
+          "op.quizTitle": "Проверьте свои знания",
+
+          "aa.lead": "Обычный ИИ (ChatGPT) — один вопрос. А агент выполняет задачу сам: строит план, ищет, записывает результат.",
+          "aa.modules": "Модули курса",
+          "aa.mod1": "Обычный ИИ vs Агент — в чём разница?",
+          "aa.mod2": "CrewAI: командные агенты (Planner, Researcher, Writer)",
+          "aa.mod3": "LangGraph: управление потоком агентов",
+          "aa.mod4": "Letta: долговременная память агента",
+          "aa.mod5": "Создайте своего агента (на MacBook)",
+          "aa.mod6": "Где применять: исследования, контент, бизнес",
+          "aa.mod7": "Что ускоряют ИИ и агенты? (новый урок)",
+          "aa.buy": "Купить курс →",
+          "aa.all": "← Все курсы",
+          "aa.quizTitle": "Проверьте свои знания",
+
+          "quiz.check": "Проверить",
+          "quiz.hint": "Ответьте на каждый вопрос.",
+          "pe.lead": "Искусство правильного общения с ИИ. Зачем нужно, как извлекать пользу, где применять — всё на практических примерах.",
+          "pe.modules": "Модули курса",
+          "pe.mod1": "Зачем нужен Prompt Engineering? (ИИ не телепат)",
+          "pe.mod2": "Структура промпта: роль, контекст, примеры, формат",
+          "pe.mod3": "Практика: промпт для написания IELTS эссе",
+          "pe.mod4": "Chain-of-thought: разбиение сложных задач",
+          "pe.mod5": "Few-shot: обучение на примерах",
+          "pe.mod6": "Где применять: письмо, код, исследования, бизнес",
+          "pe.mod7": "Автоматический capture через Strawberryboo",
+          "pe.benefit": "Какую пользу вы получите?",
+          "pe.ben1": "Экономия времени — часовую работу за 5 минут",
+          "pe.ben2": "Качественный результат — точный, структурированный",
+          "pe.ben3": "Заработок — контент и код быстрее",
+          "pe.buy": "Купить курс →",
+          "pe.all": "← Все курсы",
+          "pe.quizTitle": "Проверьте свои знания"
+        },
+        en: {
+          "skip": "Skip to main content",
+          "nav.home": "Home",
+          "nav.courses": "Courses",
+          "nav.prices": "Pricing",
+          "nav.reco": "Find your course",
+          "nav.journey": "My journey",
+          "nav.contact": "Contact",
+          "footer.about": "Practical online courses: AI, IELTS, Admission and personal knowledge base. In Uzbek, free courses included.",
+          "footer.social.tg": "Telegram",
+          "footer.social.ig": "Instagram",
+          "footer.pages": "Pages",
+          "footer.copy": "© 2026 O'rganamiz. All rights reserved.",
+          "tg.footer.title": "Join our Telegram channel",
+          "tg.footer.text": "New courses, free materials and community — all in one place.",
+          "tg.footer.btn": "Join channel →",
+          "tg.course.title": "Got a question?",
+          "tg.course.sub": "Ask in our Telegram group — the team and other students will help.",
+          "tg.course.btn": "Join the group →",
+          "hero.eyebrow": "AI · IELTS · Admission courses",
+          "hero.learn": "Learn:",
+          "cta.view": "View courses",
+          "cta.which": "Which course? →",
+          "spot.badge": "Most popular",
+          "spot.more": "Details →",
+          "sec.courses": "Our courses",
+          "sec.all": "View all",
+          "btn.start": "Start course →",
+          "why.title": "Why us?",
+          "why.1": "Practical — learn by doing, not theory",
+          "why.2": "In Uzbek — clear explanations",
+          "why.3": "Affordable — from $19",
+          "why.4": "Forever access — buy once, use forever",
+          "why.5": "Certificate in every course",
+          "pay.title": "Payment methods",
+          "pay.click": "Click",
+          "pay.payme": "Payme",
+          "pay.uzum": "Uzum",
+          "pay.card": "Card (UZS/USD)",
+          "comm.title": "Community",
+          "comm.heading": "Join our Telegram channel",
+          "comm.text": "students are active in our Telegram channel — questions, news and free materials in one place.",
+          "comm.join": "Join the channel →",
+          "ta.lead": "AI tools that run right on your MacBook, with zero cost. Everything works offline (no internet needed).",
+          "ta.modules": "Tool list",
+          "ta.mod1": "Ollama — local AI model (llama3.2)",
+          "ta.mod2": "CrewAI — team agents",
+          "ta.mod3": "LangGraph — orchestration",
+          "ta.mod4": "Letta / MemGPT — memory",
+          "ta.mod5": "Obsidian + Strawberryboo — capture",
+          "ta.mod6": "Notes on 17 AI agents in Obsidian",
+          "ta.all": "← All courses",
+          "ta.quizTitle": "Check your knowledge",
+          "ey.lead": "Interview-prep course for the El-Yurt Umidi state grant — full material will be added soon. The course section structure is ready for now. Complete lessons will be uploaded in the next update.",
+          "ey.modules": "Course sections (structure ready)",
+          "ey.mod1": "Interview preparation",
+          "ey.mod2": "Bridge technique",
+          "ey.mod3": "Frequently asked questions",
+          "ey.mod4": "Success cases",
+          "ey.all": "← All courses",
+          "ce.lead1": "Studying abroad isn't just about \"getting out of the country\" — it's a decision that can fundamentally change your life. In this free course we break down 5 key reasons: why a diploma carries weight, how it ties to your career and personal growth, and how to study ",
+          "ce.leadBold": "cheaply or for free",
+          "ce.lead2": ".",
+          "ce.modules": "Course modules",
+          "ce.mod1": "Education quality & international recognition (QS ranking, diploma value)",
+          "ce.mod2": "Career opportunities — international experience, networking, language",
+          "ce.mod3": "Personal development — independence, cross-cultural experience",
+          "ce.mod4": "Funding opportunities — grants & scholarships (El-Yurt Umidi, Chevening, DAAD)",
+          "ce.mod5": "Real examples & statistics (estimated/general trend)",
+          "ce.buy": "Start free course →",
+          "ce.all": "← All courses",
+          "ce.quizTitle": "Check your knowledge",
+          "fl.lead": "Managing money, building a budget, and making everyday financial decisions is a core life skill for every student. In this course you'll learn how to plan your funds, avoid mistakes, and prepare for the future.",
+          "fl.modules": "Course modules",
+          "fl.mod1": "Core concepts — income, expenses, budget, savings",
+          "fl.mod2": "Building a student budget — spreading scholarship/grant money across the month",
+          "fl.mod3": "Living-abroad expenses — planning and bank account basics",
+          "fl.mod4": "Debt & credit explained — credit card, student loan (with caution)",
+          "fl.mod5": "Saving & planning ahead — 'save first, spend later'",
+          "fl.mod6": "Common mistakes — financial errors students often make",
+          "fl.buy": "Buy course →",
+          "fl.all": "← All courses",
+          "fl.quizTitle": "Check your knowledge",
+          "ac.lead1": "Working with AutoCAD on Mac has its own specifics, different from Windows. In this course you'll learn installation, interface, basic commands, and how to get from Autodesk",
+          "ac.leadBold": "a free student license",
+          "ac.lead2": ".",
+          "ac.modules": "Course modules",
+          "ac.mod1": "Installing on Mac — AutoCAD for Mac, system requirements (macOS 12+)",
+          "ac.mod2": "Interface differences (Mac vs Windows) and Mac-specific shortcuts",
+          "ac.mod3": "Basic drawing commands — LINE, CIRCLE, TRIM, OFFSET, LAYER",
+          "ac.mod4": "8-step workflow: UNITS → LIMITS → LAYER → draw → PLOT",
+          "ac.mod5": "Free Autodesk student license (edu.autodesk.com) — for 1 year",
+          "ac.mod6": "Practical project — send your first drawing from Model to Layout",
+          "ac.mod7": "Pro tips — CUI settings, OSNAP, watermark",
+          "ac.buy": "Buy course →",
+          "ac.all": "← All courses",
+          "ac.quizTitle": "Check your knowledge",
+
+          "fg.lead": "Design from zero — for free. Draw interfaces in Figma, create components, and show your idea as a live prototype.",
+          "fg.modules": "Course modules",
+          "fg.mod1": "Why Figma? (in the browser, free)",
+          "fg.mod2": "Frame, shape, text basics",
+          "fg.mod3": "Auto-layout: responsive design",
+          "fg.mod4": "Components and variants",
+          "fg.mod5": "Prototype: linking pages",
+          "fg.mod6": "UI kit and design system",
+          "fg.mod7": "Your first project for a portfolio",
+          "fg.benefit": "What benefits will you get?",
+          "fg.ben1": "UI/UX skill — the most in-demand direction",
+          "fg.ben2": "Turn your product idea into a live prototype",
+          "fg.ben3": "A portfolio for freelance or a job",
+          "fg.hint": "After completing the course you'll receive a certificate.",
+          "fg.buy": "Start free course →",
+          "fg.all": "← All courses",
+          "fg.quizTitle": "Check your knowledge",
+
+          "mt.lead1": "Just \"using\" a MacBook isn't enough — the skill of using it",
+          "mt.leadBold": "fast and efficiently",
+          "mt.lead2": "can save hours of your daily time. In this free practical course you'll learn how to speed up everyday tasks with Raycast, keyboard shortcuts, and other Mac tools.",
+          "mt.modules": "Course modules",
+          "mt.mod1": "Raycast basics — what it is, how it differs from Spotlight, install & setup",
+          "mt.mod2": "Useful Raycast extensions — a time-saving list",
+          "mt.mod3": "Personal workflow examples — opening apps, finding files, templates",
+          "mt.mod4": "Other Mac speed tools — shortcuts, Spotlight, Automator/Shortcuts",
+          "mt.mod5": "Result: why this matters — a real time-saving example",
+          "mt.buy": "Start course →",
+          "mt.all": "← All courses",
+          "mt.quizTitle": "Check your knowledge",
+
+          "ap.lead": "Applying to foreign universities is a complex process. One wrong step can cost you the scholarship.",
+          "ap.modules": "Course modules",
+          "ap.mod1": "Choosing a university: ranking, major, cost",
+          "ap.mod2": "Documents: diploma, transcript, passport",
+          "ap.mod3": "How to write a Motivation Letter / Essay",
+          "ap.mod4": "Interview: preparation questions",
+          "ap.mod5": "Scholarships: El-Yurt Umidi, Stipendium Hungaricum, KAU",
+          "ap.mod6": "Tracking in Obsidian: deadlines, reminders",
+          "ap.buy": "Buy course →",
+          "ap.all": "← All courses",
+          "ap.quizTitle": "Check your knowledge",
+          "ap.trackerTitle": "University & Scholarship Tracker Template",
+          "ap.trackerDesc": "A ready-made template to track universities in the UK, USA, Korea, Spain, and Canada. Keep application deadlines, document status, and scholarship stages in one table — never lose track of what's submitted, what's pending, and when a reminder is due.",
+          "ap.trackerBtn": "⬇ Download",
+          "ap.trackerNote": "File coming soon — link is a placeholder for now.",
+
+          "ie.lead": "IELTS Writing, Reading, Speaking — a 30-day plan. Practice essay writing with AI.",
+          "ie.modules": "Course modules",
+          "ie.mod1": "Why do you need IELTS? (6.0-7.0 band)",
+          "ie.mod2": "Writing Task 1 & 2 — essay structure",
+          "ie.mod3": "Reading — read fast, find keywords",
+          "ie.mod4": "Speaking — Part 1/2/3 responses",
+          "ie.mod5": "Listening — note-taking technique",
+          "ie.mod6": "30-day plan (week by week)",
+          "ie.mod7": "Better answers from AI with Prompt Engineering",
+          "ie.buy": "Buy course →",
+          "ie.all": "← All courses",
+          "ie.quizTitle": "Check your knowledge",
+
+          "op.lead": "Building a personal knowledge base. Forward from Telegram via Strawberryboo — AI summarizes and saves it to Obsidian.",
+          "op.modules": "Course modules",
+          "op.mod1": "Why Obsidian? (external memory)",
+          "op.mod2": "Vault structure: MOC, folders, links",
+          "op.mod3": "AutoConnect plugin: auto-link new notes",
+          "op.mod4": "Strawberryboo: Telegram → Obsidian capture",
+          "op.mod5": "Graph view: how knowledge connects",
+          "op.mod6": "Where to apply: study, work, research",
+          "op.buy": "Buy course →",
+          "op.all": "← All courses",
+          "op.quizTitle": "Check your knowledge",
+
+          "aa.lead": "Plain AI (ChatGPT) — a single question. An agent completes the task itself: it plans, searches, and writes the result.",
+          "aa.modules": "Course modules",
+          "aa.mod1": "Plain AI vs Agent — what's the difference?",
+          "aa.mod2": "CrewAI: team agents (Planner, Researcher, Writer)",
+          "aa.mod3": "LangGraph: managing agent flows",
+          "aa.mod4": "Letta: long-term memory for agents",
+          "aa.mod5": "Build your own agent (on MacBook)",
+          "aa.mod6": "Where to apply: research, content, business",
+          "aa.mod7": "What do AI and agents speed up? (new lesson)",
+          "aa.buy": "Buy course →",
+          "aa.all": "← All courses",
+          "aa.quizTitle": "Check your knowledge",
+
+          "quiz.check": "Check",
+          "quiz.hint": "Answer each question.",
+          "pe.lead": "The art of communicating with AI correctly. Why you need it, how to benefit, where to apply — all with practical examples.",
+          "pe.modules": "Course modules",
+          "pe.mod1": "Why Prompt Engineering? (AI can't read minds)",
+          "pe.mod2": "Prompt structure: role, context, examples, format",
+          "pe.mod3": "Practice: IELTS essay writing prompt",
+          "pe.mod4": "Chain-of-thought: breaking down complex tasks",
+          "pe.mod5": "Few-shot: teaching through examples",
+          "pe.mod6": "Where to apply: writing, code, research, business",
+          "pe.mod7": "Automatic capture via Strawberryboo",
+          "pe.benefit": "What benefits will you get?",
+          "pe.ben1": "Save time — 1 hour of work in 5 minutes",
+          "pe.ben2": "Quality results — precise, structured",
+          "pe.ben3": "Earn money — content and code faster",
+          "pe.buy": "Buy course →",
+          "pe.all": "← All courses",
+          "pe.quizTitle": "Check your knowledge"
+        }
+      };
+
+      const LS_KEY = 'org-lam-lang';
+      function applyLang(lang) {
+        if (!I18N[lang]) lang = 'uz';
+        document.documentElement.lang = lang;
+        document.querySelectorAll('[data-i18n]').forEach(function (el) {
+          var key = el.getAttribute('data-i18n');
+          var t = (I18N[lang] && I18N[lang][key] != null) ? I18N[lang][key]
+                : (I18N.uz[key] != null ? I18N.uz[key] : el.textContent);
+          el.textContent = t;
+        });
+        document.querySelectorAll('[data-lang]').forEach(function (b) {
+          b.classList.toggle('active', b.getAttribute('data-lang') === lang);
+        });
+      }
+      var savedLang = localStorage.getItem(LS_KEY) || 'uz';
+      applyLang(savedLang);
+      document.querySelectorAll('[data-lang]').forEach(function (b) {
+        b.addEventListener('click', function (e) {
+          e.preventDefault();
+          var l = b.getAttribute('data-lang');
+          localStorage.setItem(LS_KEY, l);
+          applyLang(l);
+        });
+      });
+    </script>
     <style is:global>
-      :root { --bg: #0f0f14; --fg: #e8e8ea; --accent: #ff5c8a; }
+      :root {
+        --bg: #0e0f15;
+        --surface: #181a24;
+        --text: #ececf3;
+        --muted: #9a9ab2;
+        --border: #2a2c3a;
+        --accent: #7d7df5;
+        --accent-2: #5b5bd6;
+        --accent-soft: rgba(125,125,245,.12);
+        --shadow: 0 8px 24px -8px rgba(0,0,0,.5);
+        --maxw: 1100px;
+        --side-w: 240px;
+        --font-display: "Inter", system-ui, sans-serif;
+      }
       * { box-sizing: border-box; }
-      body { margin: 0; font-family: system-ui, sans-serif; background: var(--bg); color: var(--fg); line-height: 1.6; }
-      .site-header { display: flex; justify-content: space-between; padding: 1rem 2rem; border-bottom: 1px solid #222; }
-      .logo { font-weight: bold; color: var(--accent); text-decoration: none; font-size: 1.2rem; }
-      nav a { color: var(--fg); text-decoration: none; margin-left: 1.5rem; }
-      nav a:hover { color: var(--accent); }
-      main { max-width: 800px; margin: 0 auto; padding: 2rem; }
-      .hero { text-align: center; padding: 3rem 0; }
-      .hero h1 { font-size: 2.5rem; margin-bottom: 1rem; }
-      .lead { font-size: 1.2rem; color: #aaa; }
-      .cta { display: inline-block; margin-top: 1.5rem; padding: 0.8rem 2rem; background: var(--accent); color: #fff; border-radius: 8px; text-decoration: none; }
-      .features { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem; margin-top: 3rem; }
-      .card { background: #1a1a22; padding: 1.5rem; border-radius: 12px; }
-      .card h2 { color: var(--accent); margin-top: 0; }
-      footer { text-align: center; padding: 2rem; color: #666; border-top: 1px solid #222; }
+      body {
+        margin: 0;
+        font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+        background: var(--bg);
+        color: var(--text);
+        line-height: 1.6;
+        -webkit-font-smoothing: antialiased;
+      }
+      .skip-link { position: fixed; top: -60px; left: 12px; z-index: 100; background: var(--accent); color: #fff; padding: 10px 16px; border-radius: 10px; font-weight: 600; transition: top .15s; }
+      .skip-link:focus { top: 12px; text-decoration: none; }
+      .sidebar {
+        position: fixed; top: 0; left: 0; bottom: 0; width: var(--side-w);
+        background: var(--surface); border-right: 1px solid var(--border);
+        display: flex; flex-direction: column; padding: 14px 16px; z-index: 60;
+        transition: transform .25s ease;
+      }
+      .sidebar .brand { display: flex; align-items: center; gap: 10px; font-weight: 700; font-size: 18px; color: var(--text); text-decoration: none; padding: 0 8px 14px; }
+      .sidebar .brand .logo { width: 32px; height: 32px; border-radius: 9px; background: linear-gradient(135deg, var(--accent), var(--accent-2)); display: grid; place-items: center; color: #fff; font-weight: 800; }
+      .side-nav { display: flex; flex-direction: column; gap: 3px; overflow-y: auto; flex: 1; }
+      .side-nav a { color: var(--muted); text-decoration: none; padding: 9px 12px; border-radius: 9px; font-weight: 600; font-size: 0.92rem; transition: background .15s, color .15s; }
+      .side-nav a:hover, .side-nav a.active { background: var(--accent-soft); color: var(--accent); }
+      .content { margin-left: var(--side-w); min-height: 100vh; display: flex; flex-direction: column; }
+      .site-header { display: flex; align-items: center; gap: 1rem; padding: 1rem 2rem; border-bottom: 1px solid var(--border); position: sticky; top: 0; background: rgba(14,15,21,.85); backdrop-filter: blur(10px); z-index: 10; }
+      .menu-toggle { display: none; background: none; border: none; color: var(--text); font-size: 1.5rem; cursor: pointer; }
+      .mobile-brand { font-weight: 700; font-size: 1.2rem; color: var(--accent); display: none; }
+      .top-nav { margin-left: auto; }
+      .top-nav a { color: var(--text); text-decoration: none; margin-left: 1.5rem; font-weight: 600; }
+      .top-nav a:hover { color: var(--accent); }
+      main { max-width: var(--maxw); width: 100%; margin: 0 auto; padding: 0 20px 3rem; flex: 1; }
+      .hero { text-align: center; padding: 64px 20px 30px; }
+      .hero .eyebrow { display: inline-block; font-size: 13px; font-weight: 600; color: var(--accent); background: var(--accent-soft); padding: 5px 12px; border-radius: 99px; margin-bottom: 1rem; }
+      .hero h1 { font-family: var(--font-display); letter-spacing: -.02em; font-size: 2.8rem; margin: 0 0 1rem; }
+      .hero .lead { font-size: 1.15rem; color: var(--muted); max-width: 650px; margin: 0 auto; }
+      .cta { display: inline-block; margin-top: 1.8rem; padding: 0.9rem 2.2rem; background: linear-gradient(135deg, var(--accent), var(--accent-2)); color: #fff; border-radius: 12px; text-decoration: none; font-weight: 700; font-size: 1.05rem; transition: transform .15s, box-shadow .15s; }
+      .cta:hover { transform: translateY(-2px); box-shadow: 0 10px 24px -6px var(--accent); }
+      .features { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 1.2rem; margin-top: 2.5rem; }
+      .card { background: var(--surface); border: 1px solid var(--border); border-radius: 16px; padding: 24px; box-shadow: var(--shadow); position: relative; transition: transform .15s, box-shadow .15s, border-color .15s; }
+      .card:hover { transform: translateY(-4px); box-shadow: 0 16px 32px -10px rgba(0,0,0,.6); border-color: var(--accent); }
+      .card h2 { margin: 0 0 0.5rem; font-size: 1.25rem; color: var(--text); }
+      .card p { color: var(--muted); font-size: 0.95rem; }
+      .badge { position: absolute; top: -11px; left: 1rem; background: #ffd700; color: #000; font-size: 0.72rem; padding: 3px 10px; border-radius: 99px; font-weight: 800; }
+      .badge-new { background: #34d399; }
+      .badge-free { background: #7d7df5; color: #fff; }
+      .price { font-size: 1.5rem; color: #ffd700; font-weight: 800; margin: 1rem 0; }
+      .start-btn { display: inline-block; padding: 0.65rem 1.5rem; background: var(--accent); color: #fff; border-radius: 10px; text-decoration: none; font-weight: 700; font-size: 0.95rem; transition: background .15s; }
+      .start-btn:hover { background: var(--accent-2); }
+      .why-us { margin-top: 3rem; background: var(--surface); padding: 2rem; border-radius: 16px; border: 1px solid var(--border); }
+      .why-us h2 { color: var(--accent); margin-top: 0; }
+      .why-us ul { list-style: none; padding: 0; }
+      .why-us li { padding: 0.7rem 0; border-bottom: 1px solid var(--border); font-weight: 500; }
+      .why-us li:before { content: "✓ "; color: var(--accent); font-weight: 800; }
+      .payment { margin-top: 3rem; text-align: center; }
+      .pay-methods { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; margin-top: 1.2rem; }
+      .pay-methods span { background: var(--surface); padding: 0.8rem 1.5rem; border-radius: 10px; border: 1px solid var(--border); font-weight: 600; }
+      .course-list { display: grid; gap: 1.2rem; margin-top: 2rem; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); }
+      .course { background: var(--surface); padding: 24px; border-radius: 16px; border: 1px solid var(--border); box-shadow: var(--shadow); }
+      .course h2 { margin: 0; color: var(--text); font-size: 1.25rem; }
+      .course .price { font-size: 1.4rem; color: #ffd700; font-weight: 800; }
+      .enroll { display: inline-block; margin-top: 1rem; color: var(--accent); text-decoration: none; font-weight: 700; }
+      .lesson { line-height: 1.8; max-width: 800px; margin: 0 auto; }
+      .lesson h1 { color: var(--accent); font-size: 2.2rem; }
+      .lesson h2 { margin-top: 2.5rem; border-bottom: 1px solid var(--border); padding-bottom: 0.5rem; }
+      .course-hero { display: flex; align-items: center; justify-content: space-between; gap: 18px; flex-wrap: wrap; margin-bottom: 2rem; }
+      .course-hero .price { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+      .course-hero .now { font-size: 28px; font-weight: 800; color: var(--accent); }
+      .course-hero .old { font-size: 18px; font-weight: 500; color: var(--muted); text-decoration: line-through; }
+      .modules { counter-reset: m; list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 10px; }
+      .modules li { counter-increment: m; position: relative; padding: 14px 16px 14px 58px; border: 1px solid var(--border); border-radius: 12px; background: var(--surface); font-weight: 500; font-size: 15px; }
+      .modules li::before { content: counter(m); position: absolute; left: 14px; top: 50%; transform: translateY(-50%); width: 32px; height: 32px; border-radius: 9px; background: var(--accent-soft); color: var(--accent); display: grid; place-items: center; font-weight: 700; font-size: 14px; }
+      pre { background: #0a0a0f; padding: 1rem; border-radius: 10px; overflow-x: auto; border: 1px solid var(--border); }
+      .music-btn { position: fixed; bottom: 1rem; right: 1rem; background: linear-gradient(135deg, var(--accent), var(--accent-2)); color: #fff; border: none; padding: 0.6rem 1rem; border-radius: 10px; cursor: pointer; font-weight: 700; z-index: 100; }
+      footer { text-align: center; padding: 2rem; color: var(--muted); border-top: 1px solid var(--border); margin-top: 3rem; }
+      @media (max-width: 860px) {
+        .sidebar { transform: translateX(-100%); }
+        .sidebar.open { transform: translateX(0); }
+        .content { margin-left: 0; }
+        .menu-toggle { display: block; }
+        .mobile-brand { display: block; }
+        .top-nav { display: none; }
+        .hero h1 { font-size: 2rem; }
+        .features, .course-list { grid-template-columns: 1fr; }
+        .music-btn { bottom: 0.5rem; right: 0.5rem; font-size: 0.8rem; }
+      }
+
+      /* === HERO TRUST BADGES (ilhom: osonstudio.uz) === */
+      .hero-badges { display: inline-flex; flex-wrap: wrap; gap: 9px; justify-content: center; margin: 0 auto 22px; }
+      .hero-badge {
+        display: inline-flex; align-items: center; gap: 8px;
+        padding: 6px 14px 6px 7px; background: var(--surface);
+        border: 1px solid var(--border); border-radius: 999px;
+        font: 650 13px var(--font-display); color: var(--text);
+        box-shadow: 0 2px 8px -4px rgba(0,0,0,.4);
+        transition: transform .2s cubic-bezier(.2,.8,.2,1), box-shadow .2s, border-color .2s;
+      }
+      .hero-badge:hover { transform: translateY(-2px); box-shadow: 0 8px 18px -6px color-mix(in srgb, var(--bc) 50%, transparent); border-color: color-mix(in srgb, var(--bc) 40%, var(--border)); }
+      .hero-badge .bic { width: 24px; height: 24px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0; background: var(--bc); color: #fff; box-shadow: 0 2px 6px -2px color-mix(in srgb, var(--bc) 70%, transparent); }
+      .hero-badge .bic svg { width: 13px; height: 13px; fill: none; stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round; }
+      @media (max-width: 540px) { .hero-badges { gap: 7px; } .hero-badge { font-size: 12px; padding: 5px 12px 5px 6px; } .hero-badge .bic { width: 22px; height: 22px; } }
+
+      /* === HERO DUAL CTA === */
+      .hero-actions { display: flex; gap: 10px; justify-content: center; margin-top: 26px; flex-wrap: wrap; }
+      .hero-cta { display: inline-flex; align-items: center; gap: 8px; padding: 12px 24px; border-radius: 11px; font: 700 14px var(--font-display); cursor: pointer; text-decoration: none; transition: .15s; }
+      .hero-cta:hover, .hero-cta:focus { text-decoration: none; }
+      .hero-cta.primary { background: linear-gradient(135deg, var(--accent), var(--accent-2)); color: #fff; box-shadow: 0 6px 18px -4px rgba(125,125,245,.45); }
+      .hero-cta.primary:hover { transform: translateY(-1px); box-shadow: 0 10px 22px -4px rgba(125,125,245,.6); color: #fff; }
+      .hero-cta.secondary { background: var(--surface); color: var(--text); border: 1px solid var(--border); }
+      .hero-cta.secondary:hover { border-color: var(--accent); color: var(--accent); }
+      .hero-cta svg { width: 16px; height: 16px; stroke: currentColor; fill: none; stroke-width: 2.4; }
+
+      /* === TYPED HEADLINE === */
+      .hero h1.hero-typed { background: none; -webkit-text-fill-color: currentColor; color: var(--text); min-height: 1.3em; display: flex; flex-direction: column; align-items: center; gap: 2px; }
+      .typed-static { display: block; }
+      .typed-line { display: block; }
+      .typed-text { color: var(--accent); }
+      .typed-caret { display: inline-block; width: 3px; height: .9em; background: var(--accent); margin-left: 5px; border-radius: 2px; vertical-align: -.06em; animation: caretBlink 1.05s steps(1) infinite; }
+      @keyframes caretBlink { 0%, 50% { opacity: 1; } 50.01%, 100% { opacity: 0; } }
+      @media (prefers-reduced-motion: reduce) { .typed-caret { animation: none; opacity: 1; } }
+
+      /* === SECTION HEADER (osonstudio uslubida) === */
+      .sec-head { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin: 3.5rem 0 18px; padding-bottom: 12px; border-bottom: 1px solid var(--border); flex-wrap: wrap; }
+      .sec-title { display: flex; align-items: center; gap: 12px; font: 800 22px var(--font-display); color: var(--text); margin: 0; letter-spacing: -.01em; }
+      .sec-ic { width: 40px; height: 40px; border-radius: 11px; display: inline-flex; align-items: center; justify-content: center; box-shadow: 0 4px 12px -3px rgba(0,0,0,.4); flex-shrink: 0; }
+      .sec-ic svg { width: 22px; height: 22px; stroke: #fff; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+      .sec-all { display: inline-flex; align-items: center; gap: 6px; font: 700 13px var(--font-display); color: var(--accent); text-decoration: none; padding: 6px 12px; border-radius: 999px; border: 1px solid color-mix(in srgb, var(--accent) 25%, var(--border)); background: color-mix(in srgb, var(--accent) 7%, transparent); transition: gap .2s, background .2s, border-color .2s; white-space: nowrap; }
+      .sec-all:hover { gap: 9px; text-decoration: none; background: color-mix(in srgb, var(--accent) 14%, transparent); border-color: color-mix(in srgb, var(--accent) 45%, var(--border)); color: var(--accent); }
+      .sec-all b { font-weight: 800; }
+
+      /* === COURSE CARD POLISH === */
+      .features { margin-top: 0; }
+      .card { overflow: hidden; }
+      .card::before { content: ""; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: var(--c, var(--accent)); opacity: 0; transition: opacity .25s ease, height .25s cubic-bezier(.2,.8,.2,1); border-top-left-radius: 16px; border-top-right-radius: 16px; }
+      .card:hover::before { opacity: 1; height: 4px; }
+      .card .c-ic { width: 52px; height: 52px; border-radius: 14px; display: grid; place-items: center; margin-bottom: 14px; color: var(--c, var(--accent)); background: color-mix(in srgb, var(--c, var(--accent)) 16%, transparent); transition: transform .3s cubic-bezier(.2,.8,.2,1); }
+      .card:hover .c-ic { transform: scale(1.08) rotate(-4deg); }
+      .card .c-ic svg { width: 26px; height: 26px; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+      .card h2 { font-size: 1.2rem; }
+      /* Badge → kartochka ichida, overflow:hidden bilan mos */
+      .badge { position: absolute; top: 12px; right: 12px; padding: 3px 9px; border-radius: 999px; font: 800 9.5px var(--font-display); letter-spacing: .04em; text-transform: uppercase; background: #ffd700; color: #1a1500; box-shadow: 0 3px 8px -2px rgba(0,0,0,.4); }
+      .badge-new { background: #34d399; color: #062b1a; }
+      .badge-free { background: #7d7df5; color: #fff; }
+
+      /* === POLISHED BLOCKS === */
+      .why-us, .payment { margin-top: 3.5rem; }
+      .payment .pay-methods span { transition: transform .15s, border-color .15s, color .15s; }
+      .payment .pay-methods span:hover { transform: translateY(-2px); border-color: var(--accent); color: var(--accent); }
+
+      /* === LANGUAGE SWITCHER (i18n) === */
+      .lang-switch { display: inline-flex; gap: 2px; margin-left: 1rem; background: var(--surface); border: 1px solid var(--border); border-radius: 999px; padding: 3px; }
+      .lang-switch a { font: 700 11px var(--font-display); color: var(--muted); text-decoration: none; padding: 4px 8px; border-radius: 999px; transition: background .15s, color .15s; }
+      .lang-switch a:hover { color: var(--text); }
+      .lang-switch a.active { background: var(--accent); color: #fff; }
+      .lang-switch.side { display: flex; margin: 10px 0 4px; }
+
+      /* === UZS PRICE HELPER === */
+      .price .uzs, .uzs { display: block; font-size: .85rem; font-weight: 600; color: var(--muted); margin-top: 2px; }
+      .card .price .uzs { margin-top: 2px; }
+
+      /* === COURSE CATEGORY PILL === */
+      .cat { display: inline-block; font: 800 10.5px var(--font-display); letter-spacing: .04em; text-transform: uppercase; color: var(--c, var(--accent)); background: color-mix(in srgb, var(--c, var(--accent)) 14%, transparent); padding: 3px 9px; border-radius: 999px; margin: 2px 0 8px; }
+      .card h2 + .cat { margin-top: -2px; }
+
+      /* === "ENG MASHHUR" SPOTLIGHT === */
+      .spotlight { margin-top: 2.5rem; border-radius: 20px; padding: 28px; background: linear-gradient(135deg, color-mix(in srgb, var(--accent) 16%, var(--surface)), var(--surface)); border: 1px solid var(--border); display: grid; grid-template-columns: 1.4fr .8fr; gap: 22px; align-items: center; overflow: hidden; }
+      .spotlight .badge-hot { background: linear-gradient(135deg, #ef4444, #f59e0b); color: #fff; }
+      .spotlight h2 { font-size: 1.7rem; margin: 10px 0 6px; }
+      .spotlight p { color: var(--muted); }
+      .spotlight .spot-price { font-size: 1.7rem; font-weight: 800; color: var(--accent); margin: 1rem 0; }
+      .spot-ic { width: 110px; height: 110px; border-radius: 24px; display: grid; place-items: center; background: linear-gradient(135deg, var(--accent), var(--accent-2)); color: #fff; box-shadow: 0 12px 30px -10px var(--accent); justify-self: center; }
+      .spot-ic svg { width: 54px; height: 54px; fill: none; stroke: #fff; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+      @media (max-width: 720px) { .spotlight { grid-template-columns: 1fr; text-align: center; } .spot-ic { order: -1; } }
+
+      /* === CERTIFICATE BADGE === */
+      .badge-cert { background: linear-gradient(135deg, #0ea5e9, #22c55e); color: #fff; }
+
+      /* === PRICING TABLE (Q5.1) === */
+      .pricing { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.2rem; margin-top: 2rem; }
+      .plan { background: var(--surface); border: 1px solid var(--border); border-radius: 18px; padding: 26px 22px; display: flex; flex-direction: column; box-shadow: var(--shadow); position: relative; transition: transform .15s, border-color .15s; }
+      .plan:hover { transform: translateY(-4px); border-color: var(--accent); }
+      .plan.featured { border-color: var(--accent); box-shadow: 0 14px 36px -12px rgba(125,125,245,.45); }
+      .plan .plan-name { font: 800 18px var(--font-display); color: var(--text); }
+      .plan .plan-price { font-size: 2.1rem; font-weight: 800; color: var(--accent); margin: 1rem 0 .2rem; }
+      .plan .plan-price .uzs { display: block; font-size: .9rem; }
+      .plan .plan-desc { color: var(--muted); font-size: .92rem; margin-bottom: 1rem; }
+      .plan ul { list-style: none; padding: 0; margin: 0 0 1.4rem; display: flex; flex-direction: column; gap: 8px; }
+      .plan ul li { font-size: .92rem; padding-left: 24px; position: relative; color: var(--text); }
+      .plan ul li::before { content: "✓"; position: absolute; left: 0; color: var(--accent); font-weight: 800; }
+      .plan .start-btn { margin-top: auto; text-align: center; }
+
+      /* === QUIZ (Q5.6) === */
+      .quiz { margin-top: 3rem; background: var(--surface); border: 1px solid var(--border); border-radius: 16px; padding: 24px; }
+      .quiz .q { margin-bottom: 1.1rem; }
+      .quiz .q-t { font-weight: 700; margin-bottom: .5rem; }
+      .quiz .q-o { display: flex; align-items: center; gap: 8px; padding: 7px 12px; border: 1px solid var(--border); border-radius: 10px; margin-bottom: 6px; cursor: pointer; transition: border-color .15s, background .15s; }
+      .quiz .q-o:hover { border-color: var(--accent); }
+      .quiz .q-o.ok { border-color: #22c55e; background: color-mix(in srgb, #22c55e 12%, transparent); }
+      .quiz .q-o.no { border-color: #ef4444; background: color-mix(in srgb, #ef4444 12%, transparent); }
+      .quiz-res { margin-top: 1rem; font-weight: 700; font-size: 1.05rem; color: var(--accent); }
+      .quiz-hint { color: var(--muted); font-size: .88rem; margin-top: 6px; }
+
+      /* === RECOMMENDER (Q5.2) === */
+      .reco-q { margin-bottom: 1.6rem; }
+      .reco-q .q-t { font-weight: 700; margin-bottom: .6rem; }
+      .reco-opts { display: grid; gap: 8px; }
+      .reco-opt { display: flex; align-items: center; gap: 10px; padding: 12px 14px; border: 1px solid var(--border); border-radius: 12px; cursor: pointer; transition: border-color .15s, background .15s; }
+      .reco-opt:hover { border-color: var(--accent); }
+      .reco-opt.sel { border-color: var(--accent); background: var(--accent-soft); }
+      .reco-result { margin-top: 1.5rem; padding: 20px; border-radius: 14px; background: var(--accent-soft); border: 1px solid var(--accent); display: none; }
+      .reco-result.show { display: block; }
+      .reco-result h3 { margin: 0 0 .4rem; color: var(--accent); }
+      .reco-result .start-btn { margin-top: 1rem; }
+
+      /* === FOOTER (QADAM 4) === */
+      .site-footer { text-align: left; padding: 2.5rem 20px 1.5rem; border-top: 1px solid var(--border); margin-top: 3rem; background: var(--surface); }
+      .site-footer .footer-grid { max-width: var(--maxw); margin: 0 auto; display: grid; grid-template-columns: 1.6fr 1fr; gap: 2rem; }
+      .site-footer .brand { display: inline-flex; align-items: center; gap: 10px; font-weight: 700; font-size: 18px; color: var(--text); text-decoration: none; }
+      .site-footer .brand .logo { width: 32px; height: 32px; border-radius: 9px; background: linear-gradient(135deg, var(--accent), var(--accent-2)); display: grid; place-items: center; color: #fff; font-weight: 800; }
+      .site-footer .footer-brand p { color: var(--muted); font-size: 0.92rem; max-width: 360px; margin: 0.8rem 0 1.1rem; }
+      .site-footer .footer-social { display: flex; gap: 10px; }
+      .site-footer .footer-social a { display: inline-flex; align-items: center; gap: 6px; padding: 7px 14px; border-radius: 10px; border: 1px solid var(--border); color: var(--text); text-decoration: none; font-weight: 600; font-size: 0.9rem; transition: border-color .15s, color .15s; }
+      .site-footer .footer-social a:hover { border-color: var(--accent); color: var(--accent); }
+      .site-footer .footer-col h4 { margin: 0 0 0.9rem; color: var(--accent); font-size: 0.82rem; text-transform: uppercase; letter-spacing: .05em; }
+      .site-footer .footer-col a { display: block; color: var(--muted); text-decoration: none; padding: 5px 0; font-weight: 500; }
+      .site-footer .footer-col a:hover { color: var(--accent); }
+      .site-footer .footer-copy { text-align: center; color: var(--muted); font-size: 0.82rem; margin: 2rem 0 0; padding-top: 1.3rem; border-top: 1px solid var(--border); }
+      @media (max-width: 640px) { .site-footer .footer-grid { grid-template-columns: 1fr; gap: 1.5rem; } }
+
+      /* === TELEGRAM FOOTER BANNER (QADAM 1) === */
+      .tg-footer-cta { max-width: var(--maxw); margin: 0 auto 1.8rem; padding: 0 20px; }
+      .tg-footer-inner {
+        display: flex; align-items: center; gap: 16px; flex-wrap: wrap;
+        padding: 16px 22px; border-radius: 16px;
+        background: linear-gradient(135deg, color-mix(in srgb, var(--accent) 18%, var(--surface)), var(--surface));
+        border: 1px solid color-mix(in srgb, var(--accent) 40%, var(--border));
+      }
+      .tg-footer-ic { width: 46px; height: 46px; border-radius: 12px; flex-shrink: 0; display: grid; place-items: center; background: var(--accent); color: #fff; }
+      .tg-footer-text { flex: 1; min-width: 200px; }
+      .tg-footer-text strong { display: block; color: var(--text); font-size: 1rem; }
+      .tg-footer-text span { color: var(--muted); font-size: .9rem; }
+      .tg-footer-btn {
+        display: inline-flex; align-items: center; gap: 6px; padding: 11px 20px; border-radius: 10px;
+        background: var(--accent); color: #fff; font-weight: 700; text-decoration: none; font-size: .95rem; white-space: nowrap;
+        transition: background .15s, transform .15s;
+      }
+      .tg-footer-btn:hover { background: var(--accent-2); color: #fff; text-decoration: none; transform: translateY(-1px); }
+      @media (max-width: 560px) {
+        .tg-footer-inner { flex-direction: column; text-align: center; }
+        .tg-footer-btn { width: 100%; justify-content: center; }
+      }
+
+      /* === COMMUNITY SECTION (QADAM 3) === */
+      .community { margin-top: 3.5rem; }
+      .community-card {
+        display: flex; align-items: center; gap: 20px; flex-wrap: wrap;
+        padding: 26px 28px; border-radius: 18px; border: 1px solid var(--border);
+        background: linear-gradient(135deg, color-mix(in srgb, var(--accent) 14%, var(--surface)), var(--surface));
+        box-shadow: var(--shadow);
+      }
+      .community-card .comm-ic { width: 56px; height: 56px; border-radius: 16px; flex-shrink: 0; display: grid; place-items: center; background: var(--accent); color: #fff; }
+      .community-card .comm-body { flex: 1; min-width: 220px; }
+      .community-card .comm-body h3 { margin: 0 0 .4rem; color: var(--text); font-size: 1.25rem; }
+      .community-card .comm-body p { margin: 0; color: var(--muted); }
+      .community-card .comm-body .comm-count { color: var(--accent); font-weight: 800; }
+      .community-card .comm-join {
+        display: inline-flex; align-items: center; gap: 6px; padding: 12px 22px; border-radius: 11px;
+        background: var(--accent); color: #fff; font-weight: 700; text-decoration: none; white-space: nowrap;
+        transition: background .15s, transform .15s;
+      }
+      .community-card .comm-join:hover { background: var(--accent-2); color: #fff; text-decoration: none; transform: translateY(-1px); }
+      @media (max-width: 560px) {
+        .community-card { flex-direction: column; text-align: center; }
+        .community-card .comm-join { width: 100%; justify-content: center; }
+      }
+
+      /* === PRICE NOTE (QADAM 5) === */
+      .price-note { display: block; font-size: 0.72rem; color: var(--muted); margin-top: 3px; font-style: italic; }
     </style>
   </body>
 </html>

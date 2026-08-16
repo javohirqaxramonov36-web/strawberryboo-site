@@ -1,0 +1,40 @@
+---
+import Base from "../layouts/Base.astro";
+const title = "Bog'lanish — O'rganamiz";
+const description = "Savollar, to'lov yoki hamkorlik bo'yicha biz bilan bog'laning.";
+---
+
+<Base title={title} description={description}>
+<section class="hero">
+  <span class="eyebrow">Aloqa</span>
+  <h1>Bog'lanish</h1>
+  <p class="lead">
+    Savollaringiz bormi? Kurslar, to'lov usullari yoki hamkorlik bo'yicha
+    bizga yozing — tez orada javob beramiz.
+  </p>
+</section>
+
+<section class="why-us" style="max-width:680px;margin:0 auto;">
+  <div class="sec-head" style="margin-top:0">
+    <h2 class="sec-title">
+      <span class="sec-ic" style="background:linear-gradient(135deg,#7d7df5,#5b5bd6)"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></span>
+      Kanallar
+    </h2>
+  </div>
+  <ul style="list-style:none;padding:0;display:grid;gap:12px;">
+    <li class="course" style="display:flex;align-items:center;gap:14px;">
+      <div class="c-ic" style="--c:#3b82f6;margin:0;flex-shrink:0"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div>
+      <div><strong>Telegram</strong><br><a href="https://t.me/strawberryboo" class="enroll">@strawberryboo</a></div>
+    </li>
+    <li class="course" style="display:flex;align-items:center;gap:14px;">
+      <div class="c-ic" style="--c:#22c55e;margin:0;flex-shrink:0"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></svg></div>
+      <div><strong>Email</strong><br><a href="mailto:aloqa@strawberryboo.uz" class="enroll">aloqa@strawberryboo.uz</a></div>
+    </li>
+    <li class="course" style="display:flex;align-items:center;gap:14px;">
+      <div class="c-ic" style="--c:#f59e0b;margin:0;flex-shrink:0"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/></svg></div>
+      <div><strong>To'lov</strong><br>Click, Payme, Uzum, Karta (UZS/USD)</div>
+    </li>
+  </ul>
+  <p style="margin-top:1.5rem;"><a href="/kurslar" class="start-btn">← Barcha kurslarga qaytish</a></p>
+</section>
+</Base>

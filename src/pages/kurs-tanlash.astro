@@ -1,0 +1,104 @@
+---
+import Base from "../layouts/Base.astro";
+const title = "Qaysi kurs sizga kerak? — O'rganamiz";
+const description = "4 savolli mini-test orqali o'zingizga mos kursni toping.";
+---
+
+<Base title={title} description={description}>
+
+<article class="lesson">
+  <h1>Qaysi kurs sizga kerak?</h1>
+  <p class="lead">4 ta savolga javob bering — sizga eng mos kursni tavsiya qilamiz.</p>
+
+  <form id="recoForm">
+    <div class="reco-q" data-q>
+      <p class="q-t">1. Asosiy maqsadingiz nima?</p>
+      <div class="reco-opts">
+        <label class="reco-opt"><input type="radio" name="q1" value="prompt-engineering" /> AI bilan samarali ishlash, vaqtni tejash</label>
+        <label class="reco-opt"><input type="radio" name="q1" value="obsidian" /> Bilimlarimni tartibga solish, eslab qolish</label>
+        <label class="reco-opt"><input type="radio" name="q1" value="ai-agentlar" /> Murakkab vazifalarni avtomatlashtirish</label>
+        <label class="reco-opt"><input type="radio" name="q1" value="ielts-prep" /> IELTS / chet elga tayyorgarlik</label>
+        <label class="reco-opt"><input type="radio" name="q1" value="tekin-ai" /> Bepul boshlash, pul sarflamasdan</label>
+      </div>
+    </div>
+
+    <div class="reco-q" data-q>
+      <p class="q-t">2. Texnik darajangiz?</p>
+      <div class="reco-opts">
+        <label class="reco-opt"><input type="radio" name="q2" value="tekin-ai" /> Yangi boshlovchi (0 dan)</label>
+        <label class="reco-opt"><input type="radio" name="q2" value="obsidian" /> O'rta (asoslar bilaman)</label>
+        <label class="reco-opt"><input type="radio" name="q2" value="ai-agentlar" /> Advanced (kod yozaman)</label>
+        <label class="reco-opt"><input type="radio" name="q2" value="ielts-prep" /> Til/akademik yo'nalish</label>
+      </div>
+    </div>
+
+    <div class="reco-q" data-q>
+      <p class="q-t">3. Bujetingiz?</p>
+      <div class="reco-opts">
+        <label class="reco-opt"><input type="radio" name="q3" value="tekin-ai" /> Bepul bo'lishi kerak</label>
+        <label class="reco-opt"><input type="radio" name="q3" value="obsidian" /> $19–$29 (arzon)</label>
+        <label class="reco-opt"><input type="radio" name="q3" value="ai-agentlar" /> $30+ (sifatli, chuqur)</label>
+        <label class="reco-opt"><input type="radio" name="q3" value="figma" /> Dizayn/FOYDALI ko'nikma</label>
+      </div>
+    </div>
+
+    <div class="reco-q" data-q>
+      <p class="q-t">4. Qanday natija ko'rmoqchisiz?</p>
+      <div class="reco-opts">
+        <label class="reco-opt"><input type="radio" name="q4" value="prompt-engineering" /> Tez, amaliy natija (1 hafta)</label>
+        <label class="reco-opt"><input type="radio" name="q4" value="admission-process" /> Stipendiya / chet elga kirish</label>
+        <label class="reco-opt"><input type="radio" name="q4" value="figma" /> Mahsulot/dizayn ko'nikmasi</label>
+        <label class="reco-opt"><input type="radio" name="q4" value="ai-agentlar" /> O'z agent'imni yaratish</label>
+      </div>
+    </div>
+
+    <button type="button" class="start-btn" id="recoBtn">Natijani ko'rsat →</button>
+  </form>
+
+  <div class="reco-result" id="recoResult">
+    <h3 id="recoTitle"></h3>
+    <p id="recoDesc"></p>
+    <a href="#" class="start-btn" id="recoLink">Kursga o'tish →</a>
+  </div>
+</article>
+
+<script>
+  const COURSES = {
+    "prompt-engineering": { title: "Prompt Engineering", url: "/kurslar/prompt-engineering", desc: "AI bilan to'g'ri muloqot — vaqtni 10x tejash.", color: "#7d7df5" },
+    "obsidian": { title: "Obsidian PKM", url: "/kurslar/obsidian", desc: "Shaxsiy bilim bazasi — bilimingizni tartibga soling.", color: "#34d399" },
+    "ai-agentlar": { title: "AI Agentlar nega kerak?", url: "/kurslar/ai-agentlar", desc: "Vazifalarni o'zi bajarib chiqadigan agent'lar.", color: "#ef4444" },
+    "ielts-prep": { title: "IELTS Prep", url: "/kurslar/ielts-prep", desc: "30 kunlik reja bilan IELTS ga tayyorgarlik.", color: "#22c55e" },
+    "admission-process": { title: "Admission Process", url: "/kurslar/admission-process", desc: "Chet el universitetiga kirish va stipendiya.", color: "#8b5cf6" },
+    "tekin-ai": { title: "Tekin AI modellar va agentlar", url: "/kurslar/tekin-ai", desc: "Pul sarflamasdan o'z MacBook'ingizda AI.", color: "#7d7df5" },
+    "figma": { title: "Figma / Dizayn", url: "/kurslar/figma", desc: "Bepul dizayn asoslari — UI/UX ga kirish.", color: "#f59e0b" }
+  };
+  const form = document.getElementById('recoForm');
+  const btn = document.getElementById('recoBtn');
+  const result = document.getElementById('recoResult');
+  form.querySelectorAll('.reco-opt').forEach(opt => {
+    opt.addEventListener('click', () => {
+      opt.closest('.reco-q').querySelectorAll('.reco-opt').forEach(o => o.classList.remove('sel'));
+      opt.classList.add('sel');
+      const input = opt.querySelector('input'); if (input) input.checked = true;
+    });
+  });
+  btn.addEventListener('click', () => {
+    const scores = {};
+    form.querySelectorAll('input:checked').forEach(inp => {
+      const v = inp.value; scores[v] = (scores[v] || 0) + 1;
+    });
+    const keys = Object.keys(scores);
+    if (keys.length < 4) { alert('Iltimos, barcha 4 savolga javob bering.'); return; }
+    let best = keys[0];
+    keys.forEach(k => { if (scores[k] > scores[best]) best = k; });
+    const c = COURSES[best];
+    document.getElementById('recoTitle').textContent = 'Sizga tavsiya: ' + c.title;
+    document.getElementById('recoDesc').textContent = c.desc;
+    const link = document.getElementById('recoLink');
+    link.href = c.url;
+    result.style.borderColor = c.color;
+    result.classList.add('show');
+    result.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  });
+</script>
+</Base>

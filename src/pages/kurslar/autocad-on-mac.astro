@@ -1,0 +1,91 @@
+---
+import Base from "../../layouts/Base.astro";
+import TelegramCTA from "../../components/TelegramCTA.astro";
+import Quiz from "../../components/Quiz.astro";
+const title = "AutoCAD on Mac — O'rganamiz";
+const description = "Mac'da AutoCAD: o'rnatish, interfeys farqlari, asosiy chizish buyruqlari va bepul talaba litsenziyasi.";
+const questions = [
+  { q: "Mac'da AutoCAD ishlatish uchun nima kerak?", opts: ["Windows .exe fayli", "AutoCAD for Mac (macOS versiyasi)", "Android ilovasi", "Faqat brauzer"], answer: 1 },
+  { q: "Buyruqlar satrini Mac'da ko'rsatish/yashirish shortcut'i?", opts: ["Command+9", "Ctrl+9", "Alt+9", "Command+1"], answer: 0 },
+  { q: "Bepul talaba litsenziyasi qayerdan olinadi?", opts: ["edu.autodesk.com", "apple.com", "github.com", "microsoft.com"], answer: 0 }
+];
+---
+
+<Base title={title} description={description}>
+
+<article class="lesson">
+  <div class="course-hero">
+    <h1>AutoCAD on Mac</h1>
+    <div class="price">
+      <span class="now">$29</span>
+      <span class="old">$49</span>
+      <span class="badge badge-new">-41%</span>
+      <span class="badge badge-cert">Sertifikat</span>
+      <span class="uzs">≈ 360 000 so'm</span>
+    </div>
+  </div>
+
+  <p class="lead">
+    <span data-i18n="ac.lead1">Mac'da AutoCAD bilan ishlash — Windows'dan farqli o'ziga xos xususiyatlarga ega. Bu kursda o'rnatish, interfeys, asosiy buyruqlar va Autodesk'dan</span> <b data-i18n="ac.leadBold">bepul talaba litsenziyasi</b> <span data-i18n="ac.lead2">qanday olinishini o'rganasiz.</span>
+  </p>
+
+  <section>
+    <h2 data-i18n="ac.modules">Kurs modullari</h2>
+    <ol class="modules">
+      <li data-i18n="ac.mod1">Mac'da o'rnatish — AutoCAD for Mac, tizim talablari (macOS 12+)</li>
+      <li data-i18n="ac.mod2">Interfeys farqlari (Mac vs Windows) va Mac-specific shortcut'lar</li>
+      <li data-i18n="ac.mod3">Asosiy chizish buyruqlari — LINE, CIRCLE, TRIM, OFFSET, LAYER</li>
+      <li data-i18n="ac.mod4">8-qadamli workflow: UNITS → LIMITS → LAYER → chizish → PLOT</li>
+      <li data-i18n="ac.mod5">Autodesk bepul talaba litsenziyasi (edu.autodesk.com) — 1 yilga</li>
+      <li data-i18n="ac.mod6">Amaliy loyiha — birinchi chizmani Model'dan Layout'ga chiqarish</li>
+      <li data-i18n="ac.mod7">Pro tips — CUI sozlamalari, OSNAP, suv belgisi (watermark) haqida</li>
+    </ol>
+  </section>
+
+  <section>
+    <h2>1. Mac'da o'rnatish va interfeys</h2>
+    <p>
+      Autodesk'dan Mac uchun maxsus <b>AutoCAD for Mac</b> versiyasini yuklab oling —
+      Windows <code>.exe</code> fayli Mac'da ishlamaydi. Tizim talabi: macOS 12 (Monterey)
+      yoki undan yangiroq, ~4 GB bo'sh joy. O'rnatishdan oldin Autodesk hisobingiz
+      bo'lishi kerak (qarang: 5-modul, bepul litsenziya).
+    </p>
+    <h3>Asosiy farqlar</h3>
+    <ul>
+      <li>Buyruqlar satri: Windows'da <code>Ctrl+9</code>, Mac'da <b>Command+9</b></li>
+      <li>Hotkey: <code>Ctrl+C</code> o'rniga <b>Command+C</b> (Mac'da odat)</li>
+      <li>Asosiy menyu: Ribbon o'rniga Mac menyusi + Tool Set (ChZPP)</li>
+      <li>Tashqi fayl: <code>.WMF</code> yo'q — PDF yoki PNG ishlating</li>
+    </ul>
+    <p class="quiz-hint">Eng katta odat o'zgarishi — <b>Ctrl → Command</b>. Shortcut'larni <code>CUI</code> orqali moslashtirish mumkin.</p>
+  </section>
+
+  <section>
+    <h2>2. Asosiy chizish buyruqlari va workflow</h2>
+    <p>Eng ko'p ishlatiladigan buyruqlar: <code>L</code> (LINE), <code>C</code> (CIRCLE),
+      <code>REC</code> (RECTANGLE), <code>TR</code> (TRIM), <code>O</code> (OFFSET),
+      <code>LA</code> (LAYER), <code>DLI</code>/<code>DRA</code> (o'lcham).</p>
+    <p>Tavsiya etilgan workflow ketma-ketligi: <b>UNITS → LIMITS → LAYER → chizish →
+      tahrirlash → annotatsiya → Layout → PLOT</b>. Har doim <b>OSNAP</b> yoqib qo'ying —
+      nuqtalar aniq ulanishi uchun.</p>
+  </section>
+
+  <section>
+    <h2>3. Autodesk'dan bepul talaba litsenziyasi</h2>
+    <p>
+      Bu — <b>rasmiy va bepul</b> yo'l. <code>education.autodesk.com</code> sahifasiga o'ting,
+      talaba sifatida ro'yxatdan o'ting va tasdiqlang (.edu email yoki tasdiqlovchi hujjat bilan).
+      Litsenziya odatda <b>1 yil</b> amal qiladi va qayta tasdiqlash orqali uzaytiriladi.
+      Chiqarilgan chizmalarda "Educational" suv belgisi bo'lishi mumkin — bu tijorat uchun emas,
+      o'quv maqsadida.
+    </p>
+    <p class="quiz-hint">Hech qanday crack shart emas — bu yo'l qonuniy va bepul.</p>
+  </section>
+
+  <a href="/bog-lanish" class="start-btn" style="margin-top:2rem;" data-i18n="ac.buy">Kursni sotib olish →</a>
+  <a href="/kurslar" class="enroll" style="margin-left:1rem;" data-i18n="ac.all">← Barcha kurslar</a>
+
+  <Quiz title="O'z bilimingizni tekshiring" titleI18n="ac.quizTitle" questions={questions} />
+</article>
+<TelegramCTA />
+</Base>

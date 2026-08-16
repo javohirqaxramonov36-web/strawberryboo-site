@@ -1,58 +1,157 @@
 ---
-layout: ../../layouts/Base.astro
-title: "AI Agentlar — Strawberryboo Kursi"
-description: "CrewAI, LangGraph — o'z agent'laringizni yarating."
+import Base from "../../layouts/Base.astro";
+import TelegramCTA from "../../components/TelegramCTA.astro";
+import Quiz from "../../components/Quiz.astro";
+const title = "AI Agentlar nega kerak? — O'rganamiz";
+const description = "CrewAI, LangGraph — agent'lar nima uchun kerak, qanday foyda.";
+const questions = [
+  { q: "Agent oddiy ChatGPT dan nimasi bilan farq qiladi?", opts: ["Hech farqi yo'q", "Vazifani o'zi rejalashtirib bajarib chiqadi", "Faqat rasm chizadi", "Tezroq yozadi"], answer: 1 },
+  { q: "CrewAI nima?", opts: ["O'yin", "Jamoa agent'lari (Planner, Researcher, Writer)", "Pochta", "Virus"], answer: 1 },
+  { q: "LangGraph nima qiladi?", opts: ["Rang o'zgartiradi", "Agent'lar oqimini boshqaradi", "Fayl saqlaydi", "Hech narsa"], answer: 1 }
+];
 ---
 
+<Base title={title} description={description}>
+
 <article class="lesson">
-  <h1>🤖 AI Agentlar — O'z Agent'laringizni Yarating</h1>
+  <div class="course-hero">
+    <h1>AI Agentlar nega kerak?</h1>
+    <div class="price">
+      <span class="now">$39</span>
+      <span class="old">$59</span>
+      <span class="badge badge-new">-34%</span>
+      <span class="badge badge-cert">Sertifikat</span>
+      <span class="uzs">≈ 490 000 so'm</span>
+    </div>
+  </div>
+
+  <p class="lead" data-i18n="aa.lead">
+    Oddiy AI (ChatGPT) — bitta savol. Agent esa vazifani o'zi bajarib chiqadi:
+    reja tuzadi, qidiruv qiladi, natijani yozadi.
+  </p>
 
   <section>
-    <h2>1. Nima uchun AI Agentlar kerak?</h2>
-    <p>
-      Oddiy AI (ChatGPT) — bir martalik savol-javob. Agent esa <strong>vazifani o'zi bajarib chiqadi</strong>:
-      reja tuzadi, qidiruv qiladi, natijani yozadi. Siz faqat "nima qilish" deysiz.
+    <h2 data-i18n="aa.modules">Kurs modullari</h2>
+    <ol class="modules">
+      <li data-i18n="aa.mod1">Oddiy AI vs Agent — farqi nima?</li>
+      <li data-i18n="aa.mod2">CrewAI: jamoa agent'lari (Planner, Researcher, Writer)</li>
+      <li data-i18n="aa.mod3">LangGraph: agent'lar oqimini boshqarish</li>
+      <li data-i18n="aa.mod4">Letta: agent'ga uzoq muddatli xotira</li>
+      <li data-i18n="aa.mod5">O'z agent'ingizni yarating (MacBook'da)</li>
+      <li data-i18n="aa.mod6">Qayerda qo'llash: tadqiqot, kontent, biznes</li>
+      <li data-i18n="aa.mod7">AI va agentlar nimani tezlashtiradi? (yangi dars)</li>
+    </ol>
+  </section>
+
+  <section style="margin-top:3rem;">
+    <h2>7. AI va agentlar nimani tezlashtiradi?</h2>
+    <p class="lead">
+      Bu — kursning eng muhim darsi. Ko'p odam AI va agentlarni "o'rganish kerak"
+      degan maqsad bilan o'rganadi. Lekin aslida ular — maqsad emas, faqat <b>vosita</b>.
     </p>
-  </section>
 
-  <section>
-    <h2>2. O'rgansa qanday foyda?</h2>
-    <ul>
-      <li>⏱ <strong>Vaqt:</strong> takroriy ishlarni agent bajaradi</li>
-      <li>🔄 <strong>Avtomatlashtirish:</strong> har kuni qiladigan ishlar</li>
-      <li>💰 <strong>Daromad:</strong> o'zingiz agent sotishingiz mumkin</li>
-      <li>🧩 <strong>Ko'p vazifa:</strong> bir nechta agent jamoa bo'lib ishlaydi</li>
+    <div style="background:var(--accent-soft);border:1px solid var(--accent);border-left:4px solid var(--accent);border-radius:12px;padding:16px 18px;margin:1.5rem 0;">
+      <strong style="color:var(--accent);">ASOSIY G'OYA:</strong>
+      AI va agentlar — <b>TEZLASHTIRUVCHI</b> vosita, <b>MAQSAD</b> emas.
+    </div>
+
+    <ul style="list-style:none;padding:0;margin:1.5rem 0;display:flex;flex-direction:column;gap:12px;">
+      <li style="padding:14px 16px 14px 50px;position:relative;border:1px solid var(--border);border-radius:12px;background:var(--surface);font-weight:500;">
+        <span style="position:absolute;left:14px;top:50%;transform:translateY(-50%);width:26px;height:26px;border-radius:8px;background:var(--accent-soft);color:var(--accent);display:grid;place-items:center;font-weight:800;">📚</span>
+        <b>O'qiyotgan</b> bo'lsangiz — AI o'qishingizni yengilroq, osonroq va tezroq qiladi:
+        mavzuni tushuntiradi, reja tuzib beradi, mashqlarni tekshiradi.
+      </li>
+      <li style="padding:14px 16px 14px 50px;position:relative;border:1px solid var(--border);border-radius:12px;background:var(--surface);font-weight:500;">
+        <span style="position:absolute;left:14px;top:50%;transform:translateY(-50%);width:26px;height:26px;border-radius:8px;background:var(--accent-soft);color:var(--accent);display:grid;place-items:center;font-weight:800;">⚙️</span>
+        <b>Loyiha</b> ustida ishlayotgan bo'lsangiz — AI loyihangizni aniqroq va tezroq
+        bitirishga yordam beradi: kod, tadqiqot, kontent, hisob-kitob.
+      </li>
+      <li style="padding:14px 16px 14px 50px;position:relative;border:1px solid #ef4444;border-radius:12px;background:color-mix(in srgb,#ef4444 10%,transparent);font-weight:500;">
+        <span style="position:absolute;left:14px;top:50%;transform:translateY(-50%);width:26px;height:26px;border-radius:8px;background:#ef4444;color:#fff;display:grid;place-items:center;font-weight:800;">!</span>
+        <b>LEKIN:</b> agar siz hech qanday harakat qilmasdan, shunchaki "AI va agentlarni
+        o'rganish uchun" o'rgansangiz — katta natija bo'lmaydi. O'rganishning o'zi maqsad
+        bo'lishi shart emas, u faqat <b>VOSITA</b>.
+      </li>
     </ul>
-  </section>
 
-  <section>
-    <h2>3. Qayerda qo'llash?</h2>
-    <div class="use-cases">
-      <div><strong>📊 Tadqiqot:</strong> ma'lumot yig'ish, xulosa</div>
-      <div><strong>✍️ Kontent:</strong> maqola, post, video script</div>
-      <div><strong>💼 Biznes:</strong> mijozlarga javob, hisobot</div>
-      <div><strong>🤝 Jamoa:</strong> CrewAI bilan bir nechta agent</div>
+    <h3 style="margin-top:2.5rem;color:var(--text);">Metafar — kino va tezlashtirish</h3>
+    <p>
+      Kino ko'rayapsiz — noutbuk yoki kompyuterda. Voqea qanday tugashini bilish uchun
+      kinoni tezlashtirasiz, va kerakli sahna (masalan, jang sahnasi) tezroq yetib keladi.
+      <b>Kinoni tezlashtirish mumkin — lekin kinoning O'ZI bo'lmasa, nimani tezlashtirasiz?</b>
+    </p>
+    <p>
+      AI va agentlar bilan ishlash ham xuddi shunday: sizda <b>MAQSAD</b> (kino) bo'lsa,
+      AI o'sha yo'lni qisqartiradi va tezlashtiradi. Lekin siz hech qanday harakat
+      qilmasangiz — tezlashtiradigan narsaning o'zi yo'q.
+    </p>
+
+    <svg viewBox="0 0 680 300" role="img" aria-label="AI va agentlar faqat mavjud maqsadni tezlashtiradi — ko'rsatuvchi diagramma" style="width:100%;height:auto;max-width:680px;display:block;margin:1.5rem auto;">
+      <!-- LEFT PANEL -->
+      <rect x="16" y="16" width="312" height="268" rx="16" fill="#181a24" stroke="#2a2c3a"/>
+      <text x="36" y="46" fill="#7d7df5" font-size="15" font-weight="700" font-family="system-ui">1. Maqsad (kino) + AI</text>
+      <!-- film strip -->
+      <rect x="36" y="60" width="256" height="72" rx="8" fill="#0e0f15" stroke="#2a2c3a"/>
+      <g fill="#2a2c3a">
+        <circle cx="50" cy="70" r="2.6"/><circle cx="68" cy="70" r="2.6"/><circle cx="86" cy="70" r="2.6"/><circle cx="104" cy="70" r="2.6"/><circle cx="122" cy="70" r="2.6"/><circle cx="140" cy="70" r="2.6"/><circle cx="158" cy="70" r="2.6"/><circle cx="176" cy="70" r="2.6"/><circle cx="194" cy="70" r="2.6"/><circle cx="212" cy="70" r="2.6"/><circle cx="230" cy="70" r="2.6"/><circle cx="248" cy="70" r="2.6"/><circle cx="266" cy="70" r="2.6"/><circle cx="284" cy="70" r="2.6"/>
+        <circle cx="50" cy="122" r="2.6"/><circle cx="68" cy="122" r="2.6"/><circle cx="86" cy="122" r="2.6"/><circle cx="104" cy="122" r="2.6"/><circle cx="122" cy="122" r="2.6"/><circle cx="140" cy="122" r="2.6"/><circle cx="158" cy="122" r="2.6"/><circle cx="176" cy="122" r="2.6"/><circle cx="194" cy="122" r="2.6"/><circle cx="212" cy="122" r="2.6"/><circle cx="230" cy="122" r="2.6"/><circle cx="248" cy="122" r="2.6"/><circle cx="266" cy="122" r="2.6"/><circle cx="284" cy="122" r="2.6"/>
+      </g>
+      <line x1="96" y1="62" x2="96" y2="130" stroke="#2a2c3a" stroke-width="2"/>
+      <line x1="152" y1="62" x2="152" y2="130" stroke="#2a2c3a" stroke-width="2"/>
+      <line x1="208" y1="62" x2="208" y2="130" stroke="#2a2c3a" stroke-width="2"/>
+      <line x1="264" y1="62" x2="264" y2="130" stroke="#2a2c3a" stroke-width="2"/>
+      <rect x="264" y="62" width="28" height="68" rx="4" fill="#7d7df5" opacity="0.18"/>
+      <text x="278" y="104" fill="#7d7df5" font-size="20" text-anchor="middle" font-family="system-ui">★</text>
+      <!-- fast-forward arrow -->
+      <text x="60" y="162" fill="#9a9ab2" font-size="12" font-family="system-ui">AI tezlashtiradi</text>
+      <line x1="60" y1="178" x2="244" y2="178" stroke="#7d7df5" stroke-width="3"/>
+      <polygon points="244,170 244,186 262,178" fill="#7d7df5"/>
+      <!-- result marker -->
+      <circle cx="290" cy="178" r="15" fill="#34d399"/>
+      <text x="290" y="184" fill="#062b1a" font-size="16" font-weight="800" text-anchor="middle" font-family="system-ui">✓</text>
+      <text x="36" y="278" fill="#34d399" font-size="13" font-weight="700" font-family="system-ui">Natija tezroq yetib keladi</text>
+
+      <!-- RIGHT PANEL -->
+      <rect x="352" y="16" width="312" height="268" rx="16" fill="#181a24" stroke="#2a2c3a"/>
+      <text x="372" y="46" fill="#ef4444" font-size="15" font-weight="700" font-family="system-ui">2. Faqat AI — maqsad yo'q</text>
+      <!-- empty reel -->
+      <circle cx="508" cy="105" r="44" fill="none" stroke="#2a2c3a" stroke-width="2" stroke-dasharray="5 5"/>
+      <text x="508" y="116" fill="#9a9ab2" font-size="30" text-anchor="middle" font-family="system-ui">?</text>
+      <!-- arrow that goes nowhere useful -->
+      <text x="372" y="192" fill="#9a9ab2" font-size="12" font-family="system-ui">tezlashtirish?</text>
+      <line x1="372" y1="208" x2="456" y2="208" stroke="#ef4444" stroke-width="3"/>
+      <polygon points="456,200 456,216 474,208" fill="#ef4444"/>
+      <text x="372" y="278" fill="#ef4444" font-size="13" font-weight="700" font-family="system-ui">Tezlashtiradigan narsa yo'q</text>
+    </svg>
+    <p class="quiz-hint">Chapda — maqsad bor, AI uni tezlashtiradi. O'ngda — faqat vosita, maqsad yo'q; tezlashtiradigan narsaning o'zi mavjud emas.</p>
+
+    <div style="background:color-mix(in srgb,#34d399 12%,transparent);border:1px solid #34d399;border-left:4px solid #34d399;border-radius:12px;padding:16px 18px;margin:2rem 0;">
+      <strong style="color:#34d399;">XULOSA:</strong>
+      Avval maqsad va harakat bo'lsin, keyin AI/agentlarni shu maqsad yo'lida
+      <b>vosita sifatida</b> ishlating. AI sizning o'rnipingizda ishlamaydi — u sizning
+      yo'lingizni qisqartiradi.
+    </div>
+
+    <div style="border:1px dashed var(--border);border-radius:12px;padding:18px 20px;margin-top:2rem;background:var(--surface);">
+      <h3 style="margin-top:0;color:var(--accent);">Amaliy topshiriq</h3>
+      <p style="color:var(--text);">
+        O'zingizning hozirgi <b>maqsadingizni</b> yozing, keyin AI qanday qilib o'sha
+        maqsadga tezroq yetishga yordam berishi mumkinligini <b>3 ta band</b> bilan
+        tasvirlab bering:
+      </p>
+      <ol style="color:var(--muted);line-height:2;">
+        <li>Maqsadim: ________________________________________________</li>
+        <li>AI yordamida tezlashtirish 1: ________________________________</li>
+        <li>AI yordamida tezlashtirish 2: ________________________________</li>
+        <li>AI yordamida tezlashtirish 3: ________________________________</li>
+      </ol>
     </div>
   </section>
 
-  <section>
-    <h2>4. CrewAI va LangGraph</h2>
-    <p>
-      <strong>CrewAI</strong> — bir nechta agent'ni jamoa qilib ishlatish (Planner, Researcher, Writer).
-      <strong>LangGraph</strong> — agent'lar orasidagi oqimni boshqarish (orchestration).
-    </p>
-    <p>Strawberryboo ofisida bu ikkalasi birga ishlayapti — siz ham shunday qila olasiz.</p>
-  </section>
+  <a href="/bog-lanish" class="start-btn" style="margin-top:2rem;" data-i18n="aa.buy">Kursni sotib olish →</a>
+  <a href="/kurslar" class="enroll" style="margin-left:1rem;" data-i18n="aa.all">← Barcha kurslar</a>
 
-  <p class="price">💎 Kurs narxi: <strong>$39</strong> (bir martalik to'lov)</p>
+  <Quiz title="O'z bilimingizni tekshiring" titleI18n="aa.quizTitle" questions={questions} />
 </article>
-
-<style>
-  .lesson { line-height: 1.8; }
-  .lesson h1 { color: var(--accent); }
-  .lesson h2 { margin-top: 2.5rem; border-bottom: 1px solid #333; padding-bottom: 0.5rem; }
-  .use-cases { display: grid; gap: 0.8rem; margin: 1rem 0; }
-  .use-cases div { background: #1a1a22; padding: 1rem; border-radius: 8px; }
-  pre { background: #0a0a0f; padding: 1rem; border-radius: 8px; overflow-x: auto; }
-  .price { font-size: 1.3rem; margin-top: 3rem; text-align: center; }
-</style>
+<TelegramCTA />
+</Base>

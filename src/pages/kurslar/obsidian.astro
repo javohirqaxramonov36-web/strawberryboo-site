@@ -1,60 +1,51 @@
 ---
-layout: ../../layouts/Base.astro
-title: "Obsidian PKM — Strawberryboo Kursi"
-description: "Shaxsiy bilim bazasi qurish. Strawberryboo bilan avtomatik capture."
+import Base from "../../layouts/Base.astro";
+import TelegramCTA from "../../components/TelegramCTA.astro";
+import Quiz from "../../components/Quiz.astro";
+const title = "Obsidian PKM — O'rganamiz";
+const description = "Shaxsiy bilim bazasi qurish. Strawberryboo bilan avtomatik capture.";
+const questions = [
+  { q: "PKM nima?", opts: ["O'yin", "Shaxsiy bilim bazasi (Personal Knowledge Management)", "Pochta", "Virus"], answer: 1 },
+  { q: "MOC nima uchun kerak?", opts: ["Rang uchun", "Kontentni bog'lash va yo'naltirish uchun", "Saqlash uchun", "Hech nima uchun"], answer: 1 },
+  { q: "Strawberryboo nima qiladi?", opts: ["Rasm chizadi", "Telegram'dan Obisidian'ga avtomatik capture", "Kod yozadi", "Video montaj"], answer: 1 }
+];
 ---
 
+<Base title={title} description={description}>
+
 <article class="lesson">
-  <h1>📚 Obsidian PKM — Shaxsiy Bilim Bazasi</h1>
-
-  <section>
-    <h2>1. Nima uchun Obsidian kerak?</h2>
-    <p>
-      Siz har kuni 50+ xabar, maqola, video ko'rasiz. Ularning 80%ini unutasiz.
-      Obsidian — bu <strong>shaxsiy miyangizning tashqi xotirasi</strong>.
-      Hamma narsa bitta joyda, qidirish oson, hech kim o'chirib yubormaydi.
-    </p>
-  </section>
-
-  <section>
-    <h2>2. O'rgansa qanday foyda?</h2>
-    <ul>
-      <li>🧠 <strong>Bilim yo'qolmaydi:</strong> barcha g'oyalar saqlanadi</li>
-      <li>🔗 <strong>Bog'lanish:</strong> note'lar bir-biriga ulanadi (graph view)</li>
-      <li>⚡ <strong>Tez qidirish:</strong> 1 soniyada kerakli ma'lumot</li>
-      <li>📝 <strong>Yozish:</strong> maqola, insho, loyiha — hamma shu yerda</li>
-    </ul>
-  </section>
-
-  <section>
-    <h2>3. Qayerda qo'llash?</h2>
-    <div class="use-cases">
-      <div><strong>📚 O'qish:</strong> IELTS, Admissions, materiallar</div>
-      <div><strong>💼 Ish:</strong> loyiha, meeting notes, ideas</div>
-      <div><strong>🎓 Tadqiqot:</strong> maqolalar, citation'lar</div>
-      <div><strong>💡 G'oyalar:</strong> biznes, kontent, daromad g'oyalari</div>
+  <div class="course-hero">
+    <h1>Obsidian PKM</h1>
+    <div class="price">
+      <span class="now">$19</span>
+      <span class="old">$29</span>
+      <span class="badge badge-new">-35%</span>
+      <span class="badge badge-cert">Sertifikat</span>
+      <span class="uzs">≈ 240 000 so'm</span>
     </div>
-  </section>
+  </div>
+
+  <p class="lead" data-i18n="op.lead">
+    Shaxsiy bilim bazasi qurish. Strawberryboo bilan Telegram'dan
+    forward qilsangiz — AI xulosalab, Obsidian'ga saqlaydi.
+  </p>
 
   <section>
-    <h2>4. Strawberryboo bilan avtomatik capture</h2>
-    <p>
-      Telefonda Telegram'dan xabar forward qilsangiz — Strawberryboo uni
-      AI bilan xulosalab, Obsidian Inbox'ingizga tayyor note qilib saqlaydi.
-      <strong>2 soniya ish, 100% saqlangan.</strong>
-    </p>
-    <pre><code>Telegram xabar → Strawberryboo → AI summary → Obsidian note</code></pre>
+    <h2 data-i18n="op.modules">Kurs modullari</h2>
+    <ol class="modules">
+      <li data-i18n="op.mod1">Nima uchun Obsidian? (Tashqi xotira)</li>
+      <li data-i18n="op.mod2">Vault tuzilmasi: MOC, papkalar, link'lar</li>
+      <li data-i18n="op.mod3">AutoConnect plugin: yangi note'larni avtomatik ulash</li>
+      <li data-i18n="op.mod4">Strawberryboo: Telegram → Obsidian capture</li>
+      <li data-i18n="op.mod5">Graph view: bilimlar bog'lanishi</li>
+      <li data-i18n="op.mod6">Qayerda qo'llash: o'qish, ish, tadqiqot</li>
+    </ol>
   </section>
 
-  <p class="price">💎 Kurs narxi: <strong>$19</strong> (bir martalik to'lov)</p>
-</article>
+  <a href="/bog-lanish" class="start-btn" style="margin-top:2rem;" data-i18n="op.buy">Kursni sotib olish →</a>
+  <a href="/kurslar" class="enroll" style="margin-left:1rem;" data-i18n="op.all">← Barcha kurslar</a>
 
-<style>
-  .lesson { line-height: 1.8; }
-  .lesson h1 { color: var(--accent); }
-  .lesson h2 { margin-top: 2.5rem; border-bottom: 1px solid #333; padding-bottom: 0.5rem; }
-  .use-cases { display: grid; gap: 0.8rem; margin: 1rem 0; }
-  .use-cases div { background: #1a1a22; padding: 1rem; border-radius: 8px; }
-  pre { background: #0a0a0f; padding: 1rem; border-radius: 8px; overflow-x: auto; }
-  .price { font-size: 1.3rem; margin-top: 3rem; text-align: center; }
-</style>
+  <Quiz title="O'z bilimingizni tekshiring" titleI18n="op.quizTitle" questions={questions} />
+</article>
+<TelegramCTA />
+</Base>

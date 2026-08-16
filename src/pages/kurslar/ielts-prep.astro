@@ -1,0 +1,52 @@
+---
+import Base from "../../layouts/Base.astro";
+import TelegramCTA from "../../components/TelegramCTA.astro";
+import Quiz from "../../components/Quiz.astro";
+const title = "IELTS Prep — O'rganamiz";
+const description = "IELTS Writing, Reading, Speaking — 30 kunlik amaliy reja bilan.";
+const questions = [
+  { q: "IELTS qaysi ko'nikmalarni o'lchaydi?", opts: ["Faqat gapirish", "Writing, Reading, Speaking, Listening", "Faqat yozish", "Rasm chizish"], answer: 1 },
+  { q: "Writing Task 2 nima?", opts: ["Rasm tavsifi", "Essay (fikr bildirish)", "Lug'at testi", "Grammatika"], answer: 1 },
+  { q: "'Band' nima?", opts: ["Pul birligi", "IELTS balli (0-9)", "Vaqt", "Dars"], answer: 1 }
+];
+---
+
+<Base title={title} description={description}>
+
+<article class="lesson">
+  <div class="course-hero">
+    <h1>IELTS Prep</h1>
+    <div class="price">
+      <span class="now">$24</span>
+      <span class="old">$39</span>
+      <span class="badge badge-new">-38%</span>
+      <span class="badge badge-cert">Sertifikat</span>
+      <span class="uzs">≈ 300 000 so'm</span>
+    </div>
+  </div>
+
+  <p class="lead" data-i18n="ie.lead">
+    IELTS Writing, Reading, Speaking — 30 kunlik reja bilan.
+    AI bilan essay yozishni mashq qiling.
+  </p>
+
+  <section>
+    <h2 data-i18n="ie.modules">Kurs modullari</h2>
+    <ol class="modules">
+      <li data-i18n="ie.mod1">Nima uchun IELTS kerak? (6.0-7.0 band)</li>
+      <li data-i18n="ie.mod2">Writing Task 1 & 2 — essay strukturasi</li>
+      <li data-i18n="ie.mod3">Reading — tez o'qish, keyword topish</li>
+      <li data-i18n="ie.mod4">Speaking — Part 1/2/3 javoblar</li>
+      <li data-i18n="ie.mod5">Listening — note-taking texnikasi</li>
+      <li data-i18n="ie.mod6">30 kunlik reja (hafta bo'yicha)</li>
+      <li data-i18n="ie.mod7">Prompt Engineering bilan AI'dan yaxshiroq javob</li>
+    </ol>
+  </section>
+
+  <a href="/bog-lanish" class="start-btn" style="margin-top:2rem;" data-i18n="ie.buy">Kursni sotib olish →</a>
+  <a href="/kurslar" class="enroll" style="margin-left:1rem;" data-i18n="ie.all">← Barcha kurslar</a>
+
+  <Quiz title="O'z bilimingizni tekshiring" titleI18n="ie.quizTitle" questions={questions} />
+</article>
+<TelegramCTA />
+</Base>

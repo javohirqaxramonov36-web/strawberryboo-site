@@ -1,0 +1,172 @@
+---
+import Base from "../../layouts/Base.astro";
+import TelegramCTA from "../../components/TelegramCTA.astro";
+import Quiz from "../../components/Quiz.astro";
+const title = "Financial Literacy — Moliyaviy savodxonlik";
+const description = "Pulni boshqarish, byudjet tuzish va moliyaviy qarorlar — talaba hayoti uchun asosiy ko'nikmalar. Umumiy ta'lim kursi.";
+const questions = [
+  { q: "Byudjet nima?", opts: ["Oylik daromad va xarajatlarni rejalashtirish", "Faqat jamg'arma qilish", "Bank hisobini ochish", "Soliq to'lash"], answer: 0 },
+  { q: "Favqulodda fond (emergency fund) nima uchun kerak?", opts: ["Kutilmagan xarajatlar uchun zaxira", "Aksiya sotib olish uchun", "Qarz olish uchun", "Dam olishga borish uchun"], answer: 0 },
+  { q: "Kredit karta va student loan qanday ishlashi tushuntirilgan?", opts: ["Pulni oldindan olib, keyin foiz bilan qaytarish", "Umuman tekin pul", "Stipendiya shakli", "Jamg'arma turi"], answer: 0 }
+];
+---
+
+<Base title={title} description={description}>
+
+<article class="lesson">
+  <div class="course-hero">
+    <h1>Financial Literacy — Moliyaviy savodxonlik</h1>
+    <div class="price">
+      <span class="now">Narx: TBD</span>
+      <span class="badge badge-new">Yangi</span>
+      <span class="badge badge-cert">Sertifikat</span>
+    </div>
+  </div>
+
+  <p class="lead" data-i18n="fl.lead">
+    Pulni boshqarish, byudjet tuzish va kundalik moliyaviy qarorlar — har bir
+    talaba uchun asosiy hayotiy ko'nikma. Bu kursda mablag'ingizni qanday
+    rejalashtirishni, xatolarga yo'l qo'ymaslikni va kelajakka tayyorgarlik
+    ko'rishni o'rganasiz.
+  </p>
+
+  <div style="background:color-mix(in srgb,#f59e0b 12%,transparent);border:1px solid #f59e0b;border-left:4px solid #f59e0b;border-radius:12px;padding:16px 18px;margin:1.5rem 0;">
+    <strong style="color:#f59e0b;">MUHIM ESLASTIRMA:</strong>
+    Bu kurs <b>faqat umumiy ta'lim</b> kursi. Bu yerda hech qanday aniq moliyaviy
+    mahsulot tavsiya qilinmaydi (masalan, "shu bankka pul qo'y", "shu aksiyani ol",
+    "shu kredit kartani o'l" kabi gaplar bo'lmaydi). Kurs byudjet tuzish, tejash
+    va rejalashtirish <b>ko'nikmalarini</b> o'rgatadi. Bu professional moliyaviy
+    maslahat o'rnini bosmaydi — shaxsiy moliyaviy qarorlar uchun malakali mutaxassisga
+    murojaat qiling.
+  </div>
+
+  <section>
+    <h2 data-i18n="fl.modules">Kurs modullari</h2>
+    <ol class="modules">
+      <li data-i18n="fl.mod1">Asosiy tushunchalar — daromad, xarajat, byudjet, jamg'arma</li>
+      <li data-i18n="fl.mod2">Talaba byudjeti tuzish — stipendiya/grant pulini oy davomida taqsimlash</li>
+      <li data-i18n="fl.mod3">Chet elda yashash xarajatlari — rejalashtirish va bank hisobi asoslari</li>
+      <li data-i18n="fl.mod4">Qarz va kredit tushunchasi — kredit karta, student loan (ogohlantirish bilan)</li>
+      <li data-i18n="fl.mod5">Jamg'arma va kelajakka rejalashtirish — "avval jamg'ar, keyin sarfla"</li>
+      <li data-i18n="fl.mod6">Umumiy xatolar — talabalar ko'p qiladigan moliyaviy xatolar</li>
+    </ol>
+  </section>
+
+  <section>
+    <h2>1. Asosiy tushunchalar</h2>
+    <p>
+      Moliyaviy savodxonlik bir necha oddiy tushunchadan boshlanadi:
+    </p>
+    <ul>
+      <li><b>Daromad</b> — sizga kirayotgan pul: stipendiya, ish haqi, grant, yordam.</li>
+      <li><b>Xarajat</b> — chiqayotgan pul: ijara, ovqat, transport, kurslar, ko'ngil ochar.</li>
+      <li><b>Byudjet</b> — daromad va xarajatlarni solishtirib, oldindan rejalashtirish.</li>
+      <li><b>Jamg'arma</b> — xarajatdan qolgan va kelajak uchun ajratilgan qism.</li>
+    </ul>
+    <p class="quiz-hint">
+      Birinchi qadam — qayerda va qancha pul sarflayotganingizni halollik bilan bilish.
+      Buni bilmasdan byudjet tuzib bo'lmaydi.
+    </p>
+  </section>
+
+  <section>
+    <h2>2. Talaba byudjeti tuzish</h2>
+    <p>
+      Stipendiya yoki grant puli bir marta (masalan, semestr boshida) keladi. Uni
+      bir oyda emas, kerakli muddatga taqsimlash kerak. Oddiy yondashuv — xarajatlarni
+      guruhlarga ajratish:
+    </p>
+    <ul>
+      <li><b>Yashash:</b> ijara yoki yotoqxona, kommunal to'lovlar.</li>
+      <li><b>Ovqat:</b> do'kon, oshxona, suv.</li>
+      <li><b>Transport:</b> avtobus, metro, velosiped, yoqilg'i.</li>
+      <li><b>O'quv:</b> kitoblar, darsliklar, internet, dasturiy ta'minot.</li>
+      <li><b>Favqulodda zaxira:</b> kutilmagan xarajatlar uchun ajratiladigan qism.</li>
+    </ul>
+    <p>
+      Ko'p odam "50/30/20" kabi umumiy qoidadan foydalanadi (daromadning ~50% zarur
+      ehtiyojlarga, ~30% ixtiyoriy xarajatlarga, ~20% jamg'armaga). Bu — qattiq qoida
+      emas, boshqalar qanday qilishini ko'rsatuvchi oddiy namuna. O'z sharoitingizga
+      moslashtiring.
+    </p>
+    <p class="quiz-hint">
+      Foydali odat: pul kelishi bilanoq avval jamg'arma/zaxirani ajrating, qolganini
+      sarflang — aksincha emas.
+    </p>
+  </section>
+
+  <section>
+    <h2>3. Chet elda yashash xarajatlari</h2>
+    <p>
+      Boshqa mamlakatda (masalan, UK yoki boshqalar) talaba sifatida yashash
+      xarajatlari joydan joyga sezilarli farq qiladi. Oldindan tadqiq qilish kerak:
+      ijara, kommunal, oziq-ovqat, transport, sug'urta va o'quv xarajatlari.
+    </p>
+    <p>
+      <b>Bank hisobi ochish asoslari:</b> ko'p mamlakatlarda talabalar uchun alohida
+      <i>student account</i> mavjud. U nima uchun kerak: pul o'tkazmalarini qabul qilish,
+      to'lovlarni amalga oshirish, ish haqi olish. Odatda talab qilinadigan hujjatlar:
+      pasport, talaba guvohnomasi va manzil tasdig'i. Bu — faqat umumiy tushuntirish;
+      qaysi bank yoki xizmat mosligini o'zingiz joyida aniqlaysiz.
+    </p>
+    <p class="quiz-hint">
+      Xarajatlarni mahalliy valyutada va o'z valyutangizda solishtirib ko'ring —
+      ayirboshlash kursi ham xarajatga ta'sir qiladi.
+    </p>
+  </section>
+
+  <section>
+    <h2>4. Qarz va kredit tushunchasi</h2>
+    <p>
+      <b>Kredit karta</b> va <b>student loan</b> (talaba krediti) — bu oldindan pul
+      olish va uni keyinroq, odatda <b>foiz</b> bilan qaytarish mexanizmi. Asosiy
+      printsip: olingan pul vaqt o'tishi bilan qo'shimcha to'lov (foiz) bilan qaytariladi.
+    </p>
+    <p style="border-left:4px solid #ef4444;padding-left:14px;color:var(--text);">
+      <strong style="color:#ef4444;">OGOHLANTIRISH:</strong>
+      Foiz vaqti bilan o'sib boradi. Qaytarish qobiliyatingizni tushunmasdan kredit
+      olmang. Bu ma'lumot — shaxsiy moliyaviy qaror emas, faqat mexanizmni tushuntirish.
+      "Kredit reytingi" (credit score) tushunchasi ham shuning uchun muhim: vaqtida
+      qaytarish kelajakdagi sharoitlarga ta'sir qilishi mumkin.
+    </p>
+  </section>
+
+  <section>
+    <h2>5. Jamg'arma va kelajakka rejalashtirish</h2>
+    <p>
+      Eng foydali tamoyillardan biri — <b>"avval jamg'ar, keyin sarfla"</b>. Ya'ni,
+      pul kelishi bilanoq kerakli qismini ajratib qo'yish, qolganini sarflash.
+    </p>
+    <ul>
+      <li><b>Favqulodda fond (emergency fund):</b> kutilmagan xarajatlar (kasallik,
+        texnika buzilishi, sayohat bekor bo'lishi) uchun zaxira. Odatda bir necha oylik
+        asosiy xarajat miqdorida bo'lishi tavsiya etiladi.</li>
+      <li><b>Muntazam kichik jamg'arma:</b> hatto kichik summani ham doimiy ajratish
+        vaqt o'tishi bilan sezilarli natija beradi — bu erda ham "murakkab o'sish"
+        tamoyili ishlaydi (lekin bu kurs aniq investitsiya vositasini tavsiya qilmaydi).</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>6. Umumiy xatolar</h2>
+    <p>Talabalar eng ko'p quyidagi xatolarga yo'l qo'yishadi:</p>
+    <ul>
+      <li><b>Impulsiv xaridlar</b> — rejasiz, kayfiyat bilan sotib olish.</li>
+      <li><b>Byudjetsiz yashash</b> — qancha pul borligini kuzatmaslik.</li>
+      <li><b>"Keyin to'layman"</b> mentaliteti — kreditga suyanish.</li>
+      <li><b>Zaxira qilmash</b> — favqulodda holatda qiyinchilik.</li>
+      <li><b>Daromadni overestimate qilish</b> — keladigan puldan ortiq rejalashtirish.</li>
+    </ul>
+    <p class="quiz-hint">
+      Oldini olish: yozma reja tuzish, kichik xarajatlarni ham kuzatish, va "24 soat
+      qoidasi" (katta xarid oldidan bir kun o'ylab turish).
+    </p>
+  </section>
+
+  <a href="/bog-lanish" class="start-btn" style="margin-top:2rem;" data-i18n="fl.buy">Kursni sotib olish →</a>
+  <a href="/kurslar" class="enroll" style="margin-left:1rem;" data-i18n="fl.all">← Barcha kurslar</a>
+
+  <Quiz titleI18n="fl.quizTitle" questions={questions} />
+</article>
+<TelegramCTA />
+</Base>

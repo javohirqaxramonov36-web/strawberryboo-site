@@ -1,0 +1,82 @@
+---
+import Base from "../layouts/Base.astro";
+const title = "Ko'p so'raladigan savollar (FAQ) — O'rganamiz";
+const description = "Kurslar, to'lov usullari, sertifikat va forever access bo'yicha eng ko'p beriladigan savollarga javoblar.";
+---
+
+<Base title={title} description={description}>
+
+<article class="lesson">
+  <h1>Ko'p so'raladigan savollar</h1>
+  <p class="lead">
+    Kurslarimiz, to'lov va sertifikatlar bo'yicha eng ko'p beriladigan savollarga qisqa javoblar.
+    Javobingizni topa olmadingizmi? <a href="/bog-lanish" style="color:var(--accent)">Bog'lanish</a> sahifasi orqali yozing.
+  </p>
+
+  <section class="faq">
+    <details open>
+      <summary>Kurslar qanday formatda o'tiladi?</summary>
+      <p>Har bir kurs modullarga bo'lingan: qisqacha video darslar, amaliy mashqlar va tekshirish uchun kichik test (Quiz). Siz o'z tezligingizda o'rganasiz va bir marta sotib olganingizda <b>forever access</b> olasiz — istalgan vaqtda qayta ko'rish mumkin.</p>
+    </details>
+
+    <details>
+      <summary>To'lovni qanday amalga oshiraman?</summary>
+      <p>To'lov quyidagi usullar orqali amalga oshiriladi: Click, Payme, Uzum va bank karta (UZS yoki USD). Batafsil kanallar <a href="/bog-lanish" style="color:var(--accent)">Bog'lanish</a> sahifasida. To'lov vaqtida yakuniy narx va kurs narxi tasdiqlanadi.</p>
+    </details>
+
+    <details>
+      <summary>Kursni tugallagach sertifikat beriladimi?</summary>
+      <p>Ha. Barcha pullik va bepul kurslarimizda <b>sertifikat</b> mavjud. Kurs materiallarini o'zlashtirganingizdan so'ng sertifikat olish huquqiga ega bo'lasiz.</p>
+    </details>
+
+    <details>
+      <summary>"Forever access" nima degani?</summary>
+      <p>Bir marta sotib olasiz — va kursga doimiy ravishda, cheksiz muddatga kira olasiz. Yangilanishlar ham shu narxga qo'shiladi, qo'shimcha to'lov talab qilinmaydi.</p>
+    </details>
+
+    <details>
+      <summary>Bepul kurslar haqiqatan ham bepulmi?</summary>
+      <p>Ha, bir qancha kurslarimiz butunlay bepul: "Tekin AI modellar va agentlar", "Figma / Dizayn" va "Nega chet elda o'qish kerak". Ro'yxatdan o'tish yoki karta ma'lumotlari shart emas — sahifaga kiring va o'rgana boshlang.</p>
+    </details>
+  </section>
+
+  <a href="/kurslar" class="start-btn" style="margin-top:2rem;">Barcha kurslarni ko'rish →</a>
+</article>
+
+<style>
+  .faq details {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 0 1.1rem;
+    margin-bottom: 0.8rem;
+    transition: border-color .15s;
+  }
+  .faq details[open] { border-color: var(--accent); }
+  .faq summary {
+    cursor: pointer;
+    padding: 1rem 0;
+    font-weight: 700;
+    font-size: 1.02rem;
+    list-style: none;
+    color: var(--text);
+  }
+  .faq summary::-webkit-details-marker { display: none; }
+  .faq summary::before {
+    content: "+";
+    display: inline-block;
+    margin-right: 10px;
+    color: var(--accent);
+    font-weight: 800;
+    font-size: 1.2rem;
+    transition: transform .15s;
+  }
+  .faq details[open] summary::before { content: "\2013"; }
+  .faq details p {
+    color: var(--muted);
+    padding: 0 0 1rem;
+    margin: 0;
+    line-height: 1.7;
+  }
+</style>
+</Base>
