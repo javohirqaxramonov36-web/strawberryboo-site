@@ -1,4 +1,5 @@
 ---
+import ChatWidget from "../components/ChatWidget.astro";
 const title = Astro.props.title || "O'rganamiz";
 const description = Astro.props.description || '';
 const lang = Astro.props.lang || "uz";
@@ -313,6 +314,21 @@ const canonical = Astro.props.canonical || Astro.url.href;
           "pe.ben3": "Pul ishlash — kontent, kod tezroq",
           "pe.buy": "Kursni sotib olish →",
           "pe.all": "← Barcha kurslar",
+          "pe.q1": "Prompt — bu nima?",
+          "pe.q1o0": "AI ga berilgan ko'rsatma",
+          "pe.q1o1": "Rasm fayli",
+          "pe.q1o2": "Kod qatori",
+          "pe.q1o3": "Ma'lumotlar bazasi",
+          "pe.q2": "Few-shot usuli nima?",
+          "pe.q2o0": "Bitta misol",
+          "pe.q2o1": "Misol orqali o'rgatish",
+          "pe.q2o2": "Hech narsa",
+          "pe.q2o3": "Test rejimi",
+          "pe.q3": "Chain-of-thought qanday yordam beradi?",
+          "pe.q3o0": "Tezroq yozish uchun",
+          "pe.q3o1": "Murakkab vazifani bosqichlab yechish uchun",
+          "pe.q3o2": "Rang o'zgartirish uchun",
+          "pe.q3o3": "Fayl saqlash uchun",
           "pe.quizTitle": "O'z bilimingizni tekshiring"
         },
         ru: {
@@ -515,6 +531,21 @@ const canonical = Astro.props.canonical || Astro.url.href;
           "pe.ben3": "Заработок — контент и код быстрее",
           "pe.buy": "Купить курс →",
           "pe.all": "← Все курсы",
+          "pe.q1": "Что такое промпт?",
+          "pe.q1o0": "Инструкция, данная ИИ",
+          "pe.q1o1": "Файл изображения",
+          "pe.q1o2": "Строка кода",
+          "pe.q1o3": "База данных",
+          "pe.q2": "Что такое метод few-shot?",
+          "pe.q2o0": "Один пример",
+          "pe.q2o1": "Обучение на примерах",
+          "pe.q2o2": "Ничего",
+          "pe.q2o3": "Тестовый режим",
+          "pe.q3": "Как помогает chain-of-thought?",
+          "pe.q3o0": "Для более быстрого написания",
+          "pe.q3o1": "Для пошагового решения сложной задачи",
+          "pe.q3o2": "Для смены цвета",
+          "pe.q3o3": "Для сохранения файла",
           "pe.quizTitle": "Проверьте свои знания"
         },
         en: {
@@ -717,6 +748,21 @@ const canonical = Astro.props.canonical || Astro.url.href;
           "pe.ben3": "Earn money — content and code faster",
           "pe.buy": "Buy course →",
           "pe.all": "← All courses",
+          "pe.q1": "What is a prompt?",
+          "pe.q1o0": "An instruction given to AI",
+          "pe.q1o1": "An image file",
+          "pe.q1o2": "A line of code",
+          "pe.q1o3": "A database",
+          "pe.q2": "What is the few-shot method?",
+          "pe.q2o0": "A single example",
+          "pe.q2o1": "Teaching through examples",
+          "pe.q2o2": "Nothing",
+          "pe.q2o3": "Test mode",
+          "pe.q3": "How does chain-of-thought help?",
+          "pe.q3o0": "For writing faster",
+          "pe.q3o1": "For solving a complex task step by step",
+          "pe.q3o2": "For changing colors",
+          "pe.q3o3": "For saving files",
           "pe.quizTitle": "Check your knowledge"
         }
       };
@@ -1038,5 +1084,7 @@ const canonical = Astro.props.canonical || Astro.url.href;
       /* === PRICE NOTE (QADAM 5) === */
       .price-note { display: block; font-size: 0.72rem; color: var(--muted); margin-top: 3px; font-style: italic; }
     </style>
+
+  <ChatWidget />
   </body>
 </html>

@@ -1,0 +1,321 @@
+---
+// ChatWidget — mustaqil, cheklangan yordamchi-chat widget.
+// FAQ/KB asosida ishlaydi: hech qanday API kaliti, tashqi so'rov yoki
+// fayl tizimiga kirish YO'Q. Mavzu chegarasi (kurslar/narxlar/sayt) kafolatlangan.
+---
+
+<div class="cw-root" id="cwRoot">
+  <button class="cw-launcher" id="cwLauncher" aria-label="Savolingiz bormi?" aria-expanded="false">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5a8.38 8.38 0 0 1-8.5 8.5 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8A8.5 8.5 0 1 1 21 11.5z"/></svg>
+    <span class="cw-launcher-label">Savolingiz bormi?</span>
+  </button>
+
+  <div class="cw-panel" id="cwPanel" hidden>
+    <div class="cw-header">
+      <div class="cw-header-title">
+        <span class="cw-avatar">O'</span>
+        <div>
+          <strong>Yordamchi</strong>
+          <span class="cw-sub">O'rganamiz · kurslar va narxlar</span>
+        </div>
+      </div>
+      <button class="cw-close" id="cwClose" aria-label="Yopish">&times;</button>
+    </div>
+
+    <div class="cw-messages" id="cwMessages"></div>
+
+    <div class="cw-chips" id="cwChips">
+      <button type="button" data-q="Kurslar ro'yxati">Kurslar</button>
+      <button type="button" data-q="Narxlar qanday?">Narxlar</button>
+      <button type="button" data-q="Qaysi kurs menga mos?">Menga mos kurs?</button>
+      <button type="button" data-q="Saytdan qanday foydalanish">Sayt haqida</button>
+    </div>
+
+    <form class="cw-input" id="cwForm">
+      <input id="cwInput" type="text" placeholder="Savolingizni yozing..." autocomplete="off" />
+      <button type="submit" aria-label="Yuborish">&rarr;</button>
+    </form>
+  </div>
+</div>
+
+<style>
+  .cw-root {
+    position: fixed;
+    right: 20px;
+    bottom: 20px;
+    z-index: 1000;
+    font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  }
+
+  .cw-launcher {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: linear-gradient(135deg, var(--accent), var(--accent-2));
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    padding: 12px 18px;
+    border-radius: 999px;
+    font-weight: 700;
+    font-size: 0.95rem;
+    box-shadow: var(--shadow);
+    transition: transform .15s, box-shadow .15s;
+  }
+  .cw-launcher:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 30px -8px rgba(125,125,245,.6);
+  }
+  .cw-launcher svg { width: 20px; height: 20px; }
+  .cw-launcher-label { white-space: nowrap; }
+
+  .cw-panel {
+    position: fixed;
+    right: 20px;
+    bottom: 84px;
+    width: 360px;
+    max-width: calc(100vw - 32px);
+    height: 480px;
+    max-height: calc(100vh - 120px);
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    box-shadow: var(--shadow);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+  }
+  .cw-panel[hidden] { display: none; }
+
+  .cw-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 14px;
+    background: linear-gradient(135deg, var(--accent), var(--accent-2));
+    color: #fff;
+  }
+  .cw-header-title { display: flex; align-items: center; gap: 10px; }
+  .cw-avatar {
+    width: 34px; height: 34px; border-radius: 50%;
+    background: rgba(255,255,255,.2);
+    display: grid; place-items: center; font-weight: 800;
+  }
+  .cw-header strong { display: block; font-size: 0.95rem; }
+  .cw-sub { font-size: 0.72rem; opacity: .85; }
+  .cw-close {
+    background: transparent; border: none; color: #fff;
+    font-size: 1.5rem; line-height: 1; cursor: pointer; padding: 0 4px;
+  }
+
+  .cw-messages {
+    flex: 1;
+    overflow-y: auto;
+    padding: 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .cw-msg {
+    max-width: 85%;
+    padding: 10px 12px;
+    border-radius: 12px;
+    font-size: 0.9rem;
+    line-height: 1.45;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+  }
+  .cw-msg.bot {
+    align-self: flex-start;
+    background: var(--accent-soft);
+    color: var(--text);
+    border: 1px solid var(--border);
+  }
+  .cw-msg.user {
+    align-self: flex-end;
+    background: linear-gradient(135deg, var(--accent), var(--accent-2));
+    color: #fff;
+  }
+
+  .cw-chips { display: flex; flex-wrap: wrap; gap: 6px; padding: 0 12px 8px; }
+  .cw-chips button {
+    background: var(--accent-soft);
+    color: var(--text);
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    padding: 6px 10px;
+    font-size: 0.78rem;
+    cursor: pointer;
+    transition: background .15s;
+  }
+  .cw-chips button:hover { background: rgba(125,125,245,.22); }
+
+  .cw-input { display: flex; gap: 8px; padding: 10px 12px; border-top: 1px solid var(--border); }
+  .cw-input input {
+    flex: 1;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 10px 12px;
+    color: var(--text);
+    font-size: 0.9rem;
+    outline: none;
+  }
+  .cw-input input:focus { border-color: var(--accent); }
+  .cw-input button {
+    background: var(--accent);
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+    width: 42px;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: background .15s;
+  }
+  .cw-input button:hover { background: var(--accent-2); }
+
+  @media (max-width: 480px) {
+    .cw-panel { right: 12px; left: 12px; width: auto; bottom: 78px; }
+    .cw-launcher-label { display: none; }
+    .cw-launcher { padding: 14px; }
+  }
+</style>
+
+<script>
+  const launcher = document.getElementById('cwLauncher');
+  const panel = document.getElementById('cwPanel');
+  const closeBtn = document.getElementById('cwClose');
+  const messages = document.getElementById('cwMessages');
+  const form = document.getElementById('cwForm');
+  const input = document.getElementById('cwInput');
+  const chips = document.getElementById('cwChips');
+
+  const OFF_TOPIC = "Kechirasiz, men faqat O'rganamiz saytining kurslari, narxlari va saytdan foydalanish bo'yicha savollarga javob bera olaman. Shaxsiy ma'lumotlar, fayl tizimi yoki boshqa mavzularga kira olmayman. Kurslar: /kurslar · Narxlar: /narxlar";
+
+  const FALLBACK = "Afsuski, bu savolga aniq javob bera olmayman. Men faqat shu bo'yicha yordam bera olaman:\n• Kurslar haqida ma'lumot\n• Narxlar va paketlar\n• Saytdan foydalanish\nKurslar: /kurslar · Narxlar: /narxlar";
+
+  const WELCOME = "Salom! Men O'rganamiz saytining yordamchisiman. Kurslar, narxlar va saytdan foydalanish bo'yicha savollaringizga javob bera olaman. Nima bilan yordam kerak?";
+
+  // --- Bilim bazasi (FAQ). Har yozuv: kalit so'zlar + javob ---
+  const KB = [
+    { kw: ["ro'yxat","nechta","necha","barcha kurs","kurslar","qanday kurslar","mavjud"],
+      a: "Bizda 12 ta kurs mavjud (7 ta pullik + 5 ta bepul):\n• Pullik: Prompt Engineering ($29), Obsidian PKM ($19), AI Agentlar ($39), IELTS Prep ($24), Admission Process ($34), AutoCAD on Mac ($29), Financial Literacy (tez orada)\n• Bepul: Tekin AI, Mac'da Tezlik Sirlari, Figma, Nega chet elda o'qish, El-Yurt Umidi (tez orada)\nBatafsil: /kurslar" },
+
+    { course: true, kw: ["prompt","prompt engineering","promt","prompty"],
+      a: "Prompt Engineering — AI bilan to'g'ri muloqot qilish san'ati. Nima uchun kerak, qanday foyda va qayerda qo'llash amaliy misollar bilan o'rgatiladi.\nNarxi: $29 (≈360 000 so'm).\nBatafsil: /kurslar/prompt-engineering" },
+
+    { course: true, kw: ["obsidian","pkm","bilim bazasi","knowledge","notes"],
+      a: "Obsidian PKM — shaxsiy bilim bazasi (PKM) qurish kursi. Strawberryboo bilan avtomatik capture qilishni o'rgatadi.\nNarxi: $19 (≈240 000 so'm).\nBatafsil: /kurslar/obsidian" },
+
+    { course: true, kw: ["agent","agentlar","ai agent","crewai","langgraph"],
+      a: "AI Agentlar nega kerak? — CrewAI, LangGraph asosida agent'lar nima uchun kerakligi va qanday foyda keltirishi.\nNarxi: $39 (≈490 000 so'm).\nBatafsil: /kurslar/ai-agentlar" },
+
+    { course: true, kw: ["ielts","ingliz tili","toefl"],
+      a: "IELTS Prep — IELTS Writing, Reading, Speaking bo'yicha 30 kunlik reja bilan tayyorgarlik.\nNarxi: $24 (≈300 000 so'm).\nBatafsil: /kurslar/ielts-prep" },
+
+    { course: true, kw: ["admission","universitet","unist","kirish","hujjat","essay","intervyu"],
+      a: "Admission Process — chet el universitetlariga kirish: hujjatlar, essay, interview.\nNarxi: $34 (≈425 000 so'm).\nBatafsil: /kurslar/admission-process" },
+
+    { course: true, kw: ["autocad","auto cad","chizish","muhandislik","dizayn dastur"],
+      a: "AutoCAD on Mac — Mac'da AutoCAD: o'rnatish, interfeys, chizish buyruqlari va bepul talaba litsenziyasi.\nNarxi: $29 (≈360 000 so'm).\nBatafsil: /kurslar/autocad-on-mac" },
+
+    { course: true, kw: ["financial","moliyaviy","pul","byudjet","budget","tejash"],
+      a: "Financial Literacy — moliyaviy savodxonlik: pulni boshqarish, byudjet tuzish va moliyaviy qarorlar. Talaba hayoti uchun asosiy ko'nikma.\nNarxi: tez orada e'lon qilinadi (TBD).\nBatafsil: /kurslar/financial-literacy" },
+
+    { course: true, kw: ["tekin ai","bepul ai","free ai","tekin model","ollama","llama"],
+      a: "Tekin AI modellar va agentlar — MacBook'da o'rnatiladigan bepul AI vositalari ro'yxati va qo'llanma. Butunlay bepul ($0).\nBatafsil: /kurslar/tekin-ai" },
+
+    { course: true, kw: ["mac","macbook","raycast","tezlik","shortcut","klaviatura","tezkor"],
+      a: "Mac'da Tezlik Sirlari — Raycast, shortcut'lar va Mac vositalari bilan kundalik ishlarni 2 baravar tezroq bajarish. Bepul ($0).\nBatafsil: /kurslar/mac-tezlik-sirlari" },
+
+    { course: true, kw: ["figma","dizayn","ui/ux","ui ux","ux","prototip"],
+      a: "Figma / Dizayn — UI/UX asoslari, komponentlar va prototip yaratish. Bepul ($0) kirish.\nBatafsil: /kurslar/figma" },
+
+    { course: true, kw: ["chet el","chet elda","chetga","chevening","daad","grant","stipendiya"],
+      a: "Nega chet elda o'qish kerak — ta'lim sifati, karyera, shaxsiy rivojlanish va bepul grantlar (El-Yurt Umidi, Chevening, DAAD). Bepul ($0).\nBatafsil: /kurslar/chet-elda-oqish" },
+
+    { course: true, kw: ["el-yurt","el yurt","yurt umidi","grant suhbat"],
+      a: "El-Yurt Umidi'ni yutaylik — davlat granti bo'yicha suhbatga tayyorgarlik kursi. Material tez orada qo'shiladi (Tez orada).\nBatafsil: /kurslar/el-yurt-umidi" },
+
+    { kw: ["bepul","tekin","free","ozod"],
+      a: "Bizda bir nechta bepul kurslar bor: Tekin AI modellar va agentlar, Mac'da Tezlik Sirlari, Figma/Dizayn, Nega chet elda o'qish kerak. Batafsil: /kurslar" },
+
+    { kw: ["qaysi kurs","menga mos","menga kerak","tanlash","tavsiya","recommend","qayerdan boshlasam","boshlasam","qaysi biri"],
+      a: "Qaysi kurs sizga mosligini aniqlash uchun kichik test tayyorladik: /kurs-tanlash\nYoki maqsadingizni ayting — masalan \"IELTS yozishni o'rganmoqchiman\" yoki \"Mac'da tezroq ishlash\", shunda aniq kurs tavsiya qilaman." },
+
+    { kw: ["narx","pul","qancha","tezroq","arzon","qimmat","paket","chegirma","tolov","to'lov","tolash","sotib olish","price","стоимость","сколько","summa","raqam"],
+      a: "Narxlar:\n• Bitta kurs — $19 dan boshlab (≈240 000 so'm)\n• AI Stack (Prompt + AI Agentlar + Obsidian) — $70, 20% chegirma (was $87)\n• Full access — $99 (barcha 12 ta kurs, yangi kurslar bepul)\nBarcha paketlarda forever access (abadiy kirish) va sertifikat bor.\nBatafsil: /narxlar" },
+
+    { kw: ["ro'yxatdan","sotib olish","tolov","to'lov","tolash","karta","payme","click","uzum","usul","til","o'zbek","rus","ingliz","inglizcha","telegram","sertifikat","access","abadiy","forever","qayerda","foydalanish","ishlatish","saytdan","yozishish","uloash","ulashish"],
+      a: "Saytdan foydalanish:\n• Kursni tanlang → \"Kursni boshlash\" → bog'lanish sahifasida to'lov usulini tanlang.\n• Barcha kurslarda forever access (abadiy kirish) va sertifikat bor.\n• Tillarni yuqoridagi UZ/RU/EN tugmalari orqali almashtiring.\n• Savollaringizga Telegram orqali javob beramiz.\nBatafsil: /bog-lanish" },
+
+    { kw: ["salom","assalom","hello","hi","hey","xayr","privet","здравств","добр","привет"],
+      a: "Salom! Men O'rganamiz saytining yordamchisiman. Kurslar, narxlar va saytdan foydalanish bo'yicha savollaringizga javob bera olaman. Nima bilan yordam kerak?" }
+  ];
+
+  // Mavzu chegarasi: shaxsiy ma'lumotlar / tizim so'zlari → rad etish
+  const BAD = ['shaxsiy ma\'lumot','parol','password','karta raqami','pasport','manzil','telefon raqam','api kalit','api key','workbuddy','fayl tizimi','file system','obsidian vault','vault','menging obsidian','menging fayl','menging ma\'lumot','menging parol','secret','личн','пароль','мои данные'];
+
+  function kwMatch(text, kw){
+    const esc = kw.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+    return new RegExp('(^|[^a-z0-9])' + esc, 'i').test(text);
+  }
+
+  function isOffTopic(t){ return BAD.some(w => kwMatch(t, w)); }
+
+  function findAnswer(text){
+    let courseBest = null, courseScore = 0;
+    let genBest = null, genScore = 0;
+    for (const e of KB){
+      let s = 0;
+      for (const k of e.kw){ if (kwMatch(text, k)) s += (k.length >= 5 ? 2 : 1); }
+      if (s <= 0) continue;
+      if (e.course){ if (s > courseScore){ courseScore = s; courseBest = e; } }
+      else { if (s > genScore){ genScore = s; genBest = e; } }
+    }
+    const best = courseBest || genBest;
+    return best ? best.a : null;
+  }
+
+  function addMsg(text, who){
+    const el = document.createElement('div');
+    el.className = 'cw-msg ' + who;
+    el.textContent = text;
+    messages.appendChild(el);
+    messages.scrollTop = messages.scrollHeight;
+  }
+
+  let welcomed = false;
+  function openPanel(){
+    panel.hidden = false;
+    launcher.setAttribute('aria-expanded','true');
+    if (!welcomed){ addMsg(WELCOME, 'bot'); welcomed = true; }
+    input.focus();
+  }
+  function closePanel(){
+    panel.hidden = true;
+    launcher.setAttribute('aria-expanded','false');
+  }
+
+  function handle(raw){
+    const text = raw.trim().toLowerCase();
+    if (!text) return;
+    addMsg(raw.trim(), 'user');
+    const reply = isOffTopic(text) ? OFF_TOPIC : (findAnswer(text) || FALLBACK);
+    setTimeout(() => addMsg(reply, 'bot'), 350);
+  }
+
+  launcher.addEventListener('click', () => { panel.hidden ? openPanel() : closePanel(); });
+  closeBtn.addEventListener('click', closePanel);
+
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const v = input.value;
+    input.value = '';
+    handle(v);
+  });
+
+  chips.querySelectorAll('button').forEach(b => {
+    b.addEventListener('click', () => handle(b.dataset.q));
+  });
+</script>
