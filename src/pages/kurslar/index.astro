@@ -2,6 +2,7 @@
 import Base from "../../layouts/Base.astro";
 const title = "Kurslar — O'rganamiz";
 const description = "Pullik va bepul kurslar: Prompt Engineering, Obsidian, AI Agentlar, IELTS Prep, Admission Process, Figma, AutoCAD on Mac, Financial Literacy, Chet elda o'qish, El-Yurt Umidi";
+const base = import.meta.env.BASE_URL;
 ---
 
 <Base title={title} description={description}>
@@ -16,7 +17,7 @@ const description = "Pullik va bepul kurslar: Prompt Engineering, Obsidian, AI A
     <span class="cat">AI · PKM</span>
     <p>Nima uchun kerak? Qanday foyda? Qayerda qo'llash? — amaliy misollar.</p>
     <p class="price">$29 <span class="uzs">≈ 360 000 so'm</span></p>
-    <a href="/kurslar/prompt-engineering" class="start-btn">Kursni boshlash →</a>
+    <a href={base + 'kurslar/prompt-engineering'} class="start-btn">Kursni boshlash →</a>
   </div>
 
   <div class="card" style="--c:#34d399">
@@ -25,7 +26,7 @@ const description = "Pullik va bepul kurslar: Prompt Engineering, Obsidian, AI A
     <span class="cat">AI · PKM</span>
     <p>Shaxsiy bilim bazasi qurish. Strawberryboo bilan avtomatik capture.</p>
     <p class="price">$19 <span class="uzs">≈ 240 000 so'm</span></p>
-    <a href="/kurslar/obsidian" class="start-btn">Kursni boshlash →</a>
+    <a href={base + 'kurslar/obsidian'} class="start-btn">Kursni boshlash →</a>
   </div>
 
   <div class="card" style="--c:#ef4444">
@@ -35,7 +36,7 @@ const description = "Pullik va bepul kurslar: Prompt Engineering, Obsidian, AI A
     <span class="cat">AI · PKM</span>
     <p>CrewAI, LangGraph — agent'lar nima uchun kerak, qanday foyda.</p>
     <p class="price">$39 <span class="uzs">≈ 490 000 so'm</span></p>
-    <a href="/kurslar/ai-agentlar" class="start-btn">Kursni boshlash →</a>
+    <a href={base + 'kurslar/ai-agentlar'} class="start-btn">Kursni boshlash →</a>
   </div>
 
   <div class="card" style="--c:#22c55e">
@@ -45,7 +46,7 @@ const description = "Pullik va bepul kurslar: Prompt Engineering, Obsidian, AI A
     <span class="cat">Til · Admission</span>
     <p>IELTS Writing, Reading, Speaking — 30 kunlik reja bilan.</p>
     <p class="price">$24 <span class="uzs">≈ 300 000 so'm</span></p>
-    <a href="/kurslar/ielts-prep" class="start-btn">Kursni boshlash →</a>
+    <a href={base + 'kurslar/ielts-prep'} class="start-btn">Kursni boshlash →</a>
   </div>
 
   <div class="card" style="--c:#8b5cf6">
@@ -54,8 +55,8 @@ const description = "Pullik va bepul kurslar: Prompt Engineering, Obsidian, AI A
     <h2>Admission Process</h2>
     <span class="cat">Til · Admission</span>
     <p>Chet el universitetlariga kirish: hujjatlar, essay, interview.</p>
-    <p class="price">$34 <span class="uzs">≈ 425 000 so'm</span></p>
-    <a href="/kurslar/admission-process" class="start-btn">Kursni boshlash →</a>
+    <p class="price">49 000 so'mdan <span class="uzs">3 qism alohida tanlanadi</span></p>
+    <a href={base + 'kurslar/admission-process'} class="start-btn">Kursni boshlash →</a>
   </div>
 
   <div class="card" style="--c:#7d7df5">
@@ -65,7 +66,7 @@ const description = "Pullik va bepul kurslar: Prompt Engineering, Obsidian, AI A
     <span class="cat">Bepul</span>
     <p>MacBook'da o'rnatiladigan bepul AI vositalari ro'yxati va qo'llanma.</p>
     <p class="price">$0 <span class="uzs">Bepul</span></p>
-    <a href="/kurslar/tekin-ai" class="start-btn">Kursni boshlash →</a>
+    <a href={base + 'kurslar/tekin-ai'} class="start-btn">Kursni boshlash →</a>
   </div>
 
   <div class="card" style="--c:#3b82f6">
@@ -75,7 +76,7 @@ const description = "Pullik va bepul kurslar: Prompt Engineering, Obsidian, AI A
     <span class="cat">HAYOTIY KO'NIKMA</span>
     <p>Raycast, shortcut'lar va Mac vositalari bilan kundalik ishlarni 2 baravar tezroq bajarish — amaliy, bepul kurs.</p>
     <p class="price">$0 <span class="uzs">Bepul</span></p>
-    <a href="/kurslar/mac-tezlik-sirlari" class="start-btn">Kursni boshlash →</a>
+    <a href={base + 'kurslar/mac-tezlik-sirlari'} class="start-btn">Kursni boshlash →</a>
   </div>
 
   <div class="card" style="--c:#f59e0b">
@@ -85,7 +86,7 @@ const description = "Pullik va bepul kurslar: Prompt Engineering, Obsidian, AI A
     <span class="cat">Dizayn</span>
     <p>UI/UX asoslari, komponentlar va prototip — bepul dizaynga kirish.</p>
     <p class="price">$0 <span class="uzs">Bepul</span></p>
-    <a href="/kurslar/figma" class="start-btn">Kursni boshlash →</a>
+    <a href={base + 'kurslar/figma'} class="start-btn">Kursni boshlash →</a>
   </div>
 
   <div class="card" style="--c:#f97316">
@@ -95,7 +96,7 @@ const description = "Pullik va bepul kurslar: Prompt Engineering, Obsidian, AI A
     <span class="cat">Dizayn · Muhandislik</span>
     <p>Mac'da AutoCAD: o'rnatish, interfeys, chizish buyruqlari va bepul litsenziya.</p>
     <p class="price">$29 <span class="uzs">≈ 360 000 so'm</span></p>
-    <a href="/kurslar/autocad-on-mac" class="start-btn">Kursni boshlash →</a>
+    <a href={base + 'kurslar/autocad-on-mac'} class="start-btn">Kursni boshlash →</a>
   </div>
 
   <div class="card" style="--c:#10b981">
@@ -105,7 +106,7 @@ const description = "Pullik va bepul kurslar: Prompt Engineering, Obsidian, AI A
     <span class="cat">HAYOTIY KO'NIKMA</span>
     <p>Pulni boshqarish, byudjet tuzish va moliyaviy qarorlar — talaba hayoti uchun asosiy ko'nikmalar.</p>
     <p class="price">Narx: TBD</p>
-    <a href="/kurslar/financial-literacy" class="start-btn">Kursni boshlash →</a>
+    <a href={base + 'kurslar/financial-literacy'} class="start-btn">Kursni boshlash →</a>
   </div>
 
   <div class="card" style="--c:#14b8a6">
@@ -115,7 +116,7 @@ const description = "Pullik va bepul kurslar: Prompt Engineering, Obsidian, AI A
     <span class="cat">Bepul · Admission</span>
     <p>Ta'lim sifati, karyera, shaxsiy rivojlanish va bepul grantlar (El-Yurt Umidi, Chevening, DAAD).</p>
     <p class="price">$0 <span class="uzs">Bepul</span></p>
-    <a href="/kurslar/chet-elda-oqish" class="start-btn">Kursni boshlash →</a>
+    <a href={base + 'kurslar/chet-elda-oqish'} class="start-btn">Kursni boshlash →</a>
   </div>
 
   <div class="card" style="--c:#ec4899">
@@ -125,9 +126,9 @@ const description = "Pullik va bepul kurslar: Prompt Engineering, Obsidian, AI A
     <span class="cat">Admission</span>
     <p>Davlat granti bo'yicha suhbatga tayyorgarlik — to'liq material tez orada qo'shiladi.</p>
     <p class="price">Tez orada</p>
-    <a href="/kurslar/el-yurt-umidi" class="start-btn">Kursni ko'rish →</a>
+    <a href={base + 'kurslar/el-yurt-umidi'} class="start-btn">Kursni ko'rish →</a>
   </div>
 </div>
 
-<p class="quiz-hint" style="margin-top:1.5rem">Qaysi kurs sizga kerakligini bilmayapsizmi? <a href="/kurs-tanlash" style="color:var(--accent)">Kurs tanlash testi →</a> · <a href="/narxlar" style="color:var(--accent)">Narxlar va paketlar →</a></p>
+<p class="quiz-hint" style="margin-top:1.5rem">Qaysi kurs sizga kerakligini bilmayapsizmi? <a href={base + 'kurs-tanlash'} style="color:var(--accent)">Kurs tanlash testi →</a> · <a href={base + 'narxlar'} style="color:var(--accent)">Narxlar va paketlar →</a></p>
 </Base>
