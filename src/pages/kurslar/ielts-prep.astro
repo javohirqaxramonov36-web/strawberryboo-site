@@ -10,6 +10,7 @@ const questions = [
   { q: "Reading savolida javob topilmasa nima qilish kerak?", opts: ["Bo'sh qoldirish", "Faqat Ctrl+F ishlatish", "Javobni darhol kiritib, yakuniy tekshiruvda ko'rish", "Testni to'xtatish"], answer: 2 },
   { q: "Hozir Writing nazariyasining shaxsiy asosiy qoidasi qaysi?", opts: ["Kirish qisqa, body 2 paragraf", "Har essay 5 body paragraf", "Faqat lug'at yozish", "Writing bo'limi yo'q"], answer: 0 }
 ];
+const base = import.meta.env.BASE_URL;
 ---
 
 <Base title={title} description={description}>
@@ -51,7 +52,27 @@ const questions = [
       <p class="src">Obsidian manbasi: <code>01.IELTS prep/Listening/2026-08-12-listening-test-5.md</code> · <code>01.IELTS prep/3.ielts/1.Reflection "Listening and Reading"/14-august.md</code></p>
 
       <h3>B. Practice (Mashq)</h3>
-      <div class="practice-placeholder">Mashqlar tez orada qo'shiladi. Cambridge 16–21 kitoblaridan hech qanday test matni yoki savol ushbu sahifaga ko'chirilmagan.</div>
+      <div class="practice-card" id="listening-practice">
+        <div class="practice-head"><div><span class="practice-tag">ORIGINAL MASHQ</span><h4>Section 2 — Riverside Community Day</h4></div><span class="skill-pill">Listening · 10 savol</span></div>
+        <p>Bu mashq O'rganamiz uchun noldan yozilgan. U birlik/ko'plik, raqam, joy nomi va distractor'larni tekshiradi; Cambridge materialidan nusxa olinmagan.</p>
+        <p class="practice-tip"><b>Ishlash tartibi:</b> “Audio”ni bir marta eshiting, bo'shliqlarni to'ldiring, keyin tekshiring. Audio brauzeringizning ovozli o'qish funksiyasidan foydalanadi.</p>
+        <div class="practice-actions"><button class="practice-btn" id="playListening" type="button">▶ Audio-ni ishga tushirish</button><button class="text-btn" id="showTranscript" type="button">Transcriptni keyin ko'rish</button></div>
+        <div class="listen-form" aria-label="Listening form completion">
+          <p><b>Riverside Community Day</b></p>
+          <label>1. First meeting point: <input data-listen-answer="visitor centre" placeholder="1–2 so'z" /></label>
+          <label>2. Guided walk starts at: <input data-listen-answer="10:15" placeholder="vaqt" /></label>
+          <label>3. Bags can be left in the: <input data-listen-answer="lockers" placeholder="ko'plikka e'tibor" /></label>
+          <label>4. The art activity is beside the old: <input data-listen-answer="sculptures" placeholder="ko'plikka e'tibor" /></label>
+          <label>5. Children should cross the wooden: <input data-listen-answer="bridge" placeholder="1 so'z" /></label>
+          <label>6. Free printed <input data-listen-answer="maps" placeholder="ko'plikka e'tibor" /> are available at the entrance.</label>
+          <label>7. The photography talk lasts <input data-listen-answer="12" placeholder="raqam" /> minutes.</label>
+          <label>8. The quiet area is near the herb: <input data-listen-answer="gardens" placeholder="ko'plikka e'tibor" /></label>
+          <label>9. Lunch can be bought at the: <input data-listen-answer="cafe|café" placeholder="1 so'z" /></label>
+          <label>10. The exit for buses is on the <input data-listen-answer="south" placeholder="yo'nalish" /> side.</label>
+        </div>
+        <button class="practice-btn secondary" id="checkListening" type="button">Javoblarni tekshirish</button><p class="practice-result" id="listeningResult" aria-live="polite"></p>
+        <details id="transcriptBox"><summary>Transcript — faqat javobdan keyin oching</summary><p>Good morning, and welcome to Riverside Community Day. Please meet our volunteers at the visitor centre, not at the museum entrance as shown on an old poster. The guided walk begins at 10:15, after the safety briefing. You can leave large bags in the lockers beside reception. For the art activity, walk past the old sculptures, then turn left. Families going to the river area should cross the wooden bridge, not the metal gate. Free printed maps are available at the entrance. The photography talk lasts 12 minutes. If you need a quiet place, the herb gardens are behind the library. Lunch is sold at the cafe, and buses leave from the south side.</p></details>
+      </div>
     </section>
 
     <section id="reading" class="subcourse">
@@ -68,7 +89,19 @@ const questions = [
       <p class="src">Obsidian manbasi: <code>01.IELTS prep/5.Weekly Progress Tracker.md</code> · <code>01.IELTS prep/3.ielts/1.Reflection "Listening and Reading"/1.All in one Reflection "Listening and Reading".md</code></p>
 
       <h3>B. Practice (Mashq)</h3>
-      <div class="practice-placeholder">Mashqlar tez orada qo'shiladi. Cambridge 16–21 kitoblaridan hech qanday test matni yoki savol ushbu sahifaga ko'chirilmagan.</div>
+      <div class="practice-card" id="reading-practice">
+        <div class="practice-head"><div><span class="practice-tag">ORIGINAL MASHQ</span><h4>Reading — Diqqat va word-limit drill</h4></div><span class="skill-pill">Reading · 6 savol</span></div>
+        <p><b>Matn:</b> Eastfield Library changed its study-floor rules after a student survey. The library did not add more computers; instead, it moved several existing computers closer to natural light. Printed books remain on the ground floor, while group tables are now on the second floor. Students may reserve a silent desk one day in advance, but not for an entire week. The café has extended its opening hours until 7 p.m. on weekdays. The library will review the changes after three months.</p>
+        <div class="reading-questions">
+          <label>1. The library bought new computers. <select data-read-answer="false"><option value="">Tanlang</option><option value="true">TRUE</option><option value="false">FALSE</option><option value="not given">NOT GIVEN</option></select></label>
+          <label>2. Group tables are on the ground floor. <select data-read-answer="false"><option value="">Tanlang</option><option value="true">TRUE</option><option value="false">FALSE</option><option value="not given">NOT GIVEN</option></select></label>
+          <label>3. A silent desk can be reserved for seven days. <select data-read-answer="false"><option value="">Tanlang</option><option value="true">TRUE</option><option value="false">FALSE</option><option value="not given">NOT GIVEN</option></select></label>
+          <label>4. The café is open later on weekdays. <select data-read-answer="true"><option value="">Tanlang</option><option value="true">TRUE</option><option value="false">FALSE</option><option value="not given">NOT GIVEN</option></select></label>
+          <label>5. How many months later will the changes be reviewed? <input data-read-answer="three|3" placeholder="NO MORE THAN ONE WORD AND/OR A NUMBER" /></label>
+          <label>6. Where are printed books kept? <input data-read-answer="ground floor|the ground floor" placeholder="NO MORE THAN TWO WORDS" /></label>
+        </div>
+        <button class="practice-btn secondary" id="checkReading" type="button">Javoblarni tekshirish</button><p class="practice-result" id="readingResult" aria-live="polite"></p>
+      </div>
     </section>
 
     <section id="writing" class="subcourse">
@@ -84,7 +117,28 @@ const questions = [
       <p class="src">Obsidian manbasi: <code>01.IELTS prep/2026-08-15-writing-intro-qoidasi.md</code> · <code>01.IELTS prep/5.Weekly Progress Tracker.md</code></p>
 
       <h3>B. Practice (Mashq)</h3>
-      <div class="practice-placeholder">Mashqlar tez orada qo'shiladi. Cambridge 16–21 kitoblaridan hech qanday test matni yoki savol ushbu sahifaga ko'chirilmagan.</div>
+      <div class="practice-card" id="writing-practice">
+        <div class="practice-head"><div><span class="practice-tag">AMALIY SHABLON</span><h4>Task 2 outline builder</h4></div><span class="skill-pill">Writing · self-review</span></div>
+        <p>Shaxsiy framework asosida avval pozitsiyani aniqlang, keyin ikkita body paragraph uchun bitta-bittadan asosiy fikr yozing.</p>
+        <div class="outline-grid"><label>Mavzu / savol<textarea id="wTopic" rows="3" placeholder="Essay savolini o'zingiz yozing..."></textarea></label><label>Introduction — pozitsiyangiz<textarea id="wIntro" rows="3" placeholder="Qisqa: mavzuni qayta ayting va fikringizni bildiring."></textarea></label><label>Body 1 — asosiy fikr + misol<textarea id="wBody1" rows="4"></textarea></label><label>Body 2 — asosiy fikr + misol<textarea id="wBody2" rows="4"></textarea></label></div>
+        <div class="checklist"><label><input type="checkbox" data-write-check /> Introduction qisqa va aniqmi?</label><label><input type="checkbox" data-write-check /> Ikkita body paragraph rejalashtirildimi?</label><label><input type="checkbox" data-write-check /> Har body'da sabab yoki misol bormi?</label><label><input type="checkbox" data-write-check /> Academic uslubdagi so'zlarni keyin o'zingiz tekshirasizmi?</label></div>
+        <button class="practice-btn secondary" id="saveOutline" type="button">Outline'ni qurilmada saqlash</button><p class="practice-result" id="writingResult" aria-live="polite"></p>
+      </div>
+    </section>
+
+    <section class="practice-tools">
+      <h2>Practice vositalari</h2>
+      <div class="tool-grid">
+        <div class="practice-card"><span class="practice-tag">ERROR-LOG</span><h3>Xatoni qayd qilish</h3><p>Mashqdan keyin xatoni toifalang. Bu natijalar faqat shu brauzerda saqlanadi.</p><label>Ko'nikma <select id="errorSkill"><option>Listening</option><option>Reading</option><option>Writing</option></select></label><label>Xato turi <select id="errorType"><option>E'tiborsizlik</option><option>Grammatika / birlik-ko'plik</option><option>Tinglab tushunmaslik</option><option>Word limit</option><option>Vaqt boshqaruvi</option></select></label><label>Qisqa izoh <input id="errorNote" placeholder="Masalan: swans o'rniga swan" /></label><button class="practice-btn secondary" id="saveError" type="button">Error-logga saqlash</button><ul class="saved-list" id="errorList"></ul></div>
+        <div class="practice-card"><span class="practice-tag">CAMBRIDGE TRACKER</span><h3>Shaxsiy kitob tracker'i</h3><p>O'zingiz qonuniy ega bo'lgan Cambridge 15–21 kitoblari bilan ishlagan testingiz natijasini belgilang. Savollar yoki audio bu saytda saqlanmaydi.</p><div class="tracker-row"><label>Kitob <select id="bookSelect"><option>Cambridge 15</option><option>Cambridge 16</option><option>Cambridge 17</option><option>Cambridge 18</option><option>Cambridge 19</option><option>Cambridge 20</option><option>Cambridge 21</option></select></label><label>Test <select id="testSelect"><option>Test 1</option><option>Test 2</option><option>Test 3</option><option>Test 4</option></select></label><label>Listening / 40 <input id="trackListening" inputmode="numeric" placeholder="masalan 31" /></label><label>Reading / 40 <input id="trackReading" inputmode="numeric" placeholder="masalan 30" /></label></div><button class="practice-btn secondary" id="saveTracker" type="button">Natijani saqlash</button><ul class="saved-list" id="trackerList"></ul></div>
+      </div>
+    </section>
+
+    <section class="official-resources">
+      <h2>Rasmiy practice manbalari</h2>
+      <p>Quyidagi manbalar rasmiy saytlarga olib boradi. Bu sahifa ularning test matni yoki audiosini nusxalamaydi.</p>
+      <ul><li><a href="https://ielts.org/take-a-test/preparation-resources/sample-test-questions" target="_blank" rel="noopener">IELTS.org — Academic sample test questions</a></li><li><a href="https://takeielts.britishcouncil.org/prepare/ielts-free-practice-mock-tests" target="_blank" rel="noopener">British Council — bepul IELTS practice testlar</a></li><li><a href="https://www.cambridgeenglish.org/exams-and-tests/ielts/preparation" target="_blank" rel="noopener">Cambridge English — IELTS preparation</a></li></ul>
+      <p class="src">Tashqi rasmiy manbalar: IELTS.org · British Council · Cambridge English</p>
     </section>
 
     <section>
@@ -93,14 +147,42 @@ const questions = [
       <p class="src">Obsidian manbasi: <code>01.IELTS prep/5.Weekly Progress Tracker.md</code></p>
     </section>
 
-    <a href="/bog-lanish" class="start-btn" style="margin-top:2rem;">Kursni sotib olish →</a>
-    <a href="/kurslar" class="enroll" style="margin-left:1rem;">← Barcha kurslar</a>
+    <a href={base + 'bog-lanish'} class="start-btn" style="margin-top:2rem;">Kursni sotib olish →</a>
+    <a href={base + 'kurslar'} class="enroll" style="margin-left:1rem;">← Barcha kurslar</a>
 
     <Quiz title="O'z bilimingizni tekshiring" questions={questions} />
   </article>
   <TelegramCTA />
 
+  <script>
+    const normalise = (value) => value.trim().toLowerCase().replace(/\s+/g, ' ');
+    const checkAnswers = (selector, resultId) => {
+      const fields = [...document.querySelectorAll(selector)]; let correct = 0;
+      fields.forEach((field) => { const answers = field.dataset.listenAnswer || field.dataset.readAnswer; const ok = answers.split('|').some((answer) => normalise(field.value) === normalise(answer)); field.classList.toggle('answer-ok', ok); field.classList.toggle('answer-no', !ok && field.value.trim() !== ''); if (ok) correct++; });
+      document.querySelector(resultId).textContent = `${correct}/${fields.length} to'g'ri. Xato bo'lsa, Error-logga sababini yozing.`;
+    };
+    document.querySelector('#playListening')?.addEventListener('click', () => { const text = document.querySelector('#transcriptBox p')?.textContent; if ('speechSynthesis' in window && text) { speechSynthesis.cancel(); const utterance = new SpeechSynthesisUtterance(text); utterance.lang = 'en-GB'; utterance.rate = 0.9; speechSynthesis.speak(utterance); } });
+    document.querySelector('#showTranscript')?.addEventListener('click', () => document.querySelector('#transcriptBox')?.setAttribute('open',''));
+    document.querySelector('#checkListening')?.addEventListener('click', () => checkAnswers('[data-listen-answer]', '#listeningResult'));
+    document.querySelector('#checkReading')?.addEventListener('click', () => checkAnswers('[data-read-answer]', '#readingResult'));
+    const key = (name) => `organamiz-ielts-${name}`;
+    const readStore = (name) => JSON.parse(localStorage.getItem(key(name)) || '[]');
+    const render = (name, id, format) => { const list = document.querySelector(id); if (list) list.innerHTML = readStore(name).map(format).join('') || "<li>Hali yozuv yo'q.</li>"; };
+    const esc = (text) => text.replace(/[&<>]/g, (c) => ({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));
+    const renderErrors = () => render('errors', '#errorList', (x) => `<li><b>${esc(x.skill)}</b> — ${esc(x.type)}${x.note ? ': '+esc(x.note) : ''}</li>`);
+    const renderTracker = () => render('tracker', '#trackerList', (x) => `<li><b>${esc(x.book)} · ${esc(x.test)}</b> — Listening: ${esc(x.listening || '—')}/40, Reading: ${esc(x.reading || '—')}/40</li>`);
+    document.querySelector('#saveError')?.addEventListener('click', () => { const errors=readStore('errors'); errors.unshift({skill:document.querySelector('#errorSkill').value,type:document.querySelector('#errorType').value,note:document.querySelector('#errorNote').value}); localStorage.setItem(key('errors'),JSON.stringify(errors.slice(0,20))); document.querySelector('#errorNote').value=''; renderErrors(); });
+    document.querySelector('#saveTracker')?.addEventListener('click', () => { const rows=readStore('tracker'); const book=document.querySelector('#bookSelect').value, test=document.querySelector('#testSelect').value; const row={book,test,listening:document.querySelector('#trackListening').value,reading:document.querySelector('#trackReading').value}; const index=rows.findIndex((x)=>x.book===book&&x.test===test); if(index>=0) rows[index]=row; else rows.unshift(row); localStorage.setItem(key('tracker'),JSON.stringify(rows)); renderTracker(); });
+    document.querySelector('#saveOutline')?.addEventListener('click', () => { const data={topic:document.querySelector('#wTopic').value,intro:document.querySelector('#wIntro').value,body1:document.querySelector('#wBody1').value,body2:document.querySelector('#wBody2').value}; localStorage.setItem(key('outline'),JSON.stringify(data)); document.querySelector('#writingResult').textContent='Outline shu qurilmada saqlandi.'; });
+    const outline=JSON.parse(localStorage.getItem(key('outline')) || '{}'); [['#wTopic','topic'],['#wIntro','intro'],['#wBody1','body1'],['#wBody2','body2']].forEach(([id,name])=>{ const el=document.querySelector(id); if(el && outline[name]) el.value=outline[name]; }); renderErrors(); renderTracker();
+  </script>
+
   <style>
+    .practice-card { border:1px solid var(--border); border-radius:14px; padding:1.25rem; margin:1rem 0; background:linear-gradient(135deg, rgba(125,125,245,.09), var(--surface)); }
+    .practice-head { display:flex; justify-content:space-between; gap:1rem; align-items:flex-start; } .practice-head h4 { margin:.3rem 0; font-size:1.12rem; } .practice-tag { color:#b8b4ff; font-size:.72rem; letter-spacing:.08em; font-weight:800; } .skill-pill { border:1px solid var(--border); border-radius:999px; color:var(--muted); padding:.3rem .6rem; font-size:.8rem; white-space:nowrap; }
+    .practice-tip { color:var(--muted); font-size:.92rem; } .practice-actions { display:flex; gap:.7rem; flex-wrap:wrap; margin:1rem 0; } .practice-btn, .text-btn { cursor:pointer; border-radius:9px; padding:.65rem .95rem; font:inherit; font-weight:700; } .practice-btn { border:0; background:var(--accent); color:white; } .practice-btn.secondary { margin-top:1rem; background:transparent; border:1px solid var(--accent); color:var(--accent); } .text-btn { background:transparent; color:var(--muted); border:1px solid var(--border); }
+    .listen-form,.reading-questions { display:grid; gap:.65rem; } .listen-form label,.reading-questions label,.outline-grid label,.tool-grid label { display:grid; gap:.35rem; color:var(--muted); font-size:.92rem; } .listen-form input,.reading-questions input,.reading-questions select,.tool-grid input,.tool-grid select,.outline-grid textarea { width:100%; box-sizing:border-box; border:1px solid var(--border); background:var(--bg); color:var(--text); border-radius:8px; padding:.6rem; font:inherit; } .answer-ok { border-color:#22c55e !important; } .answer-no { border-color:#ef4444 !important; } .practice-result { min-height:1.3em; color:#b8b4ff; font-weight:700; }
+    #transcriptBox { margin-top:1rem; color:var(--muted); } .outline-grid,.tool-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:.8rem; } .checklist { display:grid; gap:.5rem; margin-top:1rem; color:var(--muted); } .checklist label { display:flex; gap:.5rem; align-items:flex-start; } .practice-tools,.official-resources { border-top:1px solid var(--border); margin-top:2rem; padding-top:1.5rem; } .tracker-row { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:.65rem; margin-top:.75rem; } .saved-list { padding-left:1.2rem; color:var(--muted); font-size:.9rem; } .saved-list li { margin:.35rem 0; } .official-resources a { color:var(--accent); }
     .subcourse-nav { display:grid; grid-template-columns:repeat(3, minmax(0, 1fr)); gap:.75rem; margin:1rem 0; }
     .subcourse-nav a { display:flex; flex-direction:column; gap:.35rem; padding:1rem; color:var(--text); text-decoration:none; border:1px solid var(--border); border-radius:12px; background:var(--surface); transition:transform .2s, border-color .2s; }
     .subcourse-nav a:hover { transform:translateY(-2px); border-color:var(--accent); }
