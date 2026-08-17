@@ -4,6 +4,7 @@ const title = Astro.props.title || "O'rganamiz";
 const description = Astro.props.description || '';
 const lang = Astro.props.lang || "uz";
 const canonical = Astro.props.canonical || Astro.url.href;
+const base = import.meta.env.BASE_URL;
 ---
 
 <!doctype html>
@@ -14,22 +15,44 @@ const canonical = Astro.props.canonical || Astro.url.href;
     <title>{title}</title>
     <meta name="description" content={description} />
     <link rel="canonical" href={canonical} />
+    <meta name="robots" content="index, follow" />
+    <meta name="theme-color" content="#0e0f15" />
+    <!-- Favicon (files already live in /public) — use BASE_URL so the project-page base path is included -->
+    <link rel="icon" type="image/svg+xml" href={import.meta.env.BASE_URL + 'favicon.svg'} />
+    <link rel="alternate icon" href={import.meta.env.BASE_URL + 'favicon.ico'} />
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="O'rganamiz" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={new URL('/og-image.svg', Astro.site ?? Astro.url).href} />
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={new URL('/og-image.svg', Astro.site ?? Astro.url).href} />
+    <!-- Inter font (was referenced in --font-display but never loaded) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" />
+    <script is:inline>document.documentElement.classList.add('js-reveal');</script>
   </head>
   <body>
     <a href="#main" class="skip-link" data-i18n="skip">Asosiyga o'tish</a>
 
     <aside class="sidebar">
-      <a href="/" class="brand">
+      <a href={base} class="brand">
         <span class="logo">O'</span>
         O'rganamiz
       </a>
       <nav class="side-nav">
-        <a href="/"><span data-i18n="nav.home">Bosh sahifa</span></a>
-        <a href="/kurslar"><span data-i18n="nav.courses">Kurslar</span></a>
-        <a href="/narxlar"><span data-i18n="nav.prices">Narxlar</span></a>
-        <a href="/kurs-tanlash"><span data-i18n="nav.reco">Kurs tanlash</span></a>
-        <a href="/mening-yolim"><span data-i18n="nav.journey">Mening yo'lim</span></a>
-        <a href="/bog-lanish"><span data-i18n="nav.contact">Bog'lanish</span></a>
+        <a href={base}><span data-i18n="nav.home">Bosh sahifa</span></a>
+        <a href={base + 'kurslar/'}><span data-i18n="nav.courses">Kurslar</span></a>
+        <a href={base + 'narxlar/'}><span data-i18n="nav.prices">Narxlar</span></a>
+        <a href={base + 'kurs-tanlash/'}><span data-i18n="nav.reco">Kurs tanlash</span></a>
+        <a href={base + 'mening-yolim/'}><span data-i18n="nav.journey">Mening yo'lim</span></a>
+        <a href={base + 'bog-lanish/'}><span data-i18n="nav.contact">Bog'lanish</span></a>
         <span class="lang-switch side">
           <a href="#" data-lang="uz" class={lang==='uz'?'active':''}>UZ</a>
           <a href="#" data-lang="ru" class={lang==='ru'?'active':''}>RU</a>
@@ -43,11 +66,11 @@ const canonical = Astro.props.canonical || Astro.url.href;
         <button class="menu-toggle" id="menuToggle">☰</button>
         <span class="mobile-brand">O'rganamiz</span>
         <nav class="top-nav">
-          <a href="/kurslar"><span data-i18n="nav.courses">Kurslar</span></a>
-          <a href="/narxlar"><span data-i18n="nav.prices">Narxlar</span></a>
-          <a href="/kurs-tanlash"><span data-i18n="nav.reco">Kurs tanlash</span></a>
-          <a href="/mening-yolim"><span data-i18n="nav.journey">Mening yo'lim</span></a>
-          <a href="/bog-lanish"><span data-i18n="nav.contact">Bog'lanish</span></a>
+          <a href={base + 'kurslar/'}><span data-i18n="nav.courses">Kurslar</span></a>
+          <a href={base + 'narxlar/'}><span data-i18n="nav.prices">Narxlar</span></a>
+          <a href={base + 'kurs-tanlash/'}><span data-i18n="nav.reco">Kurs tanlash</span></a>
+          <a href={base + 'mening-yolim/'}><span data-i18n="nav.journey">Mening yo'lim</span></a>
+          <a href={base + 'bog-lanish/'}><span data-i18n="nav.contact">Bog'lanish</span></a>
           <span class="lang-switch">
             <a href="#" data-lang="uz" class={lang==='uz'?'active':''}>UZ</a>
             <a href="#" data-lang="ru" class={lang==='ru'?'active':''}>RU</a>
@@ -73,7 +96,7 @@ const canonical = Astro.props.canonical || Astro.url.href;
         </div>
         <div class="footer-grid">
           <div class="footer-brand">
-            <a href="/" class="brand">
+            <a href={base} class="brand">
               <span class="logo">O'</span>
               O'rganamiz
             </a>
@@ -85,12 +108,12 @@ const canonical = Astro.props.canonical || Astro.url.href;
           </div>
           <div class="footer-col">
             <h4 data-i18n="footer.pages">Sahifalar</h4>
-            <a href="/kurslar"><span data-i18n="nav.courses">Kurslar</span></a>
-            <a href="/narxlar"><span data-i18n="nav.prices">Narxlar</span></a>
-            <a href="/kurs-tanlash"><span data-i18n="nav.reco">Kurs tanlash</span></a>
-            <a href="/mening-yolim"><span data-i18n="nav.journey">Mening yo'lim</span></a>
-            <a href="/bog-lanish"><span data-i18n="nav.contact">Bog'lanish</span></a>
-            <a href="/faq">FAQ</a>
+            <a href={base + 'kurslar/'}><span data-i18n="nav.courses">Kurslar</span></a>
+            <a href={base + 'narxlar/'}><span data-i18n="nav.prices">Narxlar</span></a>
+            <a href={base + 'kurs-tanlash/'}><span data-i18n="nav.reco">Kurs tanlash</span></a>
+            <a href={base + 'mening-yolim/'}><span data-i18n="nav.journey">Mening yo'lim</span></a>
+            <a href={base + 'bog-lanish/'}><span data-i18n="nav.contact">Bog'lanish</span></a>
+            <a href={base + 'faq/'}>FAQ</a>
           </div>
         </div>
         <p class="footer-copy" data-i18n="footer.copy">© 2026 O'rganamiz. Barcha huquqlar himoyalangan.</p>
@@ -787,10 +810,38 @@ const canonical = Astro.props.canonical || Astro.url.href;
         b.addEventListener('click', function (e) {
           e.preventDefault();
           var l = b.getAttribute('data-lang');
+          if (l === savedLang) return;
           localStorage.setItem(LS_KEY, l);
+          savedLang = l;
+          document.body.classList.add('lang-switching');
           applyLang(l);
+          setTimeout(function () { document.body.classList.remove('lang-switching'); }, 200);
         });
       });
+
+      // === Sahifa yuklanganda yumshoq paydo bo'lish (fade-in, stagger) — kutubxonasiz ===
+      (function () {
+        var targets = document.querySelectorAll('.card, .course, .plan, .why-us li, .spotlight, .community-card, .tg-footer-cta, .sec-head, .hero-badges, .hero-actions, .quiz, .reco-q, .reco-result');
+        targets.forEach(function (el) {
+          el.classList.add('reveal');
+          var parent = el.parentElement;
+          if (parent) {
+            var sibs = Array.prototype.filter.call(parent.children, function (c) { return c.classList.contains('reveal'); });
+            var idx = sibs.indexOf(el);
+            if (idx > 0) el.style.transitionDelay = Math.min(idx * 70, 450) + 'ms';
+          }
+        });
+        if (!('IntersectionObserver' in window)) {
+          targets.forEach(function (el) { el.classList.add('in-view'); });
+          return;
+        }
+        var io = new IntersectionObserver(function (entries) {
+          entries.forEach(function (en) {
+            if (en.isIntersecting) { en.target.classList.add('in-view'); io.unobserve(en.target); }
+          });
+        }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+        targets.forEach(function (el) { io.observe(el); });
+      })();
     </script>
     <style is:global>
       :root {
@@ -867,7 +918,8 @@ const canonical = Astro.props.canonical || Astro.url.href;
       .course h2 { margin: 0; color: var(--text); font-size: 1.25rem; }
       .course .price { font-size: 1.4rem; color: #ffd700; font-weight: 800; }
       .enroll { display: inline-block; margin-top: 1rem; color: var(--accent); text-decoration: none; font-weight: 700; }
-      .lesson { line-height: 1.8; max-width: 800px; margin: 0 auto; }
+      .lesson { line-height: 1.8; max-width: 800px; margin: 0 auto; overflow-wrap: break-word; word-break: break-word; }
+      .lesson p, .lesson li, .lesson td, .lesson th, .lesson code, .lesson a { overflow-wrap: break-word; word-break: break-word; }
       .lesson h1 { color: var(--accent); font-size: 2.2rem; }
       .lesson h2 { margin-top: 2.5rem; border-bottom: 1px solid var(--border); padding-bottom: 0.5rem; }
       .course-hero { display: flex; align-items: center; justify-content: space-between; gap: 18px; flex-wrap: wrap; margin-bottom: 2rem; }
@@ -1083,7 +1135,47 @@ const canonical = Astro.props.canonical || Astro.url.href;
 
       /* === PRICE NOTE (QADAM 5) === */
       .price-note { display: block; font-size: 0.72rem; color: var(--muted); margin-top: 3px; font-style: italic; }
+
+      /* === SUBTLE ANIMATIONS (QADAM) — yengil, professional, CSS-only === */
+      /* Tugma bosilganda yengil siqilish (press feedback) */
+      .start-btn, .hero-cta, .cta, .tg-footer-btn, .comm-join, .sec-all, .lang-switch a, .pay-methods span, .menu-toggle {
+        transition: transform .15s ease, background .15s ease, box-shadow .15s ease, border-color .15s ease, color .15s ease;
+      }
+      .hero-cta:active, .start-btn:active, .cta:active, .tg-footer-btn:active, .comm-join:active, .sec-all:active { transform: scale(.97); }
+      .pay-methods span:active { transform: scale(.97); }
+      .lang-switch a:active { transform: scale(.92); }
+
+      /* Kurs kartalari: hover'da yengil ko'tarilish + soya */
+      .card { transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease; }
+      .card:hover { transform: translateY(-5px); box-shadow: 0 18px 36px -12px rgba(0,0,0,.6); border-color: var(--accent); }
+      .course { transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease; }
+      .course:hover { transform: translateY(-5px); box-shadow: 0 18px 36px -12px rgba(0,0,0,.6); border-color: var(--accent); }
+
+      /* Sahifa yuklanganda elementlar birin-ketin paydo bo'lishi (fade-in, stagger) */
+      html.js-reveal .reveal { opacity: 0; transform: translateY(14px); transition: opacity .28s ease, transform .28s cubic-bezier(.2,.8,.2,1); }
+      html.js-reveal .reveal.in-view { opacity: 1; transform: none; }
+
+      /* Til almashtirganda yumshoq o'tish (qattiq sakrash bo'lmasin) */
+      .content { transition: opacity .2s ease; }
+      body.lang-switching .content { opacity: .45; }
+
+      /* Harakatga sezgirlik kamaytirilgan holat — animatsiyalarni o'chir */
+      @media (prefers-reduced-motion: reduce) {
+        html.js-reveal .reveal { opacity: 1 !important; transform: none !important; transition: none !important; }
+        .card:hover, .course:hover { transform: none; }
+        .hero-cta:active, .start-btn:active, .cta:active, .tg-footer-btn:active, .comm-join:active, .sec-all:active, .pay-methods span:active, .lang-switch a:active { transform: none; }
+        .content { transition: none; }
+        body.lang-switching .content { opacity: 1; }
+      }
     </style>
+
+  <script define:vars={{ base }}>
+    // GitHub Pages project URL ostida eski root-relative havolalarni ham to'g'rilaydi.
+    document.querySelectorAll('a[href^="/"]').forEach((link) => {
+      const href = link.getAttribute('href');
+      if (href && base !== '/') link.setAttribute('href', base + href.slice(1));
+    });
+  </script>
 
   <ChatWidget />
   </body>
