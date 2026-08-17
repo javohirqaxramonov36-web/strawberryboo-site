@@ -54,7 +54,7 @@ const pageTitle = "IELTS Writing Practice — O'rganamiz";
 
   <dialog id="completeDialog"><div class="dialog-head"><h2>Practice yakunlandi</h2><button class="close" type="button" data-close>×</button></div><div class="dialog-body"><p id="summary"></p><p>PDF fayl qurilmangizga yuklanadi. Hozir bu umumiy shablon, shuning uchun namunaviy javoblar yangi test kontenti kiritilganda chiqadi.</p><button id="download" class="submit" type="button">PDF-ni yuklash</button></div></dialog>
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js" integrity="sha512-qZvr+BM5tT80+CNyb8KnLH0VqVYIGD0Uo2L6b1wK0HhTxw7cz70y0yYkBfIa7WN9p6pqL/YnCa++NtAh8tO4w==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
   <script>
     const stateKey = 'organamiz-writing-template-v1';
     const store = JSON.parse(localStorage.getItem(stateKey) || '{"task1":"","task2":"","theme":"dark"}');
