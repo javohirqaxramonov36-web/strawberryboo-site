@@ -1173,7 +1173,7 @@ const base = import.meta.env.BASE_URL;
     // GitHub Pages project URL ostida eski root-relative havolalarni ham to'g'rilaydi.
     document.querySelectorAll('a[href^="/"]').forEach((link) => {
       const href = link.getAttribute('href');
-      if (href && base !== '/') link.setAttribute('href', base + href.slice(1));
+      if (href && base !== '/' && !href.startsWith(base)) link.setAttribute('href', base + href.slice(1));
     });
   </script>
 
