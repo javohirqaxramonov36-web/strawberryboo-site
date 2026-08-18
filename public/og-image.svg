@@ -28,7 +28,7 @@
   </g>
 
   <!-- title -->
-  <text x="200" y="148" font-family="Inter, system-ui, -apple-system, Segoe UI, Roboto, sans-serif" font-size="46" font-weight="800" fill="#ffffff">O'rganamiz</text>
+  <text x="200" y="148" font-family="Inter, system-ui, -apple-system, Segoe UI, Roboto, sans-serif" font-size="46" font-weight="800" fill="#ffffff">ZiyoNext</text>
   <rect x="90" y="178" width="120" height="6" rx="3" fill="url(#line)"/>
 
   <!-- headline -->

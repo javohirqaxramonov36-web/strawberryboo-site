@@ -1,7 +1,7 @@
 ---
 import ChatWidget from "../components/ChatWidget.astro";
 import SearchPanel from "../components/SearchPanel.astro";
-const title = Astro.props.title || "O'rganamiz";
+const title = Astro.props.title || "ZiyoNext";
 const description = Astro.props.description || '';
 const lang = Astro.props.lang || "uz";
 const canonical = Astro.props.canonical || Astro.url.href;
@@ -37,7 +37,7 @@ const TG = "https://t.me/progression_go"; // Telegram kanal/guruh havolasi
     <link rel="alternate icon" href={import.meta.env.BASE_URL + 'favicon.ico'} />
     <!-- Open Graph -->
     <meta property="og:type" content="website" />
-    <meta property="og:site_name" content="O'rganamiz" />
+    <meta property="og:site_name" content="ZiyoNext" />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonical} />
@@ -59,7 +59,7 @@ const TG = "https://t.me/progression_go"; // Telegram kanal/guruh havolasi
     <aside class="sidebar">
       <a href={base} class="brand">
         <span class="logo">O'</span>
-        O'rganamiz
+        ZiyoNext
       </a>
       <nav class="side-nav">
         <a href={base}><span data-i18n="nav.home">Bosh sahifa</span></a>
@@ -84,7 +84,7 @@ const TG = "https://t.me/progression_go"; // Telegram kanal/guruh havolasi
     <div class="content">
       <header class="site-header">
         <button class="menu-toggle" id="menuToggle">☰</button>
-        <span class="mobile-brand">O'rganamiz</span>
+        <span class="mobile-brand">ZiyoNext</span>
         <nav class="top-nav">
           <a href={base + 'kurslar/'}><span data-i18n="nav.courses">Kurslar</span></a>
           <a href={base + 'narxlar/'}><span data-i18n="nav.prices">Narxlar</span></a>
@@ -127,7 +127,7 @@ const TG = "https://t.me/progression_go"; // Telegram kanal/guruh havolasi
           <div class="footer-brand">
             <a href={base} class="brand">
               <span class="logo">O'</span>
-              O'rganamiz
+              ZiyoNext
             </a>
             <p data-i18n="footer.about">Amaliy onlayn kurslar: AI, IELTS, Admission va shaxsiy bilim bazasi. O'zbek tilida, bepul kurslar ham bor.</p>
             <div class="footer-social">
@@ -145,7 +145,7 @@ const TG = "https://t.me/progression_go"; // Telegram kanal/guruh havolasi
             <a href={base + 'faq/'}>FAQ</a>
           </div>
         </div>
-        <p class="footer-copy" data-i18n="footer.copy">© 2026 O'rganamiz. Barcha huquqlar himoyalangan.</p>
+        <p class="footer-copy" data-i18n="footer.copy">© 2026 ZiyoNext. Barcha huquqlar himoyalangan.</p>
       </footer>
     </div>
 
@@ -191,7 +191,7 @@ const TG = "https://t.me/progression_go"; // Telegram kanal/guruh havolasi
           "footer.social.tg": "Telegram",
           "footer.social.ig": "Instagram",
           "footer.pages": "Sahifalar",
-          "footer.copy": "© 2026 O'rganamiz. Barcha huquqlar himoyalangan.",
+          "footer.copy": "© 2026 ZiyoNext. Barcha huquqlar himoyalangan.",
           "tg.footer.title": "Telegram kanalimizga qo'shiling",
           "tg.footer.text": "Yangi kurslar, bepul materiallar va hamjamiyat — bitta joyda.",
           "tg.footer.btn": "Kanalga qo'shilish →",
@@ -228,7 +228,7 @@ const TG = "https://t.me/progression_go"; // Telegram kanal/guruh havolasi
           "ta.mod2": "CrewAI — jamoa agent'lari",
           "ta.mod3": "LangGraph — orchestration",
           "ta.mod4": "Letta / MemGPT — xotira",
-          "ta.mod5": "Obsidian + Strawberryboo — capture",
+          "ta.mod5": "Obsidian + ZiyoNext — capture",
           "ta.mod6": "Obsidian'dagi 17 ta AI agent haqida notalar",
           "ta.all": "← Barcha kurslar",
           "ta.quizTitle": "O'z bilimingizni tekshiring",
@@ -337,12 +337,12 @@ const TG = "https://t.me/progression_go"; // Telegram kanal/guruh havolasi
           "ie.all": "← Barcha kurslar",
           "ie.quizTitle": "O'z bilimingizni tekshiring",
 
-          "op.lead": "Shaxsiy bilim bazasi qurish. Strawberryboo bilan Telegram'dan forward qilsangiz — AI xulosalab, Obsidian'ga saqlaydi.",
+          "op.lead": "Shaxsiy bilim bazasi qurish. ZiyoNext bilan Telegram'dan forward qilsangiz — AI xulosalab, Obsidian'ga saqlaydi.",
           "op.modules": "Kurs modullari",
           "op.mod1": "Nima uchun Obsidian? (Tashqi xotira)",
           "op.mod2": "Vault tuzilmasi: MOC, papkalar, link'lar",
           "op.mod3": "AutoConnect plugin: yangi note'larni avtomatik ulash",
-          "op.mod4": "Strawberryboo: Telegram → Obsidian capture",
+          "op.mod4": "ZiyoNext: Telegram → Obsidian capture",
           "op.mod5": "Graph view: bilimlar bog'lanishi",
           "op.mod6": "Qayerda qo'llash: o'qish, ish, tadqiqot",
           "op.buy": "Kursni sotib olish →",
@@ -372,7 +372,7 @@ const TG = "https://t.me/progression_go"; // Telegram kanal/guruh havolasi
           "pe.mod4": "Chain-of-thought: murakkab vazifalni bo'lish",
           "pe.mod5": "Few-shot: misollar orqali o'rgatish",
           "pe.mod6": "Qayerda qo'llash: yozish, kod, tadqiqot, biznes",
-          "pe.mod7": "Strawberryboo orqali avtomatik capture",
+          "pe.mod7": "ZiyoNext orqali avtomatik capture",
           "pe.benefit": "Qanday foyda olasiz?",
           "pe.ben1": "Vaqt tejash — 1 soatlik ishni 5 daqiqaga",
           "pe.ben2": "Sifatli natija — aniq, strukturaviy",
@@ -408,7 +408,7 @@ const TG = "https://t.me/progression_go"; // Telegram kanal/guruh havolasi
           "footer.social.tg": "Telegram",
           "footer.social.ig": "Instagram",
           "footer.pages": "Страницы",
-          "footer.copy": "© 2026 O'rganamiz. Все права защищены.",
+          "footer.copy": "© 2026 ZiyoNext. Все права защищены.",
           "tg.footer.title": "Подпишитесь на наш Telegram-канал",
           "tg.footer.text": "Новые курсы, бесплатные материалы и сообщество — в одном месте.",
           "tg.footer.btn": "Перейти к каналу →",
@@ -445,7 +445,7 @@ const TG = "https://t.me/progression_go"; // Telegram kanal/guruh havolasi
           "ta.mod2": "CrewAI — командные агенты",
           "ta.mod3": "LangGraph — оркестрация",
           "ta.mod4": "Letta / MemGPT — память",
-          "ta.mod5": "Obsidian + Strawberryboo — захват",
+          "ta.mod5": "Obsidian + ZiyoNext — захват",
           "ta.mod6": "Заметки об 17 AI-агентах в Obsidian",
           "ta.all": "← Все курсы",
           "ta.quizTitle": "Проверьте свои знания",
@@ -554,12 +554,12 @@ const TG = "https://t.me/progression_go"; // Telegram kanal/guruh havolasi
           "ie.all": "← Все курсы",
           "ie.quizTitle": "Проверьте свои знания",
 
-          "op.lead": "Построение личной базы знаний. Если переслать из Telegram через Strawberryboo — ИИ подытожит и сохранит в Obsidian.",
+          "op.lead": "Построение личной базы знаний. Если переслать из Telegram через ZiyoNext — ИИ подытожит и сохранит в Obsidian.",
           "op.modules": "Модули курса",
           "op.mod1": "Зачем нужен Obsidian? (внешняя память)",
           "op.mod2": "Структура Vault: MOC, папки, ссылки",
           "op.mod3": "Плагин AutoConnect: автоматическое связывание новых заметок",
-          "op.mod4": "Strawberryboo: захват Telegram → Obsidian",
+          "op.mod4": "ZiyoNext: захват Telegram → Obsidian",
           "op.mod5": "Graph view: связи знаний",
           "op.mod6": "Где применять: учёба, работа, исследования",
           "op.buy": "Купить курс →",
@@ -589,7 +589,7 @@ const TG = "https://t.me/progression_go"; // Telegram kanal/guruh havolasi
           "pe.mod4": "Chain-of-thought: разбиение сложных задач",
           "pe.mod5": "Few-shot: обучение на примерах",
           "pe.mod6": "Где применять: письмо, код, исследования, бизнес",
-          "pe.mod7": "Автоматический capture через Strawberryboo",
+          "pe.mod7": "Автоматический capture через ZiyoNext",
           "pe.benefit": "Какую пользу вы получите?",
           "pe.ben1": "Экономия времени — часовую работу за 5 минут",
           "pe.ben2": "Качественный результат — точный, структурированный",
@@ -625,7 +625,7 @@ const TG = "https://t.me/progression_go"; // Telegram kanal/guruh havolasi
           "footer.social.tg": "Telegram",
           "footer.social.ig": "Instagram",
           "footer.pages": "Pages",
-          "footer.copy": "© 2026 O'rganamiz. All rights reserved.",
+          "footer.copy": "© 2026 ZiyoNext. All rights reserved.",
           "tg.footer.title": "Join our Telegram channel",
           "tg.footer.text": "New courses, free materials and community — all in one place.",
           "tg.footer.btn": "Join channel →",
@@ -662,7 +662,7 @@ const TG = "https://t.me/progression_go"; // Telegram kanal/guruh havolasi
           "ta.mod2": "CrewAI — team agents",
           "ta.mod3": "LangGraph — orchestration",
           "ta.mod4": "Letta / MemGPT — memory",
-          "ta.mod5": "Obsidian + Strawberryboo — capture",
+          "ta.mod5": "Obsidian + ZiyoNext — capture",
           "ta.mod6": "Notes on 17 AI agents in Obsidian",
           "ta.all": "← All courses",
           "ta.quizTitle": "Check your knowledge",
@@ -771,12 +771,12 @@ const TG = "https://t.me/progression_go"; // Telegram kanal/guruh havolasi
           "ie.all": "← All courses",
           "ie.quizTitle": "Check your knowledge",
 
-          "op.lead": "Building a personal knowledge base. Forward from Telegram via Strawberryboo — AI summarizes and saves it to Obsidian.",
+          "op.lead": "Building a personal knowledge base. Forward from Telegram via ZiyoNext — AI summarizes and saves it to Obsidian.",
           "op.modules": "Course modules",
           "op.mod1": "Why Obsidian? (external memory)",
           "op.mod2": "Vault structure: MOC, folders, links",
           "op.mod3": "AutoConnect plugin: auto-link new notes",
-          "op.mod4": "Strawberryboo: Telegram → Obsidian capture",
+          "op.mod4": "ZiyoNext: Telegram → Obsidian capture",
           "op.mod5": "Graph view: how knowledge connects",
           "op.mod6": "Where to apply: study, work, research",
           "op.buy": "Buy course →",
@@ -806,7 +806,7 @@ const TG = "https://t.me/progression_go"; // Telegram kanal/guruh havolasi
           "pe.mod4": "Chain-of-thought: breaking down complex tasks",
           "pe.mod5": "Few-shot: teaching through examples",
           "pe.mod6": "Where to apply: writing, code, research, business",
-          "pe.mod7": "Automatic capture via Strawberryboo",
+          "pe.mod7": "Automatic capture via ZiyoNext",
           "pe.benefit": "What benefits will you get?",
           "pe.ben1": "Save time — 1 hour of work in 5 minutes",
           "pe.ben2": "Quality results — precise, structured",
