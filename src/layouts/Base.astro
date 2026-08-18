@@ -58,7 +58,7 @@ const TG = "https://t.me/progression_go"; // Telegram kanal/guruh havolasi
 
     <aside class="sidebar">
       <a href={base} class="brand">
-        <span class="logo">ZN</span>
+        <img class="logo" src={base + 'ziyonext-mark.svg'} alt="" aria-hidden="true" />
         ZiyoNext
       </a>
       <nav class="side-nav">
@@ -84,7 +84,7 @@ const TG = "https://t.me/progression_go"; // Telegram kanal/guruh havolasi
     <div class="content">
       <header class="site-header">
         <button class="menu-toggle" id="menuToggle">☰</button>
-        <span class="mobile-brand">ZiyoNext</span>
+        <span class="mobile-brand"><img class="logo" src={base + 'ziyonext-mark.svg'} alt="" aria-hidden="true" />ZiyoNext</span>
         <nav class="top-nav">
           <a href={base + 'kurslar/'}><span data-i18n="nav.courses">Kurslar</span></a>
           <a href={base + 'narxlar/'}><span data-i18n="nav.prices">Narxlar</span></a>
@@ -126,7 +126,7 @@ const TG = "https://t.me/progression_go"; // Telegram kanal/guruh havolasi
         <div class="footer-grid">
           <div class="footer-brand">
             <a href={base} class="brand">
-              <span class="logo">ZN</span>
+              <img class="logo" src={base + 'ziyonext-mark.svg'} alt="" aria-hidden="true" />
               ZiyoNext
             </a>
             <p data-i18n="footer.about">Amaliy onlayn kurslar: AI, IELTS, Admission va shaxsiy bilim bazasi. O'zbek tilida, bepul kurslar ham bor.</p>
@@ -939,7 +939,7 @@ const TG = "https://t.me/progression_go"; // Telegram kanal/guruh havolasi
         transition: transform .25s ease;
       }
       .sidebar .brand { display: flex; align-items: center; gap: 10px; font-weight: 700; font-size: 18px; color: var(--text); text-decoration: none; padding: 0 8px 14px; }
-      .sidebar .brand .logo { width: 32px; height: 32px; border-radius: 9px; background: linear-gradient(135deg, var(--accent), var(--accent-2)); display: grid; place-items: center; color: #fff; font-weight: 800; }
+      .sidebar .brand .logo { width: 32px; height: 32px; flex: 0 0 32px; }
       .side-nav { display: flex; flex-direction: column; gap: 3px; overflow-y: auto; flex: 1; }
       .side-nav a { color: var(--muted); text-decoration: none; padding: 9px 12px; border-radius: 9px; font-weight: 600; font-size: 0.92rem; transition: background .15s, color .15s; }
       .side-nav a:hover, .side-nav a.active { background: var(--accent-soft); color: var(--accent); }
@@ -952,7 +952,8 @@ const TG = "https://t.me/progression_go"; // Telegram kanal/guruh havolasi
       .theme-toggle .ic-moon { display: block; }
       [data-theme="light"] .theme-toggle .ic-sun { display: block; }
       [data-theme="light"] .theme-toggle .ic-moon { display: none; }
-      .mobile-brand { font-weight: 700; font-size: 1.2rem; color: var(--accent); display: none; }
+      .mobile-brand { font-weight: 700; font-size: 1.2rem; color: var(--text); display: none; align-items: center; gap: 8px; }
+      .mobile-brand .logo { width: 28px; height: 28px; flex: 0 0 28px; }
       .top-nav { margin-left: auto; }
       .top-nav a { color: var(--text); text-decoration: none; margin-left: 1.5rem; font-weight: 600; }
       .top-nav a:hover { color: var(--accent); }
@@ -1157,7 +1158,7 @@ const TG = "https://t.me/progression_go"; // Telegram kanal/guruh havolasi
       .site-footer { text-align: left; padding: 2.5rem 20px 1.5rem; border-top: 1px solid var(--border); margin-top: 3rem; background: var(--surface); }
       .site-footer .footer-grid { max-width: var(--maxw); margin: 0 auto; display: grid; grid-template-columns: 1.6fr 1fr; gap: 2rem; }
       .site-footer .brand { display: inline-flex; align-items: center; gap: 10px; font-weight: 700; font-size: 18px; color: var(--text); text-decoration: none; }
-      .site-footer .brand .logo { width: 32px; height: 32px; border-radius: 9px; background: linear-gradient(135deg, var(--accent), var(--accent-2)); display: grid; place-items: center; color: #fff; font-weight: 800; }
+      .site-footer .brand .logo { width: 32px; height: 32px; flex: 0 0 32px; }
       .site-footer .footer-brand p { color: var(--muted); font-size: 0.92rem; max-width: 360px; margin: 0.8rem 0 1.1rem; }
       .site-footer .footer-social { display: flex; gap: 10px; }
       .site-footer .footer-social a { display: inline-flex; align-items: center; gap: 6px; padding: 7px 14px; border-radius: 10px; border: 1px solid var(--border); color: var(--text); text-decoration: none; font-weight: 600; font-size: 0.9rem; transition: border-color .15s, color .15s; }
