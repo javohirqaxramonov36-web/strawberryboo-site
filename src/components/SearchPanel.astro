@@ -1,0 +1,317 @@
+---
+const base = import.meta.env.BASE_URL;
+
+// Qidiruv indeksi: har bir kurs/modul uch langda (uz/en/ru).
+// `desc` va `title` obyektlari — asosiy manba saytning o'zi (kurs sahifalari).
+const index = [
+  // === KURSLAR ===
+  { type: `course`, url: `kurslar/prompt-engineering/`,
+    title: { uz: `Prompt Engineering`, en: `Prompt Engineering`, ru: `Промпт-инжиниринг` },
+    desc: { uz: `Nima uchun kerak? Qanday foyda? Qayerda qo'llash? — amaliy misollar bilan.`,
+            en: `Why it's needed, what you gain, where to apply it — with practical examples.`,
+            ru: `Зачем нужно, какая польза, где применять — на практических примерах.` } },
+  { type: `course`, url: `kurslar/obsidian/`,
+    title: { uz: `Obsidian PKM`, en: `Obsidian PKM`, ru: `Obsidian PKM` },
+    desc: { uz: `Shaxsiy bilim bazasi qurish. Strawberryboo bilan avtomatik capture.`,
+            en: `Build a personal knowledge base. Automatic capture with Strawberryboo.`,
+            ru: `Создание личной базы знаний. Автоматический capture с Strawberryboo.` } },
+  { type: `course`, url: `kurslar/ai-agentlar/`,
+    title: { uz: `AI Agentlar nega kerak?`, en: `Why AI Agents?`, ru: `Зачем нужны ИИ-агенты?` },
+    desc: { uz: `CrewAI, LangGraph — agent'lar nima uchun kerak, qanday foyda.`,
+            en: `CrewAI, LangGraph — why agents are needed and what they're good for.`,
+            ru: `CrewAI, LangGraph — зачем нужны агенты и в чём их польза.` } },
+  { type: `course`, url: `kurslar/ielts-prep/`,
+    title: { uz: `IELTS Prep`, en: `IELTS Prep`, ru: `Подготовка к IELTS` },
+    desc: { uz: `IELTS Writing, Reading, Speaking — 30 kunlik reja bilan.`,
+            en: `IELTS Writing, Reading, Speaking — with a 30-day plan.`,
+            ru: `IELTS Writing, Reading, Speaking — по 30-дневному плану.` } },
+  { type: `course`, url: `kurslar/admission-process/`,
+    title: { uz: `Admission Process`, en: `Admission Process`, ru: `Процесс поступления` },
+    desc: { uz: `Chet el universitetlariga kirish: hujjatlar, essay, interview.`,
+            en: `Getting into foreign universities: documents, essays, interviews.`,
+            ru: `Поступление в зарубежные вузы: документы, эссе, собеседование.` } },
+  { type: `course`, url: `kurslar/tekin-ai/`,
+    title: { uz: `Tekin AI modellar va agentlar`, en: `Free AI Models & Agents`, ru: `Бесплатные ИИ-модели и агенты` },
+    desc: { uz: `MacBook'da o'rnatiladigan bepul AI vositalari ro'yxati va qo'llanma.`,
+            en: `A list and guide to free AI tools you can install on a MacBook.`,
+            ru: `Список и гайд бесплатных ИИ-инструментов для MacBook.` } },
+  { type: `course`, url: `kurslar/mac-tezlik-sirlari/`,
+    title: { uz: `Mac'da Tezlik Sirlari`, en: `Speed Secrets on Mac`, ru: `Секреты скорости на Mac` },
+    desc: { uz: `Raycast, shortcut'lar va Mac vositalari bilan kundalik ishlarni 2 baravar tezroq bajarish — amaliy, bepul kurs.`,
+            en: `Do everyday tasks twice as fast with Raycast, shortcuts and Mac tools — practical, free course.`,
+            ru: `Выполняйте повседневные задачи в 2 раза быстрее с Raycast, горячими клавишами и инструментами Mac — практичный бесплатный курс.` } },
+  { type: `course`, url: `kurslar/figma/`,
+    title: { uz: `Figma / Dizayn`, en: `Figma / Design`, ru: `Figma / Дизайн` },
+    desc: { uz: `UI/UX asoslari, komponentlar va prototip — bepul dizaynga kirish.`,
+            en: `UI/UX basics, components and prototyping — a free design intro.`,
+            ru: `Основы UI/UX, компоненты и прототипирование — бесплатное введение в дизайн.` } },
+  { type: `course`, url: `kurslar/autocad-on-mac/`,
+    title: { uz: `AutoCAD on Mac`, en: `AutoCAD on Mac`, ru: `AutoCAD на Mac` },
+    desc: { uz: `Mac'da AutoCAD: o'rnatish, interfeys, chizish buyruqlari va bepul litsenziya.`,
+            en: `AutoCAD on Mac: install, interface, drawing commands and a free license.`,
+            ru: `AutoCAD на Mac: установка, интерфейс, команды черчения и бесплатная лицензия.` } },
+  { type: `course`, url: `kurslar/financial-literacy/`,
+    title: { uz: `Financial Literacy — Moliyaviy savodxonlik`, en: `Financial Literacy`, ru: `Финансовая грамотность` },
+    desc: { uz: `Pulni boshqarish, byudjet tuzish va moliyaviy qarorlar — talaba hayoti uchun asosiy ko'nikmalar.`,
+            en: `Managing money, budgeting and financial decisions — core skills for student life.`,
+            ru: `Управление деньгами, бюджет и финансовые решения — ключевые навыки для студента.` } },
+  { type: `course`, url: `kurslar/chet-elda-oqish/`,
+    title: { uz: `Nega chet elda o'qish kerak`, en: `Why Study Abroad`, ru: `Зачем учиться за рубежом` },
+    desc: { uz: `Ta'lim sifati, karyera, shaxsiy rivojlanish va bepul grantlar (El-Yurt Umidi, Chevening, DAAD).`,
+            en: `Education quality, career, personal growth and free grants (El-Yurt Umidi, Chevening, DAAD).`,
+            ru: `Качество образования, карьера, личное развитие и гранты (El-Yurt Umidi, Chevening, DAAD).` } },
+  { type: `course`, url: `kurslar/el-yurt-umidi/`,
+    title: { uz: `El-Yurt Umidi'ni yutaylik`, en: `Win El-Yurt Umidi`, ru: `Победи El-Yurt Umidi` },
+    desc: { uz: `Davlat granti bo'yicha suhbatga tayyorgarlik — to'liq material tez orada qo'shiladi.`,
+            en: `Preparation for the state-grant interview — full material coming soon.`,
+            ru: `Подготовка к собеседованию по государственному гранту — полный материал скоро.` } },
+
+  // === IELTS PREP MODULLARI ===
+  { type: `module`, url: `kurslar/ielts-prep/#listening`,
+    title: { uz: `IELTS Listening`, en: `IELTS Listening`, ru: `IELTS Аудирование` },
+    desc: { uz: `Grammatik signal, diqqat boshqaruvi, distractor va map-question strategiyalari + Riverside Community Day amaliy mashqi (10 savol).`,
+            en: `Grammar signals, attention control, distractors and map-question strategies + Riverside Community Day practice (10 questions).`,
+            ru: `Грамматические сигналы, управление вниманием, отвлекающие факторы и стратегии map-question + практика Riverside Community Day (10 вопросов).` } },
+  { type: `module`, url: `kurslar/ielts-prep/#reading`,
+    title: { uz: `IELTS Reading`, en: `IELTS Reading`, ru: `IELTS Чтение` },
+    desc: { uz: `Skimming/scanning, vaqt boshqaruvi, error-log va yakuniy nazorat strategiyalari + Eastfield Library mashqi (6 savol).`,
+            en: `Skimming/scanning, time management, error-log and final-check strategies + Eastfield Library practice (6 questions).`,
+            ru: `Skimming/scanning, управление временем, error-log и стратегии финальной проверки + практика Eastfield Library (6 вопросов).` } },
+  { type: `module`, url: `kurslar/ielts-prep/#writing`,
+    title: { uz: `IELTS Writing`, en: `IELTS Writing`, ru: `IELTS Письмо` },
+    desc: { uz: `Task 1 / Task 2 framework, kunlik yozish ritmi va outline builder shabloni (self-review).`,
+            en: `Task 1 / Task 2 framework, daily writing rhythm and an outline-builder template (self-review).`,
+            ru: `Framework Task 1 / Task 2, ежедневный ритм письма и шаблон outline-builder (самопроверка).` } },
+  { type: `module`, url: `kurslar/ielts-prep/#speaking`,
+    title: { uz: `IELTS Speaking`, en: `IELTS Speaking`, ru: `IELTS Говорение` },
+    desc: { uz: `Part 1 / 2 / 3 strategiyalari, kunlik 15–20 daqiqalik Speaking sikli va strategiya kartalari.`,
+            en: `Part 1 / 2 / 3 strategies, a daily 15–20 min speaking cycle and strategy cards.`,
+            ru: `Стратегии Part 1 / 2 / 3, ежедневный цикл Speaking 15–20 минут и карточки стратегий.` } },
+
+  // === ADMISSION PROCESS MODULLARI ===
+  { type: `module`, url: `kurslar/admission-process/#essays`,
+    title: { uz: `Essseylar`, en: `Essays`, ru: `Эссе` },
+    desc: { uz: `Origin story, Supplemental "Why this university", Story selection, Why Major, Prompt-evidence match, Revision Lab (6 dars).`,
+            en: `Origin story, Supplemental "Why this university", Story selection, Why Major, Prompt-evidence match, Revision Lab (6 lessons).`,
+            ru: `Origin story, Supplemental "Why this university", выбор истории, Why Major, сопоставление prompt-evidence, Revision Lab (6 уроков).` } },
+  { type: `module`, url: `kurslar/admission-process/#documents`,
+    title: { uz: `Hujjat tayyorlash`, en: `Document preparation`, ru: `Подготовка документов` },
+    desc: { uz: `Transcript, IELTS, SAT va attestatni talabga mos tartibga solish (3 dars).`,
+            en: `Organising transcript, IELTS, SAT and diploma to match requirements (3 lessons).`,
+            ru: `Упорядочивание аттестата, IELTS, SAT и диплома в соответствии с требованиями (3 урока).` } },
+  { type: `module`, url: `kurslar/admission-process/#apply`,
+    title: { uz: `Hujjat topshirish va qabul xati`, en: `Submission & offer letter`, ru: `Подача и письмо о зачислении` },
+    desc: { uz: `Kaplan, Common App, Coalition App va Scoir orqali ariza jarayoni, submit oldidan tekshiruv, qabul xatidan keyin (3 dars).`,
+            en: `Application process via Kaplan, Common App, Coalition App and Scoir, pre-submit review, after the offer letter (3 lessons).`,
+            ru: `Подача заявки через Kaplan, Common App, Coalition App и Scoir, проверка перед отправкой, после письма о зачислении (3 урока).` } },
+];
+---
+<button id="searchToggle" class="search-fab" type="button" aria-label="Qidiruv">
+  <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
+  <span class="fab-label">Qidiruv</span>
+  <kbd class="fab-kbd">⌘K</kbd>
+</button>
+
+<div id="searchModal" class="search-modal" hidden>
+  <div class="search-backdrop" id="searchBackdrop"></div>
+  <div class="search-box" role="dialog" aria-modal="true" aria-label="Qidiruv">
+    <div class="search-input-wrap">
+      <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
+      <input id="searchInput" type="text" autocomplete="off" autocorrect="off" spellcheck="false" placeholder="Kurs, modul yoki tavsif bo'yicha qidirish..." />
+      <kbd class="search-esc">Esc</kbd>
+    </div>
+    <ul id="searchResults" class="search-results" role="listbox"></ul>
+    <div id="searchEmpty" class="search-empty" hidden>Natija topilmadi</div>
+  </div>
+</div>
+
+<script is:inline define:vars={base, index}>
+  (function () {
+    var SEARCH_BASE = base;
+    var DATA = index;
+    var LS_KEY = 'org-lam-lang';
+
+    var LABELS = {
+      uz: { placeholder: 'Kurs, modul yoki tavsif bo\'yicha qidirish...', empty: 'Natija topilmadi', course: 'Kurs', module: 'Modul', hint: '↑↓ tanlang · Enter oching · Esc yoping' },
+      en: { placeholder: 'Search courses, modules or descriptions...', empty: 'No results', course: 'Course', module: 'Module', hint: '↑↓ navigate · Enter open · Esc close' },
+      ru: { placeholder: 'Поиск курсов, модулей или описаний...', empty: 'Ничего не найдено', course: 'Курс', module: 'Модуль', hint: '↑↓ выбрать · Enter открыть · Esc закрыть' }
+    };
+
+    function curLang() {
+      var l = localStorage.getItem(LS_KEY) || document.documentElement.lang || 'uz';
+      return LABELS[l] ? l : 'uz';
+    }
+    function norm(s) {
+      return (s || '').toLowerCase().normalize('NFKD').replace(/[\u0300-\u036f]/g, '').replace(/['’‘]/g, "'");
+    }
+
+    // Har bir yozuv uchun qidiruv matni (barcha tillar birlashtirilgan)
+    DATA.forEach(function (it) {
+      it._title = norm([it.title.uz, it.title.en, it.title.ru].join(' '));
+      it._desc = norm([it.desc.uz, it.desc.en, it.desc.ru].join(' '));
+    });
+
+    var modal = document.getElementById('searchModal');
+    var input = document.getElementById('searchInput');
+    var results = document.getElementById('searchResults');
+    var empty = document.getElementById('searchEmpty');
+    var trigger = document.getElementById('searchToggle');
+    var active = -1;
+
+    function applyLabels() {
+      var L = curLang(), lb = LABELS[L];
+      input.placeholder = lb.placeholder;
+      empty.textContent = lb.empty;
+      var lbl = trigger ? trigger.querySelector('.fab-label') : null;
+      if (lbl) lbl.textContent = L === 'uz' ? 'Qidiruv' : (L === 'en' ? 'Search' : 'Поиск');
+    }
+
+    function search(q) {
+      q = norm(q).trim();
+      if (!q) return [];
+      var words = q.split(/\s+/).filter(Boolean);
+      var scored = [];
+      DATA.forEach(function (it) {
+        var s = 0;
+        words.forEach(function (w) {
+          if (it._title.indexOf(w) !== -1) s += 3;
+          if (it._desc.indexOf(w) !== -1) s += 1;
+        });
+        if (s > 0) scored.push({ it: it, s: s });
+      });
+      scored.sort(function (a, b) { return b.s - a.s; });
+      return scored.slice(0, 8).map(function (x) { return x.it; });
+    }
+
+    function render(q) {
+      var L = curLang(), lb = LABELS[L];
+      var hits = search(q);
+      results.innerHTML = '';
+      active = -1;
+      if (!q.trim()) { empty.hidden = true; return; }
+      if (!hits.length) { empty.hidden = false; return; }
+      empty.hidden = true;
+      hits.forEach(function (it) {
+        var li = document.createElement('li');
+        li.className = 'search-item';
+        li.setAttribute('role', 'option');
+        li.setAttribute('data-url', it.url);
+        var typeLabel = it.type === 'module' ? lb.module : lb.course;
+        var t = it.title[L] || it.title.uz;
+        var d = it.desc[L] || it.desc.uz;
+        if (d.length > 110) d = d.slice(0, 107) + '...';
+        li.innerHTML = '<span class="si-type">' + typeLabel + '</span>' +
+                       '<span class="si-title">' + t + '</span>' +
+                       '<span class="si-desc">' + d + '</span>';
+        li.addEventListener('click', function () { go(it.url); });
+        results.appendChild(li);
+      });
+    }
+
+    function go(url) {
+      window.location.href = SEARCH_BASE + url;
+    }
+
+    function setActive(i) {
+      var items = results.querySelectorAll('.search-item');
+      if (!items.length) return;
+      if (i < 0) i = items.length - 1;
+      if (i >= items.length) i = 0;
+      active = i;
+      items.forEach(function (el, idx) { el.classList.toggle('active', idx === i); });
+      items[i].scrollIntoView({ block: 'nearest' });
+    }
+
+    function open() {
+      modal.hidden = false;
+      document.body.style.overflow = 'hidden';
+      input.value = '';
+      applyLabels();
+      render('');
+      input.focus();
+    }
+    function close() {
+      modal.hidden = true;
+      document.body.style.overflow = '';
+    }
+
+    trigger && trigger.addEventListener('click', function () { modal.hidden ? open() : close(); });
+    document.getElementById('searchBackdrop').addEventListener('click', close);
+
+    input.addEventListener('input', function () { render(input.value); });
+    input.addEventListener('keydown', function (e) {
+      if (e.key === 'ArrowDown') { e.preventDefault(); setActive(active + 1); }
+      else if (e.key === 'ArrowUp') { e.preventDefault(); setActive(active - 1); }
+      else if (e.key === 'Enter') {
+        var items = results.querySelectorAll('.search-item');
+        if (items.length) { e.preventDefault(); go(items[active < 0 ? 0 : active].getAttribute('data-url')); }
+      } else if (e.key === 'Escape') { close(); }
+    });
+
+    document.addEventListener('keydown', function (e) {
+      if ((e.metaKey || e.ctrlKey) && (e.key === 'k' || e.key === 'K')) {
+        e.preventDefault();
+        modal.hidden ? open() : close();
+      } else if (e.key === 'Escape' && !modal.hidden) { close(); }
+    });
+
+    applyLabels();
+  })();
+</script>
+
+<style>
+  .search-fab {
+    position: fixed; left: 18px; bottom: 18px; z-index: 80;
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 10px 14px; border-radius: 999px; cursor: pointer;
+    background: var(--accent); color: #fff; border: none;
+    font: 700 13px var(--font-display); box-shadow: 0 8px 24px rgba(0,0,0,.28);
+    transition: transform .15s ease, box-shadow .15s ease;
+  }
+  .search-fab:hover { transform: translateY(-2px); box-shadow: 0 12px 30px rgba(0,0,0,.34); }
+  .search-fab .fab-kbd {
+    font: 700 11px var(--font-display); background: rgba(255,255,255,.22);
+    color: #fff; padding: 1px 6px; border-radius: 6px;
+  }
+
+  .search-modal { position: fixed; inset: 0; z-index: 200; display: flex;
+    align-items: flex-start; justify-content: center; padding-top: 12vh; }
+  .search-modal[hidden] { display: none; }
+  .search-backdrop { position: absolute; inset: 0; background: rgba(8,9,14,.55);
+    backdrop-filter: blur(4px); }
+  .search-box {
+    position: relative; width: min(640px, 92vw); background: var(--surface);
+    border: 1px solid var(--border); border-radius: 16px; overflow: hidden;
+    box-shadow: 0 24px 70px rgba(0,0,0,.45);
+  }
+  .search-input-wrap { display: flex; align-items: center; gap: 10px; padding: 14px 16px;
+    border-bottom: 1px solid var(--border); color: var(--muted); }
+  .search-input-wrap svg { flex: 0 0 auto; }
+  #searchInput { flex: 1; border: none; outline: none; background: transparent;
+    color: var(--text); font: 500 16px var(--font-display); }
+  #searchInput::placeholder { color: var(--muted); }
+  .search-esc { font: 700 11px var(--font-display); color: var(--muted);
+    border: 1px solid var(--border); border-radius: 6px; padding: 2px 7px; }
+
+  .search-results { list-style: none; margin: 0; padding: 6px; max-height: 52vh; overflow-y: auto; }
+  /* Dropdown items are injected at runtime via JS — Astro scoped styles won't reach them,
+     so these selectors MUST be :global(). */
+  :global(.search-item) { display: flex; flex-direction: column; gap: 2px; padding: 10px 12px;
+    border-radius: 10px; cursor: pointer; }
+  :global(.search-item:hover), :global(.search-item.active) { background: color-mix(in srgb, var(--accent) 14%, transparent); }
+  :global(.si-type) { font: 700 10px var(--font-display); text-transform: uppercase; letter-spacing: .06em;
+    color: var(--accent); }
+  :global(.si-title) { font: 700 15px var(--font-display); color: var(--text); }
+  :global(.si-desc) { font-size: 13px; color: var(--muted); line-height: 1.45; }
+
+  .search-empty { padding: 22px 16px; text-align: center; color: var(--muted); font-size: 14px; }
+
+  @media (max-width: 600px) {
+    .search-fab .fab-label { display: none; }
+    .search-fab { padding: 12px; }
+    .search-modal { padding-top: 8vh; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .search-fab { transition: none; }
+  }
+</style>

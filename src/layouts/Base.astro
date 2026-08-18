@@ -1,5 +1,6 @@
 ---
 import ChatWidget from "../components/ChatWidget.astro";
+import SearchPanel from "../components/SearchPanel.astro";
 const title = Astro.props.title || "O'rganamiz";
 const description = Astro.props.description || '';
 const lang = Astro.props.lang || "uz";
@@ -1180,5 +1181,6 @@ const base = import.meta.env.BASE_URL;
   </script>
 
   <ChatWidget />
+  <SearchPanel />
   </body>
 </html>
