@@ -26,7 +26,7 @@ const base = import.meta.env.BASE_URL;
       </div>
     </div>
 
-    <p class="lead">Bu kurs hozir uchta alohida sub-kursdan iborat: Listening, Reading va Writing. Har birida avval shaxsiy strategiya tizimi, keyin esa alohida Practice bo'limi bor.</p>
+    <p class="lead">Bu kurs to'rtta alohida sub-kursdan iborat: Listening, Reading, Writing va Speaking. Har birida Obsidian’dagi strategiya notalari asosida original darslar hamda amaliy mashqlar bor.</p>
 
     <section>
       <h2>Sub-kurslar</h2>
@@ -34,8 +34,9 @@ const base = import.meta.env.BASE_URL;
         <a href="#listening"><span>01</span><strong>IELTS Listening</strong><small>Strategiya + Practice</small></a>
         <a href="#reading"><span>02</span><strong>IELTS Reading</strong><small>Strategiya + Practice</small></a>
         <a href="#writing"><span>03</span><strong>IELTS Writing</strong><small>Strategiya + Practice</small></a>
+        <a href="#speaking"><span>04</span><strong>IELTS Speaking</strong><small>Strategiya + kunlik mashq</small></a>
       </div>
-      <p class="course-note">Speaking hozircha ushbu kursga kiritilmagan. U alohida sub-kurs sifatida faqat keyin tasdiqlansa qo'shiladi.</p>
+      <p class="course-note">Har sub-kursdagi darslar Obsidian’dagi shaxsiy o‘rganish notalaridan qayta tuzilgan; test matnlari yoki tashqi audio nusxalanmagan.</p>
     </section>
 
     <section id="listening" class="subcourse">
@@ -116,6 +117,12 @@ const base = import.meta.env.BASE_URL;
       </ul>
       <p class="src">Obsidian manbasi: <code>01.IELTS prep/2026-08-15-writing-intro-qoidasi.md</code> · <code>01.IELTS prep/5.Weekly Progress Tracker.md</code></p>
 
+      <div class="strategy-grid">
+        <article class="strategy-card"><span class="practice-tag">TASK 1 — INTRODUCTION</span><h3>Grafikning asosiy faktlarini aniq oching</h3><p>Kirishda grafik turi, nimani taqqoslayotgani, o'lchov yoki kategoriya, joy va vaqtni ajrating. Sabab, fikr yoki xulosani bu paragrafga qo'shmang.</p><ol><li>Avval promptdagi 5 faktni belgilang: visual turi, subyekt, o'lchov, joy, vaqt.</li><li>So'zlarni o'zgartiring, lekin qamrovni o'zgartirmang.</li><li>Yil, birlik yoki guruhni tashlab ketmaganingizni tekshiring.</li></ol><p class="strategy-task"><b>Mini-mashq:</b> o'zingiz yaratgan jadval yoki grafik uchun 1–2 gaplik introduction yozing; trendni hali sharhlamang.</p></article>
+        <article class="strategy-card"><span class="practice-tag">TASK 2 — INTRODUCTION</span><h3>Context → muammo → pozitsiya zanjiri</h3><p>Fact-based mavzuda avval muammoni neytral kontekstga joylashtiring, so'ng savolga aniq javob beradigan tezis yozing. Introduction body paragraph'dagi barcha dalillarni oldindan sanab o'tmasin.</p><ol><li>Mavzuni bir jumlada umumiyroq kontekstga ulang.</li><li>Savol sizdan sabab, fikr yoki yechim so'rayotganini ajrating.</li><li>Pozitsiyangizni bitta boshqariladigan da'vo bilan yoping.</li></ol><p class="strategy-task"><b>Mini-mashq:</b> "Shaharlarga ko'chish" kabi mavzu uchun 2 jumlalik introduction yozing; keyin tezisingizni bitta aniq fikrga qisqartiring.</p></article>
+      </div>
+      <p class="src">Qo'shimcha Obsidian manbalari: <code>01.IELTS prep/2.2 writing task 1/1.Universal introduction/1.structure.md</code> · <code>01.IELTS prep/2.1 writing task 2/1.1 fact-based Introductions/1.intro structure/1.structure.md</code>. Original darsga aylantirildi; tashqi sample yoki test prompti ko'chirilmagan.</p>
+
       <h3>B. Practice (Mashq)</h3>
       <div class="practice-card" id="writing-practice">
         <div class="practice-head"><div><span class="practice-tag">AMALIY SHABLON</span><h4>Task 2 outline builder</h4></div><span class="skill-pill">Writing · self-review</span></div>
@@ -126,6 +133,19 @@ const base = import.meta.env.BASE_URL;
         <div class="checklist"><label><input type="checkbox" data-write-check /> Introduction qisqa va aniqmi?</label><label><input type="checkbox" data-write-check /> Ikkita body paragraph rejalashtirildimi?</label><label><input type="checkbox" data-write-check /> Har body'da sabab yoki misol bormi?</label><label><input type="checkbox" data-write-check /> Academic uslubdagi so'zlarni keyin o'zingiz tekshirasizmi?</label></div>
         <button class="practice-btn secondary" id="saveOutline" type="button">Outline'ni qurilmada saqlash</button><p class="practice-result" id="writingResult" aria-live="polite"></p>
       </div>
+    </section>
+
+    <section id="speaking" class="subcourse">
+      <p class="eyebrow">04 — SUB-KURS</p>
+      <h2>IELTS Speaking</h2>
+      <p class="lead-small">Maqsad mukammal gapni kutish emas, fikrni aniq, tabiiy va sabab-misol bilan davom ettira olishdir. Quyidagi tizim Speaking uchun Obsidian’dagi strategiya va mashq kundaligidan original tarzda tuzildi.</p>
+      <div class="strategy-grid">
+        <article class="strategy-card"><span class="practice-tag">PART 1</span><h3>Qisqa, lekin to'liq javob bering</h3><p>Bir so'zli “yes/no” bilan to'xtamang. Javob + sabab yoki kichik misol yordamida 1–2 bog'langan gap tuzing.</p><p class="strategy-task"><b>Formula:</b> javob → sabab → kichik detail.</p></article>
+        <article class="strategy-card"><span class="practice-tag">PART 2</span><h3>1 daqiqada gapirish xaritasini tuzing</h3><p>Tayyorlanish vaqtida to'liq matn yozmang. Who/what, where/when, why va feeling kabi 5 signal so'zni yozib, ular asosida 2 daqiqa gapiring.</p><p class="strategy-task"><b>Mini-mashq:</b> “Sizga yangi narsa o'rgatgan inson” haqida 5 bullet yozing va ovoz chiqarib 2 daqiqa gapiring.</p></article>
+        <article class="strategy-card"><span class="practice-tag">PART 3</span><h3>Fikrni dalil va solishtirish bilan rivojlantiring</h3><p>Fikr bildiring, sabab bering, bir misol qo'shing. Kerak bo'lsa past va hozirni yoki ikki turli kontekstni solishtiring.</p><p class="strategy-task"><b>Formula:</b> fikrim → chunki → misol → solishtirish.</p></article>
+        <article class="strategy-card"><span class="practice-tag">KUNLIK RITM</span><h3>15–20 daqiqalik Speaking sikli</h3><p>Har kuni 1 ta Part 1 mavzu, 1 ta cue card va 1 ta Part 3 muhokamani yozib oling. Keyin ravonlik, lug'at, grammatika va talaffuz bo'yicha bitta yaxshilash nuqtasini belgilang.</p><p class="strategy-task"><b>Bugungi mavzular:</b> Hometown · Studies · Hobbies · Technology · Travel.</p></article>
+      </div>
+      <p class="src">Obsidian manbasi: <code>01.IELTS prep/6.speaking/IELTS Speaking - strategiya va mashq.md</code>. Speaking savollari O'rganamiz uchun mashq sifatida beriladi; real IELTS savol banki nusxalanmaydi.</p>
     </section>
 
     <section class="practice-tools">
@@ -181,6 +201,7 @@ const base = import.meta.env.BASE_URL;
 
   <style>
     .practice-card { border:1px solid var(--border); border-radius:14px; padding:1.25rem; margin:1rem 0; background:linear-gradient(135deg, rgba(125,125,245,.09), var(--surface)); }
+    .strategy-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:.9rem; margin:1rem 0 1.2rem; }.strategy-card { padding:1.1rem; border:1px solid var(--border); border-radius:13px; background:var(--surface); }.strategy-card h3 { margin:.4rem 0 .55rem; font-size:1.08rem; }.strategy-card p,.strategy-card li { color:var(--muted); line-height:1.55; font-size:.92rem; }.strategy-card ol { margin:.7rem 0 .25rem; padding-left:1.2rem; }.strategy-task { padding:.7rem .8rem; margin:.9rem 0 0; border-left:3px solid var(--accent); background:rgba(125,125,245,.08); }.lead-small { color:var(--muted); max-width:780px; line-height:1.65; }
     .practice-head { display:flex; justify-content:space-between; gap:1rem; align-items:flex-start; } .practice-head h4 { margin:.3rem 0; font-size:1.12rem; } .practice-tag { color:#b8b4ff; font-size:.72rem; letter-spacing:.08em; font-weight:800; } .skill-pill { border:1px solid var(--border); border-radius:999px; color:var(--muted); padding:.3rem .6rem; font-size:.8rem; white-space:nowrap; }
     .practice-tip { color:var(--muted); font-size:.92rem; } .practice-launch { display:inline-block; text-decoration:none; margin:0 .6rem .6rem 0; } .practice-actions { display:flex; gap:.7rem; flex-wrap:wrap; margin:1rem 0; } .practice-btn, .text-btn { cursor:pointer; border-radius:9px; padding:.65rem .95rem; font:inherit; font-weight:700; } .practice-btn { border:0; background:var(--accent); color:white; } .practice-btn.secondary { margin-top:1rem; background:transparent; border:1px solid var(--accent); color:var(--accent); } .text-btn { background:transparent; color:var(--muted); border:1px solid var(--border); }
     .listen-form,.reading-questions { display:grid; gap:.65rem; } .listen-form label,.reading-questions label,.outline-grid label,.tool-grid label { display:grid; gap:.35rem; color:var(--muted); font-size:.92rem; } .listen-form input,.reading-questions input,.reading-questions select,.tool-grid input,.tool-grid select,.outline-grid textarea { width:100%; box-sizing:border-box; border:1px solid var(--border); background:var(--bg); color:var(--text); border-radius:8px; padding:.6rem; font:inherit; } .answer-ok { border-color:#22c55e !important; } .answer-no { border-color:#ef4444 !important; } .practice-result { min-height:1.3em; color:#b8b4ff; font-weight:700; }
@@ -194,6 +215,6 @@ const base = import.meta.env.BASE_URL;
     .subcourse { scroll-margin-top:1.5rem; border-top:1px solid var(--border); padding-top:1.5rem; }
     .practice-placeholder { border:1px dashed var(--border); border-radius:10px; padding:1rem; color:var(--muted); background:rgba(125,125,245,.05); }
     .src { font-size:.85rem; color:#7c6bb0; border-left:3px solid #8b5cf6; padding:.4rem .75rem; margin:.75rem 0 1.25rem; background:rgba(139, 92, 246, .06); overflow-wrap:anywhere; }
-    @media (max-width: 700px) { .subcourse-nav { grid-template-columns:1fr; } }
+    @media (max-width: 700px) { .subcourse-nav,.strategy-grid { grid-template-columns:1fr; } }
   </style>
 </Base>
