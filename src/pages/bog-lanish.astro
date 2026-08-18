@@ -2,39 +2,59 @@
 import Base from "../layouts/Base.astro";
 const title = "Bog'lanish — O'rganamiz";
 const description = "Savollar, to'lov yoki hamkorlik bo'yicha biz bilan bog'laning.";
+const base = import.meta.env.BASE_URL;
 ---
 
 <Base title={title} description={description}>
 <section class="hero">
   <span class="eyebrow">Aloqa</span>
   <h1>Bog'lanish</h1>
-  <p class="lead">
-    Savollaringiz bormi? Kurslar, to'lov usullari yoki hamkorlik bo'yicha
-    bizga yozing — tez orada javob beramiz.
-  </p>
+  <p class="lead">Savollaringiz bormi? Kurslar, to'lov usullari yoki hamkorlik bo'yicha bizga yozing — tez orada javob beramiz.</p>
 </section>
 
-<section class="why-us" style="max-width:680px;margin:0 auto;">
-  <div class="sec-head" style="margin-top:0">
-    <h2 class="sec-title">
-      <span class="sec-ic" style="background:linear-gradient(135deg,#7d7df5,#5b5bd6)"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></span>
-      Kanallar
-    </h2>
-  </div>
-  <ul style="list-style:none;padding:0;display:grid;gap:12px;">
-    <li class="course" style="display:flex;align-items:center;gap:14px;">
-      <div class="c-ic" style="--c:#3b82f6;margin:0;flex-shrink:0"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div>
-      <div><strong>Telegram</strong><br><a href="https://t.me/strawberryboo" class="enroll">@strawberryboo</a></div>
-    </li>
-    <li class="course" style="display:flex;align-items:center;gap:14px;">
-      <div class="c-ic" style="--c:#22c55e;margin:0;flex-shrink:0"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></svg></div>
-      <div><strong>Email</strong><br><a href="mailto:aloqa@strawberryboo.uz" class="enroll">aloqa@strawberryboo.uz</a></div>
-    </li>
-    <li class="course" style="display:flex;align-items:center;gap:14px;">
-      <div class="c-ic" style="--c:#f59e0b;margin:0;flex-shrink:0"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/></svg></div>
-      <div><strong>To'lov</strong><br>Click, Payme, Uzum, Karta (UZS/USD)</div>
-    </li>
-  </ul>
-  <p style="margin-top:1.5rem;"><a href="/kurslar" class="start-btn">← Barcha kurslarga qaytish</a></p>
+<section id="selectedAdmission" class="selected-admission" hidden aria-live="polite">
+  <p class="eyebrow">TANLANGAN ADMISSION SUB-KURSI</p>
+  <h2 id="selectedAdmissionTitle">Kursingiz tayyor</h2>
+  <p id="selectedAdmissionText"></p>
+  <div class="selected-admission-bottom"><div><span>Tanlangan narx</span><strong id="selectedAdmissionPrice"></strong></div><a id="openAdmissionCourse" class="start-btn" href={base + 'kurslar/admission-process/'}>Kurs ma'lumotlarini ko'rish →</a></div>
 </section>
+
+<section class="why-us contact-channels">
+  <div class="sec-head" style="margin-top:0"><h2 class="sec-title"><span class="sec-ic" style="background:linear-gradient(135deg,#7d7df5,#5b5bd6)"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></span>Kanallar</h2></div>
+  <ul class="channels-list">
+    <li class="course channel"><div class="c-ic" style="--c:#3b82f6"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div><div><strong>Telegram</strong><br><a href="https://t.me/strawberryboo" class="enroll">@strawberryboo</a></div></li>
+    <li class="course channel"><div class="c-ic" style="--c:#22c55e"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></svg></div><div><strong>Email</strong><br><a href="mailto:aloqa@strawberryboo.uz" class="enroll">aloqa@strawberryboo.uz</a></div></li>
+    <li class="course channel"><div class="c-ic" style="--c:#f59e0b"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/></svg></div><div><strong>To'lov</strong><br>Click, Payme, Uzum, Karta (UZS/USD)</div></li>
+  </ul>
+  <p style="margin-top:1.5rem;"><a href={base + 'kurslar'} class="start-btn">← Barcha kurslarga qaytish</a></p>
+</section>
+
+<script>
+  const params = new URLSearchParams(window.location.search);
+  const selected = (params.get('admission') || '').split(',').filter(Boolean);
+  const total = Number(params.get('total')) || 0;
+  const courses = {
+    essays: { title: 'Esseylar', text: 'Personal Statement, Why Major?, supplemental essay va tahrirlash darslarini hozir ko‘rishingiz mumkin.', anchor: 'essays' },
+    documents: { title: 'Hujjat tayyorlash', text: 'Master profile, transcript, activities/CV va tavsiyanoma darslarini hozir ko‘rishingiz mumkin.', anchor: 'documents' },
+    apply: { title: 'Hujjat topshirish va qabul xati', text: 'Platformalar, universitet ro‘yxati, final review va offer letter bo‘yicha darslar tayyor.', anchor: 'apply' }
+  };
+  const found = selected.map((item) => courses[item]).filter(Boolean);
+  if (found.length) {
+    const block = document.querySelector('#selectedAdmission');
+    const title = document.querySelector('#selectedAdmissionTitle');
+    const text = document.querySelector('#selectedAdmissionText');
+    const price = document.querySelector('#selectedAdmissionPrice');
+    const link = document.querySelector('#openAdmissionCourse');
+    block.hidden = false;
+    title.textContent = found.length === 1 ? `${found[0].title} — kurs ichiga kirish` : `${found.length} ta tanlangan sub-kurs — kurs ichiga kirish`;
+    text.textContent = found.map((item) => item.text).join(' ');
+    price.textContent = `${new Intl.NumberFormat('uz-UZ').format(total)} so'm`;
+    link.href = `${import.meta.env.BASE_URL}kurslar/admission-process/#${found[0].anchor}`;
+    link.textContent = found.length === 1 ? `${found[0].title} darslarini ochish →` : 'Tanlangan sub-kurslar darslarini ochish →';
+  }
+</script>
+
+<style>
+  .selected-admission,.contact-channels{max-width:680px;margin:0 auto}.selected-admission{margin-bottom:28px;padding:25px;border:1px solid color-mix(in srgb,var(--accent) 55%,var(--border));border-radius:18px;background:linear-gradient(135deg,color-mix(in srgb,var(--accent) 15%,var(--surface)),var(--surface))}.selected-admission h2{margin:.15rem 0 .65rem}.selected-admission p:not(.eyebrow){margin:0;color:var(--muted);line-height:1.6}.selected-admission-bottom{display:flex;justify-content:space-between;gap:18px;align-items:center;margin-top:20px}.selected-admission-bottom span,.selected-admission-bottom strong{display:block}.selected-admission-bottom span{color:var(--muted);font-size:.85rem}.selected-admission-bottom strong{font-size:1.2rem;color:var(--accent);margin-top:3px}.channels-list{list-style:none;padding:0;display:grid;gap:12px}.channel{display:flex;align-items:center;gap:14px}.channel .c-ic{margin:0;flex-shrink:0}@media(max-width:600px){.selected-admission-bottom{align-items:stretch;flex-direction:column}.selected-admission-bottom .start-btn{text-align:center}}
+</style>
 </Base>
