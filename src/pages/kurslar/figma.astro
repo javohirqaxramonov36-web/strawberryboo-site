@@ -55,7 +55,7 @@ const questions = [
   <Quiz title="O'z bilimingizni tekshiring" titleI18n="fg.quizTitle" questions={questions} />
 
   <a href="/bog-lanish" class="start-btn" style="margin-top:2rem;" data-i18n="fg.buy">Bepul kursni boshlash →</a>
-  <a href="/kurslar" class="enroll" style="margin-left:1rem;" data-i18n="fg.all">← Barcha kurslar</a>
+  <a href={import.meta.env.BASE_URL + 'kurslar'} class="enroll" style="margin-left:1rem;" data-i18n="fg.all">← Barcha kurslar</a>
 </article>
 <TelegramCTA />
 </Base>

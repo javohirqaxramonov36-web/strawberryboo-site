@@ -22,7 +22,7 @@ const description = "Kurslar narxlari: bitta kurs, barcha AI kurslari paketi va 
         <li>Sertifikat</li>
         <li>Telegram orqali savollar</li>
       </ul>
-      <a href="/kurslar" class="start-btn">Kursni tanlash →</a>
+      <a href={import.meta.env.BASE_URL + 'kurslar'} class="start-btn">Kursni tanlash →</a>
     </div>
   </div>
 
@@ -67,6 +67,6 @@ const description = "Kurslar narxlari: bitta kurs, barcha AI kurslari paketi va 
     .save-note { margin: .2rem 0 .9rem; color: var(--accent); font-weight: 600; font-size: .9rem; }
   </style>
 
-  <p class="quiz-hint" style="margin-top:1.5rem">Qaysi kurs sizga kerakligini bilmayapsizmi? <a href="/kurs-tanlash" style="color:var(--accent)">Kurs tanlash testi →</a></p>
+  <p class="quiz-hint" style="margin-top:1.5rem">Qaysi kurs sizga kerakligini bilmayapsizmi? <a href={import.meta.env.BASE_URL + 'kurs-tanlash'} style="color:var(--accent)">Kurs tanlash testi →</a></p>
 </article>
 </Base>

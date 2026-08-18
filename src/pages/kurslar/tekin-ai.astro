@@ -40,7 +40,7 @@ const questions = [
   </section>
 
   <p style="margin-top:2rem;">
-    <a href="/kurslar" class="enroll" data-i18n="ta.all">← Barcha kurslar</a>
+    <a href={import.meta.env.BASE_URL + 'kurslar'} class="enroll" data-i18n="ta.all">← Barcha kurslar</a>
   </p>
 
   <Quiz titleI18n="ta.quizTitle" questions={questions} />

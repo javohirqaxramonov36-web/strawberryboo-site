@@ -19,6 +19,9 @@ const description = "4 savolli mini-test orqali o'zingizga mos kursni toping.";
         <label class="reco-opt"><input type="radio" name="q1" value="ai-agentlar" /> Murakkab vazifalarni avtomatlashtirish</label>
         <label class="reco-opt"><input type="radio" name="q1" value="ielts-prep" /> IELTS / chet elga tayyorgarlik</label>
         <label class="reco-opt"><input type="radio" name="q1" value="tekin-ai" /> Bepul boshlash, pul sarflamasdan</label>
+        <label class="reco-opt"><input type="radio" name="q1" value="financial-literacy" /> Moliyani boshqarish, byudjet tuzish</label>
+        <label class="reco-opt"><input type="radio" name="q1" value="computer-literacy" /> Raqamli ko'nikmalar (Office / Google)</label>
+        <label class="reco-opt"><input type="radio" name="q1" value="autocad-on-mac" /> Loyiha chizish, texnik dizayn (AutoCAD)</label>
       </div>
     </div>
 
@@ -49,6 +52,9 @@ const description = "4 savolli mini-test orqali o'zingizga mos kursni toping.";
         <label class="reco-opt"><input type="radio" name="q4" value="admission-process" /> Stipendiya / chet elga kirish</label>
         <label class="reco-opt"><input type="radio" name="q4" value="figma" /> Mahsulot/dizayn ko'nikmasi</label>
         <label class="reco-opt"><input type="radio" name="q4" value="ai-agentlar" /> O'z agent'imni yaratish</label>
+        <label class="reco-opt"><input type="radio" name="q4" value="mac-tezlik-sirlari" /> Mac'da ishni tezlashtirish</label>
+        <label class="reco-opt"><input type="radio" name="q4" value="chet-elda-oqish" /> Chet elda o'qish, bepul grant</label>
+        <label class="reco-opt"><input type="radio" name="q4" value="el-yurt-umidi" /> Davlat granti suhbati (El-Yurt Umidi)</label>
       </div>
     </div>
 
@@ -64,13 +70,19 @@ const description = "4 savolli mini-test orqali o'zingizga mos kursni toping.";
 
 <script>
   const COURSES = {
-    "prompt-engineering": { title: "Prompt Engineering", url: "/kurslar/prompt-engineering", desc: "AI bilan to'g'ri muloqot — vaqtni 10x tejash.", color: "#7d7df5" },
-    "obsidian": { title: "Obsidian PKM", url: "/kurslar/obsidian", desc: "Shaxsiy bilim bazasi — bilimingizni tartibga soling.", color: "#34d399" },
-    "ai-agentlar": { title: "AI Agentlar nega kerak?", url: "/kurslar/ai-agentlar", desc: "Vazifalarni o'zi bajarib chiqadigan agent'lar.", color: "#ef4444" },
-    "ielts-prep": { title: "IELTS Prep", url: "/kurslar/ielts-prep", desc: "30 kunlik reja bilan IELTS ga tayyorgarlik.", color: "#22c55e" },
-    "admission-process": { title: "Admission Process", url: "/kurslar/admission-process", desc: "Chet el universitetiga kirish va stipendiya.", color: "#8b5cf6" },
-    "tekin-ai": { title: "Tekin AI modellar va agentlar", url: "/kurslar/tekin-ai", desc: "Pul sarflamasdan o'z MacBook'ingizda AI.", color: "#7d7df5" },
-    "figma": { title: "Figma / Dizayn", url: "/kurslar/figma", desc: "Bepul dizayn asoslari — UI/UX ga kirish.", color: "#f59e0b" }
+    "prompt-engineering": { title: "Prompt Engineering", url: import.meta.env.BASE_URL + "kurslar/prompt-engineering", desc: "AI bilan to'g'ri muloqot — vaqtni 10x tejash.", color: "#7d7df5" },
+    "obsidian": { title: "Obsidian PKM", url: import.meta.env.BASE_URL + "kurslar/obsidian", desc: "Shaxsiy bilim bazasi — bilimingizni tartibga soling.", color: "#34d399" },
+    "ai-agentlar": { title: "AI Agentlar nega kerak?", url: import.meta.env.BASE_URL + "kurslar/ai-agentlar", desc: "Vazifalarni o'zi bajarib chiqadigan agent'lar.", color: "#ef4444" },
+    "ielts-prep": { title: "IELTS Prep", url: import.meta.env.BASE_URL + "kurslar/ielts-prep", desc: "30 kunlik reja bilan IELTS ga tayyorgarlik.", color: "#22c55e" },
+    "admission-process": { title: "Admission Process", url: import.meta.env.BASE_URL + "kurslar/admission-process", desc: "Chet el universitetiga kirish va stipendiya.", color: "#8b5cf6" },
+    "tekin-ai": { title: "Tekin AI modellar va agentlar", url: import.meta.env.BASE_URL + "kurslar/tekin-ai", desc: "Pul sarflamasdan o'z MacBook'ingizda AI.", color: "#7d7df5" },
+    "figma": { title: "Figma / Dizayn", url: import.meta.env.BASE_URL + "kurslar/figma", desc: "Bepul dizayn asoslari — UI/UX ga kirish.", color: "#f59e0b" },
+    "financial-literacy": { title: "Financial Literacy — Moliyaviy savodxonlik", url: import.meta.env.BASE_URL + "kurslar/financial-literacy", desc: "Pulni boshqarish, byudjet va moliyaviy qarorlar — talaba uchun asosiy ko'nikma.", color: "#10b981" },
+    "computer-literacy": { title: "Computer Literacy — Raqamli savodxonlik", url: import.meta.env.BASE_URL + "kurslar/computer-literacy", desc: "MS Office va Google Workspace — zamonaviy raqamli ko'nikmalar.", color: "#0ea5e9" },
+    "autocad-on-mac": { title: "AutoCAD on Mac", url: import.meta.env.BASE_URL + "kurslar/autocad-on-mac", desc: "Mac'da AutoCAD: o'rnatish, interfeys va bepul litsenziya.", color: "#f97316" },
+    "mac-tezlik-sirlari": { title: "Mac'da Tezlik Sirlari", url: import.meta.env.BASE_URL + "kurslar/mac-tezlik-sirlari", desc: "Raycast va Mac vositalari bilan kundalik ishlarni tezlashtirish.", color: "#3b82f6" },
+    "chet-elda-oqish": { title: "Nega chet elda o'qish kerak", url: import.meta.env.BASE_URL + "kurslar/chet-elda-oqish", desc: "Ta'lim sifati, karyera va bepul grantlar haqida bepul kurs.", color: "#14b8a6" },
+    "el-yurt-umidi": { title: "El-Yurt Umidi'ni yutaylik", url: import.meta.env.BASE_URL + "kurslar/el-yurt-umidi", desc: "Davlat granti bo'yicha suhbatga tayyorgarlik (tez orada).", color: "#ec4899" }
   };
   const form = document.getElementById('recoForm');
   const btn = document.getElementById('recoBtn');
