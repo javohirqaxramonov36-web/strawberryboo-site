@@ -13,6 +13,17 @@ const TG = "https://t.me/progression_go"; // Telegram kanal/guruh havolasi
 <html lang={lang}>
   <head>
     <meta charset="utf-8" />
+    <script is:inline>
+      (function () {
+        try {
+          var t = localStorage.getItem('theme');
+          if (t !== 'light' && t !== 'dark') t = 'dark'; // standart: dark
+          document.documentElement.setAttribute('data-theme', t);
+          var m = document.querySelector('meta[name="theme-color"]');
+          if (m) m.setAttribute('content', t === 'light' ? '#ffffff' : '#0e0f15');
+        } catch (e) {}
+      })();
+    </script>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{title}</title>
     <meta name="description" content={description} />
@@ -89,6 +100,10 @@ const TG = "https://t.me/progression_go"; // Telegram kanal/guruh havolasi
             <a href="#" data-lang="en" class={lang==='en'?'active':''}>EN</a>
           </span>
         </nav>
+        <button id="themeToggle" class="theme-toggle" type="button" aria-label="Tema o'zgartirish" title="Tema o'zgartirish">
+          <svg class="ic-moon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3 7 7 0 0 0 21 12.8z"/></svg>
+          <svg class="ic-sun" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4.5"/><path d="M12 2v2M12 20v2M4.2 4.2l1.4 1.4M18.4 18.4l1.4 1.4M2 12h2M20 12h2M4.2 19.8l1.4-1.4M18.4 5.6l1.4-1.4"/></svg>
+        </button>
       </header>
       <main id="main">
         <slot />
@@ -136,6 +151,19 @@ const TG = "https://t.me/progression_go"; // Telegram kanal/guruh havolasi
       const menuToggle = document.getElementById('menuToggle');
       const sidebar = document.querySelector('.sidebar');
       menuToggle.addEventListener('click', () => { sidebar.classList.toggle('open'); });
+
+      // === Dark / Light tema almashtirgich ===
+      const themeToggle = document.getElementById('themeToggle');
+      if (themeToggle) {
+        themeToggle.addEventListener('click', function () {
+          const cur = document.documentElement.getAttribute('data-theme') === 'light' ? 'light' : 'dark';
+          const next = cur === 'light' ? 'dark' : 'light';
+          document.documentElement.setAttribute('data-theme', next);
+          try { localStorage.setItem('theme', next); } catch (e) {}
+          const mc = document.querySelector('meta[name="theme-color"]');
+          if (mc) mc.setAttribute('content', next === 'light' ? '#ffffff' : '#0e0f15');
+        });
+      }
 
       // QADAM 5 — narx eslatmasi
       document.querySelectorAll('.uzs').forEach(function (u) {
@@ -866,10 +894,31 @@ const TG = "https://t.me/progression_go"; // Telegram kanal/guruh havolasi
         --accent-2: #5b5bd6;
         --accent-soft: rgba(125,125,245,.12);
         --shadow: 0 8px 24px -8px rgba(0,0,0,.5);
+        --header-bg: rgba(14,15,21,.85);
         --maxw: 1100px;
         --side-w: 240px;
         --font-display: "Inter", system-ui, sans-serif;
       }
+      [data-theme="light"] {
+        --bg: #f6f7fb;
+        --surface: #ffffff;
+        --text: #16182b;
+        --muted: #5b5d72;
+        --border: #e3e6ef;
+        --accent: #4f46e5;
+        --accent-2: #4338ca;
+        --accent-soft: rgba(79,70,229,.10);
+        --shadow: 0 8px 24px -8px rgba(20,22,40,.18);
+        --header-bg: rgba(255,255,255,.88);
+      }
+      /* Light-rejimda WCAG AA kontrastining kafolati */
+      [data-theme="light"] .price,
+      [data-theme="light"] .course .price { color: var(--accent); }
+      [data-theme="light"] .badge-free { background: var(--accent); color: #fff; }
+      [data-theme="light"] .side-nav a.tg-nav,
+      [data-theme="light"] .top-nav a.tg-nav { color: #1c7fb0; }
+      [data-theme="light"] .side-nav a.tg-nav:hover,
+      [data-theme="light"] .top-nav a.tg-nav:hover { color: #155f86; }
       * { box-sizing: border-box; }
       body {
         margin: 0;
@@ -893,8 +942,14 @@ const TG = "https://t.me/progression_go"; // Telegram kanal/guruh havolasi
       .side-nav a { color: var(--muted); text-decoration: none; padding: 9px 12px; border-radius: 9px; font-weight: 600; font-size: 0.92rem; transition: background .15s, color .15s; }
       .side-nav a:hover, .side-nav a.active { background: var(--accent-soft); color: var(--accent); }
       .content { margin-left: var(--side-w); min-height: 100vh; display: flex; flex-direction: column; }
-      .site-header { display: flex; align-items: center; gap: 1rem; padding: 1rem 2rem; border-bottom: 1px solid var(--border); position: sticky; top: 0; background: rgba(14,15,21,.85); backdrop-filter: blur(10px); z-index: 10; }
+      .site-header { display: flex; align-items: center; gap: 1rem; padding: 1rem 2rem; border-bottom: 1px solid var(--border); position: sticky; top: 0; background: var(--header-bg); backdrop-filter: blur(10px); z-index: 10; }
       .menu-toggle { display: none; background: none; border: none; color: var(--text); font-size: 1.5rem; cursor: pointer; }
+      .theme-toggle { display: inline-flex; align-items: center; justify-content: center; width: 40px; height: 40px; border-radius: 10px; border: 1px solid var(--border); background: var(--surface); color: var(--text); cursor: pointer; transition: border-color .15s, color .15s, background .15s; margin-left: auto; }
+      .theme-toggle:hover { border-color: var(--accent); color: var(--accent); }
+      .theme-toggle .ic-sun { display: none; }
+      .theme-toggle .ic-moon { display: block; }
+      [data-theme="light"] .theme-toggle .ic-sun { display: block; }
+      [data-theme="light"] .theme-toggle .ic-moon { display: none; }
       .mobile-brand { font-weight: 700; font-size: 1.2rem; color: var(--accent); display: none; }
       .top-nav { margin-left: auto; }
       .top-nav a { color: var(--text); text-decoration: none; margin-left: 1.5rem; font-weight: 600; }
