@@ -94,7 +94,7 @@ const questions = [
       <rect x="36" y="60" width="256" height="72" rx="8" fill="#0e0f15" stroke="#2a2c3a"/>
       <g fill="#2a2c3a">
         <circle cx="50" cy="70" r="2.6"/><circle cx="68" cy="70" r="2.6"/><circle cx="86" cy="70" r="2.6"/><circle cx="104" cy="70" r="2.6"/><circle cx="122" cy="70" r="2.6"/><circle cx="140" cy="70" r="2.6"/><circle cx="158" cy="70" r="2.6"/><circle cx="176" cy="70" r="2.6"/><circle cx="194" cy="70" r="2.6"/><circle cx="212" cy="70" r="2.6"/><circle cx="230" cy="70" r="2.6"/><circle cx="248" cy="70" r="2.6"/><circle cx="266" cy="70" r="2.6"/><circle cx="284" cy="70" r="2.6"/>
-        <circle cx="50" cy="122" r="2.6"/><circle cx="68" cy="122" r="2.6"/><circle cx="86" cy="122" r="2.6"/><circle cx="104" cy="122" r="2.6"/><circle cx="122" cy="122" r="2.6"/><circle cx="140" cy="122" r="2.6"/><circle cx="158" cy="122" r="2.6"/><circle cx="176" cy="122" r="2.6"/><circle cx="194" cy="122" r="2.6"/><circle cx="212" cy="122" r="2.6"/><circle cx="230" cy="122" r="2.6"/><circle cx="248" cy="122" r="2.6"/><circle cx="266" cy="122" r="2.6"/><circle cx="284" cy="122" r="2.6"/>
+        <circle cx="50" cy="122" r="2.6"/><circle cx="68" cy="122" r="2.6"/><circle cx="86" cy="122" r="2.6"/><circle cx="104" cy="122" r="2.6"/><circle cx="122" cy="122" r="2.6"/><circle cx="140" cy="122" r="2.6"/><circle cx="158" cy="122" r="2.6"/><circle cx="176" cy="122" r="2.6"/><circle cx="194" cy="122" r="2.6"/><circle cx="212" cy="122" r="2.6"/><circle cx="230" cy="122" r="2.6"/><circle cx="248" cy="122" r="2.6"/><circle cx="266" cy="122" r="2.6"/>
       </g>
       <line x1="96" y1="62" x2="96" y2="130" stroke="#2a2c3a" stroke-width="2"/>
       <line x1="152" y1="62" x2="152" y2="130" stroke="#2a2c3a" stroke-width="2"/>
@@ -125,7 +125,7 @@ const questions = [
     </svg>
     <p class="quiz-hint">Chapda — maqsad bor, AI uni tezlashtiradi. O'ngda — faqat vosita, maqsad yo'q; tezlashtiradigan narsaning o'zi mavjud emas.</p>
 
-    <div style="background:color-mix(in srgb,#34d399 12%,transparent);border:1px solid #34d399;border-left:4px solid #34d399;border-radius:12px;padding:16px 18px;margin:2rem 0;">
+    <div style="background:color-mix(in srgb,#34d399 12%,transparent);border:1px solid #34d399;border-radius:12px;padding:16px 18px;margin:2rem 0;">
       <strong style="color:#34d399;">XULOSA:</strong>
       Avval maqsad va harakat bo'lsin, keyin AI/agentlarni shu maqsad yo'lida
       <b>vosita sifatida</b> ishlating. AI sizning o'rnipingizda ishlamaydi — u sizning
@@ -146,6 +146,89 @@ const questions = [
         <li>AI yordamida tezlashtirish 3: ________________________________</li>
       </ol>
     </div>
+  </section>
+
+  <section style="margin-top:3rem;">
+    <h2>8. O'z agent'ingizni o'rnating (MacBook'da)</h2>
+    <p>
+      Quyidagi agentlar va kutubxonalar bepul va ochiq manba. Ularni o'z
+      MacBook'ingizda sinab ko'rishingiz mumkin. Barchasi Python (.venv) orqali
+      o'rnatiladi — izolyatsiyalangan joyda, fon-xizmat sifatida emas.
+    </p>
+
+    <h3>Ollama — mahalliy (local) AI model</h3>
+    <p>
+      MacBook'da AI model'larni <b>internet kerak emas</b> holda ishlatish.
+      Model: <code>llama3.2</code> (kichik, tekin).
+    </p>
+    <pre style="background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:14px 16px;overflow:auto;"><code>ollama run llama3.2</code></pre>
+
+    <h3>OpenWebUI — mahalliy ChatGPT interfeysi</h3>
+    <p>
+      Brauzerda ChatGPT kabi UI, Ollama'ga ulanadi. Docker orqali o'rnatiladi,
+      manzil: <code>http://localhost:3000</code>. API key kerak emas, hamma mahalliy.
+    </p>
+    <pre style="background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:14px 16px;overflow:auto;"><code>docker run -d -p 3000:8080 -v ollama:/root/.ollama \
+  -v open-webui:/app/backend/data \
+  --name open-webui ghcr.io/open-webui/open-webui</code></pre>
+
+    <h3>CrewAI — ko'p-agent (jamoa) freymvorki</h3>
+    <p>
+      Bir nechta agent'ni jamoa qilib ishlatish (Role + Goal + Task). Murakkab
+      vazifalarni agentlar bo'lib bajaradi. <code>.venv-aiagents</code> ichiga o'rnatiladi.
+    </p>
+    <pre style="background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:14px 16px;overflow:auto;"><code>source ~/.venv-aiagents/bin/activate
+pip install crewai</code></pre>
+
+    <h3>MemGPT (Letta) — xotiraga ega agent</h3>
+    <p>
+      Uzoq muddatli xotiraga ega agent. Kontekstni eslab qoladi, vault bilan
+      bog'lash mumkin.
+    </p>
+    <pre style="background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:14px 16px;overflow:auto;"><code>pip install pymemgpt</code></pre>
+
+    <h3>AutoGPT — avtonom agent</h3>
+    <p>
+      O'zi maqsad qo'yib, reja tuzib bajaradigan agent. Vazifa berasiz, u o'zi bajaradi.
+    </p>
+    <pre style="background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:14px 16px;overflow:auto;"><code>pip install autogpt</code></pre>
+
+    <h3>LangGraph — agent'lar oqimini boshqarish</h3>
+    <p>
+      Ko'p bosqichli (multi-step) AI agent'larni <b>graf</b> shaklida yaratish
+      kutubxonasi (LangChain'dan). Har bir "node" bitta qadam, ular bir-biriga
+      ulanadi. Multi-agent tizimlar, murakkab workflow, va aniq nazorat uchun.
+    </p>
+    <pre style="background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:14px 16px;overflow:auto;"><code>source ~/.venv-aiagents/bin/activate
+pip install langgraph</code></pre>
+    <div style="background:color-mix(in srgb,#34d399 12%,transparent);border:1px solid #34d399;border-radius:12px;padding:14px 16px;margin:1rem 0;">
+      <strong style="color:#34d399;">Tekinmi?</strong> Ha — barchasi open-source (MIT
+      yoki类似). <code>pip install langgraph</code> bilan o'rnatiladi.
+    </div>
+  </section>
+
+  <section style="margin-top:3rem;">
+    <h2>9. AI Agentlar Ofisi</h2>
+    <p>
+      Alohida agentlarni birlashtirib, to'liq tizim qurish mumkin. Sinab ko'rilgan
+      kombinatsiya:
+    </p>
+    <ul style="display:flex;flex-direction:column;gap:10px;padding:0;list-style:none;">
+      <li style="border:1px solid var(--border);border-radius:12px;padding:12px 14px;background:var(--surface);"><b>CrewAI</b> (jamoa) — Planner, Researcher, Writer kabi rol'lardagi agent'lar.</li>
+      <li style="border:1px solid var(--border);border-radius:12px;padding:12px 14px;background:var(--surface);"><b>Letta</b> (xotira) — agent'ga uzoq muddatli xotira beradi.</li>
+      <li style="border:1px solid var(--border);border-radius:12px;padding:12px 14px;background:var(--surface);"><b>LangGraph</b> (oqim / marshut) — bot'dan kirgan buyruqni turli agent'larga yo'naltiradi; har bir natijani keyingi qadamga uzatadi, xatolik bo'lsa qayta urinish (retry).</li>
+    </ul>
+    <p>
+      Bu uchala birikmasi — <b>AI Agentlar Ofisi</b>: buyruq kelsa, LangGraph orqali
+      kerakli agent'ga yo'naltiriladi, natija yig'iladi va qaytariladi.
+    </p>
+    <p class="quiz-hint">
+      Qo'shimcha o'qish: agent orchestration'da uchta asosiy pattern — <b>Sequential</b>
+      (A→B→C), <b>Hierarchical / supervisor</b> (bitta boshqaruvchi mutaxassis agent'ga
+      topshiradi), <b>Parallel</b> (bir nechta agent bir vaqtda, natijalar keyin
+      birlashtiriladi). Bog'lovchi standart sifatida <b>MCP (Model Context Protocol)</b>
+      keng qabul qilingan.
+    </p>
   </section>
 
   <a href="/bog-lanish" class="start-btn" style="margin-top:2rem;" data-i18n="aa.buy">Kursni sotib olish →</a>

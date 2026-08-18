@@ -42,6 +42,174 @@ const questions = [
     </ol>
   </section>
 
+  <section>
+    <h2>1. Nima uchun Obsidian? (Tashqi xotira)</h2>
+    <p>
+      Miyamiz cheksiz emas — eslab qolish uchun cheklangan. Obsidian esa
+      <b>tashqi xotira</b>: fikrlaringizni, darslarni, manbalarni bir joyga
+      yozib, keyin tez topib oladigan shaxsiy bilim bazasi (PKM — Personal
+      Knowledge Management). Oddiy fayl (Markdown) sifatida saqlanadi — hech
+      qanday "qora quti" yo'q, istalgan muharrirda ochib o'qish mumkin.
+    </p>
+    <div style="background:var(--accent-soft);border:1px solid var(--accent);border-left:4px solid var(--accent);border-radius:12px;padding:14px 16px;margin:1rem 0;">
+      <b>ASOSIY G'OYA:</b> bilimni <b>saqlash</b> va <b>bog'lash</b> — shunchaki
+      yozib qo'yish emas, balki ular orasida aloqa (link) yaratish.
+    </div>
+  </section>
+
+  <section>
+    <h2>2. Markdown belgilari</h2>
+    <p>
+      Obsidian dagi har bir note — bu Markdown fayli. Sarlavhalar rishotka
+      (<code>#</code>) soni bilan darajalanadi:
+    </p>
+    <pre style="background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:14px 16px;overflow:auto;"><code># Katta sarlavha (bitta rishotka bilan boshlanadi)
+## O'rtacha sarlavha (ikkita rishotka)
+### Kichik sarlavha (uchta rishotka)</code></pre>
+    <p class="quiz-hint">
+      Boshqa foydali belgilar: <code>**qalin**</code>, <code>*yotiq*</code>,
+      <code>- ro'yxat</code>, <code>1. raqamli ro'yxat</code>, <code>&gt; [!tip] eslatma</code>
+      (callout — quyida).
+    </p>
+  </section>
+
+  <section>
+    <h2>3. YouTube embed kodi</h2>
+    <p>
+      <b>YouTube embed kodi</b> — videoni Obsidian ichida to'g'ridan-to'g'ri
+      ko'rinadigan qilib qo'yish uchun ishlatiladigan maxsus kod
+      (<code>&lt;iframe&gt;</code> qatori). "Embed" so'zi inglizcha "ichiga
+      joylashtirish, singdirish" degan ma'noni beradi.
+    </p>
+    <ul>
+      <li><b>Oddiy link</b> — bosilganda brauzerga (YouTube saytiga) olib chiqadi.</li>
+      <li><b>Embed kodi</b> — video Obsidian sahifasining o'zida, hech qayerga chiqmasdan ko'rinadi va o'sha yerda tomosha qilinadi.</li>
+    </ul>
+    <h3>Embed kodi qanday olinadi?</h3>
+    <div style="border-left:3px solid var(--accent);padding:10px 14px;margin:8px 0;background:var(--surface);border-radius:8px;">1. YouTube'da videoni oching.</div>
+    <div style="border-left:3px solid var(--accent);padding:10px 14px;margin:8px 0;background:var(--surface);border-radius:8px;">2. Video ostidagi <b>"Share"</b> (Ulashish) tugmasini bosing.</div>
+    <div style="border-left:3px solid var(--accent);padding:10px 14px;margin:8px 0;background:var(--surface);border-radius:8px;">3. <b>"Embed"</b> bo'limini tanlang.</div>
+    <div style="border-left:3px solid var(--accent);padding:10px 14px;margin:8px 0;background:var(--surface);border-radius:8px;">4. Chiqqan kodni nusxalab oling.</div>
+    <p class="quiz-hint">
+      <b>VIDEO_ID</b> — bu video manzilidagi <code>watch?v=</code> dan keyingi qism.
+      Masalan: <code>youtube.com/watch?v=dQw4w9WgXcQ</code> bo'lsa, ID = <code>dQw4w9WgXcQ</code>.
+      Reading mode'ga o'ting (yuqori o'ngdagi kitob belgisi) — video shu yerda ko'rinadi.
+    </p>
+  </section>
+
+  <section>
+    <h2>4. Tezkor tugmalar (shortcuts)</h2>
+    <p>Mac'da <code>Cmd</code>, Windows/Linux'da <code>Ctrl</code> ishlatiladi.</p>
+    <h3>Navigatsiya</h3>
+    <ul>
+      <li><code>Cmd + O</code> — tezkor ochuvchi (nota nomini yozib ochish)</li>
+      <li><code>Cmd + P</code> — buyruq paletasi</li>
+      <li><code>Cmd + Alt + ← / →</code> — orqaga / oldinga</li>
+      <li><code>Cmd + Shift + F</code> — barcha fayllarda qidirish</li>
+      <li><code>Cmd + N / T / W</code> — yangi nota / yangi tab / yopish</li>
+    </ul>
+    <h3>Formatlash</h3>
+    <ul>
+      <li><code>Cmd + B / I</code> — qalin / yotiq</li>
+      <li><code>Cmd + E</code> — edit ↔ preview</li>
+      <li><code>Cmd + Shift + K</code> — ichki havola (<code>[[</code>) qo'shish</li>
+      <li><code>Cmd + 1…6</code> — sarlavha darajasi (H1–H6), <code>0</code> — paragraf</li>
+      <li><code>Cmd + [ / ]</code> — ro'yxat indent / outdent</li>
+    </ul>
+    <h3>Ko'rinish</h3>
+    <ul>
+      <li><code>Cmd + \</code> — editor'ni ikkiga bo'lish</li>
+      <li><code>Cmd + .</code> — fokus rejimi</li>
+    </ul>
+    <p class="quiz-hint">
+      Eng foydalilari: <code>Cmd + O</code> (sichqonchasiz nota topish),
+      <code>Cmd + Shift + K</code> (tez ichki havola), <code>Cmd + E</code> (yozish/ko'rish o'rtasida).
+    </p>
+  </section>
+
+  <section>
+    <h2>5. Callout — chiroyli eslatma qutilari</h2>
+    <p>
+      Obsidian'da rangli "eslatma quti" yaratish uchun <b>Callout</b> sintaksisi
+      ishlatiladi. Bu built-in funksiya, plagin kerak emas.
+    </p>
+    <div style="background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:14px 16px;margin:1rem 0;">
+      <p><b>Formula:</b></p>
+      <pre style="margin:0;"><code>&gt; [!turi] Sarlavha
+&gt; Matn shu yerda</code></pre>
+    </div>
+    <h3>Misollar</h3>
+    <ul>
+      <li><code>&gt; [!tip]</code> — muhim qoida yoki maslahat uchun</li>
+      <li><code>&gt; [!note]</code> — oddiy eslatma</li>
+      <li><code>&gt; [!warning]</code> — ogohlantirish</li>
+      <li><code>&gt; [!success]</code> — tugagan / tasdiqlangan narsa</li>
+      <li><code>&gt; [!question]</code> — hali javobi topilmagan</li>
+    </ul>
+    <div style="background:color-mix(in srgb,#ef4444 10%,transparent);border:1px solid #ef4444;border-radius:12px;padding:14px 16px;margin:1rem 0;">
+      <strong style="color:#ef4444;">ENG MUHIM QOIDA:</strong> callout ichidagi
+      <b>har bir qator</b> oldida <code>&gt;</code> bo'lishi shart — hatto bo'sh qator bo'lsa ham.
+      <code>&gt;</code> tugagan zahoti, matn callout tashqarisiga chiqib ketadi.
+    </div>
+    <ul>
+      <li>❌ <code>[! note]</code> — undov belgisi va so'z orasida bo'shliq bo'lmasligi kerak</li>
+      <li>✅ <code>[!note]</code> — bo'shliqsiz yozish shart</li>
+      <li>❌ <code>&gt; &gt;[[1.]]</code> — ikkita <code>&gt;</code> yozilsa, bu nested callout yasaydi</li>
+      <li>✅ <code>&gt; [[1.]]</code> — faqat bitta <code>&gt;</code></li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>6. Men Obsidianda nima qildim — foydali plugin'lar</h2>
+    <p>Quyidagi plaginlar haqiqatan o'rnatilib, ishlatilgan (tajribaga asoslangan):</p>
+    <ul style="display:flex;flex-direction:column;gap:10px;padding:0;list-style:none;">
+      <li style="border:1px solid var(--border);border-radius:12px;padding:12px 14px;background:var(--surface);"><b>MOC (Map of Content)</b> — "All in One" hub note'lar. Har bir papka ichida markaziy note yaratib, qolgan notalarga wikilink (<code>[[ ]]</code>) ko'prik qo'yish; butun bo'limni bitta sahifada umumlashtiradi.</li>
+      <li style="border:1px solid var(--border);border-radius:12px;padding:12px 14px;background:var(--surface);"><b>Numeric Order</b> — papkalarga <code>01.</code>, <code>02.</code>, <code>03.</code> prefiks berib, mavzularni xronologik va ahamiyat darajasi bo'yicha tartiblash.</li>
+      <li style="border:1px solid var(--border);border-radius:12px;padding:12px 14px;background:var(--surface);"><b>Templater</b> — kunlik notelarni avtomatlashtirish. Bir tugma bilan sana avtomatik yoziladigan tayyor shablon yaratadi (vaqt tejaydi, format bir xil qoladi).</li>
+      <li style="border:1px solid var(--border);border-radius:12px;padding:12px 14px;background:var(--surface);"><b>Dataview</b> — avtomatik ro'yxat va statistika. <code>LIST</code> / <code>TABLE</code> / <code>TASK</code> so'rovlari bilan "nechta vocabulary note bor" kabi savollarga qo'lda sanamasdan javob olasiz. Yangi note qo'shilsa, ro'yxat o'zi yangilanadi.</li>
+      <li style="border:1px solid var(--border);border-radius:12px;padding:12px 14px;background:var(--surface);"><b>Spaced Repetition</b> — vocabulary uchun oraliqli takrorlash (Anki'dagi SM-2 kabi). Flashcard tegi <code>#flashcards</code>, qoida <code>so'z::tarjima</code> yoki ikki tomonlama <code>so'z ::: tarjima</code>.</li>
+      <li style="border:1px solid var(--border);border-radius:12px;padding:12px 14px;background:var(--surface);"><b>Notebook Navigator</b> — kunlik notalarga tez kirish. Chap panelda "Bugun / Kecha" deb guruhlanadi; <code>Cmd+P → Daily notes: Open today's daily note</code>.</li>
+      <li style="border:1px solid var(--border);border-radius:12px;padding:12px 14px;background:var(--surface);"><b>Neighbouring Files</b> — bitta papka ichidagi notalar orasida ketma-ket o'tish: <code>Cmd + &gt;</code> (keyingi), <code>Option + &lt;</code> (oldingi).</li>
+      <li style="border:1px solid var(--border);border-radius:12px;padding:12px 14px;background:var(--surface);"><b>Excalidraw</b> — qo'lda chizma va diagramma (masalan, qurilish sxemasi, tushuncha diagrammasi).</li>
+      <li style="border:1px solid var(--border);border-radius:12px;padding:12px 14px;background:var(--surface);"><b>Obsidian Git</b> — GitHub'dagi <b>private</b> repo'ga avtomatik backup. Commit xabarlari "vault backup:" formatida; katta ishdan keyin qo'lda tekshirish tavsiya etiladi.</li>
+      <li style="border:1px solid var(--border);border-radius:12px;padding:12px 14px;background:var(--surface);"><b>Gemini / Note Pilot (Groq)</b> — Obsidian ichidan AI. Note Pilot bir nechta provayderni (Groq, OpenAI, Anthropic, OpenRouter, Gemini, Ollama) bitta oynadan ulaydi; AI taklif qilgan o'zgarishni avtomatik qo'llamaydi — tasdiqlangandan keyin.</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>7. Xavfsizlik — nima qilish mumkin / mumkin emas</h2>
+    <h3>✅ Mumkin (xavfsiz)</h3>
+    <ul>
+      <li><b>Restricted Mode</b>'ni yoqib saqlash — uchinchi tomon kodining bajarilishini oldini oladi (faqat ishonchli plagin uchun vaqtincha o'chirish).</li>
+      <li>Faqat <b>rasmiy Community Plugins katalogi</b> orqali plagin o'rnatish (har bir versiya xavfsizlik skaneridan o'tadi, "safety scorecard" ko'rsatiladi).</li>
+      <li>Plagin o'rnatishdan oldin uning <b>GitHub repozitoriyasini</b> tekshirish: oxirgi yangilanish, yulduzlar, ochiq issue'lar.</li>
+      <li><b>Core (rasmiy)</b> plaginlardan foydalanish — eng ishonchli.</li>
+      <li>Vault'ni mahalliy diskda saqlash + macOS'da <b>FileVault</b> shifrlash.</li>
+      <li>Muntazam <b>backup</b>: rasmiy Obsidian Sync (end-to-end shifrlangan) yoki shaxsiy (private) git repo.</li>
+    </ul>
+    <h3>🚫 Mumkin emas (qat'iy taqiqlangan)</h3>
+    <ul>
+      <li>Parollar, API kalitlar, seed phrase, bank/karta ma'lumotlarini <b>shifrlanmagan oddiy note</b> sifatida yozish.</li>
+      <li><b>Google akkaunt parolini</b> Obsidian'ga yozish — Markdown fayllar default holda oddiy matn.</li>
+      <li>Rasmiy katalogdan <b>tashqarida</b> joylashgan manbadan plagin o'rnatish. Community plaginlar Obsidian'ning to'liq huquqlarini meros qilib oladi — kompyuterdagi istalgan faylga kirishi, internetga ulanishi mumkin.</li>
+      <li><b>Restricted Mode</b>'ni ishonchsiz plagin uchun o'chirish.</li>
+      <li>2026-yil mayida aynan "Installed community plugins" sinxronizatsiyasi orqali (Shell Commands plagini bilan) <b>PHANTOMPULSE</b> nomli zararli dastur tarqatilgan — bu real, tasdiqlangan xavf.</li>
+    </ul>
+    <h3>⚠️ Tavsiya etilmaydi (ehtiyot bo'lish)</h3>
+    <ul>
+      <li><b>"Plugin hoarding"</b> — har bir qiziqarli plaginni o'rnatib qo'yish; har bir o'rnatilgan pligin xavfsizlik yuzasini kengaytiradi.</li>
+      <li>Vault'ni <b>public GitHub repo</b> sifatida saqlash (shaxsiy yozuvlar bo'lsa).</li>
+      <li>Dropbox/Google Drive'da bir nechta qurilmada <b>bir vaqtda tahrirlash</b> — fayl konflikti.</li>
+      <li>Backup/sinxronizatsiyasiz uzoq muddat ishlash.</li>
+      <li>Parollar uchun Obsidian shifrlash plaginlaridan (masalan Meld Encrypt) foydalanish — ular uchun maxsus parol menejeri (Bitwarden, Keychain) yaxshiroq.</li>
+    </ul>
+    <div style="background:color-mix(in srgb,#34d399 12%,transparent);border:1px solid #34d399;border-radius:12px;padding:14px 16px;margin:1rem 0;">
+      <strong style="color:#34d399;">Maslahat:</strong> parollar uchun doimo maxsus
+      parol menejeri (Bitwarden — bepul/ochiq manba, yoki macOS Keychain) ishlating.
+      Obsidian — bilim bazasi, parol seyfi emas.
+    </div>
+  </section>
+
   <a href="/bog-lanish" class="start-btn" style="margin-top:2rem;" data-i18n="op.buy">Kursni sotib olish →</a>
   <a href="/kurslar" class="enroll" style="margin-left:1rem;" data-i18n="op.all">← Barcha kurslar</a>
 

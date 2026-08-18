@@ -38,9 +38,12 @@ const questions = [
     <ol class="modules">
       <li data-i18n="mt.mod1">Raycast asoslari — nima, Spotlight'dan farqi, o'rnatish va sozlash</li>
       <li data-i18n="mt.mod2">Foydali Raycast extension'lari — vaqtdan tejaydiganlar ro'yxati</li>
-      <li data-i18n="mt.mod3">Shaxsiy workflow misollari — ilovalarni ochish, fayl qidirish, shablonlar</li>
+      <li data-i18n="mt.mod3">Shaxsiy workflow misollari — ilovalni ochish, fayl qidirish, shablonlar</li>
       <li data-i18n="mt.mod4">Boshqa Mac tezlik vositalari — shortcut'lar, Spotlight, Automator/Shortcuts</li>
       <li data-i18n="mt.mod5">Natija: nima uchun bu muhim — real vaqt tejash misoli</li>
+      <li>Tavsiya etilgan Raycast extension'lari (audit asosida)</li>
+      <li>8GB RAM / M2 Pro uchun eslatma</li>
+      <li>Telegram Bot — Macbook Assistant ko'prigi</li>
     </ol>
   </section>
 
@@ -48,7 +51,7 @@ const questions = [
     <h2>1. Raycast asoslari</h2>
     <p>
       <b>Raycast</b> — macOS uchun "launcher" (ishga tushiruvchi). Bitta tugma bilan
-      ilovalarni ochish, fayllarni topish, hisoblash, matn konvertatsiya qilish va
+      ilovalni ochish, fayllarni topish, hisoblash, matn konvertatsiya qilish va
       boshqa ko'plab narsalarni bajarish mumkin.
     </p>
     <p>
@@ -72,7 +75,7 @@ const questions = [
     <h2>2. Foydali Raycast extension'lari</h2>
     <p>Eng ko'p vaqt tejaydigan extension'lar (barchasi bepul asosida mavjud):</p>
     <ul>
-      <li><b>Clipboard History</b> — oldingi nusxalagan matnlaringizni saqlaydi; kerakli paytda qayta joylashtirasiz (Ctrl/Cmd bilan aylanish).</li>
+      <li><b>Clipboard History</b> — oldingi nusxalangan matnlaringizni saqlaydi; kerakli paytda qayta joylashtirasiz (Ctrl/Cmd bilan aylanish).</li>
       <li><b>Window Management</b> — oynani yarim ekranga, chorak ekranga joylashtirish (mishka bilan sudrab emas, bitta tugma bilan).</li>
       <li><b>Snippets</b> — tez-tez yozadigan matn shablonlari (manzil, standart email javobi). Kalit so'z yozib darhol joylashtirasiz.</li>
       <li><b>Calculator</b> — qidiruv oynasiga son yozing, natija paydo bo'ladi (aloqador ilova ochish shart emas).</li>
@@ -109,7 +112,7 @@ const questions = [
     <p>Raycast'dan tashqari, Mac'da tayyor mavjud vositalar:</p>
     <ul>
       <li><b>Klaviatura shortcut'lari:</b> <code>Cmd + C / V</code> (nusxa/joylash), <code>Cmd + Tab</code> (ilovelar orasida o'tish), <code>Cmd + W</code> (oynani yopish), <code>Cmd + \`</code> (bitta ilovaning oynalari orasida).</li>
-      <li><b>Spotlight:</b> <code>Cmd + Space</code> (agar Raycast o'rnatilmagan bo'lsa) — fayl va ilovalarni tez topish.</li>
+      <li><b>Spotlight:</b> <code>Cmd + Space</code> (agar Raycast o'rnatilmagan bo'lsa) — fayl va ilovalni tez topish.</li>
       <li><b>Automator / Shortcuts:</b> qayta-qayta qiladigan vazifalarni avtomatlashtirish (masalan, faylni boshqa formatga o'tkazish, papkaga saralash).</li>
     </ul>
     <p class="quiz-hint">
@@ -134,6 +137,111 @@ const questions = [
       Bu — faqat ilova ochish. Clipboard tarixi, snippet'lar va oyna boshqaruvi qo'shilsa,
       tejalgan vaqt bir necha barobar ortadi. <b>Tezlik — vaqt, vaqt esa eng qimmat resurs.</b>
     </p>
+  </section>
+
+  <section style="margin-top:3rem;">
+    <h2>6. Tavsiya etilgan Raycast extension'lari (audit asosida)</h2>
+    <p>
+      71 ta o'rnatilgan extension tekshirilib, vault mavzulariga (IELTS, Obsidian,
+      AutoCAD, universitet) eng mos keladiganlari ajratildi. Eng foydalilari:
+    </p>
+    <div style="overflow:auto;border:1px solid var(--border);border-radius:12px;margin:1rem 0;">
+      <table style="width:100%;border-collapse:collapse;font-size:0.92rem;">
+        <thead>
+          <tr style="background:var(--surface);">
+            <th style="text-align:left;padding:10px 12px;border-bottom:1px solid var(--border);">Extension</th>
+            <th style="text-align:left;padding:10px 12px;border-bottom:1px solid var(--border);">Nima uchun foydali</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td style="padding:10px 12px;border-bottom:1px solid var(--border);"><b>Obsidian</b></td><td style="padding:10px 12px;border-bottom:1px solid var(--border);">Vault bilan ishlash — nota qidirish, yangi note, daily note, vault ochish (ENG MUHIM)</td></tr>
+          <tr><td style="padding:10px 12px;border-bottom:1px solid var(--border);"><b>GitHub</b></td><td style="padding:10px 12px;border-bottom:1px solid var(--border);">Issue / PR / repo qidirish, notification'lar</td></tr>
+          <tr><td style="padding:10px 12px;border-bottom:1px solid var(--border);"><b>Google Translate</b></td><td style="padding:10px 12px;border-bottom:1px solid var(--border);">So'z / jumlalarni bir zumda tarjima qilish (IELTS uchun asosiy)</td></tr>
+          <tr><td style="padding:10px 12px;border-bottom:1px solid var(--border);"><b>Visual Studio Code</b></td><td style="padding:10px 12px;border-bottom:1px solid var(--border);">CAD skriptlari va LaTeX/hesob fayllarini ochish</td></tr>
+          <tr><td style="padding:10px 12px;border-bottom:1px solid var(--border);"><b>ChatGPT</b> ⚠️</td><td style="padding:10px 12px;border-bottom:1px solid var(--border);">Savol berish, matnni qayta ishlash — OpenAI API kaliti talab qiladi</td></tr>
+          <tr><td style="padding:10px 12px;border-bottom:1px solid var(--border);"><b>Notion</b></td><td style="padding:10px 12px;border-bottom:1px solid var(--border);">Zahira sahifalarni tez qidirish / yaratish</td></tr>
+          <tr><td style="padding:10px 12px;border-bottom:1px solid var(--border);"><b>Linear</b></td><td style="padding:10px 12px;border-bottom:1px solid var(--border);">Vazifa / issue kuzatuvi (admissions bosqichlari)</td></tr>
+          <tr><td style="padding:10px 12px;border-bottom:1px solid var(--border);"><b>Spotify Player</b></td><td style="padding:10px 12px;border-bottom:1px solid var(--border);">O'qish vaqtida musiqa boshqaruvi</td></tr>
+          <tr><td style="padding:10px 12px;border-bottom:1px solid var(--border);"><b>Color Picker</b></td><td style="padding:10px 12px;border-bottom:1px solid var(--border);">Ekrandagi ranglarni olish (AutoCAD/BIM uchun)</td></tr>
+          <tr><td style="padding:10px 12px;border-bottom:1px solid var(--border);"><b>Kill Process</b></td><td style="padding:10px 12px;border-bottom:1px solid var(--border);">AutoCAD "osilib" qolganda jarayonni tez to'xtatish</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div style="background:color-mix(in srgb,#ef4444 10%,transparent);border:1px solid #ef4444;border-radius:12px;padding:14px 16px;margin:1rem 0;">
+      <strong style="color:#ef4444;">Parol uchun:</strong> 1Password kabi 3-partiya parol
+      menejeri tavsiya etilmaydi — parollar uchun faqat <b>Apple Passwords</b> ishlatiladi.
+    </div>
+
+    <h3>Raycast'ning o'zidagi bepul core feature'lar (eng katta yengillik)</h3>
+    <p>
+      Bular qo'shimcha extension xotirasini olmaydi, ilovalar bilan dublikat emas:
+    </p>
+    <ul>
+      <li><b>Snippets</b> — IELTS shablon jumlalari / prompt template'larini saqlash.</li>
+      <li><b>Clipboard History</b> — tarjima qilingan vocab'ni pin qilish.</li>
+      <li><b>Quicklinks</b> — vault MOC'lariga va universitet portaliga bir zumda havola.</li>
+      <li><b>Window Management</b> — "AutoCAD + Obsidian" yonma-yon hotkey.</li>
+      <li><b>Calculator</b> — calculus / GPA hisoblash (kalkulyator ilovasiz).</li>
+      <li><b>Calendar</b> — ariza muddatlari (deadline) eslatmasi.</li>
+    </ul>
+  </section>
+
+  <section style="margin-top:3rem;">
+    <h2>7. 8GB RAM / M2 Pro uchun eslatma</h2>
+    <div style="background:var(--accent-soft);border:1px solid var(--accent);border-left:4px solid var(--accent);border-radius:12px;padding:14px 16px;margin:1rem 0;">
+      <b>Cheklov:</b> MacBook M2 Pro, 8GB RAM / 256GB SSD — faqat yengil, fonda
+      og'ir ishlamaydigan extension'lar. Resurs cheklangan, shuning uchun ortiqcha
+      yuklamaslik kerak.
+    </div>
+    <ul>
+      <li>Allaqachon bor (takrorlanmaydi): Macs Fan Control, Stats, Cursor, Google Antigravity, Claude, Gemini, Apple Passwords, Obsidian.</li>
+      <li>AI/kod uchun 6+ ilova bor → yangi AI extension tavsiya qilinmaydi.</li>
+      <li>Monitoring uchun Stats bor → yangi monitoring extension tavsiya qilinmaydi.</li>
+      <li>Eng muhim yangi, yengil extension'lar: <b>Obsidian</b> (fonda daemon yo'q, faqat chaqirilganda ishlaydi) va <b>Can I Use</b> (statik veb-texnologiya ma'lumotnomasi).</li>
+      <li>Parol uchun faqat <b>Apple Passwords</b> → hech qanday 3-partiya parol menejeri (1Password ham) tavsiya qilinmaydi.</li>
+    </ul>
+  </section>
+
+  <section style="margin-top:3rem;">
+    <h2>8. Telegram Bot — Macbook Assistant ko'prigi</h2>
+    <p>
+      Telefondan yoki Telegram web'dan shaxsiy <b>assistant'ingizga</b> to'g'ridan-to'g'ri
+      buyruq berish, xabar / rasm / PDF / ovoz yuborish va hammasini avtomatik ravishda
+      <b>Obsidian'ga saqlash</b> imkonini beruvchi "remote control" ko'prik. Bu — kursning
+      eng amaliy tezlik vositasi: kompyuteringiz yonida bo'lmasangiz ham, buyruq berib,
+      natijani qaytarib olasiz.
+    </p>
+    <h3>Arxitektura</h3>
+    <ul>
+      <li><b>Siz</b> → Telegram → <b>bot</b> → <b>ngrok tunnel</b> → webhook server (localhost:8080) → <b>Groq</b> (Llama 3.3 70B) → javob qaytadi.</li>
+      <li>Webhook server — aiohttp asosida, so'nggi 8 xabar tarixini eslab qoladi.</li>
+      <li>Saqlash joyi — Obsidian vault'ingizdagi <code>00.Inbox/</code> papkasi (rasmlar va fayllar <code>.attachments/</code> ga, qabul qilingan ma'lumotlar <code>*.md</code> ga).</li>
+    </ul>
+    <p class="quiz-hint">
+      Bot — bu faqat "trubka" (pipe); haqiqiy "miya" alohida ishlaydi. Shuning uchun
+      real-time javob uchun assistant ochiq bo'lishi kerak. Telegram Bot API'ning o'zida
+      LLM yo'q.
+    </p>
+    <h3>Foydali CLI buyruqlari</h3>
+    <pre style="background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:14px 16px;overflow:auto;"><code># Holat ko'rish
+python3 .telegram/telegram_bot.py status
+
+# Yangi xabarlarni ko'rish (offset saqlamasdan)
+python3 .telegram/telegram_bot.py peek
+
+# Fonda tinglash (real-time polling)
+python3 .telegram/telegram_bot.py daemon
+
+# Bitta xabar yuborish (o'z chat_id'ingizga)
+python3 .telegram/telegram_bot.py send &lt;chat_id&gt; "&lt;matn&gt;"
+
+# Bitta media yuklash
+python3 .telegram/telegram_bot.py attach &lt;update_id&gt;</code></pre>
+    <div style="background:color-mix(in srgb,#34d399 12%,transparent);border:1px solid #34d399;border-radius:12px;padding:14px 16px;margin:1rem 0;">
+      <strong style="color:#34d399;">Natija:</strong> telefondan yozganingiz — darhol
+      Macbook'dagi assistant'ga boradi va Obsidian'ga saqlanadi. Sayt linkini ham
+      shu bot orqali o'zingizga yuborish mumkin.
+    </div>
   </section>
 
   <a href="/bog-lanish" class="start-btn" style="margin-top:2rem;" data-i18n="mt.buy">Kursni boshlash →</a>
