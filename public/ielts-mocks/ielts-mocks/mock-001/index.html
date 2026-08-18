@@ -1,0 +1,1337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CDI Full Mock 001 — O‘rganamiz</title>
+<style>
+:root {
+  --bg:#ffffff;--bg2:#f8f9fa;--bg3:#f1f2ec;
+  --text:#1a1a1a;--muted:#555;--light:#888;
+  --border:#e0e0e0;--bm:#ccc;
+  --hbg:#ffffff;--pbg:#ffffff;--nbg:#ffffff;
+  --ibg:#ffffff;--ebg:#f9f9f9;--mbg:#ffffff;
+  --tc:#333;--rbg:#f0f0f0;--active:#4a90e2;
+  --cbg:#e9f7ef;--xbg:#f8d7da;
+  --cb:#28a745;--xb:#dc3545;
+  --sqbg:#fff;--sqbd:#ccc;--sqtx:#333;
+  --fbbg:#f0f0f0;--fbbd:#ccc;--pt:#2c3e50;
+  --tbg:#1a1a2e;--tsh:0 4px 20px rgba(0,0,0,.25);
+}
+body.night-mode {
+  --bg:#121212;--bg2:#1e1e1e;--bg3:#252525;
+  --text:#e0e0e0;--muted:#aaa;--light:#777;
+  --border:#333;--bm:#444;
+  --hbg:#1a1a1a;--pbg:#1a1a1a;--nbg:#1a1a1a;
+  --ibg:#252525;--ebg:#252525;--mbg:#1e1e1e;
+  --tc:#e0e0e0;--rbg:#2a2a2a;--active:#64b5f6;
+  --cbg:#1a3a2a;--xbg:#3a1a1a;
+  --cb:#4caf50;--xb:#f44336;
+  --sqbg:#252525;--sqbd:#444;--sqtx:#ccc;
+  --fbbg:#2a2a2a;--fbbd:#444;--pt:#90caf9;
+  --tbg:#0d0d1a;--tsh:0 4px 20px rgba(0,0,0,.6);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:Arial,sans-serif;background:var(--bg);color:var(--text);line-height:1.4;font-size:16px;transition:background .3s,color .3s}
+
+.header{background:var(--hbg);padding:8px 14px;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;position:fixed;top:0;left:0;right:0;z-index:200;height:56px;gap:8px}
+.header-left{display:flex;align-items:center;gap:10px;flex-shrink:0;flex-wrap:wrap}
+.timer-box{display:flex;align-items:center;gap:6px;color:var(--tc);font-size:15px;font-weight:700}
+.timer-display{min-width:54px;font-variant-numeric:tabular-nums}
+.timer-display.warn{color:#dc3545}
+.tbtn{background:var(--fbbg);border:1px solid var(--bm);border-radius:50%;width:28px;height:28px;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:background .2s}
+.tbtn:hover{background:var(--border)}
+.tbtn svg{width:16px;height:16px;fill:var(--tc)}
+.mode-sw{display:flex;background:var(--bg3);border:1px solid var(--border);border-radius:6px;overflow:hidden}
+.mbtn{padding:5px 13px;font-size:13px;font-weight:700;cursor:pointer;border:none;background:transparent;color:var(--muted);transition:all .2s}
+.mbtn.active{background:var(--active);color:#fff}
+.mbtn:hover:not(.active){background:var(--border)}
+.zoom-box{display:flex;align-items:center;gap:3px}
+.zb{background:var(--fbbg);border:1px solid var(--bm);border-radius:4px;width:26px;height:26px;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:17px;font-weight:700;color:var(--text);line-height:1;transition:background .2s}
+.zb:hover{background:var(--border)}
+.zlbl{font-size:11px;font-weight:600;color:var(--muted);min-width:34px;text-align:center}
+.hbtn{background:var(--fbbg);border:1px solid var(--bm);border-radius:20px;padding:4px 10px;cursor:pointer;font-size:12px;font-weight:600;color:var(--text);display:flex;align-items:center;gap:5px;transition:all .2s;white-space:nowrap}
+.hbtn:hover{background:var(--border)}
+.tglink{background:linear-gradient(135deg,#00c6ff,#0072ff);color:#fff!important;padding:6px 14px;border-radius:20px;font-size:13px;font-weight:700;text-decoration:none;box-shadow:0 3px 10px rgba(0,114,255,.3);transition:all .25s;white-space:nowrap;flex-shrink:0}
+.tglink:hover{transform:translateY(-1px);box-shadow:0 5px 14px rgba(0,114,255,.5)}
+
+.main{margin-top:56px;height:calc(100vh - 56px);display:flex;flex-direction:column}
+.panels{display:flex;flex:1;overflow:hidden;position:relative}
+.left-panel{flex:1;padding:20px 20px 110px;overflow-y:auto;min-width:180px;background:var(--pbg);transition:background .3s}
+.right-panel{flex:1;padding:20px 20px 110px;overflow-y:auto;min-width:180px;border-left:1px solid var(--border);background:var(--pbg);transition:background .3s,border-color .3s}
+.resizer{width:10px;cursor:col-resize;background:var(--rbg);background-image:url('data:image/svg+xml;charset=UTF-8,<svg xmlns="http://www.w3.org/2000/svg" width="10" height="30" viewBox="0 0 10 30"><path d="M4 11h2v2H4zM4 15h2v2H4zM4 19h2v2H4z" fill="%23888"/></svg>');background-repeat:no-repeat;background-position:center;flex-shrink:0}
+
+.part-hdr{background:var(--bg3);padding:10px 14px;border:1px solid var(--border);border-radius:5px;margin-bottom:18px}
+.part-hdr p{margin:0;font-size:14px;color:var(--text)}
+.part-hdr p:first-child{font-weight:700;margin-bottom:3px}
+
+.passage h4{font-size:19px;font-weight:700;color:var(--pt);text-align:center;border-bottom:2px solid var(--active);padding-bottom:6px;margin-bottom:16px}
+.passage p{margin-bottom:.9em;color:var(--text);line-height:1.75;font-size:15px}
+.passage p strong.pl{margin-right:6px;color:var(--active)}
+.passage .sub{text-align:center;font-style:italic;color:var(--muted);margin-bottom:16px;font-size:14px}
+
+.ai{border:1px solid var(--bm);border-radius:4px;background:var(--ibg);color:var(--text);padding:2px 6px;font-size:15px;text-align:center;height:28px;width:150px;transition:border .3s,box-shadow .3s,background .3s;outline:none}
+.ai.focused{border-color:var(--active);box-shadow:0 0 3px 1px rgba(74,144,226,.4)}
+.ai::placeholder{color:#999;font-style:italic}
+.ai.ok{border-color:var(--cb)!important;background:var(--cbg)!important;color:#1b5e20}
+.ai.no{border-color:var(--xb)!important;background:var(--xbg)!important;color:#b71c1c}
+select.ai option{background:var(--ibg);color:var(--text)}
+.ai.w{width:190px}.ai.n{width:85px}
+
+.qset{margin-bottom:32px}
+.qset.hidden{display:none!important}
+.qlbl{margin-bottom:12px;font-size:15px;color:var(--text)}
+.instr-block{margin-bottom:16px}
+.instr-block p{font-size:15px;color:var(--text);margin-bottom:4px}
+.optlist{list-style:none;padding:0;margin:6px 0 0;border:1px solid var(--border);border-radius:4px;overflow:hidden}
+.optlist li{padding:5px 12px;font-size:14px;color:var(--text);border-bottom:1px solid var(--border)}
+.optlist li:last-child{border:none}
+.optlist li strong{margin-right:5px;color:var(--active)}
+.sec-hr{border:none;border-top:1px solid var(--border);margin:14px 0}
+
+.nb{background:var(--bg3);border:1px solid var(--border);border-radius:5px;padding:12px 14px;margin-top:6px}
+.nsl{font-weight:700;font-size:14px;color:var(--pt);border-bottom:2px solid var(--active);padding-bottom:4px;margin-bottom:8px}
+.nl{display:flex;align-items:flex-start;gap:6px;margin-bottom:8px;font-size:15px;line-height:1.8;flex-wrap:wrap}
+.nbull{color:var(--active);font-weight:bold;flex-shrink:0;margin-top:3px}
+.qb{display:inline-block;background:var(--active);color:#fff;border-radius:3px;font-size:11px;font-weight:700;padding:1px 5px;margin:0 2px;vertical-align:middle}
+
+.mcq{margin-bottom:16px;padding:8px;border-radius:4px;border:3px solid transparent;transition:border .3s,background .3s}
+.mcq.okq{border-color:var(--cb);background:var(--cbg)}
+.mcq.noq{border-color:var(--xb)}
+.mco{margin-bottom:4px;padding:5px 7px;border-radius:4px;transition:background .15s}
+.mco label{display:flex;align-items:flex-start;cursor:pointer;font-size:15px;gap:8px}
+.mco input[type=radio]{margin-top:3px;transform:scale(1.2);accent-color:var(--active);flex-shrink:0}
+.mco.ok{background:var(--cbg)!important}
+.mco.no{background:var(--xbg)!important}
+.mco.best{background:var(--cbg)!important;outline:2px solid var(--cb);border-radius:4px}
+
+.mfc{margin-top:8px}
+.mfr{display:flex;align-items:center;margin-bottom:8px;gap:10px}
+.mfl{flex:1;color:var(--text);font-size:15px;line-height:1.4}
+.mfr.ok{background:var(--cbg);border-left:3px solid var(--cb);padding-left:8px;border-radius:0 4px 4px 0}
+.mfr.no{background:var(--xbg);border-left:3px solid var(--xb);padding-left:8px;border-radius:0 4px 4px 0}
+
+.tf{margin-bottom:18px}
+.tfl{display:flex;align-items:flex-start;margin-bottom:8px;padding:3px 0}
+.tf.ok .tfl{background:var(--cbg);border-radius:4px;padding:3px 6px}
+.tf.no .tfl{background:var(--xbg);border-radius:4px;padding:3px 6px}
+.tfn{border:2px solid var(--bm);padding:2px 7px;margin-right:10px;border-radius:3px;font-weight:bold;color:var(--text);flex-shrink:0;font-size:14px}
+.tft{font-size:15px;line-height:1.5;color:var(--text);padding-top:1px}
+.tfopts{padding-left:4px;display:flex;gap:12px;flex-wrap:wrap;margin-top:4px}
+.tfo{display:flex;align-items:center;gap:6px;cursor:pointer;font-size:14px;padding:4px 10px;border:1px solid var(--border);border-radius:4px;transition:background .15s}
+.tfo:hover{background:var(--bg2)}
+.tfo input[type=radio]{accent-color:var(--active)}
+.tfo.ok{background:var(--cbg);border-color:var(--cb)}
+.tfo.no{background:var(--xbg);border-color:var(--xb)}
+.tfo.best{background:var(--cbg);border-color:var(--cb);font-weight:700}
+
+.eb{border:1px solid var(--border);background:var(--ebg);padding:12px 14px;border-radius:5px;margin:12px 0;color:var(--text);font-size:14px}
+.ans-hint{font-size:12px;font-weight:700;color:var(--cb);background:var(--cbg);border:1px solid var(--cb);border-radius:4px;padding:1px 7px;margin-left:5px;display:inline-block}
+.aq{outline:2px solid var(--active);border-radius:4px}
+
+.tbl-wrap{overflow-x:auto;margin-bottom:14px}
+table.qtbl{width:100%;border-collapse:collapse;font-size:14px}
+table.qtbl th{background:var(--bg3);padding:8px 10px;border:1px solid var(--border);text-align:left;font-weight:700;color:var(--pt)}
+table.qtbl td{padding:8px 10px;border:1px solid var(--border);vertical-align:middle}
+
+.flowbox{border:1px solid var(--bm);border-radius:6px;padding:10px 14px;margin:0 auto 6px;max-width:460px;background:var(--ibg);font-size:15px;text-align:center}
+.flowarrow{text-align:center;font-size:20px;color:var(--active);margin-bottom:6px;line-height:1}
+.mapwrap{border:1px solid var(--border);border-radius:6px;padding:10px;margin-bottom:16px;background:var(--bg2)}
+.mapwrap svg{width:50%;height:auto;display:block}
+
+.nav-arrows{position:fixed;bottom:92px;right:14px;display:flex;flex-direction:column;gap:4px;z-index:150}
+.na{width:42px;height:42px;background:var(--active);color:#fff;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:20px;font-weight:700;border-radius:4px;transition:background .2s,opacity .2s}
+.na:hover{background:#357abd}
+.na:disabled{opacity:.3;cursor:not-allowed}
+
+.nav-row{position:fixed;bottom:0;left:0;right:0;background:var(--nbg);display:flex;align-items:center;height:76px;z-index:150;border-top:1px solid var(--border);overflow-x:auto;padding:0 6px;gap:2px}
+.nw{display:flex;align-items:center;flex-shrink:0}
+.np{background:none;border:none;padding:6px 10px;font-size:14px;font-weight:600;color:var(--text);cursor:pointer;border-radius:5px;transition:background .2s;white-space:nowrap;display:flex;align-items:center;gap:4px}
+.np:hover{background:var(--bg2)}
+.np .cnt{font-size:12px;color:var(--muted);font-weight:400;margin-left:3px}
+.sw{display:none;gap:2px;margin-left:5px}
+.nw.sel .sw{display:flex}
+.nw.sel .cnt{display:none}
+.sq{width:28px;height:28px;border:1px solid var(--sqbd);background:var(--sqbg);color:var(--sqtx);font-size:12px;font-weight:600;cursor:pointer;display:flex;align-items:center;justify-content:center;border-radius:3px;transition:all .15s}
+.sq:hover{background:var(--bg2);border-color:var(--active)}
+.sq.ans{background:#d0e8ff;color:var(--active);border-color:var(--active)}
+.sq.ok{background:var(--cb);color:#fff;border-color:var(--cb)}
+.sq.no{background:var(--xb);color:#fff;border-color:var(--xb)}
+.sq.cur{background:var(--active);color:#fff;border-color:var(--active)}
+.chkbtn{margin-left:auto;flex-shrink:0;background:var(--fbbg);color:var(--text);border:1px solid var(--fbbd);padding:9px 18px;border-radius:4px;font-size:14px;font-weight:600;cursor:pointer;transition:background .2s;margin-right:10px}
+.chkbtn:hover{background:var(--border)}
+.chkbtn:disabled{opacity:.5;cursor:not-allowed}
+
+.hlt{position:fixed;display:none;background:var(--tbg);border-radius:8px;box-shadow:var(--tsh);z-index:9999;padding:5px 8px;gap:4px;align-items:center;border:1px solid rgba(255,255,255,.1)}
+.hlt.vis{display:flex}
+.htb{display:inline-flex;align-items:center;justify-content:center;padding:5px 11px;border:none;border-radius:6px;cursor:pointer;font-size:13px;font-weight:700;gap:4px;white-space:nowrap;transition:all .15s}
+.htb:hover{filter:brightness(1.15);transform:translateY(-1px)}
+.htb.y{background:#f9a825;color:#1a1a1a}
+.htb.g{background:#43a047;color:#fff}
+.htb.x{background:#e53935;color:#fff}
+.htb.c{background:#546e7a;color:#fff}
+.hsep{width:1px;height:22px;background:rgba(255,255,255,.2);margin:0 2px}
+span.HL{border-radius:2px;cursor:pointer}
+span.HL.y{background:#fff176}
+span.HL.g{background:#a5d6a7}
+body.night-mode span.HL.y{background:#f57f17;color:#fff}
+body.night-mode span.HL.g{background:#2e7d32;color:#fff}
+
+.overlay{position:fixed;inset:0;background:rgba(0,0,0,.75);z-index:500;display:flex;justify-content:center;align-items:center}
+.overlay.hidden{display:none}
+.mbox{background:var(--mbg);padding:22px;border-radius:12px;border:1px solid var(--border);position:relative;max-height:85vh;display:flex;flex-direction:column}
+.mclose{position:absolute;top:8px;right:13px;background:none;border:none;font-size:26px;cursor:pointer;color:var(--muted)}
+.res-box{width:90%;max-width:620px}
+.res-box h2{text-align:center;margin-bottom:14px;color:var(--text)}
+.res-score{display:flex;justify-content:space-around;margin-bottom:14px;font-size:18px;font-weight:700;border-bottom:1px solid var(--border);padding-bottom:12px;color:var(--text)}
+.res-det{overflow-y:auto;flex:1}
+.rrow{display:grid;grid-template-columns:44px 1fr 1fr;gap:8px;padding:6px 4px;border-bottom:1px solid var(--border);font-size:14px}
+.rrow.no{background:var(--xbg)}
+.rrow .qn{font-weight:700;color:var(--text)}
+.rrow .ua{color:var(--muted)}
+.rrow .ca{color:var(--cb);font-weight:600}
+.res-act{display:flex;gap:8px;justify-content:center;margin-top:14px;padding-top:12px;border-top:1px solid var(--border)}
+.rbtn{padding:8px 20px;border-radius:6px;font-size:14px;font-weight:600;cursor:pointer;border:none;transition:background .2s}
+.rbtn.pri{background:var(--active);color:#fff}.rbtn.pri:hover{background:#357abd}
+.rbtn.sec{background:var(--fbbg);color:var(--text);border:1px solid var(--bm)}
+.tr-box{width:90%;max-width:780px;height:80vh}
+.tr-box h2{font-size:18px;color:var(--text);margin-bottom:12px}
+.trbody{padding:16px;overflow-y:auto;flex:1;font-size:14px;line-height:1.8;color:var(--text)}
+
+.npanel{position:fixed;right:14px;top:66px;width:280px;max-height:calc(100vh - 150px);background:var(--mbg);border:1px solid var(--border);border-radius:10px;box-shadow:0 8px 30px rgba(0,0,0,.2);z-index:400;display:none;flex-direction:column}
+.npanel.visible{display:flex}
+.nphdr{padding:10px 14px;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;font-weight:700;font-size:13px;background:var(--bg2);border-radius:10px 10px 0 0;flex-shrink:0}
+.nphdr-right{display:flex;align-items:center;gap:6px}
+.npcnt{background:var(--active);color:#fff;border-radius:10px;padding:1px 7px;font-size:11px;font-weight:700}
+.npclose{background:none;border:none;cursor:pointer;font-size:17px;color:var(--muted);line-height:1}
+.npclose:hover{color:var(--text)}
+.nplist{padding:8px;flex:1;overflow-y:auto}
+.npempty{color:var(--muted);font-size:13px;text-align:center;padding:20px 10px}
+.npitem{background:var(--bg3);border:1px solid var(--border);border-radius:6px;padding:10px;margin-bottom:8px;position:relative;cursor:pointer;transition:border-color .15s}
+.npitem:hover{border-color:var(--active)}
+.npitem-sel{font-size:11px;color:var(--active);font-weight:700;margin-bottom:4px;border-left:3px solid var(--active);padding-left:6px;font-style:italic}
+.npitem-txt{font-size:13px;color:var(--text);line-height:1.5;white-space:pre-wrap;word-break:break-word}
+.npitem-del{position:absolute;top:6px;right:8px;background:none;border:none;color:var(--xb);cursor:pointer;font-size:13px;opacity:.6}
+.npitem-del:hover{opacity:1}
+.npadd{padding:10px;border-top:1px solid var(--border);flex-shrink:0;display:flex;gap:6px}
+.npadd textarea{flex:1;border:1px solid var(--bm);border-radius:6px;padding:7px;font-size:13px;font-family:Arial,sans-serif;resize:none;height:60px;background:var(--ibg);color:var(--text);outline:none;transition:border .2s}
+.npadd textarea:focus{border-color:var(--active)}
+.npadd button{background:var(--active);color:#fff;border:none;border-radius:6px;padding:6px 10px;font-size:12px;font-weight:700;cursor:pointer;align-self:flex-end;white-space:nowrap}
+.npadd button:hover{background:#357abd}
+.note-popup{position:fixed;background:var(--mbg);border:1px solid var(--border);border-radius:8px;padding:12px;box-shadow:0 6px 20px rgba(0,0,0,.25);z-index:9999;width:240px;display:none}
+.note-popup.vis{display:block}
+.note-popup label{font-size:12px;font-weight:700;color:var(--muted);display:block;margin-bottom:5px}
+.note-popup .sel-preview{font-size:12px;color:var(--active);font-style:italic;margin-bottom:8px;border-left:2px solid var(--active);padding-left:6px;max-height:40px;overflow:hidden}
+.note-popup textarea{width:100%;border:1px solid var(--bm);border-radius:5px;padding:7px;font-size:13px;font-family:Arial,sans-serif;resize:none;height:70px;background:var(--ibg);color:var(--text);outline:none;transition:border .2s}
+.note-popup textarea:focus{border-color:var(--active)}
+.note-popup-btns{display:flex;gap:6px;margin-top:8px;justify-content:flex-end}
+.note-popup-btns button{border:none;border-radius:5px;padding:5px 12px;font-size:12px;font-weight:700;cursor:pointer}
+.note-popup-btns .save{background:var(--active);color:#fff}
+.note-popup-btns .cancel{background:var(--fbbg);color:var(--text);border:1px solid var(--bm)}
+.hidden{display:none!important}
+
+.header-right{display:flex;align-items:center;gap:16px;flex-shrink:0}
+.premlink{background:linear-gradient(135deg,#4fa9fe,#6c5ce7);color:#fff!important;padding:9px 22px;border-radius:30px;font-size:13px;font-weight:700;text-decoration:none;box-shadow:0 4px 16px rgba(108,92,231,.4);transition:all .25s;white-space:nowrap}
+.premlink:hover{transform:translateY(-1px);box-shadow:0 6px 20px rgba(108,92,231,.55)}
+.cdilink{color:var(--active)!important;text-decoration:none;font-size:15px;font-weight:700;display:flex;align-items:center;gap:6px;white-space:nowrap;transition:opacity .2s}
+.cdilink:hover{opacity:.75}
+
+.wta{border:1px solid var(--bm);border-radius:6px;background:var(--ibg);color:var(--text);padding:12px 14px;font-size:15px;line-height:1.6;width:100%;min-height:280px;resize:vertical;font-family:Arial,sans-serif;outline:none;transition:border .3s,box-shadow .3s}
+.wta.focused{border-color:var(--active);box-shadow:0 0 3px 1px rgba(74,144,226,.4)}
+.wc-row{display:flex;justify-content:space-between;align-items:center;margin-top:8px;font-size:13px;color:var(--muted)}
+.wc-count{font-weight:700}
+.wc-count.ok{color:var(--cb)}
+.wc-count.low{color:var(--xb)}
+.wimg-wrap{margin-bottom:16px;text-align:center}
+.wimg-wrap img{max-width:100%;border:1px solid var(--border);border-radius:6px}
+.task-tip{background:var(--bg3);border:1px solid var(--border);border-radius:5px;padding:10px 14px;margin-bottom:14px;font-size:13px;color:var(--muted);line-height:1.6}
+</style>
+</head>
+<body>
+<div id="source-note" style="position:fixed;bottom:78px;left:12px;z-index:160;background:rgba(14,15,21,.92);color:#fff;border:1px solid rgba(255,255,255,.2);border-radius:8px;padding:6px 9px;font:12px Arial,sans-serif;max-width:360px">CDI Full Mock 001 · O‘rganamiz practice kutubxonasi · Manba ruxsati foydalanuvchi tomonidan tasdiqlangan.</div>
+
+<div class="header">
+  <div class="header-left">
+    <div class="timer-box">
+      <span style="font-size:10px;color:var(--muted);font-weight:400;margin-right:3px" id="tlbl">Listening</span>
+      <span class="timer-display" id="tdisp">40:00</span>
+      <button class="tbtn" id="tpause" title="Pause/Resume">
+        <svg viewBox="0 0 24 24"><path d="M0 0h24v24H0z" fill="none"/><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
+      </button>
+      <button class="tbtn" id="treset" title="Reset">
+        <svg viewBox="0 0 24 24"><path d="M0 0h24v24H0z" fill="none"/><path d="M12 5V1L7 6l5 5V7c3.31 0 6 2.69 6 6s-2.69 6-6 6-6-2.69-6-6H4c0 4.42 3.58 8 8 8s8-3.58 8-8-3.58-8-8-8z"/></svg>
+      </button>
+    </div>
+    <div class="mode-sw">
+      <button class="mbtn active" id="bL" onclick="go('listening')">🎧 Listening</button>
+      <button class="mbtn" id="bR" onclick="go('reading')">📖 Reading</button>
+      <button class="mbtn" id="bW" onclick="go('writing')">✍️ Writing</button>
+    </div>
+    <div class="zoom-box">
+      <button class="zb" id="zout">−</button>
+      <span class="zlbl" id="zlbl">100%</span>
+      <button class="zb" id="zin">+</button>
+    </div>
+    <button class="hbtn" id="nightbtn">🌙 Night</button>
+    <button class="hbtn" id="trbtn">📋 Answer Key</button>
+    <button class="hbtn" id="notebtn">📝 Notes</button>
+  </div>
+  <div class="header-right">
+    <a href="#source-note" target="_blank" class="premlink">O‘rganamiz practice kutubxonasi</a>
+    <a href="#source-note" target="_blank" class="cdilink">O‘rganamiz · CDI Full Mock 001</a>
+  </div>
+</div>
+
+<div class="main">
+ <div class="panels">
+
+  <div class="left-panel" id="left-panel">
+   <div id="ll">
+    <div id="ll1" class="passage">
+      <h4>Part 1 — A Residence Survey</h4>
+      <div class="instr-block"><p>An interviewer asks a person about where they live, how they get around, and how they spend their free time.</p></div>
+    </div>
+    <div id="ll2" class="passage hidden">
+      <h4>Part 2 — The Elmsden Way</h4>
+      <div class="instr-block"><p>A speaker describes a walking and cycling route called the Elmsden Way, and gives practical information for visitors.</p></div>
+    </div>
+    <div id="ll3" class="passage hidden">
+      <h4>Part 3 — Taking Part in Archaeological Excavations</h4>
+      <div class="instr-block"><p>Two students, Tomas and May, discuss their experience taking part in an archaeological excavation.</p></div>
+    </div>
+    <div id="ll4" class="passage hidden">
+      <h4>Part 4 — Crocodile Study</h4>
+      <div class="instr-block"><p>A lecture describing a research study that used satellite tracking to monitor the movements of salt-water crocodiles.</p></div>
+    </div>
+   </div>
+
+   <div id="rl" class="hidden">
+    <div id="rl1" class="passage">
+      <h4>What if everything had a barcode?</h4>
+      <p class="sub">A vast new database will let us catalogue every plant and animal on the planet, and identify them in seconds. Sanjida O'Connell reports</p>
+      <p>Imagine going for a walk and spotting a wild flower. Its beauty and fragrance delight you, but the name eludes you. No problem. You whip out a hand-held scanner, about the size of a mobile phone, and pop a fragment of a leaf into the device. A few seconds, and the read-out tells you that you're looking at a pyramidal orchid. Satisfied, you continue on your way.</p>
+      <p>Sound far-fetched? Not at all. Scientists are currently creating a DNA barcode for every species of plant and animal on the planet. It won't be long before everyone, from experts to amateurs, will be able to scan the world's flora and fauna as if they were checking out groceries at a supermarket, to look up or confirm their identities.</p>
+      <p>There are numerous practical uses too. Such a device would let you scan fish at the fishmonger's to check if it's been labelled properly, work out exactly what is in your mixed vegetable soup, and confirm whether a piece of furniture really has come from a renewable forest, as the retailer claims. It would also assist forensic science teams, who could quickly identify the pollen on a suspect, to link him to a particular location; customs officials, in their efforts to prevent disease-carrying pests being taken across national borders; and environmental inspectors assessing water quality, who need to work out what microbes are lurking in a particular sample.</p>
+      <p>It was Professor Paul Hebert, a biologist from the University of Guelph in Canada, who came up with the idea of DNA barcoding the natural world. The inspiration came while he was walking up and down the aisles of a supermarket, marvelling at the ability of the store to keep track of all the lines stocked and sold using the thick and thin lines that make up a barcode. Could scientists, he wondered, exploit a barcode system to record the millions of species on earth via their DNA?</p>
+      <p>The compilation of a planetary inventory began more than 250 years ago, with the Swedish life classifier Carl Linnaeus. In 1758, he founded the science of taxonomy — a method of classifying living things — based on physical and behavioural characteristics. To date, scientists have classified about 1.7 million organisms, out of a total that has been estimated at anywhere between 5 and 30 million. But taxonomy is difficult and time-consuming. Many species, such as the different kinds of flies, look remarkably similar. Only an expert who has spent years examining a particular group can distinguish one from another. Even the experts may be stumped, however, when presented with an egg, an embryo, a seedling or a root. The next problem is that we are running out of time in which to complete the inventory. The International Union for the Conservation of Nature estimates that a quarter of the world's population of mammals are threatened with extinction.</p>
+      <p>So, Hebert's idea centred on finding a fragment of DNA that would disclose the identity of a species without having to decode its entire genetic code. He envisaged a 'DNA barcode reader', similar to the scanners at retail checkouts. Outlining his idea in <em>Scientific American</em>, Hebert writes: 'An inspector at a busy seaport, a hiker on a mountain trail, or a scientist in a lab could insert a sample containing DNA — a snippet of whisker, say, or the leg of an insect — into the device, which would detect the sequence of nucleic acids in the barcode segment. This information would be instantly relayed to a reference database, a public library of DNA barcodes. Anyone, anywhere, could identify species.'</p>
+      <p>To create the barcode, Hebert proposed the use of a section of DNA, from the energy-producing units found in all cells. He selected a gene that gives rise to an enzyme known as CO1. This gene is small enough to be quickly and easily deciphered, but has sufficient variation for us to be able to tell most animal species apart. You and I, for instance, will have different versions of CO1, but they will be similar enough to show that we're both humans and not chimpanzees.</p>
+      <p>In 2003, Hebert and his team published their first results. They showed that the barcode system could identify the group an animal came from (for example, whether it was a vertebrate, a worm or an insect) and even the species when it was stored in the barcode library. After five more years of work, results indicate that animals can now be identified by their barcodes in 98 per cent of cases. Early results have confirmed the additional benefits of the new system: for example, caterpillars of the tropical butterfly <em>Astraptes fulgerator</em>, which was first recognised as a species in 1775, all look very similar, and were assumed to belong to a single species. Barcoding has shown there are 10 different kinds.</p>
+      <p>Of course, the value of the system depends on a comprehensive reference library of the DNA (CO1) barcodes of established species. The Barcode of Life Data (Bold) systems is an enormous international collaboration supported by 150 institutions in 45 countries. To date, it has compiled more than 500,000 records from 50,000 species. The consortium is hoping that the world's birds will be barcoded by 2011. 'People have watched birds for so long that they might think every different tweet has been heard, every different colour observed, but barcoding may prove otherwise,' says Professor Mark Stoeckle, professor of the human environment at Rockefeller University, New York, who works with Hebert. He estimates that out of the world's 10,000 bird species, DNA barcoding will distinguish at least 1,000 new ones.</p>
+    </div>
+
+    <div id="rl2" class="passage hidden">
+      <h4>Giving The Brain A Workout</h4>
+      <p class="sub">Mental agility does not have to decline with age, as long as you keep exercising your mind, says Anna van Praagh.</p>
+      <p><strong class="pl">A</strong>Use your brain and it will grow — it really will. This is the message from neuropsychologist Ian Robertson, professor of psychology at Trinity College, Dublin and founding director of the university's Institute of Neuroscience. His book, <em>Puzzler Brain Trainer 90-Day Workout</em>, contains puzzles which he devised to stretch, sharpen and stimulate the brain. The puzzles, from 'memory jogs' to Sudoku to crosswords to number games are all-encompassing, and have been specially formulated to improve each and every part of the brain, from visual-spatial ability to perception, attention, memory, numerical agility, problem-solving and language.</p>
+      <p><strong class="pl">B</strong>Professor Robertson has been studying the brain for 57 years, in a career dedicated to changing and improving the way it works. During this time there has been a remarkable paradigm shift in the way scientists view the brain, he says. 'When I first started teaching and researching, a very pessimistic view prevailed that, from the age of three or four, we were continually losing brain cells and that the stocks couldn't be replenished. That has turned out to be factually wrong. Now that we know that the brain is "plastic" — it changes, adapts and is physically sharpened according to the experiences it has.'</p>
+      <p><strong class="pl">C</strong>Robertson likens our minds to trees in a park with branches spreading out, connecting and intertwining, with connections increasing in direct correlation to usage. He says that the "eureka" moment in his career — and the reason he devised his 'brain trainer' puzzles — was the realisation that the connections multiply with use and so it is possible to boost and improve our mental functions at any age. 'Now we know that it's not just children whose brains are "plastic",' he says. 'No matter how old we are, our brains are physically changed by what we do and what we think.'</p>
+      <p><strong class="pl">D</strong>Robertson illustrates his point by referring to Dr Eleanor McGuire's seminal 2000 study of the brains of London taxi drivers. That showed that their grey matter enlarges and adapts to help them build up a detailed mental map of the city. Brain scans revealed that the drivers had a much larger hippocampus (the part of the brain associated with navigation in birds and animals) compared with other people. Crucially, it grew larger the longer they spent doing their job. Similarly, there is strong statistical evidence that, by stretching the mind with games and puzzles, brainpower is increased. Conversely, if we do not stimulate our minds and keep the connections robust and intact, these connections will weaken and physically diminish. A more recent survey suggested that a 20-minute problem-solving session on the Nintendo DS game called 'Dr Kawashima's Brain Training' at the beginning of each day dramatically improved pupils' test results, class attendance and behaviour. Astonishingly, pupils who used the Nintendo trainer saw their test scores rise by 50 per cent more than those who did not.</p>
+      <p><strong class="pl">E</strong>Robertson's puzzles have been designed to have the same effect on the brain, the only difference being that, for him, you need only a pencil to get started. The idea is to shake the brain out of lazy habits and train it to start functioning at its optimum level. It is Robertson's belief that people who tackle the puzzles will see a dramatic improvement in their daily lives as the brain increases its ability across a broad spectrum. They should see an improvement in everything, from remembering people's names at parties to increased attention span, mental agility, creativity and energy.</p>
+      <p><strong class="pl">F</strong>'Many of us are terrified of numbers,' he says, 'or under-confident with words. With practice, and by gently increasing the difficulty of the exercises, these puzzles will help people improve capacity across a whole range of mental domains.' The wonderful thing is that the puzzles take just five minutes, but are the mental equivalent of doing a jog or going to the gym. 'In the same way that physical exercise is good for you, so is keeping your brain stimulated,' Robertson says. 'Quite simply, those who keep themselves mentally challenged function significantly better mentally than those who do not.'</p>
+      <p><strong class="pl">G</strong>The puzzles are aimed at all ages. Robertson says that some old people are so stimulated that they hardly need to exercise their brains further, while some young people hardly use theirs at all and are therefore in dire need of a workout. He does concede, however, that whereas most young people are constantly forced to learn, there is a tendency in later life to retreat into a comfort zone where it is easier to avoid doing things that are mentally challenging. He compares this with becoming physically inactive, and warns of comparable repercussions. 'As the population ages, people are going to have to stay mentally active longer,' he counsels. 'We must learn to exercise our brains just as much as our bodies. People need to be aware that they have the most complex entity known to man between their ears,' he continues, 'and the key to allow it to grow and be healthy is simply to keep it stimulated.'</p>
+    </div>
+
+    <div id="rl3" class="passage hidden">
+      <h4>Fierce, fabulous and fantastic</h4>
+      <p class="sub">A new exhibition traces the history of animal painting in Europe from the anatomically inaccurate to the highly sentimental.</p>
+      <p><strong class="pl">1</strong>The first picture you see in the exhibition <em>Fierce Friends: Artists and Animals 1750–1900</em> is of a giraffe — sort of. Painted in about 1785, the creature in it has the neck of a giraffe, but its back is too long, its haunches too developed, and its legs are out of proportion to its body. Like most Europeans in the 18th century, the anonymous French artist who painted it had never seen a real giraffe. He relied on eyewitness descriptions, and on the skin of a giraffe the scientist and adventurer François Levallard had recently brought back from South Africa.</p>
+      <p><strong class="pl">2</strong>Exotic animals shipped back to Europe at this time usually died soon after arrival, even supposing they survived the voyage. Until about 1900, taxidermy consisted of stuffing the carcass with straw, so the results fell apart after a few years. This meant that ordinary men and women had very few opportunities to see exotic animals at first hand until the establishment of the first zoos — in Paris in 1793, in London in 1818. For an accurate depiction of a giraffe, Europeans had to wait until 1827 and the arrival of the first living specimen, when the Swiss artist Jacques-Laurent Agasse painted his lovely study of the Nubian giraffe sent to King George IV by the Ottoman Viceroy of Egypt.</p>
+      <p><strong class="pl">3</strong>For most people in the 18th century, animals meant farm animals, carriage horses, and food for the table. But the Enlightenment was an age both of exploration and of discovery, as more and more species of animals, birds, fish and insects were identified and brought back from the South Seas, Africa and India. In 1740, almost 600 species of animals were known to science. One hundred years later, the number had risen to 2,400, including many that are familiar to most children today as a matter of course — ostrich, rhino, orang-utan and buffalo.</p>
+      <p><strong class="pl">4</strong>Kings and princes, to be sure, had their own menageries, and wealthy collectors added rare birds, fish and mammals (shown side-by-side with two-headed calves and fake dragons) to their cabinets of curiosities. In this way, the forerunners of modern zoos and museums developed along parallel lines. On special occasions an entrepreneur might exhibit a wild beast to the paying public, as was the case when the Venetian artist Pietro Longhi painted bored masqueraders at carnival time gawping at a pathetic rhinoceros. Out of such displays came another invention of the 19th century, the circus.</p>
+      <p><strong class="pl">5</strong>Wider knowledge of the animal kingdom came with the publication of George-Louis Leclerc Comte de Buffon's multi-volume <em>Histoire Naturelle</em> (1749–88). Based on specimens studied in the royal menageries, this remarkable book is still treasured — not for its scientific accuracy, but for its glorious hand-coloured engravings. Far too expensive for most people to buy, it at least helped to make men and women aware of the beauty of certain animals, as we can see in a service of Sèvres porcelain created in 1793, where the decorative motifs are taken from the birds drawn by de Buffon.</p>
+      <p><strong class="pl">6</strong>Gradually, humans began to notice that dumb creatures have feelings. Man cannot afford to feel pity for an animal bred for food. When that wonderful artist Jean-Baptiste Oudry shows a display of dead game in the 1740s, he is simply painting a luxury — fresh meat — available only to the well-off. Peasants ate bread. His lavish paintings were considered suitable for the dining rooms of the nobility because no one then expressed the slightest ethical or moral hesitation about hunting and killing rabbit, deer and boar for the table, or about slaughtering such vermin as foxes and wolves.</p>
+      <p><strong class="pl">7</strong>Domestic animals were a different story. When Oudry depicts a hound with her newborn puppies, the simple picture has revolutionary undertones. The pretty white bitch, noticing that two of her pups have fallen asleep and are not getting the nourishment they need, is full of maternal solicitude. At a time when French noblewomen still sent their babes out to wet-nurses, even an animal is shown to display true maternal feeling. And in 1824, the year Delacroix shows two horses killed in battle, there is a new element in man's attitude towards the wanton slaughter of beautiful creatures: compassion. Delacroix's little masterpiece pierces the heart, whereas the grotesque memorial to animals killed in war unveiled in London recently leaves the viewer cold. But the moral impulse behind the creation of both works is exactly the same.</p>
+      <p><strong class="pl">8</strong>Once animals can be loved for their innocence or good nature, it becomes more difficult to treat them cruelly. Almost 15 years before Jean-Baptiste Greuze painted a picture of a young girl mourning her pet sparrow (1765), William Hogarth published his series of prints, the <em>Stages of Cruelty</em>, showing how the mistreatment of animals leads inexorably to the devaluing of all forms of life, including human. In this show, it is almost impossible to look at Emile Edouard Mouchy's horrifying depiction of the vivisection of a dog (1832) without wincing. Though such experiments represent a necessary evil, our very squeamishness represents another rung upward in the moral evolution of mankind.</p>
+      <p><strong class="pl">9</strong>This process started in the early 19th century, when men began to see in the animal kingdom a mirror image of their own feelings. In his portrayal of a horse frightened by lightning, Gericault lets us see the animal's tensed body, foam-flecked mouth and brow furrowed in anxiety. In <em>The Jealous Lioness</em> of about 1880, the German artist Paul Meyerheim shows a caged lioness enraged at the attention her mate is paying to a beautiful lion tamer.</p>
+      <p>Gradually, artists began to blur the distinctions between animal and human. When Edwin Landseer in <em>High Life and Low Life</em> contrasts a mongrel guard dog with a deer hound, the animals are surrogates for their absent masters, a butcher and a nobleman. All these artists emphasised the physical and emotional resemblances between animals and human beings.</p>
+    </div>
+   </div>
+
+   <div id="wl" class="hidden">
+    <div id="wl1" class="passage">
+      <h4>Writing Task 1</h4>
+      <div class="task-tip">Spend about 20 minutes on this task. Write at least 150 words.</div>
+      <p>The graphs below show the viewership of different TV programs among three different age groups. Summarise the information by selecting and reporting the main features, and make comparisons where relevant.</p>
+      <div class="wimg-wrap">
+        <img src="assets/writing-task-1.jpg" alt="">
+      </div>
+    </div>
+    <div id="wl2" class="passage hidden">
+      <h4>Writing Task 2</h4>
+      <div class="task-tip">Spend about 40 minutes on this task. Write at least 250 words.</div>
+      <p>Some people think it is a good thing for senior managers to have much higher salaries than other workers in a company</p>
+      <p>To what extent do you agree or disagree?</p>
+      <p>Give reasons for your answer and include any relevant examples from your own knowledge or experience.</p>
+    </div>
+   </div>
+  </div>
+
+  <div class="resizer" id="resizer"></div>
+
+  <div class="right-panel" id="right-panel">
+
+   <div id="lq">
+
+    <div id="lq1" class="qset">
+      <div class="part-hdr"><p><strong>Part 1</strong> — Questions 1–10</p><p>A Residence Survey</p></div>
+      <div style="margin-bottom:22px">
+        <div class="qlbl">Questions 1–5 — Complete the notes below. Write <strong>NO MORE THAN TWO WORDS AND/OR A NUMBER</strong> for each answer.</div>
+        <div class="nb">
+          <div class="nsl" style="text-align:center">A RESIDENCE SURVEY</div>
+          <div class="nl">Age of the interviewee: <strong>19</strong> <em style="color:var(--muted);font-size:13px">(example)</em></div>
+          <div class="nl" data-s="1" data-e="1">Current occupation: <span class="qb">1</span><input type="text" class="ai" id="i1" placeholder="1" autocomplete="off"></div>
+          <div class="nl" data-s="2" data-e="2">Length of living in the north: <span class="qb">2</span><input type="text" class="ai" id="i2" placeholder="2" autocomplete="off"></div>
+          <div class="nl" data-s="3" data-e="3">Exact living area: <span class="qb">3</span><input type="text" class="ai" id="i3" placeholder="3" autocomplete="off"></div>
+          <div class="nl" data-s="4" data-e="4">Type of accommodation: a shared <span class="qb">4</span><input type="text" class="ai" id="i4" placeholder="4" autocomplete="off"></div>
+          <div class="nsl" style="margin-top:10px">Means of transport</div>
+          <div class="nl">private: walking and bicycles</div>
+          <div class="nl" data-s="5" data-e="5">public: <span class="qb">5</span><input type="text" class="ai" id="i5" placeholder="5" autocomplete="off"> and taxi</div>
+        </div>
+      </div>
+      <div>
+        <div class="qlbl">Questions 6–10 — Complete the notes below. Write <strong>NO MORE THAN THREE WORDS AND/OR A NUMBER</strong> for each answer.</div>
+        <div class="nb">
+          <div class="nl" data-s="6" data-e="6">Frequency of eating out: <span class="qb">6</span><input type="text" class="ai" id="i6" placeholder="6" autocomplete="off"></div>
+          <div class="nl" data-s="7" data-e="7">Places for entertainment: <span class="qb">7</span><input type="text" class="ai" id="i7" placeholder="7" autocomplete="off"></div>
+          <div class="nl" data-s="8" data-e="8">Other free time activity: go to the <span class="qb">8</span><input type="text" class="ai" id="i8" placeholder="8" autocomplete="off"></div>
+          <div class="nsl" style="margin-top:10px">Preferred exercises</div>
+          <div class="nl">go swimming</div>
+          <div class="nl">go to the gym</div>
+          <div class="nl" data-s="9" data-e="9">go <span class="qb">9</span><input type="text" class="ai" id="i9" placeholder="9" autocomplete="off"></div>
+          <div class="nl" data-s="10" data-e="10">Parttime course: <span class="qb">10</span><input type="text" class="ai" id="i10" placeholder="10" autocomplete="off"></div>
+        </div>
+      </div>
+    </div>
+
+    <div id="lq2" class="qset hidden">
+      <div class="part-hdr"><p><strong>Part 2</strong> — Questions 11–20</p><p>The Elmsden Way</p></div>
+      <div style="margin-bottom:22px">
+        <div class="qlbl">Questions 11–14 — Label the map below. Write the correct letter, <strong>A–I</strong>, next to questions 11–14.</div>
+        <div class="mapwrap">
+        <img src="assets/writing-task-2.jpg" alt="">
+        </div>
+        <div class="mfc">
+          <div class="mfr" data-s="11" data-e="11"><span class="mfl"><strong>11</strong> &nbsp;Rocks</span><select class="ai n" id="i11"><option value=""></option><option>A</option><option>B</option><option>C</option><option>D</option><option>E</option><option>F</option><option>G</option><option>H</option><option>I</option></select></div>
+          <div class="mfr" data-s="12" data-e="12"><span class="mfl"><strong>12</strong> &nbsp;Colleen Nature Reserve</span><select class="ai n" id="i12"><option value=""></option><option>A</option><option>B</option><option>C</option><option>D</option><option>E</option><option>F</option><option>G</option><option>H</option><option>I</option></select></div>
+          <div class="mfr" data-s="13" data-e="13"><span class="mfl"><strong>13</strong> &nbsp;Ashington China Factory</span><select class="ai n" id="i13"><option value=""></option><option>A</option><option>B</option><option>C</option><option>D</option><option>E</option><option>F</option><option>G</option><option>H</option><option>I</option></select></div>
+          <div class="mfr" data-s="14" data-e="14"><span class="mfl"><strong>14</strong> &nbsp;Langton forest</span><select class="ai n" id="i14"><option value=""></option><option>A</option><option>B</option><option>C</option><option>D</option><option>E</option><option>F</option><option>G</option><option>H</option><option>I</option></select></div>
+        </div>
+      </div>
+      <div style="margin-top:24px">
+        <div class="qlbl">Questions 15–20 — Choose the correct letter, A, B or C.</div>
+        <div class="mcq" data-s="15" data-e="15"><p style="font-size:15px;font-weight:600;margin-bottom:8px"><strong>15.</strong> What kind of warning does the speaker give to cyclists?</p>
+          <div class="mco"><label><input type="radio" name="R15" value="A">A &nbsp;there may be traffic jams</label></div>
+          <div class="mco"><label><input type="radio" name="R15" value="B">B &nbsp;avoid wet cycle paths</label></div>
+          <div class="mco"><label><input type="radio" name="R15" value="C">C &nbsp;there may be animals in the way</label></div>
+        </div>
+        <div class="mcq" data-s="16" data-e="16"><p style="font-size:15px;font-weight:600;margin-bottom:8px"><strong>16.</strong> The starting point of Elmsden station is</p>
+          <div class="mco"><label><input type="radio" name="R16" value="A">A &nbsp;very busy</label></div>
+          <div class="mco"><label><input type="radio" name="R16" value="B">B &nbsp;more modern</label></div>
+          <div class="mco"><label><input type="radio" name="R16" value="C">C &nbsp;re-opened recently</label></div>
+        </div>
+        <div class="mcq" data-s="17" data-e="17"><p style="font-size:15px;font-weight:600;margin-bottom:8px"><strong>17.</strong> What can people do at the visitor's centre?</p>
+          <div class="mco"><label><input type="radio" name="R17" value="A">A &nbsp;rent a bike</label></div>
+          <div class="mco"><label><input type="radio" name="R17" value="B">B &nbsp;buy refreshments</label></div>
+          <div class="mco"><label><input type="radio" name="R17" value="C">C &nbsp;learn local history</label></div>
+        </div>
+        <div class="mcq" data-s="18" data-e="18"><p style="font-size:15px;font-weight:600;margin-bottom:8px"><strong>18.</strong> To commute between Langton and Elmston by train, you need to</p>
+          <div class="mco"><label><input type="radio" name="R18" value="A">A &nbsp;book in advance</label></div>
+          <div class="mco"><label><input type="radio" name="R18" value="B">B &nbsp;go on weekends</label></div>
+          <div class="mco"><label><input type="radio" name="R18" value="C">C &nbsp;pay additional charges</label></div>
+        </div>
+        <div class="mcq" data-s="19" data-e="19"><p style="font-size:15px;font-weight:600;margin-bottom:8px"><strong>19.</strong> What should you be aware of when visiting River Elm?</p>
+          <div class="mco"><label><input type="radio" name="R19" value="A">A &nbsp;it takes a long time</label></div>
+          <div class="mco"><label><input type="radio" name="R19" value="B">B &nbsp;the waterfall is inaccessible</label></div>
+          <div class="mco"><label><input type="radio" name="R19" value="C">C &nbsp;go by bike</label></div>
+        </div>
+        <div class="mcq" data-s="20" data-e="20"><p style="font-size:15px;font-weight:600;margin-bottom:8px"><strong>20.</strong> Where can you get the information if you want to join the local route?</p>
+          <div class="mco"><label><input type="radio" name="R20" value="A">A &nbsp;the local newspaper</label></div>
+          <div class="mco"><label><input type="radio" name="R20" value="B">B &nbsp;the station website</label></div>
+          <div class="mco"><label><input type="radio" name="R20" value="C">C &nbsp;national cycling network</label></div>
+        </div>
+      </div>
+    </div>
+
+    <div id="lq3" class="qset hidden">
+      <div class="part-hdr"><p><strong>Part 3</strong> — Questions 21–30</p><p>Taking Part in Archaeological Excavations</p></div>
+      <div>
+        <div class="qlbl">Questions 21–25 — Choose the correct letter, A, B or C.</div>
+        <div class="mcq" data-s="21" data-e="21"><p style="font-size:15px;font-weight:600;margin-bottom:8px"><strong>21.</strong> How did Tomas and May both feel about parts of their studies before going on the excavations?</p>
+          <div class="mco"><label><input type="radio" name="R21" value="A">A &nbsp;They lacked motivation.</label></div>
+          <div class="mco"><label><input type="radio" name="R21" value="B">B &nbsp;They were enthusiastic.</label></div>
+          <div class="mco"><label><input type="radio" name="R21" value="C">C &nbsp;They were confused.</label></div>
+        </div>
+        <div class="mcq" data-s="22" data-e="22"><p style="font-size:15px;font-weight:600;margin-bottom:8px"><strong>22.</strong> What surprised Tomas and May most when they were excavating?</p>
+          <div class="mco"><label><input type="radio" name="R22" value="A">A &nbsp;how important photography was</label></div>
+          <div class="mco"><label><input type="radio" name="R22" value="B">B &nbsp;how careful you had to be with your records</label></div>
+          <div class="mco"><label><input type="radio" name="R22" value="C">C &nbsp;how many rules there were to follow</label></div>
+        </div>
+        <div class="mcq" data-s="23" data-e="23"><p style="font-size:15px;font-weight:600;margin-bottom:8px"><strong>23.</strong> What did May find that was particularly interesting?</p>
+          <div class="mco"><label><input type="radio" name="R23" value="A">A &nbsp;some fabric</label></div>
+          <div class="mco"><label><input type="radio" name="R23" value="B">B &nbsp;some pieces of pots</label></div>
+          <div class="mco"><label><input type="radio" name="R23" value="C">C &nbsp;some jewellery</label></div>
+        </div>
+        <div class="mcq" data-s="24" data-e="24"><p style="font-size:15px;font-weight:600;margin-bottom:8px"><strong>24.</strong> What did Tomas and May both find surprising about the people they were studying?</p>
+          <div class="mco"><label><input type="radio" name="R24" value="A">A &nbsp;The food they ate was very varied.</label></div>
+          <div class="mco"><label><input type="radio" name="R24" value="B">B &nbsp;Their main activity was fishing.</label></div>
+          <div class="mco"><label><input type="radio" name="R24" value="C">C &nbsp;They were not as tall as people today.</label></div>
+        </div>
+        <div class="mcq" data-s="25" data-e="25"><p style="font-size:15px;font-weight:600;margin-bottom:8px"><strong>25.</strong> What do Tomas and May both say about the people they worked with?</p>
+          <div class="mco"><label><input type="radio" name="R25" value="A">A &nbsp;They came from a variety of countries.</label></div>
+          <div class="mco"><label><input type="radio" name="R25" value="B">B &nbsp;They worked really hard.</label></div>
+          <div class="mco"><label><input type="radio" name="R25" value="C">C &nbsp;They were young and enthusiastic.</label></div>
+        </div>
+      </div>
+      <div style="margin-top:24px">
+        <div class="qlbl">Questions 26–30 — Complete the flow-chart below. Choose <strong>FIVE</strong> letters from A–I, next to questions 26–30.</div>
+        <div style="border:1px solid var(--bm);border-radius:5px;padding:12px 16px;margin-bottom:16px;background:var(--bg3)">
+          <p style="font-weight:700;text-align:center;margin-bottom:8px">Options</p>
+          <div style="display:flex;flex-direction:column;gap:6px;font-size:14px">
+            <div><strong>A</strong> &nbsp;some soil samples</div>
+            <div><strong>B</strong> &nbsp;some photographs</div>
+            <div><strong>C</strong> &nbsp;objects to team leader</div>
+            <div><strong>D</strong> &nbsp;labels on objects</div>
+            <div><strong>E</strong> &nbsp;a record sheet</div>
+            <div><strong>F</strong> &nbsp;a unit number</div>
+            <div><strong>G</strong> &nbsp;further analysis of objects</div>
+            <div><strong>H</strong> &nbsp;tools from the site hut</div>
+            <div><strong>I</strong> &nbsp;a comprehensive plan</div>
+          </div>
+        </div>
+        <div class="nb" style="text-align:center">
+          <div class="nsl" style="text-align:center">Excavation Projects Next Week</div>
+          <div class="flowbox" data-s="26" data-e="26">Take <select class="ai n" id="i26"><option value=""></option><option>A</option><option>B</option><option>C</option><option>D</option><option>E</option><option>F</option><option>G</option><option>H</option><option>I</option></select> and clean the area</div>
+          <div class="flowarrow">↓</div>
+          <div class="flowbox">Take photos of the site to be excavated</div>
+          <div class="flowarrow">↓</div>
+          <div class="flowbox" data-s="27" data-e="27">Ask your team leader for <select class="ai n" id="i27"><option value=""></option><option>A</option><option>B</option><option>C</option><option>D</option><option>E</option><option>F</option><option>G</option><option>H</option><option>I</option></select></div>
+          <div class="flowarrow">↓</div>
+          <div class="flowbox" data-s="28" data-e="28">Make <select class="ai n" id="i28"><option value=""></option><option>A</option><option>B</option><option>C</option><option>D</option><option>E</option><option>F</option><option>G</option><option>H</option><option>I</option></select> of the site and measure the levels</div>
+          <div class="flowarrow">↓</div>
+          <div class="flowbox" data-s="29" data-e="29">Take <select class="ai n" id="i29"><option value=""></option><option>A</option><option>B</option><option>C</option><option>D</option><option>E</option><option>F</option><option>G</option><option>H</option><option>I</option></select></div>
+          <div class="flowarrow">↓</div>
+          <div class="flowbox" data-s="30" data-e="30">Register and put <select class="ai n" id="i30"><option value=""></option><option>A</option><option>B</option><option>C</option><option>D</option><option>E</option><option>F</option><option>G</option><option>H</option><option>I</option></select></div>
+          <div class="flowarrow">↓</div>
+          <div class="flowbox">Put in site hut together with tools</div>
+        </div>
+      </div>
+    </div>
+
+    <div id="lq4" class="qset hidden">
+      <div class="part-hdr"><p><strong>Part 4</strong> — Questions 31–40</p><p>Crocodile Study</p></div>
+      <div>
+        <div class="qlbl">Questions 31–40 — Complete the notes below. Write <strong>ONE WORD ONLY</strong> for each answer.</div>
+        <div class="nb">
+          <div class="nsl" style="text-align:center">CROCODILE STUDY</div>
+          <div class="nsl">Background</div>
+          <div class="nl">Type of crocodile studied: crocodiles found in salt water</div>
+          <div class="nl">Location of study: Northern Territory, Australia</div>
+          <div class="nl" data-s="31" data-e="31">Significance of study: unique because it was the first time a <span class="qb">31</span><input type="text" class="ai" id="i31" placeholder="31" autocomplete="off"> had been used to track crocodiles</div>
+          <div class="nsl" style="margin-top:10px">Previous studies</div>
+          <div class="nl" data-s="32" data-e="32">done using <span class="qb">32</span><input type="text" class="ai" id="i32" placeholder="32" autocomplete="off"></div>
+          <div class="nl" data-s="33" data-e="33">stressful method, also unreliable due to loss of the <span class="qb">33</span><input type="text" class="ai" id="i33" placeholder="33" autocomplete="off"></div>
+          <div class="nsl" style="margin-top:10px">Reasons for study</div>
+          <div class="nl">the management of crocodiles by the government may not be effective</div>
+          <div class="nsl" style="margin-top:10px">Research questions</div>
+          <div class="nl">How far can crocodiles travel?</div>
+          <div class="nl" data-s="34" data-e="34">How easily can crocodiles <span class="qb">34</span><input type="text" class="ai" id="i34" placeholder="34" autocomplete="off">?</div>
+          <div class="nsl" style="margin-top:10px">Challenge</div>
+          <div class="nl" data-s="35" data-e="35">crocodiles are difficult to observe because they avoid <span class="qb">35</span><input type="text" class="ai" id="i35" placeholder="35" autocomplete="off"></div>
+          <div class="nsl" style="margin-top:10px">Details of study</div>
+          <div class="nl">number of crocodiles involved: three</div>
+          <div class="nl" data-s="36" data-e="36">method: crocodiles were measured and tagged then relocated using a <span class="qb">36</span><input type="text" class="ai" id="i36" placeholder="36" autocomplete="off"></div>
+          <div class="nl" data-s="37" data-e="37">monitoring: scientists got data from a transmitter located on the crocodile's <span class="qb">37</span><input type="text" class="ai" id="i37" placeholder="37" autocomplete="off"></div>
+          <div class="nsl" style="margin-top:10px">Results of study</div>
+          <div class="nl">each crocodile first stayed at the site for a few weeks, moving in a random way</div>
+          <div class="nl" data-s="38" data-e="38">then took the most <span class="qb">38</span><input type="text" class="ai" id="i38" placeholder="38" autocomplete="off"> way home</div>
+          <div class="nsl" style="margin-top:10px">Conclusions</div>
+          <div class="nl">a change in policy is needed</div>
+          <div class="nl">when travelling long distances, crocodiles may use:</div>
+          <div class="nl" data-s="39" data-e="39">i) their own senses and the position of the <span class="qb">39</span><input type="text" class="ai" id="i39" placeholder="39" autocomplete="off"></div>
+          <div class="nl" data-s="40" data-e="40">ii) a similar system to <span class="qb">40</span><input type="text" class="ai" id="i40" placeholder="40" autocomplete="off"></div>
+        </div>
+      </div>
+    </div>
+
+   </div>
+
+   <div id="rq" class="hidden">
+
+    <div id="rq1" class="qset">
+      <div class="part-hdr"><p>Reading Passage 1 — What if everything had a barcode?</p><p>Questions 1–13</p></div>
+
+      <div style="margin-bottom:22px">
+        <p style="font-size:15px;font-weight:700;margin-bottom:6px">Questions 1–3</p>
+        <p style="font-size:15px;margin-bottom:14px">Choose <strong>NO MORE THAN ONE WORD AND/OR A NUMBER</strong> from the passage for each answer.</p>
+        <p style="font-weight:700;text-align:center;color:var(--pt);margin:8px 0 12px">Problems with taxonomy</p>
+        <div class="nb">
+          <div class="nl" data-s="1" data-e="1"><span class="nbull">•</span>only <span class="qb">1</span><input type="text" class="ai" id="ri1" placeholder="1" autocomplete="off"> species have been classified so far</div>
+          <div class="nl" data-s="2" data-e="2"><span class="nbull">•</span>difficult to distinguish between species of certain creatures, for example <span class="qb">2</span><input type="text" class="ai" id="ri2" placeholder="2" autocomplete="off"></div>
+          <div class="nl" data-s="3" data-e="3"><span class="nbull">•</span>possibility of a large number of species of <span class="qb">3</span><input type="text" class="ai" id="ri3" placeholder="3" autocomplete="off"> dying out soon</div>
+        </div>
+      </div>
+
+      <div style="margin-bottom:22px">
+        <p style="font-size:15px;font-weight:700;margin-bottom:6px">Questions 4–8</p>
+        <p style="font-size:15px;margin-bottom:14px">Complete the flow-chart below. Choose <strong>NO MORE THAN THREE WORDS AND/OR A NUMBER</strong> from the passage for each answer.</p>
+        <p style="font-weight:700;text-align:center;color:var(--pt);margin-bottom:10px">Hebert's system</p>
+        <div class="nb" style="text-align:center">
+          <div class="flowbox" data-s="4" data-e="4">decided to create a device called a <span class="qb">4</span><input type="text" class="ai" id="ri4" placeholder="4" autocomplete="off">, like ones used in shops</div>
+          <div class="flowarrow">↓</div>
+          <div class="flowbox" data-s="5" data-e="5">chose a <span class="qb">5</span><input type="text" class="ai" id="ri5" placeholder="5" autocomplete="off"> that produces a substance called CO1</div>
+          <div class="flowarrow">↓</div>
+          <div class="flowbox" data-s="6" data-e="6">samples of CO1 read by the device and matched with those kept in the <span class="qb">6</span><input type="text" class="ai" id="ri6" placeholder="6" autocomplete="off"></div>
+          <div class="flowarrow">↓</div>
+          <div class="flowbox" data-s="7" data-e="7">current results show that <span class="qb">7</span><input type="text" class="ai" id="ri7" placeholder="7" autocomplete="off"> of animal species can be identified in this way</div>
+          <div class="flowarrow">↓</div>
+          <div class="flowbox" data-s="8" data-e="8">results show different species being identified, eg of <span class="qb">8</span><input type="text" class="ai" id="ri8" placeholder="8" autocomplete="off"></div>
+        </div>
+      </div>
+
+      <div style="margin-top:24px">
+        <p style="font-size:15px;font-weight:700;margin-bottom:6px">Questions 9–13</p>
+        <p style="font-size:15px;margin-bottom:6px">Do the following statements agree with the information given in Reading Passage 1?</p>
+        <p style="font-size:15px;margin-bottom:14px">In boxes 9–13, write:</p>
+        <div style="border:1px solid var(--border);border-radius:5px;padding:10px 14px;margin-bottom:16px;font-size:14px;background:var(--bg3)">
+          <div style="display:flex;gap:12px;margin-bottom:4px"><span style="font-weight:700;min-width:90px">TRUE</span><span style="color:var(--muted)">if the statement agrees with the information</span></div>
+          <div style="display:flex;gap:12px;margin-bottom:4px"><span style="font-weight:700;min-width:90px">FALSE</span><span style="color:var(--muted)">if the statement contradicts the information</span></div>
+          <div style="display:flex;gap:12px"><span style="font-weight:700;min-width:90px">NOT GIVEN</span><span style="color:var(--muted)">if there is no information on this</span></div>
+        </div>
+        <div class="tf" data-s="9" data-e="9"><div class="tfl"><span class="tfn">9</span><span class="tft">The writer believes that the barcode system will be widely used by the general public.</span></div><div class="tfopts"><label class="tfo"><input type="radio" name="RR9" value="TRUE">TRUE</label><label class="tfo"><input type="radio" name="RR9" value="FALSE">FALSE</label><label class="tfo"><input type="radio" name="RR9" value="NOT GIVEN">NOT GIVEN</label></div></div>
+        <div class="tf" data-s="10" data-e="10"><div class="tfl"><span class="tfn">10</span><span class="tft">It is likely that the barcode device will show that many foods and goods have not been correctly described.</span></div><div class="tfopts"><label class="tfo"><input type="radio" name="RR10" value="TRUE">TRUE</label><label class="tfo"><input type="radio" name="RR10" value="FALSE">FALSE</label><label class="tfo"><input type="radio" name="RR10" value="NOT GIVEN">NOT GIVEN</label></div></div>
+        <div class="tf" data-s="11" data-e="11"><div class="tfl"><span class="tfn">11</span><span class="tft">Hebert got the idea for DNA barcoding from someone who worked at a supermarket.</span></div><div class="tfopts"><label class="tfo"><input type="radio" name="RR11" value="TRUE">TRUE</label><label class="tfo"><input type="radio" name="RR11" value="FALSE">FALSE</label><label class="tfo"><input type="radio" name="RR11" value="NOT GIVEN">NOT GIVEN</label></div></div>
+        <div class="tf" data-s="12" data-e="12"><div class="tfl"><span class="tfn">12</span><span class="tft">The number of organisations supporting Hebert's barcoding project is growing all the time.</span></div><div class="tfopts"><label class="tfo"><input type="radio" name="RR12" value="TRUE">TRUE</label><label class="tfo"><input type="radio" name="RR12" value="FALSE">FALSE</label><label class="tfo"><input type="radio" name="RR12" value="NOT GIVEN">NOT GIVEN</label></div></div>
+        <div class="tf" data-s="13" data-e="13"><div class="tfl"><span class="tfn">13</span><span class="tft">A large number of new bird species have already been identified by the DNA barcode system.</span></div><div class="tfopts"><label class="tfo"><input type="radio" name="RR13" value="TRUE">TRUE</label><label class="tfo"><input type="radio" name="RR13" value="FALSE">FALSE</label><label class="tfo"><input type="radio" name="RR13" value="NOT GIVEN">NOT GIVEN</label></div></div>
+      </div>
+    </div>
+
+    <div id="rq2" class="qset hidden">
+      <div class="part-hdr"><p>Reading Passage 2 — Giving The Brain A Workout</p><p>Questions 14–26</p></div>
+
+      <div style="margin-bottom:22px">
+        <p style="font-size:15px;font-weight:700;margin-bottom:6px">Questions 14 and 15</p>
+        <p style="font-size:15px;margin-bottom:14px">Choose <strong>TWO</strong> letters, A–E. Which TWO of the following are claims that Robertson makes about the puzzles in his book?</p>
+        <div style="border:1px solid var(--bm);border-radius:5px;padding:12px 16px;margin-bottom:16px;background:var(--bg3)">
+          <div style="display:flex;flex-direction:column;gap:6px;font-size:14px">
+            <div><strong>A</strong> &nbsp;They will improve every mental skill.</div>
+            <div><strong>B</strong> &nbsp;They are better than other kinds of mental exercise.</div>
+            <div><strong>C</strong> &nbsp;They will have a major effect on people's mental abilities.</div>
+            <div><strong>D</strong> &nbsp;They are more useful than physical exercise.</div>
+            <div><strong>E</strong> &nbsp;They are certain to be more useful for older people than for the young.</div>
+          </div>
+        </div>
+        <div class="mfc">
+          <div class="mfr" data-s="14" data-e="14"><span class="mfl"><strong>14</strong></span><select class="ai n" id="ri14"><option value=""></option><option>A</option><option>B</option><option>C</option><option>D</option><option>E</option></select></div>
+          <div class="mfr" data-s="15" data-e="15"><span class="mfl"><strong>15</strong></span><select class="ai n" id="ri15"><option value=""></option><option>A</option><option>B</option><option>C</option><option>D</option><option>E</option></select></div>
+        </div>
+      </div>
+
+      <div style="margin-bottom:22px">
+        <p style="font-size:15px;font-weight:700;margin-bottom:6px">Questions 16–21</p>
+        <p style="font-size:15px;margin-bottom:14px">Complete the summary below. Choose <strong>NO MORE THAN THREE WORDS</strong> from the passage for each answer.</p>
+        <p style="font-weight:700;text-align:center;color:var(--pt);margin-bottom:10px">Evidence supporting Robertson's theory</p>
+        <div class="nb"><p style="line-height:2.5;font-size:15px">
+          Research was carried out using
+          <span class="qb">16</span><input type="text" class="ai" id="ri16" placeholder="16" autocomplete="off">
+          in London as subjects. It showed that their brains change, enabling them to create a
+          <span class="qb">17</span><input type="text" class="ai" id="ri17" placeholder="17" autocomplete="off">
+          of London. Tests showed that their
+          <span class="qb">18</span><input type="text" class="ai" id="ri18" placeholder="18" autocomplete="off">
+          increased in size as they continued in their job.
+          <br><br>
+          There is also evidence of a
+          <span class="qb">19</span><input type="text" class="ai" id="ri19" placeholder="19" autocomplete="off">
+          kind. People playing a certain game involving
+          <span class="qb">20</span><input type="text" class="ai" id="ri20" placeholder="20" autocomplete="off">
+          for a period of time every day achieved significantly better
+          <span class="qb">21</span><input type="text" class="ai" id="ri21" placeholder="21" autocomplete="off">.
+        </p></div>
+      </div>
+
+      <div style="margin-top:24px">
+        <p style="font-size:15px;font-weight:700;margin-bottom:6px">Questions 22–26</p>
+        <p style="font-size:15px;margin-bottom:6px">Reading Passage 2 has seven paragraphs, <strong>A–G</strong>.</p>
+        <p style="font-size:15px;margin-bottom:14px">Which paragraph contains the following information?</p>
+        <div class="mfc">
+          <div class="mfr" data-s="22" data-e="22"><span class="mfl"><strong>22.</strong> &nbsp;an example of a situation in which people will benefit from doing the puzzles in the book</span><select class="ai n" id="ri22"><option value=""></option><option>A</option><option>B</option><option>C</option><option>D</option><option>E</option><option>F</option><option>G</option></select></div>
+          <div class="mfr" data-s="23" data-e="23"><span class="mfl"><strong>23.</strong> &nbsp;a reason why some people don't exercise their minds</span><select class="ai n" id="ri23"><option value=""></option><option>A</option><option>B</option><option>C</option><option>D</option><option>E</option><option>F</option><option>G</option></select></div>
+          <div class="mfr" data-s="24" data-e="24"><span class="mfl"><strong>24.</strong> &nbsp;a discovery that had an enormous effect on Robertson</span><select class="ai n" id="ri24"><option value=""></option><option>A</option><option>B</option><option>C</option><option>D</option><option>E</option><option>F</option><option>G</option></select></div>
+          <div class="mfr" data-s="25" data-e="25"><span class="mfl"><strong>25.</strong> &nbsp;examples of things that people commonly feel they are not very good at</span><select class="ai n" id="ri25"><option value=""></option><option>A</option><option>B</option><option>C</option><option>D</option><option>E</option><option>F</option><option>G</option></select></div>
+          <div class="mfr" data-s="26" data-e="26"><span class="mfl"><strong>26.</strong> &nbsp;a reference to a change in beliefs about what happens to the brain over time</span><select class="ai n" id="ri26"><option value=""></option><option>A</option><option>B</option><option>C</option><option>D</option><option>E</option><option>F</option><option>G</option></select></div>
+        </div>
+      </div>
+    </div>
+
+    <div id="rq3" class="qset hidden">
+      <div class="part-hdr"><p>Reading Passage 3 — Fierce, fabulous and fantastic</p><p>Questions 27–40</p></div>
+
+      <div style="margin-bottom:22px">
+        <p style="font-size:15px;font-weight:700;margin-bottom:6px">Questions 27–31</p>
+        <p style="font-size:15px;margin-bottom:14px">Choose the correct letter, <strong>A, B, C or D</strong>.</p>
+
+        <div class="mcq" data-s="27" data-e="27"><p style="font-size:15px;font-weight:600;margin-bottom:8px"><strong>27.</strong> The point the writer is making about the picture of the giraffe is that:</p>
+          <div class="mco"><label><input type="radio" name="RR27" value="A">A &nbsp;the artist knew it was inaccurate.</label></div>
+          <div class="mco"><label><input type="radio" name="RR27" value="B">B &nbsp;it might seem ridiculous today.</label></div>
+          <div class="mco"><label><input type="radio" name="RR27" value="C">C &nbsp;its inaccuracies are understandable.</label></div>
+          <div class="mco"><label><input type="radio" name="RR27" value="D">D &nbsp;it is not totally unlike a real giraffe.</label></div>
+        </div>
+        <div class="mcq" data-s="28" data-e="28"><p style="font-size:15px;font-weight:600;margin-bottom:8px"><strong>28.</strong> In the second paragraph, the writer explains why:</p>
+          <div class="mco"><label><input type="radio" name="RR28" value="A">A &nbsp;there were no accurate paintings of giraffes in Europe until 1827.</label></div>
+          <div class="mco"><label><input type="radio" name="RR28" value="B">B &nbsp;people in Europe were so keen to see exotic animals.</label></div>
+          <div class="mco"><label><input type="radio" name="RR28" value="C">C &nbsp;people in Europe preferred paintings of animals to stuffed animals.</label></div>
+          <div class="mco"><label><input type="radio" name="RR28" value="D">D &nbsp;the establishment of zoos had an effect on the painting of animals.</label></div>
+        </div>
+        <div class="mcq" data-s="29" data-e="29"><p style="font-size:15px;font-weight:600;margin-bottom:8px"><strong>29.</strong> The writer's main topic in the third paragraph is</p>
+          <div class="mco"><label><input type="radio" name="RR29" value="A">A &nbsp;which animal species became popular in Europe in the 18th century.</label></div>
+          <div class="mco"><label><input type="radio" name="RR29" value="B">B &nbsp;why the identification of species became an important issue in the 18th century.</label></div>
+          <div class="mco"><label><input type="radio" name="RR29" value="C">C &nbsp;the extent to which knowledge of animals increased in the 18th century.</label></div>
+          <div class="mco"><label><input type="radio" name="RR29" value="D">D &nbsp;the way in which attitudes to animals changed in the 18th century.</label></div>
+        </div>
+        <div class="mcq" data-s="30" data-e="30"><p style="font-size:15px;font-weight:600;margin-bottom:8px"><strong>30.</strong> Which of these is the writer doing in the fourth paragraph?</p>
+          <div class="mco"><label><input type="radio" name="RR30" value="A">A &nbsp;contrasting the development of zoos with that of museums.</label></div>
+          <div class="mco"><label><input type="radio" name="RR30" value="B">B &nbsp;criticising the commercial exploitation of creatures.</label></div>
+          <div class="mco"><label><input type="radio" name="RR30" value="C">C &nbsp;describing a change in the portrayal of animals in paintings.</label></div>
+          <div class="mco"><label><input type="radio" name="RR30" value="D">D &nbsp;explaining the origins of the use of creatures for public entertainment.</label></div>
+        </div>
+        <div class="mcq" data-s="31" data-e="31"><p style="font-size:15px;font-weight:600;margin-bottom:8px"><strong>31.</strong> The writer mentions the porcelain created in 1793 as an example of:</p>
+          <div class="mco"><label><input type="radio" name="RR31" value="A">A &nbsp;improvements in the artistic portrayal of creatures.</label></div>
+          <div class="mco"><label><input type="radio" name="RR31" value="B">B &nbsp;the influence of Buffon's Histoire Naturelle.</label></div>
+          <div class="mco"><label><input type="radio" name="RR31" value="C">C &nbsp;one of the disadvantages of de Buffon's Histoire Naturelle.</label></div>
+          <div class="mco"><label><input type="radio" name="RR31" value="D">D &nbsp;the popularity of pictures of creatures with the wealthy.</label></div>
+        </div>
+      </div>
+
+      <div style="margin-bottom:22px">
+        <p style="font-size:15px;font-weight:700;margin-bottom:6px">Questions 32–35</p>
+        <p style="font-size:15px;margin-bottom:14px">Complete each sentence with the correct ending, A–F, below.</p>
+        <div style="border:1px solid var(--bm);border-radius:5px;padding:12px 16px;margin-bottom:16px;background:var(--bg3)">
+          <div style="display:flex;flex-direction:column;gap:6px;font-size:14px">
+            <div><strong>A</strong> &nbsp;makes a moral point about human behaviour.</div>
+            <div><strong>B</strong> &nbsp;contrasts animal behaviour with human behaviour.</div>
+            <div><strong>C</strong> &nbsp;shows a human's feeling for a creature.</div>
+            <div><strong>D</strong> &nbsp;has an identical purpose to that of another work of art.</div>
+            <div><strong>E</strong> &nbsp;depicts similarities between creatures and people.</div>
+            <div><strong>F</strong> &nbsp;portrays the feelings creatures can have towards humans.</div>
+          </div>
+        </div>
+        <div class="mfc">
+          <div class="mfr" data-s="32" data-e="32"><span class="mfl"><strong>32.</strong> &nbsp;Delacroix's 1824 painting...</span><select class="ai n" id="ri32"><option value=""></option><option>A</option><option>B</option><option>C</option><option>D</option><option>E</option><option>F</option></select></div>
+          <div class="mfr" data-s="33" data-e="33"><span class="mfl"><strong>33.</strong> &nbsp;Greuze's 1765 painting...</span><select class="ai n" id="ri33"><option value=""></option><option>A</option><option>B</option><option>C</option><option>D</option><option>E</option><option>F</option></select></div>
+          <div class="mfr" data-s="34" data-e="34"><span class="mfl"><strong>34.</strong> &nbsp;Hogarth's series of prints...</span><select class="ai n" id="ri34"><option value=""></option><option>A</option><option>B</option><option>C</option><option>D</option><option>E</option><option>F</option></select></div>
+          <div class="mfr" data-s="35" data-e="35"><span class="mfl"><strong>35.</strong> &nbsp;Landseer's pair of paintings <em>High Life and Low Life</em>...</span><select class="ai n" id="ri35"><option value=""></option><option>A</option><option>B</option><option>C</option><option>D</option><option>E</option><option>F</option></select></div>
+        </div>
+      </div>
+
+      <div style="margin-top:24px">
+        <p style="font-size:15px;font-weight:700;margin-bottom:6px">Questions 36–40</p>
+        <p style="font-size:15px;margin-bottom:6px">Do the following statements agree with the views of the writer in the Reading Passage?</p>
+        <p style="font-size:15px;margin-bottom:14px">In boxes 36–40, write:</p>
+        <div style="border:1px solid var(--border);border-radius:5px;padding:10px 14px;margin-bottom:16px;font-size:14px;background:var(--bg3)">
+          <div style="display:flex;gap:12px;margin-bottom:4px"><span style="font-weight:700;min-width:90px">YES</span><span style="color:var(--muted)">if the statement agrees with the views of the writer</span></div>
+          <div style="display:flex;gap:12px;margin-bottom:4px"><span style="font-weight:700;min-width:90px">NO</span><span style="color:var(--muted)">if the statement contradicts the views of the writer</span></div>
+          <div style="display:flex;gap:12px"><span style="font-weight:700;min-width:90px">NOT GIVEN</span><span style="color:var(--muted)">if it is impossible to say what the writer thinks about this</span></div>
+        </div>
+        <div class="tf" data-s="36" data-e="36"><div class="tfl"><span class="tfn">36</span><span class="tft">It is understandable that people feel no emotion towards certain animals.</span></div><div class="tfopts"><label class="tfo"><input type="radio" name="RR36" value="YES">YES</label><label class="tfo"><input type="radio" name="RR36" value="NO">NO</label><label class="tfo"><input type="radio" name="RR36" value="NOT GIVEN">NOT GIVEN</label></div></div>
+        <div class="tf" data-s="37" data-e="37"><div class="tfl"><span class="tfn">37</span><span class="tft">Some of Oudry's paintings are more impressive than others.</span></div><div class="tfopts"><label class="tfo"><input type="radio" name="RR37" value="YES">YES</label><label class="tfo"><input type="radio" name="RR37" value="NO">NO</label><label class="tfo"><input type="radio" name="RR37" value="NOT GIVEN">NOT GIVEN</label></div></div>
+        <div class="tf" data-s="38" data-e="38"><div class="tfl"><span class="tfn">38</span><span class="tft">Some people claim to love animals but treat them badly.</span></div><div class="tfopts"><label class="tfo"><input type="radio" name="RR38" value="YES">YES</label><label class="tfo"><input type="radio" name="RR38" value="NO">NO</label><label class="tfo"><input type="radio" name="RR38" value="NOT GIVEN">NOT GIVEN</label></div></div>
+        <div class="tf" data-s="39" data-e="39"><div class="tfl"><span class="tfn">39</span><span class="tft">Mouchy's painting shows something that should never happen.</span></div><div class="tfopts"><label class="tfo"><input type="radio" name="RR39" value="YES">YES</label><label class="tfo"><input type="radio" name="RR39" value="NO">NO</label><label class="tfo"><input type="radio" name="RR39" value="NOT GIVEN">NOT GIVEN</label></div></div>
+        <div class="tf" data-s="40" data-e="40"><div class="tfl"><span class="tfn">40</span><span class="tft">Early 19th century art reveals a change in people's attitudes towards animals.</span></div><div class="tfopts"><label class="tfo"><input type="radio" name="RR40" value="YES">YES</label><label class="tfo"><input type="radio" name="RR40" value="NO">NO</label><label class="tfo"><input type="radio" name="RR40" value="NOT GIVEN">NOT GIVEN</label></div></div>
+      </div>
+    </div>
+
+   </div>
+
+   <div id="wq" class="hidden">
+    <div id="wq1" class="qset">
+      <div class="part-hdr"><p><strong>Writing Task 1</strong></p><p>Report — minimum 150 words</p></div>
+      <textarea class="wta" id="wi1" placeholder="Write your Task 1 report here..." autocomplete="off" spellcheck="true"></textarea>
+      <div class="wc-row"><span>Word count: <span class="wc-count" id="wc1">0</span> / 150 min</span></div>
+    </div>
+    <div id="wq2" class="qset hidden">
+      <div class="part-hdr"><p><strong>Writing Task 2</strong></p><p>Essay — minimum 250 words</p></div>
+      <textarea class="wta" id="wi2" placeholder="Write your Task 2 essay here..." autocomplete="off" spellcheck="true"></textarea>
+      <div class="wc-row"><span>Word count: <span class="wc-count" id="wc2">0</span> / 250 min</span></div>
+    </div>
+   </div>
+
+  </div>
+ </div>
+</div>
+
+<div class="nav-arrows">
+  <button class="na" id="prevBtn" onclick="prevQ()">↑</button>
+  <button class="na" id="nextBtn" onclick="nextQ()">↓</button>
+</div>
+<nav class="nav-row" id="navrow"></nav>
+
+<div id="HLT" class="hlt">
+  <button class="htb y" id="hlY">🟡 Yellow</button>
+  <button class="htb g" id="hlG">🟢 Green</button>
+  <button class="htb" id="hlNote" style="background:#f57c00;color:#fff">📝 Note</button>
+  <div class="hsep"></div>
+  <button class="htb x" id="hlRem">✕ Remove</button>
+  <button class="htb c" id="hlAll">⊘ Clear All</button>
+</div>
+
+<div id="npanel" class="npanel">
+  <div class="nphdr">
+    <span>📝 My Notes</span>
+    <div class="nphdr-right">
+      <span class="npcnt hidden" id="npcnt">0</span>
+      <button class="npclose" id="npclose">✕</button>
+    </div>
+  </div>
+  <div class="nplist" id="nplist"><div class="npempty">No notes yet.<br>Select text and click<br>📝 Note in the toolbar.</div></div>
+  <div class="npadd">
+    <textarea id="npta" placeholder="Add a quick note..."></textarea>
+    <button onclick="addQuickNote()">Add</button>
+  </div>
+</div>
+
+<div id="note-popup" class="note-popup">
+  <label>Add note for selected text:</label>
+  <div class="sel-preview" id="note-popup-sel"></div>
+  <textarea id="note-popup-ta" placeholder="Type your note here..."></textarea>
+  <div class="note-popup-btns">
+    <button class="cancel" onclick="closeNotePopup()">Cancel</button>
+    <button class="save" onclick="saveNotePopup()">Save Note</button>
+  </div>
+</div>
+
+<div class="overlay hidden" id="resmod">
+  <div class="mbox res-box">
+    <button class="mclose" onclick="document.getElementById('resmod').classList.add('hidden')">×</button>
+    <h2 id="resh2">📊 Results</h2>
+    <div class="res-score" id="resscore">
+      <span>Score: <span id="rscr">—</span> / 40</span>
+      <span>IELTS Band: <span id="rband">—</span></span>
+    </div>
+    <div class="res-det" id="rdet"></div>
+    <div class="res-act">
+      <button class="rbtn pri" onclick="retake()">🔄 Retake</button>
+      <button class="rbtn sec" onclick="document.getElementById('resmod').classList.add('hidden')">👁 Review</button>
+    </div>
+  </div>
+</div>
+
+<div class="overlay hidden" id="trmod">
+  <div class="mbox tr-box">
+    <button class="mclose" onclick="document.getElementById('trmod').classList.add('hidden')">×</button>
+    <h2 id="trh2">📋 Answer Key</h2>
+    <div class="trbody" id="trbody"></div>
+  </div>
+</div>
+
+<script>
+const ANS={
+  L1:'salesman',L2:'9 years',L3:'Spring Park',L4:'apartment',L5:'train',L6:'once a month',L7:'clubs',L8:'cinema',L9:'sailing',L10:'Japanese',
+  L11:'B',L12:'E',L13:'F',L14:'I',L15:'C',L16:'A',L17:'A',L18:'B',L19:'A',L20:'A',
+  L21:'C',L22:'B',L23:'A',L24:'A',L25:'B',L26:'H',L27:'E',L28:'I',L29:'A',L30:'D',
+  L31:'satellite',L32:'radio',L33:'signal',L34:'navigate',L35:'people',L36:'helicopter',L37:'head',L38:'direct',L39:'sun',L40:'birds',
+
+  R1:'1.7 million',R2:'flies',R3:'mammals',
+  R4:'DNA barcode reader',R5:'gene',R6:'reference database',R7:'98 per cent',R8:'caterpillars',
+  R9:'TRUE',R10:'NOT GIVEN',R11:'FALSE',R12:'NOT GIVEN',R13:'FALSE',
+  R14:'A',R15:'C',
+  R16:'taxi drivers',R17:'mental map',R18:'hippocampus',R19:'statistical',R20:'problem-solving',R21:'test scores',
+  R22:'E',R23:'G',R24:'C',R25:'F',R26:'B',
+  R27:'C',R28:'A',R29:'C',R30:'D',R31:'B',
+  R32:'D',R33:'C',R34:'A',R35:'E',
+  R36:'YES',R37:'NOT GIVEN',R38:'NOT GIVEN',R39:'NO',R40:'YES'
+};
+
+const TR=[
+`<table style="width:100%;border-collapse:collapse;font-size:13px">
+<tr style="background:var(--bg3);font-weight:700"><td style="padding:6px 8px;border:1px solid var(--border)">Q</td><td style="padding:6px 8px;border:1px solid var(--border)">Answer</td><td style="padding:6px 8px;border:1px solid var(--border)">Q</td><td style="padding:6px 8px;border:1px solid var(--border)">Answer</td></tr>
+<tr><td style="padding:5px 8px;border:1px solid var(--border)">1</td><td style="padding:5px 8px;border:1px solid var(--border);color:var(--cb);font-weight:600">salesman</td><td style="padding:5px 8px;border:1px solid var(--border)">21</td><td style="padding:5px 8px;border:1px solid var(--border);color:var(--cb);font-weight:600">C</td></tr>
+<tr style="background:var(--bg2)"><td style="padding:5px 8px;border:1px solid var(--border)">2</td><td style="padding:5px 8px;border:1px solid var(--border);color:var(--cb);font-weight:600">9 years</td><td style="padding:5px 8px;border:1px solid var(--border)">22</td><td style="padding:5px 8px;border:1px solid var(--border);color:var(--cb);font-weight:600">B</td></tr>
+<tr><td style="padding:5px 8px;border:1px solid var(--border)">3</td><td style="padding:5px 8px;border:1px solid var(--border);color:var(--cb);font-weight:600">Spring Park</td><td style="padding:5px 8px;border:1px solid var(--border)">23</td><td style="padding:5px 8px;border:1px solid var(--border);color:var(--cb);font-weight:600">A</td></tr>
+<tr style="background:var(--bg2)"><td style="padding:5px 8px;border:1px solid var(--border)">4</td><td style="padding:5px 8px;border:1px solid var(--border);color:var(--cb);font-weight:600">apartment</td><td style="padding:5px 8px;border:1px solid var(--border)">24</td><td style="padding:5px 8px;border:1px solid var(--border);color:var(--cb);font-weight:600">A</td></tr>
+<tr><td style="padding:5px 8px;border:1px solid var(--border)">5</td><td style="padding:5px 8px;border:1px solid var(--border);color:var(--cb);font-weight:600">train</td><td style="padding:5px 8px;border:1px solid var(--border)">25</td><td style="padding:5px 8px;border:1px solid var(--border);color:var(--cb);font-weight:600">B</td></tr>
+<tr style="background:var(--bg2)"><td style="padding:5px 8px;border:1px solid var(--border)">6</td><td style="padding:5px 8px;border:1px solid var(--border);color:var(--cb);font-weight:600">once a month</td><td style="padding:5px 8px;border:1px solid var(--border)">26</td><td style="padding:5px 8px;border:1px solid var(--border);color:var(--cb);font-weight:600">H</td></tr>
+<tr><td style="padding:5px 8px;border:1px solid var(--border)">7</td><td style="padding:5px 8px;border:1px solid var(--border);color:var(--cb);font-weight:600">clubs</td><td style="padding:5px 8px;border:1px solid var(--border)">27</td><td style="padding:5px 8px;border:1px solid var(--border);color:var(--cb);font-weight:600">E</td></tr>
+<tr style="background:var(--bg2)"><td style="padding:5px 8px;border:1px solid var(--border)">8</td><td style="padding:5px 8px;border:1px solid var(--border);color:var(--cb);font-weight:600">cinema</td><td style="padding:5px 8px;border:1px solid var(--border)">28</td><td style="padding:5px 8px;border:1px solid var(--border);color:var(--cb);font-weight:600">I</td></tr>
+<tr><td style="padding:5px 8px;border:1px solid var(--border)">9</td><td style="padding:5px 8px;border:1px solid var(--border);color:var(--cb);font-weight:600">sailing</td><td style="padding:5px 8px;border:1px solid var(--border)">29</td><td style="padding:5px 8px;border:1px solid var(--border);color:var(--cb);font-weight:600">A</td></tr>
+<tr style="background:var(--bg2)"><td style="padding:5px 8px;border:1px solid var(--border)">10</td><td style="padding:5px 8px;border:1px solid var(--border);color:var(--cb);font-weight:600">Japanese</td><td style="padding:5px 8px;border:1px solid var(--border)">30</td><td style="padding:5px 8px;border:1px solid var(--border);color:var(--cb);font-weight:600">D</td></tr>
+<tr><td style="padding:5px 8px;border:1px solid var(--border)">11</td><td style="padding:5px 8px;border:1px solid var(--border);color:var(--cb);font-weight:600">B</td><td style="padding:5px 8px;border:1px solid var(--border)">31</td><td style="padding:5px 8px;border:1px solid var(--border);color:var(--cb);font-weight:600">satellite</td></tr>
+<tr style="background:var(--bg2)"><td style="padding:5px 8px;border:1px solid var(--border)">12</td><td style="padding:5px 8px;border:1px solid var(--border);color:var(--cb);font-weight:600">E</td><td style="padding:5px 8px;border:1px solid var(--border)">32</td><td style="padding:5px 8px;border:1px solid var(--border);color:var(--cb);font-weight:600">radio</td></tr>
+<tr><td style="padding:5px 8px;border:1px solid var(--border)">13</td><td style="padding:5px 8px;border:1px solid var(--border);color:var(--cb);font-weight:600">F</td><td style="padding:5px 8px;border:1px solid var(--border)">33</td><td style="padding:5px 8px;border:1px solid var(--border);color:var(--cb);font-weight:600">signal</td></tr>
+<tr style="background:var(--bg2)"><td style="padding:5px 8px;border:1px solid var(--border)">14</td><td style="padding:5px 8px;border:1px solid var(--border);color:var(--cb);font-weight:600">I</td><td style="padding:5px 8px;border:1px solid var(--border)">34</td><td style="padding:5px 8px;border:1px solid var(--border);color:var(--cb);font-weight:600">navigate</td></tr>
+<tr><td style="padding:5px 8px;border:1px solid var(--border)">15</td><td style="padding:5px 8px;border:1px solid var(--border);color:var(--cb);font-weight:600">C</td><td style="padding:5px 8px;border:1px solid var(--border)">35</td><td style="padding:5px 8px;border:1px solid var(--border);color:var(--cb);font-weight:600">people</td></tr>
+<tr style="background:var(--bg2)"><td style="padding:5px 8px;border:1px solid var(--border)">16</td><td style="padding:5px 8px;border:1px solid var(--border);color:var(--cb);font-weight:600">A</td><td style="padding:5px 8px;border:1px solid var(--border)">36</td><td style="padding:5px 8px;border:1px solid var(--border);color:var(--cb);font-weight:600">helicopter</td></tr>
+<tr><td style="padding:5px 8px;border:1px solid var(--border)">17</td><td style="padding:5px 8px;border:1px solid var(--border);color:var(--cb);font-weight:600">A</td><td style="padding:5px 8px;border:1px solid var(--border)">37</td><td style="padding:5px 8px;border:1px solid var(--border);color:var(--cb);font-weight:600">head</td></tr>
+<tr style="background:var(--bg2)"><td style="padding:5px 8px;border:1px solid var(--border)">18</td><td style="padding:5px 8px;border:1px solid var(--border);color:var(--cb);font-weight:600">B</td><td style="padding:5px 8px;border:1px solid var(--border)">38</td><td style="padding:5px 8px;border:1px solid var(--border);color:var(--cb);font-weight:600">direct</td></tr>
+<tr><td style="padding:5px 8px;border:1px solid var(--border)">19</td><td style="padding:5px 8px;border:1px solid var(--border);color:var(--cb);font-weight:600">A</td><td style="padding:5px 8px;border:1px solid var(--border)">39</td><td style="padding:5px 8px;border:1px solid var(--border);color:var(--cb);font-weight:600">sun</td></tr>
+<tr style="background:var(--bg2)"><td style="padding:5px 8px;border:1px solid var(--border)">20</td><td style="padding:5px 8px;border:1px solid var(--border);color:var(--cb);font-weight:600">A</td><td style="padding:5px 8px;border:1px solid var(--border)">40</td><td style="padding:5px 8px;border:1px solid var(--border);color:var(--cb);font-weight:600">birds</td></tr>
+</table>`,
+`<p style="margin-bottom:10px;color:var(--muted);font-size:12px">Reading answers 14–40 were derived from careful analysis of the passages (no official key was included with this test) — double check against an official source if you have one.</p>
+<table style="width:100%;border-collapse:collapse;font-size:13px">
+<tr style="background:var(--bg3);font-weight:700"><td style="padding:6px 8px;border:1px solid var(--border)">Q</td><td style="padding:6px 8px;border:1px solid var(--border)">Answer</td><td style="padding:6px 8px;border:1px solid var(--border)">Q</td><td style="padding:6px 8px;border:1px solid var(--border)">Answer</td></tr>
+<tr><td style="padding:5px 8px;border:1px solid var(--border)">1</td><td style="padding:5px 8px;border:1px solid var(--border);color:var(--cb);font-weight:600">1.7 million</td><td style="padding:5px 8px;border:1px solid var(--border)">21</td><td style="padding:5px 8px;border:1px solid var(--border);color:var(--cb);font-weight:600">test scores</td></tr>
+<tr style="background:var(--bg2)"><td style="padding:5px 8px;border:1px solid var(--border)">2</td><td style="padding:5px 8px;border:1px solid var(--border);color:var(--cb);font-weight:600">flies</td><td style="padding:5px 8px;border:1px solid var(--border)">22</td><td style="padding:5px 8px;border:1px solid var(--border);color:var(--cb);font-weight:600">E</td></tr>
+<tr><td style="padding:5px 8px;border:1px solid var(--border)">3</td><td style="padding:5px 8px;border:1px solid var(--border);color:var(--cb);font-weight:600">mammals</td><td style="padding:5px 8px;border:1px solid var(--border)">23</td><td style="padding:5px 8px;border:1px solid var(--border);color:var(--cb);font-weight:600">G</td></tr>
+<tr style="background:var(--bg2)"><td style="padding:5px 8px;border:1px solid var(--border)">4</td><td style="padding:5px 8px;border:1px solid var(--border);color:var(--cb);font-weight:600">DNA barcode reader</td><td style="padding:5px 8px;border:1px solid var(--border)">24</td><td style="padding:5px 8px;border:1px solid var(--border);color:var(--cb);font-weight:600">C</td></tr>
+<tr><td style="padding:5px 8px;border:1px solid var(--border)">5</td><td style="padding:5px 8px;border:1px solid var(--border);color:var(--cb);font-weight:600">gene</td><td style="padding:5px 8px;border:1px solid var(--border)">25</td><td style="padding:5px 8px;border:1px solid var(--border);color:var(--cb);font-weight:600">F</td></tr>
+<tr style="background:var(--bg2)"><td style="padding:5px 8px;border:1px solid var(--border)">6</td><td style="padding:5px 8px;border:1px solid var(--border);color:var(--cb);font-weight:600">reference database</td><td style="padding:5px 8px;border:1px solid var(--border)">26</td><td style="padding:5px 8px;border:1px solid var(--border);color:var(--cb);font-weight:600">B</td></tr>
+<tr><td style="padding:5px 8px;border:1px solid var(--border)">7</td><td style="padding:5px 8px;border:1px solid var(--border);color:var(--cb);font-weight:600">98 per cent</td><td style="padding:5px 8px;border:1px solid var(--border)">27</td><td style="padding:5px 8px;border:1px solid var(--border);color:var(--cb);font-weight:600">C</td></tr>
+<tr style="background:var(--bg2)"><td style="padding:5px 8px;border:1px solid var(--border)">8</td><td style="padding:5px 8px;border:1px solid var(--border);color:var(--cb);font-weight:600">caterpillars</td><td style="padding:5px 8px;border:1px solid var(--border)">28</td><td style="padding:5px 8px;border:1px solid var(--border);color:var(--cb);font-weight:600">A</td></tr>
+<tr><td style="padding:5px 8px;border:1px solid var(--border)">9</td><td style="padding:5px 8px;border:1px solid var(--border);color:var(--cb);font-weight:600">TRUE</td><td style="padding:5px 8px;border:1px solid var(--border)">29</td><td style="padding:5px 8px;border:1px solid var(--border);color:var(--cb);font-weight:600">C</td></tr>
+<tr style="background:var(--bg2)"><td style="padding:5px 8px;border:1px solid var(--border)">10</td><td style="padding:5px 8px;border:1px solid var(--border);color:var(--cb);font-weight:600">NOT GIVEN</td><td style="padding:5px 8px;border:1px solid var(--border)">30</td><td style="padding:5px 8px;border:1px solid var(--border);color:var(--cb);font-weight:600">D</td></tr>
+<tr><td style="padding:5px 8px;border:1px solid var(--border)">11</td><td style="padding:5px 8px;border:1px solid var(--border);color:var(--cb);font-weight:600">FALSE</td><td style="padding:5px 8px;border:1px solid var(--border)">31</td><td style="padding:5px 8px;border:1px solid var(--border);color:var(--cb);font-weight:600">B</td></tr>
+<tr style="background:var(--bg2)"><td style="padding:5px 8px;border:1px solid var(--border)">12</td><td style="padding:5px 8px;border:1px solid var(--border);color:var(--cb);font-weight:600">NOT GIVEN</td><td style="padding:5px 8px;border:1px solid var(--border)">32</td><td style="padding:5px 8px;border:1px solid var(--border);color:var(--cb);font-weight:600">D</td></tr>
+<tr><td style="padding:5px 8px;border:1px solid var(--border)">13</td><td style="padding:5px 8px;border:1px solid var(--border);color:var(--cb);font-weight:600">FALSE</td><td style="padding:5px 8px;border:1px solid var(--border)">33</td><td style="padding:5px 8px;border:1px solid var(--border);color:var(--cb);font-weight:600">C</td></tr>
+<tr style="background:var(--bg2)"><td style="padding:5px 8px;border:1px solid var(--border)">14</td><td style="padding:5px 8px;border:1px solid var(--border);color:var(--cb);font-weight:600">A</td><td style="padding:5px 8px;border:1px solid var(--border)">34</td><td style="padding:5px 8px;border:1px solid var(--border);color:var(--cb);font-weight:600">A</td></tr>
+<tr><td style="padding:5px 8px;border:1px solid var(--border)">15</td><td style="padding:5px 8px;border:1px solid var(--border);color:var(--cb);font-weight:600">C</td><td style="padding:5px 8px;border:1px solid var(--border)">35</td><td style="padding:5px 8px;border:1px solid var(--border);color:var(--cb);font-weight:600">E</td></tr>
+<tr style="background:var(--bg2)"><td style="padding:5px 8px;border:1px solid var(--border)">16</td><td style="padding:5px 8px;border:1px solid var(--border);color:var(--cb);font-weight:600">taxi drivers</td><td style="padding:5px 8px;border:1px solid var(--border)">36</td><td style="padding:5px 8px;border:1px solid var(--border);color:var(--cb);font-weight:600">YES</td></tr>
+<tr><td style="padding:5px 8px;border:1px solid var(--border)">17</td><td style="padding:5px 8px;border:1px solid var(--border);color:var(--cb);font-weight:600">mental map</td><td style="padding:5px 8px;border:1px solid var(--border)">37</td><td style="padding:5px 8px;border:1px solid var(--border);color:var(--cb);font-weight:600">NOT GIVEN</td></tr>
+<tr style="background:var(--bg2)"><td style="padding:5px 8px;border:1px solid var(--border)">18</td><td style="padding:5px 8px;border:1px solid var(--border);color:var(--cb);font-weight:600">hippocampus</td><td style="padding:5px 8px;border:1px solid var(--border)">38</td><td style="padding:5px 8px;border:1px solid var(--border);color:var(--cb);font-weight:600">NOT GIVEN</td></tr>
+<tr><td style="padding:5px 8px;border:1px solid var(--border)">19</td><td style="padding:5px 8px;border:1px solid var(--border);color:var(--cb);font-weight:600">statistical</td><td style="padding:5px 8px;border:1px solid var(--border)">39</td><td style="padding:5px 8px;border:1px solid var(--border);color:var(--cb);font-weight:600">NO</td></tr>
+<tr style="background:var(--bg2)"><td style="padding:5px 8px;border:1px solid var(--border)">20</td><td style="padding:5px 8px;border:1px solid var(--border);color:var(--cb);font-weight:600">problem-solving</td><td style="padding:5px 8px;border:1px solid var(--border)">40</td><td style="padding:5px 8px;border:1px solid var(--border);color:var(--cb);font-weight:600">YES</td></tr>
+</table>`,
+`<div style="margin-bottom:18px">
+  <p style="font-weight:700;color:var(--pt);margin-bottom:8px">✍️ Task 1 — Report structure</p>
+  <p style="margin-bottom:6px"><strong>1. Introduction (1 sentence):</strong> paraphrase the question — what the graph shows, the units, and the time period.</p>
+  <p style="margin-bottom:6px"><strong>2. Overview (1–2 sentences):</strong> the 2–3 biggest, most obvious features — no numbers needed here. For this chart: Health spending was consistently the highest category and rose overall despite fluctuations; General Science stayed the lowest throughout but grew steadily; Energy and Space were the most volatile, both dipping sharply around 2000 before recovering.</p>
+  <p style="margin-bottom:6px"><strong>3–4. Body paragraphs:</strong> group the five categories logically (e.g. "the two largest categories" vs "the three smaller categories") and support with specific figures and comparisons (e.g. "Health spending, starting at around $8 billion in 1980, fell to roughly $5 billion by 1984 before climbing to a peak of about $22 billion in 2004").</p>
+  <p style="color:var(--muted);font-size:13px;margin-top:10px">Do not give opinions or reasons for the trends — Task 1 is descriptive only.</p>
+</div>
+<div>
+  <p style="font-weight:700;color:var(--pt);margin-bottom:8px">✍️ Task 2 — Essay structure</p>
+  <p style="margin-bottom:6px"><strong>1. Introduction:</strong> paraphrase the statement and clearly state your position (agree / disagree / partly agree).</p>
+  <p style="margin-bottom:6px"><strong>2. Body paragraph 1:</strong> your strongest argument, explained and supported with an example.</p>
+  <p style="margin-bottom:6px"><strong>3. Body paragraph 2:</strong> a second argument, or an acknowledgement of the opposing view followed by your rebuttal.</p>
+  <p style="margin-bottom:6px"><strong>4. Conclusion:</strong> summarise your position in different words — no new ideas.</p>
+  <p style="color:var(--muted);font-size:13px;margin-top:10px">Self-assess against the four IELTS Writing criteria: Task Response, Coherence &amp; Cohesion, Lexical Resource, Grammatical Range &amp; Accuracy.</p>
+</div>`
+];
+window.showTr=n=>{document.getElementById('trbody').innerHTML=TR[n]||'';};
+
+const CFG={
+  listening:{parts:4,ranges:[[1,10],[11,20],[21,30],[31,40]],labels:['Part 1','Part 2','Part 3','Part 4'],first:[1,11,21,31],secs:40*60},
+  reading:{parts:3,ranges:[[1,13],[14,26],[27,40]],labels:['Passage 1','Passage 2','Passage 3'],first:[1,14,27],secs:60*60},
+  writing:{parts:2,ranges:[[1,1],[2,2]],labels:['Task 1','Task 2'],first:[1,2],secs:60*60}
+};
+const WMIN={1:150,2:250};
+const TS={listening:{rem:40*60,run:false,done:false},reading:{rem:60*60,run:false,done:false},writing:{rem:60*60,run:false,done:false}};
+const CHECKED_BY_MODE={listening:false,reading:false,writing:false};
+
+let TI=null,MODE='listening',PART=1,CQ=1,CHECKED=false,ZOOM=1;
+
+const $=id=>document.getElementById(id);
+const PAUSE='<svg viewBox="0 0 24 24"><path d="M0 0h24v24H0z" fill="none"/><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>';
+const PLAY='<svg viewBox="0 0 24 24"><path d="M0 0h24v24H0z" fill="none"/><path d="M8 5v14l11-7L8 5z"/></svg>';
+
+function fmtT(s){const a=Math.abs(Math.round(s));return String(Math.floor(a/60)).padStart(2,'0')+':'+String(a%60).padStart(2,'0');}
+function updT(){
+  const t=TS[MODE];const d=$('tdisp');d.textContent=fmtT(t.rem);
+  d.classList.toggle('warn',t.rem<=300&&t.rem>0);
+  $('tpause').innerHTML=t.run&&!t.done?PAUSE:PLAY;
+  const lbl=$('tlbl');if(lbl)lbl.textContent={listening:'Listening',reading:'Reading',writing:'Writing'}[MODE]+(!t.run&&!t.done?' ⏸':'');
+}
+function startT(){clearInterval(TI);const t=TS[MODE];if(t.done)return;t.run=true;updT();
+  TI=setInterval(()=>{const t2=TS[MODE];if(!t2.run)return;t2.rem--;updT();
+    if(t2.rem<=0){t2.run=false;t2.done=true;clearInterval(TI);if(MODE==='writing'){finishWriting();}else{checkAns();}}
+  },1000);
+}
+function pauseT(){TS[MODE].run=false;updT();}
+function togT(){const t=TS[MODE];if(t.done)return;t.run?pauseT():startT();}
+function resetT(){clearInterval(TI);TS[MODE]={rem:CFG[MODE].secs,run:false,done:false};updT();startT();}
+
+function getEl(n){
+  if(MODE==='listening')return $(`i${n}`);
+  if(MODE==='reading')return $(`ri${n}`);
+  if(MODE==='writing')return $(`wi${n}`);
+  return null;
+}
+function getRad(n){const name=MODE==='listening'?`R${n}`:`RR${n}`;if(MODE==='writing')return null;return document.querySelector(`input[name="${name}"]:checked`);}
+function getUA(n){const r=getRad(n);if(r)return r.value;const el=getEl(n);return el?el.value.trim():'';}
+function isAns(n){if(getRad(n))return true;const el=getEl(n);return!!(el&&el.value.trim());}
+function wordCount(s){s=(s||'').trim();return s?s.split(/\s+/).length:0;}
+
+function match(u,c){
+  const norm=s=>String(s).toLowerCase().trim().replace(/[.,]/g,'').replace(/[\s-]+/g,' ');
+  const us=norm(u),cs=norm(c);if(!us)return false;return us===cs;
+}
+
+function checkAns(){
+  if(MODE==='writing'){finishWriting();return;}
+  CHECKED=true;CHECKED_BY_MODE[MODE]=true;
+  TS[MODE].run=false;TS[MODE].done=true;clearInterval(TI);updT();
+  const qp=MODE==='listening'?$('lq'):$('rq');
+  if(qp)qp.querySelectorAll('input,select').forEach(e=>e.disabled=true);
+  const db=$('chkbtn');if(db)db.disabled=true;
+  qp.querySelectorAll('.ans-hint').forEach(e=>e.remove());
+  qp.querySelectorAll('.mcq').forEach(e=>e.classList.remove('okq','noq'));
+  qp.querySelectorAll('.mco').forEach(e=>e.classList.remove('ok','no','best'));
+  qp.querySelectorAll('.mfr').forEach(e=>e.classList.remove('ok','no'));
+  qp.querySelectorAll('.ai').forEach(e=>e.classList.remove('ok','no'));
+  qp.querySelectorAll('.tf').forEach(e=>e.classList.remove('ok','no'));
+  qp.querySelectorAll('.tfo').forEach(e=>e.classList.remove('ok','no','best'));
+
+  const pre=MODE==='listening'?'L':'R';
+  const cfg=CFG[MODE];
+  const qMin=cfg.ranges[0][0],qMax=cfg.ranges[cfg.parts-1][1];
+  let score=0;
+  $('resh2').textContent='📊 Results';
+  $('resscore').style.display='';
+  const det=$('rdet');
+  det.innerHTML='<div class="rrow" style="font-weight:700;background:var(--bg3)"><span class="qn">Q</span><span class="ua">Your Answer</span><span class="ca">Correct</span></div>';
+
+  for(let i=qMin;i<=qMax;i++){
+    const raw=ANS[`${pre}${i}`];if(raw===undefined)continue;
+    const ua=getUA(i);const ok=match(ua,raw);if(ok)score++;
+
+    const el=getEl(i);
+    if(el&&(el.tagName==='INPUT'||el.tagName==='SELECT')){
+      el.classList.add(ok?'ok':'no');
+      if(!ok){const sp=document.createElement('span');sp.className='ans-hint';sp.textContent='✓ '+raw;el.parentNode.insertBefore(sp,el.nextSibling);}
+      const row=el.closest('.mfr');if(row)row.classList.add(ok?'ok':'no');
+    }
+    const radName=MODE==='listening'?`R${i}`:`RR${i}`;
+    const radAny=document.querySelector(`input[name="${radName}"]`);
+    if(radAny){
+      const radChk=document.querySelector(`input[name="${radName}"]:checked`);
+      const mcqEl=radAny.closest('.mcq');const tfEl=radAny.closest('.tf');
+      if(mcqEl){mcqEl.classList.add(ok?'okq':'noq');
+        if(radChk)radChk.closest('.mco').classList.add(ok?'ok':'no');
+        if(!ok){const b=mcqEl.querySelector(`input[value="${raw}"]`);if(b)b.closest('.mco').classList.add('best');}}
+      if(tfEl){tfEl.classList.add(ok?'ok':'no');
+        if(radChk)radChk.closest('.tfo').classList.add(ok?'ok':'no');
+        if(!ok){const b=tfEl.querySelector(`input[value="${raw}"]`);if(b)b.closest('.tfo').classList.add('best');}}
+    }
+    const sq=document.querySelector(`.sq[data-q="${i}"]`);
+    if(sq){sq.classList.remove('ans','cur');sq.classList.add(ok?'ok':'no');}
+
+    det.innerHTML+=`<div class="rrow${ok?'':' no'}"><span class="qn">${i}</span><span class="ua">${ua||'—'}</span><span class="ca">${raw}</span></div>`;
+  }
+  $('rscr').textContent=score;$('rband').textContent=band(score);
+  $('resmod').classList.remove('hidden');
+}
+function band(s){const m={40:9,39:9,38:8.5,37:8.5,36:8,35:8,34:7.5,33:7.5,32:7,31:7,30:7,29:6.5,28:6.5,27:6.5,26:6,25:6,24:6,23:5.5,22:5.5,21:5.5,20:5.5,19:5,18:5,17:5,16:5,15:5,14:4.5,13:4.5,12:4,11:4,10:4,9:3.5,8:3.5,7:3,6:3,5:2.5,4:2.5,3:2,2:2,1:1,0:0};return m[s]??0;}
+
+function finishWriting(){
+  CHECKED=true;CHECKED_BY_MODE.writing=true;
+  TS.writing.run=false;TS.writing.done=true;clearInterval(TI);updT();
+  const wq=$('wq');if(wq)wq.querySelectorAll('textarea').forEach(e=>e.disabled=true);
+  const db=$('chkbtn');if(db)db.disabled=true;
+  const w1=wordCount($('wi1')?$('wi1').value:'');
+  const w2=wordCount($('wi2')?$('wi2').value:'');
+  $('resh2').textContent='✍️ Writing Summary';
+  $('resscore').style.display='none';
+  const det=$('rdet');
+  det.innerHTML=`
+    <div style="padding:6px 4px">
+      <p style="font-weight:700;margin-bottom:6px">Task 1 — <span id="fw1">${w1}</span> words
+        <span style="color:${w1>=150?'var(--cb)':'var(--xb)'}">${w1>=150?'✓ meets the 150-word minimum':'✗ below the 150-word minimum'}</span></p>
+      <p style="font-weight:700;margin:14px 0 6px">Task 2 — <span id="fw2">${w2}</span> words
+        <span style="color:${w2>=250?'var(--cb)':'var(--xb)'}">${w2>=250?'✓ meets the 250-word minimum':'✗ below the 250-word minimum'}</span></p>
+      <p style="margin-top:14px;color:var(--muted);font-size:13px;line-height:1.7">Writing tasks aren't auto-scored. Open <strong>📋 Answer Key</strong> for a structure guide, then self-assess against the four IELTS Writing band criteria: Task Achievement/Response, Coherence &amp; Cohesion, Lexical Resource, and Grammatical Range &amp; Accuracy.</p>
+    </div>`;
+  $('resmod').classList.remove('hidden');
+}
+
+window.retake=()=>{
+  CHECKED=false;CHECKED_BY_MODE[MODE]=false;
+  TS[MODE]={rem:CFG[MODE].secs,run:false,done:false};updT();
+  const p=MODE==='listening'?$('lq'):MODE==='reading'?$('rq'):$('wq');
+  p.querySelectorAll('input[type=text]').forEach(e=>{e.value='';e.disabled=false;e.classList.remove('ok','no');});
+  p.querySelectorAll('select').forEach(e=>{e.value='';e.disabled=false;e.classList.remove('ok','no');});
+  p.querySelectorAll('input[type=radio]').forEach(e=>{e.checked=false;e.disabled=false;});
+  p.querySelectorAll('textarea').forEach(e=>{e.value='';e.disabled=false;e.classList.remove('focused');});
+  p.querySelectorAll('.ans-hint').forEach(e=>e.remove());
+  p.querySelectorAll('.mcq').forEach(e=>e.classList.remove('okq','noq'));
+  p.querySelectorAll('.mco').forEach(e=>e.classList.remove('ok','no','best'));
+  p.querySelectorAll('.mfr').forEach(e=>e.classList.remove('ok','no'));
+  p.querySelectorAll('.tf').forEach(e=>e.classList.remove('ok','no'));
+  p.querySelectorAll('.tfo').forEach(e=>e.classList.remove('ok','no','best'));
+  document.querySelectorAll('.sq').forEach(b=>b.classList.remove('ok','no','ans','cur'));
+  const db=$('chkbtn');if(db)db.disabled=false;
+  updateWC(1);updateWC(2);
+  $('resmod').classList.add('hidden');
+  swPart(1);updNav();startT();
+};
+
+function updateWC(n){
+  const el=$(`wi${n}`);const out=$(`wc${n}`);if(!el||!out)return;
+  const wc=wordCount(el.value);out.textContent=wc;
+  const min=WMIN[n]||0;out.classList.toggle('ok',wc>=min);out.classList.toggle('low',wc<min);
+}
+
+function updNav(){
+  const cfg=CFG[MODE];
+  for(let p=1;p<=cfg.parts;p++){
+    const[s,e]=cfg.ranges[p-1];
+    const el=$(`cnt${p}`);
+    if(MODE==='writing'){
+      const n=s;const el2=getEl(n);const wc=wordCount(el2?el2.value:'');
+      if(el)el.textContent=`${wc} words`;
+      updateWC(n);
+    } else {
+      let cnt=0;for(let i=s;i<=e;i++)if(isAns(i))cnt++;
+      if(el)el.textContent=`${cnt}/${e-s+1}`;
+    }
+  }
+  document.querySelectorAll('.sq').forEach(btn=>{
+    const n=parseInt(btn.dataset.q);if(isNaN(n))return;
+    if(!CHECKED){btn.classList.remove('ok','no');btn.classList.toggle('ans',isAns(n));}
+    btn.classList.toggle('cur',n===CQ);
+  });
+  const mn=cfg.ranges[0][0],mx=cfg.ranges[cfg.parts-1][1];
+  $('prevBtn').disabled=CQ<=mn;$('nextBtn').disabled=CQ>=mx;
+}
+
+function buildNav(){
+  const nr=$('navrow');nr.innerHTML='';
+  const cfg=CFG[MODE];if(!cfg)return;
+  for(let p=1;p<=cfg.parts;p++){
+    const[s,e]=cfg.ranges[p-1];
+    const w=document.createElement('div');w.className='nw';w.id=`nw${p}`;
+    const lbl=cfg.labels[p-1].split(' ');
+    const btn=document.createElement('button');btn.className='np';
+    const cntLabel=MODE==='writing'?'0 words':`0/${e-s+1}`;
+    btn.innerHTML=`${lbl[0]} <strong>${lbl.slice(1).join(' ')}</strong><span class="cnt" id="cnt${p}">${cntLabel}</span>`;
+    btn.onclick=()=>swPart(p);
+    const sw=document.createElement('div');sw.className='sw';
+    for(let q=s;q<=e;q++){const sq=document.createElement('button');sq.className='sq';sq.textContent=q;sq.dataset.q=q;sq.onclick=()=>goQ(q);sw.appendChild(sq);}
+    w.appendChild(btn);w.appendChild(sw);nr.appendChild(w);
+  }
+  const cb=document.createElement('button');cb.id='chkbtn';cb.className='chkbtn';
+  if(MODE==='writing'){cb.textContent='✓ Finish & Review';cb.onclick=finishWriting;}
+  else{cb.textContent='✓ Check Answers';cb.onclick=checkAns;}
+  nr.appendChild(cb);
+}
+
+function swPart(p){
+  const cfg=CFG[MODE];if(!cfg)return;PART=p;
+  if(MODE==='listening'){[1,2,3,4].forEach(i=>{const lq=$(`lq${i}`),ll=$(`ll${i}`);if(lq)lq.classList.toggle('hidden',i!==p);if(ll)ll.classList.toggle('hidden',i!==p);});}
+  else if(MODE==='reading'){[1,2,3].forEach(i=>{const rq=$(`rq${i}`),rl=$(`rl${i}`);if(rq)rq.classList.toggle('hidden',i!==p);if(rl)rl.classList.toggle('hidden',i!==p);});}
+  else if(MODE==='writing'){[1,2].forEach(i=>{const wq=$(`wq${i}`),wl=$(`wl${i}`);if(wq)wq.classList.toggle('hidden',i!==p);if(wl)wl.classList.toggle('hidden',i!==p);});}
+  document.querySelectorAll('.nw').forEach((w,i)=>w.classList.toggle('sel',(i+1)===p));
+  goQ(cfg.first[p-1],true);
+}
+
+function goQ(n,skipSwitch){
+  const cfg=CFG[MODE];if(!cfg)return;
+  let np=1;for(let p=0;p<cfg.parts;p++){if(n>=cfg.ranges[p][0]&&n<=cfg.ranges[p][1]){np=p+1;break;}}
+  if(!skipSwitch&&np!==PART){swPart(np);return;}
+  CQ=n;
+  document.querySelectorAll('.aq').forEach(e=>e.classList.remove('aq'));
+  document.querySelectorAll('.ai.focused,.wta.focused').forEach(e=>e.classList.remove('focused'));
+  const el=getEl(n);
+  if(el){el.classList.add('focused');el.scrollIntoView({behavior:'smooth',block:'center'});if(!CHECKED)try{el.focus();}catch(e){}}
+  const blk=document.querySelector(`[data-s="${n}"]`);
+  if(blk){blk.classList.add('aq');if(!el)blk.scrollIntoView({behavior:'smooth',block:'center'});}
+  updNav();
+}
+window.nextQ=()=>{const cfg=CFG[MODE];if(!cfg)return;const mx=cfg.ranges[cfg.parts-1][1];if(CQ<mx)goQ(CQ+1);};
+window.prevQ=()=>{const cfg=CFG[MODE];if(!cfg)return;const mn=cfg.ranges[0][0];if(CQ>mn)goQ(CQ-1);};
+
+window.go=function(m){
+  if(MODE&&TS[MODE])TS[MODE].run=false;clearInterval(TI);
+  MODE=m;CHECKED=!!CHECKED_BY_MODE[m];
+  const isL=m==='listening',isR=m==='reading',isW=m==='writing';
+  $('ll').classList.toggle('hidden',!isL);$('rl').classList.toggle('hidden',!isR);$('wl').classList.toggle('hidden',!isW);
+  $('lq').classList.toggle('hidden',!isL);$('rq').classList.toggle('hidden',!isR);$('wq').classList.toggle('hidden',!isW);
+  $('left-panel').style.display=isL?'none':'';
+  $('resizer').style.display=isL?'none':'';
+  $('bL').classList.toggle('active',isL);$('bR').classList.toggle('active',isR);
+  const bW=$('bW');if(bW)bW.classList.toggle('active',isW);
+  updT();if(!TS[m].done)startT();
+  buildNav();swPart(1);const cb=$('chkbtn');if(cb)cb.disabled=CHECKED;
+  if(isW){updateWC(1);updateWC(2);}
+};
+
+function initResizer(){
+  const rz=$('resizer'),lp=$('left-panel');let drag=false,sx=0,sw=0;
+  rz.addEventListener('mousedown',e=>{drag=true;sx=e.clientX;sw=lp.offsetWidth;document.body.style.userSelect='none';e.preventDefault();});
+  window.addEventListener('mousemove',e=>{if(!drag)return;const nw=sw+e.clientX-sx;if(nw>150&&nw<window.innerWidth-200)lp.style.flex=`0 0 ${nw}px`;});
+  window.addEventListener('mouseup',()=>{drag=false;document.body.style.userSelect='';});
+}
+
+function setZoom(z){
+  ZOOM=Math.min(2,Math.max(0.7,Math.round(z*10)/10));
+  $('zlbl').textContent=Math.round(ZOOM*100)+'%';
+  document.querySelectorAll('.qset,.passage').forEach(s=>s.style.zoom=ZOOM);
+}
+
+const HLT=$('HLT');
+let hlSpan=null,hlRange=null,_hlSpanSnap=null,_hlRangeSnap=null;
+function posHLT(x,y){
+  HLT.classList.add('vis');
+  requestAnimationFrame(()=>{
+    const tw=HLT.offsetWidth,th=HLT.offsetHeight;let l=x-tw/2,t=y-th-14;
+    if(l<8)l=8;if(l+tw>window.innerWidth-8)l=window.innerWidth-tw-8;if(t<66)t=y+14;
+    HLT.style.left=l+'px';HLT.style.top=t+'px';
+  });
+}
+function hideHLT(){HLT.classList.remove('vis');}
+function unwrap(sp){if(!sp||!sp.parentNode)return;const p=sp.parentNode;while(sp.firstChild)p.insertBefore(sp.firstChild,sp);p.removeChild(sp);try{p.normalize();}catch(e){}}
+function applyHL(color){
+  const span=_hlSpanSnap||hlSpan;const range=_hlRangeSnap||hlRange;
+  if(span){span.className='HL '+color;hlSpan=null;_hlSpanSnap=null;hlRange=null;_hlRangeSnap=null;hideHLT();return;}
+  if(!range||range.collapsed){hideHLT();return;}
+  try{const sp=document.createElement('span');sp.className='HL '+color;sp.appendChild(range.extractContents());range.insertNode(sp);}catch(e){}
+  window.getSelection().removeAllRanges();
+  hlSpan=null;_hlSpanSnap=null;hlRange=null;_hlRangeSnap=null;hideHLT();
+}
+function removeHL(){
+  const target=_hlSpanSnap||hlSpan;
+  if(target){
+    if(target.dataset&&target.dataset.noteId){
+      const idx=NOTES.findIndex(n=>n.id===target.dataset.noteId);
+      if(idx>-1){NOTES.splice(idx,1);renderNotes();}
+    }
+    unwrap(target);
+  }
+  hlSpan=null;_hlSpanSnap=null;hlRange=null;_hlRangeSnap=null;hideHLT();
+}
+function clearAllHL(){
+  document.querySelectorAll('span.HL').forEach(sp=>{
+    if(sp.dataset&&sp.dataset.noteId){
+      const idx=NOTES.findIndex(n=>n.id===sp.dataset.noteId);
+      if(idx>-1)NOTES.splice(idx,1);
+    }
+    unwrap(sp);
+  });
+  renderNotes();
+  hlSpan=null;_hlSpanSnap=null;hlRange=null;_hlRangeSnap=null;hideHLT();
+}
+
+function initHL(){
+  const lp=$('left-panel'),rp=$('right-panel');
+  HLT.addEventListener('mousedown',e=>{e.preventDefault();_hlSpanSnap=hlSpan;_hlRangeSnap=hlRange;});
+  document.addEventListener('mouseup',e=>{
+    if(HLT.contains(e.target))return;
+    const sel=window.getSelection();
+    const clicked=e.target&&e.target.closest&&e.target.closest('span.HL');
+    if(clicked&&(!sel||sel.isCollapsed)){hlSpan=clicked;_hlSpanSnap=clicked;hlRange=null;_hlRangeSnap=null;window.getSelection().removeAllRanges();posHLT(e.pageX,e.pageY);return;}
+    if(sel&&!sel.isCollapsed&&sel.toString().trim()){
+      try{const r=sel.getRangeAt(0);const c=r.commonAncestorContainer;
+        if((lp&&lp.contains(c))||(rp&&rp.contains(c))){hlSpan=null;_hlSpanSnap=null;hlRange=r.cloneRange();_hlRangeSnap=hlRange;posHLT(e.pageX,e.pageY);return;}
+      }catch(ex){}
+    }
+    hideHLT();hlSpan=null;_hlSpanSnap=null;hlRange=null;_hlRangeSnap=null;
+  });
+  document.addEventListener('keydown',e=>{if(e.key==='Escape')hideHLT();});
+  [lp,rp].filter(Boolean).forEach(p=>p.addEventListener('scroll',hideHLT,{passive:true}));
+  $('hlY').onclick=()=>applyHL('y');$('hlG').onclick=()=>applyHL('g');
+  $('hlRem').onclick=removeHL;$('hlAll').onclick=clearAllHL;
+}
+
+function initNight(){
+  $('nightbtn').onclick=()=>{
+    document.body.classList.toggle('night-mode');
+    const on=document.body.classList.contains('night-mode');
+    $('nightbtn').textContent=on?'☀️ Day':'🌙 Night';
+  };
+}
+
+let NOTES=[];let NOTE_SEL_TEXT='';let NOTE_SEL_RANGE=null;let NOTE_SEL_SPAN=null;let NOTE_ID=1;
+function initNotes(){
+  $('notebtn').onclick=()=>$('npanel').classList.toggle('visible');
+  $('npclose').onclick=()=>$('npanel').classList.remove('visible');
+  $('hlNote').onclick=openNotePopup;
+}
+function renderNotes(){
+  const list=$('nplist');const cnt=$('npcnt');
+  if(!NOTES.length){list.innerHTML='<div class="npempty">No notes yet.<br>Select text and click<br>📝 Note in the toolbar.</div>';cnt.classList.add('hidden');return;}
+  cnt.textContent=NOTES.length;cnt.classList.remove('hidden');
+  list.innerHTML=NOTES.map((n,i)=>`
+    <div class="npitem" data-idx="${i}"><button class="npitem-del" onclick="deleteNote(${i})">✕</button>
+      ${n.sel?`<div class="npitem-sel">"${esc(n.sel.length>60?n.sel.slice(0,60)+'…':n.sel)}"</div>`:''}
+      <div class="npitem-txt">${esc(n.txt)}</div></div>`).join('');
+  list.querySelectorAll('.npitem').forEach(item=>{
+    item.addEventListener('click',e=>{
+      if(e.target.closest('.npitem-del'))return;
+      const idx=+item.dataset.idx;const note=NOTES[idx];if(!note)return;
+      const target=document.querySelector(`[data-note-id="${note.id}"]`);
+      if(target){
+        target.scrollIntoView({behavior:'smooth',block:'center'});
+        const prevOutline=target.style.outline;
+        target.style.outline='2px solid var(--active)';
+        setTimeout(()=>{target.style.outline=prevOutline;},1200);
+      }
+    });
+  });
+}
+function deleteNote(i){
+  const n=NOTES[i];
+  if(n){document.querySelectorAll(`[data-note-id="${n.id}"]`).forEach(sp=>{delete sp.dataset.noteId;});}
+  NOTES.splice(i,1);renderNotes();
+}
+function esc(s){return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
+function addQuickNote(){const ta=$('npta');const txt=ta.value.trim();if(!txt)return;NOTES.push({id:'n'+(NOTE_ID++),sel:'',txt});ta.value='';renderNotes();$('npanel').classList.add('visible');}
+function openNotePopup(){
+  const span=_hlSpanSnap||hlSpan;
+  const range=_hlRangeSnap||hlRange;
+  let text='';
+  if(span){
+    text=span.textContent.trim();
+    NOTE_SEL_SPAN=span;NOTE_SEL_RANGE=null;NOTE_SEL_TEXT=text;
+  }else if(range&&!range.collapsed){
+    text=range.toString().trim();
+    if(!text){hideHLT();return;}
+    NOTE_SEL_SPAN=null;NOTE_SEL_RANGE=range;NOTE_SEL_TEXT=text;
+  }else{
+    hideHLT();return;
+  }
+  $('note-popup-sel').textContent=text.length>80?text.slice(0,80)+'…':text;
+  const existing=span&&span.dataset.noteId?NOTES.find(n=>n.id===span.dataset.noteId):null;
+  $('note-popup-ta').value=existing?existing.txt:'';
+  const hp=HLT.getBoundingClientRect();const popup=$('note-popup');
+  popup.classList.add('vis');popup.style.left=Math.min(hp.left,window.innerWidth-250)+'px';popup.style.top=(hp.bottom+8)+'px';
+  setTimeout(()=>$('note-popup-ta').focus(),50);hideHLT();
+}
+function saveNotePopup(){
+  const txt=$('note-popup-ta').value.trim();
+  if(NOTE_SEL_SPAN){
+    const existing=NOTE_SEL_SPAN.dataset.noteId?NOTES.find(n=>n.id===NOTE_SEL_SPAN.dataset.noteId):null;
+    if(existing){existing.txt=txt||'(no note text)';}
+    else{
+      const id='n'+(NOTE_ID++);
+      NOTE_SEL_SPAN.dataset.noteId=id;
+      NOTES.push({id,sel:NOTE_SEL_TEXT,txt:txt||'(no note text)'});
+    }
+  }else if(NOTE_SEL_RANGE&&!NOTE_SEL_RANGE.collapsed){
+    const id='n'+(NOTE_ID++);
+    try{
+      const sp=document.createElement('span');sp.className='HL y';sp.dataset.noteId=id;
+      sp.appendChild(NOTE_SEL_RANGE.extractContents());NOTE_SEL_RANGE.insertNode(sp);
+    }catch(e){}
+    window.getSelection().removeAllRanges();
+    NOTES.push({id,sel:NOTE_SEL_TEXT,txt:txt||'(no note text)'});
+  }
+  renderNotes();
+  NOTE_SEL_RANGE=null;NOTE_SEL_SPAN=null;NOTE_SEL_TEXT='';
+  closeNotePopup();$('npanel').classList.add('visible');
+}
+function closeNotePopup(){$('note-popup').classList.remove('vis');$('note-popup-ta').value='';}
+document.addEventListener('mousedown',e=>{const popup=$('note-popup');if(popup.classList.contains('vis')&&!popup.contains(e.target)){closeNotePopup();}});
+
+function initTranscript(){
+  $('trbtn').onclick=()=>{
+    $('trmod').classList.remove('hidden');
+    $('trh2').textContent=MODE==='writing'?'✍️ Writing Guidance':'📋 Answer Key';
+    showTr(MODE==='listening'?0:MODE==='reading'?1:2);
+  };
+}
+
+function initWriting(){
+  const w1=$('wi1'),w2=$('wi2');
+  if(w1)w1.addEventListener('input',()=>updateWC(1));
+  if(w2)w2.addEventListener('input',()=>updateWC(2));
+}
+
+function init(){
+  $('tpause').onclick=togT;$('treset').onclick=resetT;
+  $('zin').onclick=()=>setZoom(ZOOM+0.1);$('zout').onclick=()=>setZoom(ZOOM-0.1);
+  document.body.addEventListener('input',()=>{if(!CHECKED)updNav();});
+  document.body.addEventListener('change',()=>{if(!CHECKED)updNav();});
+  initNight();initResizer();initHL();initNotes();initTranscript();initWriting();
+  go('listening');
+}
+init();
+</script>
+</body>
+</html>
