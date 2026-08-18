@@ -1,6 +1,5 @@
 ---
 import Base from "../../layouts/Base.astro";
-import TelegramCTA from "../../components/TelegramCTA.astro";
 import Quiz from "../../components/Quiz.astro";
 const title = "Prompt Engineering — O'rganamiz";
 const description = "Nima uchun kerak, qanday foyda, qayerda qo'llash — amaliy kurs";
@@ -165,9 +164,8 @@ const questions = [
   </section>
 
   <a href={import.meta.env.BASE_URL + 'bog-lanish'} class="start-btn" style="margin-top:2rem;" data-i18n="pe.buy">Kursni sotib olish →</a>
-  <a href={import.meta.env.BASE_URL + 'kurslar'} class="enroll" style="margin-left:1rem;" data-i18n="pe.all">← Barcha kurslar</a>
+  <a href={import.meta.env.BASE_URL + 'kurslar'} class="course-nav-link" style="margin-left:1rem;" data-i18n="pe.all">← Barcha kurslar</a>
 
   <Quiz title="O'z bilimingizni tekshiring" titleI18n="pe.quizTitle" quizI18n="pe" questions={questions} />
 </article>
-<TelegramCTA />
 </Base>

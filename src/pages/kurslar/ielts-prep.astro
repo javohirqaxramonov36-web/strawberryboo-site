@@ -1,6 +1,5 @@
 ---
 import Base from "../../layouts/Base.astro";
-import TelegramCTA from "../../components/TelegramCTA.astro";
 import Quiz from "../../components/Quiz.astro";
 
 const title = "IELTS Prep — O'rganamiz";
@@ -159,7 +158,7 @@ const base = import.meta.env.BASE_URL;
     <section class="mock-library-cta">
       <h2>To'liq IELTS mock testlar kutubxonasi</h2>
       <p>Listening, Reading va Writing bo'limlarini o'z ichiga olgan to'liq (40 savol/bo'lim) CDI Full Mock testlari bilan mashq qiling. Har bir mock alohida sahifada ochiladi.</p>
-      <a href={base + 'ielts-practice/'} class="start-btn">Mock kutubxonasini ochish →</a>
+      <a href={base + 'ielts-practice/'} class="course-nav-link">Mock kutubxonasini ochish →</a>
     </section>
 
     <section class="official-resources">
@@ -176,11 +175,10 @@ const base = import.meta.env.BASE_URL;
     </section>
 
     <a href={base + 'bog-lanish'} class="start-btn" style="margin-top:2rem;">Kursni sotib olish →</a>
-    <a href={base + 'kurslar'} class="enroll" style="margin-left:1rem;">← Barcha kurslar</a>
+    <a href={base + 'kurslar'} class="course-nav-link" style="margin-left:1rem;">← Barcha kurslar</a>
 
     <Quiz title="O'z bilimingizni tekshiring" questions={questions} />
   </article>
-  <TelegramCTA />
 
   <script>
     const normalise = (value) => value.trim().toLowerCase().replace(/\s+/g, ' ');

@@ -1,6 +1,5 @@
 ---
 import Base from "../../layouts/Base.astro";
-import TelegramCTA from "../../components/TelegramCTA.astro";
 import Quiz from "../../components/Quiz.astro";
 const title = "Financial Literacy — Moliyaviy savodxonlik";
 const description = "Pulni boshqarish, byudjet tuzish va moliyaviy qarorlar — talaba hayoti uchun asosiy ko'nikmalar. Umumiy ta'lim kursi.";
@@ -17,7 +16,7 @@ const questions = [
   <div class="course-hero">
     <h1>Financial Literacy — Moliyaviy savodxonlik</h1>
     <div class="price">
-      <span class="now">Narx: TBD</span>
+      <span class="now">$19 · ≈ 240 000 so'm</span>
       <span class="badge badge-new">Yangi</span>
       <span class="badge badge-cert">Sertifikat</span>
     </div>
@@ -164,9 +163,8 @@ const questions = [
   </section>
 
   <a href={import.meta.env.BASE_URL + 'bog-lanish'} class="start-btn" style="margin-top:2rem;" data-i18n="fl.buy">Kursni sotib olish →</a>
-  <a href={import.meta.env.BASE_URL + 'kurslar'} class="enroll" style="margin-left:1rem;" data-i18n="fl.all">← Barcha kurslar</a>
+  <a href={import.meta.env.BASE_URL + 'kurslar'} class="course-nav-link" style="margin-left:1rem;" data-i18n="fl.all">← Barcha kurslar</a>
 
   <Quiz titleI18n="fl.quizTitle" questions={questions} />
 </article>
-<TelegramCTA />
 </Base>

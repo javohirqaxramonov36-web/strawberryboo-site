@@ -1,6 +1,5 @@
 ---
 import Base from "../../layouts/Base.astro";
-import TelegramCTA from "../../components/TelegramCTA.astro";
 const title = "Computer Literacy — Raqamli savodxonlik | O'rganamiz";
 const description = "Microsoft Office (Word, Excel, PowerPoint) va Google Workspace (Docs, Sheets, Slides) asoslari — zamonaviy muhandislik va ta'lim uchun amaliy raqamli ko'nikmalar.";
 ---
@@ -11,9 +10,10 @@ const description = "Microsoft Office (Word, Excel, PowerPoint) va Google Worksp
   <div class="course-hero">
     <h1>Computer Literacy — Raqamli savodxonlik</h1>
     <div class="price">
+      <span class="now">$24</span>
       <span class="badge badge-new">Yangi</span>
       <span class="badge badge-cert">Sertifikat</span>
-      <span class="uzs">Kurs holati: material to'ldirilmoqda</span>
+      <span class="uzs">≈ 300 000 so'm · material to'ldirilmoqda</span>
     </div>
   </div>
 
@@ -76,7 +76,6 @@ const description = "Microsoft Office (Word, Excel, PowerPoint) va Google Worksp
     </ol>
   </section>
 
-  <a href={import.meta.env.BASE_URL + 'kurslar'} class="enroll" style="margin-top:2rem;">← Barcha kurslar</a>
+  <a href={import.meta.env.BASE_URL + 'kurslar'} class="course-nav-link" style="margin-top:2rem;">← Barcha kurslar</a>
 </article>
-<TelegramCTA />
 </Base>

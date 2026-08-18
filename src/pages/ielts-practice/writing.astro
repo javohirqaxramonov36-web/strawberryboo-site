@@ -9,6 +9,15 @@ const pageTitle = "IELTS Writing Practice — O'rganamiz";
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>{pageTitle}</title>
   <meta name="description" content="O'rganamiz uchun qayta ishlatiladigan IELTS Writing practice shabloni." />
+  <script is:inline>
+    (function () {
+      try {
+        var t = localStorage.getItem('theme');
+        if (t !== 'light' && t !== 'dark') t = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+        document.documentElement.setAttribute('data-theme', t);
+      } catch (e) {}
+    })();
+  </script>
 </head>
 <body>
   <header class="topbar">
@@ -72,13 +81,21 @@ const pageTitle = "IELTS Writing Practice — O'rganamiz";
       localStorage.setItem(stateKey, JSON.stringify(store));
     };
     const savedTheme = (function () { try { return localStorage.getItem('theme'); } catch (e) { return null; } })();
-    const initialTheme = savedTheme === 'light' || savedTheme === 'dark' ? savedTheme : (store.theme || 'dark');
+    const initialTheme = savedTheme === 'light' || savedTheme === 'dark' ? savedTheme : (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
     document.documentElement.dataset.theme = initialTheme;
-    document.querySelector('#theme').addEventListener('click', () => {
+    const themeButton = document.querySelector('#theme');
+    const renderThemeButton = () => {
+      const light = document.documentElement.dataset.theme === 'light';
+      themeButton.textContent = light ? '☀' : '☾';
+      themeButton.setAttribute('aria-label', light ? 'Dark modega o‘tish' : 'Light modega o‘tish');
+    };
+    renderThemeButton();
+    themeButton.addEventListener('click', () => {
       const next = document.documentElement.dataset.theme === 'light' ? 'dark' : 'light';
       document.documentElement.dataset.theme = next;
       store.theme = next;
       try { localStorage.setItem('theme', next); } catch (e) {}
+      renderThemeButton();
       paint();
     });
     answer.addEventListener('input', () => { store[current === 1 ? 'task1' : 'task2'] = answer.value; paint(); });

@@ -1,6 +1,6 @@
 ---
 import Base from "../../layouts/Base.astro";
-import TelegramCTA from "../../components/TelegramCTA.astro";
+import LeadMagnetCTA from "../../components/LeadMagnetCTA.astro";
 import Quiz from "../../components/Quiz.astro";
 const title = "Nega chet elda o'qish kerak — O'rganamiz";
 const description = "Chet elda o'qishning 5 asosiy sababi: ta'lim sifati va xalqaro tan olinish, karyera, shaxsiy rivojlanish va bepul o'qish grantlari (El-Yurt Umidi, Chevening, DAAD).";
@@ -201,10 +201,9 @@ const questions = [
     </p>
   </section>
 
-  <a href={import.meta.env.BASE_URL + 'bog-lanish'} class="start-btn" style="margin-top:2rem;" data-i18n="ce.buy">Bepul kursni boshlash →</a>
-  <a href={import.meta.env.BASE_URL + 'kurslar'} class="enroll" style="margin-left:1rem;" data-i18n="ce.all">← Barcha kurslar</a>
+  <a href={import.meta.env.BASE_URL + 'kurslar'} class="course-nav-link" style="margin-left:1rem;" data-i18n="ce.all">← Barcha kurslar</a>
 
   <Quiz titleI18n="ce.quizTitle" questions={questions} />
+  <LeadMagnetCTA />
 </article>
-<TelegramCTA />
 </Base>

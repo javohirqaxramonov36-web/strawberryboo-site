@@ -1,6 +1,6 @@
 ---
 import Base from "../../layouts/Base.astro";
-import TelegramCTA from "../../components/TelegramCTA.astro";
+import LeadMagnetCTA from "../../components/LeadMagnetCTA.astro";
 import Quiz from "../../components/Quiz.astro";
 const title = "Tekin AI modellar va agentlar — O'rganamiz";
 const description = "MacBook'da o'rnatiladigan bepul AI vositalari ro'yxati va qo'llanma.";
@@ -40,10 +40,10 @@ const questions = [
   </section>
 
   <p style="margin-top:2rem;">
-    <a href={import.meta.env.BASE_URL + 'kurslar'} class="enroll" data-i18n="ta.all">← Barcha kurslar</a>
+    <a href={import.meta.env.BASE_URL + 'kurslar'} class="course-nav-link" data-i18n="ta.all">← Barcha kurslar</a>
   </p>
 
   <Quiz titleI18n="ta.quizTitle" questions={questions} />
+  <LeadMagnetCTA />
 </article>
-<TelegramCTA />
 </Base>

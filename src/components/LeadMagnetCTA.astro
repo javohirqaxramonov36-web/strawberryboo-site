@@ -1,0 +1,18 @@
+---
+const base = import.meta.env.BASE_URL;
+---
+<section class="lead-magnet" aria-labelledby="lead-magnet-title">
+  <p class="lead-magnet-kicker">KEYINGI QADAM</p>
+  <h2 id="lead-magnet-title">Sizga mos yo'nalishni toping</h2>
+  <p>Bepul kursni ko'rib chiqdingiz. Endi maqsadingiz va hozirgi darajangizga mos keyingi kursni 2 daqiqalik test bilan aniqlang.</p>
+  <a class="lead-magnet-cta" href={base + 'kurs-tanlash/'}>Kurs tanlash testini boshlash →</a>
+</section>
+
+<style>
+  .lead-magnet { margin-top:2.5rem; padding:1.5rem; border:1px solid color-mix(in srgb,var(--accent) 42%,var(--border)); border-radius:16px; background:linear-gradient(135deg,color-mix(in srgb,var(--accent) 13%,var(--surface)),var(--surface)); }
+  .lead-magnet-kicker { margin:0 0 .35rem; color:var(--accent); font-size:.78rem; letter-spacing:.1em; font-weight:800; }
+  .lead-magnet h2 { margin:0; font-size:1.25rem; color:var(--text); }
+  .lead-magnet p:not(.lead-magnet-kicker) { margin:.55rem 0 1.1rem; max-width:62ch; color:var(--muted); }
+  .lead-magnet-cta { display:inline-flex; align-items:center; padding:.72rem 1rem; border-radius:9px; background:var(--accent); color:#fff; font-weight:700; text-decoration:none; }
+  .lead-magnet-cta:hover { background:var(--accent-2); color:#fff; text-decoration:none; }
+</style>

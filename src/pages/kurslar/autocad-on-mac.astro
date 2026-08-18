@@ -1,6 +1,5 @@
 ---
 import Base from "../../layouts/Base.astro";
-import TelegramCTA from "../../components/TelegramCTA.astro";
 import Quiz from "../../components/Quiz.astro";
 
 const title = "AutoCAD on Mac — O'rganamiz";
@@ -106,11 +105,10 @@ const questions = [
     </section>
 
     <a href={import.meta.env.BASE_URL + 'bog-lanish'} class="start-btn" style="margin-top:2rem;">Kursni sotib olish →</a>
-    <a href={import.meta.env.BASE_URL + 'kurslar'} class="enroll" style="margin-left:1rem;">← Barcha kurslar</a>
+    <a href={import.meta.env.BASE_URL + 'kurslar'} class="course-nav-link" style="margin-left:1rem;">← Barcha kurslar</a>
 
     <Quiz title="O'z bilimingizni tekshiring" questions={questions} />
   </article>
-  <TelegramCTA />
 
   <style>
     .src {
