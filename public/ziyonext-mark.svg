@@ -1,5 +1,5 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" role="img" aria-label="ZiyoNext">
-  <rect width="48" height="48" rx="14" fill="#635BFF"/>
-  <path d="M13 15.5h20.5L15.2 32.6h20.1" fill="none" stroke="#fff" stroke-width="4.2" stroke-linecap="round" stroke-linejoin="round"/>
-  <path d="M35.5 7.5v5M33 10h5M33.75 8.25l3.5 3.5M37.25 8.25l-3.5 3.5" fill="none" stroke="#FDE68A" stroke-width="1.45" stroke-linecap="round"/>
+  <rect width="48" height="48" rx="11" fill="#5B5CE2"/>
+  <path d="M13 15.25h20.5L14.7 32.75h20.3" fill="none" stroke="#fff" stroke-width="4.15" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="m35 13 4.6-4.6" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" opacity=".88"/>
 </svg>
