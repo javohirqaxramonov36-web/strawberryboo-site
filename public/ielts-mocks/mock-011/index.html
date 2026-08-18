@@ -1,0 +1,2791 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IELTS Full Reading Practice</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #ffffff;
+            line-height: 1.4;
+            font-size: 16px;
+        }
+
+        .header {
+            background-color: #ffffff;
+            padding: 12px 20px;
+            border-bottom: 1px solid #e0e0e0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            height: 60px;
+        }
+
+        .ielts-logo {
+            display: none;
+        }
+
+        .test-info {
+            display: flex;  
+            align-items: center;
+            gap: 30px;
+            font-size: 14px;
+            color: #333;
+        }
+
+        .audio-indicator {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 16px;
+        }
+
+        .audio-icon {
+            width: 16px;
+            height: 16px;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon></svg>') no-repeat center;
+        }
+
+        .header-icons {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+
+        .telegram-link {
+            color: #3e3e3e;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 16px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 6px 12px;
+            border: 2px solid #3e3e3e;
+            border-radius: 9999px;
+            background-color: #ffffff;
+            line-height: 1;
+        }
+        
+        .telegram-link:hover {
+            text-decoration: underline;
+        }
+
+        .telegram-link::before {
+            content: '';
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            background-color: currentColor;
+            -webkit-mask-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.78 18.65l.28-4.23l7.68-6.92c.34-.31-.07-.46-.52-.19L7.74 13.3L3.64 12c-.88-.25-.89-1.37.2-1.64l16.56-6.4c.75-.29 1.4.22 1.2.94l-2.67 12.61c-.22.95-1.13 1.18-1.78.73l-4.5-3.32l-2.23 2.15c-.47.44-1.29.21-1.48-.37z"/></svg>');
+            mask-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.78 18.65l.28-4.23l7.68-6.92c.34-.31-.07-.46-.52-.19L7.74 13.3L3.64 12c-.88-.25-.89-1.37.2-1.64l16.56-6.4c.75-.29 1.4.22 1.2.94l-2.67 12.61c-.22.95-1.13 1.18-1.78.73l-4.5-3.32l-2.23 2.15c-.47.44-1.29.21-1.48-.37z"/></svg>');
+            background-size: contain;
+            background-repeat: no-repeat;
+        }
+
+        #volume-slider {
+            -webkit-appearance: none;
+            width: 80px;
+            height: 4px;
+            background: #ddd;
+            outline: none;
+            border-radius: 2px;
+            cursor: pointer;
+        }
+
+        #volume-slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            background: #333;
+            cursor: pointer;
+        }
+
+        #volume-slider::-moz-range-thumb {
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            background: #333;
+            cursor: pointer;
+            border: none;
+        }
+
+        .icon {
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
+            opacity: 0.7;
+            color: #333;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .icon:hover {
+            opacity: 1;
+        }
+        
+        #play-pause-btn {
+            background: none;
+            border: none;
+            padding: 0;
+        }
+
+        .main-container {
+            margin-top: 60px;
+            display: flex;
+            flex-direction: column;
+            background: #ffffff;
+            height: calc(100vh - 60px);
+            position: relative;
+        }
+
+        /* Page watermark */
+        body::after {
+            content: "Full exam Materials";
+            position: fixed;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%) rotate(-20deg);
+            font-size: 72px;
+            font-weight: 800;
+            letter-spacing: 2px;
+            color: #000000;
+            opacity: 0.04;
+            pointer-events: none;
+            z-index: 0;
+            white-space: nowrap;
+        }
+
+        .panels-container {
+            display: flex;
+            flex: 1;
+            overflow: hidden;
+        }
+
+        .passage-panel {
+            flex: 1;
+            padding: 20px 20px 100px;
+            overflow-y: auto;
+            min-width: 200px;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+        }
+        
+        .passage-panel::-webkit-scrollbar {
+            width: 8px;
+            background: transparent;
+        }
+        
+        .passage-panel::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        
+        .passage-panel::-webkit-scrollbar-thumb {
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 4px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .passage-panel:hover::-webkit-scrollbar-thumb {
+            opacity: 1;
+        }
+
+        /* Passage Content */
+        .text-center {
+            text-align: center;
+        }
+        .reading-passage h4 {
+            font-size: 20px;
+            font-weight: bold;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+       
+        .reading-passage p {
+            margin-bottom: 1.2em;
+        }
+
+        .question ul li label {
+            display: block;
+            margin-top: 8px;
+            cursor: pointer;
+        }
+
+        .questions-panel {
+            flex: 1;
+            padding: 20px 20px 100px;
+            overflow-y: auto;
+            min-width: 200px;
+            border-left: 1px solid #e0e0e0;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+        }
+        
+        .questions-panel::-webkit-scrollbar {
+            width: 8px;
+            background: transparent;
+        }
+        
+        .questions-panel::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        
+        .questions-panel::-webkit-scrollbar-thumb {
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 4px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .questions-panel:hover::-webkit-scrollbar-thumb {
+            opacity: 1;
+        }
+
+        .resizer {
+            position: relative;
+            background: transparent;
+            cursor: col-resize;
+            flex-shrink: 0;
+            flex-grow: 0;
+            z-index: 5;
+            width: 16px;
+            touch-action: none;
+            -webkit-user-select: none;
+            user-select: none;
+        }
+        .resizer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            width: 3px;
+            transform: translateX(-50%);
+            background-color: #3e3e3e;
+        }
+        .resizer::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 36px;
+            height: 36px;
+            background-color: #ffffff;
+            border: 2px solid #3e3e3e;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke="%233e3e3e" fill="%233e3e3e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 8l-4 4 4 4"/><path d="M16 8l4 4-4 4"/><line x1="4" y1="12" x2="20" y2="12"/></svg>');
+            background-repeat: no-repeat;
+            background-size: 60% 60%;
+            background-position: center;
+            pointer-events: none;
+        }
+
+        .part-header {
+            background-color: #f1f2ec;
+            padding: 15px 20px;
+            border: 1px solid #e0e0e0;
+            text-align: left;
+            margin: 10px 20px;
+            border-radius: 5px;
+        }
+        .part-header p {
+            margin: 0;
+        }
+        .part-header p:first-child {
+            margin-bottom: 5px;
+        }
+
+        .question {
+            margin-bottom: 40px;
+        }
+        .question p {
+            margin-bottom: 10px;
+        }
+        .question ul, .question .people-table {
+            margin-top: 0;
+        }
+        .question-prompt {
+            margin-bottom: 20px;
+        }
+        .question ul {
+            list-style: none;
+            padding-left: 0;
+        }
+        .question ul li {
+            margin-bottom: 5px;
+        }
+        .answer-input {
+            border: 1px solid #bfbfbf;
+            border-radius: 4px;
+            background-color: #fff;
+            padding: 2px 8px;
+            font-size: 16px;
+            text-align: left;
+            font-weight: 700;
+            margin-right: 6px;
+            margin-left: 6px;
+            transition: border-color 0.2s ease, box-shadow 0.2s ease;
+            height: 28px;
+            min-width: 150px;
+            -webkit-autocomplete: none;
+            -moz-autocomplete: none;
+            autocomplete: none;
+        }
+        
+        /* Disable autocomplete suggestions for all input fields */
+        input[type="text"], input[type="email"], input[type="password"], input[type="search"], input[type="url"], input[type="tel"], input[type="number"] {
+            -webkit-autocomplete: none;
+            -moz-autocomplete: none;
+            autocomplete: none;
+        }
+        
+        /* Global scrollbar styling - hide by default, show on hover */
+        * {
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+        }
+        
+        *::-webkit-scrollbar {
+            width: 8px;
+            background: transparent;
+        }
+        
+        *::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        
+        *::-webkit-scrollbar-thumb {
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 4px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        *:hover::-webkit-scrollbar-thumb {
+            opacity: 1;
+        }
+        .answer-input.active-input,
+        .answer-input:focus {
+            border-color: #3581d8;
+            border-width: 2px;
+            outline: none;
+        }
+        .answer-input::placeholder {
+            color: #666;
+            font-weight: 700;
+            text-align: center;
+        }
+        .answer-input.correct {
+            border-color: #28a745;
+            background-color: #e9f7ef;
+        }
+        .answer-input.incorrect {
+            border-color: #dc3545;
+            background-color: #f8d7da;
+            color: #721c24;
+        }
+        .answer-input {
+            z-index: 10;
+            position: relative;
+            pointer-events: auto;
+        }
+        .summary-text .answer-input {
+            width: 120px;
+            height: 24px;
+            font-size: 14px;
+            margin: 0 4px;
+        }
+        .answer-inputs {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-top: 15px;
+        }
+        .answer-inputs .answer-input {
+            width: 200px;
+            height: 30px;
+            font-size: 16px;
+        }
+        
+        .q-number {
+            color: #888;
+            font-size: 14px;
+            font-weight: bold;
+        }
+        .questions-container {
+            width: 100%;
+        }
+        
+        .question li.correct {
+            color: #155724;
+            font-weight: bold;
+        }
+        .question li.incorrect {
+            color: #721c24;
+        }
+        .question li.correct::before {
+            content: '✔ ';
+            color: #28a745;
+        }
+        .question li.incorrect::before {
+            content: '✖ ';
+            color: #dc3545;
+        }
+
+        .timer-container {
+            display: flex;
+            position: relative;
+            cursor: default;
+            color: #333;
+            font-size: 16px;
+            font-weight: 500;
+            align-items: center;
+        }
+        .timer-container .timer-tooltip {
+            display: none;
+        }
+
+        .timer-controls {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-left: 15px;
+        }
+
+        .timer-controls button {
+            background: #f0f0f0;
+            border: 1px solid #ccc;
+            border-radius: 50%;
+            padding: 0;
+            cursor: pointer;
+            width: 32px;
+            height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background-color 0.2s;
+        }
+        .timer-controls button:hover {
+            background: #e0e0e0;
+        }
+
+        .timer-controls button svg {
+            width: 20px;
+            height: 20px;
+            fill: #333;
+        }
+
+        /* Navigation Arrows */
+        .nav-arrows {
+            position: fixed;
+            bottom: 100px;
+            right: 20px;
+            display: flex;
+            gap: 6px;
+            z-index: 101;
+        }
+
+        .nav-arrow {
+            width: 48px;
+            height: 48px;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 22px;
+            font-weight: 700;
+            color: #fff;
+            transition: transform 0.1s ease, background-color 0.2s ease, box-shadow 0.2s ease;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.25);
+            outline: none;
+        }
+        .nav-arrow.prev { background-color: #4b5563; }
+        .nav-arrow.next { background-color: #000000; }
+
+        .nav-arrow:hover { transform: translateY(-1px); }
+        .nav-arrow:active { transform: translateY(0); }
+        .nav-arrow:focus-visible { box-shadow: 0 0 0 3px rgba(59,130,246,0.4); }
+
+        .nav-arrow:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        /* Bottom Navigation - Exact Match */
+        .nav-row {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: #ffffff;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            height: 80px;
+            z-index: 100;
+        }
+
+        .footer__questionWrapper___1tZ46 {
+            display: flex;
+            align-items: center;
+            margin-right: 20px;
+        }
+
+        .footer__questionNo___3WNct {
+            background: none;
+            border: none;
+            padding: 10px 15px;
+            font-size: 16px;
+            font-weight: 600;
+            color: #333;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            transition: background-color 0.2s;
+        }
+
+        .footer__questionNo___3WNct:hover {
+            background-color: #f8f9fa;
+        }
+
+        .section-prefix {
+            font-size: 16px;
+        }
+
+        .sectionNr {
+            font-size: 16px;
+            font-weight: bold;
+        }
+
+        .attemptedCount {
+            font-size: 14px;
+            color: #666;
+            margin-left: 5px;
+            font-weight: 400;
+        }
+
+        @media (max-width: 768px) {
+            .attemptedCount {
+                display: none;
+            }
+            
+            /* Mobile resizer improvements */
+            .resizer {
+                width: 20px;
+            }
+            
+            .resizer::after {
+                width: 44px;
+                height: 44px;
+            }
+            
+            /* Mobile header improvements */
+            .header {
+                padding: 10px 15px;
+                height: 70px;
+            }
+            
+            .timer-container {
+                font-size: 18px;
+            }
+            
+            .telegram-link {
+                padding: 8px 16px;
+                font-size: 14px;
+            }
+            
+            /* Mobile question navigation */
+            .question {
+                margin-bottom: 25px;
+            }
+            
+            .question-prompt {
+                margin-bottom: 20px;
+            }
+            
+            .question-prompt p {
+                font-size: 16px;
+                line-height: 1.5;
+            }
+        }
+        
+        /* Additional mobile optimizations */
+        @media (max-width: 480px) {
+            .main-container {
+                flex-direction: column;
+            }
+            
+            .passage-panel, .questions-panel {
+                width: 100%;
+                min-width: auto;
+            }
+            
+            .resizer {
+                display: none;
+            }
+            
+            .footer__questionWrapper___1tZ46 {
+                margin-right: 5px;
+            }
+            
+            .footer__questionNo___3WNct {
+                padding: 10px 12px;
+                font-size: 16px;
+            }
+        }
+
+        .footer__questionWrapper___1tZ46.selected .attemptedCount {
+            display: none;
+        }
+
+        .footer__subquestionWrapper___9GgoP {
+            display: none;
+            gap: 2px;
+            margin-left: 10px;
+        }
+
+        .footer__questionWrapper___1tZ46.selected .footer__subquestionWrapper___9GgoP {
+            display: flex;
+        }
+
+        .subQuestion {
+            width: 32px;
+            height: 32px;
+            border: 1px solid #ccc;
+            background: white;
+            color: #333;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s;
+            border-radius: 2px;
+        }
+
+        .subQuestion.answered {
+            background-color: #e9ecef;
+            border-color: #ddd;
+        }
+        .subQuestion.correct {
+            background-color: #28a745;
+            color: white;
+            border-color: #28a745;
+        }
+        .subQuestion.incorrect {
+            background-color: #dc3545;
+            color: white;
+            border-color: #dc3545;
+        }
+
+        .subQuestion:hover {
+            background-color: #f0f0f0;
+            border-color: #999;
+        }
+
+        .subQuestion.active {
+            background-color: #4a90e2;
+            color: white;
+            border-color: #4a90e2;
+        }
+
+        .subQuestion.completed {
+            background-color: #28a745;
+            color: white;
+            border-color: #28a745;
+        }
+
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border: 0;
+        }
+
+        .footer__deliverButton___3FM07 {
+            margin-left: auto;
+            margin-right: 20px;
+            background-color: #f3f4f6;
+            color: #111827;
+            border: 1px solid #d1d5db;
+            padding: 10px 16px;
+            font-size: 15px;
+            font-weight: 700;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            transition: transform 0.08s ease, background-color 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+            min-width: 160px;
+            justify-content: center;
+        }
+
+        .footer__deliverButton___3FM07:hover {
+            background-color: #ebedf0;
+            border-color: #c7ccd4;
+        }
+
+        .footer__deliverButton___3FM07:active {
+            transform: translateY(1px);
+        }
+
+        .footer__deliverButton___3FM07:focus-visible {
+            box-shadow: 0 0 0 3px rgba(59,130,246,0.35);
+            outline: none;
+        }
+
+        .footer__deliverButton___3FM07:disabled {
+            background: #eef0f3;
+            color: #9ca3af;
+            cursor: not-allowed;
+            border-color: #e5e7eb;
+            box-shadow: none;
+        }
+
+        .hidden {
+            display: none !important;
+        }
+
+        /* Context Menu */
+        .context-menu {
+            position: absolute;
+            background: white;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            z-index: 1000;
+            display: none;
+            min-width: 140px;
+        }
+
+        .context-menu-item {
+            padding: 12px 16px;
+            cursor: pointer;
+            font-size: 16px;
+            border-bottom: 1px solid #f0f0f0;
+            transition: background-color 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .context-menu-item:hover {
+            background-color: #f8f9fa;
+        }
+
+        .context-menu-item:last-child {
+            border-bottom: none;
+        }
+
+        .highlight {
+            background-color: #ffff00;
+        }
+
+        .comment-highlight {
+            background-color: #90EE90;
+            position: relative;
+            cursor: help;
+        }
+
+        .comment-tooltip {
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #333;
+            color: white;
+            padding: 8px 12px;
+            border-radius: 4px;
+            font-size: 14px;
+            white-space: nowrap;
+            z-index: 1000;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s;
+        }
+
+        .comment-highlight:hover .comment-tooltip {
+            opacity: 1;
+        }
+
+        /* Styles for TRUE/FALSE/NOT GIVEN questions */
+        .tf-question {
+            margin-bottom: 25px;
+            padding: 10px 0px;
+            border-radius: 4px;
+            transition: border-color 0.3s, background-color 0.3s;
+        }
+        .tf-question-line {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 15px;
+            padding: 5px 0px;
+            border-radius: 4px;
+        }
+        .tf-question-number, .question-number-box {
+            border: 2px solid #ccc;
+            padding: 2px 8px;
+            margin-right: 10px;
+            border-radius: 3px;
+            font-weight: bold;
+            transition: border-color 0.3s;
+            display: inline-block;
+        }
+        /* Active question blue outline for TF (clears when navigating away) */
+        .tf-question.active-question .tf-question-number {
+            border-color: #4a90e2;
+        }
+        .tf-question-text {
+            padding-top: 3px;
+        }
+        .tf-options {
+            padding-left: 5px;
+        }
+        .tf-option {
+            display: block;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            padding: 10px 12px;
+            transition: background-color 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+            background-color: #fff;
+        }
+        .tf-option:hover {
+            background-color: #f1f7ff;
+            border-color: #c6dcfb;
+        }
+        .tf-option:has(input[type="radio"]:checked) {
+            background-color: #cfe3f9;
+            border-color: #7db3f5;
+        }
+        /* Answer checking states for TF/NG */
+        .tf-option.correct {
+            background-color: #d4edda !important;
+            border-color: #28a745 !important;
+            border-width: 1px;
+        }
+        .tf-option.incorrect {
+            background-color: #f8d7da !important;
+            border-color: #dc3545 !important;
+            border-width: 1px;
+        }
+        /* Ensure selected-blue visuals don't conflict once results are shown */
+        body.results-mode .tf-option:has(input[type="radio"]:checked) {
+            box-shadow: none;
+        }
+        .tf-option input[type="radio"] {
+            margin-right: 10px;
+            transform: scale(1.2);
+        }
+
+        .answer-select {
+            padding: 8px 12px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            background-color: white;
+            font-size: 14px;
+            min-width: 120px;
+            cursor: pointer;
+        }
+
+        .answer-select:focus {
+            outline: none;
+            border-color: #007bff;
+            box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.25);
+        }
+        .tf-question.correct .tf-question-line {
+            background-color: #e9f7ef;
+        }
+        .tf-question.incorrect .tf-question-line {
+            background-color: #f8d7da;
+        }
+        
+        .matching-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            font-size: 14px;
+        }
+        
+        .matching-table th {
+            background-color: #007bff;
+            color: white;
+            padding: 12px;
+            text-align: center;
+            font-weight: bold;
+            border: 1px solid #ddd;
+        }
+        
+        .matching-table td {
+            padding: 12px;
+            border: 1px solid #ddd;
+            vertical-align: top;
+        }
+        
+        .matching-table .statement {
+            text-align: left;
+            width: 60%;
+            font-size: 15px;
+        }
+        
+        .matching-table .table-radio {
+            margin: 0;
+            transform: scale(1.2);
+        }
+        
+        .matching-table td:not(.statement) {
+            text-align: center;
+            width: 6.67%;
+            min-width: 60px;
+        }
+        
+        .matching-table th:not(:first-child) {
+            width: 6.67%;
+            min-width: 60px;
+        }
+        
+        .matching-table td:not(.statement):has(input:checked) {
+            background-color: #e3f2fd;
+        }
+        
+        .matching-table input[type="radio"]:checked {
+            accent-color: #007bff;
+        }
+        
+        .matching-table td.correct {
+            background-color: #d4edda !important;
+            border-color: #c3e6cb;
+        }
+        
+        .matching-table td.incorrect {
+            background-color: #f8d7da !important;
+            border-color: #f5c6cb;
+        }
+        
+        .matching-table td.correct-answer-highlight {
+            background-color: #d4edda !important;
+            border-color: #c3e6cb;
+        }
+        
+        .matching-table .options-row {
+            background-color: #f8f9fa;
+            border-bottom: 2px solid #dee2e6;
+        }
+        
+        .matching-table .options-row td {
+            font-weight: 500;
+            text-align: center;
+            padding: 8px 12px;
+            font-size: 13px;
+        }
+        
+        .matching-table .options-row td:first-child {
+            text-align: left;
+            font-weight: normal;
+        }
+        
+        .matching-table td.correct-answer-highlight {
+            background-color: #d4edda !important;
+            border-color: #c3e6cb;
+        }
+        
+        .matching-table .clickable-cell {
+            cursor: pointer;
+            transition: background-color 0.2s ease;
+            min-height: 40px;
+            border: 1px solid #ddd;
+            position: relative;
+        }
+        
+        .matching-table .clickable-cell:hover {
+            background-color: #f0f8ff;
+            border-color: #007bff;
+        }
+        
+        .matching-table .clickable-cell.selected {
+            background-color: #e3f2fd;
+        }
+        
+        .matching-table .clickable-cell.correct {
+            background-color: #d4edda !important;
+            border-color: #c3e6cb;
+        }
+        
+        .matching-table .clickable-cell.incorrect {
+            background-color: #f8d7da !important;
+            border-color: #f5c6cb;
+        }
+        
+        .matching-table .clickable-cell::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background-color: transparent;
+            transition: background-color 0.2s ease;
+        }
+        
+        .matching-table .clickable-cell.selected::after {
+        }
+        
+        /* Results Modal */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(17, 24, 39, 0.6);
+            backdrop-filter: blur(3px);
+            z-index: 2000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .modal-overlay.hidden {
+            display: none;
+        }
+        .modal-content {
+            background: #ffffff;
+            padding: 24px;
+            border-radius: 14px;
+            width: 92%;
+            max-width: 780px;
+            max-height: 86vh;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            border: 1px solid #e5e7eb;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.25);
+        }
+        .modal-close-btn {
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            background: none;
+            border: none;
+            font-size: 28px;
+            cursor: pointer;
+            color: #666;
+        }
+        .modal-content h2 {
+            text-align: center;
+            margin-bottom: 18px;
+            color: #111827;
+        }
+        .results-summary {
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+            margin-bottom: 16px;
+            text-align: center;
+            border-bottom: 1px solid #eef2f7;
+            padding-bottom: 12px;
+        }
+        .results-summary p {
+            margin: 0;
+            font-size: 14px;
+            color: #374151;
+        }
+        .results-summary p span {
+            display: inline-block;
+            padding: 4px 10px;
+            margin-left: 6px;
+            border-radius: 999px;
+            background: #f3f4f6;
+            font-weight: 700;
+            color: #111827;
+        }
+        .results-details-container {
+            overflow-y: auto;
+            padding-right: 10px;
+            border-radius: 8px;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+        }
+        
+        .results-details-container::-webkit-scrollbar {
+            width: 8px;
+            background: transparent;
+        }
+        
+        .results-details-container::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        
+        .results-details-container::-webkit-scrollbar-thumb {
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 4px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .results-details-container:hover::-webkit-scrollbar-thumb {
+            opacity: 1;
+        }
+        .result-row {
+            display: grid;
+            grid-template-columns: 56px 1fr 1fr;
+            gap: 12px;
+            padding: 10px 8px;
+            border-bottom: 1px solid #eef2f7;
+            font-size: 15px;
+            align-items: center;
+        }
+        .result-row.correct {
+            background-color: #f3faf5;
+        }
+        .result-row.incorrect {
+            background-color: #fff5f5;
+        }
+        .result-row .q-num {
+            font-weight: 700;
+            color: #111827;
+            background: #ffffff;
+            border: 1px solid #d1d5db;
+            border-radius: 8px;
+            width: 42px;
+            height: 30px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .result-row .user-ans {
+            color: #374151;
+            background: #f9fafb;
+            border: 1px solid #e5e7eb;
+            padding: 4px 8px;
+            border-radius: 6px;
+        }
+        .result-row .correct-ans {
+            color: #065f46;
+            font-weight: 600;
+            background: #ecfdf5;
+            border: 1px solid #a7f3d0;
+            padding: 4px 8px;
+            border-radius: 6px;
+        }
+        .correct-answer-display {
+            font-weight: bold;
+            color: #28a745;
+            margin-left: 10px;
+            font-size: 14px;
+        }
+        
+        .centered-title {
+            text-align: center;
+            font-size: 50px;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="timer-container">
+            <span class="timer-display">60:00</span>
+            <div class="timer-controls">
+                <button id="timer-toggle-btn" title="Pause/Resume Timer">
+                    <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M8 5v14l11-7L8 5z"/></svg>
+                </button>
+                <button id="timer-reset-btn" title="Reset Timer">
+                    <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M12 5V1L7 6l5 5V7c3.31 0 6 2.69 6 6s-2.69 6-6 6-6-2.69-6-6H4c0 4.42 3.58 8 8 8s8-3.58 8-8-3.58-8-8-8z"/></svg>
+                </button>
+            </div>
+        </div>
+        <a href="https://t.me/ielts_material_full" target="_blank" class="telegram-link">
+          FUll EXAM MATERIALS
+        </a>
+    </div>
+
+    <div class="main-container" id="main-container">
+        <div id="passage-header-container">
+            <div id="part-header-1" class="part-header">
+                <p><strong>Part 1</strong></p>
+                <p>Read the text and answer questions 1-13.</p>
+            </div>
+            <div id="part-header-2" class="part-header hidden">
+                <p><strong>Part 2</strong></p>
+                <p>Read the text and answer questions 14-28.</p>
+            </div>
+            <div id="part-header-3" class="part-header hidden">
+                <p><strong>Part 3</strong></p>
+                <p>Read the text and answer questions 29-40.</p>
+            </div>
+        </div>
+        <div class="panels-container">
+            <div class="passage-panel" id="passage-panel">
+                <!-- PART 1 PASSAGE -->
+                <div id="passage-text-1" class="reading-passage">
+                    <h4 class="text-center">Extraterrestrial National Park</h4>
+                    <p>The message to visitors at many beauty spots is "TAKE only pictures, leave only footprints." Although you won't see the actual place, Apollo 11 astronauts Neil Armstrong and Buzz Aldrin took their giant leap for mankind on the moon. It will be the first extraterrestrial national park.</p>
+                    <p><strong>A</strong> It may still be some years off, but the imminent reality of space tourism is already stimulating some archaeologists to begin to plan how to protect historic sites in space. With further moon missions planned, the fear is that the principal sites like Apollo 11's landing place may be in danger. According to Beth O'Leary, a researcher in New Mexico State University in Las Cruces, "Technologically, probably the most important event in human history was to land to another celestial body," "It's like the discovery of fire or the first stone tools. They should be protected and conserved."</p>
+                    <p><strong>B</strong> In September 1959 since the Soviet Union's Luna 2 crashed into the moon, a total of 40 expeditions have touched down on the moon's surface. 22 of them were launched by the US with the six crewed Apollo missions launching between 1969 and 1972. The Apollo missions alone left behind 23 large artefacts including the descent and ascent stages of the lunar module landing equipment, the stage there Saturn rockets used to fly them there, and the lunar rovers or "moon buggies" the astronauts used to explore when they arrived.</p>
+                    <p><strong>C</strong> As well as these, there are also smaller artefacts and personal items scattered around, such as Neil Armstrong's boots and portable life-support system, scientific instruments and their power generators. Of course, the iconic US flag planted in the moon's surface is there too. There are also the footprints and rover tread paths. In spite of the passing of the years, these remains are carved into the dust, since the moon has no wind or rain to wash them away.</p>
+                    <p><strong>D</strong> P.J. Capelotti, an anthropologist at Penn State University in Abington, has mapped out five "lunar parks." These are the areas where the majority of the artefacts are concentrated and will be used as a basis for future preservation efforts. "Although nobody's saying that the whole moon has to be off-limits, people are starting to make plans for tourism and mineral extraction, or for putting a base there, needing to be aware of them and work around them."</p>
+                    <p><strong>E</strong> More technological developments are also on their way. NASA's LCROSS mission plans to crash an SUV-sized rocket into one of the moon's poles later this year with the hope of finding water there. At the same time, teams competing for the Google Lunar X Prize for the first privately funded robot to reach the moon have been offered a $5 million bonus if they take a picture of artefacts like the Apollo 11 landing equipment. Already, a question to be reported is how national governments and private companies should cooperate to ensure that artefacts are protected. There is some evidence that the US government is interested in working alongside other governments.</p>
+                    <p><strong>F</strong> A space-flight company called TransOrbital, based in Palo Alto, California presented its plans for sending a commercial mission to the moon by the end of the 1990s. these plans include making detailed maps of the moon and landing a capsule containing personal items, like business cards and cremated ashes. The US National Oceanic and Atmospheric Administration stipulated that TransOrbital's rockets must crash well away from any historic US artefacts when its flight was over. Although ultimately TransOrbital was unable to fund the mission, it might try again in the near future.</p>
+                    <p><strong>G</strong> According to Phil Stooke, a planetary cartographer of the University of Western Ontario in London, he agrees Luna 2 also has great significance. "It crashed, but that impact site is every bit as historic as Apollo 11." Another one is Luna 9, the first spacecraft to land sending back pictures. "They must be preserved."</p>
+                    <p><strong>H</strong> On the remaining Apollo sites, Stooke is searching how electronics, metal and paints have degraded after years of exposure to solar radiation and extremes of temperature. Also, he suggests that another Apollo site could be turned into a biological research centre, analysing the DNA and bacteria left behind from astronauts' life-support packs.</p>
+                    <p><strong>I</strong> Once a consensus has been reached as to which sites are worthy of conservation, and guidelines have been built up to protect them from being damaged by future missions, the next question will be how future space tourists should be allowed to interact with them. Capelotti says, "Looking at grey dust is going to hold its attraction for only so long," "People are going to make pilgrimages to these sites."</p>
+                    <p><strong>J</strong> There is a suggestion to build domes over historic sites, or perhaps even hotels, with the artefacts displayed in the "lobby." Another idea is to build up a raised railway track over the sites, so visitors could look at them without touching them. Capelotti says, "If Walt Disney was developing it, he would put a monorail around all five 'lunar parks,' so you could do the entire Apollo tour."</p>
+                </div>
+
+                <!-- PART 2 PASSAGE -->
+                <div id="passage-text-2" class="reading-passage hidden">
+                    <h4 class="text-center">Asiatic black bear</h4>
+                    <p>Known as a moon bear, Jasper is an Asiatic black bear with a yellow crescent on his chest. The bear came to the Animals Asia Moon Bear Rescue Centre in Chengdu, China, from a bear farm in 2000.</p>
+                    <p><strong>A</strong> When Jasper arrived, rescuers had to cut Jasper out of a tiny "crush cage." Bear bile has been used in traditional Chinese medicine and fetches a high price. The wholesale price is approximately 4,000 yuan (approximately $580) per kilogram with each bear producing up to 5 kilograms every year in China. But it comes at a high price.</p>
+                    <p><strong>B</strong> Jasper normally spent 15 years in a cage. Other bears spend up to 25 years without moving in cages no bigger than their bodies. Bears are milked for bile twice a day. In China, farmers use a catheter inserted into the gall bladder or permanently open wound. In Vietnam, farmers use long hypodermic needles.</p>
+                    <p><strong>C</strong> The Animals Asia has rescued 260 bears from Chinese bear farms over the past 10 years. These bears are lucky. The official number of reared bears in China is 7,000, but the Animals Asia fears the real figure is close to 10,000.</p>
+                    <p><strong>D</strong> In spite of the obvious cruelty, bear farming is legal in China. Whilst the Convention on International Trade in Endangered Species lists Asiatic black bears as being at the highest level of endangerment, China grants them only second-level protection, allowing them to be farmed. Although some have reported there are 15,000 bears, its figure is not a true estimate of the remaining wild population in China.</p>
+                    <p><strong>E</strong> Bear farming is also practiced in Vietnam where it is illegal but remains common due to a lack of enforcement. There are approximately 4,000 bears on Vietnamese farms but even more in Laos, Cambodia and Korea.</p>
+                    <p><strong>F</strong> Bear farming is justified on the grounds that it satisfies the local demand for bile in China, therefore decreasing the number of bears taken from the wild. Since 1989 farmers have been allowed to breed bears in captivity and hunting wild bears has been illegal. In spite of this, a lot of wild bears are still poached for their gall bladders or to restock the farms. Sometimes bears arrive at the rescue centre with missing ribs after being caught in the wild.</p>
+                    <p><strong>G</strong> Those bears that arrived at the centre have suffered from severe physical and psychological trauma. Rescued bears can't be set free into the wild due to the long-term damage caused by their incarceration. They all need surgery to get rid of damaged gall bladders and many need additional surgery and long-term medical care because of missing claws or paws, infected necrotic wounds along with broken and missing teeth caused by biting at bars or because farmers break them to make the bears less of a hazard. Also, many have liver cancer as a result of being continually milked for bile and suffer from a litany of other ailments including blindness, arthritis, peritonitis, weeping ulcers and ingrown claws.</p>
+                    <p><strong>H</strong> On the other hand, with the horrors of bear farming, the rehabilitation process is amazing and inspiring to witness. It takes around a year to rehabilitate a bear. Although some have to be kept alone for the rest of their lives, most can eventually be housed with other bears. The transition in personality from animals which are violent and fearful to ones which are trusting, inquisitive and completely at ease with people is truly remarkable. Robinson says, "I have visited the rescue centre and it changed my life." That is how powerful the bears' stories are.</p>
+                    <p><strong>I</strong> In spite of the rescue programme, bear bile extraction remains a cause of wanton and remorseless abuse. It is difficult to change attitudes when bear bile has been used in Chinese medicine for over 3,000 years to cope with "heat-related" ailments, such as eye conditions and liver disease. These days, it is used to treat conditions from hangovers to haemorrhoids. There is some evidence from western medicine that a synthetic version of the active ingredient in bear bile, ursodeoxycholic acid, is able to treat a range of disorders including hepatitis C. But traditional Chinese medicine still insists on using natural bear bile which is often contaminated with pus, blood, urine and faeces. Although healthy bear bile is free-flowing and orangey-green, veterinarians describe bile leaking from the diseased gall bladders of rescued bears as "black sludge."</p>
+                    <p><strong>J</strong> The half-moon bear rescue project raises a number of critical questions. For instance, why do bears show large individual differences in response to persecution and variations in recovery? Rescued bears are powerful ambassadors, but should so much time and money be invested in saving the lives of individuals who will not make any direct contributions to saving their species? How can people from outside China work to free bears whilst respecting their Chinese colleagues and remaining sensitive to cultural tradition?</p>
+                    <p><strong>K</strong> Efforts to quit bear farming will continue. Soon after Robinson established the Animals Asia in 1998, she negotiated an agreement with the Chinese government to work towards the eradication of bear farming. All farmers are cruel, but the very worst are identified for closure by the government and the farmers have their licences revoked. It is bears from these farms that come to the rescue centre. The Animals Asia compensates the farmers so that they can begin another business or retire. More than 40 farms have so far been closed, and China has not issued any new licences since 1994.</p>
+                </div>
+
+                <!-- PART 3 PASSAGE -->
+                <div id="passage-text-3" class="reading-passage hidden">
+                    <h4 class="text-center">Colorado Desert</h4>
+                    <p><strong>A</strong> Particularly in the summer, California's lower Colorado desert is a harsh place. It's a barren landscape of rocks and rattlesnakes that little grows in but creosote bushes and cactus. Midday temperatures can reach 43oC and searing winds and afternoon sun combine to suck moisture from the body. This is not the place for a midday march, but that is precisely what Edward Adolph had in mind when, in the summer of 1942, he took a group of soldiers and researchers there. Adolph, a physiologist at the University of Rochester in New York state, wanted to investigate how people could live and work efficiently in the desert and how to get the best out of them.</p>
+                    <p><strong>B</strong> He wasn't the first to consider the effects of hot, dry conditions on the human body. The image of the traveler lost in the desert, crawling towards a shimmering mirage, is probably as old as desert travel itself. But earlier researchers mainly focused on survival. According to Timothy Noakes, an exercise physiologist at the University of Cape Town and master of some of the world's toughest ultra-marathons, "They never looked at performance." Adolph was the first to test the presumptions most of the people still have about what to do if forced to make any sort of effort in unbearable heat. What he discovered most were myths. For example, stripping to T-shirt and shorts is not the best way to treat dehydration. Although long sleeves and long trousers may feel hotter, they'll slow the loss of water. Nor is there any point in rationing water when supplies are low. Postponing drinking it only makes you unhappier sooner. Adolph wrote, "It is better to drink the water and have it inside you than to carry it."</p>
+                    <p><strong>C</strong> The most critical of Adolph's discoveries was the simplest: drinking during exercise enhances performance. Nowadays, we take this for granted, but generations of coaches and distance runners were taught that drinking during exercise was for wimps. Some claimed it would only make you thirstier. Others said it could even trigger a heart attack. The author of Marathon Running in 1909 advised, "Don't buy into the habit of drinking and eating in a marathon race," "Some outstanding runners do, but it is not helpful." Adolph tested these old assumptions by splitting his soldiers into two groups. When the average afternoon high was up to 42oC, both marched through the desert for 8 hours. The soldiers in one group were allowed to drink as much water as they needed and the others weren't allowed any water. The results were obvious, the drinkers outperformed the non-drinkers, but the men in both groups backed out once they had sweated off 7 to 10% of their body weight.</p>
+                    <p><strong>D</strong> To Adolph, this made perfect sense. On days when the temperature is hotter than the average person's skin temperature – approximately 33oC – the only way for the body to cool itself is by the evaporation of sweat, and he could estimate how much moisture that required. A brisk walk could easily need three-quarters of a litre or more of evaporative cooling each hour. Adolph's research was launched by the North Africa campaign, and he finished in 1943. But he came back to the desert every summer and supplemented his experiments with tests in his heated lab. His discoveries stayed secret until 1947 when he published Physiology of Man in the Desert. It went almost entirely unnoticed. In the late 1960s, marathon runners were still advised not to drink water during races. Until 1977, runners in international competitions were prohibited from drinking water in the first 11 kilometres and after that were allowed water only every 5 kilometres.</p>
+                    <p><strong>E</strong> However, there was a complete reversal of opinion. A study began to warn of the dangers of running a marathon without enough water and suddenly runners were told they must drink during the race – and if they didn't feel like it, they should force themselves or risk heatstroke. In 1978, Alberto Salazar, one of America's great distance runners, ran a 7.1-mile race in temperatures of 29oC. At mile six, he was in second place. He said later, "The last thing I remember, and I was watching Bill Rodgers pull away from me. It was dreamlike. Bill was floating away, and I wasn't able to follow the energy to go after him. In the next mile, I faded from second to tenth, but I do not have any memory of being passed by anyone."</p>
+                    <p><strong>F</strong> Salazar almost died. At the finish, his body temperature was 42oC and he was saved only as a result of a quick-thinking member of the medical crew promptly dumping him into a tub of iced water. Everyone "found" what Salazar had done wrong: Salazar hadn't drunk enough before or during the race. He, therefore, became dehydrated and nearly killed himself. Even Salazar accepted this. "Dehydration is insidious," he would later say. At first glance, Adolph's discoveries seem to support this. His notes about his dehydrated soldiers are a litany of sorrow. "Their only desire is to stop and to rest," he wrote of one man, after 13.4 waterless kilometres in 40oC heat. "He had an unsocial attitude, began to lag and finally stopped," he wrote of another, who managed 29.8 kilometres at 34oC.</p>
+                    <p><strong>G</strong> Both 1970s and 1980s runners and coaches assumed that collapsing athletes like Salazar were simply extreme cases of the same thing. Dehydration and heat collapse were virtually synonymous in many minds. "Drink early and often," athletes were told, "and not just when thirsty." However, as Noakes points out, none of Adolph's dehydrated soldiers suffered heatstroke. "They just got very angry and stopped walking." What's more, they recovered quickly when allowed to rest and drink. "They were able to walk almost immediately after drinking water," Adolph wrote in one case. In another: "exhaustion relieved by water." Salazar's brush with death wasn't the result of drinking too little: on a very hot day he had simply tried to run a world-class race. Under these kinds of conditions, heat is the enemy, not dehydration.</p>
+                    <p><strong>H</strong> Adolph had accepted this but thought it too clear to guarantee more than a few lines in his book. He had conducted most of his tests on marches, not because he wasn't interested in the effects of running in the heat, but because when he made his soldiers run, even at a slow jog their body temperature soared by 2.5oC in 30 minutes. "There is no doubt that men are limited in the physical work they can do in the desert," he wrote. The advocates of drinking-early-and-often had also overlooked Adolph's discovery that even soldiers who were able to drink what they wanted still tended to dehydrate, and only made up their deficiencies at mealtimes. Adolph disregarded this as a "peculiarity of dehydration," but Noakes believes he had stumbled upon a quirk of human evolution.</p>
+                    <p><strong>I</strong> Humans, Noakes observed, are "delayed drinkers." He supposes that this is a consequence of early humans hunting and chasing game for long distances under the African sun. There are good reasons for not stopping to drink during a hunt, not least the expectation of the prey escaping. There's also the fact that we are not built like camels and other animals that are able to drink deeply and quickly. That makes us better runners – and running hunters – but means we cannot drink as much as we can sweat, so we delay our thirst until it's comfortable to drink, says Noakes. Adolph never used the word evolution in his book but he would have understood Noakes's point.</p>
+                </div>
+            </div>
+            <div class="resizer" id="resizer"></div>
+            <div class="questions-panel" id="questions-panel">
+                <!-- PART 1 QUESTIONS -->
+                <div id="questions-1" class="question-set">
+                    <div class="questions-container">
+                        <!-- Questions 1-7: TRUE/FALSE/NOT GIVEN -->
+                        <div class="question" data-q-start="1" data-q-end="7">
+                            <div class="question-prompt">
+                                <p><strong>Questions 1–7</strong></p>
+                                <p>Do the following statements reflect the claims of the writer in Reading Passage 1?</p>
+                                <p>In boxes 1-7 on your answer sheet, write</p>
+                                <ul style="list-style: none; padding-left: 0;">
+                                    <li><strong>TRUE</strong> if the statement agrees with the information</li>
+                                    <li><strong>FALSE</strong> if the statement contradicts the information</li>
+                                    <li><strong>NOT GIVEN</strong> if there is no information on this</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="tf-question" data-q-start="1" data-q-end="1">
+                                <div class="tf-question-line"><span class="tf-question-number">1</span><span class="tf-question-text">Archaeologists have established links between space tourism and Apollo 11.</span></div>
+                                <div class="tf-options">
+                                    <label class="tf-option"><input type="radio" name="q1" value="TRUE"> TRUE</label>
+                                    <label class="tf-option"><input type="radio" name="q1" value="FALSE"> FALSE</label>
+                                    <label class="tf-option"><input type="radio" name="q1" value="NOT GIVEN"> NOT GIVEN</label>
+                                </div>
+                            </div>
+                            
+                            <div class="tf-question" data-q-start="2" data-q-end="2">
+                                <div class="tf-question-line"><span class="tf-question-number">2</span><span class="tf-question-text">Of the 40 expeditions that landed on the lunar surface, the US embarked on more than half of them.</span></div>
+                                <div class="tf-options">
+                                    <label class="tf-option"><input type="radio" name="q2" value="TRUE"> TRUE</label>
+                                    <label class="tf-option"><input type="radio" name="q2" value="FALSE"> FALSE</label>
+                                    <label class="tf-option"><input type="radio" name="q2" value="NOT GIVEN"> NOT GIVEN</label>
+                                </div>
+                            </div>
+                            
+                            <div class="tf-question" data-q-start="3" data-q-end="3">
+                                <div class="tf-question-line"><span class="tf-question-number">3</span><span class="tf-question-text">Between 1969 and 1972, there were not remarkable issues in the Apollo missions.</span></div>
+                                <div class="tf-options">
+                                    <label class="tf-option"><input type="radio" name="q3" value="TRUE"> TRUE</label>
+                                    <label class="tf-option"><input type="radio" name="q3" value="FALSE"> FALSE</label>
+                                    <label class="tf-option"><input type="radio" name="q3" value="NOT GIVEN"> NOT GIVEN</label>
+                                </div>
+                            </div>
+                            
+                            <div class="tf-question" data-q-start="4" data-q-end="4">
+                                <div class="tf-question-line"><span class="tf-question-number">4</span><span class="tf-question-text">Neil Armstrong made up his mind to exploit the natural resources of the moon.</span></div>
+                                <div class="tf-options">
+                                    <label class="tf-option"><input type="radio" name="q4" value="TRUE"> TRUE</label>
+                                    <label class="tf-option"><input type="radio" name="q4" value="FALSE"> FALSE</label>
+                                    <label class="tf-option"><input type="radio" name="q4" value="NOT GIVEN"> NOT GIVEN</label>
+                                </div>
+                            </div>
+                            
+                            <div class="tf-question" data-q-start="5" data-q-end="5">
+                                <div class="tf-question-line"><span class="tf-question-number">5</span><span class="tf-question-text">Astronauts' traces marked on the surface of the moon remain unchanged due to the lack of wind and rain.</span></div>
+                                <div class="tf-options">
+                                    <label class="tf-option"><input type="radio" name="q5" value="TRUE"> TRUE</label>
+                                    <label class="tf-option"><input type="radio" name="q5" value="FALSE"> FALSE</label>
+                                    <label class="tf-option"><input type="radio" name="q5" value="NOT GIVEN"> NOT GIVEN</label>
+                                </div>
+                            </div>
+                            
+                            <div class="tf-question" data-q-start="6" data-q-end="6">
+                                <div class="tf-question-line"><span class="tf-question-number">6</span><span class="tf-question-text">Commercial space-flight companies planned to place both business cards and ashes on the moon.</span></div>
+                                <div class="tf-options">
+                                    <label class="tf-option"><input type="radio" name="q6" value="TRUE"> TRUE</label>
+                                    <label class="tf-option"><input type="radio" name="q6" value="FALSE"> FALSE</label>
+                                    <label class="tf-option"><input type="radio" name="q6" value="NOT GIVEN"> NOT GIVEN</label>
+                                </div>
+                            </div>
+                            
+                            <div class="tf-question" data-q-start="7" data-q-end="7">
+                                <div class="tf-question-line"><span class="tf-question-number">7</span><span class="tf-question-text">In spite of financial problems, TransOrbital plan to launch their mission again in the foreseeable future.</span></div>
+                                <div class="tf-options">
+                                    <label class="tf-option"><input type="radio" name="q7" value="TRUE"> TRUE</label>
+                                    <label class="tf-option"><input type="radio" name="q7" value="FALSE"> FALSE</label>
+                                    <label class="tf-option"><input type="radio" name="q7" value="NOT GIVEN"> NOT GIVEN</label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Questions 8-13: Matching sentence endings -->
+                        <div class="question" data-q-start="8" data-q-end="13">
+                            <div class="question-prompt">
+                                <p><strong>Questions 8–13</strong></p>
+                                <p>Complete each sentence with the correct ending, A-H, below.</p>
+                                <p>Write the correct letter, A-H, in boxes 8-13 on your answer sheet.</p>
+                            </div>
+                            
+                            <div class="question-prompt">
+                                <p><strong>List of Statements</strong></p>
+                                <p><strong>A</strong> left various artefacts on the moon's surface.</p>
+                                <p><strong>B</strong> discovered water supported by NASA's LCROSS mission scheme.</p>
+                                <p><strong>C</strong> aimed to launch a project to preserve relic sites in space.</p>
+                                <p><strong>D</strong> funded a robot to reach the moon.</p>
+                                <p><strong>E</strong> promoted commercial business on the moon.</p>
+                                <p><strong>F</strong> designed the lunar parks for cultural industries and resources.</p>
+                                <p><strong>G</strong> had a similar historic impact to Apollo 11.</p>
+                                <p><strong>H</strong> made detailed maps of the moon and personal items.</p>
+                            </div>
+                            
+                            <div class="tf-question" data-q-start="8" data-q-end="8">
+                                <div class="tf-question-line"><span class="tf-question-number">8</span><span class="tf-question-text">Archaeologists</span></div>
+                                <div class="tf-options">
+                                    <select name="q8" class="answer-select">
+                                        <option value="">Select</option>
+                                        <option value="A">A</option>
+                                        <option value="B">B</option>
+                                        <option value="C">C</option>
+                                        <option value="D">D</option>
+                                        <option value="E">E</option>
+                                        <option value="F">F</option>
+                                        <option value="G">G</option>
+                                        <option value="H">H</option>
+                                    </select>
+                                </div>
+                            </div>
+                            
+                            <div class="tf-question" data-q-start="9" data-q-end="9">
+                                <div class="tf-question-line"><span class="tf-question-number">9</span><span class="tf-question-text">The Apollo missions</span></div>
+                                <div class="tf-options">
+                                    <select name="q9" class="answer-select">
+                                        <option value="">Select</option>
+                                        <option value="A">A</option>
+                                        <option value="B">B</option>
+                                        <option value="C">C</option>
+                                        <option value="D">D</option>
+                                        <option value="E">E</option>
+                                        <option value="F">F</option>
+                                        <option value="G">G</option>
+                                        <option value="H">H</option>
+                                    </select>
+                                </div>
+                            </div>
+                            
+                            <div class="tf-question" data-q-start="10" data-q-end="10">
+                                <div class="tf-question-line"><span class="tf-question-number">10</span><span class="tf-question-text">Anthropologist P.J. Capelotti</span></div>
+                                <div class="tf-options">
+                                    <select name="q10" class="answer-select">
+                                        <option value="">Select</option>
+                                        <option value="A">A</option>
+                                        <option value="B">B</option>
+                                        <option value="C">C</option>
+                                        <option value="D">D</option>
+                                        <option value="E">E</option>
+                                        <option value="F">F</option>
+                                        <option value="G">G</option>
+                                        <option value="H">H</option>
+                                    </select>
+                                </div>
+                            </div>
+                            
+                            <div class="tf-question" data-q-start="11" data-q-end="11">
+                                <div class="tf-question-line"><span class="tf-question-number">11</span><span class="tf-question-text">SUV-sized rocket into the moon's people</span></div>
+                                <div class="tf-options">
+                                    <select name="q11" class="answer-select">
+                                        <option value="">Select</option>
+                                        <option value="A">A</option>
+                                        <option value="B">B</option>
+                                        <option value="C">C</option>
+                                        <option value="D">D</option>
+                                        <option value="E">E</option>
+                                        <option value="F">F</option>
+                                        <option value="G">G</option>
+                                        <option value="H">H</option>
+                                    </select>
+                                </div>
+                            </div>
+                            
+                            <div class="tf-question" data-q-start="12" data-q-end="12">
+                                <div class="tf-question-line"><span class="tf-question-number">12</span><span class="tf-question-text">TransOrbital</span></div>
+                                <div class="tf-options">
+                                    <select name="q12" class="answer-select">
+                                        <option value="">Select</option>
+                                        <option value="A">A</option>
+                                        <option value="B">B</option>
+                                        <option value="C">C</option>
+                                        <option value="D">D</option>
+                                        <option value="E">E</option>
+                                        <option value="F">F</option>
+                                        <option value="G">G</option>
+                                        <option value="H">H</option>
+                                    </select>
+                                </div>
+                            </div>
+                            
+                            <div class="tf-question" data-q-start="13" data-q-end="13">
+                                <div class="tf-question-line"><span class="tf-question-number">13</span><span class="tf-question-text">The impact site of Luna 2</span></div>
+                                <div class="tf-options">
+                                    <select name="q13" class="answer-select">
+                                        <option value="">Select</option>
+                                        <option value="A">A</option>
+                                        <option value="B">B</option>
+                                        <option value="C">C</option>
+                                        <option value="D">D</option>
+                                        <option value="E">E</option>
+                                        <option value="F">F</option>
+                                        <option value="G">G</option>
+                                        <option value="H">H</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- PART 2 QUESTIONS -->
+                <div id="questions-2" class="question-set hidden">
+                    <div class="questions-container">
+                        <!-- Questions 14-20: Summary completion -->
+                        <div class="question" data-q-start="14" data-q-end="20">
+                            <div class="question-prompt">
+                                <p><strong>Questions 14–20</strong></p>
+                                <p>Complete the summary below.</p>
+                                <p>Choose <strong>NO MORE THAN THREE WORDS</strong> from the passage for each answer.</p>
+                                <p>Write your answer in boxes 14-20 on your answer sheet.</p>
+                            </div>
+                            
+                            <div class="summary-text" style="border: 1px solid #000; padding: 10px;">
+                                <p>In 2000 Jasper, an Asiatic black bear in China was called a moon bear due to embedding <input type="text" class="answer-input" id="q14" placeholder="14" autocomplete="off"> on the chest. Whilst bear farming is illegal, it is prevalent because of weak <input type="text" class="answer-input" id="q15" placeholder="15" autocomplete="off"> in Vietnam. Since 1989 hunting wild bears has been illegal in China, but breeding bears in the farmland is not prohibited. At intervals, bears are delivered to the rescue centre without <input type="text" class="answer-input" id="q16" placeholder="16" autocomplete="off"> by poachers.</p>
+                                <p>Most bears that arrived at the centre have experienced <input type="text" class="answer-input" id="q17" placeholder="17" autocomplete="off"> of both physical and psychological problems to be continued. Besides, <input type="text" class="answer-input" id="q18" placeholder="18" autocomplete="off"> is caused by extracting the bile from the bear's gall. Over 3,000 years the Chinese have made use of the bile for healing illness related to both <input type="text" class="answer-input" id="q19" placeholder="19" autocomplete="off"> and <input type="text" class="answer-input" id="q20" placeholder="20" autocomplete="off"> In 1998 the Animals Asia was established by Robinson. She made an agreement against bear farming. Actually, she negotiated with the Chinese government to eliminate <input type="text" class="answer-input" id="q21" placeholder="21" autocomplete="off"></p>
+                            </div>
+                        </div>
+
+                        <!-- Questions 21-25: YES/NO/NOT GIVEN -->
+                        <div class="question" data-q-start="21" data-q-end="25">
+                            <div class="question-prompt">
+                                <p><strong>Questions 21–25</strong></p>
+                                <p>Do the following statements reflect the claims of the writer in Reading Passage 2?</p>
+                                <p>In boxes 21-25 on your answer sheet, write</p>
+                                <ul style="list-style: none; padding-left: 0;">
+                                    <li><strong>YES</strong> if the statement agrees with the opinion of the writer</li>
+                                    <li><strong>NO</strong> if the statement contradicts the opinion of the writer</li>
+                                    <li><strong>NOT GIVEN</strong> if it is impossible to say what the writer thinks about this</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="tf-question" data-q-start="21" data-q-end="21">
+                                <div class="tf-question-line"><span class="tf-question-number">21</span><span class="tf-question-text">Jasper is an Asiatic black bear and it had grown in the wild.</span></div>
+                                <div class="tf-options">
+                                    <label class="tf-option"><input type="radio" name="q21" value="YES"> YES</label>
+                                    <label class="tf-option"><input type="radio" name="q21" value="NO"> NO</label>
+                                    <label class="tf-option"><input type="radio" name="q21" value="NOT GIVEN"> NOT GIVEN</label>
+                                </div>
+                            </div>
+                            
+                            <div class="tf-question" data-q-start="22" data-q-end="22">
+                                <div class="tf-question-line"><span class="tf-question-number">22</span><span class="tf-question-text">China is accustomed to using the bear bile as a traditional medicine from the old times.</span></div>
+                                <div class="tf-options">
+                                    <label class="tf-option"><input type="radio" name="q22" value="YES"> YES</label>
+                                    <label class="tf-option"><input type="radio" name="q22" value="NO"> NO</label>
+                                    <label class="tf-option"><input type="radio" name="q22" value="NOT GIVEN"> NOT GIVEN</label>
+                                </div>
+                            </div>
+                            
+                            <div class="tf-question" data-q-start="23" data-q-end="23">
+                                <div class="tf-question-line"><span class="tf-question-number">23</span><span class="tf-question-text">The bile from the bear's gall is extracted every day.</span></div>
+                                <div class="tf-options">
+                                    <label class="tf-option"><input type="radio" name="q23" value="YES"> YES</label>
+                                    <label class="tf-option"><input type="radio" name="q23" value="NO"> NO</label>
+                                    <label class="tf-option"><input type="radio" name="q23" value="NOT GIVEN"> NOT GIVEN</label>
+                                </div>
+                            </div>
+                            
+                            <div class="tf-question" data-q-start="24" data-q-end="24">
+                                <div class="tf-question-line"><span class="tf-question-number">24</span><span class="tf-question-text">Even though bear bile use has spread among the Chinese, it had no effect on them.</span></div>
+                                <div class="tf-options">
+                                    <label class="tf-option"><input type="radio" name="q24" value="YES"> YES</label>
+                                    <label class="tf-option"><input type="radio" name="q24" value="NO"> NO</label>
+                                    <label class="tf-option"><input type="radio" name="q24" value="NOT GIVEN"> NOT GIVEN</label>
+                                </div>
+                            </div>
+                            
+                            <div class="tf-question" data-q-start="25" data-q-end="25">
+                                <div class="tf-question-line"><span class="tf-question-number">25</span><span class="tf-question-text">In 1998 Robinson has reported the Animals Asia to the United Nations.</span></div>
+                                <div class="tf-options">
+                                    <label class="tf-option"><input type="radio" name="q25" value="YES"> YES</label>
+                                    <label class="tf-option"><input type="radio" name="q25" value="NO"> NO</label>
+                                    <label class="tf-option"><input type="radio" name="q25" value="NOT GIVEN"> NOT GIVEN</label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Questions 26-27: Multiple choice -->
+                        <div class="question" data-q-start="26" data-q-end="27">
+                            <div class="question-prompt">
+                                <p><strong>Questions 26–27</strong></p>
+                                <p>Choose the correct letter, A, B, C or D.</p>
+                                <p>Write the correct letter in boxes 26-27 on your answer sheet.</p>
+                            </div>
+                            
+                            <div class="tf-question" data-q-start="26" data-q-end="26">
+                                <div class="tf-question-line"><span class="tf-question-number">26</span><span class="tf-question-text">The writer reports that bear bile has been prevalent in China due to</span></div>
+                                <div class="tf-options">
+                                    <label class="tf-option"><input type="radio" name="q26" value="A"> A working a sense of beauty for women.</label>
+                                    <label class="tf-option"><input type="radio" name="q26" value="B"> B using traditional medicine and a little expense.</label>
+                                    <label class="tf-option"><input type="radio" name="q26" value="C"> C delaying the ageing and relieving mental fatigue.</label>
+                                    <label class="tf-option"><input type="radio" name="q26" value="D"> D using traditional medicine and its price being skyrocketing.</label>
+                                </div>
+                            </div>
+                            
+                            <div class="tf-question" data-q-start="27" data-q-end="27">
+                                <div class="tf-question-line"><span class="tf-question-number">27</span><span class="tf-question-text">Jill Robinson founded the Animals Asia in 1998 in order to</span></div>
+                                <div class="tf-options">
+                                    <label class="tf-option"><input type="radio" name="q27" value="A"> A protect animals in Asian zoos.</label>
+                                    <label class="tf-option"><input type="radio" name="q27" value="B"> B promote the bear rescue project to the United Nations.</label>
+                                    <label class="tf-option"><input type="radio" name="q27" value="C"> C protect the bear and prohibit brutal farming in Asia.</label>
+                                    <label class="tf-option"><input type="radio" name="q27" value="D"> D support bear farms.</label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Question 28: Choose the best title -->
+                        <div class="question" data-q-start="28" data-q-end="28">
+                            <div class="question-prompt">
+                                <p><strong>Question 28</strong></p>
+                                <p>From the list below, choose the most suitable title for Reading Passage 2.</p>
+                                <p>Write the appropriate letter A-E in box 28 on your answer sheet.</p>
+                            </div>
+                            
+                            <div class="tf-question" data-q-start="28" data-q-end="28">
+                                <div class="tf-question-line"><span class="tf-question-number">28</span><span class="tf-question-text">Choose the most suitable title:</span></div>
+                                <div class="tf-options">
+                                    <label class="tf-option"><input type="radio" name="q28" value="A"> A Cruel bear bile business</label>
+                                    <label class="tf-option"><input type="radio" name="q28" value="B"> B Increasing the bear bile supply</label>
+                                    <label class="tf-option"><input type="radio" name="q28" value="C"> C Traditional Chinese medicine</label>
+                                    <label class="tf-option"><input type="radio" name="q28" value="D"> D Rescue project forward</label>
+                                    <label class="tf-option"><input type="radio" name="q28" value="E"> E Bear farming enforcement</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- PART 3 QUESTIONS -->
+                <div id="questions-3" class="question-set hidden">
+                    <div class="questions-container">
+                        <!-- Questions 29-35: Matching headings -->
+                        <div class="question" data-q-start="29" data-q-end="35">
+                            <div class="question-prompt">
+                                <p><strong>Questions 29–35</strong></p>
+                                <p>Reading Passage 3 has eight sections, A-H.</p>
+                                <p>Choose the correct heading for sections B-H from the list of headings below.</p>
+                                <p>Write the correct number, i-viii, in boxes 29-35 on your answer sheet.</p>
+                            </div>
+                            
+                            <div class="question-prompt">
+                                <p><strong>List of Headings</strong></p>
+                                <p><strong>i</strong> The opposite of Adolph's view</p>
+                                <p><strong>ii</strong> Adolph's studies to guarantee in the book</p>
+                                <p><strong>iii</strong> The utmost limits for survival</p>
+                                <p><strong>iv</strong> Positive evidence of Adolph's research</p>
+                                <p><strong>v</strong> A barren landscape for marching</p>
+                                <p><strong>vi</strong> Noakes' stance on humans of drinking</p>
+                                <p><strong>vii</strong> A simple solution for developing performance</p>
+                                <p><strong>viii</strong> Misjudgment of Salazar's thought</p>
+                            </div>
+                            
+                            <div class="question-prompt">
+                                <p style="font-style: italic;">Example: Section A - v</p>
+                            </div>
+                            
+                            <div class="tf-question" data-q-start="29" data-q-end="29">
+                                <div class="tf-question-line"><span class="tf-question-number">29</span><span class="tf-question-text">Section B</span></div>
+                                <div class="tf-options">
+                                    <select name="q29" class="answer-select">
+                                        <option value="">Select</option>
+                                        <option value="i">i</option>
+                                        <option value="ii">ii</option>
+                                        <option value="iii">iii</option>
+                                        <option value="iv">iv</option>
+                                        <option value="v">v</option>
+                                        <option value="vi">vi</option>
+                                        <option value="vii">vii</option>
+                                        <option value="viii">viii</option>
+                                    </select>
+                                </div>
+                            </div>
+                            
+                            <div class="tf-question" data-q-start="30" data-q-end="30">
+                                <div class="tf-question-line"><span class="tf-question-number">30</span><span class="tf-question-text">Section C</span></div>
+                                <div class="tf-options">
+                                    <select name="q30" class="answer-select">
+                                        <option value="">Select</option>
+                                        <option value="i">i</option>
+                                        <option value="ii">ii</option>
+                                        <option value="iii">iii</option>
+                                        <option value="iv">iv</option>
+                                        <option value="v">v</option>
+                                        <option value="vi">vi</option>
+                                        <option value="vii">vii</option>
+                                        <option value="viii">viii</option>
+                                    </select>
+                                </div>
+                            </div>
+                            
+                            <div class="tf-question" data-q-start="31" data-q-end="31">
+                                <div class="tf-question-line"><span class="tf-question-number">31</span><span class="tf-question-text">Section D</span></div>
+                                <div class="tf-options">
+                                    <select name="q31" class="answer-select">
+                                        <option value="">Select</option>
+                                        <option value="i">i</option>
+                                        <option value="ii">ii</option>
+                                        <option value="iii">iii</option>
+                                        <option value="iv">iv</option>
+                                        <option value="v">v</option>
+                                        <option value="vi">vi</option>
+                                        <option value="vii">vii</option>
+                                        <option value="viii">viii</option>
+                                    </select>
+                                </div>
+                            </div>
+                            
+                            <div class="tf-question" data-q-start="32" data-q-end="32">
+                                <div class="tf-question-line"><span class="tf-question-number">32</span><span class="tf-question-text">Section E</span></div>
+                                <div class="tf-options">
+                                    <select name="q32" class="answer-select">
+                                        <option value="">Select</option>
+                                        <option value="i">i</option>
+                                        <option value="ii">ii</option>
+                                        <option value="iii">iii</option>
+                                        <option value="iv">iv</option>
+                                        <option value="v">v</option>
+                                        <option value="vi">vi</option>
+                                        <option value="vii">vii</option>
+                                        <option value="viii">viii</option>
+                                    </select>
+                                </div>
+                            </div>
+                            
+                            <div class="tf-question" data-q-start="33" data-q-end="33">
+                                <div class="tf-question-line"><span class="tf-question-number">33</span><span class="tf-question-text">Section F</span></div>
+                                <div class="tf-options">
+                                    <select name="q33" class="answer-select">
+                                        <option value="">Select</option>
+                                        <option value="i">i</option>
+                                        <option value="ii">ii</option>
+                                        <option value="iii">iii</option>
+                                        <option value="iv">iv</option>
+                                        <option value="v">v</option>
+                                        <option value="vi">vi</option>
+                                        <option value="vii">vii</option>
+                                        <option value="viii">viii</option>
+                                    </select>
+                                </div>
+                            </div>
+                            
+                            <div class="tf-question" data-q-start="34" data-q-end="34">
+                                <div class="tf-question-line"><span class="tf-question-number">34</span><span class="tf-question-text">Section G</span></div>
+                                <div class="tf-options">
+                                    <select name="q34" class="answer-select">
+                                        <option value="">Select</option>
+                                        <option value="i">i</option>
+                                        <option value="ii">ii</option>
+                                        <option value="iii">iii</option>
+                                        <option value="iv">iv</option>
+                                        <option value="v">v</option>
+                                        <option value="vi">vi</option>
+                                        <option value="vii">vii</option>
+                                        <option value="viii">viii</option>
+                                    </select>
+                                </div>
+                            </div>
+                            
+                            <div class="tf-question" data-q-start="35" data-q-end="35">
+                                <div class="tf-question-line"><span class="tf-question-number">35</span><span class="tf-question-text">Section H</span></div>
+                                <div class="tf-options">
+                                    <select name="q35" class="answer-select">
+                                        <option value="">Select</option>
+                                        <option value="i">i</option>
+                                        <option value="ii">ii</option>
+                                        <option value="iii">iii</option>
+                                        <option value="iv">iv</option>
+                                        <option value="v">v</option>
+                                        <option value="vi">vi</option>
+                                        <option value="vii">vii</option>
+                                        <option value="viii">viii</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Questions 36-40: Sentence completion -->
+                        <div class="question" data-q-start="36" data-q-end="40">
+                            <div class="question-prompt">
+                                <p><strong>Questions 36–40</strong></p>
+                                <p>Complete the sentences below.</p>
+                                <p>Choose <strong>NO MORE THAN TWO WORDS OR A NUMBER</strong> from the passage for each answer.</p>
+                                <p>Write your answers in boxes 36-40 on your answer sheet.</p>
+                            </div>
+                            
+                            <div class="summary-text" style="border: 1px solid #000; padding: 10px;">
+                                <p>36 Adolph found out that a critical way for improving a marathon race is <input type="text" class="answer-input" id="q36" placeholder="36" autocomplete="off"> during a performance.</p>
+                                <p>37 During walking, the body needs approximately <input type="text" class="answer-input" id="q37" placeholder="37" autocomplete="off"> of a litre of moisture per hour.</p>
+                                <p>38 International competitions didn't allow water within racing <input type="text" class="answer-input" id="q38" placeholder="38" autocomplete="off"> kilometres.</p>
+                                <p>39 Salazar nearly died at the end of the race as a result of <input type="text" class="answer-input" id="q39" placeholder="39" autocomplete="off"></p>
+                                <p>40 In the final section, Noakes indicates humans are part of the concept of <input type="text" class="answer-input" id="q40" placeholder="40" autocomplete="off"></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navigation Arrows -->
+    <div class="nav-arrows">
+        <button class="nav-arrow prev" onclick="previousQuestion()" id="prevBtn" aria-label="Previous question">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M15 18l-6-6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+        </button>
+        <button class="nav-arrow next" onclick="nextQuestion()" id="nextBtn" aria-label="Next question">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M9 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+        </button>
+    </div>
+
+    <!-- Bottom Navigation -->
+    <nav class="nav-row perScorableItem" aria-label="Questions">
+        <div class="footer__questionWrapper___1tZ46 selected" role="tablist">
+            <button role="tab" class="footer__questionNo___3WNct" onclick="switchToPart(1)">
+                <span>
+                    <span aria-hidden="true" class="section-prefix">Part </span>
+                    <span class="sectionNr" aria-hidden="true">1</span>
+                    <span class="attemptedCount" aria-hidden="true">0 of 13</span>
+                </span>
+            </button>
+            <div class="footer__subquestionWrapper___9GgoP">
+                <button class="subQuestion scorable-item" onclick="goToQuestion(1)"><span class="sr-only">Question 1</span><span aria-hidden="true">1</span></button>
+                <button class="subQuestion scorable-item" onclick="goToQuestion(2)"><span class="sr-only">Question 2</span><span aria-hidden="true">2</span></button>
+                <button class="subQuestion scorable-item" onclick="goToQuestion(3)"><span class="sr-only">Question 3</span><span aria-hidden="true">3</span></button>
+                <button class="subQuestion scorable-item" onclick="goToQuestion(4)"><span class="sr-only">Question 4</span><span aria-hidden="true">4</span></button>
+                <button class="subQuestion scorable-item" onclick="goToQuestion(5)"><span class="sr-only">Question 5</span><span aria-hidden="true">5</span></button>
+                <button class="subQuestion scorable-item" onclick="goToQuestion(6)"><span class="sr-only">Question 6</span><span aria-hidden="true">6</span></button>
+                <button class="subQuestion scorable-item" onclick="goToQuestion(7)"><span class="sr-only">Question 7</span><span aria-hidden="true">7</span></button>
+                <button class="subQuestion scorable-item" onclick="goToQuestion(8)"><span class="sr-only">Question 8</span><span aria-hidden="true">8</span></button>
+                <button class="subQuestion scorable-item" onclick="goToQuestion(9)"><span class="sr-only">Question 9</span><span aria-hidden="true">9</span></button>
+                <button class="subQuestion scorable-item" onclick="goToQuestion(10)"><span class="sr-only">Question 10</span><span aria-hidden="true">10</span></button>
+                <button class="subQuestion scorable-item" onclick="goToQuestion(11)"><span class="sr-only">Question 11</span><span aria-hidden="true">11</span></button>
+                <button class="subQuestion scorable-item" onclick="goToQuestion(12)"><span class="sr-only">Question 12</span><span aria-hidden="true">12</span></button>
+                <button class="subQuestion scorable-item" onclick="goToQuestion(13)"><span class="sr-only">Question 13</span><span aria-hidden="true">13</span></button>
+            </div>
+        </div>
+        
+        <div class="footer__questionWrapper___1tZ46" role="tablist">
+            <button role="tab" class="footer__questionNo___3WNct" onclick="switchToPart(2)">
+                <span>
+                    <span aria-hidden="true" class="section-prefix">Part </span>
+                    <span class="sectionNr" aria-hidden="true">2</span>
+                    <span class="attemptedCount" aria-hidden="true">0 of 15</span>
+                </span>
+            </button>
+            <div class="footer__subquestionWrapper___9GgoP">
+                <button class="subQuestion scorable-item" onclick="goToQuestion(14)"><span class="sr-only">Question 14</span><span aria-hidden="true">14</span></button>
+                <button class="subQuestion scorable-item" onclick="goToQuestion(15)"><span class="sr-only">Question 15</span><span aria-hidden="true">15</span></button>
+                <button class="subQuestion scorable-item" onclick="goToQuestion(16)"><span class="sr-only">Question 16</span><span aria-hidden="true">16</span></button>
+                <button class="subQuestion scorable-item" onclick="goToQuestion(17)"><span class="sr-only">Question 17</span><span aria-hidden="true">17</span></button>
+                <button class="subQuestion scorable-item" onclick="goToQuestion(18)"><span class="sr-only">Question 18</span><span aria-hidden="true">18</span></button>
+                <button class="subQuestion scorable-item" onclick="goToQuestion(19)"><span class="sr-only">Question 19</span><span aria-hidden="true">19</span></button>
+                <button class="subQuestion scorable-item" onclick="goToQuestion(20)"><span class="sr-only">Question 20</span><span aria-hidden="true">20</span></button>
+                <button class="subQuestion scorable-item" onclick="goToQuestion(21)"><span class="sr-only">Question 21</span><span aria-hidden="true">21</span></button>
+                <button class="subQuestion scorable-item" onclick="goToQuestion(22)"><span class="sr-only">Question 22</span><span aria-hidden="true">22</span></button>
+                <button class="subQuestion scorable-item" onclick="goToQuestion(23)"><span class="sr-only">Question 23</span><span aria-hidden="true">23</span></button>
+                <button class="subQuestion scorable-item" onclick="goToQuestion(24)"><span class="sr-only">Question 24</span><span aria-hidden="true">24</span></button>
+                <button class="subQuestion scorable-item" onclick="goToQuestion(25)"><span class="sr-only">Question 25</span><span aria-hidden="true">25</span></button>
+                <button class="subQuestion scorable-item" onclick="goToQuestion(26)"><span class="sr-only">Question 26</span><span aria-hidden="true">26</span></button>
+                <button class="subQuestion scorable-item" onclick="goToQuestion(27)"><span class="sr-only">Question 27</span><span aria-hidden="true">27</span></button>
+                <button class="subQuestion scorable-item" onclick="goToQuestion(28)"><span class="sr-only">Question 28</span><span aria-hidden="true">28</span></button>
+            </div>
+        </div>
+        
+        <div class="footer__questionWrapper___1tZ46" role="tablist">
+            <button role="tab" class="footer__questionNo___3WNct" onclick="switchToPart(3)">
+                <span>
+                    <span aria-hidden="true" class="section-prefix">Part </span>
+                    <span class="sectionNr" aria-hidden="true">3</span>
+                    <span class="attemptedCount" aria-hidden="true">0 of 12</span>
+                </span>
+            </button>
+            <div class="footer__subquestionWrapper___9GgoP">
+                <button class="subQuestion scorable-item" onclick="goToQuestion(29)"><span class="sr-only">Question 29</span><span aria-hidden="true">29</span></button>
+                <button class="subQuestion scorable-item" onclick="goToQuestion(30)"><span class="sr-only">Question 30</span><span aria-hidden="true">30</span></button>
+                <button class="subQuestion scorable-item" onclick="goToQuestion(31)"><span class="sr-only">Question 31</span><span aria-hidden="true">31</span></button>
+                <button class="subQuestion scorable-item" onclick="goToQuestion(32)"><span class="sr-only">Question 32</span><span aria-hidden="true">32</span></button>
+                <button class="subQuestion scorable-item" onclick="goToQuestion(33)"><span class="sr-only">Question 33</span><span aria-hidden="true">33</span></button>
+                <button class="subQuestion scorable-item" onclick="goToQuestion(34)"><span class="sr-only">Question 34</span><span aria-hidden="true">34</span></button>
+                <button class="subQuestion scorable-item" onclick="goToQuestion(35)"><span class="sr-only">Question 35</span><span aria-hidden="true">35</span></button>
+                <button class="subQuestion scorable-item" onclick="goToQuestion(36)"><span class="sr-only">Question 36</span><span aria-hidden="true">36</span></button>
+                <button class="subQuestion scorable-item" onclick="goToQuestion(37)"><span class="sr-only">Question 37</span><span aria-hidden="true">37</span></button>
+                <button class="subQuestion scorable-item" onclick="goToQuestion(38)"><span class="sr-only">Question 38</span><span aria-hidden="true">38</span></button>
+                <button class="subQuestion scorable-item" onclick="goToQuestion(39)"><span class="sr-only">Question 39</span><span aria-hidden="true">39</span></button>
+                <button class="subQuestion scorable-item" onclick="goToQuestion(40)"><span class="sr-only">Question 40</span><span aria-hidden="true">40</span></button>
+            </div>
+        </div>
+        
+        <button id="deliver-button" aria-label="Review your answers" class="footer__deliverButton___3FM07">
+            <i class="fa fa fa-check" aria-hidden="true"></i>
+            <span>Check Answers</span>
+        </button>
+    </nav>
+
+    <!-- Context Menu -->
+    <div id="contextMenu" class="context-menu">
+        <div id="menu-highlight" class="context-menu-item" onclick="highlightText()">
+            Highlight
+        </div>
+        <div id="menu-note" class="context-menu-item" onclick="addNote()">
+            Note
+        </div>
+        <div id="menu-clear" class="context-menu-item" onclick="clearHighlight()">
+            Clear
+        </div>
+        <div id="menu-clear-all" class="context-menu-item" onclick="clearAllHighlights()">
+            Clear All
+        </div>
+    </div>
+
+    <div id="results-modal" class="modal-overlay hidden">
+        <div class="modal-content">
+            <button class="modal-close-btn" onclick="closeResultsModal()">&times;</button>
+            <h2>Results</h2>
+            <div class="results-summary">
+                <p>Score: <span id="results-score"></span> / 40</p>
+                <p>IELTS Band: <span id="results-band"></span></p>
+            </div>
+            <div id="results-details" class="results-details-container">
+                <!-- Results for each question will be injected here -->
+            </div>
+        </div>
+    </div>
+
+    <script>
+    document.addEventListener('DOMContentLoaded', () => {
+        // --- STATE VARIABLES ---
+        let currentPassage = 1;
+        let currentQuestion = 1;
+        let selectedRange = null;
+        let timeInSeconds = 3600;
+        let timerInterval;
+        let activeQuestionElement = null;
+
+        // --- GLOBAL FUNCTIONS ---
+        function getFirstQuestionOfPart(part) {
+            switch(part) {
+                case 1: return 1;
+                case 2: return 14;
+                case 3: return 29;
+                default: return 1;
+            }
+        }
+
+        // --- DOM ELEMENTS ---
+        const timerDisplay = document.querySelector('.timer-display');
+        const timerToggleButton = document.getElementById('timer-toggle-btn');
+        const timerResetButton = document.getElementById('timer-reset-btn');
+        const deliverButton = document.getElementById('deliver-button');
+        const resizer = document.getElementById('resizer');
+        const passagePanel = document.getElementById('passage-panel');
+        const questionsPanel = document.getElementById('questions-panel');
+        const contextMenu = document.getElementById('contextMenu');
+
+        // --- ICON SVGs ---
+        const playIcon = '<svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M8 5v14l11-7L8 5z"/></svg>';
+        const pauseIcon = '<svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>';
+
+        // --- ANSWERS ---
+        const correctAnswers = {
+            // Part 1 (1-13) - Extraterrestrial National Park
+            '1': 'TRUE',        // Archaeologists have established links between space tourism and Apollo 11
+            '2': 'TRUE',        // Of the 40 expeditions that landed on the lunar surface, the US embarked on more than half of them
+            '3': 'NOT GIVEN',   // Between 1969 and 1972, there were not remarkable issues in the Apollo missions
+            '4': 'NOT GIVEN',   // Neil Armstrong made up his mind to exploit the natural resources of the moon
+            '5': 'TRUE',        // Astronauts' traces marked on the surface of the moon remain unchanged due to the lack of wind and rain
+            '6': 'TRUE',        // Commercial space-flight companies planned to place both business cards and ashes on the moon
+            '7': 'TRUE',        // In spite of financial problems, TransOrbital plan to launch their mission again in the foreseeable future
+            '8': 'C',           // Archaeologists - aimed to launch a project to preserve relic sites in space
+            '9': 'A',           // The Apollo missions - left various artefacts on the moon's surface
+            '10': 'F',          // Anthropologist P.J. Capelotti - designed the lunar parks for cultural industries and resources
+            '11': 'B',          // SUV-sized rocket into the moon's people - discovered water supported by NASA's LCROSS mission scheme
+            '12': 'H',          // TransOrbital - made detailed maps of the moon and personal items
+            '13': 'G',          // The impact site of Luna 2 - had a similar historic impact to Apollo 11
+            
+            // Part 2 (14-28) - Asiatic black bear
+            '14': 'a yellow crescent', // In 2000 Jasper, an Asiatic black bear in China was called a moon bear due to embedding a yellow crescent on the chest
+            '15': 'enforcement',       // Whilst bear farming is illegal, it is prevalent because of weak enforcement in Vietnam
+            '16': 'ribs',              // At intervals, bears are delivered to the rescue centre without ribs by poachers
+            '17': 'trauma',            // Most bears that arrived at the centre have experienced trauma of both physical and psychological problems
+            '18': 'liver cancer',      // Besides, liver cancer is caused by extracting the bile from the bear's gall
+            '19': 'eye',               // Over 3,000 years the Chinese have made use of the bile for healing illness related to both eye
+            '20': 'liver disease',     // and liver disease
+            '21': 'bear farming',      // She negotiated with the Chinese government to eliminate bear farming
+            '22': 'NO',                // Jasper is an Asiatic black bear and it had grown in the wild
+            '23': 'YES',               // China is accustomed to using the bear bile as a traditional medicine from the old times
+            '24': 'NO',                // The bile from the bear's gall is extracted every day
+            '25': 'NOT GIVEN',         // Even though bear bile use has spread among the Chinese, it had no effect on them
+            '26': 'D',                 // In 1998 Robinson has reported the Animals Asia to the United Nations
+            '27': 'C',                 // The writer reports that bear bile has been prevalent in China due to
+            '28': 'A',                 // Jill Robinson founded the Animals Asia in 1998 in order to
+            
+            // Part 3 (29-40) - Colorado Desert
+            '29': 'vii',       // Section B - A simple solution for developing performance
+            '30': 'iv',        // Section C - Positive evidence of Adolph's research
+            '31': 'ii',        // Section D - Adolph's studies to guarantee in the book
+            '32': 'i',         // Section E - The opposite of Adolph's view
+            '33': 'viii',      // Section F - Misjudgment of Salazar's thought
+            '34': 'iii',       // Section G - The utmost limits for survival
+            '35': 'vi',        // Section H - Noakes' stance on humans of drinking
+            '36': 'drinking',  // Adolph found out that a critical way for improving a marathon race is drinking during a performance
+            '37': 'three-quarters', // During walking, the body needs approximately three-quarters of a litre of moisture per hour
+            '38': '11',        // International competitions didn't allow water within racing 11 kilometres
+            '39': 'heatstroke', // Salazar nearly died at the end of the race as a result of heatstroke
+            '40': 'evolution'  // In the final section, Noakes indicates humans are part of the concept of evolution
+        };
+
+        // --- INITIALIZATION ---
+        function initialize() {
+            console.log(`🚀 Initializing application...`);
+            startTimer();
+            setupExampleHeading();
+            console.log(`📋 Setting up initial state - switching to part 1`);
+            switchToPart(1);
+            
+            document.body.addEventListener('input', updateAllIndicators);
+            document.body.addEventListener('change', updateAllIndicators);
+            deliverButton.addEventListener('click', checkAnswers);
+            timerToggleButton.addEventListener('click', toggleTimer);
+            timerResetButton.addEventListener('click', resetTimer);
+
+            // Add click listeners to question containers for navigation
+            document.querySelectorAll('[data-q-start]').forEach(el => {
+                el.addEventListener('click', (event) => {
+                    event.stopPropagation();
+                    
+                    const qNum = parseInt(el.dataset.qStart, 10);
+                    const qEnd = parseInt(el.dataset.qEnd, 10);
+                    
+                    console.log(`🖱️ Question container clicked - qNum: ${qNum}, qEnd: ${qEnd}, currentQuestion: ${currentQuestion}, element:`, el);
+                    
+                    if (isNaN(qNum)) {
+                        console.log(`ℹ️ Container without valid question number, ignoring navigation`);
+                        return;
+                    }
+                    
+                    if (qNum === qEnd || el.classList.contains('tf-question')) {
+                        if (currentQuestion !== qNum) {
+                            console.log(`🚀 Navigating from question ${currentQuestion} to question ${qNum}`);
+                            goToQuestion(qNum);
+                        } else {
+                            console.log(`ℹ️ Already on question ${qNum}, no navigation needed`);
+                        }
+                    } else {
+                        console.log(`ℹ️ Ignoring click on group container (${qNum}-${qEnd})`);
+                    }
+                });
+            });
+            
+            // Add specific click listeners for individual question elements
+            document.querySelectorAll('.tf-question, .summary-text').forEach(el => {
+                el.addEventListener('click', (event) => {
+                    event.stopPropagation();
+                    const qNum = parseInt(el.dataset.qStart, 10);
+                    console.log(`🎯 Individual question element clicked - qNum: ${qNum}, currentQuestion: ${currentQuestion}, element:`, el);
+                    
+                    if (isNaN(qNum)) {
+                        console.log(`ℹ️ Container without specific question number, ignoring navigation`);
+                        return;
+                    }
+                    
+                    if (currentQuestion !== qNum) {
+                        console.log(`🚀 Navigating from question ${currentQuestion} to question ${qNum} (individual element)`);
+                        goToQuestion(qNum);
+                    } else {
+                        console.log(`ℹ️ Already on question ${qNum}, no navigation needed (individual element)`);
+                    }
+                });
+            });
+            
+            // Add specific click listeners for input elements
+            document.querySelectorAll('.answer-input').forEach(input => {
+                input.addEventListener('click', (event) => {
+                    event.stopPropagation();
+                    const qNum = parseInt(input.id.replace('q', ''), 10);
+                    console.log(`📝 Input element clicked - qNum: ${qNum}, currentQuestion: ${currentQuestion}, input:`, input);
+                    
+                    if (currentQuestion !== qNum) {
+                        console.log(`🚀 Navigating from question ${currentQuestion} to question ${qNum} (input element)`);
+                        goToQuestion(qNum);
+                    } else {
+                        console.log(`ℹ️ Already on question ${qNum}, no navigation needed (input element)`);
+                    }
+                });
+            });
+
+            // Add click listeners for select elements
+            document.querySelectorAll('.answer-select').forEach(select => {
+                select.addEventListener('click', (event) => {
+                    event.stopPropagation();
+                    const qNum = parseInt(select.name.replace('q', ''), 10);
+                    console.log(`📝 Select element clicked - qNum: ${qNum}, currentQuestion: ${currentQuestion}, select:`, select);
+                    
+                    if (currentQuestion !== qNum) {
+                        console.log(`🚀 Navigating from question ${currentQuestion} to question ${qNum} (select element)`);
+                        goToQuestion(qNum);
+                    } else {
+                        console.log(`ℹ️ Already on question ${qNum}, no navigation needed (select element)`);
+                    }
+                });
+            });
+
+            resizer.addEventListener('mousedown', initResize, false);
+            initializeContextMenu();
+        }
+
+        // --- CORE TEST LOGIC ---
+
+        function checkAnswers() {
+            // Disable all inputs to prevent changes
+            const allInputs = document.querySelectorAll('input, select, textarea');
+            allInputs.forEach(input => {
+                input.disabled = true;
+            });
+
+            // Disable submit button
+            deliverButton.disabled = true;
+            deliverButton.style.cursor = 'not-allowed';
+            
+            clearInterval(timerInterval);
+            let score = 0;
+            const totalQuestions = 40;
+            const resultsDetailsContainer = document.getElementById('results-details');
+            resultsDetailsContainer.innerHTML = '';
+
+            document.querySelectorAll('.correct, .incorrect, .correct-answer-highlight').forEach(el => {
+                el.classList.remove('correct', 'incorrect', 'correct-answer-highlight');
+            });
+            document.querySelectorAll('.correct-answer-display').forEach(el => el.remove());
+
+            for (let i = 1; i <= totalQuestions; i++) {
+                const questionKey = String(i);
+                const correctAnswer = correctAnswers[questionKey];
+                let userAnswer = '';
+                let isCorrect = false;
+                
+                let userAnswerDisplay = 'Not Answered';
+                const correctAnswerText = Array.isArray(correctAnswer) ? correctAnswer.join(' / ') : correctAnswer;
+
+                const textInput = document.getElementById(`q${i}`);
+                const selectInput = document.querySelector(`select[name="q${i}"]`);
+                const radioGroup = document.querySelectorAll(`input[name="q${i}"][type="radio"]`);
+                
+                // Handle Text and Select Inputs
+                if ((textInput && textInput.tagName === 'INPUT') || (selectInput && selectInput.tagName === 'SELECT')) {
+                    const inputElement = textInput || selectInput;
+                    const element = inputElement.closest('.tf-question') || inputElement;
+                    userAnswer = inputElement.value.trim();
+                    userAnswerDisplay = userAnswer || 'Not Answered';
+
+                    const normalize = (s) => (s || '')
+                        .toString()
+                        .toLowerCase()
+                        .replace(/[^a-z0-9\s]/g, '')
+                        .replace(/\s+/g, ' ')
+                        .trim();
+
+                    if (inputElement.tagName === 'SELECT') {
+                        isCorrect = userAnswer === correctAnswer;
+                        console.log(`🔍 Select validation for Q${i}: userAnswer="${userAnswer}", correctAnswer="${correctAnswer}", isCorrect=${isCorrect}`);
+                    } else {
+                        const normUser = normalize(userAnswer);
+                        if (Array.isArray(correctAnswer)) {
+                            isCorrect = correctAnswer.some(ans => normalize(ans) === normUser);
+                        } else {
+                            isCorrect = normalize(correctAnswer) === normalize(correctAnswer);
+                        }
+                    }
+                    
+                    if (isCorrect) {
+                        score++;
+                        element.classList.add('correct');
+                        console.log(`✅ Question ${i} is correct! Score: ${score}`);
+                    } else {
+                        element.classList.add('incorrect');
+                        const correctAnswerSpan = document.createElement('span');
+                        correctAnswerSpan.className = 'correct-answer-display';
+                        correctAnswerSpan.innerHTML = `&nbsp;➜&nbsp;<span class="correct-answer-highlight">${correctAnswerText}</span>`;
+                        inputElement.parentNode.insertBefore(correctAnswerSpan, inputElement.nextSibling);
+                        console.log(`❌ Question ${i} is incorrect. Expected: "${correctAnswer}", Got: "${userAnswer}"`);
+                    }
+                }
+                // Handle Radio Button Inputs (T/F, MCQs)
+                else if (radioGroup.length > 0) {
+                    const questionContainer = radioGroup[0]?.closest('.tf-question');
+                    const checkedRadio = document.querySelector(`input[name="q${i}"]:checked`);
+
+                    if (checkedRadio) {
+                        userAnswer = checkedRadio.value;
+                        userAnswerDisplay = userAnswer;
+                        isCorrect = userAnswer === correctAnswer;
+
+                        const userLabel = checkedRadio.closest('.tf-option');
+                        if (userLabel) {
+                            userLabel.classList.add(isCorrect ? 'correct' : 'incorrect');
+                        }
+                    }
+
+                    if (isCorrect) {
+                        score++;
+                    } else {
+                        if (questionContainer){
+                            const correctOptionEl = questionContainer.querySelector(`input[name="q${i}"][value="${correctAnswerText}"]`);
+                            if (correctOptionEl) {
+                                const correctLabel = correctOptionEl.closest('.tf-option');
+                                if (correctLabel) {
+                                    correctLabel.classList.add('correct-answer-highlight');
+                                }
+                            }
+                        }
+                    }
+                }
+
+                // For showing results in the modal
+                const resultRow = `
+                    <div class="result-row ${isCorrect ? '' : 'incorrect'}">
+                        <span class="q-num">${i}</span>
+                        <span class="user-ans">${userAnswerDisplay}</span>
+                        <span class="correct-ans">${correctAnswerText}</span>
+                    </div>`;
+                resultsDetailsContainer.innerHTML += resultRow;
+                
+                // Update nav button color
+                const navButton = document.querySelector(`.subQuestion[onclick="goToQuestion(${i})"]`);
+                if (navButton) {
+                    navButton.classList.remove('answered', 'active');
+                    navButton.classList.add(isCorrect ? 'correct' : 'incorrect');
+                }
+            }
+
+            document.getElementById('results-score').textContent = score;
+            document.getElementById('results-band').textContent = calculateBandScore(score);
+            document.body.classList.add('results-mode');
+            document.getElementById('results-modal').classList.remove('hidden');
+            
+            // Change button to "My Result" with green styling
+            deliverButton.innerHTML = `<span>My Result</span>`;
+            deliverButton.style.backgroundColor = '#4CAF50';
+            deliverButton.style.color = 'white';
+            deliverButton.style.borderColor = '#4CAF50';
+            deliverButton.disabled = false;
+            deliverButton.style.cursor = 'pointer';
+            deliverButton.removeEventListener('click', checkAnswers);
+            deliverButton.addEventListener('click', showResultsModal);
+            
+            // Highlight correct answers in the passage
+            highlightCorrectAnswersInPassage();
+        }
+
+        function calculateBandScore(score) {
+            if (score >= 39) return '9.0';
+            const mapping = {
+                40: 9.0, 39: 9.0, 38: 8.5, 37: 8.5, 36: 8.0, 35: 8.0, 34: 7.5,
+                33: 7.5, 32: 7.0, 31: 7.0, 30: 7.0, 29: 6.5, 28: 6.5, 27: 6.5,
+                26: 6.0, 25: 6.0, 24: 6.0, 23: 5.5, 22: 5.5, 21: 5.5, 20: 5.5,
+                19: 5.0, 18: 5.0, 17: 5.0, 16: 5.0, 15: 5.0, 14: 4.5, 13: 4.5,
+                12: 4.0, 11: 4.0, 10: 4.0, 9: 3.5, 8: 3.5, 7: 3.0, 6: 3.0,
+                5: 2.5, 4: 2.5
+            };
+            if (score <= 0) return 0.0;
+            if (score === 1) return 1.0;
+            if (score <= 3) return 2.0;
+            if (score <= 5) return 2.5;
+            return mapping[score] || 0.0;
+        }
+
+        function highlightCorrectAnswersInPassage() {
+            // Define the text passages and their corresponding question numbers for Part 1 (Extraterrestrial National Park)
+            const part1Highlights = [
+                { question: 1, text: "space tourism is already stimulating some archaeologists", answer: "TRUE" },
+                { question: 2, text: "40 expeditions have touched down on the moon's surface. 22 of them were launched by the US", answer: "TRUE" },
+                { question: 5, text: "these remains are carved into the dust, since the moon has no wind or rain to wash them away", answer: "TRUE" },
+                { question: 6, text: "landing a capsule containing personal items, like business cards and cremated ashes", answer: "TRUE" },
+                { question: 7, text: "TransOrbital was unable to fund the mission, it might try again in the near future", answer: "TRUE" },
+                { question: 8, text: "archaeologists to begin to plan how to protect historic sites in space", answer: "C" },
+                { question: 9, text: "The Apollo missions alone left behind 23 large artefacts", answer: "A" },
+                { question: 10, text: "P.J. Capelotti, an anthropologist at Penn State University in Abington, has mapped out five 'lunar parks'", answer: "F" },
+                { question: 11, text: "NASA's LCROSS mission plans to crash an SUV-sized rocket into one of the moon's poles later this year with the hope of finding water there", answer: "B" },
+                { question: 12, text: "TransOrbital... plans include making detailed maps of the moon and landing a capsule containing personal items", answer: "H" },
+                { question: 13, text: "Luna 2 also has great significance... that impact site is every bit as historic as Apollo 11", answer: "G" }
+            ];
+
+            // Define the text passages and their corresponding question numbers for Part 2 (Asiatic black bear)
+            const part2Highlights = [
+                { question: 14, text: "yellow crescent on his chest", answer: "a yellow crescent" },
+                { question: 15, text: "Bear farming is also practiced in Vietnam where it is illegal but remains common due to a lack of enforcement", answer: "enforcement" },
+                { question: 16, text: "bears arrive at the rescue centre with missing ribs", answer: "ribs" },
+                { question: 17, text: "bears that arrived at the centre have suffered from severe physical and psychological trauma", answer: "trauma" },
+                { question: 18, text: "many have liver cancer as a result of being continually milked for bile", answer: "liver cancer" },
+                { question: 19, text: "bear bile has been used in Chinese medicine for over 3,000 years to cope with 'heat-related' ailments, such as eye conditions and liver disease", answer: "eye" },
+                { question: 20, text: "bear bile has been used in Chinese medicine for over 3,000 years to cope with 'heat-related' ailments, such as eye conditions and liver disease", answer: "liver disease" },
+                { question: 21, text: "she negotiated an agreement with the Chinese government to work towards the eradication of bear farming", answer: "bear farming" },
+                { question: 22, text: "Jasper... came to the Animals Asia Moon Bear Rescue Centre... from a bear farm", answer: "NO" },
+                { question: 23, text: "bear bile has been used in traditional Chinese medicine", answer: "YES" },
+                { question: 24, text: "Bears are milked for bile twice a day", answer: "NO" },
+                { question: 26, text: "bear bile has been used in traditional Chinese medicine and fetches a high price", answer: "D" },
+                { question: 27, text: "Robinson established the Animals Asia in 1998, she negotiated an agreement with the Chinese government to work towards the eradication of bear farming", answer: "C" },
+                { question: 28, text: "Cruel bear bile business", answer: "A" }
+            ];
+
+            // Define the text passages and their corresponding question numbers for Part 3 (Colorado Desert)
+            const part3Highlights = [
+                { question: 29, text: "drinking during exercise enhances performance", answer: "vii" },
+                { question: 30, text: "the drinkers outperformed the non-drinkers", answer: "iv" },
+                { question: 31, text: "Adolph's research was launched by the North Africa campaign... His discoveries stayed secret until 1947 when he published Physiology of Man in the Desert", answer: "ii" },
+                { question: 32, text: "there was a complete reversal of opinion", answer: "i" },
+                { question: 33, text: "Everyone 'found' what Salazar had done wrong", answer: "viii" },
+                { question: 34, text: "men are limited in the physical work they can do in the desert", answer: "iii" },
+                { question: 35, text: "Noakes' stance on humans of drinking", answer: "vi" },
+                { question: 36, text: "drinking during exercise enhances performance", answer: "drinking" },
+                { question: 37, text: "three-quarters of a litre or more of evaporative cooling each hour", answer: "three-quarters" },
+                { question: 38, text: "prohibited from drinking water in the first 11 kilometres", answer: "11" },
+                { question: 39, text: "risk heatstroke", answer: "heatstroke" },
+                { question: 40, text: "Noakes believes he had stumbled upon a quirk of human evolution", answer: "evolution" }
+            ];
+
+            // Function to apply highlights to a passage
+            function applyHighlights(passageElement, highlights) {
+                if (!passageElement) return;
+
+                // Clear any existing highlights
+                passageElement.querySelectorAll('.answer-highlight').forEach(el => {
+                    const parent = el.parentNode;
+                    parent.replaceChild(document.createTextNode(el.textContent), el);
+                    parent.normalize();
+                });
+
+                // Add highlights for each answer
+                highlights.forEach(item => {
+                    const paragraphs = passageElement.querySelectorAll('p');
+                    paragraphs.forEach(paragraph => {
+                        const html = paragraph.innerHTML;
+                        if (!html || typeof html !== 'string') return;
+                        if (html.includes(item.text)) {
+                            const escapeRegExp = s => s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+                            const re = new RegExp(escapeRegExp(item.text));
+                            const replaced = html.replace(
+                                re,
+                                `<span class="answer-highlight" data-question="${item.question}" style="
+                                    background-color: #ffeb3b;
+                                    padding: 2px 4px;
+                                    border-radius: 3px;
+                                    font-weight: bold;
+                                    position: relative;
+                                ">${item.text}<span style="
+                                    position: absolute;
+                                    top: -8px;
+                                    right: -8px;
+                                    background-color: #2196f3;
+                                    color: white;
+                                    border-radius: 50%;
+                                    width: 20px;
+                                    height: 20px;
+                                    display: flex;
+                                    align-items: center;
+                                    justify-content: center;
+                                    font-size: 12px;
+                                    font-weight: bold;
+                                ">${item.question}</span></span>`
+                            );
+                            paragraph.innerHTML = replaced;
+                        }
+                    });
+                });
+            }
+
+            // Apply highlights to Part 1
+            const passageText1 = document.getElementById('passage-text-1');
+            applyHighlights(passageText1, part1Highlights);
+
+            // Apply highlights to Part 2
+            const passageText2 = document.getElementById('passage-text-2');
+            applyHighlights(passageText2, part2Highlights);
+
+            // Apply highlights to Part 3
+            const passageText3 = document.getElementById('passage-text-3');
+            applyHighlights(passageText3, part3Highlights);
+        }
+
+        function switchToPart(partNumber) {
+            console.log(`🔀 switchToPart called with partNumber: ${partNumber}, currentPassage: ${currentPassage}`);
+            
+            currentPassage = partNumber;
+
+            // Hide all passages and questions
+            document.querySelectorAll('.reading-passage, .question-set, .part-header').forEach(el => {
+                el.classList.add('hidden');
+            });
+
+            // Show the correct passage, questions, and header
+            document.getElementById(`passage-text-${partNumber}`).classList.remove('hidden');
+            document.getElementById(`questions-${partNumber}`).classList.remove('hidden');
+            document.getElementById(`part-header-${partNumber}`).classList.remove('hidden');
+
+            // Update bottom navigation 'selected' state
+            document.querySelectorAll('.footer__questionWrapper___1tZ46').forEach((wrapper, index) => {
+                wrapper.classList.toggle('selected', (index + 1) === partNumber);
+            });
+
+            console.log(`✅ switchToPart completed - switched to part ${partNumber}`);
+        }
+        
+        function goToQuestion(questionNumber) {
+            console.log(`🎯 goToQuestion called with questionNumber: ${questionNumber}, currentQuestion: ${currentQuestion}, currentPassage: ${currentPassage}`);
+            
+            currentQuestion = questionNumber;
+
+            let passageNumber = 1;
+            if (questionNumber >= 14 && questionNumber <= 28) passageNumber = 2;
+            else if (questionNumber >= 29) passageNumber = 3;
+            
+            console.log(`📍 Calculated passageNumber: ${passageNumber} for question ${questionNumber}`);
+            
+            if (currentPassage !== passageNumber) {
+                console.log(`🔄 Switching from part ${currentPassage} to part ${passageNumber} for question ${questionNumber}`);
+                switchToPart(passageNumber);
+                return; 
+            }
+
+            console.log(`✅ Staying in same part (${currentPassage}) for question ${questionNumber}`);
+
+            if (activeQuestionElement) {
+                // Remove active style from previous block
+                activeQuestionElement.classList.remove('active-question', 'active-input');
+                // Also remove from the container block if we previously set it
+                const prevBlock = activeQuestionElement.closest('[data-q-start]');
+                if (prevBlock) prevBlock.classList.remove('active-question');
+            }
+
+            // First, try to find the specific input element
+            let targetEl = document.getElementById(`q${questionNumber}`);
+            if (targetEl) {
+                activeQuestionElement = targetEl;
+                console.log(`✅ Found specific input element:`, targetEl);
+                targetEl.classList.add('active-input');
+                scrollIntoViewIfNeeded(targetEl);
+            } else {
+                // Fall back to looking for question containers
+                targetEl = document.querySelector(`[data-q-start="${questionNumber}"]`);
+                console.log(`🔍 Looking for target element with data-q-start="${questionNumber}":`, targetEl);
+
+                if (targetEl) {
+                    activeQuestionElement = targetEl;
+                    console.log(`✅ Found target element:`, targetEl);
+                    
+                    if (targetEl.matches('input[type="text"]') || targetEl.matches('select')) {
+                        targetEl.classList.add('active-input');
+                        console.log(`📝 Added active-input class to input/select element`);
+                    } else {
+                        targetEl.classList.add('active-question');
+                        console.log(`📋 Added active-question class to question element`);
+                    }
+                    scrollIntoViewIfNeeded(targetEl);
+                } else {
+                    console.log(`❌ Target element not found for question ${questionNumber}`);
+                }
+            }
+
+            updateNavigation();
+            console.log(`✅ goToQuestion completed for question ${questionNumber}`);
+        }
+        
+        // --- UI & NAVIGATION ---
+
+        function updateNavigation() {
+            console.log(`🔄 updateNavigation called for currentQuestion: ${currentQuestion}`);
+            
+            const navButtons = document.querySelectorAll('.subQuestion');
+            navButtons.forEach(btn => btn.classList.remove('active'));
+            const activeNav = document.querySelector(`.subQuestion[onclick="goToQuestion(${currentQuestion})"]`);
+            if (activeNav) {
+                activeNav.classList.add('active');
+                console.log(`✅ Updated navigation - active nav button:`, activeNav);
+            } else {
+                console.log(`⚠️ No active navigation button found for question ${currentQuestion}`);
+            }
+
+            const inputs = document.querySelectorAll('.answer-input');
+            inputs.forEach(input => input.classList.remove('active-input'));
+            
+            const activeInput = document.getElementById(`q${currentQuestion}`);
+            if (activeInput) {
+                activeInput.classList.add('active-input');
+                if (typeof activeInput.focus === 'function') {
+                    activeInput.focus();
+                }
+                console.log(`✅ Focused on input element:`, activeInput);
+            } else {
+                console.log(`⚠️ No direct input found for question ${currentQuestion}, looking in question block`);
+                let activeQuestionBlock = document.querySelector(`.tf-question[data-q-start="${currentQuestion}"]`) 
+                    || document.querySelector(`[data-q-start="${currentQuestion}"]`);
+                if (activeQuestionBlock) {
+                    activeQuestionBlock.classList.add('active-question');
+                    const firstInput = activeQuestionBlock.querySelector('input, select');
+                    if(firstInput) {
+                        firstInput.classList.add('active-input');
+                         if (typeof firstInput.focus === 'function') {
+                            firstInput.focus();
+                        }
+                        console.log(`✅ Focused on input in question block:`, firstInput);
+                    } else {
+                        console.log(`⚠️ No input found in question block for question ${currentQuestion}`);
+                    }
+                } else {
+                    console.log(`❌ No question block found for question ${currentQuestion}`);
+                }
+            }
+            
+            console.log(`✅ updateNavigation completed`);
+        }
+        
+        window.nextQuestion = () => currentQuestion < 40 && goToQuestion(currentQuestion + 1);
+        window.previousQuestion = () => currentQuestion > 1 && goToQuestion(currentQuestion - 1);
+
+        function updateAllIndicators() {
+            updateAttemptedCount(1, 1, 13);
+            updateAttemptedCount(2, 14, 28);
+            updateAttemptedCount(3, 29, 40);
+            updateAnsweredNav();
+        }
+        
+        function updateAnsweredNav() {
+            const navButtons = document.querySelectorAll('.subQuestion');
+            navButtons.forEach(btn => {
+                const qNum = parseInt(btn.textContent, 10);
+                if (isQuestionAnswered(qNum)) {
+                    btn.classList.add('answered');
+                } else {
+                    btn.classList.remove('answered');
+                }
+            });
+        }
+        
+        function isQuestionAnswered(qNum) {
+            const textInput = document.getElementById(`q${qNum}`);
+            if (textInput && textInput.value.trim() !== '') {
+                return true;
+            }
+            // Check for select elements
+            const selectInput = document.querySelector(`select[name="q${qNum}"]`);
+            if (selectInput && selectInput.value.trim() !== '') {
+                return true;
+            }
+            const radio = document.querySelector(`input[name="q${qNum}"]:checked`);
+            if (radio) {
+                return true;
+            }
+            return false;
+        }
+
+        function scrollIntoViewIfNeeded(element) {
+            const panel = element.closest('.questions-panel, .passage-panel');
+            const panelRect = panel.getBoundingClientRect();
+            const elementRect = element.getBoundingClientRect();
+            if (elementRect.top < panelRect.top || elementRect.bottom > panelRect.bottom) {
+                element.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }
+        }
+        
+        // --- MISC HELPERS ---
+        
+        function startTimer() {
+            if (timerInterval) clearInterval(timerInterval);
+            timerInterval = setInterval(() => {
+                timeInSeconds--;
+                const minutes = Math.floor(timeInSeconds / 60);
+                const seconds = timeInSeconds % 60;
+                timerDisplay.textContent = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+                if (timeInSeconds <= 0) {
+                    clearInterval(timerInterval);
+                    timerDisplay.textContent = "Time's up!";
+                }
+            }, 1000);
+            timerToggleButton.innerHTML = pauseIcon;
+        }
+
+        function pauseTimer() {
+            clearInterval(timerInterval);
+            timerToggleButton.innerHTML = playIcon;
+        }
+
+        function toggleTimer() {
+            // Check based on the icon currently displayed
+            if (timerToggleButton.innerHTML.includes('M6 19h4V5H6v14z')) {
+                pauseTimer();
+            } else {
+                startTimer();
+            }
+        }
+
+        function resetTimer() {
+            timeInSeconds = 3600;
+            const minutes = Math.floor(timeInSeconds / 60);
+            const seconds = timeInSeconds % 60;
+            timerDisplay.textContent = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+            startTimer();
+            timerToggleButton.innerHTML = pauseIcon;
+        }
+        
+        function setupExampleHeading() {
+            // Any setup for example headings if needed
+        }
+        
+        function initResize(e) {
+            e.preventDefault();
+            const startX = e.clientX;
+            const startWidth = passagePanel.offsetWidth;
+            
+            const doDrag = (e) => {
+                const newWidth = startWidth + e.clientX - startX;
+                if (newWidth > 200 && (document.body.clientWidth - newWidth - resizer.offsetWidth) > 200) {
+                    passagePanel.style.flex = `0 0 ${newWidth}px`;
+                }
+            };
+            const stopDrag = () => {
+                window.removeEventListener('mousemove', doDrag, false);
+                window.removeEventListener('mouseup', stopDrag, false);
+            };
+            
+            window.addEventListener('mousemove', doDrag, false);
+            window.addEventListener('mouseup', stopDrag, false);
+        }
+        
+        // --- CONTEXT MENU (Highlighting) ---
+        
+        function initializeContextMenu() {
+            const panels = [passagePanel, questionsPanel];
+            let targetElementForClear = null;
+
+            // This listener simply tracks the last valid text selection in either panel.
+            document.addEventListener('selectionchange', () => {
+                const selection = window.getSelection();
+                if (selection && !selection.isCollapsed && selection.toString().trim().length > 0) {
+                    const range = selection.getRangeAt(0);
+                    if (panels.some(panel => panel.contains(range.commonAncestorContainer))) {
+                        selectedRange = range;
+                        targetElementForClear = null;
+                    }
+                }
+            });
+
+            const showContextMenu = (e) => {
+                const target = e.target;
+                const isClickOnHighlight = target.closest('.highlight, .comment-highlight');
+                const isSelectionActive = selectedRange && selectedRange.toString().trim().length > 0;
+                
+                let showMenu = false;
+
+                if (isClickOnHighlight) {
+                    document.getElementById('menu-highlight').style.display = 'none';
+                    document.getElementById('menu-note').style.display = 'none';
+                    document.getElementById('menu-clear').style.display = 'block';
+                    document.getElementById('menu-clear-all').style.display = 'block';
+                    contextMenu.targetElementForClear = isClickOnHighlight;
+                    showMenu = true;
+                } else if (isSelectionActive && panels.some(panel => panel.contains(selectedRange.commonAncestorContainer))) {
+                    document.getElementById('menu-highlight').style.display = 'flex';
+                    document.getElementById('menu-note').style.display = 'flex';
+                    document.getElementById('menu-clear').style.display = 'none';
+                    document.getElementById('menu-clear-all').style.display = 'block';
+                    showMenu = true;
+                }
+
+                if (showMenu) {
+                    e.preventDefault();
+                    contextMenu.style.display = 'block';
+                    const menuHeight = contextMenu.offsetHeight;
+                    const menuWidth = contextMenu.offsetWidth;
+                    let left = e.pageX;
+                    let top = e.pageY;
+                    if (left + menuWidth > window.innerWidth) left = window.innerWidth - menuWidth - 5;
+                    if (top + menuHeight > window.innerHeight) top = e.pageY - menuHeight - 5;
+                    else top = e.pageY - menuHeight - 5;
+                    
+                    contextMenu.style.left = `${left}px`;
+                    contextMenu.style.top = `${top}px`;
+                }
+            };
+
+            panels.forEach(panel => {
+                panel.addEventListener('contextmenu', showContextMenu);
+            });
+
+            document.addEventListener('click', (e) => {
+                if (contextMenu.style.display === 'block' && !contextMenu.contains(e.target)) {
+                    closeContextMenu();
+                }
+            });
+        }
+
+        function closeContextMenu() {
+            contextMenu.style.display = 'none';
+            selectedRange = null;
+        }
+
+        function unwrapElement(element) {
+            const parent = element.parentNode;
+            if (!parent) return;
+            while (element.firstChild) {
+                parent.insertBefore(element.firstChild, element);
+            }
+            parent.removeChild(element);
+            parent.normalize();
+        }
+
+        window.highlightText = () => {
+            if (selectedRange && !selectedRange.collapsed) {
+                const span = document.createElement('span');
+                span.className = 'highlight';
+                span.appendChild(selectedRange.extractContents());
+                selectedRange.insertNode(span);
+            }
+            closeContextMenu();
+            window.getSelection().removeAllRanges();
+        };
+
+        window.addNote = () => {
+            const note = prompt('Enter your note:');
+            if (note && selectedRange && !selectedRange.collapsed) {
+                const span = document.createElement('span');
+                span.className = 'comment-highlight';
+                const tooltip = document.createElement('span');
+                tooltip.className = 'comment-tooltip';
+                tooltip.textContent = note;
+                span.appendChild(selectedRange.extractContents());
+                span.appendChild(tooltip);
+                selectedRange.insertNode(span);
+            }
+            closeContextMenu();
+            window.getSelection().removeAllRanges();
+        };
+
+        window.clearHighlight = () => {
+             const elementToClear = contextMenu.targetElementForClear;
+             if (elementToClear) {
+                 unwrapElement(elementToClear);
+             }
+             closeContextMenu();
+             window.getSelection().removeAllRanges();
+        };
+        
+        window.clearAllHighlights = () => {
+            document.querySelectorAll('.highlight, .comment-highlight').forEach(unwrapElement);
+            closeContextMenu();
+            window.getSelection().removeAllRanges();
+        };
+
+        function updateAttemptedCount(part, startQ, endQ) {
+            let answeredCount = 0;
+            for (let i = startQ; i <= endQ; i++) {
+                if (isQuestionAnswered(i)) {
+                    answeredCount++;
+                }
+            }
+            const partHeader = document.querySelector(`.footer__questionNo___3WNct[onclick="switchToPart(${part})"]`);
+            if (partHeader) {
+                const countSpan = partHeader.querySelector('.attemptedCount');
+                if (countSpan) {
+                     countSpan.textContent = `${answeredCount} of ${endQ - startQ + 1}`;
+                }
+            }
+        }
+
+        function showResultsModal() {
+            document.getElementById('results-modal').classList.remove('hidden');
+        }
+
+        window.closeResultsModal = function() {
+            document.getElementById('results-modal').classList.add('hidden');
+            document.body.classList.remove('results-mode');
+        }
+
+        // --- GLOBAL FUNCTION EXPOSURE ---
+        window.nextQuestion = nextQuestion;
+        window.previousQuestion = previousQuestion;
+        window.goToQuestion = goToQuestion;
+        window.switchToPart = switchToPart;
+        window.closeResultsModal = closeResultsModal;
+        window.highlightText = highlightText;
+        window.addNote = addNote;
+        window.clearHighlight = clearHighlight;
+        window.clearAllHighlights = clearAllHighlights;
+
+        // --- START THE APP ---
+        initialize();
+    });
+    </script>
+</body>
+</html>
