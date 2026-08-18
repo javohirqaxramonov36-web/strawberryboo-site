@@ -1,7 +1,7 @@
 ---
 import Base from "../../layouts/Base.astro";
 const title = "Kurslar — O'rganamiz";
-const description = "Pullik va bepul kurslar: Prompt Engineering, Obsidian, AI Agentlar, IELTS Prep, Admission Process, Figma, AutoCAD on Mac, Financial Literacy, Chet elda o'qish, El-Yurt Umidi";
+const description = "Pullik va bepul kurslar: Prompt Engineering, Obsidian, AI Agentlar, IELTS Prep, Admission Process, Figma, AutoCAD on Mac, Financial Literacy, Chet elda o'qish, El-Yurt Umidi, Computer Literacy";
 const base = import.meta.env.BASE_URL;
 ---
 
@@ -149,6 +149,17 @@ const base = import.meta.env.BASE_URL;
     <p>Davlat granti bo'yicha suhbatga tayyorgarlik — to'liq material tez orada qo'shiladi.</p>
     <p class="price">Tez orada</p>
     <a href={base + 'kurslar/el-yurt-umidi'} class="start-btn">Kursni ko'rish →</a>
+  </div>
+
+  <div class="card" style="--c:#0ea5e9" data-cat="hayotiy">
+    <span class="badge badge-new">Yangi</span>
+    <div class="c-ic"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="11" rx="2"/><path d="M2 20h20"/></svg></div>
+    <h2>Computer Literacy — Raqamli savodxonlik</h2>
+    <span class="cat">HAYOTIY KO'NIKMA</span>
+    <span class="cert-line"><svg viewBox="0 0 24 24"><circle cx="12" cy="9" r="5"/><path d="M9 13.5 7.5 21 12 18l4.5 3L15 13.5"/></svg>Sertifikat bilan</span>
+    <p>Microsoft Office (Word, Excel, PowerPoint) va Google Workspace (Docs, Sheets, Slides) — zamonaviy muhandislik va ta'lim uchun asosiy raqamli ko'nikmalar.</p>
+    <p class="price">Narx: TBD</p>
+    <a href={base + 'kurslar/computer-literacy'} class="start-btn">Kursni boshlash →</a>
   </div>
 </div>
 
