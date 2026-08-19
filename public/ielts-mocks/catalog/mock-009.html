@@ -1,0 +1,2023 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>IELTS Full Mock Test — Listening, Reading & Writing</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<style>
+:root {
+  --bg:#ffffff;--bg-secondary:#f8f9fa;--bg-tertiary:#f1f2ec;
+  --text:#1a1a1a;--text-muted:#555;--text-light:#888;
+  --border:#e0e0e0;--border-medium:#ccc;
+  --header-bg:#ffffff;--panel-bg:#ffffff;--nav-bg:#ffffff;
+  --input-bg:#ffffff;--example-bg:#f9f9f9;
+  --modal-bg:#ffffff;--timer-color:#333;--resizer-bg:#f0f0f0;
+  --active-blue:#4a90e2;
+  --correct-bg:#e9f7ef;--incorrect-bg:#f8d7da;
+  --correct-border:#28a745;--incorrect-border:#dc3545;
+  --subq-bg:#ffffff;--subq-border:#ccc;--subq-text:#333;
+  --footer-btn-bg:#f0f0f0;--footer-btn-border:#ccc;
+  --passage-title:#2c3e50;
+  --toolbar-bg:#1a1a2e;--toolbar-shadow:0 4px 20px rgba(0,0,0,0.25);
+}
+body.night-mode {
+  --bg:#121212;--bg-secondary:#1e1e1e;--bg-tertiary:#252525;
+  --text:#e0e0e0;--text-muted:#aaa;--text-light:#777;
+  --border:#333;--border-medium:#444;
+  --header-bg:#1a1a1a;--panel-bg:#1a1a1a;--nav-bg:#1a1a1a;
+  --input-bg:#252525;--example-bg:#252525;
+  --modal-bg:#1e1e1e;--timer-color:#e0e0e0;--resizer-bg:#2a2a2a;
+  --active-blue:#64b5f6;
+  --correct-bg:#1a3a2a;--incorrect-bg:#3a1a1a;
+  --correct-border:#4caf50;--incorrect-border:#f44336;
+  --subq-bg:#252525;--subq-border:#444;--subq-text:#ccc;
+  --footer-btn-bg:#2a2a2a;--footer-btn-border:#444;
+  --passage-title:#90caf9;
+  --toolbar-bg:#0d0d1a;--toolbar-shadow:0 4px 20px rgba(0,0,0,0.6);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:Arial,sans-serif;background:var(--bg);color:var(--text);line-height:1.4;font-size:16px;transition:background-color .3s,color .3s}
+
+/* ── HEADER ── */
+.header{background:var(--header-bg);padding:10px 16px;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;position:fixed;top:0;left:0;right:0;z-index:200;height:58px;transition:background-color .3s,border-color .3s}
+.header-left{display:flex;align-items:center;gap:12px;flex-wrap:nowrap}
+.timer-container{display:flex;align-items:center;color:var(--timer-color);font-size:16px;font-weight:600}
+.timer-display{min-width:56px}
+.timer-controls{display:flex;align-items:center;gap:6px;margin-left:10px}
+.timer-controls button{background:var(--footer-btn-bg);border:1px solid var(--border-medium);border-radius:50%;padding:0;cursor:pointer;width:30px;height:30px;display:flex;align-items:center;justify-content:center;transition:background-color .2s}
+.timer-controls button:hover{background:var(--border)}
+.timer-controls button svg{width:18px;height:18px;fill:var(--timer-color)}
+.zoom-controls{display:flex;align-items:center;gap:3px}
+.zoom-btn{background:var(--footer-btn-bg);border:1px solid var(--border-medium);border-radius:4px;width:26px;height:26px;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:17px;font-weight:700;color:var(--text);transition:background-color .2s;line-height:1}
+.zoom-btn:hover{background:var(--border)}
+.zoom-label{font-size:11px;font-weight:600;color:var(--text-muted);min-width:34px;text-align:center}
+#night-mode-btn{background:var(--footer-btn-bg);border:1px solid var(--border-medium);border-radius:20px;padding:4px 10px;cursor:pointer;font-size:12px;font-weight:600;color:var(--text);display:flex;align-items:center;gap:5px;transition:all .2s;white-space:nowrap}
+#night-mode-btn:hover{background:var(--border)}
+#notes-toggle-btn{background:var(--footer-btn-bg);border:1px solid var(--border-medium);border-radius:20px;padding:4px 10px;cursor:pointer;font-size:12px;font-weight:600;color:var(--text);display:flex;align-items:center;gap:5px;transition:all .2s;white-space:nowrap}
+#notes-toggle-btn:hover{background:var(--border)}
+.telegram-link{
+  background:linear-gradient(135deg,#00c6ff,#0072ff);
+  color:#fff !important;
+  padding:6px 14px;
+  border-radius:20px;
+  font-size:13px;
+  font-weight:700;
+  text-decoration:none;
+  box-shadow:0 3px 10px rgba(0,114,255,0.3);
+  transition:all 0.25s ease;
+}
+
+.telegram-link:hover{
+  transform:translateY(-1px);
+  box-shadow:0 5px 14px rgba(0,114,255,0.5);
+}
+
+/* ── MODE SWITCHER ── */
+.mode-switcher{display:flex;align-items:center;gap:0;background:var(--bg-tertiary);border:1px solid var(--border);border-radius:6px;overflow:hidden}
+.mode-btn{padding:5px 14px;font-size:13px;font-weight:700;cursor:pointer;border:none;background:transparent;color:var(--text-muted);transition:all .2s}
+.mode-btn.active{background:var(--active-blue);color:#fff}
+.mode-btn:hover:not(.active){background:var(--border)}
+
+/* ── LAYOUT ── */
+.main-container{margin-top:58px;display:flex;flex-direction:column;background:var(--bg);height:calc(100vh - 58px);transition:background-color .3s}
+.panels-container{display:flex;flex:1;overflow:hidden;position:relative}
+.passage-panel{flex:1;padding:20px 20px 110px;overflow-y:auto;min-width:180px;background:var(--panel-bg);transition:background-color .3s}
+.questions-panel{flex:1;padding:20px 20px 110px;overflow-y:auto;min-width:180px;border-left:1px solid var(--border);background:var(--panel-bg);transition:background-color .3s,border-color .3s}
+.resizer{width:10px;cursor:col-resize;background-color:var(--resizer-bg);background-image:url('data:image/svg+xml;charset=UTF-8,<svg xmlns="http://www.w3.org/2000/svg" width="10" height="30" viewBox="0 0 10 30"><path d="M4 11h2v2H4zM4 15h2v2H4zM4 19h2v2H4z" fill="%23888"/></svg>');background-repeat:no-repeat;background-position:center;flex-shrink:0;flex-grow:0;transition:background-color .3s}
+
+/* ── PART HEADER ── */
+.part-header{background:var(--bg-tertiary);padding:12px 16px;border:1px solid var(--border);border-radius:5px;color:var(--text);margin-bottom:20px;transition:background-color .3s,border-color .3s}
+.part-header p{margin:0}
+.part-header p:first-child{font-weight:700;margin-bottom:4px}
+
+/* ── PASSAGE TEXT ── */
+.reading-passage h4,.listening-passage h4{font-size:20px;font-weight:700;color:var(--passage-title);text-align:center;border-bottom:2px solid var(--active-blue);padding-bottom:6px;margin-bottom:18px}
+.reading-passage p,.listening-passage p{margin-bottom:1em;color:var(--text);line-height:1.7}
+
+/* ── INPUTS ── */
+.answer-input{border:1px solid var(--border-medium);border-radius:4px;background:var(--input-bg);color:var(--text);padding:2px 6px;font-size:15px;text-align:center;height:28px;width:150px;transition:border-color .3s,box-shadow .3s,background-color .3s}
+.answer-input.active-input{border-color:var(--active-blue);box-shadow:0 0 3px 1px rgba(74,144,226,0.45)}
+.answer-input::placeholder{color:#999;font-weight:bold;text-align:center}
+.answer-input.correct{border-color:var(--correct-border);background:var(--correct-bg)}
+.answer-input.incorrect{border-color:var(--incorrect-border);background:var(--incorrect-bg);color:var(--incorrect-border)}
+select.answer-input option{background:var(--input-bg);color:var(--text)}
+.answer-input.wide{width:190px}
+.answer-input.narrow{width:90px}
+
+/* ── QUESTIONS ── */
+.question{margin-bottom:36px;color:var(--text)}
+.question p{margin-bottom:8px;color:var(--text)}
+.question ul{list-style:none;padding-left:0}
+.question ul li{margin-bottom:4px;color:var(--text)}
+.question-prompt{margin-bottom:16px}
+.question-set.hidden{display:none!important}
+
+/* ── EXAMPLE BOX ── */
+.example-box{border:1px solid var(--border);background:var(--example-bg);padding:14px;border-radius:5px;margin:16px 0;color:var(--text);transition:background-color .3s,border-color .3s}
+
+/* ── TF QUESTIONS ── */
+.tf-question{margin-bottom:22px;color:var(--text)}
+.tf-question-line{display:flex;align-items:flex-start;margin-bottom:12px;padding:4px 0;border-radius:4px}
+.tf-question-number{border:2px solid var(--border-medium);padding:2px 7px;margin-right:10px;border-radius:3px;font-weight:bold;display:inline-block;color:var(--text);flex-shrink:0}
+.tf-question-text{padding-top:2px;color:var(--text)}
+.tf-options{padding-left:4px}
+.tf-option{display:flex;align-items:center;margin-bottom:10px;cursor:pointer;color:var(--text)}
+.tf-option input[type="radio"]{margin-right:10px;transform:scale(1.2)}
+.tf-question.correct .tf-question-line{background:var(--correct-bg)}
+.tf-question.incorrect .tf-question-line{background:var(--incorrect-bg)}
+
+/* ── MCQ ── */
+.multi-choice-question{margin-bottom:18px;padding:8px;border-radius:4px;border:3px solid transparent;transition:border-color .3s,background-color .3s;color:var(--text)}
+.multi-choice-option{margin-bottom:8px;padding:6px;border-radius:4px;transition:background-color .3s;color:var(--text)}
+.multi-choice-option label{display:flex;align-items:flex-start;cursor:pointer;font-size:15px;color:var(--text);gap:8px}
+.multi-choice-option input[type="radio"],.multi-choice-option input[type="checkbox"]{margin-top:3px;transform:scale(1.2);accent-color:var(--active-blue);flex-shrink:0}
+.multi-choice-option.correct{background:var(--correct-bg)}
+.multi-choice-option.incorrect{background:var(--incorrect-bg)}
+.multi-choice-question.correct-q{border-color:var(--correct-border);background:var(--correct-bg)}
+.multi-choice-question.incorrect-q{border-color:var(--incorrect-border)}
+.correct-answer-highlight{background:var(--correct-bg)!important;border:1px solid var(--correct-border)!important;border-radius:4px}
+
+/* ── MATCHING ── */
+.matching-form-container{margin-top:16px}
+.matching-form-row{display:flex;align-items:center;margin-bottom:10px;gap:10px}
+.matching-form-label{flex:1;color:var(--text);font-size:15px}
+.matching-form-row.correct{background:var(--correct-bg);border-left:3px solid var(--correct-border);padding-left:8px;border-radius:4px}
+.matching-form-row.incorrect{background:var(--incorrect-bg);border-left:3px solid var(--incorrect-border);padding-left:8px;border-radius:4px}
+
+/* ── NOTES COMPLETION ── */
+.notes-completion-block{background:var(--bg-tertiary);border:1px solid var(--border);border-radius:5px;padding:14px 16px;margin-top:8px}
+.notes-section-label{font-weight:700;font-size:15px;color:var(--passage-title);border-bottom:2px solid var(--active-blue);padding-bottom:4px;margin-bottom:10px}
+.note-line{display:flex;align-items:flex-start;gap:6px;margin-bottom:8px;font-size:15px;line-height:1.8;flex-wrap:wrap}
+.note-bullet{color:var(--active-blue);font-weight:bold;flex-shrink:0;margin-top:3px}
+.q-badge{display:inline-block;background:var(--active-blue);color:#fff;border-radius:3px;font-size:11px;font-weight:700;padding:1px 5px;margin:0 2px;vertical-align:middle}
+
+/* ── TABLE ── */
+.ielts-table{width:100%;border-collapse:collapse;margin-top:12px;font-size:14px}
+.ielts-table th,.ielts-table td{border:1px solid var(--border);padding:8px 10px;color:var(--text);vertical-align:middle}
+.ielts-table th{background:var(--bg-tertiary);font-weight:700}
+.ielts-table .table-input{width:120px}
+
+/* ── CORRECT ANSWER DISPLAY ── */
+.correct-answer-display{font-weight:bold;color:#28a745;margin-left:8px;font-size:13px;display:inline-block}
+
+/* ── HEADING MATCH ── */
+.heading-option-label{display:flex;align-items:baseline;gap:6px;margin-bottom:6px;font-size:15px;color:var(--text)}
+.heading-option-label strong{flex-shrink:0;min-width:22px}
+
+/* ── NAV ARROWS ── */
+.nav-arrows{position:fixed;bottom:100px;right:16px;display:flex;gap:4px;z-index:150}
+.nav-arrow{width:48px;height:48px;background:#333;color:#fff;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:22px;font-weight:bold;border-radius:2px}
+body.night-mode .nav-arrow{background:#444}
+.nav-arrow:hover{background:#555}
+.nav-arrow:disabled{background:#ccc;cursor:not-allowed}
+
+/* ── NAV ROW ── */
+.nav-row{position:fixed;bottom:0;left:0;right:0;background:var(--nav-bg);display:flex;align-items:center;height:78px;z-index:150;border-top:1px solid var(--border);transition:background-color .3s,border-color .3s;overflow-x:auto}
+.footer__questionWrapper___1tZ46{display:flex;align-items:center;margin-right:16px;flex-shrink:0}
+.footer__questionNo___3WNct{background:none;border:none;padding:8px 12px;font-size:15px;font-weight:600;color:var(--text);cursor:pointer;display:flex;align-items:center;gap:4px;transition:background-color .2s;white-space:nowrap}
+.footer__questionNo___3WNct:hover{background:var(--bg-secondary)}
+.section-prefix{font-size:15px}
+.sectionNr{font-size:15px;font-weight:bold}
+.attemptedCount{font-size:13px;color:var(--text-muted);margin-left:4px;font-weight:400}
+@media(max-width:768px){.attemptedCount{display:none}}
+.footer__questionWrapper___1tZ46.selected .attemptedCount{display:none}
+.footer__subquestionWrapper___9GgoP{display:none;gap:2px;margin-left:8px}
+.footer__questionWrapper___1tZ46.selected .footer__subquestionWrapper___9GgoP{display:flex}
+.subQuestion{width:30px;height:30px;border:1px solid var(--subq-border);background:var(--subq-bg);color:var(--subq-text);font-size:13px;font-weight:500;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .2s;border-radius:2px}
+.subQuestion.answered{background:#6c8ebf;color:#fff;border-color:#5a7aad}
+.subQuestion.correct{background:#28a745;color:#fff;border-color:#28a745}
+.subQuestion.incorrect{background:#dc3545;color:#fff;border-color:#dc3545}
+.subQuestion:hover{background:var(--bg-secondary);border-color:var(--text-light)}
+.subQuestion.active{background:var(--active-blue);color:#fff;border-color:var(--active-blue)}
+.footer__deliverButton___3FM07{margin-left:auto;margin-right:16px;flex-shrink:0;background:var(--footer-btn-bg);color:var(--text);border:1px solid var(--footer-btn-border);padding:10px 18px;border-radius:4px;font-size:15px;font-weight:600;cursor:pointer;display:flex;align-items:center;gap:6px;transition:background-color .2s,border-color .2s;min-width:160px;justify-content:center}
+.footer__deliverButton___3FM07:hover{background:var(--border);border-color:var(--text-light)}
+.footer__deliverButton___3FM07:disabled{background:var(--bg-secondary);color:var(--text-muted);cursor:not-allowed;border-color:var(--border)}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+.hidden{display:none!important}
+.active-question{outline:2px solid var(--active-blue);border-radius:4px}
+
+/* ── HIGHLIGHT TOOLBAR ── */
+.highlight-toolbar{position:fixed;display:none;background:var(--toolbar-bg);border-radius:8px;box-shadow:var(--toolbar-shadow);z-index:2000;padding:5px 7px;gap:3px;align-items:center;border:1px solid rgba(255,255,255,0.1);transition:opacity .15s ease}
+.highlight-toolbar.visible{display:flex}
+.toolbar-btn{display:inline-flex;align-items:center;justify-content:center;gap:3px;padding:4px 9px;border:none;border-radius:6px;cursor:pointer;font-size:13px;font-weight:600;transition:all .15s;white-space:nowrap}
+.toolbar-btn:hover{filter:brightness(1.2);transform:translateY(-1px)}
+.toolbar-btn.btn-yellow{background:#f9a825;color:#1a1a1a}
+.toolbar-btn.btn-green{background:#43a047;color:#fff}
+.toolbar-btn.btn-clear{background:#757575;color:#fff}
+.toolbar-btn.btn-note{background:#ff6f00;color:#fff}
+.toolbar-sep{width:1px;height:20px;background:rgba(255,255,255,0.2);margin:0 2px}
+.highlight{background:#ffeb3b;border-radius:2px}
+.highlight.hl-green{background:#a5d6a7}
+body.night-mode .highlight{background:#f9a825;color:#000}
+body.night-mode .highlight.hl-green{background:#388e3c;color:#fff}
+.comment-highlight{background:#ffe082;position:relative;cursor:help;border-bottom:2px dotted #f57f17;border-radius:2px}
+body.night-mode .comment-highlight{background:#6d4c00;border-bottom-color:#ffa000;color:#ffe082}
+.comment-tooltip{position:absolute;bottom:calc(100% + 8px);left:50%;transform:translateX(-50%);background:#212121;color:#fff;padding:7px 11px;border-radius:6px;font-size:12px;max-width:260px;white-space:normal;z-index:3000;opacity:0;pointer-events:none;transition:opacity .2s;box-shadow:0 4px 12px rgba(0,0,0,0.4);border:1px solid rgba(255,255,255,0.1)}
+.comment-tooltip::after{content:'';position:absolute;top:100%;left:50%;transform:translateX(-50%);border:6px solid transparent;border-top-color:#212121}
+.comment-highlight:hover .comment-tooltip{opacity:1}
+.comment-highlight::after{content:'📝';font-size:10px;vertical-align:super;margin-left:2px}
+#toolbar-selection-btns,#toolbar-highlight-btns{display:inline-flex;align-items:center;gap:3px}
+
+/* ── NOTES PANEL ── */
+.notes-panel{position:fixed;right:16px;top:68px;width:270px;max-height:calc(100vh - 160px);background:var(--modal-bg);border:1px solid var(--border);border-radius:10px;box-shadow:0 8px 30px rgba(0,0,0,0.2);z-index:500;overflow-y:auto;display:none;flex-direction:column;transition:background-color .3s}
+.notes-panel.visible{display:flex}
+.notes-panel-header{padding:10px 14px;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;font-weight:700;font-size:13px;color:var(--text);background:var(--bg-secondary);border-radius:10px 10px 0 0}
+.notes-panel-close{background:none;border:none;cursor:pointer;font-size:17px;color:var(--text-muted);line-height:1}
+.notes-list{padding:8px;flex:1}
+.note-item{background:var(--bg-secondary);border:1px solid var(--border);border-radius:6px;padding:9px;margin-bottom:7px;font-size:12px;color:var(--text)}
+.note-item-text{font-weight:600;color:#f57f17;margin-bottom:3px;font-size:11px}
+.note-item-content{color:var(--text)}
+.note-item-delete{background:none;border:none;color:var(--incorrect-border);cursor:pointer;font-size:11px;float:right;padding:0}
+.notes-empty{color:var(--text-muted);font-size:12px;padding:9px;text-align:center}
+
+/* ── NOTE INPUT MODAL ── */
+.note-input-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.5);z-index:3000;display:none;align-items:center;justify-content:center}
+.note-input-overlay.visible{display:flex}
+.note-input-box{background:var(--modal-bg);border-radius:12px;padding:22px;width:360px;max-width:90vw;box-shadow:0 12px 40px rgba(0,0,0,0.4);border:1px solid var(--border)}
+.note-input-box h3{margin-bottom:7px;font-size:15px;color:var(--text)}
+.note-input-box .selected-text-preview{background:var(--bg-secondary);border-left:3px solid #f9a825;padding:7px 9px;margin-bottom:12px;font-size:12px;color:var(--text-muted);border-radius:0 4px 4px 0;max-height:56px;overflow:hidden}
+.note-input-box textarea{width:100%;min-height:75px;padding:9px;border:1px solid var(--border-medium);border-radius:6px;font-size:13px;background:var(--input-bg);color:var(--text);resize:vertical;outline:none;font-family:inherit}
+.note-input-box textarea:focus{border-color:var(--active-blue)}
+.note-input-actions{display:flex;gap:7px;margin-top:10px;justify-content:flex-end}
+.note-input-actions button{padding:7px 16px;border-radius:6px;border:none;cursor:pointer;font-size:13px;font-weight:600}
+.btn-save-note{background:#f9a825;color:#1a1a1a}
+.btn-cancel-note{background:var(--bg-secondary);color:var(--text);border:1px solid var(--border)!important}
+
+/* ── MODAL ── */
+.modal-overlay{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.75);z-index:2000;display:flex;justify-content:center;align-items:center}
+.modal-overlay.hidden{display:none}
+.modal-content{background:var(--modal-bg);padding:22px;border-radius:12px;width:90%;max-width:600px;max-height:80vh;display:flex;flex-direction:column;position:relative;border:1px solid var(--border);transition:background-color .3s}
+.modal-close-btn{position:absolute;top:8px;right:13px;background:none;border:none;font-size:26px;cursor:pointer;color:var(--text-muted)}
+.modal-content h2{text-align:center;margin-bottom:13px;color:var(--text)}
+.results-summary{display:flex;justify-content:space-around;margin-bottom:16px;font-size:17px;font-weight:bold;text-align:center;border-bottom:1px solid var(--border);padding-bottom:13px;color:var(--text)}
+.results-details-container{overflow-y:auto;padding-right:8px}
+.result-row{display:grid;grid-template-columns:44px 1fr 1fr;gap:12px;padding:7px 4px;border-bottom:1px solid var(--border);font-size:14px;color:var(--text)}
+.result-row.incorrect{background:var(--incorrect-bg)}
+.result-row .q-num{font-weight:bold}
+.result-row .user-ans{color:var(--text-muted)}
+.result-row .correct-ans{color:var(--correct-border);font-weight:500}
+
+/* ── IELTS LEFT PANEL ── */
+.ielts-instr-block{margin-bottom:20px}
+.ielts-instr-block p{font-size:15px;color:var(--text);margin-bottom:5px}
+.ielts-options-list{list-style:none;padding:0;margin:8px 0 0;border:1px solid var(--border);border-radius:4px;overflow:hidden}
+.ielts-options-list li{padding:6px 12px;font-size:14px;color:var(--text);border-bottom:1px solid var(--border)}
+.ielts-options-list li:last-child{border-bottom:none}
+.ielts-options-list li strong{margin-right:5px}
+.ielts-divider{border:none;border-top:1px solid var(--border);margin:16px 0}
+
+/* ── FLOWCHART ── */
+.flowchart-block{margin-top:14px}
+.flow-step{display:flex;align-items:center;gap:8px;margin-bottom:3px;font-size:15px;color:var(--text);flex-wrap:wrap}
+.flow-arrow{text-align:center;font-size:20px;color:var(--active-blue);margin:2px 0 2px 8px}
+
+/* ── READING PASSAGE STYLED ── */
+.passage-para{margin-bottom:1.1em;color:var(--text);line-height:1.75;font-size:15px}
+.passage-para strong{color:var(--passage-title)}
+
+/* ── WRITING SECTION ── */
+.writing-container{display:none;position:absolute;inset:0;overflow:hidden}
+.writing-container.active{display:flex}
+.writing-left{flex:1;padding:20px;overflow-y:auto;min-width:180px;background:var(--panel-bg);border-right:1px solid var(--border)}
+.writing-right{flex:1;padding:20px;overflow-y:auto;min-width:180px;background:var(--panel-bg);display:flex;flex-direction:column}
+.writing-part-header{background:var(--bg-tertiary);padding:12px 16px;border:1px solid var(--border);border-radius:5px;color:var(--text);margin-bottom:18px}
+.writing-part-header p{margin:0}
+.writing-part-header p:first-child{font-weight:700;margin-bottom:4px}
+.writing-task-prompt{border:1px solid var(--border);padding:14px;margin:14px 0;background:var(--panel-bg);font-size:15px;color:var(--text);border-radius:4px;line-height:1.7}
+.writing-task-prompt p{margin-bottom:8px}
+.writing-task-prompt p:last-child{margin-bottom:0}
+.writing-textarea{border:1px solid var(--border-medium);padding:14px;font-size:15px;font-family:Arial,sans-serif;line-height:1.6;resize:vertical;outline:none;min-height:300px;width:100%;background:var(--input-bg);color:var(--text);transition:border-color .2s,background-color .3s;border-radius:4px;flex:1;box-sizing:border-box}
+.writing-textarea:focus{border-color:var(--active-blue)}
+.writing-textarea:disabled{background:var(--bg-secondary)!important;cursor:not-allowed;opacity:.7}
+.word-count-bar{display:flex;justify-content:space-between;align-items:center;margin-top:10px;font-size:13px;color:var(--text-muted);flex-wrap:wrap;gap:8px}
+.word-count-num{font-weight:700;font-size:15px}
+.word-count-num.ok{color:var(--correct-border)}
+.word-count-num.low{color:var(--incorrect-border)}
+.wpart-nav{display:flex;gap:10px;margin-bottom:16px}
+.wpart-btn{padding:7px 18px;border:1px solid var(--border-medium);border-radius:20px;background:var(--footer-btn-bg);color:var(--text);font-size:13px;font-weight:600;cursor:pointer;transition:all .2s}
+.wpart-btn.active{background:var(--active-blue);color:#fff;border-color:var(--active-blue)}
+.wpart-btn:hover:not(.active){background:var(--border)}
+.wpart-btn.done{border-color:var(--correct-border);color:var(--correct-border)}
+.wpart-btn.done.active{background:var(--correct-border);color:#fff;border-color:var(--correct-border)}
+.writing-submit-btn{background:var(--active-blue);color:#fff;border:none;border-radius:6px;padding:10px 24px;font-size:14px;font-weight:700;cursor:pointer;margin-top:14px;display:inline-flex;align-items:center;gap:6px;transition:background .2s}
+.writing-submit-btn:hover{background:#357abd}
+.writing-submit-btn:disabled{background:var(--border);cursor:not-allowed}
+.writing-success-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.75);z-index:3500;display:none;align-items:center;justify-content:center}
+.writing-success-overlay.visible{display:flex}
+.writing-success-box{background:var(--modal-bg);border-radius:12px;padding:28px;max-width:420px;width:90%;text-align:center;border:1px solid var(--border);box-shadow:0 12px 40px rgba(0,0,0,0.4)}
+.writing-success-box h3{color:var(--correct-border);margin-bottom:12px;font-size:22px}
+.writing-success-box p{color:var(--text);margin-bottom:10px;line-height:1.5}
+.writing-success-box button{background:var(--active-blue);color:#fff;border:none;border-radius:6px;padding:9px 22px;font-size:14px;font-weight:700;cursor:pointer;margin-top:10px}
+.w-chart-img{max-width:100%;height:auto;border:1px solid var(--border);border-radius:4px;margin-top:12px}
+.center-cta{
+  position:absolute;
+  left:58%; /* 🔥 markazdan biroz o‘ngga — Full Exam ga yaqin */
+  top:50%;
+  transform:translate(-50%,-50%);
+  text-align:center;
+  white-space:nowrap;
+}
+
+/* text */
+.center-cta span{
+  display:block;
+  font-size:11px;
+  color:#777;
+  margin-bottom:2px;
+}
+
+/* button */
+.center-cta a{
+  display:inline-block;
+  padding:5px 14px;
+  border-radius:20px;
+  background:linear-gradient(135deg,#4a90e2,#6a5acd);
+  color:#fff;
+  font-size:12px;
+  font-weight:600;
+  text-decoration:none;
+  box-shadow:0 2px 8px rgba(74,144,226,0.3);
+  transition:0.2s;
+}
+
+.center-cta a:hover{
+  transform:translateY(-1px);
+  box-shadow:0 4px 12px rgba(74,144,226,0.5);
+}
+
+</style>
+</head>
+<body>
+<div class="header">
+  <div class="header-left">
+    <div class="timer-container">
+      <span style="font-size:11px;color:var(--text-muted);font-weight:400;margin-right:4px" id="timerModeLabel">Listening</span><span class="timer-display" id="timerDisplay">40:00</span>
+      <div class="timer-controls">
+        <button id="timer-toggle-btn" title="Pause/Resume">
+          <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
+        </button>
+        <button id="timer-reset-btn" title="Reset Timer">
+          <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M12 5V1L7 6l5 5V7c3.31 0 6 2.69 6 6s-2.69 6-6 6-6-2.69-6-6H4c0 4.42 3.58 8 8 8s8-3.58 8-8-3.58-8-8-8z"/></svg>
+        </button>
+      </div>
+    </div>
+    <div class="center-cta">
+        
+        <a href="https://t.me/m/ojS0ofg4YWEy" target="_blank">For More Authentic tests you need to buy Premium Service</a>
+      </div>
+      
+    <div class="mode-switcher">
+      <button class="mode-btn active" id="btn-listening" onclick="switchMode('listening')">🎧 Listening</button>
+      <button class="mode-btn" id="btn-reading" onclick="switchMode('reading')">📖 Reading</button>
+      <button class="mode-btn" id="btn-writing" onclick="switchMode('writing')">✏️ Writing</button>
+    </div>
+    <div class="zoom-controls">
+      <button class="zoom-btn" id="zoom-out-btn" title="Zoom Out">−</button>
+      <span class="zoom-label" id="zoom-label">100%</span>
+      <button class="zoom-btn" id="zoom-in-btn" title="Zoom In">+</button>
+    </div>
+    <button id="night-mode-btn"><span>🌙</span> Night</button>
+    <button id="notes-toggle-btn">📝 Notes <span id="notes-count" style="background:#f9a825;color:#1a1a1a;border-radius:10px;padding:1px 5px;font-size:10px;display:none">0</span></button>
+  </div>
+  <a href="https://t.me/ieltsmaterials_full" target="_blank" class="telegram-link">IELTS CDI Materials</a>
+</div>
+
+<div class="main-container" id="main-container">
+  <div class="panels-container">
+
+    <!-- LEFT PANEL -->
+    <div class="passage-panel" id="passage-panel">
+
+      <!-- ═══ LISTENING LEFT ═══ -->
+      <div id="listening-left">
+        <!-- L Part 1 -->
+        <div id="l-left-1" class="listening-passage">
+          <h4>Part 1 — Job Details</h4>
+          <div class="ielts-instr-block">
+            <p><strong>Questions 1–10</strong></p>
+            <p>Complete the form below.</p>
+            <p>Write <strong>ONE WORD AND/OR A NUMBER</strong> for each answer.</p>
+          </div>
+        </div>
+        <!-- L Part 2 -->
+        <div id="l-left-2" class="listening-passage hidden">
+          <h4>Part 2 — Ski Exhibition</h4>
+          <div class="ielts-instr-block">
+            <p><strong>Questions 11–15</strong></p>
+            <p>Choose the correct letter, <strong>A</strong>, <strong>B</strong> or <strong>C</strong>.</p>
+          </div>
+          <hr class="ielts-divider">
+          <div class="ielts-instr-block">
+            <p><strong>Questions 16–20</strong></p>
+            <p>Choose FIVE answers from the box and write the correct letter, <strong>A–F</strong>, next to Questions 16–20.</p>
+            <ul class="ielts-options-list">
+              <li><strong>A</strong> exploring new destinations</li>
+              <li><strong>B</strong> how to make the skiing boots comfortable</li>
+              <li><strong>C</strong> how to become a ski instructor</li>
+              <li><strong>D</strong> how to combine other activities with skiing</li>
+              <li><strong>E</strong> how to improve the skills of skiing</li>
+              <li><strong>F</strong> information about skiing safety</li>
+            </ul>
+          </div>
+        </div>
+        <!-- L Part 3 -->
+        <div id="l-left-3" class="listening-passage hidden">
+          <h4>Part 3 — Choosing a University Course</h4>
+          <div class="ielts-instr-block">
+            <p><strong>Questions 21–24</strong></p>
+            <p>Complete the notes below. Write <strong>ONE WORD ONLY</strong> for each answer.</p>
+          </div>
+          <hr class="ielts-divider">
+          <div class="ielts-instr-block">
+            <p><strong>Questions 25–30</strong></p>
+            <p>Choose the correct letter, <strong>A</strong>, <strong>B</strong> or <strong>C</strong>.</p>
+          </div>
+        </div>
+        <!-- L Part 4 -->
+        <div id="l-left-4" class="listening-passage hidden">
+          <h4>Part 4 — Plastics Exhibition</h4>
+          <div class="ielts-instr-block">
+            <p><strong>Questions 31–40</strong></p>
+            <p>Complete the notes below.</p>
+            <p>Write <strong>ONE WORD ONLY</strong> for each answer.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- ═══ READING LEFT ═══ -->
+      <div id="reading-left" class="hidden">
+        <!-- R Passage 1 -->
+        <div id="r-left-1" class="reading-passage">
+          <h4>THE CULT OF PERFECT</h4>
+          <p class="passage-para"><strong>A.</strong> Perfectionism has increased significantly over the past three decades. Young people in particular place higher demands on themselves and on others. Often, having high standards can drive success, but for some people, diligence and motivation can shift into perfectionism, a sorely misunderstood personality trait that can have dangerous consequences. Our dog-eat-dog world, full of impeccable images of what our bodies, careers and aspirations should look like, is creating a rising tide of millennials who may be putting themselves at risk of mental and physical illness in their search for the perfect life.</p>
+          <p class="passage-para"><strong>B.</strong> "Perfection is hard to define," says Thomas Curran at the University of Bath, UK. There is no fixed way of diagnosing it. However, many studies measure it using the Multidimensional Perfectionism Scale (MPS), developed three decades ago. It consists of 45 statements – such as "I strive to be the best at everything I do" – and people rate how much they agree on a scale of 1 to 7. If you very much identify with these kinds of statements, it is likely that you have perfectionist tendencies.</p>
+          <p class="passage-para"><strong>C.</strong> The scale also distinguishes between three different kinds of perfectionism. "Self-oriented" perfectionists set themselves high goals in their work and relationships. "Other-oriented" perfectionists hold those around them to exceptionally high standards and risk social rejection. Finally, "socially prescribed" perfectionists feel immense pressure from others to be perfect. "As a consequence, their self-esteem takes a hit on a daily basis. It's a real battle involving lots of negative emotions, guilt and shame," says Curran.</p>
+          <p class="passage-para"><strong>D.</strong> Part of the difficulty in pinpointing perfectionism is that the line between having high standards and being a perfectionist is very blurred. "The difference between someone who sets high goals and a perfectionist comes at the time of success or failure," says Andrew Hill at York St John University. Someone who is hard-working and diligent will appreciate any success and adapt their goals when they fail. A perfectionist will take much less pleasure from success. Even a perfect score will be met with a sense of pressure that the goalposts need to be placed further away.</p>
+          <p class="passage-para"><strong>E.</strong> Perfectionism has strong links with health conditions. When Karina Limburg and colleagues analysed 284 studies including more than 57,000 participants, they found that people with eating disorders, anxiety disorders, OCD and depression had higher levels of perfectionism. Those with perfectionist tendencies were more likely to experience more than one condition at a time. Perfectionism has also been linked with suicide. Physical health may also be affected, leading to an increased risk of cardiovascular disease. Additionally, perfectionists cope less well when ill because they experience higher levels of anger, depression and anxiety.</p>
+          <p class="passage-para"><strong>F.</strong> Fortunately, there are ways we can combat perfectionism. But first we need to recognise it, which can be difficult. By the very nature of this condition, it is extremely hard for a perfectionist to admit that something is wrong. Acknowledging the problem is an excellent first step. Depending on the extent of the problem, some people find self-help books are enough. Others need professional help — normally in the form of talking therapies or cognitive behavioural therapy (CBT), which give people tools to analyse why they are acting in certain ways and enable them to break out of negative patterns.</p>
+          <p class="passage-para"><strong>G.</strong> With perfectionism rising rapidly among young people, many parents will share the desire to protect their children. "Parental practices have an important influence," says Smith. Extremely critical or demanding parents risk triggering perfectionism in their kids. "To avoid creating perfectionist tendencies, parents need to focus on loving their children in a more unconditional way, rather than focusing their love on specific successes," says Sherry. They can also coach their children on the potential hazards of social media: "Teach them that it doesn't offer realistic images of lives, that they are often lofty and fake."</p>
+        </div>
+        <!-- R Passage 2 -->
+        <div id="r-left-2" class="reading-passage hidden">
+          <h4>DEPRESSION MAY REDUCE THE AMOUNT OF WHITE MATTER IN THE BRAIN</h4>
+          <p class="passage-para"><strong>A.</strong> Your brain looks different if you have depression, a common and serious medical illness that negatively affects how you feel, the way you think and how you act. But many of the differences seem to be caused by depression, rather than precede it. When neuroscientists compare the brains of people with and without depression, there are common dissimilarities. For example, people with depression tend to have a smaller hippocampus, a brain region important in forming memories. But it has been difficult to work out whether such differences cause the symptoms of depression or whether they result from the disorder, says Heather Whalley. "We don't know which causes which."</p>
+          <p class="passage-para"><strong>B.</strong> To answer the question, Whalley and her colleagues turned to two huge genetic databases. Consumer genetic testing company 23andMe holds information on the DNA and depressive symptoms of tens of thousands of individuals, and the UK Biobank collects DNA, lifestyle and behaviour questionnaires and brain scans from thousands more. Whalley's team used this data to create a polygenic risk score (PRS) for depression — a tool that assigns weight to various genetic factors thought to contribute to the risk of a condition. They found that people with higher genetic risk scores tended to have less white matter in their brains, and that it didn't seem to be functioning as well.</p>
+          <p class="passage-para"><strong>C.</strong> Whalley and her team then used a statistical analysis to work out whether these white matter differences were causing the depression or resulting from it. The analysis takes into account brain structure and depression symptoms, and looks at how closely each are related to genetic factors. Genes are present from birth, so if genetic factors are more closely linked to symptoms, that suggests the symptoms were present before the brain structure differences. The team found that many brain differences appear to be caused by depression. But differences in a region called the anterior thalamic radiation appear to come before depression — suggesting that the genes that put a person at risk of depression do so via this particular brain network.</p>
+          <p class="passage-para"><strong>D.</strong> Depression symptoms and behaviours could end up impacting the brain's white matter connections more generally, says Maxime Taquet at the University of Oxford. "It might be that patients with depression do not use some of the brain connections that other people would use," he says. Being socially withdrawn, or focusing more on the negative than the positive, could have an effect. "We know that if we don't use a pathway in the brain, that pathway starts to shrink."</p>
+          <p class="passage-para"><strong>E.</strong> Whalley's team also found a host of lifestyle factors linked to depression. They found that a combination of childhood trauma and poverty put individuals at the greatest risk of depression. While childhood trauma was a risk factor in causing depression, trauma in adulthood wasn't. Experiencing high levels of stress at a young age can disrupt a person's stress coping mechanisms for life. "It might mean that you'll need a smaller trigger to have a much more stressful response," she says.</p>
+          <p class="passage-para"><strong>F.</strong> Child abuse or poverty can also alter which genes are active in the developing brain through a process called epigenesis. These changes can lead to diseases such as schizophrenia and bipolar disorder. "Childhood maltreatment is like a surgical strike on the brain," says Carmine Pariante at the Institute of Psychiatry, King's College London. "This explains why these individuals are at risk of developing a host of stress-related disorders later in life — because they have an impaired ability to cope with stress."</p>
+          <p class="passage-para"><strong>G.</strong> "Findings like this indicate that maltreatment can leave damage hidden deep inside the body that persists for many years," says Terrie Moffitt of Duke University. "Once we appreciate that child maltreatment brings hidden damage that can resurface years later as memory problems, preventing child abuse seems like a very good deal."</p>
+        </div>
+        <!-- R Passage 3 -->
+        <div id="r-left-3" class="reading-passage hidden">
+          <h4>FORGETTING</h4>
+          <p class="passage-para">When a memory of a past experience is not activated for days or months, forgetting tends to occur. Yet it is erroneous to think that memories simply fade over time — the steps involved are far more complex. In seeking to understand forgetting in the context of memory, such auxiliary phenomena as differences in the rates of forgetting for different kinds of information also must be taken into account.</p>
+          <p class="passage-para">It has been suggested that, as time passes, the physiological bases of memory tend to change. With disuse, according to this view, the neural engram (the memory trace in the brain) gradually decays or loses its clarity. While such a theory seems reasonable, it would, if left at this point, do little more than restate behavioral evidence of forgetting at the nervous-system level. Decay or deterioration does not seem attributable merely to the passage of time; some underlying physical process needs to be demonstrated. Until a neurochemical basis for memory can be more explicitly described, any decay theory of forgetting must await detailed development.</p>
+          <p class="passage-para">A prominent theory of forgetting at the behavioral level is anchored in the phenomenon of interference, or inhibition, which can be either retroactive or proactive. In retroactive inhibition, new learning interferes with the retention of old memories; in proactive inhibition, old memories interfere with the retention of new learning. Both phenomena have great implications for all kinds of human learning.</p>
+          <p class="passage-para">In a typical study of interference, subjects are asked to learn two successive verbal lists. The following day some are asked to recall the first list and others to recall the second. A third group learns only one list and is asked to recall it a day later. People who learn two lists nearly always recall fewer words than those in the other group. When lists are constructed to exhibit varying differences, the degree of interference seems to be related to the amount of similarity. Thus, loss in recall will be reduced when two successive lists have no identical terms. Maximum loss generally will occur when there appears to be heavy (but not complete) overlap in the memory attributes for the two lists.</p>
+          <p class="passage-para">In retroactive inhibition, however, not all of the loss need be attributed to competition at the moment of recall. Some of the first list may be lost to memory in learning the second — this is called <em>unlearning</em>. If one is asked to recall from both lists combined, first-list items are less likely to be remembered than if the second list had not been learned. Learning the second list seems to act backward in time (retroactively) to destroy some memory of the first.</p>
+          <p class="passage-para">Retroactive and proactive effects can be quite gross quantitatively. If one learns a list one day and tries to recall it the next, learns a second list and attempts recall for it the following day, and so on, recall for each successive list tends to decline. Roughly 80 percent recall may be anticipated for the first list; this declines steeply to about 20 percent for the 10th list. Learning the earlier lists seems to act forward in time (proactively) to inhibit retention of later lists. These proactive phenomena indicate that the more one learns, the more rapidly one forgets.</p>
+          <p class="passage-para">Such powerful effects have led some researchers to speculate that all forgetting is produced by interference. Any given memory is said to be subject to interference from others established earlier or subsequently. With a limited group of attributes and an enormous number of memories, it might seem that ordinary attempts at recall would be chaotic. Yet, even if all of the memories shared some information, other attributes not held in common could still serve to distinguish them. For example, every memory theoretically is encoded at a different time, and temporal attributes might serve to discriminate otherwise conflicting memories. Indeed, when two apparently conflicting lists are learned several days apart, proactive inhibition is markedly reduced.</p>
+          <p class="passage-para">Sources of interference are quite pervasive and should not be considered narrowly. For example, all memories seem to be established in specific surroundings or contexts, and subsequent efforts to remember tend to be less effective when the circumstances differ from the original. Alcoholics, when sober, tend to have trouble finding bottles they have hidden while intoxicated; when they drink again, the task is much easier.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="resizer" id="resizer"></div>
+
+    <!-- RIGHT PANEL — QUESTIONS -->
+    <div class="questions-panel" id="questions-panel">
+
+      <!-- ═══════════════════ LISTENING QUESTIONS ═══════════════════ -->
+      <div id="listening-questions">
+
+        <!-- PART 1 — Job Details -->
+        <div id="l-questions-1" class="question-set">
+          <div class="part-header"><p><strong>Part 1</strong></p><p>Questions 1–10 &nbsp;|&nbsp; Write ONE WORD AND/OR A NUMBER for each answer.</p></div>
+          <div class="questions-container">
+            <div class="question" data-q-start="1" data-q-end="10">
+              <div class="question-prompt">
+                <p><strong>Questions 1–10</strong></p>
+                <p>Complete the form below. Write <strong>ONE WORD AND/OR A NUMBER</strong> for each answer.</p>
+              </div>
+              <div class="notes-completion-block">
+                <div class="notes-section-label" style="text-align:center;font-size:16px">Job Details</div>
+                <div style="background:var(--bg-secondary);border:1px solid var(--border);border-radius:4px;padding:10px 14px;margin-bottom:10px;font-size:14px;color:var(--text-muted)">
+                  <strong style="color:var(--text)">Example:</strong> Job title: <em>general assistant</em>
+                </div>
+                <div class="note-line" data-q-start="1" data-q-end="1">
+                  <span class="note-bullet">•</span>
+                  Job available now in the <span class="q-badge">1</span>
+                  <input type="text" class="answer-input" id="q1" placeholder="1" autocomplete="off"> <strong>Branch</strong>
+                </div>
+                <div class="note-line" data-q-start="2" data-q-end="2">
+                  <span class="note-bullet">•</span>
+                  Days/hours of work <span class="q-badge">2</span>
+                  <input type="text" class="answer-input" id="q2" placeholder="2" autocomplete="off"> <strong>(all day)</strong>
+                </div>
+                <div class="notes-section-label" style="margin-top:14px">Duties:</div>
+                <div class="note-line" data-q-start="3" data-q-end="3">
+                  <span class="note-bullet">•</span>
+                  Working on checkout <span class="q-badge">3</span>
+                  <input type="text" class="answer-input" id="q3" placeholder="3" autocomplete="off">
+                </div>
+                <div class="note-line">
+                  <span class="note-bullet">•</span> Heavy items
+                </div>
+                <div class="note-line" data-q-start="4" data-q-end="4">
+                  <span class="note-bullet">•</span>
+                  Dealing with customer enquiries <span class="q-badge">4</span>
+                  <input type="text" class="answer-input" id="q4" placeholder="4" autocomplete="off">
+                </div>
+                <div class="note-line">
+                  <span class="note-bullet">•</span> The plants
+                </div>
+                <div class="notes-section-label" style="margin-top:14px">Qualification required:</div>
+                <div class="note-line" data-q-start="5" data-q-end="5">
+                  <span class="note-bullet">•</span>
+                  Good <span class="q-badge">5</span>
+                  <input type="text" class="answer-input" id="q5" placeholder="5" autocomplete="off"> <strong>skills</strong>
+                </div>
+                <div class="note-line" data-q-start="6" data-q-end="6">
+                  <span class="note-bullet">•</span>
+                  Basic ability in <span class="q-badge">6</span>
+                  <input type="text" class="answer-input" id="q6" placeholder="6" autocomplete="off">
+                </div>
+                <div class="notes-section-label" style="margin-top:14px">Interview details:</div>
+                <div class="note-line" data-q-start="7" data-q-end="7">
+                  <span class="note-bullet">•</span>
+                  Interview arranged for <span class="q-badge">7</span>
+                  <input type="text" class="answer-input" id="q7" placeholder="7" autocomplete="off"> on Wednesday this week
+                </div>
+                <div class="note-line" data-q-start="8" data-q-end="8">
+                  <span class="note-bullet">•</span>
+                  Name of interviewer: Maria <span class="q-badge">8</span>
+                  <input type="text" class="answer-input" id="q8" placeholder="8" autocomplete="off">
+                </div>
+                <div class="note-line" data-q-start="9" data-q-end="9">
+                  <span class="note-bullet">•</span>
+                  Contact number: <span class="q-badge">9</span>
+                  <input type="text" class="answer-input wide" id="q9" placeholder="9" autocomplete="off">
+                </div>
+                <div class="note-line" data-q-start="10" data-q-end="10">
+                  <span class="note-bullet">•</span>
+                  Should take his <span class="q-badge">10</span>
+                  <input type="text" class="answer-input" id="q10" placeholder="10" autocomplete="off"> to the interview
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- PART 2 — Ski Exhibition -->
+        <div id="l-questions-2" class="question-set hidden">
+          <div class="part-header"><p><strong>Part 2</strong></p><p>Questions 11–20</p></div>
+          <div class="questions-container">
+            <!-- Q11-15 MCQ -->
+            <div class="question" data-q-start="11" data-q-end="15">
+              <div class="question-prompt">
+                <p><strong>Questions 11–15</strong><br>Choose the correct letter, A, B or C.</p>
+              </div>
+              <div class="multi-choice-question" data-q-start="11" data-q-end="11">
+                <p><strong>11.</strong>&nbsp;Why does the speaker recommend the Sky Hotel?</p>
+                <div class="multi-choice-option"><label><input type="radio" name="lq11" value="A"> A &nbsp;Because it is quite comfortable.</label></div>
+                <div class="multi-choice-option"><label><input type="radio" name="lq11" value="B"> B &nbsp;Because it provides ski and snowboard equipment rentals.</label></div>
+                <div class="multi-choice-option"><label><input type="radio" name="lq11" value="C"> C &nbsp;Because it has health and sports club.</label></div>
+              </div>
+              <div class="multi-choice-question" data-q-start="12" data-q-end="12">
+                <p><strong>12.</strong>&nbsp;What is new in this year's exhibition?</p>
+                <div class="multi-choice-option"><label><input type="radio" name="lq12" value="A"> A &nbsp;photos of top ski resorts worldwide</label></div>
+                <div class="multi-choice-option"><label><input type="radio" name="lq12" value="B"> B &nbsp;ski equipment</label></div>
+                <div class="multi-choice-option"><label><input type="radio" name="lq12" value="C"> C &nbsp;computer simulation</label></div>
+              </div>
+              <div class="multi-choice-question" data-q-start="13" data-q-end="13">
+                <p><strong>13.</strong>&nbsp;How do people enter the skiing and snowboarding competition?</p>
+                <div class="multi-choice-option"><label><input type="radio" name="lq13" value="A"> A &nbsp;They can send emails to the committee.</label></div>
+                <div class="multi-choice-option"><label><input type="radio" name="lq13" value="B"> B &nbsp;They can fill out the back of the entrance ticket.</label></div>
+                <div class="multi-choice-option"><label><input type="radio" name="lq13" value="C"> C &nbsp;They can check out the exhibition newsletter.</label></div>
+              </div>
+              <div class="multi-choice-question" data-q-start="14" data-q-end="14">
+                <p><strong>14.</strong>&nbsp;What did the media focus on this year?</p>
+                <div class="multi-choice-option"><label><input type="radio" name="lq14" value="A"> A &nbsp;not enough snow</label></div>
+                <div class="multi-choice-option"><label><input type="radio" name="lq14" value="B"> B &nbsp;reduction in fee</label></div>
+                <div class="multi-choice-option"><label><input type="radio" name="lq14" value="C"> C &nbsp;the decline of participants</label></div>
+              </div>
+              <div class="multi-choice-question" data-q-start="15" data-q-end="15">
+                <p><strong>15.</strong>&nbsp;Why does the speaker recommend the ski program?</p>
+                <div class="multi-choice-option"><label><input type="radio" name="lq15" value="A"> A &nbsp;The instructors are quite friendly and patient.</label></div>
+                <div class="multi-choice-option"><label><input type="radio" name="lq15" value="B"> B &nbsp;It includes lessons and sessions that suit only beginners.</label></div>
+                <div class="multi-choice-option"><label><input type="radio" name="lq15" value="C"> C &nbsp;It provides special offers at the moment.</label></div>
+              </div>
+            </div>
+
+            <!-- Q16-20 Matching -->
+            <div class="question" data-q-start="16" data-q-end="20">
+              <div class="question-prompt">
+                <p><strong>Questions 16–20</strong><br>Choose FIVE answers from the box and write the correct letter, A–F, next to Questions 16–20.</p>
+              </div>
+              <div class="example-box" style="font-size:14px">
+                <p><strong>A</strong> exploring new destinations &nbsp;&nbsp;<strong>B</strong> how to make the skiing boots comfortable &nbsp;&nbsp;<strong>C</strong> how to become a ski instructor</p>
+                <p style="margin-top:5px"><strong>D</strong> how to combine other activities with skiing &nbsp;&nbsp;<strong>E</strong> how to improve the skills of skiing &nbsp;&nbsp;<strong>F</strong> information about skiing safety</p>
+              </div>
+              <p style="font-weight:700;margin-bottom:10px;color:var(--passage-title)">Presentation</p>
+              <div class="matching-form-container">
+                <div class="matching-form-row" data-q-start="16" data-q-end="16">
+                  <label for="lq16" class="matching-form-label"><strong>16</strong>&nbsp;&nbsp;Simon's talk</label>
+                  <select class="answer-input narrow" id="lq16"><option value=""></option><option>A</option><option>B</option><option>C</option><option>D</option><option>E</option><option>F</option></select>
+                </div>
+                <div class="matching-form-row" data-q-start="17" data-q-end="17">
+                  <label for="lq17" class="matching-form-label"><strong>17</strong>&nbsp;&nbsp;Solution</label>
+                  <select class="answer-input narrow" id="lq17"><option value=""></option><option>A</option><option>B</option><option>C</option><option>D</option><option>E</option><option>F</option></select>
+                </div>
+                <div class="matching-form-row" data-q-start="18" data-q-end="18">
+                  <label for="lq18" class="matching-form-label"><strong>18</strong>&nbsp;&nbsp;Film</label>
+                  <select class="answer-input narrow" id="lq18"><option value=""></option><option>A</option><option>B</option><option>C</option><option>D</option><option>E</option><option>F</option></select>
+                </div>
+                <div class="matching-form-row" data-q-start="19" data-q-end="19">
+                  <label for="lq19" class="matching-form-label"><strong>19</strong>&nbsp;&nbsp;Tricks</label>
+                  <select class="answer-input narrow" id="lq19"><option value=""></option><option>A</option><option>B</option><option>C</option><option>D</option><option>E</option><option>F</option></select>
+                </div>
+                <div class="matching-form-row" data-q-start="20" data-q-end="20">
+                  <label for="lq20" class="matching-form-label"><strong>20</strong>&nbsp;&nbsp;Johnson's talk</label>
+                  <select class="answer-input narrow" id="lq20"><option value=""></option><option>A</option><option>B</option><option>C</option><option>D</option><option>E</option><option>F</option></select>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- PART 3 — Choosing a University Course -->
+        <div id="l-questions-3" class="question-set hidden">
+          <div class="part-header"><p><strong>Part 3</strong></p><p>Questions 21–30</p></div>
+          <div class="questions-container">
+            <!-- Q21-24 Notes completion -->
+            <div class="question" data-q-start="21" data-q-end="24">
+              <div class="question-prompt">
+                <p><strong>Questions 21–24</strong><br>Complete the notes below. Write <strong>ONE WORD ONLY</strong> for each answer.</p>
+                <p style="font-weight:700;text-align:center;margin-top:10px;color:var(--passage-title)">Choosing a University Course</p>
+              </div>
+              <div class="notes-completion-block">
+                <div class="note-line" data-q-start="21" data-q-end="21">
+                  <span class="q-badge">21</span> The students are not considering clinical Nursing course because it is a
+                  <input type="text" class="answer-input" id="lq21" placeholder="21" autocomplete="off"> course.
+                </div>
+                <div class="note-line" data-q-start="22" data-q-end="22">
+                  <span class="q-badge">22</span> If you want to do Occupational Therapy, it is essential to learn
+                  <input type="text" class="answer-input" id="lq22" placeholder="22" autocomplete="off"> first.
+                </div>
+                <div class="note-line" data-q-start="23" data-q-end="23">
+                  <span class="q-badge">23</span> If you want to choose Sociology course, you will mainly work together with
+                  <input type="text" class="answer-input" id="lq23" placeholder="23" autocomplete="off"> people in class.
+                </div>
+                <div class="note-line" data-q-start="24" data-q-end="24">
+                  <span class="q-badge">24</span> After the course, you can help people with
+                  <input type="text" class="answer-input" id="lq24" placeholder="24" autocomplete="off">
+                </div>
+              </div>
+            </div>
+
+            <!-- Q25-30 MCQ -->
+            <div class="question" data-q-start="25" data-q-end="30">
+              <div class="question-prompt"><p><strong>Questions 25–30</strong><br>Choose the correct letter, A, B or C.</p></div>
+              <div class="multi-choice-question" data-q-start="25" data-q-end="25">
+                <p><strong>25.</strong>&nbsp;The professor Mr. Fraser suggests that Millie should</p>
+                <div class="multi-choice-option"><label><input type="radio" name="lq25" value="A"> A &nbsp;choose two courses.</label></div>
+                <div class="multi-choice-option"><label><input type="radio" name="lq25" value="B"> B &nbsp;focus on one course.</label></div>
+                <div class="multi-choice-option"><label><input type="radio" name="lq25" value="C"> C &nbsp;choose another subject.</label></div>
+              </div>
+              <div class="multi-choice-question" data-q-start="26" data-q-end="26">
+                <p><strong>26.</strong>&nbsp;Why will Millie choose the Health and Social Care course?</p>
+                <div class="multi-choice-option"><label><input type="radio" name="lq26" value="A"> A &nbsp;She is interested in this subject.</label></div>
+                <div class="multi-choice-option"><label><input type="radio" name="lq26" value="B"> B &nbsp;The teacher of the course has an international reputation.</label></div>
+                <div class="multi-choice-option"><label><input type="radio" name="lq26" value="C"> C &nbsp;There are a lot of grants for the research.</label></div>
+              </div>
+              <div class="multi-choice-question" data-q-start="27" data-q-end="27">
+                <p><strong>27.</strong>&nbsp;What does the professor say about occupational therapy?</p>
+                <div class="multi-choice-option"><label><input type="radio" name="lq27" value="A"> A &nbsp;The textbook is written by a school staff member.</label></div>
+                <div class="multi-choice-option"><label><input type="radio" name="lq27" value="B"> B &nbsp;The course is very difficult.</label></div>
+                <div class="multi-choice-option"><label><input type="radio" name="lq27" value="C"> C &nbsp;The textbook is easy to understand.</label></div>
+              </div>
+              <div class="multi-choice-question" data-q-start="28" data-q-end="28">
+                <p><strong>28.</strong>&nbsp;The university has recently spent money on</p>
+                <div class="multi-choice-option"><label><input type="radio" name="lq28" value="A"> A &nbsp;upgrading the infrastructure for the Department of Medicine.</label></div>
+                <div class="multi-choice-option"><label><input type="radio" name="lq28" value="B"> B &nbsp;building a new lecture theatre for all departments.</label></div>
+                <div class="multi-choice-option"><label><input type="radio" name="lq28" value="C"> C &nbsp;developing new medical facilities.</label></div>
+              </div>
+              <div class="multi-choice-question" data-q-start="29" data-q-end="29">
+                <p><strong>29.</strong>&nbsp;What does the professor advise Millie to do about the course?</p>
+                <div class="multi-choice-option"><label><input type="radio" name="lq29" value="A"> A &nbsp;She should check the details on the website.</label></div>
+                <div class="multi-choice-option"><label><input type="radio" name="lq29" value="B"> B &nbsp;She should discuss with graduating students.</label></div>
+                <div class="multi-choice-option"><label><input type="radio" name="lq29" value="C"> C &nbsp;She should interact with the tutor.</label></div>
+              </div>
+              <div class="multi-choice-question" data-q-start="30" data-q-end="30">
+                <p><strong>30.</strong>&nbsp;What decision does Millie make at the end of the discussion?</p>
+                <div class="multi-choice-option"><label><input type="radio" name="lq30" value="A"> A &nbsp;She will choose a less difficult course.</label></div>
+                <div class="multi-choice-option"><label><input type="radio" name="lq30" value="B"> B &nbsp;She will talk to her teacher.</label></div>
+                <div class="multi-choice-option"><label><input type="radio" name="lq30" value="C"> C &nbsp;She still remains uncertain on which course to choose.</label></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- PART 4 — Plastics Exhibition -->
+        <div id="l-questions-4" class="question-set hidden">
+          <div class="part-header"><p><strong>Part 4</strong></p><p>Questions 31–40 &nbsp;|&nbsp; Write ONE WORD ONLY for each answer.</p></div>
+          <div class="questions-container">
+            <div class="question" data-q-start="31" data-q-end="40">
+              <div class="question-prompt">
+                <p><strong>Questions 31–40</strong><br>Complete the notes below. Write <strong>ONE WORD ONLY</strong> for each answer.</p>
+                <p style="font-weight:700;text-align:center;margin-top:10px;color:var(--passage-title)">Plastics Exhibition</p>
+              </div>
+              <div class="notes-completion-block">
+                <div class="notes-section-label">History</div>
+                <div class="note-line">
+                  <span class="note-bullet">•</span> First plastic developed to replace ivory in sports equipment.
+                </div>
+                <div class="note-line" data-q-start="31" data-q-end="31">
+                  <span class="note-bullet">•</span> Semi-synthetics, e.g. commercial celluloid used <span class="q-badge">31</span>
+                  <input type="text" class="answer-input" id="lq31" placeholder="31" autocomplete="off"> and acid.
+                </div>
+                <div class="note-line" data-q-start="32" data-q-end="32">
+                  <span class="note-bullet">•</span> Experiments making plastics from <span class="q-badge">32</span>
+                  <input type="text" class="answer-input" id="lq32" placeholder="32" autocomplete="off"> products were unsuccessful.
+                </div>
+                <div class="note-line" data-q-start="33" data-q-end="33">
+                  <span class="note-bullet">•</span> Earliest fabric to be produced was artificial <span class="q-badge">33</span>
+                  <input type="text" class="answer-input" id="lq33" placeholder="33" autocomplete="off">
+                </div>
+                <div class="note-line" data-q-start="34" data-q-end="34">
+                  <span class="note-bullet">•</span> First plastic produced in a <span class="q-badge">34</span>
+                  <input type="text" class="answer-input" id="lq34" placeholder="34" autocomplete="off">
+                </div>
+                <div class="note-line" data-q-start="35" data-q-end="35">
+                  <span class="note-bullet">•</span> Invented by a <span class="q-badge">35</span>
+                  <input type="text" class="answer-input" id="lq35" placeholder="35" autocomplete="off"> called Hendrik Baekeland.
+                </div>
+                <div class="note-line" data-q-start="36" data-q-end="36">
+                  <span class="note-bullet">•</span> Unusual because it becomes <span class="q-badge">36</span>
+                  <input type="text" class="answer-input" id="lq36" placeholder="36" autocomplete="off"> when heated.
+                </div>
+                <div class="notes-section-label" style="margin-top:14px">Exhibition — Problems with display:</div>
+                <div class="note-line" data-q-start="37" data-q-end="37">
+                  <span class="note-bullet">•</span> Older plastic objects may release acidic <span class="q-badge">37</span>
+                  <input type="text" class="answer-input" id="lq37" placeholder="37" autocomplete="off">
+                </div>
+                <div class="note-line" data-q-start="38" data-q-end="38">
+                  <span class="note-bullet">•</span> Plastic objects degrade in <span class="q-badge">38</span>
+                  <input type="text" class="answer-input" id="lq38" placeholder="38" autocomplete="off">
+                </div>
+                <div class="notes-section-label" style="margin-top:14px">Popular exhibits:</div>
+                <div class="note-line" data-q-start="39" data-q-end="39">
+                  <span class="note-bullet">•</span> Chandelier made using recycled <span class="q-badge">39</span>
+                  <input type="text" class="answer-input" id="lq39" placeholder="39" autocomplete="off">
+                </div>
+                <div class="note-line" data-q-start="40" data-q-end="40">
+                  <span class="note-bullet">•</span> <span class="q-badge">40</span>
+                  <input type="text" class="answer-input" id="lq40" placeholder="40" autocomplete="off">, made in Japan from semi-synthetic materials based on substances found in plantations.
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div><!-- end listening-questions -->
+
+
+      <!-- ═══════════════════ READING QUESTIONS ═══════════════════ -->
+      <div id="reading-questions" class="hidden">
+
+        <!-- PASSAGE 1 -->
+        <div id="r-questions-1" class="question-set">
+          <div class="part-header"><p>Reading Passage 1 — THE CULT OF PERFECT</p><p>Questions 1–13</p></div>
+          <div class="questions-container">
+
+            <!-- Q1-6: Heading match -->
+            <div class="question" data-q-start="1" data-q-end="6">
+              <div class="question-prompt">
+                <p><strong>Questions 1–6</strong><br>Reading Passage 1 has 7 paragraphs A–G.<br>Choose the correct heading from the list below (i–ix). <em>Example: Paragraph A = iv</em></p>
+                <div class="example-box" style="font-size:14px">
+                  <p><strong>List of headings</strong></p>
+                  <div class="heading-option-label"><strong>i.</strong> The thin line between perfectionism and having high standards</div>
+                  <div class="heading-option-label"><strong>ii.</strong> The role of parenting</div>
+                  <div class="heading-option-label"><strong>iii.</strong> Using therapies to combat perfectionism</div>
+                  <div class="heading-option-label"><strong>iv.</strong> Pros and cons of perfectionism</div>
+                  <div class="heading-option-label"><strong>v.</strong> How to distinguish perfectionism and other kinds of mental problems</div>
+                  <div class="heading-option-label"><strong>vi.</strong> Different measures to cope with perfectionism</div>
+                  <div class="heading-option-label"><strong>vii.</strong> A method to detect a perfectionist</div>
+                  <div class="heading-option-label"><strong>viii.</strong> Health issues from being a perfectionist</div>
+                  <div class="heading-option-label"><strong>ix.</strong> Perfectionism may vary</div>
+                </div>
+              </div>
+              <div class="matching-form-container">
+                <div class="matching-form-row" data-q-start="1" data-q-end="1">
+                  <label for="rq1" class="matching-form-label"><strong>1</strong>&nbsp;&nbsp;Paragraph B</label>
+                  <select class="answer-input narrow" id="rq1"><option value=""></option><option>i</option><option>ii</option><option>iii</option><option>iv</option><option>v</option><option>vi</option><option>vii</option><option>viii</option><option>ix</option></select>
+                </div>
+                <div class="matching-form-row" data-q-start="2" data-q-end="2">
+                  <label for="rq2" class="matching-form-label"><strong>2</strong>&nbsp;&nbsp;Paragraph C</label>
+                  <select class="answer-input narrow" id="rq2"><option value=""></option><option>i</option><option>ii</option><option>iii</option><option>iv</option><option>v</option><option>vi</option><option>vii</option><option>viii</option><option>ix</option></select>
+                </div>
+                <div class="matching-form-row" data-q-start="3" data-q-end="3">
+                  <label for="rq3" class="matching-form-label"><strong>3</strong>&nbsp;&nbsp;Paragraph D</label>
+                  <select class="answer-input narrow" id="rq3"><option value=""></option><option>i</option><option>ii</option><option>iii</option><option>iv</option><option>v</option><option>vi</option><option>vii</option><option>viii</option><option>ix</option></select>
+                </div>
+                <div class="matching-form-row" data-q-start="4" data-q-end="4">
+                  <label for="rq4" class="matching-form-label"><strong>4</strong>&nbsp;&nbsp;Paragraph E</label>
+                  <select class="answer-input narrow" id="rq4"><option value=""></option><option>i</option><option>ii</option><option>iii</option><option>iv</option><option>v</option><option>vi</option><option>vii</option><option>viii</option><option>ix</option></select>
+                </div>
+                <div class="matching-form-row" data-q-start="5" data-q-end="5">
+                  <label for="rq5" class="matching-form-label"><strong>5</strong>&nbsp;&nbsp;Paragraph F</label>
+                  <select class="answer-input narrow" id="rq5"><option value=""></option><option>i</option><option>ii</option><option>iii</option><option>iv</option><option>v</option><option>vi</option><option>vii</option><option>viii</option><option>ix</option></select>
+                </div>
+                <div class="matching-form-row" data-q-start="6" data-q-end="6">
+                  <label for="rq6" class="matching-form-label"><strong>6</strong>&nbsp;&nbsp;Paragraph G</label>
+                  <select class="answer-input narrow" id="rq6"><option value=""></option><option>i</option><option>ii</option><option>iii</option><option>iv</option><option>v</option><option>vi</option><option>vii</option><option>viii</option><option>ix</option></select>
+                </div>
+              </div>
+            </div>
+
+            <!-- Q7-13: Summary completion -->
+            <div class="question" data-q-start="7" data-q-end="13">
+              <div class="question-prompt">
+                <p><strong>Questions 7–13</strong><br>Complete the summary. Choose ONE WORD ONLY from the passage for each answer.</p>
+              </div>
+              <div class="notes-completion-block">
+                <p style="line-height:2.2;font-size:15px;color:var(--text)">
+                  Perfectionism can drive people to success but at the same time can put them under the risk of
+                  <span class="q-badge">7</span> <input type="text" class="answer-input" id="rq7" placeholder="7" autocomplete="off">.
+                  There are many methods to diagnose perfectionism, however
+                  <span class="q-badge">8</span> <input type="text" class="answer-input" id="rq8" placeholder="8" autocomplete="off">
+                  is frequently used. This method also helps to
+                  <span class="q-badge">9</span> <input type="text" class="answer-input" id="rq9" placeholder="9" autocomplete="off">
+                  between "Self-oriented", "Other-oriented" and "Socially prescribed".
+                  Also, it is really hard to differentiate perfectionism and having high standards as their border is
+                  <span class="q-badge">10</span> <input type="text" class="answer-input" id="rq10" placeholder="10" autocomplete="off">.
+                  According to an expert, a person with high standards will experience more
+                  <span class="q-badge">11</span> <input type="text" class="answer-input" id="rq11" placeholder="11" autocomplete="off">
+                  from success than a perfectionist.
+                  Perfectionism has a close relationship with health issues. An analysis from 284 researches shows that perfectionists are more likely to suffer from different types of disorders and
+                  <span class="q-badge">12</span> <input type="text" class="answer-input" id="rq12" placeholder="12" autocomplete="off">
+                  as well as think about suicide. Regarding physical health, due to
+                  <span class="q-badge">13</span> <input type="text" class="answer-input wide" id="rq13" placeholder="13" autocomplete="off">,
+                  perfectionists are more prone to cardiovascular disease and less resilient when they are sick.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- PASSAGE 2 -->
+        <div id="r-questions-2" class="question-set hidden">
+          <div class="part-header"><p>Reading Passage 2 — DEPRESSION & WHITE MATTER</p><p>Questions 14–26</p></div>
+          <div class="questions-container">
+
+            <!-- Q14-17: Section matching -->
+            <div class="question" data-q-start="14" data-q-end="17">
+              <div class="question-prompt">
+                <p><strong>Questions 14–17</strong><br>Reading Passage 2 has seven sections A–G. Which section contains the following information? Write the correct letter A–G.</p>
+              </div>
+              <div class="matching-form-container">
+                <div class="matching-form-row" data-q-start="14" data-q-end="14">
+                  <label for="rq14" class="matching-form-label"><strong>14</strong>&nbsp;&nbsp;A prerequisite for more strong stress-related reactions</label>
+                  <select class="answer-input narrow" id="rq14"><option value=""></option><option>A</option><option>B</option><option>C</option><option>D</option><option>E</option><option>F</option><option>G</option></select>
+                </div>
+                <div class="matching-form-row" data-q-start="15" data-q-end="15">
+                  <label for="rq15" class="matching-form-label"><strong>15</strong>&nbsp;&nbsp;An example of differences in brain structure between depressed and non-depressed individuals</label>
+                  <select class="answer-input narrow" id="rq15"><option value=""></option><option>A</option><option>B</option><option>C</option><option>D</option><option>E</option><option>F</option><option>G</option></select>
+                </div>
+                <div class="matching-form-row" data-q-start="16" data-q-end="16">
+                  <label for="rq16" class="matching-form-label"><strong>16</strong>&nbsp;&nbsp;The function of white matter in the brain</label>
+                  <select class="answer-input narrow" id="rq16"><option value=""></option><option>A</option><option>B</option><option>C</option><option>D</option><option>E</option><option>F</option><option>G</option></select>
+                </div>
+                <div class="matching-form-row" data-q-start="17" data-q-end="17">
+                  <label for="rq17" class="matching-form-label"><strong>17</strong>&nbsp;&nbsp;A suggestion for preventing persisting damage brought by child mistreatment</label>
+                  <select class="answer-input narrow" id="rq17"><option value=""></option><option>A</option><option>B</option><option>C</option><option>D</option><option>E</option><option>F</option><option>G</option></select>
+                </div>
+              </div>
+            </div>
+
+            <!-- Q18-21: TRUE/FALSE/NOT GIVEN -->
+            <div class="question" data-q-start="18" data-q-end="21">
+              <div class="question-prompt">
+                <p><strong>Questions 18–21</strong><br>Do the following statements agree with the information?</p>
+                <ul><li><strong>TRUE</strong> if the statement agrees</li><li><strong>FALSE</strong> if the statement contradicts</li><li><strong>NOT GIVEN</strong> if there is no information</li></ul>
+              </div>
+              <div class="tf-question" data-q-start="18" data-q-end="18">
+                <div class="tf-question-line"><span class="tf-question-number">18</span><span class="tf-question-text">Whalley found that depression is a direct cause of having a bad memory.</span></div>
+                <div class="tf-options"><label class="tf-option"><input type="radio" name="rq18" value="TRUE"> TRUE</label><label class="tf-option"><input type="radio" name="rq18" value="FALSE"> FALSE</label><label class="tf-option"><input type="radio" name="rq18" value="NOT GIVEN"> NOT GIVEN</label></div>
+              </div>
+              <div class="tf-question" data-q-start="19" data-q-end="19">
+                <div class="tf-question-line"><span class="tf-question-number">19</span><span class="tf-question-text">Genetic risk scores acted as a prediction of depression.</span></div>
+                <div class="tf-options"><label class="tf-option"><input type="radio" name="rq19" value="TRUE"> TRUE</label><label class="tf-option"><input type="radio" name="rq19" value="FALSE"> FALSE</label><label class="tf-option"><input type="radio" name="rq19" value="NOT GIVEN"> NOT GIVEN</label></div>
+              </div>
+              <div class="tf-question" data-q-start="20" data-q-end="20">
+                <div class="tf-question-line"><span class="tf-question-number">20</span><span class="tf-question-text">Depression contributes to most brain structure differences.</span></div>
+                <div class="tf-options"><label class="tf-option"><input type="radio" name="rq20" value="TRUE"> TRUE</label><label class="tf-option"><input type="radio" name="rq20" value="FALSE"> FALSE</label><label class="tf-option"><input type="radio" name="rq20" value="NOT GIVEN"> NOT GIVEN</label></div>
+              </div>
+              <div class="tf-question" data-q-start="21" data-q-end="21">
+                <div class="tf-question-line"><span class="tf-question-number">21</span><span class="tf-question-text">Neglected parts in the brain can still maintain their functions.</span></div>
+                <div class="tf-options"><label class="tf-option"><input type="radio" name="rq21" value="TRUE"> TRUE</label><label class="tf-option"><input type="radio" name="rq21" value="FALSE"> FALSE</label><label class="tf-option"><input type="radio" name="rq21" value="NOT GIVEN"> NOT GIVEN</label></div>
+              </div>
+            </div>
+
+            <!-- Q22-26: People matching -->
+            <div class="question" data-q-start="22" data-q-end="26">
+              <div class="question-prompt">
+                <p><strong>Questions 22–26</strong><br>Match each statement with the correct person, A–D.</p>
+                <div class="example-box" style="font-size:14px">
+                  <p><strong>A</strong> Heather Whalley &nbsp;|&nbsp; <strong>B</strong> Maxime Taquet &nbsp;|&nbsp; <strong>C</strong> Carmine Pariante &nbsp;|&nbsp; <strong>D</strong> Terrie Moffitt</p>
+                </div>
+              </div>
+              <div class="matching-form-container">
+                <div class="matching-form-row" data-q-start="22" data-q-end="22">
+                  <label for="rq22" class="matching-form-label"><strong>22</strong>&nbsp;&nbsp;Young children suffering from stress may find it hard to handle stress later in life.</label>
+                  <select class="answer-input narrow" id="rq22"><option value=""></option><option>A</option><option>B</option><option>C</option><option>D</option></select>
+                </div>
+                <div class="matching-form-row" data-q-start="23" data-q-end="23">
+                  <label for="rq23" class="matching-form-label"><strong>23</strong>&nbsp;&nbsp;Depressed people's brains may not function well compared to others.</label>
+                  <select class="answer-input narrow" id="rq23"><option value=""></option><option>A</option><option>B</option><option>C</option><option>D</option></select>
+                </div>
+                <div class="matching-form-row" data-q-start="24" data-q-end="24">
+                  <label for="rq24" class="matching-form-label"><strong>24</strong>&nbsp;&nbsp;A higher genetic risk of depression may result in white matter differences and obstructing brain functions.</label>
+                  <select class="answer-input narrow" id="rq24"><option value=""></option><option>A</option><option>B</option><option>C</option><option>D</option></select>
+                </div>
+                <div class="matching-form-row" data-q-start="25" data-q-end="25">
+                  <label for="rq25" class="matching-form-label"><strong>25</strong>&nbsp;&nbsp;Memory issues resulted from child mistreatment tend to appear again after being absent for a long time.</label>
+                  <select class="answer-input narrow" id="rq25"><option value=""></option><option>A</option><option>B</option><option>C</option><option>D</option></select>
+                </div>
+                <div class="matching-form-row" data-q-start="26" data-q-end="26">
+                  <label for="rq26" class="matching-form-label"><strong>26</strong>&nbsp;&nbsp;Abused and impoverished children are easily susceptible to stress in the future.</label>
+                  <select class="answer-input narrow" id="rq26"><option value=""></option><option>A</option><option>B</option><option>C</option><option>D</option></select>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- PASSAGE 3 -->
+        <div id="r-questions-3" class="question-set hidden">
+          <div class="part-header"><p>Reading Passage 3 — FORGETTING</p><p>Questions 27–40</p></div>
+          <div class="questions-container">
+
+            <!-- Q27-31: Summary with word bank -->
+            <div class="question" data-q-start="27" data-q-end="31">
+              <div class="question-prompt">
+                <p><strong>Questions 27–31</strong><br>Complete the summary using the list of words A–H below. Write the correct letter.</p>
+              </div>
+              <div class="example-box" style="font-size:14px">
+                <p><strong>Word bank:</strong> &nbsp;A=Simple &nbsp;B=Lost &nbsp;C=Interfered &nbsp;D=Disused &nbsp;E=Predictable &nbsp;F=Contrary &nbsp;G=Attributed &nbsp;H=Complicated</p>
+              </div>
+              <div class="notes-completion-block">
+                <p style="line-height:2.3;font-size:15px;color:var(--text)">
+                  People tend to forget their past experience if they do not think of it often. In fact, the forgetting process is much more
+                  <span class="q-badge">27</span> <select class="answer-input narrow" id="rq27"><option value=""></option><option>A</option><option>B</option><option>C</option><option>D</option><option>E</option><option>F</option><option>G</option><option>H</option></select>
+                  than that. One theory suggests that the neural engram will decay if it is
+                  <span class="q-badge">28</span> <select class="answer-input narrow" id="rq28"><option value=""></option><option>A</option><option>B</option><option>C</option><option>D</option><option>E</option><option>F</option><option>G</option><option>H</option></select>
+                  for a long time, so we forget things. Another theory attributes the forgetting to the phenomenon of inhibition, in which our memory is
+                  <span class="q-badge">29</span> <select class="answer-input narrow" id="rq29"><option value=""></option><option>A</option><option>B</option><option>C</option><option>D</option><option>E</option><option>F</option><option>G</option><option>H</option></select>
+                  by that established earlier or later. In terms of retroactive inhibition, old memory is forgotten to memorize new knowledge, but this is not
+                  <span class="q-badge">30</span> <select class="answer-input narrow" id="rq30"><option value=""></option><option>A</option><option>B</option><option>C</option><option>D</option><option>E</option><option>F</option><option>G</option><option>H</option></select>
+                  to the conflicts taking place at the moment when we recall. Regarding proactive inhibition, things are
+                  <span class="q-badge">31</span> <select class="answer-input narrow" id="rq31"><option value=""></option><option>A</option><option>B</option><option>C</option><option>D</option><option>E</option><option>F</option><option>G</option><option>H</option></select>.
+                </p>
+              </div>
+            </div>
+
+            <!-- Q32-37: YES/NO/NOT GIVEN -->
+            <div class="question" data-q-start="32" data-q-end="37">
+              <div class="question-prompt">
+                <p><strong>Questions 32–37</strong><br>Do the following statements agree with the information?</p>
+                <ul><li><strong>YES</strong> — agrees with the writer</li><li><strong>NO</strong> — contradicts the writer</li><li><strong>NOT GIVEN</strong> — impossible to say</li></ul>
+              </div>
+              <div class="tf-question" data-q-start="32" data-q-end="32">
+                <div class="tf-question-line"><span class="tf-question-number">32</span><span class="tf-question-text">In our brain, the memory trace deteriorates mainly when a long time has passed.</span></div>
+                <div class="tf-options"><label class="tf-option"><input type="radio" name="rq32" value="YES"> YES</label><label class="tf-option"><input type="radio" name="rq32" value="NO"> NO</label><label class="tf-option"><input type="radio" name="rq32" value="NOT GIVEN"> NOT GIVEN</label></div>
+              </div>
+              <div class="tf-question" data-q-start="33" data-q-end="33">
+                <div class="tf-question-line"><span class="tf-question-number">33</span><span class="tf-question-text">When humans acquire new knowledge, the existing one is negatively impacted as a result of a phenomenon called retroactive inhibition.</span></div>
+                <div class="tf-options"><label class="tf-option"><input type="radio" name="rq33" value="YES"> YES</label><label class="tf-option"><input type="radio" name="rq33" value="NO"> NO</label><label class="tf-option"><input type="radio" name="rq33" value="NOT GIVEN"> NOT GIVEN</label></div>
+              </div>
+              <div class="tf-question" data-q-start="34" data-q-end="34">
+                <div class="tf-question-line"><span class="tf-question-number">34</span><span class="tf-question-text">Volunteers who learned one verbal list could remember more words than those asked to learn two lists.</span></div>
+                <div class="tf-options"><label class="tf-option"><input type="radio" name="rq34" value="YES"> YES</label><label class="tf-option"><input type="radio" name="rq34" value="NO"> NO</label><label class="tf-option"><input type="radio" name="rq34" value="NOT GIVEN"> NOT GIVEN</label></div>
+              </div>
+              <div class="tf-question" data-q-start="35" data-q-end="35">
+                <div class="tf-question-line"><span class="tf-question-number">35</span><span class="tf-question-text">To minimize the number of words forgotten, more similar words should be added in the list-learning task.</span></div>
+                <div class="tf-options"><label class="tf-option"><input type="radio" name="rq35" value="YES"> YES</label><label class="tf-option"><input type="radio" name="rq35" value="NO"> NO</label><label class="tf-option"><input type="radio" name="rq35" value="NOT GIVEN"> NOT GIVEN</label></div>
+              </div>
+              <div class="tf-question" data-q-start="36" data-q-end="36">
+                <div class="tf-question-line"><span class="tf-question-number">36</span><span class="tf-question-text">The more lists of words people learn within one day, the faster they can recall them.</span></div>
+                <div class="tf-options"><label class="tf-option"><input type="radio" name="rq36" value="YES"> YES</label><label class="tf-option"><input type="radio" name="rq36" value="NO"> NO</label><label class="tf-option"><input type="radio" name="rq36" value="NOT GIVEN"> NOT GIVEN</label></div>
+              </div>
+              <div class="tf-question" data-q-start="37" data-q-end="37">
+                <div class="tf-question-line"><span class="tf-question-number">37</span><span class="tf-question-text">People can better remember past experiences when the contexts are slightly modified.</span></div>
+                <div class="tf-options"><label class="tf-option"><input type="radio" name="rq37" value="YES"> YES</label><label class="tf-option"><input type="radio" name="rq37" value="NO"> NO</label><label class="tf-option"><input type="radio" name="rq37" value="NOT GIVEN"> NOT GIVEN</label></div>
+              </div>
+            </div>
+
+            <!-- Q38-40: Short answer -->
+            <div class="question" data-q-start="38" data-q-end="40">
+              <div class="question-prompt">
+                <p><strong>Questions 38–40</strong><br>Choose NO MORE THAN THREE WORDS from the passage for each answer.</p>
+              </div>
+              <div class="matching-form-container">
+                <div class="matching-form-row" data-q-start="38" data-q-end="38">
+                  <label for="rq38" class="matching-form-label"><strong>38</strong>&nbsp;&nbsp;Apart from time, what else needs to be present to result in the deterioration of the neural engram?</label>
+                  <input type="text" class="answer-input wide" id="rq38" placeholder="38" autocomplete="off">
+                </div>
+                <div class="matching-form-row" data-q-start="39" data-q-end="39">
+                  <label for="rq39" class="matching-form-label"><strong>39</strong>&nbsp;&nbsp;In retroactive inhibition, what is the name of the process of forgetting old things to absorb new knowledge?</label>
+                  <input type="text" class="answer-input wide" id="rq39" placeholder="39" autocomplete="off">
+                </div>
+                <div class="matching-form-row" data-q-start="40" data-q-end="40">
+                  <label for="rq40" class="matching-form-label"><strong>40</strong>&nbsp;&nbsp;What can be avoided when people learn two conflicting lists of words in two different times?</label>
+                  <input type="text" class="answer-input wide" id="rq40" placeholder="40" autocomplete="off">
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </div><!-- end reading-questions -->
+    </div><!-- end questions-panel -->
+
+    <!-- ═══ WRITING SECTION — inside panels-container ═══ -->
+<div class="writing-container" id="writing-container">
+  <!-- Writing Left: Task prompt + chart -->
+  <div class="writing-left" id="writing-left">
+    <!-- Task 1 prompt -->
+    <div id="w-left-1">
+      <div class="writing-part-header">
+        <p>Writing Task 1</p>
+        <p>You should spend about 20 minutes on this task. Write at least <strong>150 words</strong>.</p>
+      </div>
+      <div class="writing-task-prompt">
+        <p><strong>The graph below shows the percentage of workers in 5 different European countries with a day or more absence from 1991 to 2001.</strong></p>
+        <p>Summarise the information by selecting and reporting the main features, and make comparisons where relevant.</p>
+      </div>
+      <!-- Bar chart built with inline SVG so no external image needed -->
+     <img src="https://engnovatewebsitestorage.blob.core.windows.net/ielts-writing-task-1-images/e55cb3de2a23cd28" alt="">
+    </div>
+    <!-- Task 2 prompt -->
+    <div id="w-left-2" class="hidden">
+      <div class="writing-part-header">
+        <p>Writing Task 2</p>
+        <p>You should spend about 40 minutes on this task. Write at least <strong>250 words</strong>.</p>
+      </div>
+      <div class="writing-task-prompt">
+        <p><strong>Write about the following topic:</strong></p>
+        <p><em>Children find it difficult to concentrate on or pay attention to school. </em></p>
+        <p>What are the reasons ? How can we solve this problem?</p>
+        <p>Give reasons for your answer and include any relevant examples from your own knowledge or experience.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Writing Right: textarea + controls -->
+  <div class="writing-right" id="writing-right">
+    <div class="wpart-nav">
+      <button class="wpart-btn active" id="wbtn1" onclick="switchWritingPart(1)">Task 1</button>
+      <button class="wpart-btn" id="wbtn2" onclick="switchWritingPart(2)">Task 2</button>
+    </div>
+    <div id="w-part-header" class="writing-part-header" style="margin-bottom:12px">
+      <p id="w-header-label">Task 1 — Minimum 150 words</p>
+    </div>
+    <textarea class="writing-textarea" id="writingTextarea" placeholder="Start writing your response here..."></textarea>
+    <div class="word-count-bar">
+      <span style="color:var(--text-muted);font-size:13px">Words: <span class="word-count-num low" id="wordCount">0</span> / <span id="minWords">150</span> minimum</span>
+      <button class="writing-submit-btn" id="writing-submit-btn" onclick="submitWritingTest()">📄 Submit &amp; Download PDF</button>
+    </div>
+  </div>
+</div>
+
+<!-- Writing Success Overlay -->
+<div class="writing-success-overlay" id="writing-success-overlay">
+  <div class="writing-success-box">
+    <h3>✅ Writing Submitted!</h3>
+    <p>Your IELTS Writing Test has been saved as a PDF and downloaded to your computer.</p>
+    <p id="writing-summary-text" style="font-weight:600"></p>
+    <p style="color:var(--text-muted);font-size:13px">You can close this or switch to another section.</p>
+    <button onclick="document.getElementById('writing-success-overlay').classList.remove('visible')">Close</button>
+  </div>
+</div>
+
+  </div><!-- end panels-container -->
+</div><!-- end main-container -->
+
+<!-- Nav Arrows -->
+<div class="nav-arrows">
+  <button class="nav-arrow" onclick="prevQ()" id="prevBtn">‹</button>
+  <button class="nav-arrow" onclick="nextQ()" id="nextBtn">›</button>
+</div>
+
+<!-- Bottom nav -->
+<nav class="nav-row" id="nav-row" aria-label="Questions"></nav>
+
+<!-- Highlight Toolbar -->
+<div id="highlightToolbar" class="highlight-toolbar">
+  <span id="toolbar-selection-btns">
+    <button class="toolbar-btn btn-yellow" onclick="applyHighlight('hl-yellow')">🟡</button>
+    <button class="toolbar-btn btn-green" onclick="applyHighlight('hl-green')">🟢</button>
+    <div class="toolbar-sep"></div>
+    <button class="toolbar-btn btn-note" onclick="openNoteInput()">📝 Note</button>
+    <div class="toolbar-sep"></div>
+    <button class="toolbar-btn btn-clear" onclick="clearThisHighlight()">✕ Remove</button>
+    <button class="toolbar-btn btn-clear" onclick="clearAllHighlights()">⊘ Clear All</button>
+  </span>
+  <span id="toolbar-highlight-btns" style="display:none">
+    <button class="toolbar-btn btn-yellow" onclick="recolorHighlight('hl-yellow')">🟡</button>
+    <button class="toolbar-btn btn-green" onclick="recolorHighlight('hl-green')">🟢</button>
+    <div class="toolbar-sep"></div>
+    <button class="toolbar-btn btn-note" onclick="openNoteInput()">📝 Note</button>
+    <div class="toolbar-sep"></div>
+    <button class="toolbar-btn btn-clear" onclick="clearThisHighlight()">✕ Remove</button>
+    <button class="toolbar-btn btn-clear" onclick="clearAllHighlights()">⊘ Clear All</button>
+  </span>
+</div>
+
+<!-- Notes Panel -->
+<div id="notesPanel" class="notes-panel">
+  <div class="notes-panel-header">
+    <span>📝 My Notes</span>
+    <button class="notes-panel-close" onclick="toggleNotesPanel()">✕</button>
+  </div>
+  <div class="notes-list" id="notesList"><p class="notes-empty">No notes yet.</p></div>
+</div>
+
+<!-- Note Input Overlay -->
+<div id="noteInputOverlay" class="note-input-overlay">
+  <div class="note-input-box">
+    <h3>Add a Note</h3>
+    <div class="selected-text-preview" id="noteTextPreview"></div>
+    <textarea id="noteTextarea" placeholder="Type your note here..."></textarea>
+    <div class="note-input-actions">
+      <button class="btn-cancel-note" onclick="cancelNote()">Cancel</button>
+      <button class="btn-save-note" onclick="saveNote()">Save Note</button>
+    </div>
+  </div>
+</div>
+
+<!-- Results Modal -->
+<div id="results-modal" class="modal-overlay hidden">
+  <div class="modal-content">
+    <button class="modal-close-btn" onclick="closeResultsModal()">&times;</button>
+    <h2>Results</h2>
+    <div class="results-summary">
+      <p>Score: <span id="results-score"></span> / 40</p>
+      <p>IELTS Band: <span id="results-band"></span></p>
+    </div>
+    <div id="results-details" class="results-details-container"></div>
+    <div style="text-align:center;margin-top:14px;padding-top:12px;border-top:1px solid var(--border)">
+      <button onclick="retakeTest()" style="background:#4a90e2;color:#fff;border:none;border-radius:6px;padding:9px 24px;font-size:14px;font-weight:700;cursor:pointer">🔄 Retake</button>
+      <button onclick="closeResultsModal()" style="background:var(--footer-btn-bg);color:var(--text);border:1px solid var(--border-medium);border-radius:6px;padding:9px 20px;font-size:14px;font-weight:600;cursor:pointer;margin-left:10px">Review Answers</button>
+    </div>
+  </div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+
+// ════════════════════════════════════════════════════
+// CORRECT ANSWERS
+// ════════════════════════════════════════════════════
+const correctAnswers = {
+  // LISTENING Part 1 (Q1-10) — Job Details
+  l1:'stationroad', l2:'sunday', l3:'lifting', l4:'watering',
+  l5:'communication', l6:'maths', l7:'5 pm', l8:'rapana',
+  l9:'0213038874', l10:'passport',
+  // LISTENING Part 2 (Q11-20) — Ski Exhibition
+  l11:'A', l12:'C', l13:'C', l14:'B', l15:'C',
+  l16:'F', l17:'B', l18:'A', l19:'E', l20:'D',
+  // LISTENING Part 3 (Q21-30) — University Course
+  l21:'challenging', l22:'biology', l23:'younger', l24:'disabilities',
+  l25:'B', l26:'A', l27:'A', l28:'A', l29:'C', l30:'C',
+  // LISTENING Part 4 (Q31-40) — Plastics Exhibition
+  l31:'cotton', l32:'milk', l33:'silk', l34:'laboratory',
+  l35:'chemist', l36:'hard', l37:'gases', l38:'light',
+  l39:'pens', l40:'car',
+  // READING Passage 1 (Q1-13) — The Cult of Perfect
+  r1:'vii', r2:'ix', r3:'i', r4:'viii', r5:'vi', r6:'ii',
+  r7:'illness', r8:'MPS', r9:'distinguish', r10:'blurred',
+  r11:'pleasure', r12:'depression', r13:'stress',
+  // READING Passage 2 (Q14-26) — Depression & White Matter
+  r14:'E', r15:'A', r16:'D', r17:'G',
+  r18:'FALSE', r19:'TRUE', r20:'TRUE', r21:'FALSE',
+  r22:'A', r23:'B', r24:'A', r25:'D', r26:'C',
+  // READING Passage 3 (Q27-40) — Forgetting
+  r27:'H', r28:'D', r29:'C', r30:'F', r31:'E',
+  r32:'NO', r33:'YES', r34:'YES', r35:'NO', r36:'NO', r37:'NO',
+  r38:'underlying physical process', r39:'unlearning', r40:'proactive inhibition'
+};
+
+// ════════════════════════════════════════════════════
+// MODE CONFIG
+// ════════════════════════════════════════════════════
+const modeConfig = {
+  listening: {
+    parts: 4,
+    partRanges: [[1,10],[11,20],[21,30],[31,40]],
+    partLabels: ['Part 1','Part 2','Part 3','Part 4'],
+    firstQ: [1,11,21,31],
+    totalSeconds: 40*60,  // 40 minutes for Listening
+    prefix: 'l'
+  },
+  reading: {
+    parts: 3,
+    partRanges: [[1,13],[14,26],[27,40]],
+    partLabels: ['Passage 1','Passage 2','Passage 3'],
+    firstQ: [1,14,27],
+    totalSeconds: 60*60,  // 60 minutes for Reading
+    prefix: 'r'
+  },
+  writing: {
+    parts: 0,
+    totalSeconds: 60*60,  // 60 minutes for Writing
+    prefix: 'w'
+  }
+};
+
+// ════════════════════════════════════════════════════
+// TIMER STATE — each mode has independent timer
+// ════════════════════════════════════════════════════
+const timerState = {
+  listening: { remaining: 40*60, running: false, finished: false },
+  reading:   { remaining: 60*60, running: false, finished: false },
+  writing:   { remaining: 60*60, running: false, finished: false }
+};
+let timerInterval = null;
+let mode = 'listening';
+let currentPart = 1;
+let currentQ = 1;
+let checked = false;
+let zoomLevel = 1;
+let selRange = null, selText = '';
+let hlTarget = null, lastHL = null;
+let notes = [], noteId = 0;
+
+// Writing
+let writingPart = 1;
+let writingContent = { 1: '', 2: '' };
+const writingMinWords = { 1: 150, 2: 250 };
+
+// DOM refs
+const timerDisplay   = document.getElementById('timerDisplay');
+const timerToggleBtn = document.getElementById('timer-toggle-btn');
+const timerResetBtn  = document.getElementById('timer-reset-btn');
+const resizer        = document.getElementById('resizer');
+const passagePanel   = document.getElementById('passage-panel');
+const questionsPanel = document.getElementById('questions-panel');
+const hlToolbar      = document.getElementById('highlightToolbar');
+const nightModeBtn   = document.getElementById('night-mode-btn');
+const notesToggleBtn = document.getElementById('notes-toggle-btn');
+const notesPanel     = document.getElementById('notesPanel');
+const notesList      = document.getElementById('notesList');
+const notesCount     = document.getElementById('notes-count');
+const noteInputOverlay = document.getElementById('noteInputOverlay');
+const noteTextarea   = document.getElementById('noteTextarea');
+const noteTextPreview = document.getElementById('noteTextPreview');
+const navRow         = document.getElementById('nav-row');
+const zoomInBtn      = document.getElementById('zoom-in-btn');
+const zoomOutBtn     = document.getElementById('zoom-out-btn');
+const zoomLabel      = document.getElementById('zoom-label');
+const pauseIcon = '<svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>';
+const playIcon  = '<svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M8 5v14l11-7L8 5z"/></svg>';
+
+// ════════════════════════════════════════════════════
+// TIMER SYSTEM
+// ════════════════════════════════════════════════════
+function formatTime(sec) {
+  const s = Math.abs(Math.round(sec));
+  return (sec < 0 ? '-' : '') + String(Math.floor(s/60)).padStart(2,'0') + ':' + String(s%60).padStart(2,'0');
+}
+
+function updateTimerDisplay() {
+  const ts = timerState[mode];
+  timerDisplay.textContent = formatTime(ts.remaining);
+  timerDisplay.style.color = (ts.remaining <= 300 && ts.remaining > 0) ? '#dc3545' : '';
+  timerToggleBtn.innerHTML = (ts.running && !ts.finished) ? pauseIcon : playIcon;
+  const modeLabel = document.getElementById('timerModeLabel');
+  if (modeLabel) {
+    const labels = { listening: 'Listening', reading: 'Reading', writing: 'Writing' };
+    modeLabel.textContent = (labels[mode]||'') + ((!ts.running && !ts.finished) ? ' ⏸' : '');
+  }
+}
+
+function startCurrentTimer() {
+  clearInterval(timerInterval);
+  const ts = timerState[mode];
+  if (ts.finished) return;
+  ts.running = true;
+  updateTimerDisplay();
+  timerInterval = setInterval(() => {
+    const t = timerState[mode];
+    if (!t.running) return;
+    t.remaining--;
+    updateTimerDisplay();
+    if (t.remaining <= 0) {
+      t.running = false;
+      t.finished = true;
+      clearInterval(timerInterval);
+      if (mode === 'writing') {
+        saveCurrentWritingPart();
+        submitWritingTest(true);
+      } else {
+        // Auto-submit for listening/reading when time runs out
+        checkAnswers();
+      }
+    }
+  }, 1000);
+}
+
+function pauseCurrentTimer() {
+  timerState[mode].running = false;
+  updateTimerDisplay();
+}
+
+function toggleTimer() {
+  const ts = timerState[mode];
+  if (ts.finished) return;
+  if (ts.running) {
+    pauseCurrentTimer();
+  } else {
+    startCurrentTimer();
+  }
+}
+
+function resetTimer() {
+  const cfg = modeConfig[mode];
+  clearInterval(timerInterval);
+  timerState[mode] = { remaining: cfg.totalSeconds, running: false, finished: false };
+  updateTimerDisplay();
+  startCurrentTimer();
+}
+
+// ════════════════════════════════════════════════════
+// INIT
+// ════════════════════════════════════════════════════
+function init() {
+  timerToggleBtn.addEventListener('click', toggleTimer);
+  timerResetBtn.addEventListener('click', resetTimer);
+  nightModeBtn.addEventListener('click', toggleNightMode);
+  notesToggleBtn.addEventListener('click', toggleNotesPanel);
+  zoomInBtn.addEventListener('click', () => setZoom(zoomLevel + 0.1));
+  zoomOutBtn.addEventListener('click', () => setZoom(zoomLevel - 0.1));
+  document.body.addEventListener('input', updateAll);
+  document.body.addEventListener('change', updateAll);
+  const wta = document.getElementById('writingTextarea');
+  if (wta) wta.addEventListener('input', updateWritingWordCount);
+  initResizer();
+  initHighlightToolbar();
+  switchMode('listening');
+}
+
+// ════════════════════════════════════════════════════
+// NIGHT MODE & ZOOM
+// ════════════════════════════════════════════════════
+function toggleNightMode() {
+  document.body.classList.toggle('night-mode');
+  const on = document.body.classList.contains('night-mode');
+  nightModeBtn.innerHTML = on ? '<span>☀️</span> Day' : '<span>🌙</span> Night';
+}
+
+function setZoom(z) {
+  zoomLevel = Math.min(2, Math.max(0.6, Math.round(z*10)/10));
+  zoomLabel.textContent = Math.round(zoomLevel*100)+'%';
+  document.querySelectorAll('.question-set,.reading-passage,.listening-passage,.writing-container').forEach(s => s.style.zoom = zoomLevel);
+}
+
+// ════════════════════════════════════════════════════
+// MODE SWITCHING — pauses old timer, resumes new one
+// ════════════════════════════════════════════════════
+window.switchMode = function(m) {
+  // Pause current mode timer before switching
+  if (mode && timerState[mode]) {
+    timerState[mode].running = false;
+  }
+  clearInterval(timerInterval);
+
+  mode = m;
+  checked = false;
+  const isWriting  = m === 'writing';
+  const isListening = m === 'listening';
+  const isReading  = m === 'reading';
+
+  // Content panels
+  document.getElementById('listening-left').classList.toggle('hidden', !isListening);
+  document.getElementById('reading-left').classList.toggle('hidden', !isReading);
+  document.getElementById('listening-questions').classList.toggle('hidden', !isListening);
+  document.getElementById('reading-questions').classList.toggle('hidden', !isReading);
+  document.getElementById('writing-container').classList.toggle('active', isWriting);
+
+  // Layout: reading has left+right split; listening is full-width (no left panel); writing is overlay
+  passagePanel.style.display  = (isWriting || isListening) ? 'none' : '';
+  resizer.style.display        = (isWriting || isListening) ? 'none' : '';
+  questionsPanel.style.display = isWriting ? 'none' : '';
+
+  // Mode buttons
+  document.getElementById('btn-listening').classList.toggle('active', isListening);
+  document.getElementById('btn-reading').classList.toggle('active', isReading);
+  document.getElementById('btn-writing').classList.toggle('active', isWriting);
+
+  // Nav row — hidden for writing
+  navRow.style.display = isWriting ? 'none' : '';
+  document.getElementById('prevBtn').style.display = isWriting ? 'none' : '';
+  document.getElementById('nextBtn').style.display = isWriting ? 'none' : '';
+
+  // Update timer display and start the new mode timer
+  updateTimerDisplay();
+  if (!timerState[m].finished) {
+    startCurrentTimer();
+  }
+
+  // Build nav and go to first question (not for writing)
+  if (!isWriting) {
+    buildNav();
+    switchToPart(1);
+  }
+};
+
+// ════════════════════════════════════════════════════
+// NAVIGATION BUILD
+// ════════════════════════════════════════════════════
+function buildNav() {
+  navRow.innerHTML = '';
+  const cfg = modeConfig[mode];
+  if (!cfg || mode === 'writing') return;
+
+  for (let p = 1; p <= cfg.parts; p++) {
+    const [s, e] = cfg.partRanges[p-1];
+    const wrapper = document.createElement('div');
+    wrapper.className = 'footer__questionWrapper___1tZ46 multiple';
+    wrapper.id = `nav-wrapper-${p}`;
+    wrapper.setAttribute('role','tablist');
+
+    const btn = document.createElement('button');
+    btn.className = 'footer__questionNo___3WNct';
+    btn.setAttribute('role','tab');
+    const label = cfg.partLabels[p-1];
+    const parts = label.split(' ');
+    btn.innerHTML = `<span><span class="section-prefix">${parts[0]} </span><span class="sectionNr">${parts[1]||p}</span><span class="attemptedCount" id="cnt-${p}">0 of ${e-s+1}</span></span>`;
+    btn.addEventListener('click', () => switchToPart(p));
+
+    const subwrap = document.createElement('div');
+    subwrap.className = 'footer__subquestionWrapper___9GgoP';
+    for (let q = s; q <= e; q++) {
+      const sq = document.createElement('button');
+      sq.className = 'subQuestion';
+      sq.textContent = q;
+      sq.addEventListener('click', () => goToQ(q));
+      subwrap.appendChild(sq);
+    }
+    wrapper.appendChild(btn);
+    wrapper.appendChild(subwrap);
+    navRow.appendChild(wrapper);
+  }
+
+  const deliver = document.createElement('button');
+  deliver.id = 'deliver-button';
+  deliver.className = 'footer__deliverButton___3FM07';
+  deliver.innerHTML = '✓ Check Answers';
+  deliver.addEventListener('click', checkAnswers);
+  navRow.appendChild(deliver);
+}
+
+// ════════════════════════════════════════════════════
+// PART SWITCHING
+// ════════════════════════════════════════════════════
+function switchToPart(p) {
+  if (mode === 'writing') return;
+  const cfg = modeConfig[mode];
+  if (!cfg) return;
+  currentPart = p;
+
+  if (mode === 'listening') {
+    for (let i=1;i<=4;i++) {
+      const lq = document.getElementById(`l-questions-${i}`);
+      const ll = document.getElementById(`l-left-${i}`);
+      if (lq) lq.classList.toggle('hidden', i!==p);
+      if (ll) ll.classList.toggle('hidden', i!==p);
+    }
+  } else {
+    for (let i=1;i<=3;i++) {
+      const rq = document.getElementById(`r-questions-${i}`);
+      const rl = document.getElementById(`r-left-${i}`);
+      if (rq) rq.classList.toggle('hidden', i!==p);
+      if (rl) rl.classList.toggle('hidden', i!==p);
+    }
+  }
+
+  document.querySelectorAll('.footer__questionWrapper___1tZ46').forEach((w,i) => {
+    w.classList.toggle('selected', (i+1) === p);
+  });
+  goToQ(cfg.firstQ[p-1], true);
+}
+window.switchToPart = switchToPart;
+
+// ════════════════════════════════════════════════════
+// LISTENING INPUT ID HELPER
+// Part 1 (Q1-10): id = q1..q10
+// Parts 2-4 (Q11-40): id = lq11..lq40
+// ════════════════════════════════════════════════════
+function getLInputId(n) { return n <= 10 ? `q${n}` : `lq${n}`; }
+
+// ════════════════════════════════════════════════════
+// GO TO QUESTION
+// ════════════════════════════════════════════════════
+function goToQ(n, skipPartSwitch) {
+  if (mode === 'writing') return;
+  const cfg = modeConfig[mode];
+  if (!cfg) return;
+  currentQ = n;
+
+  let np = 1;
+  for (let p=0; p<cfg.parts; p++) {
+    if (n >= cfg.partRanges[p][0] && n <= cfg.partRanges[p][1]) { np = p+1; break; }
+  }
+  if (!skipPartSwitch && np !== currentPart) { switchToPart(np); return; }
+
+  document.querySelectorAll('.active-question').forEach(e => e.classList.remove('active-question'));
+  document.querySelectorAll('.answer-input.active-input').forEach(e => e.classList.remove('active-input'));
+
+  const elId = mode === 'listening' ? getLInputId(n) : `${cfg.prefix}q${n}`;
+  const el = document.getElementById(elId);
+  if (el) {
+    el.classList.add('active-input');
+    scrollIntoPanel(el);
+    try { el.focus(); } catch(e) {}
+  }
+  const block = document.querySelector(`[data-q-start="${n}"]`);
+  if (block) { block.classList.add('active-question'); if (!el) scrollIntoPanel(block); }
+
+  updateNavButtons();
+  const prevBtn = document.getElementById('prevBtn');
+  const nextBtn = document.getElementById('nextBtn');
+  if (prevBtn) prevBtn.disabled = (n <= cfg.partRanges[0][0]);
+  if (nextBtn) nextBtn.disabled = (n >= cfg.partRanges[cfg.parts-1][1]);
+}
+window.goToQ = goToQ;
+
+function scrollIntoPanel(el) {
+  const panel = el.closest('.questions-panel, .passage-panel');
+  if (!panel) return;
+  const pr = panel.getBoundingClientRect(), er = el.getBoundingClientRect();
+  if (er.top < pr.top || er.bottom > pr.bottom) el.scrollIntoView({behavior:'smooth',block:'center'});
+}
+
+window.nextQ = () => {
+  if (mode === 'writing') return;
+  const cfg = modeConfig[mode];
+  const max = cfg.partRanges[cfg.parts-1][1];
+  if (currentQ < max) goToQ(currentQ + 1);
+};
+window.prevQ = () => {
+  if (mode === 'writing') return;
+  const cfg = modeConfig[mode];
+  const min = cfg.partRanges[0][0];
+  if (currentQ > min) goToQ(currentQ - 1);
+};
+
+// ════════════════════════════════════════════════════
+// ANSWERED STATE
+// ════════════════════════════════════════════════════
+function isAnswered(n) {
+  if (mode === 'writing') return false;
+  if (mode === 'listening') {
+    const radio = document.querySelector(`input[name="lq${n}"]:checked`);
+    if (radio) return true;
+    const el = document.getElementById(getLInputId(n));
+    return el ? el.value.trim() !== '' : false;
+  }
+  const radio = document.querySelector(`input[name="rq${n}"]:checked`);
+  if (radio) return true;
+  const el = document.getElementById(`rq${n}`);
+  return el ? el.value.trim() !== '' : false;
+}
+
+function getUserAnswer(n) {
+  if (mode === 'writing') return '';
+  if (mode === 'listening') {
+    const radio = document.querySelector(`input[name="lq${n}"]:checked`);
+    if (radio) return radio.value;
+    const el = document.getElementById(getLInputId(n));
+    return el ? el.value.trim() : '';
+  }
+  const radio = document.querySelector(`input[name="rq${n}"]:checked`);
+  if (radio) return radio.value;
+  const el = document.getElementById(`rq${n}`);
+  return el ? el.value.trim() : '';
+}
+
+function updateNavButtons() {
+  if (mode === 'writing') return;
+  document.querySelectorAll('.subQuestion').forEach(btn => {
+    const qn = parseInt(btn.textContent);
+    if (isNaN(qn)) return;
+    btn.classList.remove('active');
+    if (!checked) btn.classList.toggle('answered', isAnswered(qn));
+    if (qn === currentQ) btn.classList.add('active');
+  });
+}
+
+function updateAll() {
+  if (mode === 'writing') return;
+  const cfg = modeConfig[mode];
+  if (!cfg || !cfg.parts) return;
+  for (let p=1; p<=cfg.parts; p++) {
+    const [s,e] = cfg.partRanges[p-1];
+    let cnt = 0;
+    for (let i=s; i<=e; i++) if (isAnswered(i)) cnt++;
+    const cntEl = document.getElementById(`cnt-${p}`);
+    if (cntEl) cntEl.textContent = `${cnt} of ${e-s+1}`;
+  }
+  updateNavButtons();
+}
+
+// ════════════════════════════════════════════════════
+// CHECK ANSWERS
+// ════════════════════════════════════════════════════
+function checkAnswers() {
+  if (mode === 'writing') return;
+  checked = true;
+  // Pause timer but don't clear it so user can see time used
+  timerState[mode].running = false;
+  clearInterval(timerInterval);
+  updateTimerDisplay();
+
+  document.querySelectorAll('input,select').forEach(el => { el.disabled = true; });
+  const deliverBtn = document.getElementById('deliver-button');
+  if (deliverBtn) deliverBtn.disabled = true;
+
+  // Clear old feedback
+  document.querySelectorAll('.correct-answer-display').forEach(e => e.remove());
+  document.querySelectorAll('.multi-choice-question').forEach(b => b.classList.remove('correct-q','incorrect-q'));
+  document.querySelectorAll('.multi-choice-option').forEach(o => o.classList.remove('correct','incorrect','correct-answer-highlight'));
+  document.querySelectorAll('.matching-form-row').forEach(r => r.classList.remove('correct','incorrect'));
+  document.querySelectorAll('.answer-input').forEach(e => e.classList.remove('correct','incorrect'));
+  document.querySelectorAll('.tf-question').forEach(e => e.classList.remove('correct','incorrect'));
+  document.querySelectorAll('.tf-option').forEach(e => e.classList.remove('correct','incorrect','correct-answer-highlight'));
+
+  const cfg = modeConfig[mode];
+  const prefix = cfg.prefix;
+  let score = 0;
+  const detailsEl = document.getElementById('results-details');
+  detailsEl.innerHTML = '';
+
+  for (let i=cfg.partRanges[0][0]; i<=cfg.partRanges[cfg.parts-1][1]; i++) {
+    const correctRaw = correctAnswers[`${prefix}${i}`];
+    if (correctRaw === undefined) continue;
+
+    const correctStr = String(correctRaw).toLowerCase().trim();
+    const userStr    = getUserAnswer(i).toLowerCase().trim();
+
+    let ok = userStr !== '' && userStr === correctStr;
+    // Flexible match: all words of correct answer must appear in user answer
+    if (!ok && userStr !== '') {
+      if (correctStr.split(/\s+/).every(w => userStr.includes(w))) ok = true;
+    }
+    // Also allow "lab" for "laboratory", "5pm" for "5 pm" etc.
+    if (!ok && userStr !== '') {
+      const normalise = s => s.replace(/\s+/g,'').replace(/\./g,'');
+      if (normalise(userStr) === normalise(correctStr)) ok = true;
+    }
+    if (ok) score++;
+
+    // Style input element
+    const elId = mode === 'listening' ? getLInputId(i) : `${prefix}q${i}`;
+    const inputEl = document.getElementById(elId);
+    if (inputEl && (inputEl.tagName==='INPUT'||inputEl.tagName==='SELECT')) {
+      inputEl.classList.add(ok ? 'correct' : 'incorrect');
+      if (!ok) {
+        const sp = document.createElement('span');
+        sp.className = 'correct-answer-display';
+        sp.textContent = ' → ' + correctRaw;
+        inputEl.parentNode.insertBefore(sp, inputEl.nextSibling);
+      }
+      const row = inputEl.closest('.matching-form-row');
+      if (row) row.classList.add(ok ? 'correct' : 'incorrect');
+    }
+
+    // Style radio/checkbox MCQ
+    const radioName = mode === 'listening' ? `lq${i}` : `${prefix}q${i}`;
+    const anyRadio = document.querySelector(`input[name="${radioName}"]`);
+    if (anyRadio) {
+      const radioChecked = document.querySelector(`input[name="${radioName}"]:checked`);
+      const mcqBlock = anyRadio.closest('.multi-choice-question');
+      const tfBlock  = anyRadio.closest('.tf-question');
+      if (mcqBlock) {
+        mcqBlock.classList.add(ok ? 'correct-q' : 'incorrect-q');
+        if (radioChecked) radioChecked.closest('.multi-choice-option').classList.add(ok ? 'correct' : 'incorrect');
+        if (!ok) {
+          const correctOpt = mcqBlock.querySelector(`input[value="${correctRaw}"]`);
+          if (correctOpt) correctOpt.closest('.multi-choice-option').classList.add('correct-answer-highlight');
+        }
+      }
+      if (tfBlock) {
+        tfBlock.classList.add(ok ? 'correct' : 'incorrect');
+        if (radioChecked) radioChecked.closest('.tf-option').classList.add(ok ? 'correct' : 'incorrect');
+        if (!ok) {
+          const correctOpt = tfBlock.querySelector(`input[value="${correctRaw}"]`);
+          if (correctOpt) correctOpt.closest('.tf-option').classList.add('correct-answer-highlight');
+        }
+      }
+    }
+
+    // Nav button colour
+    document.querySelectorAll('.subQuestion').forEach(btn => {
+      if (parseInt(btn.textContent) === i) {
+        btn.classList.remove('answered','active');
+        btn.classList.add(ok ? 'correct' : 'incorrect');
+      }
+    });
+
+    // Results row
+    detailsEl.innerHTML += `<div class="result-row ${ok?'':'incorrect'}">
+      <span class="q-num">${i}</span>
+      <span class="user-ans">${getUserAnswer(i)||'—'}</span>
+      <span class="correct-ans">${correctRaw}</span>
+    </div>`;
+  }
+
+  document.getElementById('results-score').textContent = score;
+  document.getElementById('results-band').textContent  = calcBand(score);
+  document.getElementById('results-modal').classList.remove('hidden');
+}
+
+function calcBand(s) {
+  const m = {40:9,39:9,38:8.5,37:8.5,36:8,35:8,34:7.5,33:7.5,32:7,31:7,30:7,
+    29:6.5,28:6.5,27:6.5,26:6,25:6,24:6,23:5.5,22:5.5,21:5.5,20:5.5,
+    19:5,18:5,17:5,16:5,15:5,14:4.5,13:4.5,12:4,11:4,10:4,
+    9:3.5,8:3.5,7:3,6:3,5:2.5,4:2.5,3:2,2:2,1:1,0:0};
+  return m[s] ?? 0;
+}
+
+window.closeResultsModal = () => document.getElementById('results-modal').classList.add('hidden');
+
+window.retakeTest = () => {
+  checked = false;
+  // Reset timer for current mode only
+  const cfg = modeConfig[mode];
+  timerState[mode] = { remaining: cfg.totalSeconds, running: false, finished: false };
+  updateTimerDisplay();
+
+  document.querySelectorAll('input[type="text"]').forEach(e => { e.value=''; e.disabled=false; e.classList.remove('correct','incorrect'); });
+  document.querySelectorAll('select').forEach(e => { e.value=''; e.disabled=false; e.classList.remove('correct','incorrect'); });
+  document.querySelectorAll('input[type="radio"],input[type="checkbox"]').forEach(e => { e.checked=false; e.disabled=false; });
+  document.querySelectorAll('.correct-answer-display').forEach(e => e.remove());
+  document.querySelectorAll('.multi-choice-question').forEach(b => b.classList.remove('correct-q','incorrect-q'));
+  document.querySelectorAll('.multi-choice-option').forEach(o => o.classList.remove('correct','incorrect','correct-answer-highlight'));
+  document.querySelectorAll('.matching-form-row').forEach(r => r.classList.remove('correct','incorrect'));
+  document.querySelectorAll('.tf-question').forEach(t => t.classList.remove('correct','incorrect'));
+  document.querySelectorAll('.tf-option').forEach(t => t.classList.remove('correct','incorrect','correct-answer-highlight'));
+  document.querySelectorAll('.subQuestion').forEach(b => b.classList.remove('correct','incorrect','answered','active'));
+  const deliverBtn = document.getElementById('deliver-button');
+  if (deliverBtn) deliverBtn.disabled = false;
+  closeResultsModal();
+  switchToPart(1);
+  updateAll();
+  startCurrentTimer();
+};
+
+// ════════════════════════════════════════════════════
+// WRITING SECTION
+// ════════════════════════════════════════════════════
+function saveCurrentWritingPart() {
+  writingContent[writingPart] = document.getElementById('writingTextarea').value;
+}
+
+window.switchWritingPart = function(p) {
+  saveCurrentWritingPart();
+  writingPart = p;
+  document.getElementById('w-left-1').classList.toggle('hidden', p !== 1);
+  document.getElementById('w-left-2').classList.toggle('hidden', p !== 2);
+  document.getElementById('wbtn1').classList.toggle('active', p === 1);
+  document.getElementById('wbtn2').classList.toggle('active', p === 2);
+  document.getElementById('writingTextarea').value = writingContent[p];
+  document.getElementById('w-header-label').textContent = p === 1 ? 'Task 1 — Minimum 150 words' : 'Task 2 — Minimum 250 words';
+  document.getElementById('minWords').textContent = writingMinWords[p];
+  updateWritingWordCount();
+  updateWritingNavBtns();
+};
+
+function updateWritingNavBtns() {
+  [1,2].forEach(p => {
+    const wc = (writingContent[p]||'').trim().split(/\s+/).filter(Boolean).length;
+    const btn = document.getElementById(`wbtn${p}`);
+    if (btn) btn.classList.toggle('done', wc >= writingMinWords[p]);
+  });
+}
+
+function updateWritingWordCount() {
+  const text = document.getElementById('writingTextarea').value;
+  const wc   = text.trim() === '' ? 0 : text.trim().split(/\s+/).filter(Boolean).length;
+  const minW  = writingMinWords[writingPart];
+  const wcEl  = document.getElementById('wordCount');
+  if (wcEl) { wcEl.textContent = wc; wcEl.className = 'word-count-num '+(wc>=minW?'ok':'low'); }
+  writingContent[writingPart] = text;
+  updateWritingNavBtns();
+}
+
+window.submitWritingTest = function(timeUp) {
+  saveCurrentWritingPart();
+  const t1 = (writingContent[1]||'').trim();
+  const t2 = (writingContent[2]||'').trim();
+  const wc1 = t1 ? t1.split(/\s+/).filter(Boolean).length : 0;
+  const wc2 = t2 ? t2.split(/\s+/).filter(Boolean).length : 0;
+  if (!timeUp && !t1 && !t2) { alert('Please write your responses before submitting.'); return; }
+  if (!timeUp && !confirm(`Submit writing test?\n\nTask 1: ${wc1} words\nTask 2: ${wc2} words`)) return;
+  timerState.writing.running = false;
+  clearInterval(timerInterval);
+  document.getElementById('writingTextarea').disabled = true;
+  document.getElementById('writing-submit-btn').disabled = true;
+  generateWritingPDF(t1, t2, wc1, wc2);
+};
+
+function generateWritingPDF(t1, t2, wc1, wc2) {
+  const { jsPDF } = window.jspdf;
+  if (!jsPDF) { alert('PDF library not loaded. Please check your internet connection.'); return; }
+  const doc  = new jsPDF();
+  const date = new Date().toLocaleString();
+  doc.setFont('helvetica','bold'); doc.setFontSize(22);
+  doc.text('IELTS Writing Test', 105, 22, {align:'center'});
+  doc.setFont('helvetica','normal'); doc.setFontSize(11);
+  doc.text('Date: '+date, 20, 35);
+  doc.setFont('helvetica','bold'); doc.setFontSize(16); doc.text('TASK 1', 20, 52);
+  doc.setFont('helvetica','bold'); doc.setFontSize(11); doc.text('Prompt:', 20, 62);
+  doc.setFont('helvetica','normal'); doc.setFontSize(10);
+  doc.text(doc.splitTextToSize('The chart below shows the amount of time that people in two age groups spent on different activities in the US. Summarise the information by selecting and reporting the main features, and make comparisons where relevant.',170), 20, 70);
+  doc.setFont('helvetica','bold'); doc.setFontSize(11);
+  doc.text('Word count: '+wc1, 20, 100); doc.text('Response:', 20, 110);
+  doc.setFont('helvetica','normal'); doc.setFontSize(10);
+  doc.text(doc.splitTextToSize(t1||'[No response provided]',170), 20, 118);
+  doc.addPage();
+  doc.setFont('helvetica','bold'); doc.setFontSize(16); doc.text('TASK 2', 20, 22);
+  doc.setFont('helvetica','bold'); doc.setFontSize(11); doc.text('Prompt:', 20, 32);
+  doc.setFont('helvetica','normal'); doc.setFontSize(10);
+  doc.text(doc.splitTextToSize('In many countries, the number of animals and plants is declining. Why do you think this is happening? How can the issue be solved? Give reasons for your answer and include any relevant examples from your own knowledge or experience.',170), 20, 40);
+  doc.setFont('helvetica','bold'); doc.setFontSize(11);
+  doc.text('Word count: '+wc2, 20, 78); doc.text('Response:', 20, 88);
+  doc.setFont('helvetica','normal'); doc.setFontSize(10);
+  doc.text(doc.splitTextToSize(t2||'[No response provided]',170), 20, 96);
+  doc.save('IELTS_Writing_Test.pdf');
+  document.getElementById('writing-summary-text').textContent = `Task 1: ${wc1} words | Task 2: ${wc2} words`;
+  document.getElementById('writing-success-overlay').classList.add('visible');
+}
+
+// ════════════════════════════════════════════════════
+// RESIZER
+// ════════════════════════════════════════════════════
+function initResizer() {
+  resizer.addEventListener('mousedown', e => {
+    e.preventDefault();
+    const sx = e.clientX, sw = passagePanel.offsetWidth;
+    const drag = ev => {
+      const nw = sw + ev.clientX - sx;
+      if (nw > 150 && nw < window.innerWidth - 200) passagePanel.style.flex = `0 0 ${nw}px`;
+    };
+    const stop = () => { window.removeEventListener('mousemove',drag); window.removeEventListener('mouseup',stop); };
+    window.addEventListener('mousemove', drag);
+    window.addEventListener('mouseup', stop);
+  });
+}
+
+// ════════════════════════════════════════════════════
+// HIGHLIGHT TOOLBAR
+// ════════════════════════════════════════════════════
+function initHighlightToolbar() {
+  const panels = [passagePanel, questionsPanel];
+  const selBtns = document.getElementById('toolbar-selection-btns');
+  const hlBtns  = document.getElementById('toolbar-highlight-btns');
+
+  document.addEventListener('selectionchange', () => {
+    const sel = window.getSelection();
+    if (sel && !sel.isCollapsed && sel.toString().trim()) {
+      try {
+        const r = sel.getRangeAt(0);
+        if (panels.some(p => p && p.contains(r.commonAncestorContainer))) {
+          selRange = r.cloneRange(); selText = sel.toString();
+        }
+      } catch(e) {}
+    }
+  });
+
+  document.addEventListener('mouseup', e => {
+    if (hlToolbar.contains(e.target) || noteInputOverlay.contains(e.target)) return;
+    const sel = window.getSelection();
+    const overHL = e.target.closest('.highlight,.comment-highlight');
+    if (overHL && (!sel || sel.isCollapsed)) {
+      hlTarget=overHL; lastHL=null; selRange=null;
+      selBtns.style.display='none'; hlBtns.style.display='inline-flex';
+      positionToolbar(e); return;
+    }
+    if (sel && !sel.isCollapsed && sel.toString().trim()) {
+      try {
+        const r = sel.getRangeAt(0);
+        if (panels.some(p => p && p.contains(r.commonAncestorContainer))) {
+          hlTarget=null; lastHL=null;
+          const inside = (r.startContainer.nodeType===3 ? r.startContainer.parentElement : r.startContainer).closest('.highlight,.comment-highlight');
+          if (inside) hlTarget = inside;
+          selBtns.style.display='inline-flex'; hlBtns.style.display='none';
+          positionToolbar(e); return;
+        }
+      } catch(e) {}
+    }
+    hideToolbar();
+  });
+  document.addEventListener('keydown', e => { if(e.key==='Escape') hideToolbar(); });
+  if (passagePanel)   passagePanel.addEventListener('scroll',   hideToolbar);
+  if (questionsPanel) questionsPanel.addEventListener('scroll', hideToolbar);
+}
+
+function positionToolbar(e) {
+  hlToolbar.classList.add('visible');
+  requestAnimationFrame(() => {
+    const tw=hlToolbar.offsetWidth||280, th=hlToolbar.offsetHeight||40;
+    let l=e.pageX-tw/2, t=e.pageY-th-12;
+    if(l<8) l=8;
+    if(l+tw>window.innerWidth-8) l=window.innerWidth-tw-8;
+    if(t<66) t=e.pageY+12;
+    hlToolbar.style.left=l+'px'; hlToolbar.style.top=t+'px';
+  });
+}
+function hideToolbar() { hlToolbar.classList.remove('visible'); }
+
+window.applyHighlight = function(colorClass) {
+  if(!selRange||selRange.collapsed){hideToolbar();return;}
+  try {
+    const sp=document.createElement('span');
+    sp.className='highlight '+colorClass;
+    sp.appendChild(selRange.extractContents());
+    selRange.insertNode(sp); lastHL=sp;
+  } catch(e){}
+  hideToolbar(); window.getSelection().removeAllRanges(); selRange=null;
+};
+window.recolorHighlight = function(colorClass) {
+  if(!hlTarget){hideToolbar();return;}
+  hlTarget.className='highlight '+colorClass; hlTarget=null; hideToolbar();
+};
+window.clearThisHighlight = function() {
+  const t=hlTarget||lastHL;
+  if(!t||!t.parentNode){hideToolbar();return;}
+  if(t.classList.contains('comment-highlight')){
+    const i=notes.findIndex(n=>n.sp===t); if(i>-1) notes.splice(i,1); renderNotes();
+  }
+  unwrap(t); hlTarget=null; lastHL=null; hideToolbar();
+};
+window.clearAllHighlights = function() {
+  document.querySelectorAll('.highlight,.comment-highlight').forEach(unwrap);
+  notes=[]; renderNotes(); hlTarget=null; lastHL=null; hideToolbar();
+};
+function unwrap(el) {
+  if(!el||!el.parentNode) return;
+  while(el.firstChild) el.parentNode.insertBefore(el.firstChild,el);
+  el.parentNode.removeChild(el); try{el.parentNode.normalize();}catch(e){}
+}
+
+// ════════════════════════════════════════════════════
+// NOTES
+// ════════════════════════════════════════════════════
+function toggleNotesPanel() { notesPanel.classList.toggle('visible'); }
+window.toggleNotesPanel = toggleNotesPanel;
+
+window.openNoteInput = function() {
+  if(!selRange||selRange.collapsed) return;
+  noteTextPreview.textContent = selText.length>110?selText.slice(0,110)+'…':selText;
+  noteTextarea.value='';
+  noteInputOverlay.classList.add('visible');
+  setTimeout(()=>noteTextarea.focus(),50);
+};
+window.cancelNote = function() {
+  noteInputOverlay.classList.remove('visible'); hideToolbar();
+  window.getSelection().removeAllRanges(); selRange=null;
+};
+window.saveNote = function() {
+  const text=noteTextarea.value.trim();
+  if(!text||!selRange||selRange.collapsed){cancelNote();return;}
+  const sp=document.createElement('span'); sp.className='comment-highlight';
+  const tt=document.createElement('span'); tt.className='comment-tooltip'; tt.textContent=text;
+  try{sp.appendChild(selRange.extractContents());}catch(e){}
+  sp.appendChild(tt); selRange.insertNode(sp);
+  notes.push({id:++noteId,text:selText.slice(0,80),note:text,sp});
+  renderNotes(); cancelNote();
+};
+function renderNotes() {
+  const c=notes.length; notesCount.textContent=c; notesCount.style.display=c>0?'inline':'none';
+  if(!c){notesList.innerHTML='<p class="notes-empty">No notes yet. Select text and click "Note".</p>';return;}
+  notesList.innerHTML=notes.map(n=>`<div class="note-item"><div style="display:flex;justify-content:space-between"><div class="note-item-text">"${esc(n.text)}${n.text.length>=80?'…':''}"</div><button class="note-item-delete" onclick="deleteNote(${n.id})">✕</button></div><div class="note-item-content">${esc(n.note)}</div></div>`).join('');
+}
+window.deleteNote = function(id) {
+  const i=notes.findIndex(n=>n.id===id); if(i<0) return;
+  if(notes[i].sp&&notes[i].sp.parentNode) unwrap(notes[i].sp);
+  notes.splice(i,1); renderNotes();
+};
+function esc(s){return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
+
+// ════════════════════════════════════════════════════
+// START
+// ════════════════════════════════════════════════════
+init();
+});
+</script>
+</body>
+</html>

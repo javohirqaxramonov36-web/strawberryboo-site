@@ -1,0 +1,2601 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IELTS Full Reading Practice</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #ffffff;
+            line-height: 1.4;
+            font-size: 16px;
+        }
+
+        .header {
+            background-color: #ffffff;
+            padding: 12px 20px;
+            border-bottom: 1px solid #e0e0e0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            height: 60px;
+        }
+
+        .timer-container {
+            display: flex;
+            position: relative;
+            cursor: default;
+            color: #333;
+            font-size: 16px;
+            font-weight: 500;
+            align-items: center;
+        }
+
+        .timer-controls {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-left: 15px;
+        }
+
+        .timer-controls button {
+            background: #f0f0f0;
+            border: 1px solid #ccc;
+            border-radius: 50%;
+            padding: 0;
+            cursor: pointer;
+            width: 32px;
+            height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background-color 0.2s;
+        }
+        .timer-controls button:hover {
+            background: #e0e0e0;
+        }
+
+        .timer-controls button svg {
+            width: 20px;
+            height: 20px;
+            fill: #333;
+        }
+
+        .telegram-link {
+            color: #3e3e3e;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 16px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 6px 12px;
+            border: 2px solid #3e3e3e;
+            border-radius: 9999px;
+            background-color: #ffffff;
+            line-height: 1;
+        }
+
+        .telegram-link:hover {
+            background-color: #f6f6f6;
+        }
+
+        .main-container {
+            margin-top: 60px;
+            display: flex;
+            flex-direction: column;
+            background: #ffffff;
+            height: calc(100vh - 60px);
+            position: relative;
+        }
+
+        body::after {
+            content: "Full Exam Materials";
+            position: fixed;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%) rotate(-20deg);
+            font-size: 72px;
+            font-weight: 800;
+            letter-spacing: 2px;
+            color: #000000;
+            opacity: 0.04;
+            pointer-events: none;
+            z-index: 0;
+            white-space: nowrap;
+        }
+
+        .panels-container {
+            display: flex;
+            flex: 1;
+            overflow: hidden;
+        }
+
+        .passage-panel {
+            flex: 1;
+            padding: 20px 20px 100px;
+            overflow-y: auto;
+            min-width: 200px;
+        }
+
+        .questions-panel {
+            flex: 1;
+            padding: 20px 20px 100px;
+            overflow-y: auto;
+            min-width: 200px;
+            border-left: 1px solid #e0e0e0;
+        }
+
+        .resizer {
+            position: relative;
+            background: transparent;
+            cursor: col-resize;
+            flex-shrink: 0;
+            flex-grow: 0;
+            z-index: 5;
+            width: 16px;
+            touch-action: none;
+            -webkit-user-select: none;
+            user-select: none;
+        }
+        .resizer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            width: 3px;
+            transform: translateX(-50%);
+            background-color: #3e3e3e;
+        }
+        .resizer::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 36px;
+            height: 36px;
+            background-color: #ffffff;
+            border: 2px solid #3e3e3e;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke="%233e3e3e" fill="%233e3e3e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 8l-4 4 4 4"/><path d="M16 8l4 4-4 4"/><line x1="4" y1="12" x2="20" y2="12"/></svg>');
+            background-repeat: no-repeat;
+            background-size: 60% 60%;
+            background-position: center;
+            pointer-events: none;
+        }
+
+        .part-header {
+            background-color: #f1f2ec;
+            padding: 15px 20px;
+            border: 1px solid #e0e0e0;
+            text-align: left;
+            margin: 10px 20px;
+            border-radius: 5px;
+        }
+
+        .centered-title {
+            text-align: center;
+            font-size: 28px;
+            font-weight: bold;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        .reading-passage h4 {
+            font-size: 20px;
+            font-weight: bold;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        .reading-passage p {
+            margin-bottom: 1.2em;
+            line-height: 1.6;
+        }
+
+        .reading-passage strong {
+            display: inline-block;
+            min-width: 20px;
+            margin-right: 5px;
+        }
+
+        .hidden {
+            display: none !important;
+        }
+
+        .question {
+            margin-bottom: 40px;
+        }
+
+        .question-prompt {
+            margin-bottom: 20px;
+        }
+
+        .question-prompt p {
+            margin-bottom: 10px;
+        }
+
+        .tf-question {
+            padding: 10px 0px;
+            border-radius: 4px;
+            transition: border-color 0.3s, background-color 0.3s;
+            margin-bottom: 10px;
+        }
+
+        .tf-question-line {
+            display: flex;
+            align-items: center;
+            padding: 5px 0px;
+            border-radius: 4px;
+            gap: 15px;
+        }
+
+        .tf-question-number {
+            border: 2px solid #ccc;
+            padding: 2px 8px;
+            margin-right: 10px;
+            border-radius: 3px;
+            font-weight: bold;
+            transition: border-color 0.3s;
+            display: inline-block;
+            min-width: 30px;
+            text-align: center;
+        }
+
+        .tf-question.active-question .tf-question-number {
+            border-color: #4a90e2;
+        }
+
+        .tf-question-text {
+            padding-top: 3px;
+            flex: 1;
+        }
+
+        .answer-select {
+            appearance: none;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            background: white;
+            color: #333;
+            border: 2px solid #333;
+            padding: 8px 12px;
+            border-radius: 6px;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            min-width: 120px;
+            text-align: center;
+        }
+
+        .answer-select:focus {
+            outline: none;
+            border-color: #4a90e2;
+        }
+
+        .multi-choice-question {
+            margin-bottom: 20px;
+            padding: 10px;
+            border-radius: 4px;
+            border: 3px solid transparent;
+            transition: border-color 0.3s, background-color 0.3s;
+        }
+
+        .multi-choice-question.active-question {
+            border-color: #4a90e2;
+        }
+
+        .multi-choice-option {
+            padding: 10px 12px;
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            margin-bottom: 8px;
+            transition: background-color 0.2s ease;
+        }
+
+        .multi-choice-option:hover {
+            background-color: #f1f7ff;
+            border-color: #c6dcfb;
+        }
+
+        .multi-choice-option:has(input:checked) {
+            background-color: #cfe3f9;
+            border-color: #7db3f5;
+        }
+
+        .multi-choice-option.correct {
+            background-color: #d4edda !important;
+            border-color: #28a745 !important;
+        }
+
+        .multi-choice-option.incorrect {
+            background-color: #f8d7da !important;
+            border-color: #dc3545 !important;
+        }
+
+        .multi-choice-option.correct-answer-highlight {
+            background-color: #d4edda !important;
+            border-color: #28a745 !important;
+        }
+
+        .multi-choice-option label {
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .multi-choice-option input[type="radio"] {
+            margin-right: 12px;
+            transform: scale(1.2);
+            accent-color: #4a90e2;
+        }
+
+        .drag-options-container {
+            margin-top: 10px;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+        }
+
+        .drag-item {
+            background: white;
+            border: 1px solid #9c9c9c;
+            font-weight: 600;
+            padding: 8px 12px;
+            border-radius: 4px;
+            cursor: move;
+            font-size: 14px;
+            transition: all 0.2s;
+            user-select: none;
+            margin-bottom: 8px;
+            display: block;
+        }
+
+        .drag-item:hover {
+            background: #e9ecef;
+            transform: translateY(-1px);
+        }
+
+        .drag-item.dragging {
+            opacity: 0.5;
+        }
+
+        .matching-form-container {
+            margin-top: 20px;
+        }
+
+        .matching-form-row {
+            display: flex;
+            align-items: center;
+            margin-bottom: 12px;
+            padding: 10px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .matching-form-label {
+            flex-shrink: 0;
+            font-weight: bold;
+            min-width: 100px;
+        }
+
+        .drop-zone {
+            border: 2px dashed #aaa;
+            border-radius: 4px;
+            min-width: 300px;
+            min-height: 40px;
+            margin-left: 20px;
+            transition: background-color 0.2s, border-color 0.2s;
+            padding: 8px;
+            display: flex;
+            align-items: center;
+            position: relative;
+            color: #afafaf;
+            font-weight: 600;
+        }
+
+        .drop-zone.drag-over {
+            background-color: #e6f4ff;
+            border-color: #4a90e2;
+        }
+
+        .drop-zone.correct {
+            background-color: #e9f7ef;
+            border-color: #28a745;
+            border-style: solid;
+        }
+
+        .drop-zone.incorrect {
+            background-color: #f8d7da;
+            border-color: #dc3545;
+            border-style: solid;
+        }
+
+        .drop-zone.disabled {
+            pointer-events: none;
+        }
+
+        .drop-zone.filled {
+            background-color: transparent;
+            border: none !important;
+        }
+
+        .drop-zone.filled .drag-item {
+            border: 2px solid #4a90e2;
+            border-radius: 10px;
+            padding: 4px 10px;
+            font-weight: 700;
+            background: #fff;
+            box-shadow: 0 0 0 2px rgba(74, 144, 226, 0.15);
+        }
+
+        .summary-text {
+            border: 1px solid #ddd;
+            padding: 15px;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+            margin-top: 10px;
+            line-height: 1.8;
+        }
+
+        .answer-input {
+            border: 1px solid #bfbfbf;
+            border-radius: 4px;
+            background-color: #fff;
+            padding: 2px 8px;
+            font-size: 16px;
+            text-align: left;
+            font-weight: 700;
+            margin: 0 6px;
+            transition: border-color 0.2s ease, box-shadow 0.2s ease;
+            height: 28px;
+            min-width: 80px;
+        }
+
+        .answer-input:focus {
+            border-color: #3581d8;
+            border-width: 2px;
+            outline: none;
+        }
+
+        .answer-input.correct {
+            border-color: #28a745;
+            background-color: #e9f7ef;
+        }
+
+        .answer-input.incorrect {
+            border-color: #dc3545;
+            background-color: #f8d7da;
+            color: #721c24;
+        }
+
+        .nav-arrows {
+            position: fixed;
+            bottom: 100px;
+            right: 20px;
+            display: flex;
+            gap: 6px;
+            z-index: 101;
+        }
+
+        .nav-arrow {
+            width: 48px;
+            height: 48px;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 22px;
+            font-weight: 700;
+            color: #fff;
+            transition: transform 0.1s ease, background-color 0.2s ease, box-shadow 0.2s ease;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.25);
+            outline: none;
+            border-radius: 50%;
+        }
+        .nav-arrow.prev { background-color: #4b5563; }
+        .nav-arrow.next { background-color: #000000; }
+
+        .nav-arrow:hover { transform: translateY(-1px); }
+        .nav-arrow:active { transform: translateY(0); }
+
+        .nav-row {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: #ffffff;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            height: 80px;
+            z-index: 100;
+            border-top: 1px solid #e0e0e0;
+        }
+
+        .footer__questionWrapper___1tZ46 {
+            display: flex;
+            align-items: center;
+            margin-right: 20px;
+        }
+
+        .footer__questionNo___3WNct {
+            background: none;
+            border: none;
+            padding: 10px 15px;
+            font-size: 16px;
+            font-weight: 600;
+            color: #333;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            transition: background-color 0.2s;
+        }
+
+        .footer__questionNo___3WNct:hover {
+            background-color: #f8f9fa;
+        }
+
+        .section-prefix {
+            font-size: 16px;
+        }
+
+        .sectionNr {
+            font-size: 16px;
+            font-weight: bold;
+        }
+
+        .attemptedCount {
+            font-size: 14px;
+            color: #666;
+            margin-left: 5px;
+            font-weight: 400;
+        }
+
+        .footer__questionWrapper___1tZ46.selected .footer__questionNo___3WNct {
+            background-color: #f0f7ff;
+            color: #4a90e2;
+        }
+
+        .footer__subquestionWrapper___9GgoP {
+            display: none;
+            gap: 2px;
+            margin-left: 10px;
+        }
+
+        .footer__questionWrapper___1tZ46.selected .footer__subquestionWrapper___9GgoP {
+            display: flex;
+        }
+
+        .subQuestion {
+            width: 32px;
+            height: 32px;
+            border: 1px solid #ccc;
+            background: white;
+            color: #333;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s;
+            border-radius: 2px;
+        }
+
+        .subQuestion:hover {
+            background-color: #f0f0f0;
+            border-color: #999;
+        }
+
+        .subQuestion.active {
+            background-color: #4a90e2;
+            color: white;
+            border-color: #4a90e2;
+        }
+
+        .subQuestion.answered {
+            background-color: #e9ecef;
+            border-color: #ddd;
+        }
+
+        .subQuestion.correct {
+            background-color: #28a745;
+            color: white;
+            border-color: #28a745;
+        }
+
+        .subQuestion.incorrect {
+            background-color: #dc3545;
+            color: white;
+            border-color: #dc3545;
+        }
+
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border: 0;
+        }
+
+        .footer__deliverButton___3FM07 {
+            margin-left: auto;
+            margin-right: 20px;
+            background-color: #f3f4f6;
+            color: #111827;
+            border: 1px solid #d1d5db;
+            padding: 10px 16px;
+            font-size: 15px;
+            font-weight: 700;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            transition: transform 0.08s ease, background-color 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+            min-width: 160px;
+            justify-content: center;
+            border-radius: 6px;
+        }
+
+        .footer__deliverButton___3FM07:hover {
+            background-color: #ebedf0;
+            border-color: #c7ccd4;
+        }
+
+        .context-menu {
+            position: absolute;
+            background: white;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            z-index: 1000;
+            display: none;
+            min-width: 140px;
+        }
+
+        .context-menu-item {
+            padding: 12px 16px;
+            cursor: pointer;
+            font-size: 16px;
+            border-bottom: 1px solid #f0f0f0;
+            transition: background-color 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .context-menu-item:hover {
+            background-color: #f8f9fa;
+        }
+
+        .context-menu-item:last-child {
+            border-bottom: none;
+        }
+
+        .highlight {
+            background-color: #ffff00;
+        }
+
+        .comment-highlight {
+            background-color: #90EE90;
+            position: relative;
+            cursor: help;
+        }
+
+        .comment-tooltip {
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #333;
+            color: white;
+            padding: 8px 12px;
+            border-radius: 4px;
+            font-size: 14px;
+            white-space: nowrap;
+            z-index: 1000;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s;
+        }
+
+        .comment-highlight:hover .comment-tooltip {
+            opacity: 1;
+        }
+
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(17, 24, 39, 0.6);
+            backdrop-filter: blur(3px);
+            z-index: 2000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-overlay.hidden {
+            display: none;
+        }
+
+        .modal-content {
+            background: #ffffff;
+            padding: 24px;
+            border-radius: 14px;
+            width: 92%;
+            max-width: 780px;
+            max-height: 86vh;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            border: 1px solid #e5e7eb;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.25);
+        }
+
+        .modal-close-btn {
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            background: none;
+            border: none;
+            font-size: 28px;
+            cursor: pointer;
+            color: #666;
+        }
+
+        .modal-content h2 {
+            text-align: center;
+            margin-bottom: 18px;
+            color: #111827;
+        }
+
+        .results-summary {
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+            margin-bottom: 16px;
+            text-align: center;
+            border-bottom: 1px solid #eef2f7;
+            padding-bottom: 12px;
+        }
+
+        .results-summary p {
+            margin: 0;
+            font-size: 14px;
+            color: #374151;
+        }
+
+        .results-summary p span {
+            display: inline-block;
+            padding: 4px 10px;
+            margin-left: 6px;
+            border-radius: 999px;
+            background: #f3f4f6;
+            font-weight: 700;
+            color: #111827;
+        }
+
+        .results-details-container {
+            overflow-y: auto;
+            padding-right: 10px;
+            border-radius: 8px;
+            max-height: 60vh;
+        }
+
+        .result-row {
+            display: grid;
+            grid-template-columns: 56px 1fr 1fr;
+            gap: 12px;
+            padding: 10px 8px;
+            border-bottom: 1px solid #eef2f7;
+            font-size: 15px;
+            align-items: center;
+        }
+
+        .result-row.correct {
+            background-color: #f3faf5;
+        }
+
+        .result-row.incorrect {
+            background-color: #fff5f5;
+        }
+
+        .result-row .q-num {
+            font-weight: 700;
+            color: #111827;
+            background: #ffffff;
+            border: 1px solid #d1d5db;
+            border-radius: 8px;
+            width: 42px;
+            height: 30px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .result-row .user-ans {
+            color: #374151;
+            background: #f9fafb;
+            border: 1px solid #e5e7eb;
+            padding: 4px 8px;
+            border-radius: 6px;
+            word-break: break-word;
+        }
+
+        .result-row .correct-ans {
+            color: #065f46;
+            font-weight: 600;
+            background: #ecfdf5;
+            border: 1px solid #a7f3d0;
+            padding: 4px 8px;
+            border-radius: 6px;
+            word-break: break-word;
+        }
+
+        .correct-answer-display {
+            font-weight: bold;
+            color: #28a745;
+            margin-left: 10px;
+            font-size: 14px;
+        }
+
+        .answer-highlight {
+            background-color: #ffeb3b;
+            padding: 2px 4px;
+            border-radius: 3px;
+            font-weight: bold;
+            position: relative;
+        }
+
+        .answer-highlight span {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background-color: #2196f3;
+            color: white;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="timer-container">
+            <span class="timer-display">60:00</span>
+            <div class="timer-controls">
+                <button id="timer-toggle-btn" title="Pause/Resume Timer">
+                    <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M8 5v14l11-7L8 5z"/></svg>
+                </button>
+                <button id="timer-reset-btn" title="Reset Timer">
+                    <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M12 5V1L7 6l5 5V7c3.31 0 6 2.69 6 6s-2.69 6-6 6-6-2.69-6-6H4c0 4.42 3.58 8 8 8s8-3.58 8-8-3.58-8-8-8z"/></svg>
+                </button>
+            </div>
+        </div>
+        <a href="https://t.me/ielts_material_full" target="_blank" class="telegram-link">
+          Full Exam Materials
+        </a>
+    </div>
+
+    <div class="main-container" id="main-container">
+        <div id="passage-header-container">
+            <div id="part-header-1" class="part-header">
+                <p><strong>Part 1</strong></p>
+                <p>Read the text and answer questions 1-13.</p>
+            </div>
+            <div id="part-header-2" class="part-header hidden">
+                <p><strong>Part 2</strong></p>
+                <p>Read the text and answer questions 14-26.</p>
+            </div>
+            <div id="part-header-3" class="part-header hidden">
+                <p><strong>Part 3</strong></p>
+                <p>Read the text and answer questions 27-40.</p>
+            </div>
+        </div>
+        <div class="panels-container">
+            <div class="passage-panel" id="passage-panel">
+                <!-- PART 1 - Food advertising on children -->
+                <div id="passage-text-1" class="reading-passage">
+                    <h4 class="centered-title">Food advertising on children</h4>
+                    <p>This review was commissioned by the Food Standards Agency to examine the current research evidence on:</p>
+                    <ul style="margin-left: 20px; margin-bottom: 15px;">
+                        <li>the extent and nature of food promotion to children</li>
+                        <li>the effect, if any, that this promotion has on their food knowledge, preferences and behaviour.</li>
+                    </ul>
+                    
+                    <p><strong>A</strong>&nbsp;&nbsp;Children's food promotion is dominated by television advertising, and the great majority of this promotes the so-called 'Big Four' of pre-sugared breakfast cereals, soft drinks, confectionery and savoury snacks. In the last ten years advertising for fast food outlets has rapidly increased. There is some evidence that the dominance of television has recently begun to wane. The importance of strong, global branding reinforces a need for multi-faceted communications combining television with merchandising, 'tie-ins' and point of sale activity. The advertised diet contrasts sharply with that recommended by public health advisors, and themes of fun and fantasy or taste, rather than health and nutrition, are used to promote it to children. Meanwhile, the recommended diet gets little promotional support.</p>
+                    
+                    <p><strong>B</strong>&nbsp;&nbsp;There is plenty of evidence that children notice and enjoy food promotion. However, establishing whether this actually influences them is a complex problem. The review tackled it by looking at studies that had examined possible effects on what children know about food, their food preferences, their actual food behaviour (both buying and eating), and their health outcomes (e.g., obesity or cholesterol levels). The majority of studies examined food advertising, but a few examined other forms of food promotion. In terms of nutritional knowledge, food advertising seems to have little influence on children's general perceptions of what constitutes a healthy diet, but, in certain contexts, it does have an effect on more specific types of nutritional knowledge. For example, seeing soft drink and cereal adverts reduced primary aged children's ability to determine correctly whether or not certain products contained real fruit.</p>
+                    
+                    <p><strong>C</strong>&nbsp;&nbsp;The review also found evidence that food promotion influences children's food preferences and purchase behaviour. A study of primary school children, for instance, found that exposure to advertising influenced which foods they claimed to like; and another showed that labelling and signage on a vending machine had an effect on what was bought by secondary school pupils. A number of studies have also shown that food advertising can influence what children eat. One, for example, showed that advertising influenced a primary class's choice of daily snack at playtime.</p>
+                    
+                    <p><strong>D</strong>&nbsp;&nbsp;The next step, of trying to establish whether or not a link exists between food promotion and diet or obesity, is extremely difficult as it requires research to be done in real-world settings. A number of studies have attempted this by using the amount of television viewing as a proxy for exposure to television advertising. They have established a clear link between television viewing and diet, obesity, and cholesterol levels. It is impossible to say, however, whether this effect is caused by the advertising, the sedentary nature of television viewing or snacking that might take place whilst viewing. One study resolved this problem by taking a detailed diary of children's viewing habits. This showed that the more food adverts they saw, the more snacks and calories they consumed.</p>
+                    
+                    <p><strong>E</strong>&nbsp;&nbsp;Thus the literature does suggest food promotion is influencing children's diet in a number of ways. This does not amount to proof; as noted above with this kind of research, incontrovertible proof simply isn't attainable. Nor do all studies point to this conclusion; several have not found an effect. In addition, very few studies have attempted to measure how strong these effects are relative to other factors influencing children's food choices. Nonetheless, many studies have found clear effects and they have used sophisticated methodologies that make it possible to determine that i) these effects are not just due to chance; ii) they are independent of other factors that influence diets, such as parents' eating habits or attitudes; and iii) they occur at a brand and category level.</p>
+                    
+                    <p><strong>F</strong>&nbsp;&nbsp;Furthermore, two factors suggest that these findings actually downplay the effect that food promotion has on children. First, the literature focuses principally on television advertising; the cumulative effect of this combined with other forms of promotion and marketing is likely to be significantly greater. Second, the studies have looked at the direct effects of individual children, and understate indirect influences. For example, promotion for fast food outlets may not only influence the child but also encourage parents to take them for meals and reinforce the idea that this is normal and desirable behaviour.</p>
+                    
+                    <p><strong>G</strong>&nbsp;&nbsp;This does not amount to proof of an effect, but in our view does provide sufficient evidence to conclude that an effect exists. The debate should now shift to what action is needed, and specifically to how the power of commercial marketing can be used to bring about improvements in young people's eating.</p>
+                </div>
+                
+                <!-- PART 2 - Finding Our Way -->
+                <div id="passage-text-2" class="reading-passage hidden">
+                    <h4 class="centered-title">Finding Our Way</h4>
+                    
+                    <p><strong>A</strong>&nbsp;&nbsp;"Drive 200 yards, and then turn right," says the car's computer voice. You relax in the driver's seat, follow the directions and reach your destination without error. It's certainly nice to have the Global Positioning System (GPS) to direct you to within a few yards of your goal. Yet if the satellite service's digital maps become even slightly outdated, you can become lost. Then you have to rely on the ancient human skill of navigating in three-dimensional space. Luckily, your biological finder has an important advantage over GPS: it does not go awry if only one part of the guidance system goes wrong, because it works in various ways. You can ask questions of people on the sidewalk. Or follow a street that looks familiar. Or rely on a navigational rubric: "If I keep the East River on my left, I will eventually cross 34th Street." The human positioning system is flexible and capable of learning. Anyone who knows the way from point A to point B – and from A to C – can probably figure out how to get from B to C, too.</p>
+                    
+                    <p><strong>B</strong>&nbsp;&nbsp;But how does this complex cognitive system really work? Researchers are looking at several strategies people use to orient themselves in space: guidance, path integration and route following. We may use all three or combinations thereof. And as experts learn more about these navigational skills, they are making the case that our abilities may underlie our powers of memory and logical thinking. Grand Central, Please Imagine that you have arrived in a place you have never visited – New York City. You get off the train at Grand Central Terminal in midtown Manhattan. You have a few hours to explore before you must return for your ride home. You head uptown to see popular spots you have been told about: Rockefeller Center, Central Park, the Metropolitan Museum of Art. You meander in and out of shops along the way. Suddenly, it is time to get back to the station. But how?</p>
+                    
+                    <p><strong>C</strong>&nbsp;&nbsp;If you ask passersby for help, most likely you will receive information in many different forms. A person who orients herself by a prominent landmark would gesture southward: "Look down there. See the tall, broad MetLife Building? Head for that – the station is right below it." Neurologists call this navigational approach "guidance," meaning that landmark visible from a distance serves as the marker for one's destination.</p>
+                    
+                    <p><strong>D</strong>&nbsp;&nbsp;Another city dweller might say: "What places do you remember passing? … Okay. Go toward the end of Central Park, then walk down to St. Patrick's Cathedral. A few more blocks and Grand Central will be off to your left." In this case, you are pointed toward the most recent place you recall, and you aim for it. Once there you head for the next notable place and so on, retracing your path. Your brain is adding together the individual legs of your trek into a cumulative progress report. Researchers call this strategy "path integration." Many animals rely primarily on path integration to get around, including insects, spiders, crabs and rodents. The desert ants of the genus Cataglyphis employ this method to return from foraging as far as 100 yards away. They note the general direction they came from and retrace their steps, using the polarization of sunlight to orient themselves even under overcast skies. On their way back they are faithful to this inner homing vector. Even when a scientist picks up an ant and puts it in a totally different spot, the insect stubbornly proceeds in the originally determined direction until it has gone "back" all of the distance it wandered from its nest. Only then does the ant realize it has not succeeded, and it begins to walk in successively larger loops to find its way home.</p>
+                    
+                    <p><strong>E</strong>&nbsp;&nbsp;Whether it is trying to get back to the anthill or the train station, any animal using path integration must keep track of its own movements so it knows, while returning, which segments it has already completed. As you move, your brain gathers data from your environment – sights, sounds, smells, lighting, muscle contractions, a sense of time passing – to determine which way your body has gone. The church spire, the sizzling sausages on that vendor's grill, the open courtyard, and the train station – all represent snapshots of memorable junctures during your journey.</p>
+                    
+                    <p><strong>F</strong>&nbsp;&nbsp;In addition to guidance and path integration, we use a third method for finding our way. An office worker you approach for help on a Manhattan street corner might say: "Walk straight down Fifth, turn left on 47th, turn right on Park, go through the walkway under the Helmsley Building, then cross the street to the MetLife Building into Grand Central." This strategy, called route following, uses landmarks such as buildings and street names, plus directions – straight, turn, go through – for reaching intermediate points. Route following is more precise than guidance or path integration, but if you forget the details and take a wrong turn, the only way to recover is to backtrack until you reach a familiar spot, because you do not know the general direction or have a reference landmark for your goal. The route-following navigation strategy truly challenges the brain. We have to keep all the landmark and intermediate directions in our head. It is the most detailed and therefore most reliable method, but it can be undone by routine memory lapses. With path integration, our cognitive memory is less burdened; it has to deal with only a few general instructions and the homing vector. Path integration works because it relies most fundamentally on our knowledge of our body's general direction of movement, and we always have access to these inputs. Nevertheless, people often choose to give route-following directions, in part because saying "Go straight that way!" just does not work in our complex, man-made surroundings.</p>
+                    
+                    <p><strong>G</strong>&nbsp;&nbsp;Road Map or Metaphor? On your next visit to Manhattan, you will rely on your memory to get around. Most likely you will use guidance, path integration and route following in various combinations. But how exactly do these constructs deliver concrete direction? Do we humans have, as an image of the real world, a kind of road map in our heads – with symbols for cities, train stations and churches; thick lines for highways; narrow lines for local streets? Neurobiologists and cognitive psychologists do call the portion of our memory that controls navigation a "cognitive map." The map metaphor is obviously seductive: maps are the easiest way to present geographic information for convenient visual inspection. In many cultures, maps were developed before writing, and today they are used in almost every society. It is even possible that maps derive from a universal way in which our spatial-memory networks are wired.</p>
+                    
+                    <p><strong>H</strong>&nbsp;&nbsp;Yet the notion of a literal map in our heads may be misleading; a growing body of research implies that the cognitive map is mostly a metaphor. It may be more like a hierarchical structure of relationships. To get back to Grand Central, you first envision the large scale – that is, you visualize the general direction of the station. Within that system, you then imagine the route to the last place you remember. After that, you observe your nearby surroundings to pick out a recognizable storefront or street corner that will send you toward that place. In this hierarchical, or nested, scheme, positions and distances are relative, in contrast with a road map, where the same information is shown in a geometrically precise scale.</p>
+                </div>
+                
+                <!-- PART 3 - Decision, Decision! -->
+                <div id="passage-text-3" class="reading-passage hidden">
+                    <h4 class="centered-title">Decision, Decision!</h4>
+                    <p style="text-align: center; font-style: italic; margin-bottom: 20px;">Research explores when we can make a vital decision quickly and we need to proceed more deliberately</p>
+                    
+                    <p><strong>A</strong>&nbsp;&nbsp;A widely recognised legend tells us that in Gordium (in what is now Turkey) in the fourth century BC an oxcart was roped to a pole with a complex knot. It was said that the first person to untie it would become the king of Asia. Unfortunately, the knot proved impossible to untie. The story continues that when confronted with this problem, rather than deliberating on how to untie the Gordian knot, Alexander, the famous ruler of the Greeks in the ancient world, simply took out his sword and cut it in two – then went on to conquer Asia. Ever since the notion of a 'Gordian solution' has referred to the attractiveness of a simple answer to an otherwise intractable problem.</p>
+                    
+                    <p><strong>B</strong>&nbsp;&nbsp;Among researchers in the psychology of decision making, however, such solutions have traditionally held little appeal. In particular, the 'conflict model' of decision making proposed by psychologists Irving Janis and Leon Mann in their 1977 book, Decision Making, argued that a complex decision-making process is essential for guarding individuals and groups from the peril of 'group-think'. Decisions made without thorough canvassing, surveying, weighing, examining and reexamining relevant information and options would be suboptimal and often disastrous. One foreign affair decision made by a well-known US political leader in the 1960s is typically held us as an example of the perils of inadequate thought, whereas his successful handling of a water crisis is cited as an example of the advantages of careful deliberation. However, examination of these historical events by Peter Suedfield, a psychologist at the University of British Columbia, and Roderick Kramer, a psychologist at the Stanford Graduate School of Business, found little difference in the two decision-making processes; both crises required and received complex consideration by the political administration, but later only the second one was deemed to be the effective.</p>
+                    
+                    <p><strong>C</strong>&nbsp;&nbsp;In general, however, organizational and political science offers little evidence that complex decisions fare better than simpler ones. In fact, a growing body of work suggests that in many situations simply 'snap' decisions with being routinely superior to more complex ones – an idea that gained widespread public appeal with Malcolm Gladwell's best-selling book Blink (2005).</p>
+                    
+                    <p><strong>D</strong>&nbsp;&nbsp;An article by Ap Dijksterhuis of the University of Amsterdam and his colleagues, Making the Right Choice: the Deliberation-without-attention Effect', runs very much in the spirit of Gladwell's influential text. Its core argument is that to be effective, conscious (deliberative) decision making requires cognitive resources. Because increasingly complex decisions place increasing strain on those resources, the quality of our decisions declines as their complexity increases. In short, complex decisions overrun our cognitive powers. On the other hand, unconscious decision making (what the author refer to as 'deliberation without attention') requires no cognitive resources, so task complexity does not Effectiveness. The seemingly counterintuitive conclusion is that although conscious thought enhances simple decisions, the opposite holds true for more complex decisions.</p>
+                    
+                    <p><strong>E</strong>&nbsp;&nbsp;Dijksterhuis reports four Simple but elegant studies supporting this argument. In one, participants assessed the quality of four hypothetical cars by considering either four attributes (a simple task) or 12 attributes (a complex task). Among participants who considered four attributes, those who were allowed to engage in undistracted deliberative thought did better at discriminating between the best and worst cars. Those who were distracted and thus unable to deliberate had to rely on their unconscious thinking and did less well. The opposite pattern emerged when people considered 12 criteria. In this case, conscious deliberation led to inferior discrimination and poor decisions.</p>
+                    
+                    <p><strong>F</strong>&nbsp;&nbsp;In other studies, Dijksterhuis surveyed people shopping for clothes ('simple' products) and furniture ('complex' products). Compared with those who said they had deliberated long and hard, shoppers who bought with little conscious deliberation felt less happy with their simple clothing purchase but happier with the complex furniture purchases. Deliberation without attention actually produced better results as the decisions became more complex.</p>
+                    
+                    <p><strong>G</strong>&nbsp;&nbsp;From there, however, the researchers take a big leap. They write: There is no reason to assume that the deliberation-without-attention effect does not generalize to other types of choices – political, managerial or otherwise. In such cases, it should benefit the individual to think consciously about simple matters and to delegate thinking about more complicated matters to the unconscious.</p>
+                    
+                    <p><strong>H</strong>&nbsp;&nbsp;This radical inference contradicts standard political and managerial theory but doubtless comforts those in politics and management who always find the simple solution to the complex problem an attractive proposition. Indeed, one suspects many of our political leaders already embrace this wisdom.</p>
+                    
+                    <p><strong>I</strong>&nbsp;&nbsp;Still, it is there, in the realms of society and its governance, that the more problematic implications of deliberation without attention begin to surface. Variables that can be neatly circumscribed in decisions about shopping lose clarity in a world of group dynamics, social interaction, history and politics. Two pertinent questions arise. First, what counts as a complex decision? And second, what counts as a good outcome?</p>
+                    
+                    <p><strong>J</strong>&nbsp;&nbsp;As social psychologist Kurt Lewin (1890 – 1947) noted, a 'good' decision that nobody respects is actually bad, his classic studies of decision making showed that participating in deliberative processes makes people more likely to abide by the results. The issue here is that when political decision-makers make mistakes, it is their politics, or the relationship between their politics and our own, rather than psychology which is at fault.</p>
+                    
+                    <p><strong>K</strong>&nbsp;&nbsp;Gladwell's book and Dijksterhuis's paper are invaluable in pointing out the limitations of the conventional wisdom that decision quality rises with decision-making complexity. But this work still tempts us to believe that decision making is simply a matter of psychology, rather than also a question of politics, ideology and group membership. Avoiding social considerations in a search for general appeal rather than toward it.</p>
+                </div>
+            </div>
+            
+            <div class="resizer" id="resizer"></div>
+            
+            <div class="questions-panel" id="questions-panel">
+                <!-- PART 1 QUESTIONS -->
+                <div id="questions-1" class="question-set">
+                    <div class="questions-container">
+                        <!-- Questions 1-7: Matching Headings -->
+                        <div class="question" data-q-start="1" data-q-end="7">
+                            <div class="question-prompt">
+                                <p><strong>Questions 1–7</strong></p>
+                                <p>Reading Passage 1 has seven paragraphs, <strong>A–G</strong>.</p>
+                                <p>Choose the most suitable heading for paragraphs A-G from the list of headings below.</p>
+                                <p>Write the appropriate number, <strong>i–x</strong>, in boxes 1-7 on your answer sheet.</p>
+                                <p><strong>List of Headings</strong></p>
+                                <div class="drag-options-container" data-dnd-group="p1-headings">
+                                    <span class="drag-item" draggable="true" data-dnd-group="p1-headings" data-value="i">i. General points of agreements and disagreements of researchers</span>
+                                    <span class="drag-item" draggable="true" data-dnd-group="p1-headings" data-value="ii">ii. How much children really know about food</span>
+                                    <span class="drag-item" draggable="true" data-dnd-group="p1-headings" data-value="iii">iii. Need to take action</span>
+                                    <span class="drag-item" draggable="true" data-dnd-group="p1-headings" data-value="iv">iv. Advertising effects of the "Big Four"</span>
+                                    <span class="drag-item" draggable="true" data-dnd-group="p1-headings" data-value="v">v. Connection of advertising and children's weight problems</span>
+                                    <span class="drag-item" draggable="true" data-dnd-group="p1-headings" data-value="vi">vi. Evidence that advertising affects what children buy to eat</span>
+                                    <span class="drag-item" draggable="true" data-dnd-group="p1-headings" data-value="vii">vii. How parents influence children's eating habits</span>
+                                    <span class="drag-item" draggable="true" data-dnd-group="p1-headings" data-value="viii">viii. Advertising's focus on unhealthy options</span>
+                                    <span class="drag-item" draggable="true" data-dnd-group="p1-headings" data-value="ix">ix. Children often buy what they want</span>
+                                    <span class="drag-item" draggable="true" data-dnd-group="p1-headings" data-value="x">x. Underestimating the effects advertising has on children</span>
+                                </div>
+                            </div>
+                            
+                            <div class="matching-form-container">
+                                <div class="matching-form-row">
+                                    <span class="matching-form-label"><strong>1. Paragraph A</strong></span>
+                                    <div class="drop-zone" data-q-start="1" data-dnd-group="p1-headings">
+                                        1
+                                    </div>
+                                </div>
+                                <div class="matching-form-row">
+                                    <span class="matching-form-label"><strong>2. Paragraph B</strong></span>
+                                    <div class="drop-zone" data-q-start="2" data-dnd-group="p1-headings">
+                                        2
+                                    </div>
+                                </div>
+                                <div class="matching-form-row">
+                                    <span class="matching-form-label"><strong>3. Paragraph C</strong></span>
+                                    <div class="drop-zone" data-q-start="3" data-dnd-group="p1-headings">
+                                        3
+                                    </div>
+                                </div>
+                                <div class="matching-form-row">
+                                    <span class="matching-form-label"><strong>4. Paragraph D</strong></span>
+                                    <div class="drop-zone" data-q-start="4" data-dnd-group="p1-headings">
+                                        4
+                                    </div>
+                                </div>
+                                <div class="matching-form-row">
+                                    <span class="matching-form-label"><strong>5. Paragraph E</strong></span>
+                                    <div class="drop-zone" data-q-start="5" data-dnd-group="p1-headings">
+                                        5
+                                    </div>
+                                </div>
+                                <div class="matching-form-row">
+                                    <span class="matching-form-label"><strong>6. Paragraph F</strong></span>
+                                    <div class="drop-zone" data-q-start="6" data-dnd-group="p1-headings">
+                                        6
+                                    </div>
+                                </div>
+                                <div class="matching-form-row">
+                                    <span class="matching-form-label"><strong>7. Paragraph G</strong></span>
+                                    <div class="drop-zone" data-q-start="7" data-dnd-group="p1-headings">
+                                        7
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Questions 8-13: Yes/No/Not Given -->
+                        <div class="question" data-q-start="8" data-q-end="13">
+                            <div class="question-prompt">
+                                <p><strong>Questions 8–13</strong></p>
+                                <p>Do the following statements agree with the views of the writer in Reading Passage 1?</p>
+                                <p>In boxes 8-13 on your answer sheet, write</p>
+                                <p><strong>YES</strong> if the statement agrees with the views of the writer</p>
+                                <p><strong>NO</strong> if the statement contradicts with the views of the writer</p>
+                                <p><strong>NOT GIVEN</strong> if it is impossible to say what the writer thinks about this</p>
+                            </div>
+                            
+                            <div class="tf-question" data-q-start="8" data-q-end="8">
+                                <div class="tf-question-line">
+                                    <span class="tf-question-number">8</span>
+                                    <span class="tf-question-text">There is little difference between the healthy diet recommended by advisors and diet prompted in food advertisements.</span>
+                                    <select name="q8" id="q8" class="answer-select">
+                                        <option value="">Choose...</option>
+                                        <option value="YES">YES</option>
+                                        <option value="NO">NO</option>
+                                        <option value="NOT GIVEN">NOT GIVEN</option>
+                                    </select>
+                                </div>
+                            </div>
+                            
+                            <div class="tf-question" data-q-start="9" data-q-end="9">
+                                <div class="tf-question-line">
+                                    <span class="tf-question-number">9</span>
+                                    <span class="tf-question-text">TV advertising has successfully taught children nutritional knowledge about vitamins and others.</span>
+                                    <select name="q9" id="q9" class="answer-select">
+                                        <option value="">Choose...</option>
+                                        <option value="YES">YES</option>
+                                        <option value="NO">NO</option>
+                                        <option value="NOT GIVEN">NOT GIVEN</option>
+                                    </select>
+                                </div>
+                            </div>
+                            
+                            <div class="tf-question" data-q-start="10" data-q-end="10">
+                                <div class="tf-question-line">
+                                    <span class="tf-question-number">10</span>
+                                    <span class="tf-question-text">It is hard to decide which aspect accompanied by TV viewing has caused weight problems or other detrimental effects on children.</span>
+                                    <select name="q10" id="q10" class="answer-select">
+                                        <option value="">Choose...</option>
+                                        <option value="YES">YES</option>
+                                        <option value="NO">NO</option>
+                                        <option value="NOT GIVEN">NOT GIVEN</option>
+                                    </select>
+                                </div>
+                            </div>
+                            
+                            <div class="tf-question" data-q-start="11" data-q-end="11">
+                                <div class="tf-question-line">
+                                    <span class="tf-question-number">11</span>
+                                    <span class="tf-question-text">The preference of food for children is affected by their age and gender.</span>
+                                    <select name="q11" id="q11" class="answer-select">
+                                        <option value="">Choose...</option>
+                                        <option value="YES">YES</option>
+                                        <option value="NO">NO</option>
+                                        <option value="NOT GIVEN">NOT GIVEN</option>
+                                    </select>
+                                </div>
+                            </div>
+                            
+                            <div class="tf-question" data-q-start="12" data-q-end="12">
+                                <div class="tf-question-line">
+                                    <span class="tf-question-number">12</span>
+                                    <span class="tf-question-text">The investigation primarily for food promotion on TV advertising tend to be partial and incomplete.</span>
+                                    <select name="q12" id="q12" class="answer-select">
+                                        <option value="">Choose...</option>
+                                        <option value="YES">YES</option>
+                                        <option value="NO">NO</option>
+                                        <option value="NOT GIVEN">NOT GIVEN</option>
+                                    </select>
+                                </div>
+                            </div>
+                            
+                            <div class="tf-question" data-q-start="13" data-q-end="13">
+                                <div class="tf-question-line">
+                                    <span class="tf-question-number">13</span>
+                                    <span class="tf-question-text">Wealthy parents tend to buy more "sensible food" for their children.</span>
+                                    <select name="q13" id="q13" class="answer-select">
+                                        <option value="">Choose...</option>
+                                        <option value="YES">YES</option>
+                                        <option value="NO">NO</option>
+                                        <option value="NOT GIVEN">NOT GIVEN</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- PART 2 QUESTIONS -->
+                <div id="questions-2" class="question-set hidden">
+                    <div class="questions-container">
+                        <!-- Questions 14-18: Matching -->
+                        <div class="question" data-q-start="14" data-q-end="18">
+                            <div class="question-prompt">
+                                <p><strong>Questions 14–18</strong></p>
+                                <p>Use the information in the passage to match the category of each navigation method (listed A-C) with the correct statement.</p>
+                                <p>Write the appropriate letters <strong>A-C</strong> in boxes 14-18 on your answer sheet.</p>
+                                <p><strong>NB</strong> You may use any letter more than once</p>
+                                <p><strong>A</strong> Guidance</p>
+                                <p><strong>B</strong> Path integration</p>
+                                <p><strong>C</strong> Route following</p>
+                            </div>
+                            
+                            <div class="tf-question" data-q-start="14" data-q-end="14">
+                                <div class="tf-question-line">
+                                    <span class="tf-question-number">14</span>
+                                    <span class="tf-question-text">Using basic direction from starting point and light intensity to move on.</span>
+                                    <select name="q14" id="q14" class="answer-select">
+                                        <option value="">Choose...</option>
+                                        <option value="A">A</option>
+                                        <option value="B">B</option>
+                                        <option value="C">C</option>
+                                    </select>
+                                </div>
+                            </div>
+                            
+                            <div class="tf-question" data-q-start="15" data-q-end="15">
+                                <div class="tf-question-line">
+                                    <span class="tf-question-number">15</span>
+                                    <span class="tf-question-text">Using a combination of place and direction heading for the destination.</span>
+                                    <select name="q15" id="q15" class="answer-select">
+                                        <option value="">Choose...</option>
+                                        <option value="A">A</option>
+                                        <option value="B">B</option>
+                                        <option value="C">C</option>
+                                    </select>
+                                </div>
+                            </div>
+                            
+                            <div class="tf-question" data-q-start="16" data-q-end="16">
+                                <div class="tf-question-line">
+                                    <span class="tf-question-number">16</span>
+                                    <span class="tf-question-text">Using an iconic building near your destination as orientation.</span>
+                                    <select name="q16" id="q16" class="answer-select">
+                                        <option value="">Choose...</option>
+                                        <option value="A">A</option>
+                                        <option value="B">B</option>
+                                        <option value="C">C</option>
+                                    </select>
+                                </div>
+                            </div>
+                            
+                            <div class="tf-question" data-q-start="17" data-q-end="17">
+                                <div class="tf-question-line">
+                                    <span class="tf-question-number">17</span>
+                                    <span class="tf-question-text">Using a retrace method from a known place if a mistake happens.</span>
+                                    <select name="q17" id="q17" class="answer-select">
+                                        <option value="">Choose...</option>
+                                        <option value="A">A</option>
+                                        <option value="B">B</option>
+                                        <option value="C">C</option>
+                                    </select>
+                                </div>
+                            </div>
+                            
+                            <div class="tf-question" data-q-start="18" data-q-end="18">
+                                <div class="tf-question-line">
+                                    <span class="tf-question-number">18</span>
+                                    <span class="tf-question-text">Using a passing spot as reference for a new integration.</span>
+                                    <select name="q18" id="q18" class="answer-select">
+                                        <option value="">Choose...</option>
+                                        <option value="A">A</option>
+                                        <option value="B">B</option>
+                                        <option value="C">C</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Questions 19-21: Multiple Choice -->
+                        <div class="question" data-q-start="19" data-q-end="21">
+                            <div class="question-prompt">
+                                <p><strong>Questions 19–21</strong></p>
+                                <p>Choose the correct letter, <strong>A, B, C or D</strong>.</p>
+                                <p>Write your answers in boxes 19-21 on your answer sheet.</p>
+                            </div>
+                            
+                            <div class="multi-choice-question" data-q-start="19" data-q-end="19">
+                                <div class="question-prompt">
+                                    <p><strong>19.</strong> What does the ant of Cataglyphis respond if it has been taken to another location according to the passage?</p>
+                                </div>
+                                <div class="multi-choice-option"><label><input type="radio" name="q19" value="A"> Changes the orientation sensors improving</label></div>
+                                <div class="multi-choice-option"><label><input type="radio" name="q19" value="B"> Releases biological scent for help from others</label></div>
+                                <div class="multi-choice-option"><label><input type="radio" name="q19" value="C"> Continues to move by the original orientation</label></div>
+                                <div class="multi-choice-option"><label><input type="radio" name="q19" value="D"> Totally gets lost once disturbed</label></div>
+                            </div>
+                            
+                            <div class="multi-choice-question" data-q-start="20" data-q-end="20">
+                                <div class="question-prompt">
+                                    <p><strong>20.</strong> Which of the followings is true about "cognitive map" in this passage?</p>
+                                </div>
+                                <div class="multi-choice-option"><label><input type="radio" name="q20" value="A"> There is no obvious difference contrast by real map</label></div>
+                                <div class="multi-choice-option"><label><input type="radio" name="q20" value="B"> It exists in our head and is always correct</label></div>
+                                <div class="multi-choice-option"><label><input type="radio" name="q20" value="C"> It only exists under some cultures</label></div>
+                                <div class="multi-choice-option"><label><input type="radio" name="q20" value="D"> It was managed by brain memory</label></div>
+                            </div>
+                            
+                            <div class="multi-choice-question" data-q-start="21" data-q-end="21">
+                                <div class="question-prompt">
+                                    <p><strong>21.</strong> Which of the following description of way findings correctly reflects the function of the cognitive map?</p>
+                                </div>
+                                <div class="multi-choice-option"><label><input type="radio" name="q21" value="A"> It visualizes a virtual route in a large scope</label></div>
+                                <div class="multi-choice-option"><label><input type="radio" name="q21" value="B"> It reproduces an exact detail of every landmark</label></div>
+                                <div class="multi-choice-option"><label><input type="radio" name="q21" value="C"> Observation plays a more important role</label></div>
+                                <div class="multi-choice-option"><label><input type="radio" name="q21" value="D"> Store or supermarket is a must in the map</label></div>
+                            </div>
+                        </div>
+                        
+                        <!-- Questions 22-26: True/False/Not Given -->
+                        <div class="question" data-q-start="22" data-q-end="26">
+                            <div class="question-prompt">
+                                <p><strong>Questions 22–26</strong></p>
+                                <p>Do the following statements agree with the information given in Reading Passage 2?</p>
+                                <p>In boxes 22-26 on your answer sheet write</p>
+                                <p><strong>TRUE</strong> if the statement is true</p>
+                                <p><strong>FALSE</strong> if the statement is false</p>
+                                <p><strong>NOT GIVEN</strong> if the information is not given in the passage</p>
+                            </div>
+                            
+                            <div class="tf-question" data-q-start="22" data-q-end="22">
+                                <div class="tf-question-line">
+                                    <span class="tf-question-number">22</span>
+                                    <span class="tf-question-text">Biological navigation has a state of flexibility.</span>
+                                    <select name="q22" id="q22" class="answer-select">
+                                        <option value="">Choose...</option>
+                                        <option value="TRUE">TRUE</option>
+                                        <option value="FALSE">FALSE</option>
+                                        <option value="NOT GIVEN">NOT GIVEN</option>
+                                    </select>
+                                </div>
+                            </div>
+                            
+                            <div class="tf-question" data-q-start="23" data-q-end="23">
+                                <div class="tf-question-line">
+                                    <span class="tf-question-number">23</span>
+                                    <span class="tf-question-text">You will always receive a good reaction when you ask direction.</span>
+                                    <select name="q23" id="q23" class="answer-select">
+                                        <option value="">Choose...</option>
+                                        <option value="TRUE">TRUE</option>
+                                        <option value="FALSE">FALSE</option>
+                                        <option value="NOT GIVEN">NOT GIVEN</option>
+                                    </select>
+                                </div>
+                            </div>
+                            
+                            <div class="tf-question" data-q-start="24" data-q-end="24">
+                                <div class="tf-question-line">
+                                    <span class="tf-question-number">24</span>
+                                    <span class="tf-question-text">When someone follows a route, he or she collects comprehensive perceptional information in mind on the way.</span>
+                                    <select name="q24" id="q24" class="answer-select">
+                                        <option value="">Choose...</option>
+                                        <option value="TRUE">TRUE</option>
+                                        <option value="FALSE">FALSE</option>
+                                        <option value="NOT GIVEN">NOT GIVEN</option>
+                                    </select>
+                                </div>
+                            </div>
+                            
+                            <div class="tf-question" data-q-start="25" data-q-end="25">
+                                <div class="tf-question-line">
+                                    <span class="tf-question-number">25</span>
+                                    <span class="tf-question-text">Path integration requires more thought from brain compared with route-following.</span>
+                                    <select name="q25" id="q25" class="answer-select">
+                                        <option value="">Choose...</option>
+                                        <option value="TRUE">TRUE</option>
+                                        <option value="FALSE">FALSE</option>
+                                        <option value="NOT GIVEN">NOT GIVEN</option>
+                                    </select>
+                                </div>
+                            </div>
+                            
+                            <div class="tf-question" data-q-start="26" data-q-end="26">
+                                <div class="tf-question-line">
+                                    <span class="tf-question-number">26</span>
+                                    <span class="tf-question-text">In a familiar surrounding, an exact map of where you are will automatically emerge in your head.</span>
+                                    <select name="q26" id="q26" class="answer-select">
+                                        <option value="">Choose...</option>
+                                        <option value="TRUE">TRUE</option>
+                                        <option value="FALSE">FALSE</option>
+                                        <option value="NOT GIVEN">NOT GIVEN</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- PART 3 QUESTIONS -->
+                <div id="questions-3" class="question-set hidden">
+                    <div class="questions-container">
+                        <!-- Questions 27-31: Multiple Choice -->
+                        <div class="question" data-q-start="27" data-q-end="31">
+                            <div class="question-prompt">
+                                <p><strong>Questions 27–31</strong></p>
+                                <p>Choose the correct letter, <strong>A, B, C or D</strong>.</p>
+                                <p>Write your answers in boxes 27-31 on your answer sheet.</p>
+                            </div>
+                            
+                            <div class="multi-choice-question" data-q-start="27" data-q-end="27">
+                                <div class="question-prompt">
+                                    <p><strong>27.</strong> The legend of the Gordian knot is used to illustrate the idea that</p>
+                                </div>
+                                <div class="multi-choice-option"><label><input type="radio" name="q27" value="A"> anyone can solve a difficult problem</label></div>
+                                <div class="multi-choice-option"><label><input type="radio" name="q27" value="B"> difficult problems can have easy solutions</label></div>
+                                <div class="multi-choice-option"><label><input type="radio" name="q27" value="C"> the solution to any problem requires a lot of thought</label></div>
+                                <div class="multi-choice-option"><label><input type="radio" name="q27" value="D"> people who can solve complex problems make good leaders</label></div>
+                            </div>
+                            
+                            <div class="multi-choice-question" data-q-start="28" data-q-end="28">
+                                <div class="question-prompt">
+                                    <p><strong>28.</strong> The 'conflict model' of decision making proposed by Janis and Mann requires that</p>
+                                </div>
+                                <div class="multi-choice-option"><label><input type="radio" name="q28" value="A"> opposing political parties be involved</label></div>
+                                <div class="multi-choice-option"><label><input type="radio" name="q28" value="B"> all-important facts be considered</label></div>
+                                <div class="multi-choice-option"><label><input type="radio" name="q28" value="C"> people be encouraged to have different ideas</label></div>
+                                <div class="multi-choice-option"><label><input type="radio" name="q28" value="D"> previous similar situations be thoroughly examined</label></div>
+                            </div>
+                            
+                            <div class="multi-choice-question" data-q-start="29" data-q-end="29">
+                                <div class="question-prompt">
+                                    <p><strong>29.</strong> According to recent thinking reinforced by Malcolm Gladwell, the best decisions</p>
+                                </div>
+                                <div class="multi-choice-option"><label><input type="radio" name="q29" value="A"> involve consultation</label></div>
+                                <div class="multi-choice-option"><label><input type="radio" name="q29" value="B"> involve complex thought</label></div>
+                                <div class="multi-choice-option"><label><input type="radio" name="q29" value="C"> are made very quickly</label></div>
+                                <div class="multi-choice-option"><label><input type="radio" name="q29" value="D"> are the most attractive option</label></div>
+                            </div>
+                            
+                            <div class="multi-choice-question" data-q-start="30" data-q-end="30">
+                                <div class="question-prompt">
+                                    <p><strong>30.</strong> Dijksterhuis and his colleagues claim in their article that</p>
+                                </div>
+                                <div class="multi-choice-option"><label><input type="radio" name="q30" value="A"> our cognitive resources improve as tasks become more complex</label></div>
+                                <div class="multi-choice-option"><label><input type="radio" name="q30" value="B"> conscious decision making is negatively affected by task complexity</label></div>
+                                <div class="multi-choice-option"><label><input type="radio" name="q30" value="C"> unconscious decision making is a popular approach</label></div>
+                                <div class="multi-choice-option"><label><input type="radio" name="q30" value="D"> deliberation without attention defines the way we make decisions</label></div>
+                            </div>
+                            
+                            <div class="multi-choice-question" data-q-start="31" data-q-end="31">
+                                <div class="question-prompt">
+                                    <p><strong>31.</strong> Dijksterhuis's car study found that, in simple tasks, participants</p>
+                                </div>
+                                <div class="multi-choice-option"><label><input type="radio" name="q31" value="A"> were involved in lengthy discussions</label></div>
+                                <div class="multi-choice-option"><label><input type="radio" name="q31" value="B"> found it impossible to make decisions quickly</label></div>
+                                <div class="multi-choice-option"><label><input type="radio" name="q31" value="C"> were unable to differentiate between the options</label></div>
+                                <div class="multi-choice-option"><label><input type="radio" name="q31" value="D"> could make a better choice when allowed to concentrate</label></div>
+                            </div>
+                        </div>
+                        
+                        <!-- Questions 32-35: Summary Completion -->
+                        <div class="question" data-q-start="32" data-q-end="35">
+                            <div class="question-prompt">
+                                <p><strong>Questions 32–35</strong></p>
+                                <p>Complete the summary using the list of words A-I below.</p>
+                                <p>Write the correct letter, <strong>A-I</strong>, in boxes 32-35 on your answer sheet.</p>
+                                <p><strong>Dijksterhuis's shopping study and its conclusions</strong></p>
+                            </div>
+                            
+                            <div class="summary-text">
+                                <p>Using clothing and furniture as examples of different types of purchases, Dijksterhuis questioned shoppers on their satisfaction with what they had bought. People who spent <input type="text" class="answer-input" id="q32" placeholder="32" style="width: 80px;"> time buying simple clothing items were more satisfied than those who had not. However, when buying furniture, shoppers made <input type="text" class="answer-input" id="q33" placeholder="33" style="width: 80px;"> purchasing decisions if they didn't think too hard. From this, the researchers concluded that in other choices, perhaps more important than shopping, <input type="text" class="answer-input" id="q34" placeholder="34" style="width: 80px;"> decisions are best made by the unconscious. The writer comments that Dijksterhuis's finding is apparently <input type="text" class="answer-input" id="q35" placeholder="35" style="width: 100px;"> but nonetheless true.</p>
+                            </div>
+                            
+                            <div class="drag-options-container" data-dnd-group="p3-summary">
+                                <span class="drag-item" draggable="true" data-dnd-group="p3-summary" data-value="A">A. more</span>
+                                <span class="drag-item" draggable="true" data-dnd-group="p3-summary" data-value="B">B. counterintuitive</span>
+                                <span class="drag-item" draggable="true" data-dnd-group="p3-summary" data-value="C">C. simple</span>
+                                <span class="drag-item" draggable="true" data-dnd-group="p3-summary" data-value="D">D. better</span>
+                                <span class="drag-item" draggable="true" data-dnd-group="p3-summary" data-value="E">E. conscious</span>
+                                <span class="drag-item" draggable="true" data-dnd-group="p3-summary" data-value="F">F. obvious</span>
+                                <span class="drag-item" draggable="true" data-dnd-group="p3-summary" data-value="G">G. complex</span>
+                                <span class="drag-item" draggable="true" data-dnd-group="p3-summary" data-value="H">H. less</span>
+                                <span class="drag-item" draggable="true" data-dnd-group="p3-summary" data-value="I">I. worse</span>
+                            </div>
+                        </div>
+                        
+                        <!-- Questions 36-40: Yes/No/Not Given -->
+                        <div class="question" data-q-start="36" data-q-end="40">
+                            <div class="question-prompt">
+                                <p><strong>Questions 36–40</strong></p>
+                                <p>Do the following statements agree with the views of the writer in Reading Passage 3?</p>
+                                <p>In boxes 36-40 on your answer sheet, write</p>
+                                <p><strong>YES</strong> if the statement agrees with the views of the writer</p>
+                                <p><strong>NO</strong> if the statement contradicts the views of the writer</p>
+                                <p><strong>NOT GIVEN</strong> if it is impossible to say what the writer thinks about this</p>
+                            </div>
+                            
+                            <div class="tf-question" data-q-start="36" data-q-end="36">
+                                <div class="tf-question-line">
+                                    <span class="tf-question-number">36</span>
+                                    <span class="tf-question-text">Dijksterhuis's findings agree with existing political and management theories.</span>
+                                    <select name="q36" id="q36" class="answer-select">
+                                        <option value="">Choose...</option>
+                                        <option value="YES">YES</option>
+                                        <option value="NO">NO</option>
+                                        <option value="NOT GIVEN">NOT GIVEN</option>
+                                    </select>
+                                </div>
+                            </div>
+                            
+                            <div class="tf-question" data-q-start="37" data-q-end="37">
+                                <div class="tf-question-line">
+                                    <span class="tf-question-number">37</span>
+                                    <span class="tf-question-text">Some political leaders seem to use deliberation without attention when making complex decisions.</span>
+                                    <select name="q37" id="q37" class="answer-select">
+                                        <option value="">Choose...</option>
+                                        <option value="YES">YES</option>
+                                        <option value="NO">NO</option>
+                                        <option value="NOT GIVEN">NOT GIVEN</option>
+                                    </select>
+                                </div>
+                            </div>
+                            
+                            <div class="tf-question" data-q-start="38" data-q-end="38">
+                                <div class="tf-question-line">
+                                    <span class="tf-question-number">38</span>
+                                    <span class="tf-question-text">All political decisions are complex ones.</span>
+                                    <select name="q38" id="q38" class="answer-select">
+                                        <option value="">Choose...</option>
+                                        <option value="YES">YES</option>
+                                        <option value="NO">NO</option>
+                                        <option value="NOT GIVEN">NOT GIVEN</option>
+                                    </select>
+                                </div>
+                            </div>
+                            
+                            <div class="tf-question" data-q-start="39" data-q-end="39">
+                                <div class="tf-question-line">
+                                    <span class="tf-question-number">39</span>
+                                    <span class="tf-question-text">We judge political errors according to our own political beliefs.</span>
+                                    <select name="q39" id="q39" class="answer-select">
+                                        <option value="">Choose...</option>
+                                        <option value="YES">YES</option>
+                                        <option value="NO">NO</option>
+                                        <option value="NOT GIVEN">NOT GIVEN</option>
+                                    </select>
+                                </div>
+                            </div>
+                            
+                            <div class="tf-question" data-q-start="40" data-q-end="40">
+                                <div class="tf-question-line">
+                                    <span class="tf-question-number">40</span>
+                                    <span class="tf-question-text">Social considerations must be taken into account for any examination of decision making to prove useful.</span>
+                                    <select name="q40" id="q40" class="answer-select">
+                                        <option value="">Choose...</option>
+                                        <option value="YES">YES</option>
+                                        <option value="NO">NO</option>
+                                        <option value="NOT GIVEN">NOT GIVEN</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navigation Arrows -->
+    <div class="nav-arrows">
+        <button class="nav-arrow prev" onclick="previousQuestion()" id="prevBtn" aria-label="Previous question">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M15 18l-6-6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+        </button>
+        <button class="nav-arrow next" onclick="nextQuestion()" id="nextBtn" aria-label="Next question">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M9 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+        </button>
+    </div>
+
+    <!-- Bottom Navigation -->
+    <nav class="nav-row perScorableItem" aria-label="Questions">
+        <div class="footer__questionWrapper___1tZ46 multiple" role="tablist">
+            <button role="tab" class="footer__questionNo___3WNct" onclick="switchToPart(1)">
+                <span>
+                    <span aria-hidden="true" class="section-prefix">Part </span>
+                    <span class="sectionNr" aria-hidden="true">1</span>
+                    <span class="attemptedCount" aria-hidden="true">0 of 13</span>
+                </span>
+            </button>
+            <div class="footer__subquestionWrapper___9GgoP">
+                <button class="subQuestion scorable-item" onclick="goToQuestion(1)"><span class="sr-only">Question 1</span><span aria-hidden="true">1</span></button>
+                <button class="subQuestion scorable-item" onclick="goToQuestion(2)"><span class="sr-only">Question 2</span><span aria-hidden="true">2</span></button>
+                <button class="subQuestion scorable-item" onclick="goToQuestion(3)"><span class="sr-only">Question 3</span><span aria-hidden="true">3</span></button>
+                <button class="subQuestion scorable-item" onclick="goToQuestion(4)"><span class="sr-only">Question 4</span><span aria-hidden="true">4</span></button>
+                <button class="subQuestion scorable-item" onclick="goToQuestion(5)"><span class="sr-only">Question 5</span><span aria-hidden="true">5</span></button>
+                <button class="subQuestion scorable-item" onclick="goToQuestion(6)"><span class="sr-only">Question 6</span><span aria-hidden="true">6</span></button>
+                <button class="subQuestion scorable-item" onclick="goToQuestion(7)"><span class="sr-only">Question 7</span><span aria-hidden="true">7</span></button>
+                <button class="subQuestion scorable-item" onclick="goToQuestion(8)"><span class="sr-only">Question 8</span><span aria-hidden="true">8</span></button>
+                <button class="subQuestion scorable-item" onclick="goToQuestion(9)"><span class="sr-only">Question 9</span><span aria-hidden="true">9</span></button>
+                <button class="subQuestion scorable-item" onclick="goToQuestion(10)"><span class="sr-only">Question 10</span><span aria-hidden="true">10</span></button>
+                <button class="subQuestion scorable-item" onclick="goToQuestion(11)"><span class="sr-only">Question 11</span><span aria-hidden="true">11</span></button>
+                <button class="subQuestion scorable-item" onclick="goToQuestion(12)"><span class="sr-only">Question 12</span><span aria-hidden="true">12</span></button>
+                <button class="subQuestion scorable-item" onclick="goToQuestion(13)"><span class="sr-only">Question 13</span><span aria-hidden="true">13</span></button>
+            </div>
+        </div>
+        
+        <div class="footer__questionWrapper___1tZ46 selected multiple" role="tablist">
+            <button role="tab" class="footer__questionNo___3WNct" onclick="switchToPart(2)">
+                <span>
+                    <span aria-hidden="true" class="section-prefix">Part </span>
+                    <span class="sectionNr" aria-hidden="true">2</span>
+                    <span class="attemptedCount" aria-hidden="true">0 of 13</span>
+                </span>
+            </button>
+            <div class="footer__subquestionWrapper___9GgoP">
+                <button class="subQuestion scorable-item" onclick="goToQuestion(14)"><span class="sr-only">Question 14</span><span aria-hidden="true">14</span></button>
+                <button class="subQuestion scorable-item" onclick="goToQuestion(15)"><span class="sr-only">Question 15</span><span aria-hidden="true">15</span></button>
+                <button class="subQuestion scorable-item" onclick="goToQuestion(16)"><span class="sr-only">Question 16</span><span aria-hidden="true">16</span></button>
+                <button class="subQuestion scorable-item" onclick="goToQuestion(17)"><span class="sr-only">Question 17</span><span aria-hidden="true">17</span></button>
+                <button class="subQuestion scorable-item" onclick="goToQuestion(18)"><span class="sr-only">Question 18</span><span aria-hidden="true">18</span></button>
+                <button class="subQuestion scorable-item" onclick="goToQuestion(19)"><span class="sr-only">Question 19</span><span aria-hidden="true">19</span></button>
+                <button class="subQuestion scorable-item" onclick="goToQuestion(20)"><span class="sr-only">Question 20</span><span aria-hidden="true">20</span></button>
+                <button class="subQuestion scorable-item" onclick="goToQuestion(21)"><span class="sr-only">Question 21</span><span aria-hidden="true">21</span></button>
+                <button class="subQuestion scorable-item" onclick="goToQuestion(22)"><span class="sr-only">Question 22</span><span aria-hidden="true">22</span></button>
+                <button class="subQuestion scorable-item" onclick="goToQuestion(23)"><span class="sr-only">Question 23</span><span aria-hidden="true">23</span></button>
+                <button class="subQuestion scorable-item" onclick="goToQuestion(24)"><span class="sr-only">Question 24</span><span aria-hidden="true">24</span></button>
+                <button class="subQuestion scorable-item" onclick="goToQuestion(25)"><span class="sr-only">Question 25</span><span aria-hidden="true">25</span></button>
+                <button class="subQuestion scorable-item" onclick="goToQuestion(26)"><span class="sr-only">Question 26</span><span aria-hidden="true">26</span></button>
+            </div>
+        </div>
+        
+        <div class="footer__questionWrapper___1tZ46 multiple" role="tablist">
+            <button role="tab" class="footer__questionNo___3WNct" onclick="switchToPart(3)">
+                <span>
+                    <span aria-hidden="true" class="section-prefix">Part </span>
+                    <span class="sectionNr" aria-hidden="true">3</span>
+                    <span class="attemptedCount" aria-hidden="true">0 of 14</span>
+                </span>
+            </button>
+            <div class="footer__subquestionWrapper___9GgoP">
+                <button class="subQuestion scorable-item" onclick="goToQuestion(27)"><span class="sr-only">Question 27</span><span aria-hidden="true">27</span></button>
+                <button class="subQuestion scorable-item" onclick="goToQuestion(28)"><span class="sr-only">Question 28</span><span aria-hidden="true">28</span></button>
+                <button class="subQuestion scorable-item" onclick="goToQuestion(29)"><span class="sr-only">Question 29</span><span aria-hidden="true">29</span></button>
+                <button class="subQuestion scorable-item" onclick="goToQuestion(30)"><span class="sr-only">Question 30</span><span aria-hidden="true">30</span></button>
+                <button class="subQuestion scorable-item" onclick="goToQuestion(31)"><span class="sr-only">Question 31</span><span aria-hidden="true">31</span></button>
+                <button class="subQuestion scorable-item" onclick="goToQuestion(32)"><span class="sr-only">Question 32</span><span aria-hidden="true">32</span></button>
+                <button class="subQuestion scorable-item" onclick="goToQuestion(33)"><span class="sr-only">Question 33</span><span aria-hidden="true">33</span></button>
+                <button class="subQuestion scorable-item" onclick="goToQuestion(34)"><span class="sr-only">Question 34</span><span aria-hidden="true">34</span></button>
+                <button class="subQuestion scorable-item" onclick="goToQuestion(35)"><span class="sr-only">Question 35</span><span aria-hidden="true">35</span></button>
+                <button class="subQuestion scorable-item" onclick="goToQuestion(36)"><span class="sr-only">Question 36</span><span aria-hidden="true">36</span></button>
+                <button class="subQuestion scorable-item" onclick="goToQuestion(37)"><span class="sr-only">Question 37</span><span aria-hidden="true">37</span></button>
+                <button class="subQuestion scorable-item" onclick="goToQuestion(38)"><span class="sr-only">Question 38</span><span aria-hidden="true">38</span></button>
+                <button class="subQuestion scorable-item" onclick="goToQuestion(39)"><span class="sr-only">Question 39</span><span aria-hidden="true">39</span></button>
+                <button class="subQuestion scorable-item" onclick="goToQuestion(40)"><span class="sr-only">Question 40</span><span aria-hidden="true">40</span></button>
+            </div>
+        </div>
+        
+        <button id="deliver-button" aria-label="Review your answers" class="footer__deliverButton___3FM07">
+            <span>Check Answers</span>
+        </button>
+    </nav>
+
+    <!-- Context Menu -->
+    <div id="contextMenu" class="context-menu">
+        <div id="menu-highlight" class="context-menu-item" onclick="highlightText()">
+            Highlight
+        </div>
+        <div id="menu-note" class="context-menu-item" onclick="addNote()">
+            Note
+        </div>
+        <div id="menu-clear" class="context-menu-item" onclick="clearHighlight()">
+            Clear
+        </div>
+        <div id="menu-clear-all" class="context-menu-item" onclick="clearAllHighlights()">
+            Clear All
+        </div>
+    </div>
+
+    <!-- Results Modal -->
+    <div id="results-modal" class="modal-overlay hidden">
+        <div class="modal-content">
+            <button class="modal-close-btn" onclick="closeResultsModal()">&times;</button>
+            <h2>Results</h2>
+            <div class="results-summary">
+                <p>Score: <span id="results-score"></span> / 40</p>
+                <p>IELTS Band: <span id="results-band"></span></p>
+            </div>
+            <div id="results-details" class="results-details-container">
+                <!-- Results for each question will be injected here -->
+            </div>
+        </div>
+    </div>
+
+    <script>
+    document.addEventListener('DOMContentLoaded', () => {
+        // --- STATE VARIABLES ---
+        let currentPassage = 1;
+        let currentQuestion = 1;
+        let selectedRange = null;
+        let timeInSeconds = 3600;
+        let timerInterval;
+        let draggedItem = null;
+        let activeQuestionElement = null;
+
+        // --- DOM ELEMENTS ---
+        const timerDisplay = document.querySelector('.timer-display');
+        const timerToggleButton = document.getElementById('timer-toggle-btn');
+        const timerResetButton = document.getElementById('timer-reset-btn');
+        const deliverButton = document.getElementById('deliver-button');
+        const resizer = document.getElementById('resizer');
+        const passagePanel = document.getElementById('passage-panel');
+        const questionsPanel = document.getElementById('questions-panel');
+        const contextMenu = document.getElementById('contextMenu');
+
+        // --- ANSWERS FOR NEW PASSAGES ---
+        const correctAnswers = {
+            // Part 1 (1-13) - Food advertising on children
+            '1': 'viii',
+            '2': 'ii',
+            '3': 'vi',
+            '4': 'v',
+            '5': 'i',
+            '6': 'x',
+            '7': 'iii',
+            '8': 'NO',
+            '9': 'NO',
+            '10': 'YES',
+            '11': 'NOT GIVEN',
+            '12': 'YES',
+            '13': 'NOT GIVEN',
+            
+            // Part 2 (14-26) - Finding Our Way
+            '14': 'B',
+            '15': 'C',
+            '16': 'A',
+            '17': 'C',
+            '18': 'B',
+            '19': 'C',
+            '20': 'D',
+            '21': 'A',
+            '22': 'TRUE',
+            '23': 'NOT GIVEN',
+            '24': 'TRUE',
+            '25': 'FALSE',
+            '26': 'FALSE',
+            
+            // Part 3 (27-40) - Decision, Decision!
+            '27': 'B',
+            '28': 'B',
+            '29': 'C',
+            '30': 'B',
+            '31': 'D',
+            '32': 'A',
+            '33': 'D',
+            '34': 'G',
+            '35': 'B',
+            '36': 'NO',
+            '37': 'NOT GIVEN',
+            '38': 'NOT GIVEN',
+            '39': 'YES',
+            '40': 'NOT GIVEN'
+        };
+
+        // --- INITIALIZATION ---
+        function initialize() {
+            console.log(`🚀 Initializing application...`);
+            startTimer();
+            initializeDragAndDrop();
+            switchToPart(1);
+            
+            document.body.addEventListener('input', updateAllIndicators);
+            document.body.addEventListener('change', updateAllIndicators);
+            deliverButton.addEventListener('click', checkAnswers);
+            timerToggleButton.addEventListener('click', toggleTimer);
+            timerResetButton.addEventListener('click', resetTimer);
+
+            // Add click listeners to question containers for navigation
+            document.querySelectorAll('[data-q-start]').forEach(el => {
+                el.addEventListener('click', (event) => {
+                    event.stopPropagation();
+                    
+                    const qNum = parseInt(el.dataset.qStart, 10);
+                    const qEnd = parseInt(el.dataset.qEnd, 10);
+                    
+                    if (isNaN(qNum)) return;
+                    
+                    if (qNum === qEnd || el.classList.contains('tf-question')) {
+                        if (currentQuestion !== qNum) {
+                            goToQuestion(qNum);
+                        }
+                    }
+                });
+            });
+            
+            // Add specific click listeners for individual question elements
+            document.querySelectorAll('.tf-question, .summary-text, .matching-form-row, .multi-choice-question').forEach(el => {
+                el.addEventListener('click', (event) => {
+                    event.stopPropagation();
+                    const qNum = parseInt(el.dataset.qStart, 10);
+                    
+                    if (isNaN(qNum)) return;
+                    
+                    if (currentQuestion !== qNum) {
+                        goToQuestion(qNum);
+                    }
+                });
+            });
+            
+            // Add specific click listeners for individual input elements
+            document.querySelectorAll('.answer-input[id^="q"]').forEach(input => {
+                input.addEventListener('click', (event) => {
+                    event.stopPropagation();
+                    const qNum = parseInt(input.id.replace('q', ''), 10);
+                    
+                    if (currentQuestion !== qNum) {
+                        goToQuestion(qNum);
+                    }
+                });
+            });
+
+            resizer.addEventListener('mousedown', initResize, false);
+            initializeContextMenu();
+        }
+
+        // --- CORE TEST LOGIC ---
+
+        function checkAnswers() {
+            // Disable all inputs to prevent changes
+            const allInputs = document.querySelectorAll('input, select, textarea');
+            allInputs.forEach(input => {
+                input.disabled = true;
+            });
+
+            // Disable all drag and drop functionality
+            document.querySelectorAll('.drag-item').forEach(item => {
+                item.setAttribute('draggable', 'false');
+                item.style.cursor = 'not-allowed';
+                item.style.pointerEvents = 'none';
+            });
+
+            document.querySelectorAll('.drop-zone').forEach(zone => {
+                zone.style.pointerEvents = 'none';
+                zone.classList.add('disabled');
+            });
+
+            // Disable submit button
+            deliverButton.disabled = true;
+            deliverButton.style.cursor = 'not-allowed';
+            
+            clearInterval(timerInterval);
+            let score = 0;
+            const totalQuestions = 40;
+            const resultsDetailsContainer = document.getElementById('results-details');
+            resultsDetailsContainer.innerHTML = '';
+
+            // Clear previous markings
+            document.querySelectorAll('.correct, .incorrect, .correct-answer-highlight').forEach(el => {
+                el.classList.remove('correct', 'incorrect', 'correct-answer-highlight');
+            });
+            document.querySelectorAll('.correct-answer-display').forEach(el => el.remove());
+
+            for (let i = 1; i <= totalQuestions; i++) {
+                const questionKey = String(i);
+                const correctAnswer = correctAnswers[questionKey];
+                let userAnswer = '';
+                let isCorrect = false;
+                
+                let userAnswerDisplay = 'Not Answered';
+                const correctAnswerText = correctAnswer;
+
+                // Handle drag and drop questions (Part 1, Q1-7)
+                if (i >= 1 && i <= 7) {
+                    const dropZone = document.querySelector(`.drop-zone[data-q-start="${i}"]`);
+                    const droppedItem = dropZone ? dropZone.querySelector('.drag-item') : null;
+                    
+                    if (droppedItem) {
+                        userAnswer = droppedItem.dataset.value;
+                        userAnswerDisplay = userAnswer;
+                        isCorrect = userAnswer === correctAnswer;
+                        
+                        // Mark the drop zone as correct or incorrect
+                        dropZone.classList.add(isCorrect ? 'correct' : 'incorrect');
+                        
+                        if (isCorrect) {
+                            score++;
+                        }
+                        
+                        // Show correct answer if wrong
+                        if (!isCorrect && correctAnswer) {
+                            const correctAnswerSpan = document.createElement('span');
+                            correctAnswerSpan.className = 'correct-answer-display';
+                            correctAnswerSpan.innerHTML = `&nbsp;➜&nbsp;<span class="correct-answer-highlight">${correctAnswer}</span>`;
+                            dropZone.appendChild(correctAnswerSpan);
+                        }
+                    } else {
+                        // No answer provided
+                        if (dropZone) {
+                            dropZone.classList.add('incorrect');
+                        }
+                        if (correctAnswer) {
+                            const correctAnswerSpan = document.createElement('span');
+                            correctAnswerSpan.className = 'correct-answer-display';
+                            correctAnswerSpan.innerHTML = `&nbsp;➜&nbsp;<span class="correct-answer-highlight">${correctAnswer}</span>`;
+                            dropZone.appendChild(correctAnswerSpan);
+                        }
+                    }
+                }
+                // Handle Yes/No/Not Given and True/False/Not Given questions
+                else if ((i >= 8 && i <= 13) || (i >= 22 && i <= 26) || (i >= 36 && i <= 40)) {
+                    const selectInput = document.getElementById(`q${i}`);
+                    if (selectInput) {
+                        userAnswer = selectInput.value;
+                        userAnswerDisplay = userAnswer || 'Not Answered';
+                        isCorrect = userAnswer === correctAnswer;
+                        
+                        if (isCorrect) {
+                            score++;
+                            selectInput.classList.add('correct');
+                            selectInput.parentElement.classList.add('correct');
+                        } else {
+                            selectInput.classList.add('incorrect');
+                            selectInput.parentElement.classList.add('incorrect');
+                            
+                            // Show correct answer
+                            if (correctAnswer) {
+                                const correctAnswerSpan = document.createElement('span');
+                                correctAnswerSpan.className = 'correct-answer-display';
+                                correctAnswerSpan.innerHTML = `&nbsp;➜&nbsp;<span class="correct-answer-highlight">${correctAnswer}</span>`;
+                                selectInput.parentElement.appendChild(correctAnswerSpan);
+                            }
+                        }
+                    }
+                }
+                // Handle multiple choice questions (Part 2, Q19-21 and Part 3, Q27-31)
+                else if ((i >= 19 && i <= 21) || (i >= 27 && i <= 31)) {
+                    const checkedRadio = document.querySelector(`input[name="q${i}"]:checked`);
+                    
+                    if (checkedRadio) {
+                        userAnswer = checkedRadio.value;
+                        userAnswerDisplay = userAnswer;
+                        isCorrect = userAnswer === correctAnswer;
+                        
+                        const userLabel = checkedRadio.closest('.multi-choice-option');
+                        if (userLabel) {
+                            userLabel.classList.add(isCorrect ? 'correct' : 'incorrect');
+                        }
+                        
+                        if (isCorrect) {
+                            score++;
+                        } else {
+                            // Highlight correct answer
+                            const correctOptionEl = document.querySelector(`input[name="q${i}"][value="${correctAnswer}"]`);
+                            if (correctOptionEl) {
+                                const correctLabel = correctOptionEl.closest('.multi-choice-option');
+                                if (correctLabel) {
+                                    correctLabel.classList.add('correct-answer-highlight');
+                                }
+                            }
+                        }
+                    } else {
+                        userAnswerDisplay = 'Not Answered';
+                        // Highlight correct answer for unanswered questions
+                        const correctOptionEl = document.querySelector(`input[name="q${i}"][value="${correctAnswer}"]`);
+                        if (correctOptionEl) {
+                            const correctLabel = correctOptionEl.closest('.multi-choice-option');
+                            if (correctLabel) {
+                                correctLabel.classList.add('correct-answer-highlight');
+                            }
+                        }
+                    }
+                }
+                // Handle matching questions (Part 2, Q14-18)
+                else if (i >= 14 && i <= 18) {
+                    const selectInput = document.getElementById(`q${i}`);
+                    if (selectInput) {
+                        userAnswer = selectInput.value;
+                        userAnswerDisplay = userAnswer || 'Not Answered';
+                        isCorrect = userAnswer === correctAnswer;
+                        
+                        if (isCorrect) {
+                            score++;
+                            selectInput.classList.add('correct');
+                            selectInput.parentElement.classList.add('correct');
+                        } else {
+                            selectInput.classList.add('incorrect');
+                            selectInput.parentElement.classList.add('incorrect');
+                            
+                            // Show correct answer
+                            if (correctAnswer) {
+                                const correctAnswerSpan = document.createElement('span');
+                                correctAnswerSpan.className = 'correct-answer-display';
+                                correctAnswerSpan.innerHTML = `&nbsp;➜&nbsp;<span class="correct-answer-highlight">${correctAnswer}</span>`;
+                                selectInput.parentElement.appendChild(correctAnswerSpan);
+                            }
+                        }
+                    }
+                }
+                // Handle summary completion (Part 3, Q32-35)
+                else if (i >= 32 && i <= 35) {
+                    const textInput = document.getElementById(`q${i}`);
+                    if (textInput) {
+                        userAnswer = textInput.value.trim().toLowerCase();
+                        userAnswerDisplay = userAnswer || 'Not Answered';
+                        
+                        // Handle letter answers (A-I)
+                        isCorrect = userAnswer === correctAnswer.toLowerCase();
+                        
+                        if (isCorrect) {
+                            score++;
+                            textInput.classList.add('correct');
+                        } else {
+                            textInput.classList.add('incorrect');
+                            
+                            // Show correct answer
+                            if (correctAnswer) {
+                                const correctAnswerSpan = document.createElement('span');
+                                correctAnswerSpan.className = 'correct-answer-display';
+                                correctAnswerSpan.innerHTML = `&nbsp;➜&nbsp;<span class="correct-answer-highlight">${correctAnswer}</span>`;
+                                textInput.parentNode.insertBefore(correctAnswerSpan, textInput.nextSibling);
+                            }
+                        }
+                    } else {
+                        userAnswerDisplay = 'Not Answered';
+                    }
+                }
+
+                // Add result to modal
+                const resultRow = `
+                    <div class="result-row ${isCorrect ? '' : 'incorrect'}">
+                        <span class="q-num">${i}</span>
+                        <span class="user-ans">${userAnswerDisplay}</span>
+                        <span class="correct-ans">${correctAnswerText}</span>
+                    </div>`;
+                resultsDetailsContainer.innerHTML += resultRow;
+                
+                // Update nav button color
+                const navButton = document.querySelector(`.subQuestion[onclick="goToQuestion(${i})"]`);
+                if (navButton) {
+                    navButton.classList.remove('answered', 'active');
+                    navButton.classList.add(isCorrect ? 'correct' : 'incorrect');
+                }
+            }
+
+            document.getElementById('results-score').textContent = score;
+            document.getElementById('results-band').textContent = calculateBandScore(score);
+            document.body.classList.add('results-mode');
+            document.getElementById('results-modal').classList.remove('hidden');
+            
+            // Change button to "My Result" with green styling
+            deliverButton.innerHTML = `<span>My Result</span>`;
+            deliverButton.style.backgroundColor = '#4CAF50';
+            deliverButton.style.color = 'white';
+            deliverButton.style.borderColor = '#4CAF50';
+            deliverButton.disabled = false;
+            deliverButton.style.cursor = 'pointer';
+            deliverButton.removeEventListener('click', checkAnswers);
+            deliverButton.addEventListener('click', showResultsModal);
+            
+            // Highlight correct answers in the passage
+            highlightCorrectAnswersInPassage();
+        }
+
+        function calculateBandScore(score) {
+            if (score >= 39) return '9.0';
+            const mapping = {
+                40: 9.0, 39: 9.0, 38: 8.5, 37: 8.5, 36: 8.0, 35: 8.0, 34: 7.5,
+                33: 7.5, 32: 7.0, 31: 7.0, 30: 7.0, 29: 6.5, 28: 6.5, 27: 6.5,
+                26: 6.0, 25: 6.0, 24: 6.0, 23: 5.5, 22: 5.5, 21: 5.5, 20: 5.5,
+                19: 5.0, 18: 5.0, 17: 5.0, 16: 5.0, 15: 5.0, 14: 4.5, 13: 4.5,
+                12: 4.0, 11: 4.0, 10: 4.0, 9: 3.5, 8: 3.5, 7: 3.0, 6: 3.0,
+                5: 2.5, 4: 2.5
+            };
+            if (score <= 0) return '0.0';
+            if (score === 1) return '1.0';
+            if (score <= 3) return '2.0';
+            if (score <= 5) return '2.5';
+            return mapping[score] || '0.0';
+        }
+
+        function highlightCorrectAnswersInPassage() {
+            // Clear any existing highlights
+            document.querySelectorAll('.answer-highlight').forEach(el => {
+                const parent = el.parentNode;
+                parent.replaceChild(document.createTextNode(el.textContent), el);
+                parent.normalize();
+            });
+
+            // Part 1 highlights
+            const part1Highlights = [
+                { question: 1, text: "The advertised diet contrasts sharply with that recommended by public health advisors", answer: "viii" },
+                { question: 2, text: "food advertising seems to have little influence on children's general perceptions of what constitutes a healthy diet", answer: "ii" },
+                { question: 3, text: "food promotion influences children's food preferences and purchase behaviour", answer: "vi" },
+                { question: 4, text: "They have established a clear link between television viewing and diet, obesity, and cholesterol levels", answer: "v" },
+                { question: 5, text: "This does not amount to proof; as noted above with this kind of research, incontrovertible proof simply isn't attainable", answer: "i" },
+                { question: 6, text: "two factors suggest that these findings actually downplay the effect that food promotion has on children", answer: "x" },
+                { question: 7, text: "The debate should now shift to what action is needed", answer: "iii" },
+                { question: 8, text: "The advertised diet contrasts sharply with that recommended by public health advisors", answer: "NO" },
+                { question: 9, text: "food advertising seems to have little influence on children's general perceptions of what constitutes a healthy diet", answer: "NO" },
+                { question: 10, text: "It is impossible to say, however, whether this effect is caused by the advertising, the sedentary nature of television viewing or snacking", answer: "YES" },
+                { question: 12, text: "the literature focuses principally on television advertising; the cumulative effect of this combined with other forms of promotion and marketing is likely to be significantly greater", answer: "YES" }
+            ];
+
+            // Apply highlights to Part 1
+            applyHighlightsToPassage('passage-text-1', part1Highlights);
+
+            // Part 2 highlights
+            const part2Highlights = [
+                { question: 14, text: "using the polarization of sunlight to orient themselves", answer: "B" },
+                { question: 15, text: "uses landmarks such as buildings and street names, plus directions – straight, turn, go through", answer: "C" },
+                { question: 16, text: "landmark visible from a distance serves as the marker for one's destination", answer: "A" },
+                { question: 17, text: "if you forget the details and take a wrong turn, the only way to recover is to backtrack until you reach a familiar spot", answer: "C" },
+                { question: 18, text: "you are pointed toward the most recent place you recall, and you aim for it", answer: "B" },
+                { question: 19, text: "the insect stubbornly proceeds in the originally determined direction", answer: "C" },
+                { question: 20, text: "Neurobiologists and cognitive psychologists do call the portion of our memory that controls navigation a 'cognitive map'", answer: "D" },
+                { question: 21, text: "you first envision the large scale – that is, you visualize the general direction of the station", answer: "A" },
+                { question: 22, text: "The human positioning system is flexible and capable of learning", answer: "TRUE" },
+                { question: 24, text: "We have to keep all the landmark and intermediate directions in our head", answer: "TRUE" },
+                { question: 25, text: "With path integration, our cognitive memory is less burdened", answer: "FALSE" },
+                { question: 26, text: "the cognitive map is mostly a metaphor", answer: "FALSE" }
+            ];
+
+            // Apply highlights to Part 2
+            applyHighlightsToPassage('passage-text-2', part2Highlights);
+
+            // Part 3 highlights
+            const part3Highlights = [
+                { question: 27, text: "the attractiveness of a simple answer to an otherwise intractable problem", answer: "B" },
+                { question: 28, text: "thorough canvassing, surveying, weighing, examining and reexamining relevant information and options", answer: "B" },
+                { question: 29, text: "simply 'snap' decisions with being routinely superior to more complex ones", answer: "C" },
+                { question: 30, text: "conscious (deliberative) decision making requires cognitive resources. Because increasingly complex decisions place increasing strain on those resources, the quality of our decisions declines as their complexity increases", answer: "B" },
+                { question: 31, text: "those who were allowed to engage in undistracted deliberative thought did better at discriminating between the best and worst cars", answer: "D" },
+                { question: 32, text: "shoppers who bought with little conscious deliberation felt less happy with their simple clothing purchase", answer: "more" },
+                { question: 33, text: "shoppers made better purchasing decisions if they didn't think too hard", answer: "better" },
+                { question: 34, text: "complex decisions are best made by the unconscious", answer: "complex" },
+                { question: 35, text: "The seemingly counterintuitive conclusion", answer: "counterintuitive" },
+                { question: 36, text: "This radical inference contradicts standard political and managerial theory", answer: "NO" },
+                { question: 37, text: "one suspects many of our political leaders already embrace this wisdom", answer: "YES" },
+                { question: 39, text: "when political decision-makers make mistakes, it is their politics, or the relationship between their politics and our own", answer: "YES" },
+                { question: 40, text: "decision making is simply a matter of psychology, rather than also a question of politics, ideology and group membership", answer: "YES" }
+            ];
+
+            // Apply highlights to Part 3
+            applyHighlightsToPassage('passage-text-3', part3Highlights);
+        }
+
+        function applyHighlightsToPassage(passageId, highlights) {
+            const passageElement = document.getElementById(passageId);
+            if (!passageElement) return;
+
+            highlights.forEach(item => {
+                const paragraphs = passageElement.querySelectorAll('p');
+                paragraphs.forEach(paragraph => {
+                    const paragraphText = paragraph.textContent;
+                    const searchText = item.text;
+                    
+                    if (paragraphText.includes(searchText)) {
+                        // Simple text replacement for highlighting
+                        const html = paragraph.innerHTML;
+                        const highlightedHTML = html.replace(
+                            searchText,
+                            `<span class="answer-highlight" data-question="${item.question}">${searchText}<span>${item.question}</span></span>`
+                        );
+                        paragraph.innerHTML = highlightedHTML;
+                    }
+                });
+            });
+        }
+
+        // --- NAVIGATION FUNCTIONS ---
+
+        function switchToPart(partNumber) {
+            currentPassage = partNumber;
+
+            // Hide all passages and questions
+            document.querySelectorAll('.reading-passage, .question-set, .part-header').forEach(el => {
+                el.classList.add('hidden');
+            });
+
+            // Show the correct passage, questions, and header
+            document.getElementById(`passage-text-${partNumber}`).classList.remove('hidden');
+            document.getElementById(`questions-${partNumber}`).classList.remove('hidden');
+            document.getElementById(`part-header-${partNumber}`).classList.remove('hidden');
+
+            // Update bottom navigation 'selected' state
+            document.querySelectorAll('.footer__questionWrapper___1tZ46').forEach((wrapper, index) => {
+                wrapper.classList.toggle('selected', (index + 1) === partNumber);
+            });
+
+            // Go to first question of the part
+            const firstQuestionOfPart = {1: 1, 2: 14, 3: 27}[partNumber];
+            goToQuestion(firstQuestionOfPart);
+            
+            updateAllIndicators();
+        }
+        
+        function goToQuestion(questionNumber) {
+            currentQuestion = questionNumber;
+
+            let passageNumber = 1;
+            if (questionNumber >= 14 && questionNumber <= 26) passageNumber = 2;
+            else if (questionNumber >= 27) passageNumber = 3;
+            
+            if (currentPassage !== passageNumber) {
+                switchToPart(passageNumber);
+                return;
+            }
+
+            // Remove active class from all questions
+            document.querySelectorAll('.tf-question, .multi-choice-question').forEach(el => {
+                el.classList.remove('active-question');
+            });
+            document.querySelectorAll('.answer-input').forEach(el => {
+                el.classList.remove('active-input');
+            });
+
+            // Find and activate the current question
+            let targetElement = document.querySelector(`[data-q-start="${questionNumber}"]`);
+            
+            if (!targetElement) {
+                // Try to find by input ID
+                const inputElement = document.getElementById(`q${questionNumber}`);
+                if (inputElement) {
+                    targetElement = inputElement.closest('.tf-question, .multi-choice-question, .matching-form-row');
+                }
+            }
+
+            if (targetElement) {
+                targetElement.classList.add('active-question');
+                
+                // Scroll to the question
+                targetElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                
+                // Focus on input if it exists
+                const inputElement = document.getElementById(`q${questionNumber}`);
+                if (inputElement) {
+                    inputElement.classList.add('active-input');
+                    inputElement.focus();
+                }
+            }
+
+            updateNavigation();
+        }
+        
+        function updateNavigation() {
+            // Update navigation buttons
+            const navButtons = document.querySelectorAll('.subQuestion');
+            navButtons.forEach(btn => btn.classList.remove('active'));
+            const activeNav = document.querySelector(`.subQuestion[onclick="goToQuestion(${currentQuestion})"]`);
+            if (activeNav) {
+                activeNav.classList.add('active');
+            }
+
+            // Update arrow buttons
+            const prevBtn = document.getElementById('prevBtn');
+            const nextBtn = document.getElementById('nextBtn');
+            prevBtn.disabled = currentQuestion === 1;
+            nextBtn.disabled = currentQuestion === 40;
+        }
+        
+        window.nextQuestion = () => {
+            if (currentQuestion < 40) {
+                goToQuestion(currentQuestion + 1);
+            }
+        };
+        
+        window.previousQuestion = () => {
+            if (currentQuestion > 1) {
+                goToQuestion(currentQuestion - 1);
+            }
+        };
+
+        function updateAllIndicators() {
+            updateAttemptedCount(1, 1, 13);
+            updateAttemptedCount(2, 14, 26);
+            updateAttemptedCount(3, 27, 40);
+            updateAnsweredNav();
+        }
+        
+        function updateAnsweredNav() {
+            const navButtons = document.querySelectorAll('.subQuestion');
+            navButtons.forEach(btn => {
+                const qNum = parseInt(btn.textContent, 10);
+                if (isQuestionAnswered(qNum)) {
+                    btn.classList.add('answered');
+                } else {
+                    btn.classList.remove('answered');
+                }
+            });
+        }
+        
+        function isQuestionAnswered(qNum) {
+            // Check drag and drop questions
+            if (qNum >= 1 && qNum <= 7) {
+                const dropZone = document.querySelector(`.drop-zone[data-q-start="${qNum}"]`);
+                if (dropZone && dropZone.querySelector('.drag-item')) {
+                    return true;
+                }
+            }
+            
+            // Check select questions
+            const selectInput = document.getElementById(`q${qNum}`);
+            if (selectInput && selectInput.value) {
+                return true;
+            }
+            
+            // Check radio questions
+            const radioInput = document.querySelector(`input[name="q${qNum}"]:checked`);
+            if (radioInput) {
+                return true;
+            }
+            
+            // Check text input questions
+            const textInput = document.getElementById(`q${qNum}`);
+            if (textInput && textInput.value.trim() !== '') {
+                return true;
+            }
+            
+            return false;
+        }
+
+        function updateAttemptedCount(part, startQ, endQ) {
+            let answeredCount = 0;
+            for (let i = startQ; i <= endQ; i++) {
+                if (isQuestionAnswered(i)) {
+                    answeredCount++;
+                }
+            }
+            const partHeader = document.querySelector(`.footer__questionNo___3WNct[onclick="switchToPart(${part})"]`);
+            if (partHeader) {
+                const countSpan = partHeader.querySelector('.attemptedCount');
+                if (countSpan) {
+                     countSpan.textContent = `${answeredCount} of ${endQ - startQ + 1}`;
+                }
+            }
+        }
+
+        // --- DRAG AND DROP ---
+        
+        function initializeDragAndDrop() {
+            document.querySelectorAll('.drag-item').forEach(item => {
+                item.addEventListener('dragstart', handleDragStart);
+                item.addEventListener('dragend', handleDragEnd);
+            });
+            
+            document.querySelectorAll('.drop-zone').forEach(zone => {
+                zone.addEventListener('dragover', handleDragOver);
+                zone.addEventListener('dragleave', handleDragLeave);
+                zone.addEventListener('drop', handleDrop);
+            });
+            
+            // For summary completion drag and drop
+            document.querySelectorAll('.answer-input[id^="q3"]').forEach(input => {
+                input.addEventListener('dragover', handleDragOver);
+                input.addEventListener('dragleave', handleDragLeave);
+                input.addEventListener('drop', handleSummaryDrop);
+            });
+        }
+
+        function handleDragStart(e) {
+            draggedItem = e.target;
+            setTimeout(() => e.target.classList.add('dragging'), 0);
+            e.dataTransfer.setData('text/plain', e.target.dataset.value);
+        }
+
+        function handleDragEnd(e) {
+            e.target.classList.remove('dragging');
+            draggedItem = null;
+        }
+
+        function handleDragOver(e) {
+            e.preventDefault();
+            e.currentTarget.classList.add('drag-over');
+        }
+
+        function handleDragLeave(e) {
+            e.currentTarget.classList.remove('drag-over');
+        }
+
+        function handleDrop(e) {
+            e.preventDefault();
+            e.currentTarget.classList.remove('drag-over');
+
+            if (!draggedItem || draggedItem.dataset.dndGroup !== e.currentTarget.dataset.dndGroup) {
+                return;
+            }
+
+            const sourceZone = draggedItem.parentElement;
+            if (sourceZone === e.currentTarget) return;
+
+            const existingItemInTarget = e.currentTarget.querySelector('.drag-item');
+            if (existingItemInTarget) {
+                sourceZone.appendChild(existingItemInTarget);
+            }
+            
+            e.currentTarget.appendChild(draggedItem);
+            e.currentTarget.classList.add('filled');
+            
+            if (sourceZone.classList.contains('drop-zone') && !sourceZone.querySelector('.drag-item')) {
+                 sourceZone.classList.remove('filled');
+                 const qNum = sourceZone.dataset.qStart;
+                 sourceZone.innerText = qNum;
+            }
+            
+            updateAllIndicators();
+        }
+        
+        function handleSummaryDrop(e) {
+            e.preventDefault();
+            e.currentTarget.classList.remove('drag-over');
+            
+            if (!draggedItem) return;
+            
+            const value = draggedItem.dataset.value;
+            const text = draggedItem.textContent.split('. ')[1] || draggedItem.textContent;
+            
+            e.currentTarget.value = value;
+            
+            updateAllIndicators();
+        }
+
+        // --- TIMER FUNCTIONS ---
+        
+        function startTimer() {
+            if (timerInterval) clearInterval(timerInterval);
+            timerInterval = setInterval(() => {
+                timeInSeconds--;
+                const minutes = Math.floor(timeInSeconds / 60);
+                const seconds = timeInSeconds % 60;
+                timerDisplay.textContent = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+                if (timeInSeconds <= 0) {
+                    clearInterval(timerInterval);
+                    timerDisplay.textContent = "Time's up!";
+                }
+            }, 1000);
+            timerToggleButton.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>';
+        }
+
+        function pauseTimer() {
+            clearInterval(timerInterval);
+            timerToggleButton.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M8 5v14l11-7L8 5z"/></svg>';
+        }
+
+        function toggleTimer() {
+            if (timerToggleButton.innerHTML.includes('M6 19h4V5H6v14z')) {
+                pauseTimer();
+            } else {
+                startTimer();
+            }
+        }
+
+        function resetTimer() {
+            timeInSeconds = 3600;
+            const minutes = Math.floor(timeInSeconds / 60);
+            const seconds = timeInSeconds % 60;
+            timerDisplay.textContent = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+            startTimer();
+        }
+
+        // --- RESIZER ---
+        
+        function initResize(e) {
+            e.preventDefault();
+            const startX = e.clientX;
+            const startWidth = passagePanel.offsetWidth;
+            
+            const doDrag = (e) => {
+                const newWidth = startWidth + e.clientX - startX;
+                if (newWidth > 200 && (document.body.clientWidth - newWidth - resizer.offsetWidth) > 200) {
+                    passagePanel.style.flex = `0 0 ${newWidth}px`;
+                }
+            };
+            
+            const stopDrag = () => {
+                window.removeEventListener('mousemove', doDrag, false);
+                window.removeEventListener('mouseup', stopDrag, false);
+            };
+            
+            window.addEventListener('mousemove', doDrag, false);
+            window.addEventListener('mouseup', stopDrag, false);
+        }
+
+        // --- CONTEXT MENU ---
+        
+        function initializeContextMenu() {
+            const panels = [passagePanel, questionsPanel];
+            let targetElementForClear = null;
+
+            document.addEventListener('selectionchange', () => {
+                const selection = window.getSelection();
+                if (selection && !selection.isCollapsed && selection.toString().trim().length > 0) {
+                    const range = selection.getRangeAt(0);
+                    if (panels.some(panel => panel.contains(range.commonAncestorContainer))) {
+                        selectedRange = range;
+                        targetElementForClear = null;
+                    }
+                }
+            });
+
+            const showContextMenu = (e) => {
+                const target = e.target;
+                const isClickOnHighlight = target.closest('.highlight, .comment-highlight');
+                const isSelectionActive = selectedRange && selectedRange.toString().trim().length > 0;
+                
+                let showMenu = false;
+
+                if (isClickOnHighlight) {
+                    document.getElementById('menu-highlight').style.display = 'none';
+                    document.getElementById('menu-note').style.display = 'none';
+                    document.getElementById('menu-clear').style.display = 'block';
+                    document.getElementById('menu-clear-all').style.display = 'block';
+                    contextMenu.targetElementForClear = isClickOnHighlight;
+                    showMenu = true;
+                } else if (isSelectionActive && panels.some(panel => panel.contains(selectedRange.commonAncestorContainer))) {
+                    document.getElementById('menu-highlight').style.display = 'flex';
+                    document.getElementById('menu-note').style.display = 'flex';
+                    document.getElementById('menu-clear').style.display = 'none';
+                    document.getElementById('menu-clear-all').style.display = 'block';
+                    showMenu = true;
+                }
+
+                if (showMenu) {
+                    e.preventDefault();
+                    contextMenu.style.display = 'block';
+                    const menuHeight = contextMenu.offsetHeight;
+                    const menuWidth = contextMenu.offsetWidth;
+                    let left = e.pageX;
+                    let top = e.pageY;
+                    if (left + menuWidth > window.innerWidth) left = window.innerWidth - menuWidth - 5;
+                    if (top + menuHeight > window.innerHeight) top = e.pageY - menuHeight - 5;
+                    else top = e.pageY - menuHeight - 5;
+                    
+                    contextMenu.style.left = `${left}px`;
+                    contextMenu.style.top = `${top}px`;
+                }
+            };
+
+            panels.forEach(panel => {
+                panel.addEventListener('contextmenu', showContextMenu);
+            });
+
+            document.addEventListener('click', (e) => {
+                if (contextMenu.style.display === 'block' && !contextMenu.contains(e.target)) {
+                    closeContextMenu();
+                }
+            });
+        }
+
+        function closeContextMenu() {
+            contextMenu.style.display = 'none';
+            selectedRange = null;
+        }
+
+        function unwrapElement(element) {
+            const parent = element.parentNode;
+            if (!parent) return;
+            while (element.firstChild) {
+                parent.insertBefore(element.firstChild, element);
+            }
+            parent.removeChild(element);
+            parent.normalize();
+        }
+
+        window.highlightText = () => {
+            if (selectedRange && !selectedRange.collapsed) {
+                const span = document.createElement('span');
+                span.className = 'highlight';
+                span.appendChild(selectedRange.extractContents());
+                selectedRange.insertNode(span);
+            }
+            closeContextMenu();
+            window.getSelection().removeAllRanges();
+        };
+
+        window.addNote = () => {
+            const note = prompt('Enter your note:');
+            if (note && selectedRange && !selectedRange.collapsed) {
+                const span = document.createElement('span');
+                span.className = 'comment-highlight';
+                const tooltip = document.createElement('span');
+                tooltip.className = 'comment-tooltip';
+                tooltip.textContent = note;
+                span.appendChild(selectedRange.extractContents());
+                span.appendChild(tooltip);
+                selectedRange.insertNode(span);
+            }
+            closeContextMenu();
+            window.getSelection().removeAllRanges();
+        };
+
+        window.clearHighlight = () => {
+             const elementToClear = contextMenu.targetElementForClear;
+             if (elementToClear) {
+                 unwrapElement(elementToClear);
+             }
+             closeContextMenu();
+             window.getSelection().removeAllRanges();
+        };
+        
+        window.clearAllHighlights = () => {
+            document.querySelectorAll('.highlight, .comment-highlight').forEach(unwrapElement);
+            closeContextMenu();
+            window.getSelection().removeAllRanges();
+        };
+
+        // --- MODAL FUNCTIONS ---
+        
+        function showResultsModal() {
+            document.getElementById('results-modal').classList.remove('hidden');
+        }
+
+        window.closeResultsModal = function() {
+            document.getElementById('results-modal').classList.add('hidden');
+            document.body.classList.remove('results-mode');
+        }
+
+        // --- GLOBAL FUNCTION EXPOSURE ---
+        window.nextQuestion = nextQuestion;
+        window.previousQuestion = previousQuestion;
+        window.goToQuestion = goToQuestion;
+        window.switchToPart = switchToPart;
+        window.closeResultsModal = closeResultsModal;
+        window.highlightText = highlightText;
+        window.addNote = addNote;
+        window.clearHighlight = clearHighlight;
+        window.clearAllHighlights = clearAllHighlights;
+
+        // --- START THE APP ---
+        initialize();
+    });
+    </script>
+</body>
+</html>
