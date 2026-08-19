@@ -16,8 +16,11 @@ Only high-confidence complete packages from `_inbox/uploads.jsonl` were publishe
 | mock-026 | To‘liq CDI Mock 8 | 3/3 | 4/4 | READY — high-confidence mapping |
 | mock-027 | To‘liq CDI Mock 9 | 1/1 | 4/4 | READY — high-confidence mapping |
 
+| mock-028 | To‘liq CDI Mock 10 | 3/3 | 4/4 | READY — audio-text mapping verified |
+| mock-029 | To‘liq CDI Mock 11 | 1/1 | 4/4 | READY — audio-text mapping verified |
+
 ## Held for missing/unmapped listening audio
 
-Candidates C, F and X require extra semantic/browser QA; E, G, J, K, L, M, N, Q, R, S, V and W have missing or unmapped listening audio. They were not published.
+Candidate F has contradicted audio evidence; E, G, J, K, L, M, N, Q, R, S, V and W have missing or unmapped listening audio. They were not published.
 
 Detailed evidence: `cdi-batch-mapping-report.md` in the Strawberry session workspace.
