@@ -1,0 +1,23 @@
+# CDI audio upload log
+
+Created: 2026-08-19 (Asia/Tashkent)
+
+Only high-confidence complete packages from `_inbox/uploads.jsonl` were published. Each source binary was copied as a local site asset; no source inbox file was changed.
+
+| Mock | Package | HTML | Audio (expected/found) | Status |
+|---|---|---:|---:|---|
+| mock-019 | To‘liq CDI Mock 1 | 3/3 | 4/4 | READY — high-confidence mapping |
+| mock-020 | To‘liq CDI Mock 2 | 3/3 | 4/4 | READY — high-confidence mapping |
+| mock-021 | To‘liq CDI Mock 3 | 3/3 | 4/4 | READY — high-confidence mapping |
+| mock-022 | To‘liq CDI Mock 4 | 3/3 | 1/1 | READY — high-confidence mapping |
+| mock-023 | To‘liq CDI Mock 5 | 3/3 | 1/1 | READY — high-confidence mapping |
+| mock-024 | To‘liq CDI Mock 6 | 3/3 | 4/4 | READY — high-confidence mapping |
+| mock-025 | To‘liq CDI Mock 7 | 3/3 | 4/4 | READY — high-confidence mapping |
+| mock-026 | To‘liq CDI Mock 8 | 3/3 | 4/4 | READY — high-confidence mapping |
+| mock-027 | To‘liq CDI Mock 9 | 1/1 | 4/4 | READY — high-confidence mapping |
+
+## Held for missing/unmapped listening audio
+
+Candidates C, F and X require extra semantic/browser QA; E, G, J, K, L, M, N, Q, R, S, V and W have missing or unmapped listening audio. They were not published.
+
+Detailed evidence: `cdi-batch-mapping-report.md` in the Strawberry session workspace.
