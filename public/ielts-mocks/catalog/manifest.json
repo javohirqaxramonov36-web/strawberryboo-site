@@ -106,5 +106,17 @@
     "source": "CDI complete package (see audio_upload_log.txt)",
     "published": "mock-027.html",
     "bytes": 140530
+  },
+  {
+    "id": 28,
+    "source": "CDI complete package; audio-text mapping verified",
+    "published": "mock-028.html",
+    "bytes": 1465
+  },
+  {
+    "id": 29,
+    "source": "CDI complete package; audio-text mapping verified",
+    "published": "mock-029.html",
+    "bytes": 123710
   }
 ]

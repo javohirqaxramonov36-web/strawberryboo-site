@@ -152,5 +152,41 @@
     ],
     "expected": 4,
     "found": 4
+  },
+  {
+    "mock": "028",
+    "title": "To‘liq CDI Mock 10",
+    "difficulty": "Standard",
+    "html_files": [
+      "Full_Listening_CDI.__msg_537.html",
+      "Full_CDI__msg_539.html",
+      "CDI_WRITING__msg_538.html"
+    ],
+    "audio_files": [
+      "S1__msg_540.mp3",
+      "S2.mp3",
+      "S3.__msg_542.mp3",
+      "S4__2___msg_543.mp3"
+    ],
+    "expected": 4,
+    "found": 4,
+    "mapping": "audio-text verified in deep audit"
+  },
+  {
+    "mock": "029",
+    "title": "To‘liq CDI Mock 11",
+    "difficulty": "Standard",
+    "html_files": [
+      "Full_Mock___6___msg_673.html"
+    ],
+    "audio_files": [
+      "Part_1__msg_674.mp3",
+      "Part_2__msg_675.mp3",
+      "Part_3__msg_676.mp3",
+      "Part_4__msg_677.mp3"
+    ],
+    "expected": 4,
+    "found": 4,
+    "mapping": "audio-text verified in deep audit"
   }
 ]
