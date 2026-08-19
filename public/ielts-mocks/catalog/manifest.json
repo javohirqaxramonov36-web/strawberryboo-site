@@ -52,5 +52,59 @@
     "source": "Writing.html",
     "published": "mock-018.html",
     "bytes": 65512
+  },
+  {
+    "id": 19,
+    "source": "CDI complete package (see audio_upload_log.txt)",
+    "published": "mock-019.html",
+    "bytes": 2293
+  },
+  {
+    "id": 20,
+    "source": "CDI complete package (see audio_upload_log.txt)",
+    "published": "mock-020.html",
+    "bytes": 2293
+  },
+  {
+    "id": 21,
+    "source": "CDI complete package (see audio_upload_log.txt)",
+    "published": "mock-021.html",
+    "bytes": 2293
+  },
+  {
+    "id": 22,
+    "source": "CDI complete package (see audio_upload_log.txt)",
+    "published": "mock-022.html",
+    "bytes": 1991
+  },
+  {
+    "id": 23,
+    "source": "CDI complete package (see audio_upload_log.txt)",
+    "published": "mock-023.html",
+    "bytes": 1991
+  },
+  {
+    "id": 24,
+    "source": "CDI complete package (see audio_upload_log.txt)",
+    "published": "mock-024.html",
+    "bytes": 2293
+  },
+  {
+    "id": 25,
+    "source": "CDI complete package (see audio_upload_log.txt)",
+    "published": "mock-025.html",
+    "bytes": 2293
+  },
+  {
+    "id": 26,
+    "source": "CDI complete package (see audio_upload_log.txt)",
+    "published": "mock-026.html",
+    "bytes": 2293
+  },
+  {
+    "id": 27,
+    "source": "CDI complete package (see audio_upload_log.txt)",
+    "published": "mock-027.html",
+    "bytes": 140530
   }
 ]

@@ -14,6 +14,15 @@ const mocks = [
   { code: 'MOCK 016', title: 'Full Reading Practice', type: 'Reading', difficulty: 'Standard', status: 'Mavjud', file: 'mock-016.html', audio: false },
   { code: 'MOCK 017', title: 'Writing Task 1 & 2', type: 'Writing', difficulty: 'Standard', status: 'Mavjud', file: 'mock-017.html', audio: false },
   { code: 'MOCK 018', title: 'Writing Practice', type: 'Writing', difficulty: 'Standard', status: 'Mavjud', file: 'mock-018.html', audio: false },
+  { code: 'MOCK 019', title: 'To‘liq CDI Mock 1', type: 'Full Mock', difficulty: 'Standard', status: 'Mavjud', file: 'mock-019.html', audio: true, tag: 'To‘liq CDI Mock' },
+  { code: 'MOCK 020', title: 'To‘liq CDI Mock 2', type: 'Full Mock', difficulty: 'Standard', status: 'Mavjud', file: 'mock-020.html', audio: true, tag: 'To‘liq CDI Mock' },
+  { code: 'MOCK 021', title: 'To‘liq CDI Mock 3', type: 'Full Mock', difficulty: 'Standard', status: 'Mavjud', file: 'mock-021.html', audio: true, tag: 'To‘liq CDI Mock' },
+  { code: 'MOCK 022', title: 'To‘liq CDI Mock 4', type: 'Full Mock', difficulty: 'Challenge', status: 'Mavjud', file: 'mock-022.html', audio: true, tag: 'To‘liq CDI Mock' },
+  { code: 'MOCK 023', title: 'To‘liq CDI Mock 5', type: 'Full Mock', difficulty: 'Challenge', status: 'Mavjud', file: 'mock-023.html', audio: true, tag: 'To‘liq CDI Mock' },
+  { code: 'MOCK 024', title: 'To‘liq CDI Mock 6', type: 'Full Mock', difficulty: 'Standard', status: 'Mavjud', file: 'mock-024.html', audio: true, tag: 'To‘liq CDI Mock' },
+  { code: 'MOCK 025', title: 'To‘liq CDI Mock 7', type: 'Full Mock', difficulty: 'Standard', status: 'Mavjud', file: 'mock-025.html', audio: true, tag: 'To‘liq CDI Mock' },
+  { code: 'MOCK 026', title: 'To‘liq CDI Mock 8', type: 'Full Mock', difficulty: 'Standard', status: 'Mavjud', file: 'mock-026.html', audio: true, tag: 'To‘liq CDI Mock' },
+  { code: 'MOCK 027', title: 'To‘liq CDI Mock 9', type: 'Full Mock', difficulty: 'Standard', status: 'Mavjud', file: 'mock-027.html', audio: true, tag: 'To‘liq CDI Mock' },
 ];
 ---
 
@@ -42,7 +51,7 @@ const mocks = [
   <section id="katalog" class="catalog-section">
     <div class="section-heading">
       <div><p class="eyebrow">MOCK KATALOGI</p><h2>O‘zingizga mos mockni tanlang</h2></div>
-      <p class="section-note"><b>9 ta</b> mavjud HTML practice<br/>To‘liq CDI mocklar alohida belgilanadi</p>
+      <p class="section-note"><b>18 ta</b> mavjud HTML practice<br/><strong>9 ta To‘liq CDI Mock</strong> audio bilan tayyor</p>
     </div>
     <div class="filter-row" role="group" aria-label="Mock filtrlari">
       <button class="filter active" data-filter="all">Barchasi</button>
@@ -53,7 +62,7 @@ const mocks = [
         <article class:list={['mock-card', { 'is-locked': mock.status !== 'Mavjud' }]} data-state={mock.status === 'Mavjud' ? 'available' : 'audio'}>
           <div class="card-top"><span class="mock-code">{mock.code}</span><span class:list={['status', { beta: mock.status === 'Mavjud' }]}>{mock.status}</span></div>
           <h3>{mock.title}</h3>
-          <div class="skill-tags"><span>{mock.type}</span>{mock.status !== 'Mavjud' && <span>Audio kerak</span>}</div>
+          <div class="skill-tags"><span>{mock.type}</span>{mock.tag && <span>{mock.tag}</span>}{mock.status !== 'Mavjud' && <span>Audio kerak</span>}</div>
           <div class="mock-meta"><span>{mock.difficulty}</span><span>·</span><span>{mock.status === 'Mavjud' ? 'Hozir topshirish mumkin' : 'Audio yuklangach ochiladi'}</span></div>
           {mock.status === 'Mavjud'
             ? <a class="choose-mock" href={base + 'ielts-mocks/catalog/' + mock.file} target="_blank" rel="noopener">Practice’ni ochish <span>→</span></a>
