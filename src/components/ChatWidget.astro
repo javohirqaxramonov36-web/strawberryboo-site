@@ -16,7 +16,7 @@
         <span class="cw-avatar">O'</span>
         <div>
           <strong>Yordamchi</strong>
-          <span class="cw-sub">ZiyoNext · kurslar va narxlar</span>
+          <span class="cw-sub">Tayanch · kurslar va narxlar</span>
         </div>
       </div>
       <button class="cw-close" id="cwClose" aria-label="Yopish">&times;</button>
@@ -190,11 +190,11 @@
   const input = document.getElementById('cwInput');
   const chips = document.getElementById('cwChips');
 
-  const OFF_TOPIC = "Kechirasiz, men faqat ZiyoNext saytining kurslari, narxlari va saytdan foydalanish bo'yicha savollarga javob bera olaman. Shaxsiy ma'lumotlar, fayl tizimi yoki boshqa mavzularga kira olmayman. Kurslar: /kurslar · Narxlar: /narxlar";
+  const OFF_TOPIC = "Kechirasiz, men faqat Tayanch saytining kurslari, narxlari va saytdan foydalanish bo'yicha savollarga javob bera olaman. Shaxsiy ma'lumotlar, fayl tizimi yoki boshqa mavzularga kira olmayman. Kurslar: /kurslar · Narxlar: /narxlar";
 
   const FALLBACK = "Afsuski, bu savolga aniq javob bera olmayman. Men faqat shu bo'yicha yordam bera olaman:\n• Kurslar haqida ma'lumot\n• Narxlar va paketlar\n• Saytdan foydalanish\nKurslar: /kurslar · Narxlar: /narxlar";
 
-  const WELCOME = "Salom! Men ZiyoNext saytining yordamchisiman. Kurslar, narxlar va saytdan foydalanish bo'yicha savollaringizga javob bera olaman. Nima bilan yordam kerak?";
+  const WELCOME = "Salom! Men Tayanch saytining yordamchisiman. Kurslar, narxlar va saytdan foydalanish bo'yicha savollaringizga javob bera olaman. Nima bilan yordam kerak?";
 
   // --- Bilim bazasi (FAQ). Har yozuv: kalit so'zlar + javob ---
   const KB = [
@@ -205,7 +205,7 @@
       a: "Prompt Engineering — AI bilan to'g'ri muloqot qilish san'ati. Nima uchun kerak, qanday foyda va qayerda qo'llash amaliy misollar bilan o'rgatiladi.\nNarxi: $29 (≈360 000 so'm).\nBatafsil: /kurslar/prompt-engineering" },
 
     { course: true, kw: ["obsidian","pkm","bilim bazasi","knowledge","notes"],
-      a: "Obsidian PKM — shaxsiy bilim bazasi (PKM) qurish kursi. ZiyoNext bilan avtomatik capture qilishni o'rgatadi.\nNarxi: $19 (≈240 000 so'm).\nBatafsil: /kurslar/obsidian" },
+      a: "Obsidian PKM — shaxsiy bilim bazasi (PKM) qurish kursi. Tayanch bilan avtomatik capture qilishni o'rgatadi.\nNarxi: $19 (≈240 000 so'm).\nBatafsil: /kurslar/obsidian" },
 
     { course: true, kw: ["agent","agentlar","ai agent","crewai","langgraph"],
       a: "AI Agentlar nega kerak? — CrewAI, LangGraph asosida agent'lar nima uchun kerakligi va qanday foyda keltirishi.\nNarxi: $39 (≈490 000 so'm).\nBatafsil: /kurslar/ai-agentlar" },
@@ -250,7 +250,7 @@
       a: "Saytdan foydalanish:\n• Kursni tanlang → \"Kursni boshlash\" → bog'lanish sahifasida to'lov usulini tanlang.\n• Barcha kurslarda forever access (abadiy kirish) va sertifikat bor.\n• Tillarni yuqoridagi UZ/RU/EN tugmalari orqali almashtiring.\n• Savollaringizga Telegram orqali javob beramiz.\nBatafsil: /bog-lanish" },
 
     { kw: ["salom","assalom","hello","hi","hey","xayr","privet","здравств","добр","привет"],
-      a: "Salom! Men ZiyoNext saytining yordamchisiman. Kurslar, narxlar va saytdan foydalanish bo'yicha savollaringizga javob bera olaman. Nima bilan yordam kerak?" }
+      a: "Salom! Men Tayanch saytining yordamchisiman. Kurslar, narxlar va saytdan foydalanish bo'yicha savollaringizga javob bera olaman. Nima bilan yordam kerak?" }
   ];
 
   // Mavzu chegarasi: shaxsiy ma'lumotlar / tizim so'zlari → rad etish
