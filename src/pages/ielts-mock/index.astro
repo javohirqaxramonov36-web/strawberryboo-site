@@ -9,15 +9,6 @@ const mocks = [
   { code: 'MOCK 002', title: 'Writing — Answer Checking', type: 'Writing', difficulty: 'Foundation', status: 'Mavjud', file: 'mock-002.html', audio: false },
   { code: 'MOCK 003', title: 'Writing — Answer Checking', type: 'Writing', difficulty: 'Foundation', status: 'Mavjud', file: 'mock-003.html', audio: false },
   { code: 'MOCK 004', title: 'Writing — Answer Checking', type: 'Writing', difficulty: 'Foundation', status: 'Mavjud', file: 'mock-004.html', audio: false },
-  { code: 'MOCK 005', title: 'Listening Practice', type: 'Listening', difficulty: 'Standard', status: 'Audio kutilmoqda', file: 'mock-005.html', audio: false },
-  { code: 'MOCK 006', title: 'Listening CDI Practice', type: 'Listening', difficulty: 'Standard', status: 'Audio kutilmoqda', file: 'mock-006.html', audio: false },
-  { code: 'MOCK 007', title: 'Academic Full Mock Draft', type: 'Full Mock draft', difficulty: 'Standard', status: 'Audio kutilmoqda', file: 'mock-007.html', audio: false },
-  { code: 'MOCK 008', title: 'Academic Full Mock Draft', type: 'Full Mock draft', difficulty: 'Standard', status: 'Audio kutilmoqda', file: 'mock-008.html', audio: false },
-  { code: 'MOCK 009', title: 'Listening, Reading & Writing Draft', type: '3 skill draft', difficulty: 'Standard', status: 'Audio kutilmoqda', file: 'mock-009.html', audio: false },
-  { code: 'MOCK 010', title: 'Listening & Reading Draft', type: '2 skill draft', difficulty: 'Standard', status: 'Audio kutilmoqda', file: 'mock-010.html', audio: false },
-  { code: 'MOCK 011', title: 'Listening CDI Practice — Test 7', type: 'Listening', difficulty: 'Standard', status: 'Audio kutilmoqda', file: 'mock-011.html', audio: false },
-  { code: 'MOCK 012', title: 'Advanced Listening Practice', type: 'Listening', difficulty: 'Challenge', status: 'Audio kutilmoqda', file: 'mock-012.html', audio: false },
-  { code: 'MOCK 013', title: 'Full Listening Practice', type: 'Listening', difficulty: 'Standard', status: 'Audio kutilmoqda', file: 'mock-013.html', audio: false },
   { code: 'MOCK 014', title: 'Full Reading Practice', type: 'Reading', difficulty: 'Standard', status: 'Mavjud', file: 'mock-014.html', audio: false },
   { code: 'MOCK 015', title: 'Full Reading Practice', type: 'Reading', difficulty: 'Challenge', status: 'Mavjud', file: 'mock-015.html', audio: false },
   { code: 'MOCK 016', title: 'Full Reading Practice', type: 'Reading', difficulty: 'Standard', status: 'Mavjud', file: 'mock-016.html', audio: false },
@@ -51,12 +42,11 @@ const mocks = [
   <section id="katalog" class="catalog-section">
     <div class="section-heading">
       <div><p class="eyebrow">MOCK KATALOGI</p><h2>O‘zingizga mos mockni tanlang</h2></div>
-      <p class="section-note"><b>18 ta</b> botdan olingan HTML practice<br/>Audio kelgach to‘liq mocklar alohida belgilanadi</p>
+      <p class="section-note"><b>9 ta</b> mavjud HTML practice<br/>To‘liq CDI mocklar alohida belgilanadi</p>
     </div>
     <div class="filter-row" role="group" aria-label="Mock filtrlari">
       <button class="filter active" data-filter="all">Barchasi</button>
       <button class="filter" data-filter="available">Mavjud</button>
-      <button class="filter" data-filter="audio">Audio kutilmoqda</button>
     </div>
     <div class="mock-grid">
       {mocks.map((mock) => (
