@@ -1,5 +1,6 @@
 ---
 import Base from '../../layouts/Base.astro';
+import MockWallet from '../../components/MockWallet.astro';
 const title = 'IELTS Mock Test — Tayanch';
 const description = 'IELTS Listening, Reading, Writing va Speaking uchun Tayanch Qadam asosidagi mock testlar.';
 const base = import.meta.env.BASE_URL;
@@ -37,12 +38,7 @@ const mocks = [
       </div>
       <p class="notice">Bu rasmiy IELTS imtihoni emas. Natijalar faqat practice va tayyorgarlik uchun.</p>
     </div>
-    <aside class="wallet-card" aria-label="Demo Tayanch Qadam balansi">
-      <div class="wallet-top"><span class="wallet-icon">✦</span><span>DEMO BALANS</span></div>
-      <strong><span id="walletBalance">2</span> <em>Qadam</em></strong>
-      <p>1 Qadam = 1 modul urinish</p>
-      <a href="#qadam">Paketlarni ko‘rish →</a>
-    </aside>
+    <MockWallet />
   </section>
 
   <section class="value-row" aria-label="Mock test afzalliklari">
@@ -124,16 +120,15 @@ const mocks = [
     const selectedCount = document.getElementById('selectedCount');
     const balanceMessage = document.getElementById('balanceMessage');
     const toast = document.getElementById('demoToast');
-    const wallet = document.getElementById('walletBalance');
     const format = new Intl.NumberFormat('uz-UZ');
-    let demoBalance = 2;
+    let currentBalance = 0;
 
     function updateSummary() {
       const count = checkboxes.filter((box) => box.checked).length;
       totalQadam.textContent = count;
       totalUzs.textContent = format.format(count * 32000);
       selectedCount.textContent = `${count} ta`;
-      balanceMessage.textContent = count === 0 ? 'Davom etish uchun kamida bitta modulni tanlang.' : demoBalance >= count ? 'Demo balansingiz yetarli. Demo natijani ochishingiz mumkin.' : `Demo balans: ${demoBalance} Qadam. Sizga yana ${count - demoBalance} Qadam kerak.`;
+      balanceMessage.textContent = count === 0 ? 'Davom etish uchun kamida bitta modulni tanlang.' : currentBalance >= count ? 'Balansingiz yetarli. Real ochish oqimi yaqin orada faollashadi.' : `Balansingizni ko‘rish uchun kiring. Tanlov: ${count} Qadam.`;
     }
     document.querySelectorAll('.choose-mock').forEach((button) => button.addEventListener('click', () => {
       selectedCode.textContent = button.dataset.mock;
@@ -144,14 +139,13 @@ const mocks = [
     checkboxes.forEach((box) => box.addEventListener('change', updateSummary));
     document.querySelectorAll('.buy-demo').forEach((button) => button.addEventListener('click', () => {
       const count = Number(button.dataset.pack);
-      demoBalance += count;
-      wallet.textContent = demoBalance;
-      toast.textContent = `Demo rejimida ${count} Qadam qo‘shildi. Production versiyada bu yerda checkout ochiladi.`;
+      toast.textContent = `${count} Qadam paketi tanlandi. To‘lov integratsiyasi ishga tushgach shu yerda checkout ochiladi.`;
       toast.classList.add('show');
       setTimeout(() => toast.classList.remove('show'), 4200);
       updateSummary();
     }));
-    document.querySelectorAll('.filter').forEach((button) => button.addEventListener('click', () => {
+    window.addEventListener('tayanch:wallet', (event) => { currentBalance = Number(event.detail?.balance || 0); updateSummary(); });
+        document.querySelectorAll('.filter').forEach((button) => button.addEventListener('click', () => {
       document.querySelectorAll('.filter').forEach((item) => item.classList.remove('active'));
       button.classList.add('active');
       const filter = button.dataset.filter;

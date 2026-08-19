@@ -1,0 +1,82 @@
+<aside class="wallet-card" aria-label="Tayanch Qadam hamyoni">
+  <div class="wallet-top"><span class="wallet-icon">✦</span><span id="walletMode">TAYANCH QADAM</span></div>
+  <strong><span id="walletBalance">—</span> <em>Qadam</em></strong>
+  <p id="walletStatus">Balansingizni ko‘rish uchun kiring.</p>
+  <button id="walletAuth" class="wallet-action" type="button">Kirish / ro‘yxatdan o‘tish →</button>
+  <button id="walletLogout" class="wallet-logout" type="button" hidden>Chiqish</button>
+</aside>
+
+<dialog id="authDialog" class="auth-dialog" aria-labelledby="authTitle">
+  <button class="auth-close" type="button" aria-label="Yopish">×</button>
+  <p class="eyebrow">TAYANCH QADAM</p>
+  <h2 id="authTitle">Balansingizni oching</h2>
+  <p>Email manzilingizga bir martalik xavfsiz kirish havolasini yuboramiz. Parol kerak emas.</p>
+  <form id="magicLinkForm">
+    <label for="magicEmail">Email</label>
+    <input id="magicEmail" name="email" type="email" autocomplete="email" required placeholder="siz@email.com" />
+    <button class="primary-action" type="submit">Kirish havolasini yuborish</button>
+  </form>
+  <p id="authMessage" role="status" aria-live="polite"></p>
+</dialog>
+
+<style>
+  .wallet-action,.wallet-logout{border:0;background:transparent;color:var(--accent);font:800 .9rem var(--font-display);padding:0;cursor:pointer}.wallet-action:hover,.wallet-logout:hover{text-decoration:underline}.wallet-logout{display:block;margin-top:.8rem;color:var(--muted);font-size:.8rem}.auth-dialog{border:1px solid var(--border);border-radius:20px;background:var(--surface);color:var(--text);width:min(440px,calc(100vw - 32px));padding:1.7rem;box-shadow:0 28px 90px rgba(0,0,0,.5)}.auth-dialog::backdrop{background:rgba(0,0,0,.68);backdrop-filter:blur(4px)}.auth-dialog h2{font:800 1.7rem var(--font-display);margin:.2rem 0 .7rem}.auth-dialog>p:not(.eyebrow){color:var(--muted);line-height:1.55}.auth-close{position:absolute;right:14px;top:12px;border:0;background:transparent;color:var(--muted);font-size:1.6rem;cursor:pointer}.auth-dialog form{display:grid;gap:.55rem;margin-top:1.1rem}.auth-dialog label{font-weight:700;font-size:.86rem}.auth-dialog input{background:var(--bg);border:1px solid var(--border);border-radius:10px;color:var(--text);padding:.8rem}.auth-dialog .primary-action{margin-top:.45rem;text-align:center}.auth-dialog #authMessage{font-size:.86rem;margin:.8rem 0 0;min-height:1.2em}
+</style>
+
+<script>
+  import { supabase } from '../lib/supabase';
+
+  const dialog = document.getElementById('authDialog');
+  const authButton = document.getElementById('walletAuth');
+  const logoutButton = document.getElementById('walletLogout');
+  const closeButton = document.querySelector('.auth-close');
+  const form = document.getElementById('magicLinkForm');
+  const email = document.getElementById('magicEmail');
+  const message = document.getElementById('authMessage');
+  const balance = document.getElementById('walletBalance');
+  const status = document.getElementById('walletStatus');
+
+  async function renderWallet() {
+    const { data: { session } } = await supabase.auth.getSession();
+    if (!session) {
+      balance.textContent = '—';
+      status.textContent = 'Balansingizni ko‘rish uchun kiring.';
+      authButton.hidden = false;
+      logoutButton.hidden = true;
+      return;
+    }
+    authButton.hidden = true;
+    logoutButton.hidden = false;
+    status.textContent = 'Balansingiz yuklanmoqda…';
+    const { data, error } = await supabase
+      .from('wallets')
+      .select('qadam_balance')
+      .eq('user_id', session.user.id)
+      .maybeSingle();
+    if (error) {
+      balance.textContent = '—';
+      status.textContent = 'Hamyon vaqtincha yuklanmadi. Keyinroq qayta urinib ko‘ring.';
+      return;
+    }
+    balance.textContent = String(data?.qadam_balance ?? 0);
+    status.textContent = '1 Qadam = 1 modul urinish';
+    window.dispatchEvent(new CustomEvent('tayanch:wallet', { detail: { balance: data?.qadam_balance ?? 0 } }));
+  }
+
+  authButton?.addEventListener('click', () => dialog.showModal());
+  closeButton?.addEventListener('click', () => dialog.close());
+  form?.addEventListener('submit', async (event) => {
+    event.preventDefault();
+    const address = email.value.trim();
+    if (!address) return;
+    message.textContent = 'Havola yuborilmoqda…';
+    const { error } = await supabase.auth.signInWithOtp({
+      email: address,
+      options: { emailRedirectTo: `${window.location.origin}${import.meta.env.BASE_URL}` }
+    });
+    message.textContent = error ? `Xatolik: ${error.message}` : 'Kirish havolasi emailingizga yuborildi. Uni ochib saytga qayting.';
+  });
+  logoutButton?.addEventListener('click', async () => { await supabase.auth.signOut(); await renderWallet(); });
+  supabase.auth.onAuthStateChange(() => { void renderWallet(); });
+  void renderWallet();
+</script>
