@@ -1,7 +1,7 @@
 ---
 import Base from "../../layouts/Base.astro";
 const title = "Kurslar — Tayanch";
-const description = "Pullik va bepul kurslar: Prompt Engineering, Obsidian, AI Agentlar, IELTS Prep, Admission Process, Figma, AutoCAD on Mac, Financial Literacy, Chet elda o'qish, El-Yurt Umidi, Computer Literacy";
+const description = "Pullik va bepul kurslar hamda IELTS Mock Test practice mahsuloti: Prompt Engineering, Obsidian, AI Agentlar, IELTS Prep, Admission Process va boshqalar.";
 const base = import.meta.env.BASE_URL;
 ---
 
@@ -61,6 +61,17 @@ const base = import.meta.env.BASE_URL;
     <p>IELTS Writing, Reading, Speaking — 30 kunlik reja bilan.</p>
     <p class="price">$24 <span class="uzs">≈ 300 000 so'm</span></p>
     <a href={base + 'kurslar/ielts-prep'} class="start-btn">Kursni boshlash →</a>
+  </div>
+
+  <div class="card" style="--c:#7d7df5" data-cat="ielts">
+    <span class="badge badge-new">Yangi</span>
+    <div class="c-ic"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5h16v14H4z"/><path d="M8 3v4M16 3v4M7 11h10M7 15h6"/></svg></div>
+    <h2>IELTS Mock Test</h2>
+    <span class="cat">IELTS · Practice</span>
+    <span class="cert-line"><svg viewBox="0 0 24 24"><path d="M12 3v18M3 12h18"/></svg>Tayanch Qadam bilan</span>
+    <p>Listening, Reading, Writing va Speaking bo‘limlarini alohida yoki full mock sifatida mashq qiling.</p>
+    <p class="price">1 Qadamdan <span class="uzs">≈ 32 000 so‘m / modul</span></p>
+    <a href={base + 'ielts-mock/'} class="start-btn">Mockni tanlash →</a>
   </div>
 
   <div class="card" style="--c:#8b5cf6" data-cat="admission">
