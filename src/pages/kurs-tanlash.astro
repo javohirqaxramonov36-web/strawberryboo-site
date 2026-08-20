@@ -10,66 +10,70 @@ const description = "4 savolli mini-test orqali o'zingizga mos kursni toping.";
   <h1>Qaysi kurs sizga kerak?</h1>
   <p class="lead">4 ta savolga javob bering — sizga eng mos kursni tavsiya qilamiz.</p>
 
+  <div class="reco-progress" aria-live="polite">
+    <div class="reco-progress-track"><div class="reco-progress-bar" id="recoProgressBar"></div></div>
+    <span class="reco-progress-label" id="recoProgressLabel">1/4</span>
+  </div>
+
   <form id="recoForm">
-    <div class="reco-q" data-q>
+    <div class="reco-q reco-step is-active" data-step>
       <p class="q-t">1. Asosiy maqsadingiz nima?</p>
       <div class="reco-opts">
-        <label class="reco-opt"><input type="radio" name="q1" value="prompt-engineering" /> AI bilan samarali ishlash, vaqtni tejash</label>
-        <label class="reco-opt"><input type="radio" name="q1" value="obsidian" /> Bilimlarimni tartibga solish, eslab qolish</label>
-        <label class="reco-opt"><input type="radio" name="q1" value="ai-agentlar" /> Murakkab vazifalarni avtomatlashtirish</label>
-        <label class="reco-opt"><input type="radio" name="q1" value="ielts-prep" /> IELTS / chet elga tayyorgarlik</label>
-        <label class="reco-opt"><input type="radio" name="q1" value="tekin-ai" /> Bepul boshlash, pul sarflamasdan</label>
-        <label class="reco-opt"><input type="radio" name="q1" value="financial-literacy" /> Moliyani boshqarish, byudjet tuzish</label>
-        <label class="reco-opt"><input type="radio" name="q1" value="computer-literacy" /> Raqamli ko'nikmalar (Office / Google)</label>
-        <label class="reco-opt"><input type="radio" name="q1" value="autocad-on-mac" /> Loyiha chizish, texnik dizayn (AutoCAD)</label>
+        <label class="reco-opt" data-points="prompt-engineering:3,tekin-ai:1"><input type="radio" name="q1" value="prompt-engineering" /> AI bilan samarali ishlash, vaqtni tejash</label>
+        <label class="reco-opt" data-points="obsidian:3,prompt-engineering:1"><input type="radio" name="q1" value="obsidian" /> Bilimlarimni tartibga solish, eslab qolish</label>
+        <label class="reco-opt" data-points="ai-agentlar:3,prompt-engineering:1"><input type="radio" name="q1" value="ai-agentlar" /> Murakkab vazifalarni avtomatlashtirish</label>
+        <label class="reco-opt" data-points="ielts-prep:3,admission-process:1"><input type="radio" name="q1" value="ielts-prep" /> IELTS / chet elga tayyorgarlik</label>
+        <label class="reco-opt" data-points="tekin-ai:3"><input type="radio" name="q1" value="tekin-ai" /> Bepul boshlash, pul sarflamasdan</label>
+        <label class="reco-opt" data-points="financial-literacy:3"><input type="radio" name="q1" value="financial-literacy" /> Moliyani boshqarish, byudjet tuzish</label>
+        <label class="reco-opt" data-points="computer-literacy:3"><input type="radio" name="q1" value="computer-literacy" /> Raqamli ko'nikmalar (Office / Google)</label>
+        <label class="reco-opt" data-points="autocad-on-mac:3"><input type="radio" name="q1" value="autocad-on-mac" /> Loyiha chizish, texnik dizayn (AutoCAD)</label>
       </div>
     </div>
 
-    <div class="reco-q" data-q>
+    <div class="reco-q reco-step" data-step>
       <p class="q-t">2. Texnik darajangiz?</p>
       <div class="reco-opts">
-        <label class="reco-opt"><input type="radio" name="q2" value="tekin-ai" /> Yangi boshlovchi (0 dan)</label>
-        <label class="reco-opt"><input type="radio" name="q2" value="obsidian" /> O'rta (asoslar bilaman)</label>
-        <label class="reco-opt"><input type="radio" name="q2" value="ai-agentlar" /> Advanced (kod yozaman)</label>
-        <label class="reco-opt"><input type="radio" name="q2" value="ielts-prep" /> Til/akademik yo'nalish</label>
+        <label class="reco-opt" data-points="tekin-ai:2,computer-literacy:1"><input type="radio" name="q2" value="tekin-ai" /> Yangi boshlovchi (0 dan)</label>
+        <label class="reco-opt" data-points="obsidian:2,prompt-engineering:1"><input type="radio" name="q2" value="obsidian" /> O'rta (asoslar bilaman)</label>
+        <label class="reco-opt" data-points="ai-agentlar:2,prompt-engineering:1"><input type="radio" name="q2" value="ai-agentlar" /> Advanced (kod yozaman)</label>
+        <label class="reco-opt" data-points="ielts-prep:2,admission-process:1"><input type="radio" name="q2" value="ielts-prep" /> Til/akademik yo'nalish</label>
       </div>
     </div>
 
-    <div class="reco-q" data-q>
+    <div class="reco-q reco-step" data-step>
       <p class="q-t">3. Bujetingiz?</p>
       <div class="reco-opts">
-        <label class="reco-opt"><input type="radio" name="q3" value="tekin-ai" /> Bepul bo'lishi kerak</label>
-        <label class="reco-opt"><input type="radio" name="q3" value="obsidian" /> $19–$29 (arzon)</label>
-        <label class="reco-opt"><input type="radio" name="q3" value="ai-agentlar" /> $30+ (sifatli, chuqur)</label>
-        <label class="reco-opt"><input type="radio" name="q3" value="figma" /> Dizayn/FOYDALI ko'nikma</label>
+        <label class="reco-opt" data-points="tekin-ai:3"><input type="radio" name="q3" value="tekin-ai" /> Bepul bo'lishi kerak</label>
+        <label class="reco-opt" data-points="obsidian:2,figma:1"><input type="radio" name="q3" value="obsidian" /> $19–$29 (arzon)</label>
+        <label class="reco-opt" data-points="ai-agentlar:2,prompt-engineering:1"><input type="radio" name="q3" value="ai-agentlar" /> $30+ (sifatli, chuqur)</label>
+        <label class="reco-opt" data-points="figma:3,tekin-ai:1"><input type="radio" name="q3" value="figma" /> Dizayn/FOYDALI ko'nikma</label>
       </div>
     </div>
 
-    <div class="reco-q" data-q>
+    <div class="reco-q reco-step" data-step>
       <p class="q-t">4. Qanday natija ko'rmoqchisiz?</p>
       <div class="reco-opts">
-        <label class="reco-opt"><input type="radio" name="q4" value="prompt-engineering" /> Tez, amaliy natija (1 hafta)</label>
-        <label class="reco-opt"><input type="radio" name="q4" value="admission-process" /> Stipendiya / chet elga kirish</label>
-        <label class="reco-opt"><input type="radio" name="q4" value="figma" /> Mahsulot/dizayn ko'nikmasi</label>
-        <label class="reco-opt"><input type="radio" name="q4" value="ai-agentlar" /> O'z agent'imni yaratish</label>
-        <label class="reco-opt"><input type="radio" name="q4" value="mac-tezlik-sirlari" /> Mac'da ishni tezlashtirish</label>
-        <label class="reco-opt"><input type="radio" name="q4" value="chet-elda-oqish" /> Chet elda o'qish, bepul grant</label>
-        <label class="reco-opt"><input type="radio" name="q4" value="el-yurt-umidi" /> Davlat granti suhbati (El-Yurt Umidi)</label>
+        <label class="reco-opt" data-points="prompt-engineering:3"><input type="radio" name="q4" value="prompt-engineering" /> Tez, amaliy natija (1 hafta)</label>
+        <label class="reco-opt" data-points="admission-process:3,ielts-prep:1"><input type="radio" name="q4" value="admission-process" /> Stipendiya / chet elga kirish</label>
+        <label class="reco-opt" data-points="figma:3"><input type="radio" name="q4" value="figma" /> Mahsulot/dizayn ko'nikmasi</label>
+        <label class="reco-opt" data-points="ai-agentlar:3"><input type="radio" name="q4" value="ai-agentlar" /> O'z agent'imni yaratish</label>
+        <label class="reco-opt" data-points="mac-tezlik-sirlari:3"><input type="radio" name="q4" value="mac-tezlik-sirlari" /> Mac'da ishni tezlashtirish</label>
+        <label class="reco-opt" data-points="chet-elda-oqish:3,admission-process:1"><input type="radio" name="q4" value="chet-elda-oqish" /> Chet elda o'qish, bepul grant</label>
+        <label class="reco-opt" data-points="el-yurt-umidi:3,admission-process:1"><input type="radio" name="q4" value="el-yurt-umidi" /> Davlat granti suhbati (El-Yurt Umidi)</label>
       </div>
     </div>
 
-    <button type="button" class="start-btn" id="recoBtn">Natijani ko'rsat →</button>
+    <div class="reco-nav">
+      <button type="button" class="start-btn is-ghost" id="recoPrev" hidden>← Orqaga</button>
+      <button type="button" class="start-btn" id="recoBtn">Keyingi →</button>
+    </div>
   </form>
 
-  <div class="reco-result" id="recoResult">
-    <h3 id="recoTitle"></h3>
-    <p id="recoDesc"></p>
-    <a href="#" class="start-btn" id="recoLink">Kursga o'tish →</a>
-  </div>
+  <div class="reco-result" id="recoResult"></div>
 </article>
 
 <script>
-  const COURSES = {
+  window.TAYANCH_COURSES = {
     "prompt-engineering": { title: "Prompt Engineering", url: import.meta.env.BASE_URL + "kurslar/prompt-engineering", desc: "AI bilan to'g'ri muloqot — vaqtni 10x tejash.", color: "#7d7df5" },
     "obsidian": { title: "Obsidian PKM", url: import.meta.env.BASE_URL + "kurslar/obsidian", desc: "Shaxsiy bilim bazasi — bilimingizni tartibga soling.", color: "#34d399" },
     "ai-agentlar": { title: "AI Agentlar nega kerak?", url: import.meta.env.BASE_URL + "kurslar/ai-agentlar", desc: "Vazifalarni o'zi bajarib chiqadigan agent'lar.", color: "#ef4444" },
@@ -84,33 +88,5 @@ const description = "4 savolli mini-test orqali o'zingizga mos kursni toping.";
     "chet-elda-oqish": { title: "Nega chet elda o'qish kerak", url: import.meta.env.BASE_URL + "kurslar/chet-elda-oqish", desc: "Ta'lim sifati, karyera va bepul grantlar haqida bepul kurs.", color: "#14b8a6" },
     "el-yurt-umidi": { title: "El-Yurt Umidi'ni yutaylik", url: import.meta.env.BASE_URL + "kurslar/el-yurt-umidi", desc: "Davlat granti bo'yicha suhbatga tayyorgarlik (tez orada).", color: "#ec4899" }
   };
-  const form = document.getElementById('recoForm');
-  const btn = document.getElementById('recoBtn');
-  const result = document.getElementById('recoResult');
-  form.querySelectorAll('.reco-opt').forEach(opt => {
-    opt.addEventListener('click', () => {
-      opt.closest('.reco-q').querySelectorAll('.reco-opt').forEach(o => o.classList.remove('sel'));
-      opt.classList.add('sel');
-      const input = opt.querySelector('input'); if (input) input.checked = true;
-    });
-  });
-  btn.addEventListener('click', () => {
-    const scores = {};
-    form.querySelectorAll('input:checked').forEach(inp => {
-      const v = inp.value; scores[v] = (scores[v] || 0) + 1;
-    });
-    const keys = Object.keys(scores);
-    if (keys.length < 4) { alert('Iltimos, barcha 4 savolga javob bering.'); return; }
-    let best = keys[0];
-    keys.forEach(k => { if (scores[k] > scores[best]) best = k; });
-    const c = COURSES[best];
-    document.getElementById('recoTitle').textContent = 'Sizga tavsiya: ' + c.title;
-    document.getElementById('recoDesc').textContent = c.desc;
-    const link = document.getElementById('recoLink');
-    link.href = c.url;
-    result.style.borderColor = c.color;
-    result.classList.add('show');
-    result.scrollIntoView({ behavior: 'smooth', block: 'center' });
-  });
 </script>
 </Base>

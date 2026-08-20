@@ -1,0 +1,204 @@
+/* =========================================================
+   Tayanch — interactive.css
+   Kurs kartalari, tugmalar, scroll animatsiyalari va
+   interaktiv "Kurs tanlash" testi uslublari.
+   Mavjud global stildan keyin yuklanadi (Base.astro).
+   ========================================================= */
+
+/* 1) Kurs kartalari — hover ko'tarilish + soya
+   (body prefiksi: Astro global CSS bundlidan keyin yuklansada g'alaba qozonadi) */
+body .card,
+body .course,
+body .plan {
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+}
+body .card:hover,
+body .course:hover,
+body .plan:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.25);
+  border-color: var(--accent);
+}
+
+/* 2) Tugmalar — hover/press feedback */
+body .start-btn,
+body .hero-cta,
+body .cta,
+body .comm-join,
+body .tg-footer-btn {
+  transition: background-color 0.2s ease, transform 0.15s ease, box-shadow 0.15s ease;
+}
+body .start-btn:hover,
+body .hero-cta:hover,
+body .cta:hover,
+body .comm-join:hover,
+body .tg-footer-btn:hover {
+  transform: scale(1.03);
+}
+
+/* 3) Scroll-da paydo bo'lish (data-fade-on-scroll orqali faollashadi) */
+.fade-in-on-scroll {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+.fade-in-on-scroll.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* 4) Ijtimoiy isbot (social proof) — karta ichida */
+.social-proof {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin: 0.7rem 0 0.2rem;
+}
+.sp-starters {
+  color: var(--muted);
+  font-size: 0.82rem;
+  font-weight: 600;
+}
+.sp-rating {
+  color: #ffd700;
+  font-size: 0.85rem;
+  letter-spacing: 2px;
+  opacity: 0.55;
+}
+
+/* 5) Kurs tanlash — progress bar */
+.reco-progress {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 1.2rem 0 1.6rem;
+}
+.reco-progress-track {
+  flex: 1;
+  height: 8px;
+  border-radius: 999px;
+  background: var(--border);
+  overflow: hidden;
+}
+.reco-progress-bar {
+  height: 100%;
+  width: 0%;
+  border-radius: 999px;
+  background: linear-gradient(90deg, var(--accent), var(--accent-2));
+  transition: width 0.35s ease;
+}
+.reco-progress-label {
+  font: 800 13px var(--font-display);
+  color: var(--muted);
+  min-width: 34px;
+  text-align: right;
+}
+
+/* 6) Kurs tanlash — bosqichma-bosqich (wizard) */
+.reco-step {
+  display: none;
+}
+.reco-step.is-active {
+  display: block;
+  animation: recoStepIn 0.3s ease;
+}
+@keyframes recoStepIn {
+  from { opacity: 0; transform: translateX(14px); }
+  to { opacity: 1; transform: none; }
+}
+.reco-nav {
+  display: flex;
+  gap: 10px;
+  margin-top: 1.2rem;
+  align-items: center;
+}
+.reco-nav .is-ghost {
+  background: var(--surface);
+  color: var(--muted);
+  border: 1px solid var(--border);
+}
+.reco-nav .is-ghost:hover {
+  color: var(--accent);
+  border-color: var(--accent);
+  background: var(--surface);
+  transform: none;
+}
+
+/* 7) Natija kartalari (top-2 tavsiya) */
+.reco-result-list {
+  display: grid;
+  gap: 10px;
+  margin-top: 6px;
+}
+.reco-result-card {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 14px;
+  border-radius: 12px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  text-decoration: none;
+  transition: border-color 0.15s, transform 0.15s;
+}
+.reco-result-card:hover {
+  border-color: var(--accent);
+  transform: translateY(-2px);
+  text-decoration: none;
+}
+.reco-result-card .rc-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+.reco-result-card .rc-body {
+  flex: 1;
+  min-width: 0;
+}
+.reco-result-card .rc-body strong {
+  display: block;
+  color: var(--text);
+}
+.reco-result-card .rc-body span {
+  color: var(--muted);
+  font-size: 0.82rem;
+}
+.reco-result-card .rc-rank {
+  font: 800 11px var(--font-display);
+  color: var(--accent);
+  background: var(--accent-soft);
+  padding: 3px 8px;
+  border-radius: 999px;
+  white-space: nowrap;
+}
+
+/* Harakatga sezgirlik kamaytirilgan — animatsiyalarni o'chir */
+@media (prefers-reduced-motion: reduce) {
+  body .card,
+  body .course,
+  body .plan,
+  body .start-btn,
+  body .hero-cta,
+  body .cta,
+  body .comm-join,
+  body .tg-footer-btn,
+  .fade-in-on-scroll {
+    transition: none !important;
+    transform: none !important;
+  }
+  .reco-step.is-active {
+    animation: none;
+  }
+}
+
+/* Mobil: hover ko'tarilishni yumshatish (yopishib qolmasin) */
+@media (max-width: 600px) {
+  body .card:hover,
+  body .course:hover,
+  body .plan:hover {
+    transform: none;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+  }
+}
