@@ -55,15 +55,19 @@ const pageTitle = "IELTS Writing Practice — Tayanch";
 
   <footer class="bottom-bar">
     <div class="task-tabs"><button class="tab active" data-task="1" type="button"><b>Part 1</b><small id="done1">0 of 1</small></button><button class="tab" data-task="2" type="button"><b>Part 2</b><small id="done2">0 of 1</small></button></div>
+    <button id="aiAssess" class="ai-button" type="button">AI Baholash</button>
     <button id="instructions" class="muted-button" type="button">Ko'rsatmalar</button>
     <button id="submit" class="submit" type="button">Yakunlash va PDF</button>
   </footer>
+
+  <dialog id="aiResultDialog"><div class="dialog-head"><h2>AI Writing Assessment</h2><button class="close" type="button" data-close>×</button></div><div class="dialog-body"><div id="aiResultContent"></div></div></dialog>
 
   <dialog id="instructionsDialog"><div class="dialog-head"><h2>Writing practice ko'rsatmalari</h2><button class="close" type="button" data-close>×</button></div><div class="dialog-body"><h3>Umumiy</h3><ul><li>Task 1 uchun taxminan 20 daqiqa va kamida 150 so'z.</li><li>Task 2 uchun taxminan 40 daqiqa va kamida 250 so'z.</li><li>Tasklar orasida o'tganda yozgan javobingiz qurilmada saqlanadi.</li></ul><h3>Task 1</h3><p>Asosiy trend yoki xususiyatlarni tanlang, aniq taqqoslashlar qiling va formal uslubdan foydalaning.</p><h3>Task 2</h3><p>Qisqa introduction, ikki body paragraph va aniq xulosa orqali pozitsiyani himoya qiling.</p><h3>Self-review</h3><p>Word count, savolga to'liq javob, paragraph mantiqi hamda academic so'zlarning tabiiyligini o'zingiz tekshirasiz.</p><button id="copyInstructions" class="copy" type="button">Ko'rsatmalarni nusxalash</button></div></dialog>
 
   <dialog id="completeDialog"><div class="dialog-head"><h2>Practice yakunlandi</h2><button class="close" type="button" data-close>×</button></div><div class="dialog-body"><p id="summary"></p><p>PDF fayl qurilmangizga yuklanadi. Hozir bu umumiy shablon, shuning uchun namunaviy javoblar yangi test kontenti kiritilganda chiqadi.</p><button id="download" class="submit" type="button">PDF-ni yuklash</button></div></dialog>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script src={base + 'js/ielts-assessor.js'}></script>
   <script>
     const stateKey = 'organamiz-writing-template-v1';
     const store = JSON.parse(localStorage.getItem(stateKey) || '{"task1":"","task2":"","theme":"dark"}');
@@ -108,6 +112,51 @@ const pageTitle = "IELTS Writing Practice — Tayanch";
     document.querySelector('#copyInstructions').addEventListener('click', async () => { await navigator.clipboard.writeText(instructionText); document.querySelector('#copyInstructions').textContent = 'Nusxalandi'; });
     document.querySelector('#submit').addEventListener('click', () => { const total=word(store.task1)+word(store.task2); if (!total) { alert('Avval kamida bitta task uchun javob yozing.'); return; } document.querySelector('#summary').textContent = `Task 1: ${word(store.task1)} so'z · Task 2: ${word(store.task2)} so'z · Jami: ${total} so'z.`; complete.showModal(); });
     document.querySelector('#download').addEventListener('click', () => { const { jsPDF } = window.jspdf || {}; if (!jsPDF) { alert('PDF moduli yuklanmadi. Internet aloqasini tekshirib, qayta urinib ko‘ring.'); return; } const doc = new jsPDF(); const stamp = new Date().toLocaleString(); const addTask = (title, response, count, first) => { if (!first) doc.addPage(); doc.setFontSize(18); doc.text(title, 20, 22); doc.setFontSize(11); doc.text(`Sana: ${stamp}`, 20, 34); doc.text(`So‘z soni: ${count}`, 20, 42); doc.setFontSize(13); doc.text('Javob:', 20, 55); doc.setFontSize(11); const lines = doc.splitTextToSize(response || '[Javob yozilmagan]', 170); doc.text(lines, 20, 65); }; addTask('IELTS Writing Practice — Task 1', store.task1, word(store.task1), true); addTask('IELTS Writing Practice — Task 2', store.task2, word(store.task2), false); doc.save('organamiz-ielts-writing-practice.pdf'); });
+    
+    // --- AI ASSESSMENT ---
+    const aiResultDialog = document.querySelector('#aiResultDialog');
+    const aiResultContent = document.querySelector('#aiResultContent');
+    document.querySelector('#aiAssess').addEventListener('click', async () => {
+      const currentContent = store[current === 1 ? 'task1' : 'task2'];
+      const wc = word(currentContent);
+      if (!wc) { alert('Avval javob yozing, so\'ng AI baholashni bosing.'); return; }
+      
+      if (!window.IELTSAssessor || !IELTSAssessor.hasApiKey()) {
+        aiResultContent.innerHTML = '<div style="text-align:center;padding:30px;"><p style="margin-bottom:16px;">AI baholash uchun OpenAI API kalit kerak.</p><button id="openSettings" style="padding:10px 24px;border:none;border-radius:8px;background:var(--accent);color:#fff;cursor:pointer;font-weight:600;">Sozlamalarni ochish</button></div>';
+        aiResultDialog.showModal();
+        document.querySelector('#openSettings').addEventListener('click', () => IELTSAssessor.showSettingsDialog());
+        return;
+      }
+      
+      aiResultContent.innerHTML = '<div style="text-align:center;padding:50px 20px;"><div style="display:inline-block;width:48px;height:48px;border:4px solid var(--border);border-top-color:var(--accent);border-radius:50%;animation:spin .8s linear infinite;"></div><p style="margin-top:20px;color:var(--muted);">AI javobingizni baholayapti... (30-60 soniya)</p></div>';
+      aiResultDialog.showModal();
+      
+      try {
+        const taskType = current === 1 ? 'academic_task1' : 'task2';
+        const prompt = current === 1 
+          ? 'Summarise the information by selecting and reporting the main features, and make comparisons where relevant.'
+          : 'Write an essay responding to the given topic. Discuss both views and give your own opinion.';
+        
+        const result = await IELTSAssessor.assessWriting({
+          task_type: taskType,
+          prompt: prompt,
+          response: currentContent
+        });
+        
+        aiResultContent.innerHTML = IELTSAssessor.renderAssessmentHTML(result) + 
+          '<div style="margin-top:20px;display:flex;gap:10px;justify-content:center;">' +
+          '<button class="submit" onclick="IELTSAssessor.showSettingsDialog()" style="border:1px solid var(--border);background:transparent;color:var(--text);padding:.6rem 1rem;border-radius:9px;cursor:pointer;">AI Sozlamalar</button>' +
+          '<button class="submit" onclick="document.querySelector(\'#aiResultDialog\').close()" style="background:var(--accent);color:#fff;padding:.6rem 1rem;border:none;border-radius:9px;cursor:pointer;">Yopish</button>' +
+          '</div>';
+      } catch (err) {
+        aiResultContent.innerHTML = '<div style="padding:30px;text-align:center;"><p style="color:#ef4444;font-size:16px;margin-bottom:16px;">Xatolik: ' + err.message + '</p><div style="display:flex;gap:10px;justify-content:center;"><button onclick="IELTSAssessor.showSettingsDialog()" style="padding:10px 20px;border:1px solid var(--border);background:transparent;color:var(--text);border-radius:8px;cursor:pointer;">Sozlamalar</button><button onclick="document.querySelector(\'#aiResultDialog\').close()" style="padding:10px 20px;border:none;background:var(--accent);color:#fff;border-radius:8px;cursor:pointer;">Yopish</button></div></div>';
+      }
+    });
+    
+    const style = document.createElement('style');
+    style.textContent = '@keyframes spin{to{transform:rotate(360deg)}} .ai-button{background:linear-gradient(135deg,var(--accent),#6f62e8);color:#fff;border:none;padding:.6rem 1.2rem;border-radius:9px;font:inherit;font-weight:700;cursor:pointer;white-space:nowrap}.ai-button:hover{opacity:.9} .criterion-example{margin:10px 0;padding:10px 12px;background:var(--panel2);border-radius:6px;font-size:14px;border-left:3px solid #6c5ce7}.criterion-tip{margin-top:10px;padding:10px 12px;background:var(--panel2);border-radius:6px;font-size:14px;border-left:3px solid #f1c40f} .score-card{background:var(--panel2);border-radius:12px;padding:20px;margin-bottom:16px;border-left:5px solid var(--accent)} .score-card h3{margin:0 0 10px;font-size:1rem} .score-card p{font-size:.9rem;line-height:1.5;margin:0 0 8px} .results-header{text-align:center;padding:30px;background:linear-gradient(135deg,var(--accent),#6f62e8);color:#fff;border-radius:12px;margin-bottom:20px} .results-header h1{margin:0 0 10px;font-size:1.5rem} .overall-band{font-size:3rem;font-weight:800} .results-grid{display:grid;gap:16px}';
+    document.head.appendChild(style);
+    
     paint();
   </script>
 
