@@ -125,10 +125,13 @@ const index = [
   </div>
 </div>
 
-<script is:inline define:vars={base, index}>
+<template id="searchData">{JSON.stringify({ base, index })}</template>
+
+<script is:inline>
   (function () {
-    var SEARCH_BASE = base;
-    var DATA = index;
+    var cfg = JSON.parse(document.getElementById('searchData').innerHTML);
+    var SEARCH_BASE = cfg.base;
+    var DATA = cfg.index;
     var LS_KEY = 'org-lam-lang';
 
     var LABELS = {
