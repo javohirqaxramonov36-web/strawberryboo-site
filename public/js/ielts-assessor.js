@@ -12,7 +12,7 @@
 (function (global) {
   'use strict';
 
-  const SYSTEM_PROMPT = `You are an experienced, certified IELTS Writing examiner. You mark strictly according to the four official criteria below, exactly as a real examiner would: based only on what is written on the page, not on what the candidate probably meant to say.
+  const SYSTEM_PROMPT = `You are an IELTS Writing practice assessor. Assess only the submitted response against the four IELTS Writing criteria below. Do not claim to be certified, official, or a real IELTS examiner. Your result is an AI practice estimate, not an official IELTS score. Mark strictly from the text on the page, not from what the candidate may have intended.
 
 INPUT YOU WILL RECEIVE:
 - task_type: one of academic_task1, general_task1, task2
@@ -76,9 +76,8 @@ BAND GUIDELINES:
 - 4: Sentence forms attempted but control weak; errors predominate and obscure meaning.
 - 3 or below: Minimal control; structure largely broken, meaning very hard to follow.
 
-OVERALL WRITING BAND:
-overall = (task1_band * 1 + task2_band * 2) / 3
-Round: .25 rounds up to .5; .75 rounds up to next whole band.
+SINGLE-TASK BAND:
+You are assessing exactly one response. Set task_band to the arithmetic mean of the four criterion bands, rounded to the nearest 0.5. Do not calculate a combined Task 1 + Task 2 Writing score. The application calculates the combined module score separately only when both tasks are available.
 
 ADDITIONAL RULES:
 - If word_count is under minimum (150 Task 1, 250 Task 2), note this explicitly.
@@ -187,6 +186,30 @@ Respond with valid JSON only, no extra text:
    * @param {Object} params - { task_type, prompt, response }
    * @returns {Promise<Object>}
    */
+  function normalizeAssessment(result) {
+    if (!result || typeof result !== 'object') throw new Error('AI javobi bo‘sh yoki noto‘g‘ri formatda.');
+    const keys = ['task_achievement_or_response', 'coherence_cohesion', 'lexical_resource', 'grammatical_range_accuracy'];
+    const roundBand = (value) => {
+      const n = Number(value);
+      if (!Number.isFinite(n)) return null;
+      return Math.max(1, Math.min(9, Math.round(n * 2) / 2));
+    };
+    for (const key of keys) {
+      const item = result[key];
+      if (!item || typeof item !== 'object') throw new Error('AI javobida barcha 4 baholash mezoni yo‘q. Qayta urinib ko‘ring.');
+      const band = roundBand(item.band);
+      if (band === null) throw new Error('AI javobidagi band noto‘g‘ri. Qayta urinib ko‘ring.');
+      item.band = band;
+      item.feedback = String(item.feedback || '');
+      item.example_from_text = String(item.example_from_text || '');
+      item.improvement_tip = String(item.improvement_tip || '');
+    }
+    const calculated = keys.reduce((sum, key) => sum + result[key].band, 0) / keys.length;
+    result.task_band = Math.round(calculated * 2) / 2;
+    result.overall_summary = String(result.overall_summary || '');
+    return result;
+  }
+
   async function assessWriting(params) {
     var apiKey = getApiKey();
     if (!apiKey) {
@@ -266,7 +289,7 @@ Respond with valid JSON only, no extra text:
     }
 
     try {
-      return JSON.parse(jsonStr);
+      return normalizeAssessment(JSON.parse(jsonStr));
     } catch (e) {
       throw new Error('AI javobi JSON formatida emas. Model: ' + config.model + '. Iltimos, boshqa model sinab ko\'ring.');
     }
@@ -296,7 +319,7 @@ Respond with valid JSON only, no extra text:
       if (!item) return '';
       var html = '<div class="score-card" style="border-left-color:' + bandColor(item.band) + '">';
       html += '<h3>' + c.label + ' — <span style="color:' + bandColor(item.band) + '">' + item.band + '</span></h3>';
-      html += '<p>' + (item.feedback || '') + '</p>';
+      html += '<p>' + escapeHtml(item.feedback || '') + '</p>';
       if (item.example_from_text) {
         html += '<div class="criterion-example"><strong>Quote:</strong> <em>"' + escapeHtml(item.example_from_text) + '"</em></div>';
       }
