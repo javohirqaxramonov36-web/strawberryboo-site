@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://javohirqaxramonov36-web.github.io/strawberryboo-site/sitemap.xml

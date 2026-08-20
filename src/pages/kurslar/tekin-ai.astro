@@ -1,9 +1,10 @@
 ---
 import Base from "../../layouts/Base.astro";
+import CourseSchema from "../../components/CourseSchema.astro";
 import LeadMagnetCTA from "../../components/LeadMagnetCTA.astro";
 import Quiz from "../../components/Quiz.astro";
 const title = "Tekin AI modellar va agentlar — Tayanch";
-const description = "MacBook'da o'rnatiladigan bepul AI vositalari ro'yxati va qo'llanma.";
+const description = "AI vositalari ro'yxati va amaliy qo'llanma.";
 const questions = [
   { q: "Ollama nima qiladi?", opts: ["Bulutli AI", "MacBook'da local AI model ishlatadi", "Pochta", "Rasm chizadi"], answer: 1 },
   { q: "Local (offline) AI ning afzalligi?", opts: ["Tezroq", "Ma'lumotlar kompyuteringizda qoladi", "Bepul emas", "Hech nima"], answer: 1 },
@@ -12,13 +13,14 @@ const questions = [
 ---
 
 <Base title={title} description={description}>
+  <CourseSchema name={title} description={description} />
 
 <article class="lesson">
   <div class="course-hero">
     <h1>Tekin AI modellar va agentlar</h1>
     <div class="price">
-      <span class="now">$0</span>
-      <span class="badge badge-free">Bepul</span>
+      <span class="now">$19</span>
+      <span class="uzs">≈ 240 000 so'm</span>
     </div>
   </div>
 
@@ -27,16 +29,16 @@ const questions = [
     Hamma narsa offline (internet shimsiz) ishlaydi.
   </p>
 
-  <section>
-    <h2 data-i18n="ta.modules">Vositalar ro'yxati</h2>
-    <ol class="modules">
-      <li data-i18n="ta.mod1">Ollama — local AI model (llama3.2)</li>
-      <li data-i18n="ta.mod2">CrewAI — jamoa agent'lari</li>
-      <li data-i18n="ta.mod3">LangGraph — orchestration</li>
-      <li data-i18n="ta.mod4">Letta / MemGPT — xotira</li>
-      <li data-i18n="ta.mod5">Obsidian + Tayanch — capture</li>
-      <li data-i18n="ta.mod6">Obsidian'dagi 17 ta AI agent haqida notalar</li>
-    </ol>
+  <section class="ai-tools-section">
+    <div class="ai-tools-head"><div><span>VOSITALAR XARITASI</span><h2 data-i18n="ta.modules">Vositalar ro'yxati</h2><p>Har bir vosita agentlar bilan ishlashning boshqa bir qismini qamrab oladi.</p></div><span class="ai-tools-count">6 vosita</span></div>
+    <div class="ai-tool-grid">
+      <article class="ai-tool-card local"><span class="tool-icon">◉</span><span class="tool-category">LOCAL MODEL</span><h3>Ollama</h3><p>Local AI model (llama3.2).</p></article>
+      <article class="ai-tool-card team"><span class="tool-icon">◫</span><span class="tool-category">JAMOA</span><h3>CrewAI</h3><p>Jamoa agent'lari.</p></article>
+      <article class="ai-tool-card flow"><span class="tool-icon">⌁</span><span class="tool-category">OQIM</span><h3>LangGraph</h3><p>Orchestration.</p></article>
+      <article class="ai-tool-card memory"><span class="tool-icon">◌</span><span class="tool-category">XOTIRA</span><h3>Letta / MemGPT</h3><p>Agent uchun xotira.</p></article>
+      <article class="ai-tool-card capture"><span class="tool-icon">↙</span><span class="tool-category">CAPTURE</span><h3>Obsidian + Tayanch</h3><p>Bilim va vazifalarni capture qilish.</p></article>
+      <article class="ai-tool-card notes"><span class="tool-icon">▤</span><span class="tool-category">NOTALAR</span><h3>17 AI agent</h3><p>Obsidian'dagi agent notalari.</p></article>
+    </div>
   </section>
 
   <p style="margin-top:2rem;">
@@ -46,4 +48,8 @@ const questions = [
   <Quiz titleI18n="ta.quizTitle" questions={questions} />
   <LeadMagnetCTA />
 </article>
+
+<style>
+.ai-tools-section{padding:clamp(1.1rem,3vw,1.65rem);border:1px solid color-mix(in srgb,#a78bfa 43%,var(--border));border-radius:18px;background:radial-gradient(circle at 92% 8%,color-mix(in srgb,#a78bfa 16%,transparent),transparent 24%),linear-gradient(135deg,color-mix(in srgb,var(--accent) 10%,var(--surface)),var(--surface))}.ai-tools-head{display:flex;align-items:flex-start;justify-content:space-between;gap:1rem}.ai-tools-head>div>span{font-size:.72rem;letter-spacing:.12em;font-weight:800;color:#c4b5fd}.ai-tools-head h2{margin:.25rem 0 .4rem}.ai-tools-head p{margin:0;color:var(--muted)}.ai-tools-count{white-space:nowrap;padding:.45rem .65rem;border:1px solid var(--border);border-radius:999px;color:var(--muted);font-size:.78rem}.ai-tool-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:.75rem;margin-top:1.25rem}.ai-tool-card{position:relative;min-height:154px;padding:1rem;border:1px solid var(--border);border-radius:14px;background:color-mix(in srgb,var(--bg) 32%,var(--surface));overflow:hidden;transition:transform .2s,border-color .2s}.ai-tool-card:hover{transform:translateY(-4px);border-color:var(--tool)}.tool-icon{display:grid;place-items:center;width:31px;height:31px;border-radius:9px;background:color-mix(in srgb,var(--tool) 20%,transparent);color:var(--tool);font-size:1.1rem;font-weight:800}.tool-category{display:block;margin-top:.8rem;color:var(--tool);font-size:.67rem;font-weight:800;letter-spacing:.1em}.ai-tool-card h3{margin:.25rem 0 .35rem;font-size:1rem}.ai-tool-card p{margin:0;color:var(--muted);font-size:.84rem;line-height:1.45}.local{--tool:#a78bfa}.team{--tool:#38bdf8}.flow{--tool:#fbbf24}.memory{--tool:#fb7185}.capture{--tool:#34d399}.notes{--tool:#f472b6}@media(max-width:650px){.ai-tools-head{flex-direction:column}.ai-tool-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}@media(prefers-reduced-motion:reduce){.ai-tool-card{transition:none}}
+</style>
 </Base>

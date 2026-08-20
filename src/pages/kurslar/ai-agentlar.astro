@@ -1,5 +1,6 @@
 ---
 import Base from "../../layouts/Base.astro";
+import CourseSchema from "../../components/CourseSchema.astro";
 import Quiz from "../../components/Quiz.astro";
 const title = "AI Agentlar nega kerak? — Tayanch";
 const description = "CrewAI, LangGraph — agent'lar nima uchun kerak, qanday foyda.";
@@ -11,6 +12,7 @@ const questions = [
 ---
 
 <Base title={title} description={description}>
+  <CourseSchema name={title} description={description} />
 
 <article class="lesson">
   <div class="course-hero">
@@ -28,6 +30,39 @@ const questions = [
     Oddiy AI (ChatGPT) — bitta savol. Agent esa vazifani o'zi bajarib chiqadi:
     reja tuzadi, qidiruv qiladi, natijani yozadi.
   </p>
+
+  <section class="agent-visual" aria-labelledby="agent-flow-title">
+    <div class="agent-visual-heading">
+      <span>AGENT ISH JARAYONI</span>
+      <h2 id="agent-flow-title">Vazifa → reja → qidiruv → natija</h2>
+      <p>Oddiy AI savolga javob beradi. Agent esa vazifani bosqichlarga ajratib, ish oqimi bo'ylab olib boradi.</p>
+    </div>
+    <div class="agent-flow" aria-label="Agent ish bosqichlari">
+      <article class="agent-step agent-step-task"><b>01</b><span class="agent-step-icon" aria-hidden="true">✦</span><h3>Vazifa</h3><p>Qanday natija kerakligini oladi.</p></article>
+      <span class="agent-arrow" aria-hidden="true">→</span>
+      <article class="agent-step agent-step-plan"><b>02</b><span class="agent-step-icon" aria-hidden="true">⌁</span><h3>Reja</h3><p>Vazifani bajariladigan qadamlarga bo'ladi.</p></article>
+      <span class="agent-arrow" aria-hidden="true">→</span>
+      <article class="agent-step agent-step-search"><b>03</b><span class="agent-step-icon" aria-hidden="true">⌕</span><h3>Qidiruv</h3><p>Kerakli ma'lumot va vositalarni topadi.</p></article>
+      <span class="agent-arrow" aria-hidden="true">→</span>
+      <article class="agent-step agent-step-result"><b>04</b><span class="agent-step-icon" aria-hidden="true">✓</span><h3>Natija</h3><p>Topilganlarini yig'ib, javobni qaytaradi.</p></article>
+    </div>
+  </section>
+
+  <section class="framework-compare" aria-labelledby="framework-title">
+    <div class="framework-heading"><span>QANDAY TASHKIL QILINADI?</span><h2 id="framework-title">CrewAI va LangGraph</h2><p>Ikki vosita ham agentlar bilan ishlashga yordam beradi, lekin urg'usi boshqacha.</p></div>
+    <div class="framework-tabs" role="tablist" aria-label="Frameworkni tanlang">
+      <button type="button" class="framework-tab is-active" role="tab" aria-selected="true" aria-controls="crew-panel" id="crew-tab" data-framework="crew">CrewAI <small>Jamoa</small></button>
+      <button type="button" class="framework-tab" role="tab" aria-selected="false" aria-controls="graph-panel" id="graph-tab" data-framework="graph">LangGraph <small>Oqim</small></button>
+    </div>
+    <article class="framework-panel crew-panel" id="crew-panel" role="tabpanel" aria-labelledby="crew-tab" data-framework-panel="crew">
+      <div class="framework-illustration crew-illustration" aria-hidden="true"><span>Planner</span><i>→</i><span>Researcher</span><i>→</i><span>Writer</span></div>
+      <div><h3>Rol'li agentlar jamoasi</h3><p>CrewAI murakkab vazifani Planner, Researcher va Writer kabi alohida rollarga bo'lib bajarishga mos. Har bir agent o'z vazifasiga e'tibor beradi.</p><p class="framework-tag">Role + Goal + Task</p></div>
+    </article>
+    <article class="framework-panel graph-panel" id="graph-panel" role="tabpanel" aria-labelledby="graph-tab" data-framework-panel="graph" hidden>
+      <div class="framework-illustration graph-illustration" aria-hidden="true"><span>Start</span><i>→</i><span>Node</span><i>↻</i><span>Natija</span></div>
+      <div><h3>Boshqariladigan agent oqimi</h3><p>LangGraph ko'p bosqichli agent oqimini graf shaklida bog'laydi: har bir node bitta qadam, ular bir-biriga ulanadi va kerak bo'lsa qayta urinish mumkin.</p><p class="framework-tag">Node + oqim + nazorat</p></div>
+    </article>
+  </section>
 
   <section>
     <h2 data-i18n="aa.modules">Kurs modullari</h2>
@@ -235,4 +270,20 @@ pip install langgraph</code></pre>
 
   <Quiz title="O'z bilimingizni tekshiring" titleI18n="aa.quizTitle" questions={questions} />
 </article>
+
+<style>
+.agent-visual,.framework-compare{border:1px solid var(--border);border-radius:18px;padding:clamp(1.1rem,3vw,1.75rem);background:var(--surface);overflow:hidden}.agent-visual{background:radial-gradient(circle at 92% 10%,color-mix(in srgb,#38bdf8 16%,transparent),transparent 28%),linear-gradient(135deg,color-mix(in srgb,#7d7df5 10%,var(--surface)),var(--surface))}.agent-visual-heading>span,.framework-heading>span{font-size:.72rem;letter-spacing:.12em;font-weight:800;color:#a5b4fc}.agent-visual h2,.framework-compare h2{margin:.28rem 0 .45rem}.agent-visual-heading p,.framework-heading p{margin:0;color:var(--muted)}.agent-flow{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));align-items:stretch;gap:.6rem;margin-top:1.5rem}.agent-step{position:relative;padding:1rem;border:1px solid var(--border);border-radius:14px;background:color-mix(in srgb,var(--bg) 45%,var(--surface));min-height:158px;transition:transform .2s,border-color .2s}.agent-step:hover{transform:translateY(-4px)}.agent-step b{font-size:.68rem;color:var(--muted)}.agent-step-icon{display:grid;place-items:center;width:34px;height:34px;margin:.65rem 0;border-radius:10px;font-size:1.1rem;font-weight:800}.agent-step h3{font-size:1rem;margin:0 0 .35rem}.agent-step p{font-size:.83rem;line-height:1.45;color:var(--muted);margin:0}.agent-step-task{border-color:color-mix(in srgb,#a78bfa 55%,var(--border))}.agent-step-task .agent-step-icon{background:#a78bfa;color:#21134d}.agent-step-plan{border-color:color-mix(in srgb,#38bdf8 55%,var(--border))}.agent-step-plan .agent-step-icon{background:#38bdf8;color:#062a3a}.agent-step-search{border-color:color-mix(in srgb,#fbbf24 55%,var(--border))}.agent-step-search .agent-step-icon{background:#fbbf24;color:#3c2900}.agent-step-result{border-color:color-mix(in srgb,#34d399 55%,var(--border))}.agent-step-result .agent-step-icon{background:#34d399;color:#062b20}.agent-arrow{display:none}.framework-compare{margin-top:1.25rem;background:linear-gradient(135deg,color-mix(in srgb,#fb7185 7%,var(--surface)),var(--surface) 52%,color-mix(in srgb,#34d399 8%,var(--surface)))}.framework-tabs{display:flex;gap:.5rem;margin:1.35rem 0 .85rem}.framework-tab{flex:1;text-align:left;border:1px solid var(--border);border-radius:11px;padding:.8rem 1rem;background:color-mix(in srgb,var(--bg) 45%,var(--surface));color:var(--text);font:inherit;font-weight:800;cursor:pointer}.framework-tab small{display:block;margin-top:.15rem;color:var(--muted);font-size:.75rem;font-weight:600}.framework-tab.is-active{border-color:var(--accent);background:color-mix(in srgb,var(--accent) 17%,var(--surface));box-shadow:inset 0 0 0 1px color-mix(in srgb,var(--accent) 30%,transparent)}.framework-tab:focus-visible{outline:2px solid #a5b4fc;outline-offset:2px}.framework-panel{display:grid;grid-template-columns:minmax(180px,.8fr) 1.2fr;gap:1rem;align-items:center;border:1px solid var(--border);border-radius:14px;padding:1rem;background:color-mix(in srgb,var(--bg) 32%,var(--surface));animation:agent-fade .25s ease both}.framework-panel h3{margin:0 0 .45rem}.framework-panel p{margin:.35rem 0;color:var(--muted);line-height:1.55}.framework-illustration{display:flex;flex-wrap:wrap;gap:.35rem;align-items:center;justify-content:center;padding:1rem;border-radius:11px;background:color-mix(in srgb,var(--accent) 7%,var(--bg));font-size:.75rem;font-weight:800}.framework-illustration span{padding:.55rem .45rem;border:1px solid var(--border);border-radius:8px;background:var(--surface)}.framework-illustration i{font-style:normal;font-size:1rem;color:var(--accent)}.crew-illustration span:nth-of-type(1){border-color:#a78bfa}.crew-illustration span:nth-of-type(2){border-color:#38bdf8}.crew-illustration span:nth-of-type(3){border-color:#34d399}.graph-illustration span:nth-of-type(2){border-color:#fbbf24}.framework-tag{display:inline-block!important;padding:.35rem .55rem;border-radius:999px;background:color-mix(in srgb,var(--accent) 15%,transparent);color:#c7d2fe!important;font-size:.78rem;font-weight:700}@keyframes agent-fade{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:translateY(0)}}@media(max-width:700px){.agent-flow{grid-template-columns:1fr}.agent-step{min-height:0}.agent-arrow{display:block;text-align:center;color:var(--accent);font-size:1.35rem;transform:rotate(90deg);height:18px}.framework-panel{grid-template-columns:1fr}.framework-illustration{min-height:70px}}@media(prefers-reduced-motion:reduce){.agent-step{transition:none}.framework-panel{animation:none}}
+</style>
+<script>
+  document.querySelectorAll('.framework-compare').forEach((section) => {
+    const tabs = section.querySelectorAll('[data-framework]');
+    const panels = section.querySelectorAll('[data-framework-panel]');
+    tabs.forEach((tab) => tab.addEventListener('click', () => {
+      const key = tab.dataset.framework;
+      tabs.forEach((item) => { const active=item===tab; item.classList.toggle('is-active',active); item.setAttribute('aria-selected',String(active)); });
+      panels.forEach((panel) => { panel.hidden = panel.dataset.frameworkPanel !== key; });
+    }));
+  });
+</script>
+
 </Base>

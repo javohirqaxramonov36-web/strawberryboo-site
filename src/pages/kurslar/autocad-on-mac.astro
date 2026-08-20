@@ -1,5 +1,6 @@
 ---
 import Base from "../../layouts/Base.astro";
+import CourseSchema from "../../components/CourseSchema.astro";
 import Quiz from "../../components/Quiz.astro";
 
 const title = "AutoCAD on Mac — Tayanch";
@@ -12,6 +13,7 @@ const questions = [
 ---
 
 <Base title={title} description={description}>
+  <CourseSchema name={title} description={description} />
   <article class="lesson">
     <div class="course-hero">
       <h1>AutoCAD on Mac</h1>
@@ -27,6 +29,8 @@ const questions = [
     <p class="lead">
       Mac'da AutoCAD bilan ishlashni aniq va tartibli workflow orqali o'rganing: moslikni tekshirishdan boshlab, layerlar, annotatsiya, layout va yakuniy floor plan'ga qadar.
     </p>
+
+    <section class="quick-tool"><h2>Buyruqlar qidiruvi</h2><input id="cadSearch" placeholder="Buyruqni qidiring: Line, Layer, Layout..." /><table id="cadRows" class="quick-rows"><thead><tr><th>Buyruq</th><th>Vazifa</th></tr></thead><tbody><tr><td>Line / Polyline</td><td>Aniq chizish</td></tr><tr><td>Layer</td><td>Chizmani tartibga solish</td></tr><tr><td>Block</td><td>Takrorlanuvchi element</td></tr><tr><td>Dimension</td><td>O'lcham qo'shish</td></tr><tr><td>Layout</td><td>Scale va PDF</td></tr></tbody></table></section>
 
     <section>
       <h2>Kurs modullari</h2>
@@ -121,4 +125,5 @@ const questions = [
     }
     .src a { color: #8b5cf6; text-decoration: underline; }
   </style>
+<style>.quick-tool{padding:1.2rem;border:1px solid #38bdf8;border-radius:16px;background:linear-gradient(135deg,rgba(56,189,248,.1),var(--surface))}.quick-tool input{width:100%;box-sizing:border-box;margin:.7rem 0;padding:.7rem;border:1px solid var(--border);border-radius:8px;background:var(--bg);color:var(--text)}.quick-rows{width:100%;border-collapse:collapse}.quick-rows th,.quick-rows td{text-align:left;padding:.6rem;border-top:1px solid var(--border)}.quick-rows td:last-child{color:var(--muted);font-size:.9rem}</style><script>document.querySelector('#cadSearch')?.addEventListener('input',e=>document.querySelectorAll('#cadRows tbody tr').forEach(r=>r.hidden=!r.textContent.toLowerCase().includes(e.target.value.toLowerCase())))</script>
 </Base>

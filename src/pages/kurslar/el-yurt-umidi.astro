@@ -1,10 +1,12 @@
 ---
 import Base from "../../layouts/Base.astro";
+import CourseSchema from "../../components/CourseSchema.astro";
 const title = "El-Yurt Umidi'ni yutaylik — Tayanch";
 const description = "El-Yurt Umidi davlat granti bo'yicha suhbatga tayyorgarlik kursi — tez orada to'liq material qo'shiladi.";
 ---
 
 <Base title={title} description={description}>
+  <CourseSchema name={title} description={description} />
 
 <article class="lesson">
   <div class="course-hero">
@@ -21,6 +23,7 @@ const description = "El-Yurt Umidi davlat granti bo'yicha suhbatga tayyorgarlik 
     tez orada to'liq material qo'shiladi. Hozircha kursning bo'limlar
     strukturasi tayyor. To'liq darslar keyingi yangilanishda yuklanadi.
   </p>
+  <section class="coming-stage"><span>TEZ ORADA</span><h2>Material tayyorlanmoqda</h2><p>Bu sahifadagi mavjud kurs holati saqlanadi; to'liq material keyinroq qo'shiladi.</p><div><i></i><i></i><i></i></div></section>
 
   <section>
     <h2 data-i18n="ey.modules">Kurs bo'limlari (struktura tayyor)</h2>
@@ -54,4 +57,5 @@ const description = "El-Yurt Umidi davlat granti bo'yicha suhbatga tayyorgarlik 
 
   <a href={import.meta.env.BASE_URL + 'kurslar'} class="course-nav-link" style="margin-top:2rem;" data-i18n="ey.all">← Barcha kurslar</a>
 </article>
+<style>.coming-stage{text-align:center;padding:3rem 1.2rem;border:1px solid color-mix(in srgb,#ec4899 50%,var(--border));border-radius:18px;background:radial-gradient(circle,rgba(236,72,153,.15),transparent 55%),var(--surface)}.coming-stage>span{color:#f9a8d4;font-weight:800;letter-spacing:.16em;font-size:.75rem}.coming-stage h2{font-size:clamp(1.6rem,5vw,2.4rem);margin:.5rem}.coming-stage p{color:var(--muted)}.coming-stage i{display:inline-block;width:8px;height:8px;margin:.3rem;border-radius:50%;background:#ec4899;animation:pulse 1.4s infinite alternate}.coming-stage i:nth-child(2){animation-delay:.2s}.coming-stage i:nth-child(3){animation-delay:.4s}@keyframes pulse{to{transform:translateY(-6px);opacity:.35}}</style>
 </Base>

@@ -1,5 +1,6 @@
 ---
 import Base from "../../layouts/Base.astro";
+import CourseSchema from "../../components/CourseSchema.astro";
 import Quiz from "../../components/Quiz.astro";
 const title = "Financial Literacy — Moliyaviy savodxonlik";
 const description = "Pulni boshqarish, byudjet tuzish va moliyaviy qarorlar — talaba hayoti uchun asosiy ko'nikmalar. Umumiy ta'lim kursi.";
@@ -11,6 +12,7 @@ const questions = [
 ---
 
 <Base title={title} description={description}>
+  <CourseSchema name={title} description={description} />
 
 <article class="lesson">
   <div class="course-hero">
@@ -38,6 +40,8 @@ const questions = [
     maslahat o'rnini bosmaydi — shaxsiy moliyaviy qarorlar uchun malakali mutaxassisga
     murojaat qiling.
   </div>
+
+  <section class="budget-tool"><h2>Byudjet kalkulyatori</h2><p>Oylik kirimni kiriting — taqsimot faqat shu brauzerda hisoblanadi va yuborilmaydi.</p><label>Oylik kirim <input id="budgetIncome" inputmode="numeric" value="1000000" /> so'm</label><div id="budgetResult" class="budget-result"></div></section>
 
   <section>
     <h2 data-i18n="fl.modules">Kurs modullari</h2>
@@ -167,4 +171,5 @@ const questions = [
 
   <Quiz titleI18n="fl.quizTitle" questions={questions} />
 </article>
+<style>.budget-tool{padding:1.2rem;border:1px solid #34d399;border-radius:16px;background:linear-gradient(135deg,rgba(52,211,153,.1),var(--surface))}.budget-tool input{padding:.6rem;border:1px solid var(--border);border-radius:8px;background:var(--bg);color:var(--text)}.budget-result{display:grid;grid-template-columns:repeat(3,1fr);gap:.6rem;margin-top:1rem}.budget-result span{padding:.8rem;border-radius:10px;background:var(--surface);border:1px solid var(--border)}.budget-result b{display:block;color:#34d399}</style><script>const bi=document.querySelector('#budgetIncome'),br=document.querySelector('#budgetResult');const calc=()=>{const n=Number((bi?.value||'').replace(/\D/g,''))||0;br.innerHTML=[["Kerakli xarajat",50],["Shaxsiy reja",30],["Jamg'arma",20]].map(([x,p])=>`<span>${x}<b>${Math.round(n*p/100).toLocaleString('uz-UZ')} so'm</b><small>${p}%</small></span>`).join('')};bi?.addEventListener('input',calc);calc()</script>
 </Base>

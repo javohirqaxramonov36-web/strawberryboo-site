@@ -1,9 +1,10 @@
 ---
 import Base from "../../layouts/Base.astro";
+import CourseSchema from "../../components/CourseSchema.astro";
 import LeadMagnetCTA from "../../components/LeadMagnetCTA.astro";
 import Quiz from "../../components/Quiz.astro";
 const title = "Mac'da Tezlik Sirlari — MacBook'dan samarali foydalanish";
-const description = "Raycast, klaviatura shortcut'lari va Mac vositalari bilan kundalik ishlarni 2 baravar tezroq bajarish. Amaliy, bepul kurs.";
+const description = "Raycast, klaviatura shortcut'lari va Mac vositalari bilan kundalik ishlarni 2 baravar tezroq bajarish. Amaliy kurs.";
 const questions = [
   { q: "Raycast asosan nima uchun ishlatiladi?", opts: ["Ilovalarni tez ochish, fayl qidirish va vazifalarni bajarish", "Faqat o'yin o'ynash", "Rasm chizish", "Musiqa tinglash"], answer: 0 },
   { q: "Clipboard History nima qiladi?", opts: ["Oldingi nusxalangan matnlarni ko'rsatadi va qayta joylashtiradi", "Faylni o'chiradi", "Internetni tezlashtiradi", "Batareyani tejaydi"], answer: 0 },
@@ -12,20 +13,32 @@ const questions = [
 ---
 
 <Base title={title} description={description}>
+  <CourseSchema name={title} description={description} />
 
 <article class="lesson">
   <div class="course-hero">
     <h1>Mac'da Tezlik Sirlari</h1>
     <div class="price">
-      <span class="now">Bepul</span>
-      <span class="badge badge-free">Bepul</span>
+      <span class="now">$15</span>
+      <span class="uzs">≈ 187 500 so'm</span>
       <span class="badge badge-cert">Sertifikat</span>
     </div>
   </div>
 
   <p class="lead">
-    <span data-i18n="mt.lead1">MacBook'dan faqat "foydalanish" yetarli emas — uni</span> <b data-i18n="mt.leadBold">tez va samarali</b> <span data-i18n="mt.lead2">ishlatish ko'nikmasi kunlik vaqtingizning soatlarini tejashi mumkin. Bu bepul amaliy kursta Raycast, klaviatura shortcut'lari va boshqa Mac vositalari orqali kundalik ishlarni qanday tezlashtirishni o'rganasiz.</span>
+    <span data-i18n="mt.lead1">MacBook'dan faqat "foydalanish" yetarli emas — uni</span> <b data-i18n="mt.leadBold">tez va samarali</b> <span data-i18n="mt.lead2">ishlatish ko'nikmasi kunlik vaqtingizning soatlarini tejashi mumkin. Bu amaliy kursta Raycast, klaviatura shortcut'lari va boshqa Mac vositalari orqali kundalik ishlarni qanday tezlashtirishni o'rganasiz.</span>
   </p>
+
+  <section class="shortcut-lab" aria-labelledby="shortcut-lab-title">
+    <div><span>TEZKOR AMALIYOT</span><h2 id="shortcut-lab-title">Shortcut'ni tanlang</h2><p>Kartochkani bosing — qaysi tezkor ish uchun ishlatilishini ko'ring.</p></div>
+    <div class="shortcut-grid" role="list">
+      <button type="button" class="shortcut-card is-active" role="listitem" data-shortcut="search"><kbd>⌘</kbd><b>+</b><kbd>Space</kbd><strong>Qidirish</strong></button>
+      <button type="button" class="shortcut-card" role="listitem" data-shortcut="switch"><kbd>⌘</kbd><b>+</b><kbd>Tab</kbd><strong>Almashtirish</strong></button>
+      <button type="button" class="shortcut-card" role="listitem" data-shortcut="close"><kbd>⌘</kbd><b>+</b><kbd>W</kbd><strong>Yopish</strong></button>
+      <button type="button" class="shortcut-card" role="listitem" data-shortcut="windows"><kbd>⌘</kbd><b>+</b><kbd>`</kbd><strong>Oynalar</strong></button>
+    </div>
+    <div class="shortcut-output" aria-live="polite"><span aria-hidden="true">⌘</span><p data-shortcut-output><b>Cmd + Space</b> — Raycast yoki Spotlight oynasini ochib, ilova va fayllarni tez topish uchun.</p></div>
+  </section>
 
   <div style="background:var(--accent-soft);border:1px solid var(--accent);border-left:4px solid var(--accent);border-radius:12px;padding:14px 16px;margin:1.5rem 0;font-size:0.95rem;">
     Bu kurs <b>macOS (MacBook)</b> foydalanuvchilari uchun. Ko'p misollar Raycast'dan
@@ -249,4 +262,13 @@ python3 .telegram/telegram_bot.py attach &lt;update_id&gt;</code></pre>
   <Quiz title="O'z bilimingizni tekshiring" titleI18n="mt.quizTitle" questions={questions} />
   <LeadMagnetCTA />
 </article>
+
+<style>
+.shortcut-lab{padding:clamp(1.1rem,3vw,1.6rem);border:1px solid color-mix(in srgb,#38bdf8 42%,var(--border));border-radius:18px;background:radial-gradient(circle at 92% 8%,color-mix(in srgb,#38bdf8 17%,transparent),transparent 25%),linear-gradient(135deg,color-mix(in srgb,var(--accent) 11%,var(--surface)),var(--surface))}.shortcut-lab>div:first-child>span{font-size:.72rem;letter-spacing:.12em;font-weight:800;color:#a5b4fc}.shortcut-lab h2{margin:.25rem 0 .4rem}.shortcut-lab p{margin:0;color:var(--muted)}.shortcut-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:.65rem;margin:1.2rem 0}.shortcut-card{display:grid;grid-template-columns:auto auto auto;align-items:center;justify-content:center;gap:.32rem;padding:.8rem .45rem;border:1px solid var(--border);border-radius:12px;background:color-mix(in srgb,var(--bg) 36%,var(--surface));color:var(--text);font:inherit;cursor:pointer;transition:transform .18s,border-color .18s,box-shadow .18s}.shortcut-card:hover,.shortcut-card.is-active{transform:translateY(-3px);border-color:#38bdf8;box-shadow:0 9px 22px -15px #38bdf8}.shortcut-card:focus-visible{outline:2px solid #7dd3fc;outline-offset:2px}.shortcut-card kbd{padding:.22rem .35rem;border:1px solid color-mix(in srgb,var(--border) 85%,#fff);border-radius:5px;background:var(--surface);font:700 .82rem ui-monospace,SFMono-Regular,monospace}.shortcut-card>b{color:#a5b4fc}.shortcut-card strong{grid-column:1/-1;margin-top:.25rem;font-size:.76rem;color:var(--muted)}.shortcut-output{display:flex;gap:.7rem;align-items:center;padding:.85rem 1rem;border:1px solid color-mix(in srgb,#38bdf8 35%,var(--border));border-radius:11px;background:color-mix(in srgb,#38bdf8 8%,var(--surface));animation:shortcut-pop .24s ease both}.shortcut-output>span{display:grid;place-items:center;flex:0 0 30px;width:30px;height:30px;border-radius:8px;background:#38bdf8;color:#062a3a;font-weight:800}.shortcut-output p{font-size:.9rem}.shortcut-output b{color:var(--text)}@keyframes shortcut-pop{from{opacity:.4;transform:scale(.985)}to{opacity:1;transform:scale(1)}}@media(max-width:620px){.shortcut-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}@media(prefers-reduced-motion:reduce){.shortcut-card{transition:none}.shortcut-output{animation:none}}
+</style>
+<script>
+  const shortcutInfo={search:"<b>Cmd + Space</b> — Raycast yoki Spotlight oynasini ochib, ilova va fayllarni tez topish uchun.",switch:"<b>Cmd + Tab</b> — ochiq ilovalar orasida almashish uchun.",close:"<b>Cmd + W</b> — joriy oynani yopish uchun.",windows:"<b>Cmd + `</b> — bitta ilovaning oynalari orasida o'tish uchun."};
+  document.querySelectorAll('.shortcut-lab').forEach((lab)=>{const output=lab.querySelector('[data-shortcut-output]');lab.querySelectorAll('[data-shortcut]').forEach((button)=>button.addEventListener('click',()=>{lab.querySelectorAll('[data-shortcut]').forEach((item)=>item.classList.toggle('is-active',item===button));if(output){output.innerHTML=shortcutInfo[button.dataset.shortcut];output.parentElement?.animate([{transform:'scale(.985)',opacity:.5},{transform:'scale(1)',opacity:1}],{duration:220,easing:'ease-out'});}}));});
+</script>
+
 </Base>

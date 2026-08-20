@@ -1,5 +1,6 @@
 ---
 import Base from "../../layouts/Base.astro";
+import CourseSchema from "../../components/CourseSchema.astro";
 import Quiz from "../../components/Quiz.astro";
 const title = "Admission Process — Tayanch";
 const description = "Chet el universitetlariga hujjat topshirish: essaylar, hujjatlar va ariza platformalari.";
@@ -17,6 +18,7 @@ const subcourses = [
 ---
 
 <Base title={title} description={description}>
+  <CourseSchema name={title} description={description} />
   <article class="lesson admission-page">
     <div class="course-hero">
       <h1>Admission Process</h1>
@@ -24,6 +26,14 @@ const subcourses = [
     </div>
 
     <p class="lead">Chet el universitetlariga hujjat topshirish jarayonini uchta mustaqil yo'nalishga ajratib o'rganing: essaylar, hujjatlar va ariza topshirish.</p>
+
+    <section class="admission-toolkit" aria-labelledby="admission-toolkit-title">
+      <div class="admission-toolkit-head"><div><span>ARIZA XARITASI</span><h2 id="admission-toolkit-title">Hujjatlar va jarayon</h2><p>Hujjatlarning tayyor holatini belgilang, keyin ariza oqimini bosqichma-bosqich kuzating.</p></div><p class="check-progress" aria-live="polite"><b id="docCheckCount">0</b>/4 belgilandi</p></div>
+      <div class="admission-toolkit-grid">
+        <div class="document-checklist"><h3>Kerakli hujjatlar</h3><label><input type="checkbox" data-admission-doc /><span class="doc-box" aria-hidden="true">✓</span><span><b>Transcript</b><small>Maktab baholari va akademik ma'lumot</small></span></label><label><input type="checkbox" data-admission-doc /><span class="doc-box" aria-hidden="true">✓</span><span><b>IELTS</b><small>Test natijasi va yuborish holati</small></span></label><label><input type="checkbox" data-admission-doc /><span class="doc-box" aria-hidden="true">✓</span><span><b>SAT</b><small>Talab qilinsa, score report</small></span></label><label><input type="checkbox" data-admission-doc /><span class="doc-box" aria-hidden="true">✓</span><span><b>Attestat</b><small>Format va tarjima talabini tekshirish</small></span></label></div>
+        <div class="admission-timeline" aria-label="Ariza jarayoni timeline'i"><h3>Ariza jarayoni</h3><ol><li><span>01</span><div><b>Hujjat</b><small>Talab, format va deadline’ni tekshirish</small></div></li><li><span>02</span><div><b>Essay</b><small>Hikoya, dalil va savolga mos reja</small></div></li><li><span>03</span><div><b>Interview</b><small>Keyingi suhbatga tayyorgarlik</small></div></li></ol></div>
+      </div>
+    </section>
 
     <section class="subcourse-section" aria-labelledby="subcourses-title">
       <div class="section-heading"><div><p class="eyebrow">TANLAB SOTIB OLISH</p><h2 id="subcourses-title">Sizga kerakli sub-kurslarni tanlang</h2></div><p>Bir yoki bir nechta qismni tanlashingiz mumkin. Uchalasini tanlasangiz bundle narxi avtomatik qo'llanadi.</p></div>
@@ -96,6 +106,12 @@ const subcourses = [
   </article>
 
   <script>
+    const documentChecks = [...document.querySelectorAll('[data-admission-doc]')];
+    const documentCount = document.querySelector('#docCheckCount');
+    const updateDocumentCount = () => { if (documentCount) documentCount.textContent = String(documentChecks.filter((item) => item.checked).length); };
+    documentChecks.forEach((item) => item.addEventListener('change', updateDocumentCount));
+    updateDocumentCount();
+
     const checks = [...document.querySelectorAll('.subcourse-check')];
     const fmt = new Intl.NumberFormat('uz-UZ');
     const label = document.querySelector('#selectionLabel');
@@ -123,6 +139,7 @@ const subcourses = [
 
   <style>
     .admission-page { max-width: 980px; }
+    .admission-toolkit{margin-top:2rem;padding:clamp(1.1rem,3vw,1.65rem);border:1px solid color-mix(in srgb,var(--accent) 42%,var(--border));border-radius:18px;background:radial-gradient(circle at 96% 7%,color-mix(in srgb,#fbbf24 14%,transparent),transparent 22%),linear-gradient(135deg,color-mix(in srgb,var(--accent) 12%,var(--surface)),var(--surface))}.admission-toolkit-head{display:flex;justify-content:space-between;gap:1rem;align-items:flex-start}.admission-toolkit-head>div>span{font-size:.72rem;letter-spacing:.12em;font-weight:800;color:#a5b4fc}.admission-toolkit h2{margin:.25rem 0 .4rem}.admission-toolkit-head p{margin:0;color:var(--muted)}.check-progress{flex:0 0 auto;padding:.5rem .7rem;border:1px solid var(--border);border-radius:999px;font-size:.85rem}.check-progress b{color:#a5b4fc}.admission-toolkit-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:1rem;margin-top:1.2rem}.document-checklist,.admission-timeline{padding:1rem;border:1px solid var(--border);border-radius:14px;background:color-mix(in srgb,var(--bg) 32%,var(--surface))}.document-checklist h3,.admission-timeline h3{margin:0 0 .75rem;font-size:1rem}.document-checklist label{display:flex;align-items:center;gap:.7rem;padding:.65rem 0;border-top:1px solid color-mix(in srgb,var(--border) 75%,transparent);cursor:pointer}.document-checklist label:first-of-type{border-top:0}.document-checklist input{position:absolute;opacity:0}.doc-box{display:grid;place-items:center;flex:0 0 21px;width:21px;height:21px;border:1px solid var(--border);border-radius:6px;color:transparent;font-size:.78rem;transition:.15s ease}.document-checklist input:checked + .doc-box{color:white;background:var(--accent);border-color:var(--accent)}.document-checklist input:focus-visible + .doc-box{outline:2px solid #a5b4fc;outline-offset:2px}.document-checklist b,.document-checklist small{display:block}.document-checklist small{margin-top:.1rem;color:var(--muted);font-size:.78rem}.admission-timeline ol{display:grid;gap:.7rem;margin:0;padding:0;list-style:none}.admission-timeline li{display:flex;align-items:center;gap:.65rem;position:relative}.admission-timeline li:not(:last-child)::after{content:"";position:absolute;left:15px;top:32px;height:18px;border-left:1px dashed var(--accent)}.admission-timeline li>span{display:grid;place-items:center;z-index:1;flex:0 0 31px;width:31px;height:31px;border-radius:50%;background:color-mix(in srgb,var(--accent) 18%,var(--surface));color:#c7d2fe;font-size:.68rem;font-weight:800}.admission-timeline b,.admission-timeline small{display:block}.admission-timeline small{margin-top:.1rem;color:var(--muted);font-size:.78rem}
     .admission-price .now { font-size: 1.55rem; }
     .subcourse-section, .content-section { margin-top: 3.2rem; }
     .section-heading { display:flex; justify-content:space-between; gap:28px; align-items:flex-end; border-bottom:1px solid var(--border); padding-bottom:16px; margin-bottom:20px; }
@@ -145,6 +162,6 @@ const subcourses = [
     .select-disabled { opacity:.58; pointer-events:none; }
     .bundle-callout { margin-top:24px; display:flex; align-items:center; justify-content:space-between; gap:24px; padding:25px 28px; border:1px solid color-mix(in srgb, var(--accent) 45%, var(--border)); border-radius:17px; background:linear-gradient(125deg, color-mix(in srgb, var(--accent) 18%, var(--surface)), var(--surface)); }.bundle-callout h2{margin:0 0 6px}.bundle-callout p:last-child{margin:0;color:var(--muted)}.bundle-price{text-align:right}.bundle-price span,.bundle-price strong{display:block}.bundle-price span{color:var(--accent);font-weight:700}.bundle-price strong{font-size:1.6rem;margin-top:5px}
     .content-section { padding-top:28px; border-top:1px solid var(--border); }.content-list { display:grid; grid-template-columns:repeat(3, 1fr); gap:14px; }.content-list > div { padding:18px; border-radius:14px; background:var(--surface); border:1px solid var(--border); }.content-list h3 { margin:0 0 8px; font-size:1rem; }.content-list p { margin:0; color:var(--muted); line-height:1.55; font-size:.92rem; }.platforms { grid-template-columns:repeat(2,1fr); }.source-note { color:var(--muted); font-size:.82rem; margin:15px 0 0; }.source-note code { color:var(--accent); overflow-wrap:anywhere; }.lesson-card { margin-top:22px; padding:28px; border:1px solid var(--border); border-radius:18px; background:linear-gradient(145deg, color-mix(in srgb, var(--accent) 8%, var(--surface)), var(--surface)); }.lesson-card h3 { font-size:1.45rem; margin:.1rem 0 .85rem; }.lesson-intro { color:var(--muted); max-width:760px; line-height:1.65; }.lesson-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:12px; margin-top:20px; }.lesson-grid > div { position:relative; padding:18px 18px 18px 52px; border:1px solid var(--border); border-radius:13px; background:var(--surface); }.lesson-grid span { position:absolute; left:17px; top:17px; color:var(--accent); font-weight:800; }.lesson-grid h4,.practice-box h4 { margin:0 0 7px; }.lesson-grid p,.practice-box p,.practice-box li { color:var(--muted); line-height:1.55; font-size:.92rem; }.lesson-grid p { margin:0; }.practice-box { margin-top:14px; padding:20px; border-left:4px solid var(--accent); border-radius:0 12px 12px 0; background:color-mix(in srgb, var(--accent) 9%, var(--surface)); }.practice-box ol { margin:.7rem 0 .7rem 1.2rem; }.practice-box p { margin:0; }.practice-box strong { color:var(--text); }
-    @media(max-width:760px){.section-heading,.bundle-callout{align-items:flex-start;flex-direction:column}.subcourse-grid,.content-list,.platforms,.lesson-grid{grid-template-columns:1fr}.purchase-panel{grid-template-columns:1fr}.total-box{text-align:left}.purchase-panel .start-btn{width:100%;text-align:center}.subcourse-card{min-height:170px}}
+    @media(max-width:760px){.section-heading,.bundle-callout{align-items:flex-start;flex-direction:column}.subcourse-grid,.content-list,.platforms,.lesson-grid,.admission-toolkit-grid{grid-template-columns:1fr}.purchase-panel{grid-template-columns:1fr}.total-box{text-align:left}.purchase-panel .start-btn{width:100%;text-align:center}.subcourse-card{min-height:170px}.admission-toolkit-head{flex-direction:column}.check-progress{align-self:flex-start}}
   </style>
 </Base>

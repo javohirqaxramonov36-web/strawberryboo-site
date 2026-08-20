@@ -1,5 +1,6 @@
 ---
 import Base from "../../layouts/Base.astro";
+import CourseSchema from "../../components/CourseSchema.astro";
 import Quiz from "../../components/Quiz.astro";
 
 const title = "IELTS Prep — Tayanch";
@@ -13,6 +14,7 @@ const base = import.meta.env.BASE_URL;
 ---
 
 <Base title={title} description={description}>
+  <CourseSchema name={title} description={description} />
   <article class="lesson">
     <div class="course-hero">
       <h1>IELTS Prep</h1>
@@ -26,6 +28,16 @@ const base = import.meta.env.BASE_URL;
     </div>
 
     <p class="lead">Bu kurs to'rtta alohida sub-kursdan iborat: Listening, Reading, Writing va Speaking. Har birida Obsidian’dagi strategiya notalari asosida original darslar hamda amaliy mashqlar bor.</p>
+
+    <section class="ielts-skill-map" aria-labelledby="skill-map-title">
+      <div class="skill-map-title"><span>4 KO'NIKMA XARITASI</span><h2 id="skill-map-title">Listening → Reading → Writing → Speaking</h2><p>Har bir sub-kurs strategiya va amaliy mashqdan tashkil topgan. Pastdagi bo'limdan kerakli ko'nikmaga o'ting.</p></div>
+      <div class="skill-steps" role="list" aria-label="IELTS ko'nikmalari">
+        <a href="#listening" class="skill-step listening" role="listitem"><span class="skill-ring">01</span><span><b>Listening</b><small>Tinglash</small></span></a>
+        <a href="#reading" class="skill-step reading" role="listitem"><span class="skill-ring">02</span><span><b>Reading</b><small>O'qish</small></span></a>
+        <a href="#writing" class="skill-step writing" role="listitem"><span class="skill-ring">03</span><span><b>Writing</b><small>Yozish</small></span></a>
+        <a href="#speaking" class="skill-step speaking" role="listitem"><span class="skill-ring">04</span><span><b>Speaking</b><small>Gapirish</small></span></a>
+      </div>
+    </section>
 
     <section>
       <h2>Sub-kurslar</h2>
@@ -205,7 +217,7 @@ const base = import.meta.env.BASE_URL;
   </script>
 
   <style>
-    .practice-card { border:1px solid var(--border); border-radius:14px; padding:1.25rem; margin:1rem 0; background:linear-gradient(135deg, rgba(125,125,245,.09), var(--surface)); }
+    .ielts-skill-map{position:relative;overflow:hidden;padding:clamp(1.1rem,3vw,1.65rem);border:1px solid color-mix(in srgb,var(--accent) 42%,var(--border));border-radius:18px;background:radial-gradient(circle at 90% 10%,rgba(52,211,153,.13),transparent 26%),linear-gradient(135deg,rgba(125,125,245,.14),var(--surface) 56%);}.skill-map-title>span{color:#a5b4fc;font-size:.72rem;letter-spacing:.12em;font-weight:800}.skill-map-title h2{margin:.25rem 0 .45rem}.skill-map-title p{color:var(--muted);margin:0;max-width:700px}.skill-steps{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:.7rem;margin-top:1.35rem}.skill-step{display:flex;align-items:center;gap:.65rem;padding:.75rem;border:1px solid var(--border);border-radius:12px;text-decoration:none;color:var(--text);background:color-mix(in srgb,var(--bg) 38%,var(--surface));transition:transform .2s,border-color .2s}.skill-step:hover{transform:translateY(-3px);border-color:var(--accent)}.skill-ring{display:grid;place-items:center;flex:0 0 38px;width:38px;height:38px;border-radius:50%;font-size:.72rem;font-weight:800;background:radial-gradient(circle at center,var(--surface) 0 56%,transparent 58%),conic-gradient(var(--skill) 0 78%,color-mix(in srgb,var(--skill) 20%,transparent) 78% 100%)}.skill-step b,.skill-step small{display:block}.skill-step b{font-size:.9rem}.skill-step small{margin-top:.1rem;color:var(--muted);font-size:.75rem}.listening{--skill:#a78bfa}.reading{--skill:#38bdf8}.writing{--skill:#fbbf24}.speaking{--skill:#34d399}.practice-card { border:1px solid var(--border); border-radius:14px; padding:1.25rem; margin:1rem 0; background:linear-gradient(135deg, rgba(125,125,245,.09), var(--surface)); }
     .strategy-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:.9rem; margin:1rem 0 1.2rem; }.strategy-card { padding:1.1rem; border:1px solid var(--border); border-radius:13px; background:var(--surface); }.strategy-card h3 { margin:.4rem 0 .55rem; font-size:1.08rem; }.strategy-card p,.strategy-card li { color:var(--muted); line-height:1.55; font-size:.92rem; }.strategy-card ol { margin:.7rem 0 .25rem; padding-left:1.2rem; }.strategy-task { padding:.7rem .8rem; margin:.9rem 0 0; border-left:3px solid var(--accent); background:rgba(125,125,245,.08); }.lead-small { color:var(--muted); max-width:780px; line-height:1.65; }
     .practice-head { display:flex; justify-content:space-between; gap:1rem; align-items:flex-start; } .practice-head h4 { margin:.3rem 0; font-size:1.12rem; } .practice-tag { color:#b8b4ff; font-size:.72rem; letter-spacing:.08em; font-weight:800; } .skill-pill { border:1px solid var(--border); border-radius:999px; color:var(--muted); padding:.3rem .6rem; font-size:.8rem; white-space:nowrap; }
     .practice-tip { color:var(--muted); font-size:.92rem; } .practice-launch { display:inline-block; text-decoration:none; margin:0 .6rem .6rem 0; } .practice-actions { display:flex; gap:.7rem; flex-wrap:wrap; margin:1rem 0; } .practice-btn, .text-btn { cursor:pointer; border-radius:9px; padding:.65rem .95rem; font:inherit; font-weight:700; } .practice-btn { border:0; background:var(--accent); color:white; } .practice-btn.secondary { margin-top:1rem; background:transparent; border:1px solid var(--accent); color:var(--accent); } .text-btn { background:transparent; color:var(--muted); border:1px solid var(--border); }
@@ -220,6 +232,7 @@ const base = import.meta.env.BASE_URL;
     .subcourse { scroll-margin-top:1.5rem; border-top:1px solid var(--border); padding-top:1.5rem; }
     .practice-placeholder { border:1px dashed var(--border); border-radius:10px; padding:1rem; color:var(--muted); background:rgba(125,125,245,.05); }
     .src { font-size:.85rem; color:#7c6bb0; border-left:3px solid #8b5cf6; padding:.4rem .75rem; margin:.75rem 0 1.25rem; background:rgba(139, 92, 246, .06); overflow-wrap:anywhere; }
-    @media (max-width: 700px) { .subcourse-nav,.strategy-grid { grid-template-columns:1fr; } }
+    @media (max-width: 700px) { .subcourse-nav,.strategy-grid,.skill-steps { grid-template-columns:1fr; } }
+    @media(prefers-reduced-motion:reduce){.skill-step{transition:none}}
   </style>
 </Base>
