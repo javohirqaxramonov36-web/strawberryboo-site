@@ -47,13 +47,11 @@ body .tg-footer-btn:hover {
   transform: translateY(0);
 }
 
-/* 4) Ijtimoiy isbot (social proof) — karta ichida */
+/* 4) Ijtimoiy isbot (social proof) — karta ichida.
+   HOZIRCHA YASHIRINGAN: haqiqiy raqamlar kiritilgach bu blokni oching.
+   Yashirish uchun: display:none ni olib tashlang va .social-proof uslublarini tiklang. */
 .social-proof {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  flex-wrap: wrap;
-  margin: 0.7rem 0 0.2rem;
+  display: none;
 }
 .sp-starters {
   color: var(--muted);
