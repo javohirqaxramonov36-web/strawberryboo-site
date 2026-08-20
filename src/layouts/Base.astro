@@ -358,7 +358,7 @@ const TG = "https://t.me/progression_go"; // Telegram kanal/guruh havolasi
 
           "aa.lead": "Oddiy AI (ChatGPT) — bitta savol. Agent esa vazifani o'zi bajarib chiqadi: reja tuzadi, qidiruv qiladi, natijani yozadi.",
           "aa.modules": "Kurs modullari",
-          "aa.mod1": "Oddiy AI vs Agent — farqi nima?",
+          "aa.mod1": "Welcome moduli: Oddiy AI vs Agent — farqi nima?",
           "aa.mod2": "CrewAI: jamoa agent'lari (Planner, Researcher, Writer)",
           "aa.mod3": "LangGraph: agent'lar oqimini boshqarish",
           "aa.mod4": "Letta: agent'ga uzoq muddatli xotira",
@@ -373,7 +373,7 @@ const TG = "https://t.me/progression_go"; // Telegram kanal/guruh havolasi
           "quiz.hint": "Har bir savolga javob bering.",
           "pe.lead": "AI bilan to'g'ri muloqot qilish san'ati. Nima uchun kerak, qanday foyda olish, qayerda qo'llash — barchasi amaliy misollar bilan.",
           "pe.modules": "Kurs modullari",
-          "pe.mod1": "Nima uchun Prompt Engineering kerak? (AI telepatiya qila olmaydi)",
+          "pe.mod1": "Welcome moduli: Nima uchun Prompt Engineering kerak? (AI telepatiya qila olmaydi)",
           "pe.mod2": "Prompt tuzilmasi: roll, kontekst, misollar, format",
           "pe.mod3": "Amaliy mashq: IELTS essay yozish prompt'i",
           "pe.mod4": "Chain-of-thought: murakkab vazifalni bo'lish",
@@ -575,7 +575,7 @@ const TG = "https://t.me/progression_go"; // Telegram kanal/guruh havolasi
 
           "aa.lead": "Обычный ИИ (ChatGPT) — один вопрос. А агент выполняет задачу сам: строит план, ищет, записывает результат.",
           "aa.modules": "Модули курса",
-          "aa.mod1": "Обычный ИИ vs Агент — в чём разница?",
+          "aa.mod1": "Приветственный модуль: обычный ИИ vs Агент — в чём разница?",
           "aa.mod2": "CrewAI: командные агенты (Planner, Researcher, Writer)",
           "aa.mod3": "LangGraph: управление потоком агентов",
           "aa.mod4": "Letta: долговременная память агента",
@@ -590,7 +590,7 @@ const TG = "https://t.me/progression_go"; // Telegram kanal/guruh havolasi
           "quiz.hint": "Ответьте на каждый вопрос.",
           "pe.lead": "Искусство правильного общения с ИИ. Зачем нужно, как извлекать пользу, где применять — всё на практических примерах.",
           "pe.modules": "Модули курса",
-          "pe.mod1": "Зачем нужен Prompt Engineering? (ИИ не телепат)",
+          "pe.mod1": "Приветственный модуль: зачем нужен Prompt Engineering? (ИИ не телепат)",
           "pe.mod2": "Структура промпта: роль, контекст, примеры, формат",
           "pe.mod3": "Практика: промпт для написания IELTS эссе",
           "pe.mod4": "Chain-of-thought: разбиение сложных задач",
@@ -792,7 +792,7 @@ const TG = "https://t.me/progression_go"; // Telegram kanal/guruh havolasi
 
           "aa.lead": "Plain AI (ChatGPT) — a single question. An agent completes the task itself: it plans, searches, and writes the result.",
           "aa.modules": "Course modules",
-          "aa.mod1": "Plain AI vs Agent — what's the difference?",
+          "aa.mod1": "Welcome module: Plain AI vs Agent — what's the difference?",
           "aa.mod2": "CrewAI: team agents (Planner, Researcher, Writer)",
           "aa.mod3": "LangGraph: managing agent flows",
           "aa.mod4": "Letta: long-term memory for agents",
@@ -807,7 +807,7 @@ const TG = "https://t.me/progression_go"; // Telegram kanal/guruh havolasi
           "quiz.hint": "Answer each question.",
           "pe.lead": "The art of communicating with AI correctly. Why you need it, how to benefit, where to apply — all with practical examples.",
           "pe.modules": "Course modules",
-          "pe.mod1": "Why Prompt Engineering? (AI can't read minds)",
+          "pe.mod1": "Welcome module: Why Prompt Engineering? (AI can't read minds)",
           "pe.mod2": "Prompt structure: role, context, examples, format",
           "pe.mod3": "Practice: IELTS essay writing prompt",
           "pe.mod4": "Chain-of-thought: breaking down complex tasks",
@@ -1030,6 +1030,22 @@ const TG = "https://t.me/progression_go"; // Telegram kanal/guruh havolasi
       .modules { counter-reset: m; list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 10px; }
       .modules li { counter-increment: m; position: relative; padding: 14px 16px 14px 58px; border: 1px solid var(--border); border-radius: 12px; background: var(--surface); font-weight: 500; font-size: 15px; }
       .modules li::before { content: counter(m); position: absolute; left: 14px; top: 50%; transform: translateY(-50%); width: 32px; height: 32px; border-radius: 9px; background: var(--accent-soft); color: var(--accent); display: grid; place-items: center; font-weight: 700; font-size: 14px; }
+      .modules li::after { content: attr(data-rule); float: right; margin-left: .6rem; font-size: .66rem; font-weight: 800; letter-spacing: .07em; color: var(--muted); border: 1px solid var(--border); border-radius: 999px; padding: .18rem .55rem; white-space: nowrap; transform: translateY(2px); }
+      .modules li.is-welcome { border-color: color-mix(in srgb, var(--accent) 55%, var(--border)); background: linear-gradient(135deg, color-mix(in srgb, var(--accent) 12%, var(--surface)), var(--surface)); }
+      .modules li.is-welcome::before { background: var(--accent); color: white; }
+      .modules li.is-welcome::after { color: var(--accent); border-color: color-mix(in srgb, var(--accent) 45%, var(--border)); background: color-mix(in srgb, var(--accent) 10%, transparent); }
+      .rule-legend { display: flex; flex-wrap: wrap; gap: .5rem; margin: .7rem 0 1.1rem; }
+      .rule-legend span { font-size: .72rem; font-weight: 800; letter-spacing: .06em; padding: .32rem .62rem; border: 1px solid var(--border); border-radius: 999px; color: var(--muted); background: color-mix(in srgb, var(--bg) 45%, transparent); }
+      .rule-legend b { color: var(--text); }
+      @media (max-width: 640px) { .modules li { padding-right: 10px; } .modules li::after { float: none; display: inline-block; margin: .35rem 0 0; transform: none; } }
+      .welcome-module { margin: 1.4rem 0 1.8rem; padding: clamp(1.1rem, 3vw, 1.5rem); border: 1px solid color-mix(in srgb, var(--accent) 42%, var(--border)); border-radius: 18px; background: linear-gradient(135deg, color-mix(in srgb, var(--accent) 12%, var(--surface)), var(--surface)); }
+      .welcome-kicker { font-size: .72rem; font-weight: 800; letter-spacing: .12em; color: #a5b4fc; }
+      .welcome-module h2 { margin: .3rem 0 .9rem; border: 0; padding: 0; }
+      .welcome-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: .8rem; }
+      .welcome-grid > div { padding: .95rem 1rem; border: 1px solid var(--border); border-radius: 12px; background: color-mix(in srgb, var(--bg) 42%, var(--surface)); }
+      .welcome-grid b { display: block; color: var(--accent); font-size: .95rem; margin-bottom: .3rem; }
+      .welcome-grid p { margin: 0; color: var(--muted); line-height: 1.55; font-size: .92rem; }
+      @media (max-width: 760px) { .welcome-grid { grid-template-columns: 1fr; } }
       pre { background: #0a0a0f; padding: 1rem; border-radius: 10px; overflow-x: auto; border: 1px solid var(--border); }
       .music-btn { position: fixed; bottom: 1rem; right: 1rem; background: linear-gradient(135deg, var(--accent), var(--accent-2)); color: #fff; border: none; padding: 0.6rem 1rem; border-radius: 10px; cursor: pointer; font-weight: 700; z-index: 100; }
       footer { text-align: center; padding: 2rem; color: var(--muted); border-top: 1px solid var(--border); margin-top: 3rem; }

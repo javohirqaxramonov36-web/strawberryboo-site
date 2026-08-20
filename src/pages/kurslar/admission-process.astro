@@ -28,6 +28,16 @@ const subcourses = [
 
     <p class="lead">Chet el universitetlariga hujjat topshirish jarayonini uchta mustaqil yo'nalishga ajratib o'rganing: essaylar, hujjatlar va ariza topshirish.</p>
 
+    <section class="welcome-module" aria-labelledby="welcome-title">
+      <span class="welcome-kicker">WELCOME MODULI · C3</span>
+      <h2 id="welcome-title">Bu kursdan nima olasiz?</h2>
+      <div class="welcome-grid">
+        <div><b>Maqsad</b><p>Chet el universitetlariga ariza topshirish jarayonini hujjatli, rejali va muddatlari bilan boshqarishni o'rganish.</p></div>
+        <div><b>Tuzilma</b><p>3 sub-kurs: Esseylar → Hujjat tayyorlash → Topshirish va qabul xati. Har dars: hook → nazariya → amaliy mashq → xulosa.</p></div>
+        <div><b>Kutilayotgan natija</b><p>Kurs oxirida master profile, hujjat check-listi va ariza tracker'ingiz tayyor bo'ladi.</p></div>
+      </div>
+    </section>
+
     <section class="admission-toolkit" aria-labelledby="admission-toolkit-title">
       <div class="admission-toolkit-head"><div><span>ARIZA XARITASI</span><h2 id="admission-toolkit-title">Hujjatlar va jarayon</h2><p>Hujjatlarning tayyor holatini belgilang, keyin ariza oqimini bosqichma-bosqich kuzating.</p></div><p class="check-progress" aria-live="polite"><b id="docCheckCount">0</b>/4 belgilandi</p></div>
       <div class="admission-toolkit-grid">
@@ -38,6 +48,7 @@ const subcourses = [
 
     <section class="subcourse-section" aria-labelledby="subcourses-title">
       <div class="section-heading"><div><p class="eyebrow">TANLAB SOTIB OLISH</p><h2 id="subcourses-title">Sizga kerakli sub-kurslarni tanlang</h2></div><p>Bir yoki bir nechta qismni tanlashingiz mumkin. Uchalasini tanlasangiz bundle narxi avtomatik qo'llanadi.</p></div>
+      <p class="rule-legend" aria-label="Modul tuzilma qoidalari"><span><b>C1</b> ≤30 daqiqa</span><span><b>C2</b> hook → nazariya → amaliy → xulosa → mini-test</span><span><b>C4</b> amaliy transformatsiya</span></p>
       <div class="subcourse-grid">
         {subcourses.map((course) => (
           <label class="subcourse-card" data-card={course.id}>

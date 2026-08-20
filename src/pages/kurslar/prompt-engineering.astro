@@ -70,14 +70,15 @@ const questions = [
 
   <section>
     <h2 data-i18n="pe.modules">Kurs modullari</h2>
+    <p class="rule-legend" aria-label="Modul tuzilma qoidalari"><span><b>C1</b> ≤30 daqiqa</span><span><b>C2</b> hook → nazariya → amaliy → xulosa → mini-test</span><span><b>C3</b> welcome moduli</span><span><b>C4</b> amaliy transformatsiya</span></p>
     <ol class="modules">
-      <li data-i18n="pe.mod1">Nima uchun Prompt Engineering kerak? (AI telepatiya qila olmaydi)</li>
-      <li data-i18n="pe.mod2">Prompt tuzilmasi: roll, kontekst, misollar, format</li>
-      <li data-i18n="pe.mod3">Amaliy mashq: IELTS essay yozish prompt'i</li>
-      <li data-i18n="pe.mod4">Chain-of-thought: murakkab vazifalni bo'lish</li>
-      <li data-i18n="pe.mod5">Few-shot: misollar orqali o'rgatish</li>
-      <li data-i18n="pe.mod6">Qayerda qo'llash: yozish, kod, tadqiqot, biznes</li>
-      <li data-i18n="pe.mod7">Tayanch orqali avtomatik capture</li>
+      <li class="is-welcome" data-rule="C3 · C2 · C4" data-i18n="pe.mod1">Welcome moduli: Nima uchun Prompt Engineering kerak? (AI telepatiya qila olmaydi)</li>
+      <li data-rule="C1 · C2 · C4" data-i18n="pe.mod2">Prompt tuzilmasi: roll, kontekst, misollar, format</li>
+      <li data-rule="C1 · C2 · C4" data-i18n="pe.mod3">Amaliy mashq: IELTS essay yozish prompt'i</li>
+      <li data-rule="C1 · C2" data-i18n="pe.mod4">Chain-of-thought: murakkab vazifalni bo'lish</li>
+      <li data-rule="C1 · C2" data-i18n="pe.mod5">Few-shot: misollar orqali o'rgatish</li>
+      <li data-rule="C1 · C2 · C4" data-i18n="pe.mod6">Qayerda qo'llash: yozish, kod, tadqiqot, biznes</li>
+      <li data-rule="C1 · C2 · C4" data-i18n="pe.mod7">Tayanch orqali avtomatik capture</li>
     </ol>
   </section>
 
