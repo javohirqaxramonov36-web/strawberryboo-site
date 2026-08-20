@@ -42,12 +42,15 @@ const TG = "https://t.me/progression_go"; // Telegram kanal/guruh havolasi
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonical} />
-    <meta property="og:image" content={new URL('/og-image.svg', Astro.site ?? Astro.url).href} />
+    <meta property="og:image" content={new URL('og-image.png', Astro.site ?? Astro.url).href} />
+    <meta property="og:image:type" content="image/png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
-    <meta name="twitter:image" content={new URL('/og-image.svg', Astro.site ?? Astro.url).href} />
+    <meta name="twitter:image" content={new URL('og-image.png', Astro.site ?? Astro.url).href} />
     <!-- Inter font (was referenced in --font-display but never loaded) -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
