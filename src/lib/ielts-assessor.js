@@ -1,11 +1,11 @@
 /**
- * IELTS Writing Assessor — client-side AI module
+ * IELTS Writing Assessor — client-side AI module (ES Module version for Astro)
  *
  * Calls an AI API (OpenAI-compatible) with the IELTS Writing examiner
  * system prompt and returns structured band-scored JSON feedback.
  *
- * API key is stored in localStorage under 'ielts_api_key'.
- * Model and endpoint are configurable but default to OpenAI.
+ * Default provider: OpenRouter (free models available, OpenAI-compatible API)
+ * Users can also use OpenAI, Groq, or any OpenAI-compatible endpoint.
  */
 
 const SYSTEM_PROMPT = `You are an experienced, certified IELTS Writing examiner. You mark strictly according to the four official criteria below, exactly as a real examiner would: based only on what is written on the page, not on what the candidate probably meant to say.
@@ -93,19 +93,59 @@ Respond with valid JSON only, no extra text:
   "overall_summary": "2-3 sentence holistic summary"
 }`;
 
-/**
- * Default AI API configuration — OpenAI-compatible.
- * Users can override endpoint/model in settings if using a different provider.
- */
-const DEFAULT_CONFIG = {
-  endpoint: 'https://api.openai.com/v1/chat/completions',
-  model: 'gpt-4o',
+// ─── Provider presets ─────────────────────────────────────────────
+export const PROVIDERS = {
+  openrouter_free: {
+    label: 'OpenRouter (Bepul modellar)',
+    endpoint: 'https://openrouter.ai/api/v1/chat/completions',
+    model: 'google/gemini-flash-1.5:free',
+    freeModels: [
+      { value: 'google/gemini-flash-1.5:free', label: 'Gemini Flash 1.5 (Free) — Tavsiya etiladi' },
+      { value: 'meta-llama/llama-3.1-8b-instruct:free', label: 'Llama 3.1 8B (Free)' },
+      { value: 'meta-llama/llama-3.3-70b-instruct:free', label: 'Llama 3.3 70B (Free) — Eng kuchli bepul' },
+      { value: 'google/gemini-2.0-flash-exp:free', label: 'Gemini 2.0 Flash (Free, Experimental)' },
+      { value: 'mistralai/mistral-7b-instruct:free', label: 'Mistral 7B (Free)' },
+      { value: 'qwen/qwen-2.5-7b-instruct:free', label: 'Qwen 2.5 7B (Free)' },
+    ],
+    getKeyUrl: 'https://openrouter.ai/keys',
+    keyHelp: 'OpenRouter bepul API kalitini oling — kredit karta kerak emas!',
+  },
+  openai: {
+    label: 'OpenAI (Pullik)',
+    endpoint: 'https://api.openai.com/v1/chat/completions',
+    model: 'gpt-4o',
+    freeModels: [],
+    getKeyUrl: 'https://platform.openai.com/api-keys',
+    keyHelp: 'OpenAI API kaliti (pullik, kredit kerak)',
+  },
+  groq: {
+    label: 'Groq (Bepul, Llama)',
+    endpoint: 'https://api.groq.com/openai/v1/chat/completions',
+    model: 'llama-3.1-8b-instant',
+    freeModels: [
+      { value: 'llama-3.1-8b-instant', label: 'Llama 3.1 8B Instant (Free)' },
+      { value: 'llama-3.3-70b-versatile', label: 'Llama 3.3 70B Versatile (Free)' },
+    ],
+    getKeyUrl: 'https://console.groq.com/keys',
+    keyHelp: 'Groq bepul API kaliti — tezkor va bepul!',
+  },
+  custom: {
+    label: 'Boshqa (Custom)',
+    endpoint: '',
+    model: '',
+    freeModels: [],
+    getKeyUrl: '',
+    keyHelp: 'OpenAI-compatible endpoint, model va API kalitini kiriting',
+  },
 };
 
-/**
- * Get the stored API key from localStorage.
- * @returns {string|null}
- */
+const DEFAULT_PROVIDER = 'openrouter_free';
+const DEFAULT_CONFIG = {
+  provider: DEFAULT_PROVIDER,
+  endpoint: PROVIDERS[DEFAULT_PROVIDER].endpoint,
+  model: PROVIDERS[DEFAULT_PROVIDER].model,
+};
+
 export function getApiKey() {
   try {
     return localStorage.getItem('ielts_api_key');
@@ -114,10 +154,6 @@ export function getApiKey() {
   }
 }
 
-/**
- * Save the API key to localStorage.
- * @param {string} key
- */
 export function setApiKey(key) {
   try {
     localStorage.setItem('ielts_api_key', key);
@@ -126,51 +162,33 @@ export function setApiKey(key) {
   }
 }
 
-/**
- * Get the stored model configuration.
- * @returns {{endpoint: string, model: string}}
- */
+export function hasApiKey() {
+  return !!getApiKey();
+}
+
 export function getModelConfig() {
   try {
     const stored = localStorage.getItem('ielts_model_config');
     if (stored) return { ...DEFAULT_CONFIG, ...JSON.parse(stored) };
   } catch (e) {}
-  return DEFAULT_CONFIG;
+  return { ...DEFAULT_CONFIG };
 }
 
-/**
- * Save model configuration.
- * @param {{endpoint: string, model: string}} config
- */
 export function setModelConfig(config) {
   try {
     localStorage.setItem('ielts_model_config', JSON.stringify(config));
   } catch (e) {}
 }
 
-/**
- * Count words in a text.
- * @param {string} text
- * @returns {number}
- */
 export function countWords(text) {
   const trimmed = (text || '').trim();
   return trimmed ? trimmed.split(/\s+/).length : 0;
 }
 
-/**
- * Assess an IELTS Writing response using AI.
- *
- * @param {Object} params
- * @param {string} params.task_type - 'academic_task1', 'general_task1', or 'task2'
- * @param {string} params.prompt - The IELTS task question/instructions
- * @param {string} params.response - The candidate's written answer
- * @returns {Promise<Object>} Parsed JSON assessment result
- */
 export async function assessWriting({ task_type, prompt, response }) {
   const apiKey = getApiKey();
   if (!apiKey) {
-    throw new Error('API kaliti topilmadi. Iltimos, sozlamalarda OpenAI API kalitini kiriting.');
+    throw new Error('API kaliti topilmadi. Iltimos, sozlamalarda API kalitini kiriting. OpenRouter bepul API kalitini openrouter.ai/keys saytidan olishingiz mumkin.');
   }
 
   const word_count = countWords(response);
@@ -181,12 +199,20 @@ prompt: ${prompt}
 response: ${response}
 word_count: ${word_count}`;
 
+  const headers = {
+    'Content-Type': 'application/json',
+    Authorization: `Bearer ${apiKey}`,
+  };
+
+  // OpenRouter extra headers
+  if (config.endpoint && config.endpoint.includes('openrouter.ai')) {
+    headers['HTTP-Referer'] = window.location.origin || 'https://javohirqaxramonov36-web.github.io';
+    headers['X-Title'] = 'Tayanch IELTS Assessor';
+  }
+
   const res = await fetch(config.endpoint, {
     method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-      Authorization: `Bearer ${apiKey}`,
-    },
+    headers,
     body: JSON.stringify({
       model: config.model,
       messages: [
@@ -195,6 +221,7 @@ word_count: ${word_count}`;
       ],
       temperature: 0.3,
       max_tokens: 2000,
+      response_format: { type: 'json_object' },
     }),
   });
 
@@ -205,6 +232,13 @@ word_count: ${word_count}`;
       const errJson = JSON.parse(errText);
       if (errJson.error?.message) errMsg = errJson.error.message;
     } catch (e) {}
+    if (res.status === 401) {
+      errMsg = 'API kaliti noto\'g\'ri yoki muddati tugagan. Sozlamalarda kalitni yangilang.';
+    } else if (res.status === 429) {
+      errMsg = 'Bepul model chegarasiga yetdingiz. Biroz kuting yoki boshqa bepul model tanlang.';
+    } else if (res.status === 402) {
+      errMsg = 'Bu model pullik yoki kredit tugagan. Iltimos, bepul model tanlang (masalan: google/gemini-flash-1.5:free).';
+    }
     throw new Error(errMsg);
   }
 
@@ -215,25 +249,28 @@ word_count: ${word_count}`;
     throw new Error('AI javob qaytarmadi. Qayta urinib ko\'ring.');
   }
 
-  // Extract JSON from the response (handles code-fenced JSON too)
   let jsonStr = content.trim();
   const jsonMatch = jsonStr.match(/```(?:json)?\s*([\s\S]*?)```/);
   if (jsonMatch) {
     jsonStr = jsonMatch[1].trim();
   }
 
+  // Try to find JSON object within text
+  if (!jsonStr.startsWith('{')) {
+    const start = jsonStr.indexOf('{');
+    const end = jsonStr.lastIndexOf('}');
+    if (start !== -1 && end !== -1) {
+      jsonStr = jsonStr.substring(start, end + 1);
+    }
+  }
+
   try {
     return JSON.parse(jsonStr);
   } catch (e) {
-    throw new Error('AI javobi JSON formatida emas. Model: ' + config.model);
+    throw new Error('AI javobi JSON formatida emas. Model: ' + config.model + '. Iltimos, boshqa model sinab ko\'ring.');
   }
 }
 
-/**
- * Render assessment results into HTML.
- * @param {Object} result - The parsed JSON from assessWriting()
- * @returns {string} HTML string
- */
 export function renderAssessmentHTML(result) {
   const criteria = [
     { key: 'task_achievement_or_response', label: 'Task Achievement / Response', icon: '📋' },

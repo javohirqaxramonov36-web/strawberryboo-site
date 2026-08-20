@@ -4,6 +4,9 @@
  *
  * Calls an AI API (OpenAI-compatible) with the IELTS Writing examiner
  * system prompt and returns structured band-scored JSON feedback.
+ *
+ * Default provider: OpenRouter (free models available, OpenAI-compatible API)
+ * Users can also use OpenAI, Groq, or any OpenAI-compatible endpoint.
  */
 
 (function (global) {
@@ -94,9 +97,57 @@ Respond with valid JSON only, no extra text:
   "overall_summary": "2-3 sentence holistic summary"
 }`;
 
+  // ─── Provider presets ─────────────────────────────────────────────
+  var PROVIDERS = {
+    openrouter_free: {
+      label: 'OpenRouter (Bepul modellar)',
+      endpoint: 'https://openrouter.ai/api/v1/chat/completions',
+      model: 'google/gemini-flash-1.5:free',
+      freeModels: [
+        { value: 'google/gemini-flash-1.5:free', label: 'Gemini Flash 1.5 (Free) — Tavsiya etiladi' },
+        { value: 'meta-llama/llama-3.1-8b-instruct:free', label: 'Llama 3.1 8B (Free)' },
+        { value: 'meta-llama/llama-3.3-70b-instruct:free', label: 'Llama 3.3 70B (Free) — Eng kuchli bepul' },
+        { value: 'google/gemini-2.0-flash-exp:free', label: 'Gemini 2.0 Flash (Free, Experimental)' },
+        { value: 'mistralai/mistral-7b-instruct:free', label: 'Mistral 7B (Free)' },
+        { value: 'qwen/qwen-2.5-7b-instruct:free', label: 'Qwen 2.5 7B (Free)' },
+      ],
+      getKeyUrl: 'https://openrouter.ai/keys',
+      keyHelp: 'OpenRouter bepul API kalitini oling — kredit karta kerak emas!',
+    },
+    openai: {
+      label: 'OpenAI (Pullik)',
+      endpoint: 'https://api.openai.com/v1/chat/completions',
+      model: 'gpt-4o',
+      freeModels: [],
+      getKeyUrl: 'https://platform.openai.com/api-keys',
+      keyHelp: 'OpenAI API kaliti (pullik, kredit kerak)',
+    },
+    groq: {
+      label: 'Groq (Bepul, Llama)',
+      endpoint: 'https://api.groq.com/openai/v1/chat/completions',
+      model: 'llama-3.1-8b-instant',
+      freeModels: [
+        { value: 'llama-3.1-8b-instant', label: 'Llama 3.1 8B Instant (Free)' },
+        { value: 'llama-3.3-70b-versatile', label: 'Llama 3.3 70B Versatile (Free)' },
+      ],
+      getKeyUrl: 'https://console.groq.com/keys',
+      keyHelp: 'Groq bepul API kaliti — tezkor va bepul!',
+    },
+    custom: {
+      label: 'Boshqa (Custom)',
+      endpoint: '',
+      model: '',
+      freeModels: [],
+      getKeyUrl: '',
+      keyHelp: 'OpenAI-compatible endpoint, model va API kalitini kiriting',
+    },
+  };
+
+  var DEFAULT_PROVIDER = 'openrouter_free';
   var DEFAULT_CONFIG = {
-    endpoint: 'https://api.openai.com/v1/chat/completions',
-    model: 'gpt-4o',
+    provider: DEFAULT_PROVIDER,
+    endpoint: PROVIDERS[DEFAULT_PROVIDER].endpoint,
+    model: PROVIDERS[DEFAULT_PROVIDER].model,
   };
 
   function getApiKey() {
@@ -114,9 +165,12 @@ Respond with valid JSON only, no extra text:
   function getModelConfig() {
     try {
       var stored = localStorage.getItem('ielts_model_config');
-      if (stored) return Object.assign({}, DEFAULT_CONFIG, JSON.parse(stored));
+      if (stored) {
+        var parsed = JSON.parse(stored);
+        return Object.assign({}, DEFAULT_CONFIG, parsed);
+      }
     } catch (e) {}
-    return DEFAULT_CONFIG;
+    return Object.assign({}, DEFAULT_CONFIG);
   }
 
   function setModelConfig(config) {
@@ -136,7 +190,7 @@ Respond with valid JSON only, no extra text:
   async function assessWriting(params) {
     var apiKey = getApiKey();
     if (!apiKey) {
-      throw new Error('API kaliti topilmadi. Iltimos, sozlamalarda OpenAI API kalitini kiriting.');
+      throw new Error('API kaliti topilmadi. Iltimos, sozlamalarda API kalitini kiriting. OpenRouter bepul API kalitini openrouter.ai/keys saytidan olishingiz mumkin.');
     }
 
     var wc = countWords(params.response);
@@ -147,12 +201,20 @@ Respond with valid JSON only, no extra text:
       'response: ' + params.response + '\n' +
       'word_count: ' + wc;
 
+    var headers = {
+      'Content-Type': 'application/json',
+      'Authorization': 'Bearer ' + apiKey,
+    };
+
+    // OpenRouter recommends extra headers for analytics (optional but good practice)
+    if (config.endpoint && config.endpoint.indexOf('openrouter.ai') !== -1) {
+      headers['HTTP-Referer'] = window.location.origin || 'https://javohirqaxramonov36-web.github.io';
+      headers['X-Title'] = 'Tayanch IELTS Assessor';
+    }
+
     var res = await fetch(config.endpoint, {
       method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': 'Bearer ' + apiKey,
-      },
+      headers: headers,
       body: JSON.stringify({
         model: config.model,
         messages: [
@@ -161,6 +223,7 @@ Respond with valid JSON only, no extra text:
         ],
         temperature: 0.3,
         max_tokens: 2000,
+        response_format: { type: 'json_object' },
       }),
     });
 
@@ -171,6 +234,14 @@ Respond with valid JSON only, no extra text:
         var errJson = JSON.parse(errText);
         if (errJson.error && errJson.error.message) errMsg = errJson.error.message;
       } catch (e) {}
+      // User-friendly error for common issues
+      if (res.status === 401) {
+        errMsg = 'API kaliti noto\'g\'ri yoki muddati tugagan. Sozlamalarda kalitni yangilang.';
+      } else if (res.status === 429) {
+        errMsg = 'Bepul model chegarasiga yetdingiz. Biroz kuting yoki boshqa bepul model tanlang.';
+      } else if (res.status === 402) {
+        errMsg = 'Bu model pullik yoki kredit tugagan. Iltimos, bepul model tanlang (masalan: google/gemini-flash-1.5:free).';
+      }
       throw new Error(errMsg);
     }
 
@@ -185,10 +256,19 @@ Respond with valid JSON only, no extra text:
     var jsonMatch = jsonStr.match(/```(?:json)?\s*([\s\S]*?)```/);
     if (jsonMatch) jsonStr = jsonMatch[1].trim();
 
+    // Also try to find JSON object within text
+    if (jsonStr.indexOf('{') !== 0) {
+      var jsonStart = jsonStr.indexOf('{');
+      var jsonEnd = jsonStr.lastIndexOf('}');
+      if (jsonStart !== -1 && jsonEnd !== -1) {
+        jsonStr = jsonStr.substring(jsonStart, jsonEnd + 1);
+      }
+    }
+
     try {
       return JSON.parse(jsonStr);
     } catch (e) {
-      throw new Error('AI javobi JSON formatida emas. Model: ' + config.model);
+      throw new Error('AI javobi JSON formatida emas. Model: ' + config.model + '. Iltimos, boshqa model sinab ko\'ring.');
     }
   }
 
@@ -262,6 +342,7 @@ Respond with valid JSON only, no extra text:
   /**
    * Show API key settings dialog.
    * Creates and shows a modal for entering/editing API key and model config.
+   * Supports multiple providers with a provider selector.
    */
   function showSettingsDialog() {
     // Remove existing dialog if any
@@ -270,10 +351,24 @@ Respond with valid JSON only, no extra text:
 
     var currentKey = getApiKey() || '';
     var currentConfig = getModelConfig();
+    var currentProvider = currentConfig.provider || DEFAULT_PROVIDER;
+    var provider = PROVIDERS[currentProvider] || PROVIDERS[DEFAULT_PROVIDER];
+
+    // Build model options for selected provider
+    function buildModelOptions(selectedModel, models) {
+      if (!models || models.length === 0) {
+        return '<input type="text" id="settingsModel" value="' + escapeAttr(selectedModel) + '" placeholder="model-name" style="width:100%;padding:10px 12px;border:1px solid #ccc;border-radius:8px;font-size:15px;box-sizing:border-box;" />';
+      }
+      var opts = models.map(function (m) {
+        var sel = (m.value === selectedModel) ? ' selected' : '';
+        return '<option value="' + escapeAttr(m.value) + '"' + sel + '>' + escapeHtml(m.label) + '</option>';
+      }).join('');
+      return '<select id="settingsModel" style="width:100%;padding:10px 12px;border:1px solid #ccc;border-radius:8px;font-size:15px;box-sizing:border-box;background:#fff;">' + opts + '</select>';
+    }
 
     var dialog = document.createElement('dialog');
     dialog.id = 'ieltsSettingsDialog';
-    dialog.style.cssText = 'border:1px solid #ccc;border-radius:12px;padding:0;max-width:500px;width:90%;';
+    dialog.style.cssText = 'border:1px solid #ccc;border-radius:12px;padding:0;max-width:540px;width:90%;';
 
     dialog.innerHTML = `
       <div style="padding:24px;font-family:Inter,system-ui,sans-serif;">
@@ -281,46 +376,101 @@ Respond with valid JSON only, no extra text:
           <h2 style="margin:0;font-size:1.3rem;">AI Assessment Sozlamalari</h2>
           <button id="closeSettings" style="border:none;background:none;font-size:1.5rem;cursor:pointer;">&times;</button>
         </div>
-        <p style="color:#666;font-size:.9rem;margin-bottom:16px;">OpenAI API kalitingiz faqat brauzeringizda (localStorage) saqlanadi. Hech qanday serverga yuborilmaydi.</p>
+
+        <div style="background:#e8f5e9;border:1px solid #4caf50;border-radius:8px;padding:12px;margin-bottom:16px;">
+          <p style="margin:0;font-size:.85rem;color:#2e7d32;">
+            <strong>💡 Bepul foydalanish:</strong> OpenRouter saytida bepul API kalit oling
+            (kredit karta kerak emas), pastdagi "OpenRouter (Bepul)" tanlang va kalitni kiriting.
+            50+ bepul AI model mavjud!
+          </p>
+        </div>
+
+        <p style="color:#666;font-size:.9rem;margin-bottom:16px;">API kalitingiz faqat brauzeringizda (localStorage) saqlanadi. Hech qanday serverga yuborilmaydi.</p>
+
+        <div style="margin-bottom:16px;">
+          <label style="display:block;font-weight:600;margin-bottom:6px;font-size:.9rem;">Provider</label>
+          <select id="settingsProvider" style="width:100%;padding:10px 12px;border:1px solid #ccc;border-radius:8px;font-size:15px;box-sizing:border-box;background:#fff;">
+            <option value="openrouter_free"${currentProvider === 'openrouter_free' ? ' selected' : ''}>OpenRouter (Bepul modellar) — Tavsiya etiladi</option>
+            <option value="groq"${currentProvider === 'groq' ? ' selected' : ''}>Groq (Bepul, Llama — tezkor)</option>
+            <option value="openai"${currentProvider === 'openai' ? ' selected' : ''}>OpenAI (Pullik)</option>
+            <option value="custom"${currentProvider === 'custom' ? ' selected' : ''}>Boshqa (Custom endpoint)</option>
+          </select>
+        </div>
+
         <div style="margin-bottom:16px;">
           <label style="display:block;font-weight:600;margin-bottom:6px;font-size:.9rem;">API Key</label>
-          <input type="password" id="settingsApiKey" value="${currentKey.replace(/"/g, '&quot;')}" placeholder="sk-..." style="width:100%;padding:10px 12px;border:1px solid #ccc;border-radius:8px;font-size:15px;box-sizing:border-box;" />
+          <input type="password" id="settingsApiKey" value="${currentKey.replace(/"/g, '&quot;')}" placeholder="sk-or-..." style="width:100%;padding:10px 12px;border:1px solid #ccc;border-radius:8px;font-size:15px;box-sizing:border-box;" />
+          <p id="keyHelpText" style="margin-top:6px;font-size:.8rem;color:#888;">${provider.keyHelp}</p>
         </div>
+
         <div style="margin-bottom:16px;">
           <label style="display:block;font-weight:600;margin-bottom:6px;font-size:.9rem;">Model</label>
-          <input type="text" id="settingsModel" value="${currentConfig.model}" placeholder="gpt-4o" style="width:100%;padding:10px 12px;border:1px solid #ccc;border-radius:8px;font-size:15px;box-sizing:border-box;" />
+          <div id="modelInputContainer">${buildModelOptions(currentConfig.model, provider.freeModels)}</div>
         </div>
-        <div style="margin-bottom:20px;">
+
+        <div style="margin-bottom:20px;" id="endpointContainer">
           <label style="display:block;font-weight:600;margin-bottom:6px;font-size:.9rem;">API Endpoint</label>
-          <input type="text" id="settingsEndpoint" value="${currentConfig.endpoint}" placeholder="https://api.openai.com/v1/chat/completions" style="width:100%;padding:10px 12px;border:1px solid #ccc;border-radius:8px;font-size:13px;box-sizing:border-box;" />
+          <input type="text" id="settingsEndpoint" value="${currentConfig.endpoint}" placeholder="https://openrouter.ai/api/v1/chat/completions" style="width:100%;padding:10px 12px;border:1px solid #ccc;border-radius:8px;font-size:13px;box-sizing:border-box;" />
         </div>
+
         <div style="display:flex;gap:10px;justify-content:flex-end;">
           <button id="cancelSettings" style="padding:10px 20px;border:1px solid #ccc;border-radius:8px;background:none;cursor:pointer;font-size:15px;">Bekor qilish</button>
           <button id="saveSettings" style="padding:10px 24px;border:none;border-radius:8px;background:#007bff;color:#fff;cursor:pointer;font-size:15px;font-weight:600;">Saqlash</button>
         </div>
-        <p style="margin-top:16px;font-size:.8rem;color:#888;">Kalitni olish: <a href="https://platform.openai.com/api-keys" target="_blank" rel="noopener" style="color:#007bff;">OpenAI API Keys</a></p>
+
+        <div id="getKeyLink" style="margin-top:16px;font-size:.8rem;color:#888;">
+          ${provider.getKeyUrl ? 'Bepul kalit olish: <a href="' + provider.getKeyUrl + '" target="_blank" rel="noopener" style="color:#007bff;">' + provider.getKeyUrl + '</a>' : ''}
+        </div>
       </div>
     `;
 
     document.body.appendChild(dialog);
     dialog.showModal();
 
+    // Provider switch — update model options, endpoint, help text
+    dialog.querySelector('#settingsProvider').addEventListener('change', function () {
+      var newProvider = this.value;
+      var p = PROVIDERS[newProvider];
+      var modelContainer = dialog.querySelector('#modelInputContainer');
+      var endpointInput = dialog.querySelector('#settingsEndpoint');
+      var keyHelp = dialog.querySelector('#keyHelpText');
+      var getKeyLink = dialog.querySelector('#getKeyLink');
+
+      modelContainer.innerHTML = buildModelOptions(p.model, p.freeModels);
+      endpointInput.value = p.endpoint;
+      keyHelp.textContent = p.keyHelp;
+      getKeyLink.innerHTML = p.getKeyUrl
+        ? 'Bepul kalit olish: <a href="' + p.getKeyUrl + '" target="_blank" rel="noopener" style="color:#007bff;">' + p.getKeyUrl + '</a>'
+        : '';
+    });
+
     dialog.querySelector('#closeSettings').addEventListener('click', function () { dialog.close(); dialog.remove(); });
     dialog.querySelector('#cancelSettings').addEventListener('click', function () { dialog.close(); dialog.remove(); });
     dialog.querySelector('#saveSettings').addEventListener('click', function () {
       var key = dialog.querySelector('#settingsApiKey').value.trim();
-      var model = dialog.querySelector('#settingsModel').value.trim();
+      var providerVal = dialog.querySelector('#settingsProvider').value;
+      var modelEl = dialog.querySelector('#settingsModel');
+      var model = modelEl.value.trim();
       var endpoint = dialog.querySelector('#settingsEndpoint').value.trim();
       if (key) setApiKey(key);
-      if (model && endpoint) setModelConfig({ model: model, endpoint: endpoint });
+      if (providerVal && model && endpoint) {
+        setModelConfig({ provider: providerVal, model: model, endpoint: endpoint });
+      }
       dialog.close();
       dialog.remove();
     });
   }
 
+  function escapeAttr(text) {
+    var div = document.createElement('div');
+    div.textContent = text;
+    return div.innerHTML.replace(/"/g, '&quot;');
+  }
+
   // Export to global scope
   global.IELTSAssessor = {
     SYSTEM_PROMPT: SYSTEM_PROMPT,
+    PROVIDERS: PROVIDERS,
     getApiKey: getApiKey,
     setApiKey: setApiKey,
     hasApiKey: hasApiKey,
