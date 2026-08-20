@@ -481,6 +481,7 @@
         }
     </style>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="../../tayanch-ai.js"></script>
 </head>
 
 <body>
@@ -494,8 +495,7 @@
         <a href="https://t.me/ielts_material_full" target="_blank" class="telegram-link">
             FULL EXAM MATERIALS
         </a>
-        <!-- Placeholder for balance -->
-        <div style="width: 150px;"></div>
+        <div id="tayanchAuth" data-tayanch-auth aria-live="polite"></div>
     </div>
 
     <!-- Test Interface -->
@@ -677,21 +677,53 @@
             }
         }
 
-        function analyzeAndShowResults() {
-            // This is a simplified analysis. A real system would use a more complex algorithm or AI.
-            const part1Analysis = analyzeWriting(partData[1].content, 1);
-            const part2Analysis = analyzeWriting(partData[2].content, 2);
+        async function analyzeAndShowResults() {
+            const submitBtn = document.getElementById('deliver-button');
+            const originalBtn = submitBtn ? submitBtn.innerHTML : '';
+            if (submitBtn) { submitBtn.disabled = true; submitBtn.innerHTML = 'AI baholanmoqda…'; }
 
-            const part1Scores = calculateBandScore(part1Analysis);
-            const part2Scores = calculateBandScore(part2Analysis);
+            const task1Text = partData[1].content;
+            const task2Text = partData[2].content;
+            const promptEl1 = document.querySelector('#part-1 .task-prompt');
+            const promptEl2 = document.querySelector('#part-2 .task-prompt');
+            const prompt1 = promptEl1 ? promptEl1.innerText.trim() : 'Task 1';
+            const prompt2 = promptEl2 ? promptEl2.innerText.trim() : 'Task 2';
 
-            const overallBand = calculateOverallBand(part1Scores, part2Scores);
+            try {
+                await window.TayanchAI.ensureApiKey();
 
-            displayResults(part1Scores, part2Scores, overallBand);
+                const results = [];
+                if (task1Text.trim()) {
+                    results[1] = await window.TayanchAI.assessWriting({ taskType: 'academic_task1', prompt: prompt1, response: task1Text });
+                }
+                if (task2Text.trim()) {
+                    results[2] = await window.TayanchAI.assessWriting({ taskType: 'task2', prompt: prompt2, response: task2Text });
+                }
 
-            mainContainer.style.display = 'none';
-            navigation.style.display = 'none';
-            resultsContainer.style.display = 'block';
+                const part1Scores = results[1] ? aiAssessmentToScores(results[1]) : { task: 0, coherence: 0, lexical: 0, grammar: 0 };
+                const part2Scores = results[2] ? aiAssessmentToScores(results[2]) : { task: 0, coherence: 0, lexical: 0, grammar: 0 };
+                const overallBand = calculateOverallBand(part1Scores, part2Scores);
+
+                window.__aiAssessments = results;
+                displayResults(part1Scores, part2Scores, overallBand, results);
+
+                mainContainer.style.display = 'none';
+                navigation.style.display = 'none';
+                resultsContainer.style.display = 'block';
+            } catch (err) {
+                if (submitBtn) { submitBtn.disabled = false; submitBtn.innerHTML = originalBtn; }
+                window.TayanchAI.showError(err);
+            }
+        }
+
+        function aiAssessmentToScores(a) {
+            const band = (c) => (c && typeof c.band === 'number') ? c.band : 0;
+            return {
+                task: (a && typeof a.task_band === 'number') ? a.task_band : band(a && a.task_achievement_or_response),
+                coherence: band(a && a.coherence_cohesion),
+                lexical: band(a && a.lexical_resource),
+                grammar: band(a && a.grammatical_range_accuracy)
+            };
         }
 
         function analyzeWriting(text, partNumber) {
@@ -745,7 +777,7 @@
         }
 
         // --- RESULTS DISPLAY ---
-        function displayResults(scores1, scores2, overallBand) {
+        function displayResults(scores1, scores2, overallBand, aiResults) {
             const bandDescription = getBandDescription(overallBand);
 
             resultsContainer.innerHTML = `
@@ -760,6 +792,8 @@
                     ${createScoreCardHTML('Part 2 - Task Response', scores2)}
                 </div>
 
+                ${aiFeedbackHTML(aiResults || window.__aiAssessments || [])}
+
                 ${createFeedbackHTML(scores1, scores2)}
 
                 <div class="action-buttons">
@@ -767,6 +801,36 @@
                     <button class="btn btn-secondary" onclick="retakeTest()">Retake Test</button>
                 </div>
             `;
+        }
+
+        function aiFeedbackHTML(results) {
+            if (!results || !results.length) return '';
+            const criteria = [
+                { key: 'task_achievement_or_response', label: 'Task Achievement / Response' },
+                { key: 'coherence_cohesion', label: 'Coherence & Cohesion' },
+                { key: 'lexical_resource', label: 'Lexical Resource' },
+                { key: 'grammatical_range_accuracy', label: 'Grammatical Range & Accuracy' }
+            ];
+            const parts = [1, 2].filter((i) => results[i]);
+            if (!parts.length) return '';
+            let html = '';
+            parts.forEach((i) => {
+                const a = results[i];
+                html += `<div class="feedback-section"><h3>AI Tahlil — Part ${i} (${a.task_band || '—'})</h3><p style="color:#6c757d;margin:0 0 12px;font-size:14px">${(a.overall_summary || '').replace(/</g, '&lt;')}</p>`;
+                criteria.forEach((c) => {
+                    const item = a[c.key];
+                    if (!item) return;
+                    html += `<div style="padding:12px 15px;margin-bottom:8px;border-radius:8px;background:#f8f9fa;border-left:4px solid ${item.band >= 7 ? '#28a745' : item.band >= 6 ? '#ffc107' : '#dc3545'}">
+                        <b>${c.label}: ${item.band}</b>
+                        <p style="margin:6px 0 0;font-size:14px;color:#495057">${(item.feedback || '').replace(/</g, '&lt;')}</p>
+                        ${item.example_from_text ? `<p style="margin:6px 0 0;font-size:13px;font-style:italic;color:#6c757d">"${(item.example_from_text || '').replace(/</g, '&lt;')}"</p>` : ''}
+                        <p style="margin:6px 0 0;font-size:13px;color:#155724"><b>Tavsiya:</b> ${(item.improvement_tip || '').replace(/</g, '&lt;')}</p>
+                    </div>`;
+                });
+                if (a.word_count_note) html += `<p style="font-size:13px;color:#c0392b;margin-top:6px">${(a.word_count_note || '').replace(/</g, '&lt;')}</p>`;
+                html += `</div>`;
+            });
+            return html;
         }
 
         function createScoreCardHTML(title, scores) {
