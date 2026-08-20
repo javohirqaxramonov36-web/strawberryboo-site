@@ -1,5 +1,6 @@
 ---
 import Base from "../../layouts/Base.astro";
+import PaymentInstructions from "../../components/PaymentInstructions.astro";
 import CourseSchema from "../../components/CourseSchema.astro";
 import Quiz from "../../components/Quiz.astro";
 const title = "Admission Process — Tayanch";
@@ -103,7 +104,8 @@ const subcourses = [
 
     <Quiz title="O'z bilimingizni tekshiring" questions={questions} />
     <a href={base + 'kurslar'} class="course-nav-link">← Barcha kurslar</a>
-  </article>
+    <PaymentInstructions course="Admission Process" price="49 000 so'mdan" />
+</article>
 
   <script>
     const documentChecks = [...document.querySelectorAll('[data-admission-doc]')];

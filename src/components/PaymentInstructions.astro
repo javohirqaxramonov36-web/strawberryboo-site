@@ -1,0 +1,56 @@
+---
+interface Props {
+  course: string;
+  price: string;
+}
+
+const { course, price } = Astro.props;
+const telegramUrl = 'https://t.me/progression_go';
+const modalId = `payment-${course.toLowerCase().replace(/[^a-z0-9]+/g, '-')}`;
+---
+
+<section class="payment-instructions" aria-label={`${course} uchun to‘lov ma’lumoti`}>
+  <div>
+    <p class="payment-eyebrow">TO‘LOV</p>
+    <h2>{course} kursini olish</h2>
+    <p class="payment-copy">Narx: <strong>{price}</strong>. To‘lov hozircha Telegram orqali xavfsiz, qo‘lda tasdiqlanadi.</p>
+  </div>
+  <button type="button" class="payment-open" data-payment-open={modalId}>To‘lov qilish →</button>
+</section>
+
+<dialog class="payment-dialog" id={modalId} aria-labelledby={`${modalId}-title`}>
+  <div class="payment-dialog-inner">
+    <button type="button" class="payment-close" data-payment-close aria-label="Yopish">×</button>
+    <p class="payment-eyebrow">TELEGRAM ORQALI TO‘LOV</p>
+    <h2 id={`${modalId}-title`}>{course}</h2>
+    <p class="payment-dialog-price">{price}</p>
+    <ol>
+      <li><strong>Telegramga yozing.</strong> Kurs nomi va narxini xabaringizda ko‘rsating.</li>
+      <li><strong>Rekvizitlarni oling.</strong> To‘lov usuli va summa Telegramda tasdiqlanadi.</li>
+      <li><strong>Chekni yuboring.</strong> To‘lov tasdig‘ini shu chatga jo‘nating.</li>
+      <li><strong>Kirish havolasini oling.</strong> To‘lov tekshirilgach, kursga kirish havolasi qo‘lda yuboriladi.</li>
+    </ol>
+    <p class="payment-note">Avtomatik Click/Payme checkout hozircha yo‘q. Hech qanday karta ma’lumotini saytga kiritmang.</p>
+    <a class="payment-telegram" href={telegramUrl} target="_blank" rel="noopener noreferrer">Telegramda to‘lovni boshlash →</a>
+  </div>
+</dialog>
+
+<script>
+  document.querySelectorAll('[data-payment-open]').forEach((button) => {
+    button.addEventListener('click', () => {
+      const id = button.getAttribute('data-payment-open');
+      const dialog = id ? document.getElementById(id) : null;
+      if (dialog instanceof HTMLDialogElement) dialog.showModal();
+    });
+  });
+  document.querySelectorAll('.payment-dialog').forEach((dialog) => {
+    dialog.querySelector('[data-payment-close]')?.addEventListener('click', () => dialog.close());
+    dialog.addEventListener('click', (event) => {
+      if (event.target === dialog) dialog.close();
+    });
+  });
+</script>
+
+<style>
+  .payment-instructions{display:flex;justify-content:space-between;align-items:center;gap:1.25rem;margin:2.5rem 0;padding:1.35rem 1.5rem;border:1px solid color-mix(in srgb,var(--accent) 38%,var(--border));border-radius:16px;background:linear-gradient(135deg,color-mix(in srgb,var(--accent) 14%,var(--surface)),var(--surface))}.payment-eyebrow{margin:0 0 .35rem;color:var(--accent);font-size:.76rem;font-weight:800;letter-spacing:.12em}.payment-instructions h2,.payment-dialog h2{margin:0;font-size:1.25rem}.payment-copy{margin:.45rem 0 0;color:var(--muted)}.payment-open,.payment-telegram{display:inline-flex;align-items:center;justify-content:center;border:0;border-radius:10px;padding:.75rem 1rem;background:var(--accent);color:#fff;font:700 .95rem var(--font-display,inherit);text-decoration:none;cursor:pointer;white-space:nowrap}.payment-open:hover,.payment-telegram:hover{background:var(--accent-2);color:#fff}.payment-dialog{max-width:min(560px,calc(100vw - 32px));border:1px solid var(--border);border-radius:18px;padding:0;background:var(--surface);color:var(--text);box-shadow:0 20px 60px rgba(0,0,0,.45)}.payment-dialog::backdrop{background:rgba(8,9,14,.72);backdrop-filter:blur(3px)}.payment-dialog-inner{position:relative;padding:1.6rem}.payment-close{position:absolute;right:1rem;top:.9rem;border:0;background:transparent;color:var(--muted);font-size:1.7rem;line-height:1;cursor:pointer}.payment-dialog-price{margin:.5rem 0 1rem;color:var(--accent);font-weight:800;font-size:1.08rem}.payment-dialog ol{margin:1rem 0;padding-left:1.25rem}.payment-dialog li{margin:.7rem 0;color:var(--muted);line-height:1.55}.payment-dialog li strong{color:var(--text)}.payment-note{margin:1.2rem 0;color:var(--muted);font-size:.88rem;line-height:1.55}.payment-telegram{width:100%}@media(max-width:600px){.payment-instructions{align-items:flex-start;flex-direction:column}.payment-open{width:100%}}
+</style>

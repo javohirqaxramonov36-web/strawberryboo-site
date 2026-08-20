@@ -1,5 +1,6 @@
 ---
 import Base from "../../layouts/Base.astro";
+import PaymentInstructions from "../../components/PaymentInstructions.astro";
 import Quiz from "../../components/Quiz.astro";
 const title = "Obsidian PKM — Tayanch";
 const description = "Shaxsiy bilim bazasi qurish. Tayanch bilan avtomatik capture.";
@@ -62,6 +63,7 @@ const plugins = [
   <section class="graph-section"><div><span class="eyebrow">MODUL 5</span><h2>Graph view: bilimlar bog'lanishi</h2><p>Graph view note'lar va ular orasidagi link'larni bitta xaritada ko'rsatadi. Papkalarni kengaytirib, bilimlar qanday bog'langanini ko'ring.</p></div><button class="image-card graph-image" type="button" data-lightbox-src={images.graphFolder} data-lightbox-alt="Obsidian Graph view with expanded folder"><img src={images.graphFolder} alt="Obsidian Graph view with expanded folder" loading="lazy"/><span class="image-card-label">Papka kengaytirilgan Graph view <span>↗ Kattalashtirish</span></span></button></section>
   <a href={base + 'bog-lanish'} class="start-btn" style="margin-top:2rem;" data-i18n="op.buy">Kursni sotib olish →</a><a href={base + 'kurslar'} class="course-nav-link" style="margin-left:1rem;" data-i18n="op.all">← Barcha kurslar</a>
   <Quiz title="O'z bilimingizni tekshiring" titleI18n="op.quizTitle" questions={questions} />
+  <PaymentInstructions course="Obsidian PKM" price="$19 · ≈ 240 000 so'm" />
 </article>
 <dialog class="lightbox" id="image-lightbox"><button class="lightbox-close" type="button" aria-label="Yopish">×</button><img src="" alt="" /><p></p></dialog>
 </Base>

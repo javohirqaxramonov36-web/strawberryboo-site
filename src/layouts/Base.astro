@@ -974,6 +974,26 @@ const TG = "https://t.me/progression_go"; // Telegram kanal/guruh havolasi
       .features { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 1.2rem; margin-top: 2.5rem; }
       .card { background: var(--surface); border: 1px solid var(--border); border-radius: 16px; padding: 24px; box-shadow: var(--shadow); position: relative; transition: transform .15s, box-shadow .15s, border-color .15s; }
       .card:hover { transform: translateY(-4px); box-shadow: 0 16px 32px -10px rgba(0,0,0,.6); border-color: var(--accent); }
+      .upcoming-courses { margin: 3rem 0; padding: 1.5rem; border: 1px dashed color-mix(in srgb, var(--accent) 45%, var(--border)); border-radius: 18px; background: color-mix(in srgb, var(--accent) 6%, var(--surface)); }
+      .upcoming-heading { max-width: 680px; margin-bottom: 1.25rem; }
+      .upcoming-heading h2 { margin: .2rem 0 .45rem; font-size: 1.45rem; }
+      .upcoming-heading p:last-child { margin: 0; color: var(--muted); }
+      .upcoming-status {
+    min-height: 2.8rem;
+    color: var(--muted, #a1a1b5);
+    font-size: 0.9rem;
+    line-height: 1.45;
+    margin: 1rem 0;
+  }
+  .upcoming-grid .start-btn.is-disabled {
+    display: inline-flex;
+    pointer-events: none;
+    cursor: default;
+    opacity: 0.62;
+  }
+  .upcoming-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1rem; }
+      .upcoming-grid .card { box-shadow: none; opacity: .92; }
+      .upcoming-grid .card:hover { transform: none; border-color: var(--border); }
       .card h2 { margin: 0 0 0.5rem; font-size: 1.25rem; color: var(--text); }
       .card p { color: var(--muted); font-size: 0.95rem; }
       .badge { position: absolute; top: -11px; left: 1rem; background: #ffd700; color: #000; font-size: 0.72rem; padding: 3px 10px; border-radius: 99px; font-weight: 800; }

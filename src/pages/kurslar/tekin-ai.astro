@@ -1,5 +1,6 @@
 ---
 import Base from "../../layouts/Base.astro";
+import PaymentInstructions from "../../components/PaymentInstructions.astro";
 import CourseSchema from "../../components/CourseSchema.astro";
 import LeadMagnetCTA from "../../components/LeadMagnetCTA.astro";
 import Quiz from "../../components/Quiz.astro";
@@ -24,7 +25,7 @@ const questions = [
     </div>
   </div>
 
-  <p class="lead" data-i18n="ta.lead">
+  <p class="lead">
     Bepul AI vositalari ro'yxati va ulardan foydalanish bo'yicha amaliy qo'llanma.
   </p>
 
@@ -46,6 +47,7 @@ const questions = [
 
   <Quiz titleI18n="ta.quizTitle" questions={questions} />
   <LeadMagnetCTA />
+  <PaymentInstructions course="Tekin AI modellar va agentlar" price="$19 · ≈ 240 000 so'm" />
 </article>
 
 <style>

@@ -1,5 +1,6 @@
 ---
 import Base from "../../layouts/Base.astro";
+import PaymentInstructions from "../../components/PaymentInstructions.astro";
 import CourseSchema from "../../components/CourseSchema.astro";
 import Quiz from "../../components/Quiz.astro";
 
@@ -112,7 +113,8 @@ const questions = [
     <a href={import.meta.env.BASE_URL + 'kurslar'} class="course-nav-link" style="margin-left:1rem;">← Barcha kurslar</a>
 
     <Quiz title="O'z bilimingizni tekshiring" questions={questions} />
-  </article>
+    <PaymentInstructions course="AutoCAD on Mac" price="$29 · ≈ 360 000 so'm" />
+</article>
 
   <style>
     .src {

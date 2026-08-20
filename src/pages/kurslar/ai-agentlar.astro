@@ -1,5 +1,6 @@
 ---
 import Base from "../../layouts/Base.astro";
+import PaymentInstructions from "../../components/PaymentInstructions.astro";
 import CourseSchema from "../../components/CourseSchema.astro";
 import Quiz from "../../components/Quiz.astro";
 const title = "AI Agentlar nega kerak? — Tayanch";
@@ -269,6 +270,7 @@ pip install langgraph</code></pre>
   <a href={import.meta.env.BASE_URL + 'kurslar'} class="course-nav-link" style="margin-left:1rem;" data-i18n="aa.all">← Barcha kurslar</a>
 
   <Quiz title="O'z bilimingizni tekshiring" titleI18n="aa.quizTitle" questions={questions} />
+  <PaymentInstructions course="AI Agentlar nega kerak?" price="$39 · ≈ 490 000 so'm" />
 </article>
 
 <style>

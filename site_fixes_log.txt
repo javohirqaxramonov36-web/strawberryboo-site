@@ -1,24 +1,22 @@
-Tayanch site fixes log
-Timestamp: 2026-08-20 22:18 GMT+5
-Scope: User-approved fixes only; no Git commit, push, or production deployment performed.
+Tayanch — sales-readiness local change log
+Date: 2026-08-20 (Asia/Tashkent)
+Status: LOCAL ONLY — not committed, pushed, or deployed.
 
-Completed
-1. Google Sign-In: Google Identity Services button theme changed from outline to filled_black in public/tayanch-ai.js. Auth flow was not changed.
-2. IELTS Mock discovery: Added IELTS Mock links to sidebar navigation, header navigation, and footer pages list in src/layouts/Base.astro.
-3. IELTS Prep cross-link: Added “Mock imtihonni sinab ko'ring →” under the homepage IELTS Prep card in src/pages/index.astro; styled as a secondary link in src/layouts/Base.astro.
-4. Coming-soon wording: Changed El-Yurt Umidi button from “Kursni ko'rish →” to “Tafsilotlarni ko'rish →” in both src/pages/index.astro and src/pages/kurslar/index.astro.
-5. Footer Instagram: Updated Instagram URL to https://instagram.com/javohir_kakhramonov in src/layouts/Base.astro.
+Implemented
+- Added an accessible dark-theme Telegram payment instruction modal to eight paid course pages.
+- Payment flow: user writes via Telegram with course and price → receives payment details → sends receipt → manually receives course access link.
+- Moved Financial Literacy, Computer Literacy, and El-Yurt Umidi from the active primary course grids into “Kelayotgan kurslar” sections on the home and catalog pages.
+- Removed displayed prices and active purchase/course buttons from those upcoming cards; they show “Tayyorlanmoqda”.
+- Expanded the Uzbek privacy policy for Google localStorage profile data, learning data, Plausible, manual Telegram payments, and user rights.
+- Created private TERMS_REFUND_DRAFT.md for owner approval; it is not yet published or linked.
+- Kept Plausible Analytics only. No GA4 or Meta Pixel was added.
 
-Explicitly not changed
-- Language buttons: skipped by user.
+Validation
+- ASTRO_TELEMETRY_DISABLED=1 npm run build: PASS (30 pages)
+- git diff --check: PASS
+- Local browser test: Tekin AI payment modal opens and presents all four approved Telegram-payment steps.
+- QA report: QA_REPORT_2026-08-20.md
 
-Price consistency fix
-- Financial Literacy: homepage “Narx: TBD” replaced with the catalog price: $19 (≈ 240 000 so'm).
-- Computer Literacy: homepage “Narx: TBD” replaced with the catalog price: $24 (≈ 300 000 so'm).
-- Catalog and homepage price parity verified; no “Narx: TBD” remains in either file.
-
-Verification
-- Command: ASTRO_TELEMETRY_DISABLED=1 npm run build
-- Result: success; 30 static pages built.
-- Additional checks: git diff --check passed; local preview confirmed the filled-black Google button and IELTS Mock navigation markup.
-- Production state: unchanged. Deployment requires separate user approval.
+Known follow-up
+- Do not deploy TERMS_REFUND_DRAFT.md until the owner approves its refund, legal-entity, and support-response details.
+- Existing IELTS mock content has 49 pre-existing local reference problems listed in QA_REPORT_2026-08-20.md; not modified in this sales-readiness pass.
