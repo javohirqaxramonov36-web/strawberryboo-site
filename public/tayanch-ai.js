@@ -11,7 +11,7 @@ window.TayanchAI = (function () {
      https://console.cloud.google.com/apis/credentials
      QIYMATNI SHU YERGA YOZING:  xxxxx.apps.googleusercontent.com
   */
-  var GOOGLE_CLIENT_ID = 'REPLACE_WITH_YOUR_CLIENT_ID.apps.googleusercontent.com';
+  var GOOGLE_CLIENT_ID = '967896717140-ucde3klelcv0rl3drdn4s8tvn90fvrk1.apps.googleusercontent.com';
 
   var GEMINI_MODEL = 'gemini-2.5-flash';
   var GEMINI_URL = 'https://generativelanguage.googleapis.com/v1beta/models/' + GEMINI_MODEL + ':generateContent';
