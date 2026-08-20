@@ -46,7 +46,7 @@ const base = import.meta.env.BASE_URL;
         <a href="#listening" class="skill-step listening" role="listitem"><span class="skill-ring">01</span><span><b>Listening</b><small>Tinglash</small></span></a>
         <a href="#reading" class="skill-step reading" role="listitem"><span class="skill-ring">02</span><span><b>Reading</b><small>O'qish</small></span></a>
         <a href="#writing" class="skill-step writing" role="listitem"><span class="skill-ring">03</span><span><b>Writing</b><small>Yozish</small></span></a>
-        <a href="#speaking" class="skill-step speaking" role="listitem"><span class="skill-ring">04</span><span><b>Speaking</b><small>Gapirish</small></span></a>
+        <a href={base + 'kurslar/ielts-prep/speaking/'} class="skill-step speaking" role="listitem"><span class="skill-ring">04</span><span><b>Speaking</b><small>AI bilan 30 kun</small></span></a>
       </div>
     </section>
 
@@ -57,7 +57,7 @@ const base = import.meta.env.BASE_URL;
         <a href="#listening"><span>01</span><strong>IELTS Listening</strong><small>Strategiya + Practice</small></a>
         <a href="#reading"><span>02</span><strong>IELTS Reading</strong><small>Strategiya + Practice</small></a>
         <a href="#writing"><span>03</span><strong>IELTS Writing</strong><small>Strategiya + Practice</small></a>
-        <a href="#speaking"><span>04</span><strong>IELTS Speaking</strong><small>Strategiya + kunlik mashq</small></a>
+        <a href={base + 'kurslar/ielts-prep/speaking/'}><span>04</span><strong>IELTS Speaking</strong><small>AI bilan 30 kunlik mashq</small></a>
       </div>
       <p class="course-note">Har sub-kursdagi darslar Obsidian’dagi shaxsiy o‘rganish notalaridan qayta tuzilgan; test matnlari yoki tashqi audio nusxalanmagan.</p>
     </section>
@@ -169,6 +169,7 @@ const base = import.meta.env.BASE_URL;
         <article class="strategy-card"><span class="practice-tag">KUNLIK RITM</span><h3>15–20 daqiqalik Speaking sikli</h3><p>Har kuni 1 ta Part 1 mavzu, 1 ta cue card va 1 ta Part 3 muhokamani yozib oling. Keyin ravonlik, lug'at, grammatika va talaffuz bo'yicha bitta yaxshilash nuqtasini belgilang.</p><p class="strategy-task"><b>Bugungi mavzular:</b> Hometown · Studies · Hobbies · Technology · Travel.</p></article>
       </div>
       <p class="src">Obsidian manbasi: <code>01.IELTS prep/6.speaking/IELTS Speaking - strategiya va mashq.md</code>. Speaking savollari Tayanch uchun mashq sifatida beriladi; real IELTS savol banki nusxalanmaydi.</p>
+      <a class="practice-btn practice-launch" href={base + 'kurslar/ielts-prep/speaking/'}>AI bilan 30 kunlik Speaking mashqini boshlash →</a>
     </section>
 
     <section class="practice-tools">

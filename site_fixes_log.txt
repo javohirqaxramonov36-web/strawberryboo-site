@@ -21,3 +21,5 @@ Known follow-up
 - Do not deploy TERMS_REFUND_DRAFT.md until the owner approves its refund, legal-entity, and support-response details.
 - Existing IELTS mock content has 49 pre-existing local reference problems listed in QA_REPORT_2026-08-20.md; not modified in this sales-readiness pass.
 - 2026-08-20: Owner-approved Terms + refund-policy draft published locally as /foydalanish-shartlari/ and linked in the footer. Pending build and deployment.
+- 2026-08-21: Local-only IELTS Speaking AI MVP created: 1-week original content, audio recorder, browser transcript fallback, timers, Supabase progress schema and protected Edge Function source. Requires migration, Edge Function deploy, and Anthropic secret before live AI feedback works.
+- 2026-08-21: Production Supabase setup completed for Speaking MVP: migrations 20260819, 20260821 and 202608210001 applied; ANTHROPIC_API_KEY stored as a Supabase secret; speaking-feedback Edge Function deployed with atomic Qadam charge/refund protection. Frontend deployment pending GitHub Pages push.

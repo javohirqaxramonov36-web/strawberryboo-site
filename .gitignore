@@ -21,5 +21,12 @@ pnpm-debug.log*
 # macOS-specific files
 .DS_Store
 
+# Local Supabase CLI and interactive login state — never commit credentials or binaries
+.tools/
+.supabase-home/
+
 # jetbrains setting folder
 .idea/
+
+# Supabase CLI runtime state
+supabase/.temp/
