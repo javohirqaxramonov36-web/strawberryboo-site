@@ -1,0 +1,1471 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IELTS Full Reading Practice</title>
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #ffffff;
+            --bg-secondary: #f8f9fa;
+            --bg-tertiary: #f1f2ec;
+            --text: #1a1a1a;
+            --text-muted: #555;
+            --text-light: #888;
+            --border: #e0e0e0;
+            --border-medium: #ccc;
+            --header-bg: #ffffff;
+            --panel-bg: #ffffff;
+            --nav-bg: #ffffff;
+            --input-bg: #ffffff;
+            --example-bg: #f9f9f9;
+            --context-menu-bg: #ffffff;
+            --modal-bg: #ffffff;
+            --timer-color: #333;
+            --resizer-bg: #f0f0f0;
+            --active-blue: #4a90e2;
+            --correct-bg: #e9f7ef;
+            --incorrect-bg: #f8d7da;
+            --correct-border: #28a745;
+            --incorrect-border: #dc3545;
+            --highlight-color: #ffeb3b;
+            --note-color: #a5d6a7;
+            --subq-bg: #ffffff;
+            --subq-border: #ccc;
+            --subq-text: #333;
+            --footer-btn-bg: #f0f0f0;
+            --footer-btn-border: #ccc;
+            --passage-title: #2c3e50;
+            --result-row-bg: transparent;
+            --toolbar-bg: #1a1a2e;
+            --toolbar-shadow: 0 4px 20px rgba(0,0,0,0.25);
+        }
+        body.night-mode {
+            --bg: #121212;
+            --bg-secondary: #1e1e1e;
+            --bg-tertiary: #252525;
+            --text: #e0e0e0;
+            --text-muted: #aaa;
+            --text-light: #777;
+            --border: #333;
+            --border-medium: #444;
+            --header-bg: #1a1a1a;
+            --panel-bg: #1a1a1a;
+            --nav-bg: #1a1a1a;
+            --input-bg: #252525;
+            --example-bg: #252525;
+            --context-menu-bg: #2a2a2a;
+            --modal-bg: #1e1e1e;
+            --timer-color: #e0e0e0;
+            --resizer-bg: #2a2a2a;
+            --active-blue: #64b5f6;
+            --correct-bg: #1a3a2a;
+            --incorrect-bg: #3a1a1a;
+            --correct-border: #4caf50;
+            --incorrect-border: #f44336;
+            --highlight-color: #f9a825;
+            --note-color: #388e3c;
+            --subq-bg: #252525;
+            --subq-border: #444;
+            --subq-text: #ccc;
+            --footer-btn-bg: #2a2a2a;
+            --footer-btn-border: #444;
+            --passage-title: #90caf9;
+            --result-row-bg: #1e1e1e;
+            --toolbar-bg: #0d0d1a;
+            --toolbar-shadow: 0 4px 20px rgba(0,0,0,0.6);
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: Arial, sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            line-height: 1.4;
+            font-size: 16px;
+            transition: background-color 0.3s, color 0.3s;
+        }
+        .header {
+            background-color: var(--header-bg);
+            padding: 12px 20px;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            z-index: 100;
+            height: 60px;
+            transition: background-color 0.3s, border-color 0.3s;
+        }
+        .header-left { display: flex; align-items: center; gap: 16px; }
+        .timer-container {
+            display: flex; position: relative; cursor: default;
+            color: var(--timer-color); font-size: 16px; font-weight: 500; align-items: center;
+        }
+        .timer-controls { display: flex; align-items: center; gap: 8px; margin-left: 15px; }
+        .timer-controls button {
+            background: var(--footer-btn-bg); border: 1px solid var(--border-medium);
+            border-radius: 50%; padding: 0; cursor: pointer; width: 32px; height: 32px;
+            display: flex; align-items: center; justify-content: center; transition: background-color 0.2s;
+        }
+        .timer-controls button:hover { background: var(--border); }
+        .timer-controls button svg { width: 20px; height: 20px; fill: var(--timer-color); }
+        #night-mode-btn {
+            background: var(--footer-btn-bg); border: 1px solid var(--border-medium);
+            border-radius: 20px; padding: 5px 12px; cursor: pointer; font-size: 13px;
+            font-weight: 600; color: var(--text); display: flex; align-items: center;
+            gap: 6px; transition: all 0.2s; white-space: nowrap;
+        }
+        #night-mode-btn:hover { background: var(--border); }
+        #night-mode-btn .moon-icon { font-size: 15px; }
+        .telegram-link {
+            color: #0088cc; text-decoration: none; font-weight: 600; font-size: 16px;
+            display: flex; align-items: center; gap: 8px;
+        }
+        .telegram-link:hover { text-decoration: underline; }
+        .telegram-link::before {
+            content: '';
+            display: inline-block; width: 20px; height: 20px;
+            background-color: currentColor;
+            -webkit-mask-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.78 18.65l.28-4.23l7.68-6.92c.34-.31-.07-.46-.52-.19L7.74 13.3L3.64 12c-.88-.25-.89-1.37.2-1.64l16.56-6.4c.75-.29 1.4.22 1.2.94l-2.67 12.61c-.22.95-1.13 1.18-1.78.73l-4.5-3.32l-2.23 2.15c-.47.44-1.29.21-1.48-.37z"/></svg>');
+            mask-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.78 18.65l.28-4.23l7.68-6.92c.34-.31-.07-.46-.52-.19L7.74 13.3L3.64 12c-.88-.25-.89-1.37.2-1.64l16.56-6.4c.75-.29 1.4.22 1.2.94l-2.67 12.61c-.22.95-1.13 1.18-1.78.73l-4.5-3.32l-2.23 2.15c-.47.44-1.29.21-1.48-.37z"/></svg>');
+            background-size: contain; background-repeat: no-repeat;
+        }
+        .main-container { margin-top: 60px; display: flex; flex-direction: column; background: var(--bg); height: calc(100vh - 60px); transition: background-color 0.3s; }
+        .panels-container { display: flex; flex: 1; overflow: hidden; }
+        .passage-panel {
+            flex: 1; padding: 20px 20px 100px; overflow-y: auto; min-width: 200px;
+            background: var(--panel-bg); transition: background-color 0.3s;
+        }
+        .reading-passage h4 {
+            font-family: 'Merriweather', serif; font-size: 22px; font-weight: 600;
+            color: var(--passage-title); line-height: 1.4; margin-bottom: 20px;
+            text-align: center; border-bottom: 2px solid var(--active-blue); padding-bottom: 5px;
+        }
+        .reading-passage p { margin-bottom: 1.2em; color: var(--text); }
+        .questions-panel {
+            flex: 1; padding: 20px 20px 100px; overflow-y: auto; min-width: 200px;
+            border-left: 1px solid var(--border); background: var(--panel-bg);
+            transition: background-color 0.3s, border-color 0.3s;
+        }
+        .resizer {
+            width: 10px; cursor: col-resize; background-color: var(--resizer-bg);
+            background-image: url('data:image/svg+xml;charset=UTF-8,<svg xmlns="http://www.w3.org/2000/svg" width="10" height="30" viewBox="0 0 10 30"><path d="M4 11h2v2H4zM4 15h2v2H4zM4 19h2v2H4z" fill="%23888"/></svg>');
+            background-repeat: no-repeat; background-position: center;
+            flex-shrink: 0; flex-grow: 0; transition: background-color 0.3s;
+        }
+        .part-header {
+            background-color: var(--bg-tertiary); padding: 15px 20px;
+            border: 1px solid var(--border); text-align: left; margin: 10px 20px;
+            border-radius: 5px; color: var(--text);
+            transition: background-color 0.3s, border-color 0.3s, color 0.3s;
+        }
+        .part-header p { margin: 0; }
+        .part-header p:first-child { margin-bottom: 5px; }
+        .question { margin-bottom: 40px; color: var(--text); }
+        .question p { margin-bottom: 10px; color: var(--text); }
+        .question-prompt { margin-bottom: 20px; }
+        .question ul { list-style: none; padding-left: 0; }
+        .question ul li { margin-bottom: 5px; color: var(--text); }
+        .answer-input {
+            border: 1px solid var(--border-medium); border-radius: 4px;
+            background-color: var(--input-bg); color: var(--text);
+            padding: 2px 5px; font-size: 16px; text-align: center;
+            margin-right: 4px; margin-left: 4px;
+            transition: border-color 0.3s, box-shadow 0.3s, background-color 0.3s;
+            height: 28px; width: 160px;
+        }
+        .answer-input.active-input { border-color: var(--active-blue); box-shadow: 0 0 3px 1px rgba(74,144,226,0.5); }
+        .answer-input::placeholder { color: #999; font-weight: bold; text-align: center; }
+        .answer-input.correct { border-color: var(--correct-border); background-color: var(--correct-bg); }
+        .answer-input.incorrect { border-color: var(--incorrect-border); background-color: var(--incorrect-bg); color: var(--incorrect-border); }
+        .answer-input { z-index: 10; position: relative; pointer-events: auto; }
+        .q-number { color: var(--text-light); font-size: 14px; font-weight: bold; }
+        .questions-container { width: 100%; }
+        .example-box {
+            border: 1px solid var(--border); background-color: var(--example-bg);
+            padding: 15px; border-radius: 5px; margin: 20px 0; color: var(--text);
+            transition: background-color 0.3s, border-color 0.3s;
+        }
+        .nav-arrows { position: fixed; bottom: 100px; right: 20px; display: flex; gap: 5px; z-index: 101; }
+        .nav-arrow {
+            width: 50px; height: 50px; background: #333; color: white;
+            border: none; cursor: pointer; display: flex; align-items: center;
+            justify-content: center; font-size: 22px; font-weight: bold;
+        }
+        body.night-mode .nav-arrow { background: #444; }
+        .nav-arrow:hover { background: #555; }
+        .nav-arrow:disabled { background: #ccc; cursor: not-allowed; }
+        .nav-row {
+            position: fixed; bottom: 0; left: 0; right: 0;
+            background: var(--nav-bg); padding: 0; display: flex; align-items: center;
+            height: 80px; z-index: 100; border-top: 1px solid var(--border);
+            transition: background-color 0.3s, border-color 0.3s;
+        }
+        .footer__questionWrapper___1tZ46 { display: flex; align-items: center; margin-right: 20px; }
+        .footer__questionNo___3WNct {
+            background: none; border: none; padding: 10px 15px; font-size: 16px;
+            font-weight: 600; color: var(--text); cursor: pointer;
+            display: flex; align-items: center; gap: 5px; transition: background-color 0.2s;
+        }
+        .footer__questionNo___3WNct:hover { background-color: var(--bg-secondary); }
+        .section-prefix { font-size: 16px; }
+        .sectionNr { font-size: 16px; font-weight: bold; }
+        .attemptedCount { font-size: 14px; color: var(--text-muted); margin-left: 5px; font-weight: 400; }
+        @media (max-width: 768px) { .attemptedCount { display: none; } }
+        .footer__questionWrapper___1tZ46.selected .attemptedCount { display: none; }
+        .footer__subquestionWrapper___9GgoP { display: none; gap: 2px; margin-left: 10px; }
+        .footer__questionWrapper___1tZ46.selected .footer__subquestionWrapper___9GgoP { display: flex; }
+        .subQuestion {
+            width: 32px; height: 32px; border: 1px solid var(--subq-border);
+            background: var(--subq-bg); color: var(--subq-text); font-size: 14px;
+            font-weight: 500; cursor: pointer; display: flex; align-items: center;
+            justify-content: center; transition: all 0.2s; border-radius: 2px;
+        }
+        .subQuestion.answered { background-color: #6c8ebf; color: white; border-color: #5a7aad; }
+        .subQuestion.correct { background-color: #28a745; color: white; border-color: #28a745; }
+        .subQuestion.incorrect { background-color: #dc3545; color: white; border-color: #dc3545; }
+        .subQuestion:hover { background-color: var(--bg-secondary); border-color: var(--text-light); }
+        .subQuestion.active { background-color: var(--active-blue); color: white; border-color: var(--active-blue); }
+        .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
+        .footer__deliverButton___3FM07 {
+            margin-left: auto; margin-right: 20px; background-color: var(--footer-btn-bg);
+            color: var(--text); border: 1px solid var(--footer-btn-border);
+            padding: 12px 20px; border-radius: 4px; font-size: 16px; font-weight: 600;
+            cursor: pointer; display: flex; align-items: center; gap: 8px;
+            transition: background-color 0.2s, border-color 0.2s; min-width: 170px; justify-content: center;
+        }
+        .footer__deliverButton___3FM07:hover { background-color: var(--border); border-color: var(--text-light); }
+        .footer__deliverButton___3FM07:disabled { background: var(--bg-secondary); color: var(--text-muted); cursor: not-allowed; border-color: var(--border); }
+        .fa-check::before { content: "✓"; }
+        .hidden { display: none !important; }
+        /* TF Questions */
+        .tf-question { margin-bottom: 25px; padding: 10px 0; border-radius: 4px; transition: border-color 0.3s, background-color 0.3s; color: var(--text); }
+        .tf-question-line { display: flex; align-items: flex-start; margin-bottom: 15px; padding: 5px 0; border-radius: 4px; }
+        .tf-question-number { border: 2px solid var(--border-medium); padding: 2px 8px; margin-right: 10px; border-radius: 3px; font-weight: bold; display: inline-block; color: var(--text); flex-shrink: 0; }
+        .tf-question-text { padding-top: 3px; color: var(--text); }
+        .tf-options { padding-left: 5px; }
+        .tf-option { display: block; margin-bottom: 12px; cursor: pointer; display: flex; align-items: center; color: var(--text); }
+        .tf-option input[type="radio"] { margin-right: 10px; transform: scale(1.2); }
+        .tf-question.correct .tf-question-line { background-color: var(--correct-bg); }
+        .tf-question.incorrect .tf-question-line { background-color: var(--incorrect-bg); }
+        /* MCQ */
+        .multi-choice-question { margin-bottom: 20px; padding: 10px; border-radius: 4px; border: 3px solid transparent; transition: border-color 0.3s, background-color 0.3s; color: var(--text); }
+        .multi-choice-option { margin-bottom: 10px; padding: 8px; border-radius: 4px; transition: background-color 0.3s; color: var(--text); }
+        .multi-choice-option label { display: flex; align-items: center; cursor: pointer; font-size: 16px; color: var(--text); }
+        .multi-choice-option input[type="radio"] { margin-right: 12px; transform: scale(1.3); accent-color: var(--active-blue); }
+        .multi-choice-option.correct { background-color: var(--correct-bg); }
+        .multi-choice-option.incorrect { background-color: var(--incorrect-bg); }
+        /* Multi-select checkboxes (Q18-22) */
+        .multi-select-option { margin-bottom: 10px; padding: 8px; border-radius: 4px; transition: background-color 0.3s; color: var(--text); }
+        .multi-select-option label { display: flex; align-items: center; cursor: pointer; font-size: 16px; color: var(--text); }
+        .multi-select-option input[type="checkbox"] { margin-right: 12px; transform: scale(1.3); accent-color: var(--active-blue); }
+        .multi-select-option.correct { background-color: var(--correct-bg); }
+        .multi-select-option.incorrect { background-color: var(--incorrect-bg); }
+        /* Matching / sentence completion */
+        .matching-form-container { margin-top: 20px; }
+        .matching-form-row { display: flex; align-items: center; margin-bottom: 12px; }
+        .matching-form-label { width: 200px; flex-shrink: 0; color: var(--text); }
+        .matching-form-row.correct { background-color: var(--correct-bg); border-left: 3px solid var(--correct-border); padding-left: 8px; border-radius: 4px; }
+        .matching-form-row.incorrect { background-color: var(--incorrect-bg); border-left: 3px solid var(--incorrect-border); padding-left: 8px; border-radius: 4px; }
+        /* Sentence completion inline */
+        .sentence-completion-row { margin-bottom: 20px; display: flex; align-items: baseline; flex-wrap: wrap; gap: 6px; color: var(--text); line-height: 2; }
+        .sentence-part { color: var(--text); }
+        /* Results Modal */
+        .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.75); z-index: 2000; display: flex; justify-content: center; align-items: center; }
+        .modal-overlay.hidden { display: none; }
+        .modal-content { background: var(--modal-bg); padding: 25px; border-radius: 12px; width: 90%; max-width: 600px; max-height: 80vh; display: flex; flex-direction: column; position: relative; border: 1px solid var(--border); transition: background-color 0.3s; }
+        .modal-close-btn { position: absolute; top: 10px; right: 15px; background: none; border: none; font-size: 28px; cursor: pointer; color: var(--text-muted); }
+        .modal-content h2 { text-align: center; margin-bottom: 15px; color: var(--text); }
+        .results-summary { display: flex; justify-content: space-around; margin-bottom: 20px; font-size: 18px; font-weight: bold; text-align: center; border-bottom: 1px solid var(--border); padding-bottom: 15px; color: var(--text); }
+        .results-details-container { overflow-y: auto; padding-right: 10px; }
+        .result-row { display: grid; grid-template-columns: 40px 1fr 1fr; gap: 15px; padding: 8px 5px; border-bottom: 1px solid var(--border); font-size: 15px; color: var(--text); }
+        .result-row.incorrect { background-color: var(--incorrect-bg); }
+        .result-row .q-num { font-weight: bold; }
+        .result-row .user-ans { color: var(--text-muted); }
+        .result-row .correct-ans { color: var(--correct-border); font-weight: 500; }
+        .correct-answer-display { font-weight: bold; color: #28a745; margin-left: 10px; font-size: 14px; }
+        .correct-answer-highlight, .tf-option.correct-answer-highlight, .multi-choice-option.correct-answer-highlight, .multi-select-option.correct-answer-highlight { background-color: var(--correct-bg) !important; border: 1px solid var(--correct-border) !important; border-radius: 4px; padding: 4px; }
+        /* Active question */
+        .active-question { outline: 2px solid var(--active-blue); border-radius: 4px; }
+        select.answer-input option { background: var(--input-bg); color: var(--text); }
+        /* Highlight Toolbar */
+        .highlight-toolbar {
+            position: fixed; display: none; background: var(--toolbar-bg);
+            border-radius: 8px; box-shadow: var(--toolbar-shadow); z-index: 2000;
+            padding: 6px 8px; gap: 4px; align-items: center;
+            border: 1px solid rgba(255,255,255,0.1); transition: opacity 0.15s ease;
+        }
+        .highlight-toolbar.visible { display: flex; }
+        .toolbar-btn { display: inline-flex; align-items: center; justify-content: center; gap: 4px; padding: 5px 10px; border: none; border-radius: 6px; cursor: pointer; font-size: 14px; font-weight: 600; transition: all 0.15s; white-space: nowrap; }
+        .toolbar-btn:hover { filter: brightness(1.2); transform: translateY(-1px); }
+        .toolbar-btn.btn-yellow { background: #f9a825; color: #1a1a1a; }
+        .toolbar-btn.btn-green  { background: #43a047; color: #fff; }
+        .toolbar-btn.btn-pink   { background: #e91e63; color: #fff; }
+        .toolbar-btn.btn-blue   { background: #1976d2; color: #fff; }
+        .toolbar-btn.btn-clear  { background: #757575; color: #fff; }
+        .toolbar-btn.btn-note   { background: #ff6f00; color: #fff; }
+        .toolbar-sep { width: 1px; height: 22px; background: rgba(255,255,255,0.2); margin: 0 2px; }
+        .highlight { background-color: #ffeb3b; border-radius: 2px; }
+        .highlight.hl-green { background-color: #a5d6a7; }
+        .highlight.hl-pink  { background-color: #f48fb1; }
+        .highlight.hl-blue  { background-color: #90caf9; }
+        body.night-mode .highlight         { background-color: #f9a825; color: #000; }
+        body.night-mode .highlight.hl-green { background-color: #388e3c; color: #fff; }
+        body.night-mode .highlight.hl-pink  { background-color: #c2185b; color: #fff; }
+        body.night-mode .highlight.hl-blue  { background-color: #1565c0; color: #fff; }
+        .comment-highlight { background-color: #ffe082; position: relative; cursor: help; border-bottom: 2px dotted #f57f17; border-radius: 2px; }
+        body.night-mode .comment-highlight { background-color: #6d4c00; border-bottom-color: #ffa000; color: #ffe082; }
+        .comment-tooltip { position: absolute; bottom: calc(100% + 8px); left: 50%; transform: translateX(-50%); background: #212121; color: #fff; padding: 8px 12px; border-radius: 6px; font-size: 13px; max-width: 280px; white-space: normal; z-index: 3000; opacity: 0; pointer-events: none; transition: opacity 0.2s; box-shadow: 0 4px 12px rgba(0,0,0,0.4); border: 1px solid rgba(255,255,255,0.1); }
+        .comment-tooltip::after { content: ''; position: absolute; top: 100%; left: 50%; transform: translateX(-50%); border: 6px solid transparent; border-top-color: #212121; }
+        .comment-highlight:hover .comment-tooltip { opacity: 1; }
+        .comment-highlight::after { content: '📝'; font-size: 11px; vertical-align: super; margin-left: 2px; }
+        #toolbar-selection-btns, #toolbar-highlight-btns { display: inline-flex; align-items: center; gap: 4px; }
+        .notes-panel { position: fixed; right: 20px; top: 70px; width: 280px; max-height: calc(100vh - 170px); background: var(--modal-bg); border: 1px solid var(--border); border-radius: 10px; box-shadow: 0 8px 30px rgba(0,0,0,0.2); z-index: 500; overflow-y: auto; display: none; flex-direction: column; transition: background-color 0.3s; }
+        .notes-panel.visible { display: flex; }
+        .notes-panel-header { padding: 12px 16px; border-bottom: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; font-weight: 700; font-size: 14px; color: var(--text); background: var(--bg-secondary); border-radius: 10px 10px 0 0; }
+        .notes-panel-close { background: none; border: none; cursor: pointer; font-size: 18px; color: var(--text-muted); line-height: 1; }
+        .notes-list { padding: 10px; flex: 1; }
+        .note-item { background: var(--bg-secondary); border: 1px solid var(--border); border-radius: 6px; padding: 10px; margin-bottom: 8px; font-size: 13px; color: var(--text); }
+        .note-item-text { font-weight: 600; color: #f57f17; margin-bottom: 4px; font-size: 12px; }
+        .note-item-delete { background: none; border: none; color: var(--incorrect-border); cursor: pointer; font-size: 12px; float: right; padding: 0; }
+        .notes-empty { color: var(--text-muted); font-size: 13px; padding: 10px; text-align: center; }
+        .note-input-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.5); z-index: 3000; display: none; align-items: center; justify-content: center; }
+        .note-input-overlay.visible { display: flex; }
+        .note-input-box { background: var(--modal-bg); border-radius: 12px; padding: 24px; width: 380px; max-width: 90vw; box-shadow: 0 12px 40px rgba(0,0,0,0.4); border: 1px solid var(--border); }
+        .note-input-box h3 { margin-bottom: 8px; font-size: 16px; color: var(--text); }
+        .note-input-box .selected-text-preview { background: var(--bg-secondary); border-left: 3px solid #f9a825; padding: 8px 10px; margin-bottom: 14px; font-size: 13px; color: var(--text-muted); border-radius: 0 4px 4px 0; max-height: 60px; overflow: hidden; }
+        .note-input-box textarea { width: 100%; min-height: 80px; padding: 10px; border: 1px solid var(--border-medium); border-radius: 6px; font-size: 14px; background: var(--input-bg); color: var(--text); resize: vertical; outline: none; font-family: inherit; }
+        .note-input-box textarea:focus { border-color: var(--active-blue); }
+        .note-input-actions { display: flex; gap: 8px; margin-top: 12px; justify-content: flex-end; }
+        .note-input-actions button { padding: 8px 18px; border-radius: 6px; border: none; cursor: pointer; font-size: 14px; font-weight: 600; }
+        .btn-save-note { background: #f9a825; color: #1a1a1a; }
+        .btn-cancel-note { background: var(--bg-secondary); color: var(--text); border: 1px solid var(--border) !important; }
+        .text-center { text-align: center; }
+        /* inline sentence completion */
+        .sc-sentence { line-height: 2.6; font-size: 16px; color: var(--text); margin-bottom: 18px; }
+        .answer-input.inline-short { width: 120px; }
+        .answer-input.inline-long { width: 200px; }
+    </style>
+</head>
+<body>
+<div class="header">
+    <div class="header-left">
+        <div class="timer-container">
+            <span class="timer-display">60:00</span>
+            <div class="timer-controls">
+                <button id="timer-toggle-btn" title="Pause/Resume Timer">
+                    <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M8 5v14l11-7L8 5z"/></svg>
+                </button>
+                <button id="timer-reset-btn" title="Reset Timer">
+                    <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M12 5V1L7 6l5 5V7c3.31 0 6 2.69 6 6s-2.69 6-6 6-6-2.69-6-6H4c0 4.42 3.58 8 8 8s8-3.58 8-8-3.58-8-8-8z"/></svg>
+                </button>
+            </div>
+        </div>
+        <button id="night-mode-btn" title="Toggle Night Mode"><span class="moon-icon">🌙</span> Night Mode</button>
+        <button id="notes-toggle-btn" title="Show Notes" style="background:var(--footer-btn-bg);border:1px solid var(--border-medium);border-radius:20px;padding:5px 12px;cursor:pointer;font-size:13px;font-weight:600;color:var(--text);display:flex;align-items:center;gap:6px;transition:all 0.2s;">
+            📝 Notes <span id="notes-count" style="background:#f9a825;color:#1a1a1a;border-radius:10px;padding:1px 6px;font-size:11px;display:none;">0</span>
+        </button>
+    </div>
+    <a href="https://t.me/ielts_material_full" target="_blank" class="telegram-link">Full Exam Materials</a>
+</div>
+
+<div class="main-container" id="main-container">
+    <div id="passage-header-container">
+        <div id="part-header-1" class="part-header">
+            <p><strong>Part 1</strong></p>
+            <p>Read the text and answer questions 1–13.</p>
+        </div>
+        <div id="part-header-2" class="part-header hidden">
+            <p><strong>Part 2</strong></p>
+            <p>Read the text and answer questions 14–26.</p>
+        </div>
+        <div id="part-header-3" class="part-header hidden">
+            <p><strong>Part 3</strong></p>
+            <p>Read the text and answer questions 27–40.</p>
+        </div>
+    </div>
+
+    <div class="panels-container">
+        <!-- ════════════ PASSAGE PANEL ════════════ -->
+        <div class="passage-panel" id="passage-panel">
+
+            <!-- PASSAGE 1 -->
+            <div id="passage-text-1" class="reading-passage">
+                <h4>Money Transfers by Mobile</h4>
+                <p><strong>A.</strong> The ping of a text message has never sounded so sweet. In what is being touted as a world first, Kenya's biggest mobile operator is allowing subscribers to send cash to other phone users by SMS. Known as M Pesa, or mobile money, the service is expected to revolutionise banking in a country where more than 80% of people are excluded from the formal financial sector. Apart from transferring cash – a service much in demand among urban Kenyans supporting relatives in rural areas – customers of the Safaricom network will be able to keep up to 50,000 shillings (£370) in a "virtual account" on their handsets.</p>
+                <p><strong>B.</strong> Developed by Vodafone, which holds a 35% share in Safaricom, M-Pesa was formally launched in Kenya two weeks ago. More than 10,000 people have signed up for the service, with around 8 million shillings transferred so far, mostly in tiny denominations. Safaricom's executives are confident that growth will be strong in Kenya, and later across Africa. "We are effectively giving people ATM cards without them ever having to open a real bank account," said Michael Joseph, chief executive of Safaricom, who called the money transfer concept the "next big thing" in mobile telephony.</p>
+                <p><strong>C.</strong> M-Pesa's is simple. There is no need for a new handset or SIM card. To send money, you hand over the cash to a registered agent – typically a retailer – who credits your virtual account. You then send between 100 shillings (74p) and 35,000 shillings (£259) via text message to the desired recipient – even someone on a different mobile network – who cashes it at an agent by entering a secret code and showing ID. A commission of up to 170 shillings (£1.25) is paid by the recipient but it compares favourably with fees levied by the major banks, whose services are too expensive for most of the population.</p>
+                <p><strong>D.</strong> Mobile phone growth in Kenya, as in most of Africa, has been remarkable, even among the rural poor. In June 1999, Kenya had 15,000 mobile subscribers. Today, it has nearly 8 million out of a population of 35 million, and the two operators' networks are as extensive as the access to banks is limited. Safaricom says it is not so much competing with financial services companies as filling a void. In time, M-Pesa will allow people to borrow and repay money, and make purchases. Companies will be able to pay salaries directly into workers' phones – something that has already attracted the interest of larger employers, such as the tea companies, whose workers often have to be paid in cash as they do not have bank accounts. There are concerns about security, but Safaricom insists that even if someone's phone is stolen, the PIN system prevents unauthorised withdrawals. Mr. Joseph said the only danger is sending cash to the wrong mobile number and the recipient redeeming it straight away.</p>
+                <p><strong>E.</strong> The project is being watched closely by mobile operators around the world as a way of targeting the multibillion pound international cash transfer industry long dominated by companies such as Western Union and Moneygram. Remittances sent from nearly 200 million migrant workers to developing countries totalled £102 billion last year, according to the World Bank. The GSM Association, which represents more than 700 mobile operators worldwide, believes this could quadruple by 2012 if transfers by SMS become the norm. Vodafone has entered a partnership with Citigroup that will soon allow Kenyans in the UK to send money home via text message. The charge for sending £50 is expected to be about £3, less than a third of what some traditional services charge.</p>
+            </div>
+
+            <!-- PASSAGE 2 -->
+            <div id="passage-text-2" class="reading-passage hidden">
+                <h4>Park the Car Permanently</h4>
+                <p><strong>A.</strong> More than a million people are likely to be disappointed by their experience of the Government's attempts to improve the democratic process. They may have signed an online petition against road pricing, but ministers are determined to push ahead with plans to make it more expensive to drive. The Government is convinced that this is the only way to reduce congestion and the environmental damage caused by motoring.</p>
+                <p><strong>B.</strong> Why wait until you are forced off the road by costly charges? You may enjoy the convenience of your car, but the truth is that for huge numbers of people, owning a car makes little financial sense. You'd be far better off giving it up and relying on other forms of transport. "I'm 47 and I've never owned a car, despite having a job that requires me to travel all over the South-East to visit clients," says Donnachadh McCarthy, an environmental expert who specialises in advising people how to be greener. "A car is a huge financial commitment, as well as being a psychological addiction. Not owning a vehicle is far more practical than most people realise."</p>
+                <p><strong>C.</strong> It may seem as if cars have never been cheaper. After all, it is now possible to buy a brand new car for less than £4,800 – the Perodua Kelisa, if you're interested. There are plenty of decent vehicles you can buy straight from the showroom for between £5,000 and £7,000. Of course, if you buy second-hand, the prices will be even lower. However, the falling purchase price of cars masks the fact that it has never been more expensive to own and run a vehicle. The estimate is that the cost of running a car rose by more than ten per cent last year alone. The annual cost of running your own vehicle is put at an average of £5,539, or £107 a week. While drivers who do less or more than the average mileage each year will spend correspondingly less or more, many of the costs of car ownership are fixed – and therefore unavoidable.</p>
+                <p><strong>D.</strong> Depreciation – the fact that your vehicle loses a large chunk of its resale value each year – is one problem, accounting for £2,420 a year. The cost of finance packages, which most people have to resort to to pay for at least part of the price of a new car, has also been rising – to an average of £1,040 a year. Then there's insurance, maintenance, tax, and breakdown insurance, all of which will cost you broadly the same amount, however many miles you do. Only fuel costs are truly variable. While petrol prices are the most visible indicator of the cost of running a car, for the typical driver they account for less than one fifth of the real costs each year. In other words, leaving aside all the practical and psychological barriers to giving up your car, in financial terms, doing so makes sense for many people.</p>
+                <p><strong>E.</strong> Take the cost of public transport, for example. In London, the most expensive city in the UK, the most expensive annual travel card, allowing travel in any zone at any time, costs just over £1,700. You could give up your car and still have thousands of pounds to spare to spend on occasional car hire. In fact, assuming that you have the most expensive travel card in London, you could hire a cheap car from a company, such as easyCar for about 30 weeks a year, and still be better off overall than if you own your own vehicle. Not that car hire is necessarily the most cost-effective option for people who are prepared to do without a car but may still need to drive occasionally.</p>
+                <p><strong>F.</strong> Streetcar, one of several "car clubs" with growing numbers of members, reckons that using its vehicles twice a week, every week, for a year, would cost you just £700. Streetcar's model works very similarly to those of its main rivals, Citycarclub and Whizzgo. These three companies, which now operate in 20 of Britain's towns and cities, charge their members a refundable deposit – £150 at Streetcar – and then provide them with an electronic smart card. This enables members to get into the vehicles, which are left parked in set locations, and the keys are then found in the glove compartment. Members pay an hourly rate for the car – £4.95 is the cost at Streetcar – and return it to the same spot, or to a different designated parking place.</p>
+                <p><strong>G.</strong> Car sharing is an increasingly popular option for people making the same journeys regularly – to and from work, for example. Many companies run schemes that help colleagues who live near to each other and work in the same place to contact each other so they can share the journey to work. Liftshare and Carshare are two national organisations that maintain online databases of people who would be prepared to team up. Other people may be able to replace part or all of their journey to work – or any journeys, for that matter – with low-cost transport such as a bicycle, or even by just walking. The more you can reduce your car use, however you gain access to it, the more you will save.</p>
+            </div>
+
+            <!-- PASSAGE 3 -->
+            <div id="passage-text-3" class="reading-passage hidden">
+                <h4>Low Cost Lamps Light Rural India</h4>
+                <p>Until three months ago, life in this humble village without electricity would come to a halt after sunset. Inside his mud-and-clay home, Ganpat Jadhav's three children used to study in the dim, smoky glow of a kerosene lamp, when their monthly fuel quota of four litres dried up in just a fortnight, they had to strain their eyes using the light from a cooking fire. That all changed with the installation of low-cost, energy-efficient lamps that are powered entirely by the sun. The lights were installed by the Grameen Surya Bijli Foundation (GSBF), an Indian non-governmental organisation focused on bringing light to rural India. Some 100,000 Indian villages do not yet have electricity. The GSBF lamps use LEDs – light emitting diodes – that are four times more efficient than a normal bulb. After a $55 installation cost, solar energy lights the lamp free of charge. LED lighting, like cell phones, is another example of a technology whose low cost could allow the rural poor to leap into the 21st century.</p>
+                <p>As many as 1.5 billion people – nearly 80 million in India alone – light their houses using kerosene as the primary lighting media. The fuel is dangerous, dirty, and – despite being subsidised – consumes nearly four per cent of a typical rural Indian household's budget. A recent report by the Intermediate Technology Development Group suggests that indoor air pollution from such lighting media results in 1.6 million deaths worldwide every year. LED lamps, or more specifically white LEDs, are believed to produce nearly 200 times more useful light than a kerosene lamp and almost 50 times the amount of useful light of a conventional bulb. "This technology can light an entire rural village with less energy than that used by a single conventional 100-watt light bulb," says Dave Irvine-Halliday, a professor of electrical engineering at the University of Calgary, Canada and the founder of Light up the World Foundation (LUTW). Founded in 1997, LUTW has used LED technology to bring light to nearly 10,000 homes in remote and disadvantaged corners of some 27 countries like India, Nepal, Sri Lanka, Bolivia, and the Philippines.</p>
+                <p>The technology, which is not yet widely known in India, faces some scepticism here. "LED systems are revolutionising rural lighting, but this isn't a magic solution to the world's energy problems," says Ashok Jhunjhunwala, head of the electrical engineering department at the Indian Institute of Technology, Madras. In a scenario in which nearly 60 per cent of India's rural population uses 180 million tons of biomass per year for cooking via primitive wood stoves – which are smoky and provide only 10–15 per cent efficiency in cooking – Jhunjhunwala emphasises the need for a clean energy source, not just for lighting but for other domestic purposes as well. The Indian government in April launched an ambitious project to bring electricity to 112,000 rural villages in the next decade. However, the remote locations of the village will make reaching this goal difficult. A. K. Lakhina, the chairman of India's Rural Electrification Corporation, says the Indian government recognises the potential of LED lighting powered by solar technology, but expressed reservations about its high costs. "If only LEDs weren't imported but manufactured locally," he says, "and in bulk."</p>
+                <p>The lamps installed in nearly 300 homes by GSBF cost nearly half the price of other solar lighting systems. Jasjeet Singh Chaddha, the founder of the NGO, currently imports his LEDs from China. He wants to set up an LED manufacturing unit and a solar panel manufacturing unit in India. If manufactured locally, the cost of his LED lamp could plummet to $22, as they will not incur heavy import duties. "We need close to $5 million for this," he says. Mr. Chaddha says he has also asked the government to exempt the lamps from such duties, but to no avail. An entrepreneur who made his money in plastics, Chaddha, has poured his own money into the project, providing the initial installations free of charge. As he looks to make the project self-sustainable, he recognises that it is only urban markets – which have also shown an avid interest in LED lighting – that can pay. The rural markets in India cannot afford it, he says, until the prices are brought down. The rural markets would be able to afford it, says Mr. Irvine-Halliday, if they had access to microcredit. He says that in Tembisa, a shanty town in Johannesburg, he found that almost 10,000 homes spent more than $60 each on candles and paraffin every year. As calculations revealed, these families can afford to purchase a solid state lighting system in just over a year of paying per week what they would normally spend on candles and paraffin – if they have access to microcredit. LUTW is in the process of creating such a microcredit facility for South Africa.</p>
+                <p>In villages near Khadakwadi, the newly installed LED lamps are a subject of envy, even for those connected to the grid. Those connected to the grid have to face power cuts up to 6 or 7 hours a day. Constant energy shortages and blackouts are a common problem due to a lack of power plants, transmission, and distribution losses caused by old technology and illegal stealing of electricity from the grid. LED systems require far less maintenance, a longer life, and as villagers jokingly say, "no electricity bills". The lamps provided by GSBF have enough power to provide just four hours of light a day. However, that is enough for people to get their work done in the early hours of the night, and is more reliable than light generated off India's electrical grid. Villagers are educated by GSBF officials to make the most of the new lamps. An official from GSBF instructs Jadhav and his family to clean the lamp regularly. "Its luminosity and life will diminish if you let the dust settle on it," he warns them.</p>
+            </div>
+        </div>
+
+        <div class="resizer" id="resizer"></div>
+
+        <!-- ════════════ QUESTIONS PANEL ════════════ -->
+        <div class="questions-panel" id="questions-panel">
+
+            <!-- ──── QUESTIONS 1 (Passage 1: Money Transfers) ──── -->
+            <div id="questions-1" class="question-set">
+                <div class="questions-container">
+
+                    <!-- Q1-4: Paragraph matching -->
+                    <div class="question" data-q-start="1" data-q-end="4">
+                        <div class="question-prompt">
+                            <p><strong>Questions 1–4</strong><br>Which paragraph contains each of the following pieces of information?</p>
+                            <p>Write the correct letter <strong>A–E</strong> in boxes 1–4 on your answer sheet.</p>
+                        </div>
+                        <div class="matching-form-container">
+                            <div class="matching-form-row">
+                                <label for="q1" class="matching-form-label"><strong>1</strong>&nbsp;&nbsp;A possible security problem</label>
+                                <select class="answer-input" id="q1"><option value=""></option><option>A</option><option>B</option><option>C</option><option>D</option><option>E</option></select>
+                            </div>
+                            <div class="matching-form-row">
+                                <label for="q2" class="matching-form-label"><strong>2</strong>&nbsp;&nbsp;The cost of M-Pesa</label>
+                                <select class="answer-input" id="q2"><option value=""></option><option>A</option><option>B</option><option>C</option><option>D</option><option>E</option></select>
+                            </div>
+                            <div class="matching-form-row">
+                                <label for="q3" class="matching-form-label"><strong>3</strong>&nbsp;&nbsp;An international service similar to M-Pesa</label>
+                                <select class="answer-input" id="q3"><option value=""></option><option>A</option><option>B</option><option>C</option><option>D</option><option>E</option></select>
+                            </div>
+                            <div class="matching-form-row">
+                                <label for="q4" class="matching-form-label"><strong>4</strong>&nbsp;&nbsp;The fact that most Kenyans do not have a bank account</label>
+                                <select class="answer-input" id="q4"><option value=""></option><option>A</option><option>B</option><option>C</option><option>D</option><option>E</option></select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Q5-8: Sentence completion (no more than 3 words) -->
+                    <div class="question" data-q-start="5" data-q-end="8">
+                        <div class="question-prompt">
+                            <p><strong>Questions 5–8</strong><br>Complete the following sentences using <strong>NO MORE THAN THREE WORDS</strong> from the text for each gap.</p>
+                        </div>
+                        <div class="sc-sentence">Safaricom is the <input type="text" class="answer-input inline-long" id="q5" placeholder="5"> mobile phone company in Kenya.</div>
+                        <div class="sc-sentence">An M-Pesa account needs to be credited by <input type="text" class="answer-input inline-long" id="q6" placeholder="6">.</div>
+                        <div class="sc-sentence"><input type="text" class="answer-input inline-long" id="q7" placeholder="7"> companies are particularly interested in using M-Pesa.</div>
+                        <div class="sc-sentence">Companies like Moneygram and Western Union have <input type="text" class="answer-input inline-long" id="q8" placeholder="8"> the international money transfer market.</div>
+                    </div>
+
+                    <!-- Q9-13: TRUE/FALSE/NOT GIVEN -->
+                    <div class="question" data-q-start="9" data-q-end="13">
+                        <div class="question-prompt">
+                            <p><strong>Questions 9–13</strong><br>Do the statements agree with the information given in Reading Passage 1?</p>
+                            <p>In boxes 9–13 on your answer sheet, write</p>
+                            <ul style="list-style:none;padding-left:0;">
+                                <li><strong>TRUE</strong> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if the statement agrees with the information</li>
+                                <li><strong>FALSE</strong> &nbsp;&nbsp;&nbsp; if the statement contradicts the information</li>
+                                <li><strong>NOT GIVEN</strong> &nbsp; if there is no information on this</li>
+                            </ul>
+                        </div>
+                        <div class="tf-question" data-q-start="9" data-q-end="9">
+                            <div class="tf-question-line"><span class="tf-question-number">9</span><span class="tf-question-text">Most Kenyans working in urban areas have relatives in rural areas.</span></div>
+                            <div class="tf-options"><label class="tf-option"><input type="radio" name="q9" value="TRUE"> TRUE</label><label class="tf-option"><input type="radio" name="q9" value="FALSE"> FALSE</label><label class="tf-option"><input type="radio" name="q9" value="NOT GIVEN"> NOT GIVEN</label></div>
+                        </div>
+                        <div class="tf-question" data-q-start="10" data-q-end="10">
+                            <div class="tf-question-line"><span class="tf-question-number">10</span><span class="tf-question-text">So far, most of the people using M-Pesa have used it to send small amounts of money.</span></div>
+                            <div class="tf-options"><label class="tf-option"><input type="radio" name="q10" value="TRUE"> TRUE</label><label class="tf-option"><input type="radio" name="q10" value="FALSE"> FALSE</label><label class="tf-option"><input type="radio" name="q10" value="NOT GIVEN"> NOT GIVEN</label></div>
+                        </div>
+                        <div class="tf-question" data-q-start="11" data-q-end="11">
+                            <div class="tf-question-line"><span class="tf-question-number">11</span><span class="tf-question-text">M-Pesa can only be used by people using one phone network.</span></div>
+                            <div class="tf-options"><label class="tf-option"><input type="radio" name="q11" value="TRUE"> TRUE</label><label class="tf-option"><input type="radio" name="q11" value="FALSE"> FALSE</label><label class="tf-option"><input type="radio" name="q11" value="NOT GIVEN"> NOT GIVEN</label></div>
+                        </div>
+                        <div class="tf-question" data-q-start="12" data-q-end="12">
+                            <div class="tf-question-line"><span class="tf-question-number">12</span><span class="tf-question-text">M-Pesa can be used to buy products and services.</span></div>
+                            <div class="tf-options"><label class="tf-option"><input type="radio" name="q12" value="TRUE"> TRUE</label><label class="tf-option"><input type="radio" name="q12" value="FALSE"> FALSE</label><label class="tf-option"><input type="radio" name="q12" value="NOT GIVEN"> NOT GIVEN</label></div>
+                        </div>
+                        <div class="tf-question" data-q-start="13" data-q-end="13">
+                            <div class="tf-question-line"><span class="tf-question-number">13</span><span class="tf-question-text">The GSM Association is a consumer organisation.</span></div>
+                            <div class="tf-options"><label class="tf-option"><input type="radio" name="q13" value="TRUE"> TRUE</label><label class="tf-option"><input type="radio" name="q13" value="FALSE"> FALSE</label><label class="tf-option"><input type="radio" name="q13" value="NOT GIVEN"> NOT GIVEN</label></div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- ──── QUESTIONS 2 (Passage 2: Park the Car) ──── -->
+            <div id="questions-2" class="question-set hidden">
+                <div class="questions-container">
+
+                    <!-- Q14-17: Paragraph headings matching -->
+                    <div class="question" data-q-start="14" data-q-end="17">
+                        <div class="question-prompt">
+                            <p><strong>Questions 14–17</strong><br>The text has 7 paragraphs (<strong>A–G</strong>). Which paragraph does each of the following headings best fit?</p>
+                            <p>Write the correct letter <strong>A–G</strong> in boxes 14–17 on your answer sheet.</p>
+                        </div>
+                        <div class="matching-form-container">
+                            <div class="matching-form-row">
+                                <label for="q14" class="matching-form-label"><strong>14</strong>&nbsp;&nbsp;Don't wait!</label>
+                                <select class="answer-input" id="q14"><option value=""></option><option>A</option><option>B</option><option>C</option><option>D</option><option>E</option><option>F</option><option>G</option></select>
+                            </div>
+                            <div class="matching-form-row">
+                                <label for="q15" class="matching-form-label"><strong>15</strong>&nbsp;&nbsp;Team up</label>
+                                <select class="answer-input" id="q15"><option value=""></option><option>A</option><option>B</option><option>C</option><option>D</option><option>E</option><option>F</option><option>G</option></select>
+                            </div>
+                            <div class="matching-form-row">
+                                <label for="q16" class="matching-form-label"><strong>16</strong>&nbsp;&nbsp;Join a club</label>
+                                <select class="answer-input" id="q16"><option value=""></option><option>A</option><option>B</option><option>C</option><option>D</option><option>E</option><option>F</option><option>G</option></select>
+                            </div>
+                            <div class="matching-form-row">
+                                <label for="q17" class="matching-form-label"><strong>17</strong>&nbsp;&nbsp;Use public transport</label>
+                                <select class="answer-input" id="q17"><option value=""></option><option>A</option><option>B</option><option>C</option><option>D</option><option>E</option><option>F</option><option>G</option></select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Q18-22: Multiple select (5 of 8 are TRUE) -->
+                    <div class="question" data-q-start="18" data-q-end="22">
+                        <div class="question-prompt">
+                            <p><strong>Questions 18–22</strong><br>According to the text, <strong>FIVE</strong> of the following statements are true.</p>
+                            <p>Write the corresponding letters in answer boxes 18–22 in <strong>any order</strong>.</p>
+                        </div>
+                        <p style="font-size:13px;color:var(--text-muted);margin-bottom:12px;">Select exactly 5 statements that are true according to the text:</p>
+                        <div class="multi-select-option"><label><input type="checkbox" name="q18_22" value="A"> A. McCarthy claims people can become addicted to using cars.</label></div>
+                        <div class="multi-select-option"><label><input type="checkbox" name="q18_22" value="B"> B. The cost of using a car rose by over ten per cent last year.</label></div>
+                        <div class="multi-select-option"><label><input type="checkbox" name="q18_22" value="C"> C. Most British people borrow money to help buy cars.</label></div>
+                        <div class="multi-select-option"><label><input type="checkbox" name="q18_22" value="D"> D. Many people need cars to drive in London occasionally.</label></div>
+                        <div class="multi-select-option"><label><input type="checkbox" name="q18_22" value="E"> E. Streetcar operates in over 20 cities in Britain.</label></div>
+                        <div class="multi-select-option"><label><input type="checkbox" name="q18_22" value="F"> F. Streetcar's cars must be left at specific locations.</label></div>
+                        <div class="multi-select-option"><label><input type="checkbox" name="q18_22" value="G"> G. Car sharing is becoming more popular with people who live and work near each other.</label></div>
+                        <div class="multi-select-option"><label><input type="checkbox" name="q18_22" value="H"> H. The government wants to encourage people to go to work on foot or by bicycle.</label></div>
+                    </div>
+
+                    <!-- Q23-26: MCQ -->
+                    <div class="question" data-q-start="23" data-q-end="26">
+                        <div class="question-prompt">
+                            <p><strong>Questions 23–26</strong><br>According to the information given in the text, choose the correct answer from the choices given.</p>
+                        </div>
+                        <div class="multi-choice-question" data-q-start="23" data-q-end="23">
+                            <p><strong>23.</strong> The government has decided</p>
+                            <div class="multi-choice-options">
+                                <div class="multi-choice-option"><label><input type="radio" name="q23" value="A"> A. not to follow protestors' suggestions.</label></div>
+                                <div class="multi-choice-option"><label><input type="radio" name="q23" value="B"> B. to become more democratic.</label></div>
+                                <div class="multi-choice-option"><label><input type="radio" name="q23" value="C"> C. to go ahead with charging drivers to use roads.</label></div>
+                            </div>
+                        </div>
+                        <div class="multi-choice-question" data-q-start="24" data-q-end="24">
+                            <p><strong>24.</strong> Cars are often</p>
+                            <div class="multi-choice-options">
+                                <div class="multi-choice-option"><label><input type="radio" name="q24" value="A"> A. relatively cheap in Britain.</label></div>
+                                <div class="multi-choice-option"><label><input type="radio" name="q24" value="B"> B. relatively expensive to operate in Britain.</label></div>
+                                <div class="multi-choice-option"><label><input type="radio" name="q24" value="C"> C. sold second-hand in Britain.</label></div>
+                            </div>
+                        </div>
+                        <div class="multi-choice-question" data-q-start="25" data-q-end="25">
+                            <p><strong>25.</strong> Fuel costs</p>
+                            <div class="multi-choice-options">
+                                <div class="multi-choice-option"><label><input type="radio" name="q25" value="A"> A. make up about 20% of the cost of running a car.</label></div>
+                                <div class="multi-choice-option"><label><input type="radio" name="q25" value="B"> B. are related to the amount drivers pay for their cars.</label></div>
+                                <div class="multi-choice-option"><label><input type="radio" name="q25" value="C"> C. depend on how far you drive.</label></div>
+                            </div>
+                        </div>
+                        <div class="multi-choice-question" data-q-start="26" data-q-end="26">
+                            <p><strong>26.</strong> Using public transport</p>
+                            <div class="multi-choice-options">
+                                <div class="multi-choice-option"><label><input type="radio" name="q26" value="A"> A. will save money for British motorists, except in London.</label></div>
+                                <div class="multi-choice-option"><label><input type="radio" name="q26" value="B"> B. and renting a car part of the time can save money.</label></div>
+                                <div class="multi-choice-option"><label><input type="radio" name="q26" value="C"> C. costs Londoners about £1,700 a year.</label></div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- ──── QUESTIONS 3 (Passage 3: Low Cost Lamps) ──── -->
+            <div id="questions-3" class="question-set hidden">
+                <div class="questions-container">
+
+                    <!-- Q27-30: MCQ -->
+                    <div class="question" data-q-start="27" data-q-end="30">
+                        <div class="question-prompt">
+                            <p><strong>Questions 27–30</strong><br>For each question, only <strong>ONE</strong> of the choices is correct. Write the corresponding letter in the appropriate box on your answer sheet.</p>
+                        </div>
+                        <div class="multi-choice-question" data-q-start="27" data-q-end="27">
+                            <p><strong>27.</strong> The GSBF lamps</p>
+                            <div class="multi-choice-options">
+                                <div class="multi-choice-option"><label><input type="radio" name="q27" value="A"> A. provide light for 100,000 Indian villages.</label></div>
+                                <div class="multi-choice-option"><label><input type="radio" name="q27" value="B"> B. are very expensive to install.</label></div>
+                                <div class="multi-choice-option"><label><input type="radio" name="q27" value="C"> C. are powered by the sun.</label></div>
+                            </div>
+                        </div>
+                        <div class="multi-choice-question" data-q-start="28" data-q-end="28">
+                            <p><strong>28.</strong> More than half of India's population uses</p>
+                            <div class="multi-choice-options">
+                                <div class="multi-choice-option"><label><input type="radio" name="q28" value="A"> A. kerosene as a cooking fuel.</label></div>
+                                <div class="multi-choice-option"><label><input type="radio" name="q28" value="B"> B. biomass as a cooking fuel.</label></div>
+                                <div class="multi-choice-option"><label><input type="radio" name="q28" value="C"> C. solar power as a cooking fuel.</label></div>
+                            </div>
+                        </div>
+                        <div class="multi-choice-question" data-q-start="29" data-q-end="29">
+                            <p><strong>29.</strong> In India, the GSBF lamps are too expensive for most people</p>
+                            <div class="multi-choice-options">
+                                <div class="multi-choice-option"><label><input type="radio" name="q29" value="A"> A. in rural areas.</label></div>
+                                <div class="multi-choice-option"><label><input type="radio" name="q29" value="B"> B. in urban areas.</label></div>
+                                <div class="multi-choice-option"><label><input type="radio" name="q29" value="C"> C. in all areas.</label></div>
+                            </div>
+                        </div>
+                        <div class="multi-choice-question" data-q-start="30" data-q-end="30">
+                            <p><strong>30.</strong> The GSBF lamps</p>
+                            <div class="multi-choice-options">
+                                <div class="multi-choice-option"><label><input type="radio" name="q30" value="A"> A. are not as reliable as electricity from the national power grid.</label></div>
+                                <div class="multi-choice-option"><label><input type="radio" name="q30" value="B"> B. require skill to use.</label></div>
+                                <div class="multi-choice-option"><label><input type="radio" name="q30" value="C"> C. only provide four hours of light a day.</label></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Q31-35: Sentence completion (no more than 3 words) -->
+                    <div class="question" data-q-start="31" data-q-end="35">
+                        <div class="question-prompt">
+                            <p><strong>Questions 31–35</strong><br>Complete the following sentences using <strong>NO MORE THAN THREE WORDS</strong> from the text for each gap.</p>
+                        </div>
+                        <div class="sc-sentence">Another example of cheap technology helping poor people in the countryside is <input type="text" class="answer-input inline-long" id="q31" placeholder="31">.</div>
+                        <div class="sc-sentence">Kerosene lamps and conventional bulbs give off less <input type="text" class="answer-input inline-long" id="q32" placeholder="32"> than GSBF lamps.</div>
+                        <div class="sc-sentence">It is unlikely that the Indian government will achieve its aim of connecting 112,000 villages to electricity because many villages are <input type="text" class="answer-input inline-long" id="q33" placeholder="33">.</div>
+                        <div class="sc-sentence">GSBF lamps would be cheaper if it weren't for <input type="text" class="answer-input inline-long" id="q34" placeholder="34">.</div>
+                        <div class="sc-sentence">Users need to wipe <input type="text" class="answer-input inline-long" id="q35" placeholder="35"> from the LED in order to keep it working well.</div>
+                    </div>
+
+                    <!-- Q36-40: TRUE/FALSE/NOT GIVEN -->
+                    <div class="question" data-q-start="36" data-q-end="40">
+                        <div class="question-prompt">
+                            <p><strong>Questions 36–40</strong><br>Do the following statements agree with the information given in Reading Passage?</p>
+                            <p>In boxes 36–40 on your answer sheet, write</p>
+                            <ul style="list-style:none;padding-left:0;">
+                                <li><strong>TRUE</strong> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if the statement agrees with the information</li>
+                                <li><strong>FALSE</strong> &nbsp;&nbsp;&nbsp; if the statement contradicts the information</li>
+                                <li><strong>NOT GIVEN</strong> &nbsp; if there is no information on this</li>
+                            </ul>
+                        </div>
+                        <div class="tf-question" data-q-start="36" data-q-end="36">
+                            <div class="tf-question-line"><span class="tf-question-number">36</span><span class="tf-question-text">Ganpat Jadhav's monthly ration of kerosene was insufficient.</span></div>
+                            <div class="tf-options"><label class="tf-option"><input type="radio" name="q36" value="TRUE"> TRUE</label><label class="tf-option"><input type="radio" name="q36" value="FALSE"> FALSE</label><label class="tf-option"><input type="radio" name="q36" value="NOT GIVEN"> NOT GIVEN</label></div>
+                        </div>
+                        <div class="tf-question" data-q-start="37" data-q-end="37">
+                            <div class="tf-question-line"><span class="tf-question-number">37</span><span class="tf-question-text">Kerosene causes many fires in homes in developing countries.</span></div>
+                            <div class="tf-options"><label class="tf-option"><input type="radio" name="q37" value="TRUE"> TRUE</label><label class="tf-option"><input type="radio" name="q37" value="FALSE"> FALSE</label><label class="tf-option"><input type="radio" name="q37" value="NOT GIVEN"> NOT GIVEN</label></div>
+                        </div>
+                        <div class="tf-question" data-q-start="38" data-q-end="38">
+                            <div class="tf-question-line"><span class="tf-question-number">38</span><span class="tf-question-text">LED systems could solve the world's energy problems.</span></div>
+                            <div class="tf-options"><label class="tf-option"><input type="radio" name="q38" value="TRUE"> TRUE</label><label class="tf-option"><input type="radio" name="q38" value="FALSE"> FALSE</label><label class="tf-option"><input type="radio" name="q38" value="NOT GIVEN"> NOT GIVEN</label></div>
+                        </div>
+                        <div class="tf-question" data-q-start="39" data-q-end="39">
+                            <div class="tf-question-line"><span class="tf-question-number">39</span><span class="tf-question-text">Chaddha has so far funded the GSBF lamp project himself.</span></div>
+                            <div class="tf-options"><label class="tf-option"><input type="radio" name="q39" value="TRUE"> TRUE</label><label class="tf-option"><input type="radio" name="q39" value="FALSE"> FALSE</label><label class="tf-option"><input type="radio" name="q39" value="NOT GIVEN"> NOT GIVEN</label></div>
+                        </div>
+                        <div class="tf-question" data-q-start="40" data-q-end="40">
+                            <div class="tf-question-line"><span class="tf-question-number">40</span><span class="tf-question-text">Microcredit would help to get more people to use LED lamps.</span></div>
+                            <div class="tf-options"><label class="tf-option"><input type="radio" name="q40" value="TRUE"> TRUE</label><label class="tf-option"><input type="radio" name="q40" value="FALSE"> FALSE</label><label class="tf-option"><input type="radio" name="q40" value="NOT GIVEN"> NOT GIVEN</label></div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div><!-- end questions-panel -->
+    </div><!-- end panels-container -->
+</div><!-- end main-container -->
+
+<!-- Navigation Arrows -->
+<div class="nav-arrows">
+    <button class="nav-arrow" onclick="previousQuestion()" id="prevBtn">‹</button>
+    <button class="nav-arrow" onclick="nextQuestion()" id="nextBtn">›</button>
+</div>
+
+<!-- Bottom Navigation -->
+<nav class="nav-row" aria-label="Questions">
+    <div class="footer__questionWrapper___1tZ46 selected multiple" role="tablist">
+        <button role="tab" class="footer__questionNo___3WNct" onclick="switchToPart(1)">
+            <span><span class="section-prefix">Part </span><span class="sectionNr">1</span><span class="attemptedCount">0 of 13</span></span>
+        </button>
+        <div class="footer__subquestionWrapper___9GgoP">
+            <button class="subQuestion" onclick="goToQuestion(1)"><span class="sr-only">Q1</span>1</button>
+            <button class="subQuestion" onclick="goToQuestion(2)"><span class="sr-only">Q2</span>2</button>
+            <button class="subQuestion" onclick="goToQuestion(3)"><span class="sr-only">Q3</span>3</button>
+            <button class="subQuestion" onclick="goToQuestion(4)"><span class="sr-only">Q4</span>4</button>
+            <button class="subQuestion" onclick="goToQuestion(5)"><span class="sr-only">Q5</span>5</button>
+            <button class="subQuestion" onclick="goToQuestion(6)"><span class="sr-only">Q6</span>6</button>
+            <button class="subQuestion" onclick="goToQuestion(7)"><span class="sr-only">Q7</span>7</button>
+            <button class="subQuestion" onclick="goToQuestion(8)"><span class="sr-only">Q8</span>8</button>
+            <button class="subQuestion" onclick="goToQuestion(9)"><span class="sr-only">Q9</span>9</button>
+            <button class="subQuestion" onclick="goToQuestion(10)"><span class="sr-only">Q10</span>10</button>
+            <button class="subQuestion" onclick="goToQuestion(11)"><span class="sr-only">Q11</span>11</button>
+            <button class="subQuestion" onclick="goToQuestion(12)"><span class="sr-only">Q12</span>12</button>
+            <button class="subQuestion" onclick="goToQuestion(13)"><span class="sr-only">Q13</span>13</button>
+        </div>
+    </div>
+    <div class="footer__questionWrapper___1tZ46 multiple" role="tablist">
+        <button role="tab" class="footer__questionNo___3WNct" onclick="switchToPart(2)">
+            <span><span class="section-prefix">Part </span><span class="sectionNr">2</span><span class="attemptedCount">0 of 13</span></span>
+        </button>
+        <div class="footer__subquestionWrapper___9GgoP">
+            <button class="subQuestion" onclick="goToQuestion(14)">14</button>
+            <button class="subQuestion" onclick="goToQuestion(15)">15</button>
+            <button class="subQuestion" onclick="goToQuestion(16)">16</button>
+            <button class="subQuestion" onclick="goToQuestion(17)">17</button>
+            <button class="subQuestion" onclick="goToQuestion(18)">18</button>
+            <button class="subQuestion" onclick="goToQuestion(19)">19</button>
+            <button class="subQuestion" onclick="goToQuestion(20)">20</button>
+            <button class="subQuestion" onclick="goToQuestion(21)">21</button>
+            <button class="subQuestion" onclick="goToQuestion(22)">22</button>
+            <button class="subQuestion" onclick="goToQuestion(23)">23</button>
+            <button class="subQuestion" onclick="goToQuestion(24)">24</button>
+            <button class="subQuestion" onclick="goToQuestion(25)">25</button>
+            <button class="subQuestion" onclick="goToQuestion(26)">26</button>
+        </div>
+    </div>
+    <div class="footer__questionWrapper___1tZ46 multiple" role="tablist">
+        <button role="tab" class="footer__questionNo___3WNct" onclick="switchToPart(3)">
+            <span><span class="section-prefix">Part </span><span class="sectionNr">3</span><span class="attemptedCount">0 of 14</span></span>
+        </button>
+        <div class="footer__subquestionWrapper___9GgoP">
+            <button class="subQuestion" onclick="goToQuestion(27)">27</button>
+            <button class="subQuestion" onclick="goToQuestion(28)">28</button>
+            <button class="subQuestion" onclick="goToQuestion(29)">29</button>
+            <button class="subQuestion" onclick="goToQuestion(30)">30</button>
+            <button class="subQuestion" onclick="goToQuestion(31)">31</button>
+            <button class="subQuestion" onclick="goToQuestion(32)">32</button>
+            <button class="subQuestion" onclick="goToQuestion(33)">33</button>
+            <button class="subQuestion" onclick="goToQuestion(34)">34</button>
+            <button class="subQuestion" onclick="goToQuestion(35)">35</button>
+            <button class="subQuestion" onclick="goToQuestion(36)">36</button>
+            <button class="subQuestion" onclick="goToQuestion(37)">37</button>
+            <button class="subQuestion" onclick="goToQuestion(38)">38</button>
+            <button class="subQuestion" onclick="goToQuestion(39)">39</button>
+            <button class="subQuestion" onclick="goToQuestion(40)">40</button>
+        </div>
+    </div>
+    <button id="deliver-button" class="footer__deliverButton___3FM07">
+        <i class="fa fa-check"></i><span>Check Answers</span>
+    </button>
+</nav>
+
+<!-- Highlight Toolbar -->
+<div id="highlightToolbar" class="highlight-toolbar">
+    <span id="toolbar-selection-btns">
+        <button class="toolbar-btn btn-yellow" onclick="applyHighlight('hl-yellow')" title="Yellow">🟡</button>
+        <button class="toolbar-btn btn-green"  onclick="applyHighlight('hl-green')"  title="Green">🟢</button>
+        <button class="toolbar-btn btn-pink"   onclick="applyHighlight('hl-pink')"   title="Pink">🔴</button>
+        <button class="toolbar-btn btn-blue"   onclick="applyHighlight('hl-blue')"   title="Blue">🔵</button>
+        <div class="toolbar-sep"></div>
+        <button class="toolbar-btn btn-note"   onclick="openNoteInput()"             title="Note">📝 Note</button>
+        <div class="toolbar-sep"></div>
+        <button class="toolbar-btn btn-clear"  onclick="clearThisHighlight()"        title="Remove">✕ Remove</button>
+        <button class="toolbar-btn btn-clear"  onclick="clearAllHighlights()"        title="Clear All">⊘ Clear All</button>
+    </span>
+    <span id="toolbar-highlight-btns" style="display:none">
+        <button class="toolbar-btn btn-yellow" onclick="recolorHighlight('hl-yellow')">🟡</button>
+        <button class="toolbar-btn btn-green"  onclick="recolorHighlight('hl-green')">🟢</button>
+        <button class="toolbar-btn btn-pink"   onclick="recolorHighlight('hl-pink')">🔴</button>
+        <button class="toolbar-btn btn-blue"   onclick="recolorHighlight('hl-blue')">🔵</button>
+        <div class="toolbar-sep"></div>
+        <button class="toolbar-btn btn-note"   onclick="openNoteInput()">📝 Note</button>
+        <div class="toolbar-sep"></div>
+        <button class="toolbar-btn btn-clear"  onclick="clearThisHighlight()">✕ Remove</button>
+        <button class="toolbar-btn btn-clear"  onclick="clearAllHighlights()">⊘ Clear All</button>
+    </span>
+</div>
+
+<!-- Notes Panel -->
+<div id="notesPanel" class="notes-panel">
+    <div class="notes-panel-header">
+        <span>📝 My Notes</span>
+        <button class="notes-panel-close" onclick="toggleNotesPanel()">✕</button>
+    </div>
+    <div class="notes-list" id="notesList">
+        <p class="notes-empty">No notes yet. Select text and click "Note" to add one.</p>
+    </div>
+</div>
+
+<!-- Note Input Modal -->
+<div id="noteInputOverlay" class="note-input-overlay">
+    <div class="note-input-box">
+        <h3>Add a Note</h3>
+        <div class="selected-text-preview" id="noteTextPreview"></div>
+        <textarea id="noteTextarea" placeholder="Type your note here..."></textarea>
+        <div class="note-input-actions">
+            <button class="btn-cancel-note" onclick="cancelNote()">Cancel</button>
+            <button class="btn-save-note"   onclick="saveNote()">Save Note</button>
+        </div>
+    </div>
+</div>
+
+<!-- Results Modal -->
+<div id="results-modal" class="modal-overlay hidden">
+    <div class="modal-content">
+        <button class="modal-close-btn" onclick="closeResultsModal()">&times;</button>
+        <h2>Results</h2>
+        <div class="results-summary">
+            <p>Score: <span id="results-score"></span> / 40</p>
+            <p>IELTS Band: <span id="results-band"></span></p>
+        </div>
+        <div id="results-details" class="results-details-container"></div>
+        <div style="text-align:center;margin-top:16px;padding-top:14px;border-top:1px solid var(--border);">
+            <button onclick="retakeTest()" style="background:#4a90e2;color:#fff;border:none;border-radius:6px;padding:10px 28px;font-size:15px;font-weight:700;cursor:pointer;">🔄 Retake Test</button>
+            <button onclick="closeResultsModal()" style="background:var(--footer-btn-bg);color:var(--text);border:1px solid var(--border-medium);border-radius:6px;padding:10px 22px;font-size:15px;font-weight:600;cursor:pointer;margin-left:12px;">Review Answers</button>
+        </div>
+    </div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    let currentPassage = 1;
+    let currentQuestion = 1;
+    let selectedRange = null;
+    let selectedText = '';
+    let highlightTarget = null;
+    let lastAppliedHighlight = null;
+    let timeInSeconds = 3600;
+    let timerInterval;
+    let activeQuestionElement = null;
+    let notes = [];
+    let nextNoteId = 1;
+
+    const timerDisplay      = document.querySelector('.timer-display');
+    const timerToggleButton = document.getElementById('timer-toggle-btn');
+    const timerResetButton  = document.getElementById('timer-reset-btn');
+    const deliverButton     = document.getElementById('deliver-button');
+    const resizer           = document.getElementById('resizer');
+    const passagePanel      = document.getElementById('passage-panel');
+    const questionsPanel    = document.getElementById('questions-panel');
+    const highlightToolbar  = document.getElementById('highlightToolbar');
+    const nightModeBtn      = document.getElementById('night-mode-btn');
+    const notesToggleBtn    = document.getElementById('notes-toggle-btn');
+    const notesPanel        = document.getElementById('notesPanel');
+    const notesList         = document.getElementById('notesList');
+    const notesCount        = document.getElementById('notes-count');
+    const noteInputOverlay  = document.getElementById('noteInputOverlay');
+    const noteTextarea      = document.getElementById('noteTextarea');
+    const noteTextPreview   = document.getElementById('noteTextPreview');
+
+    const playIcon  = '<svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M8 5v14l11-7L8 5z"/></svg>';
+    const pauseIcon = '<svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>';
+
+    // ═══════════════════════════════════════════
+    //  CORRECT ANSWERS
+    // ═══════════════════════════════════════════
+    // Q18-22: multi-select – correct 5 are A,B,F,G + one more. 
+    // From passage: A (McCarthy – psychological addiction) ✓, B (cost rose >10%) ✓,
+    // C (most borrow – NOT stated explicitly), D (London occasional hire) ✓,
+    // E (20 cities – stated as "20" so NOT "over 20") ✗, F (specific locations) ✓,
+    // G (colleagues same journeys) ✓, H (government foot/bicycle – not stated) ✗
+    // So correct 5 = A, B, D, F, G
+    const MULTI_SELECT_CORRECT = ['A','B','D','F','G'];
+
+    const correctAnswers = {
+        // Passage 1
+        '1': 'D', '2': 'C', '3': 'E', '4': 'A',
+        '5': ['biggest', 'largest', 'biggest mobile', 'largest mobile'],
+        '6': ['a registered agent', 'registered agent'],
+        '7': ['tea', 'Tea'],
+        '8': ['long dominated', 'dominated'],
+        '9': 'NOT GIVEN',
+        '10': 'TRUE',
+        '11': 'FALSE',
+        '12': 'TRUE',
+        '13': 'FALSE',
+        // Passage 2
+        '14': 'B', '15': 'G', '16': 'F', '17': 'E',
+        // Q18-22 handled separately (multi-select)
+        '18': 'A', '19': 'B', '20': 'D', '21': 'F', '22': 'G',
+        '23': 'C', '24': 'B', '25': 'C', '26': 'B',
+        // Passage 3
+        '27': 'C', '28': 'B', '29': 'A', '30': 'C',
+        '31': ['cell phones', 'mobile phones'],
+        '32': ['useful light'],
+        '33': ['too remote', 'remote'],
+        '34': ['import duties', 'heavy import duties'],
+        '35': ['the dust', 'dust'],
+        '36': 'TRUE',
+        '37': 'NOT GIVEN',
+        '38': 'FALSE',
+        '39': 'TRUE',
+        '40': 'TRUE',
+    };
+
+    // ═══════════════════════════════════════════
+    //  INIT
+    // ═══════════════════════════════════════════
+    function initialize() {
+        startTimer();
+        switchToPart(1);
+        document.body.addEventListener('input', updateAllIndicators);
+        document.body.addEventListener('change', updateAllIndicators);
+        deliverButton.addEventListener('click', checkAnswers);
+        timerToggleButton.addEventListener('click', toggleTimer);
+        timerResetButton.addEventListener('click', resetTimer);
+        nightModeBtn.addEventListener('click', toggleNightMode);
+        notesToggleBtn.addEventListener('click', toggleNotesPanel);
+        resizer.addEventListener('mousedown', initResize, false);
+        initializeHighlightToolbar();
+    }
+
+    // ═══════════════════════════════════════════
+    //  NIGHT MODE
+    // ═══════════════════════════════════════════
+    function toggleNightMode() {
+        document.body.classList.toggle('night-mode');
+        const isNight = document.body.classList.contains('night-mode');
+        nightModeBtn.innerHTML = isNight ? '<span class="moon-icon">☀️</span> Day Mode' : '<span class="moon-icon">🌙</span> Night Mode';
+    }
+
+    // ═══════════════════════════════════════════
+    //  ANSWER CHECKING
+    // ═══════════════════════════════════════════
+    function normalizeText(s) {
+        return s.toLowerCase().replace(/[^a-z0-9\s]/g,'').trim();
+    }
+
+    function checkTextAnswer(userVal, correctVal) {
+        if (Array.isArray(correctVal)) {
+            return correctVal.some(c => normalizeText(userVal) === normalizeText(c));
+        }
+        return normalizeText(userVal) === normalizeText(correctVal);
+    }
+
+    function checkAnswers() {
+        // Reveal hidden sections temporarily for reading inputs
+        const hiddenSections = document.querySelectorAll('.question-set.hidden, .reading-passage.hidden, .part-header.hidden');
+        hiddenSections.forEach(s => s.classList.remove('hidden'));
+
+        document.querySelectorAll('input, select, textarea').forEach(i => i.disabled = true);
+        deliverButton.disabled = true;
+        clearInterval(timerInterval);
+
+        let score = 0;
+        const resultsDetailsContainer = document.getElementById('results-details');
+        resultsDetailsContainer.innerHTML = '';
+
+        // Clear previous markings
+        document.querySelectorAll('.correct,.incorrect,.correct-answer-highlight').forEach(el => {
+            el.classList.remove('correct','incorrect','correct-answer-highlight');
+        });
+        document.querySelectorAll('.correct-answer-display').forEach(el => el.remove());
+
+        // Helper: get part id for a question number
+        function getPartId(n) {
+            if (n <= 13) return 'questions-1';
+            if (n <= 26) return 'questions-2';
+            return 'questions-3';
+        }
+
+        function getInputEl(n) {
+            const section = document.getElementById(getPartId(n));
+            return section ? section.querySelector(`#q${n}`) : null;
+        }
+
+        // ── Handle Q18-22 multi-select specially ──
+        // Collect checked checkboxes
+        const checkedBoxes = [...document.querySelectorAll('input[name="q18_22"]:checked')].map(c => c.value);
+        const multiSelectScore = MULTI_SELECT_CORRECT.filter(v => checkedBoxes.includes(v)).length;
+        // Highlight correct/incorrect checkboxes after check
+        document.querySelectorAll('input[name="q18_22"]').forEach(cb => {
+            const opt = cb.closest('.multi-select-option');
+            if (!opt) return;
+            const isCorrectOption = MULTI_SELECT_CORRECT.includes(cb.value);
+            const isChecked = cb.checked;
+            if (isChecked && isCorrectOption) opt.classList.add('correct');
+            else if (isChecked && !isCorrectOption) opt.classList.add('incorrect');
+            else if (!isChecked && isCorrectOption) opt.classList.add('correct-answer-highlight');
+        });
+
+        for (let i = 1; i <= 40; i++) {
+            const qKey = String(i);
+            const correctAnswer = correctAnswers[qKey];
+            let userAnswer = '';
+            let isCorrect = false;
+            let userAnswerDisplay = 'Not Answered';
+            let correctAnswerText = '';
+
+            // Q18-22: multi-select
+            if (i >= 18 && i <= 22) {
+                const slot = i - 17; // 1-5
+                const correctLetter = MULTI_SELECT_CORRECT[slot - 1];
+                const userLetter = checkedBoxes.includes(correctLetter) ? correctLetter : (checkedBoxes[slot-1] || '');
+                isCorrect = checkedBoxes.includes(correctLetter);
+                if (isCorrect) score++;
+                userAnswerDisplay = checkedBoxes.join(', ') || 'Not Answered';
+                correctAnswerText = MULTI_SELECT_CORRECT.join(', ');
+                resultsDetailsContainer.innerHTML += `<div class="result-row ${isCorrect ? '' : 'incorrect'}"><span class="q-num">${i}</span><span class="user-ans">${userAnswerDisplay}</span><span class="correct-ans">${correctAnswerText}</span></div>`;
+                const navBtn = document.querySelector(`.subQuestion[onclick="goToQuestion(${i})"]`);
+                if (navBtn) { navBtn.classList.remove('answered','active'); navBtn.classList.add(isCorrect ? 'correct' : 'incorrect'); }
+                continue;
+            }
+
+            correctAnswerText = Array.isArray(correctAnswer) ? correctAnswer[0] : (correctAnswer || '');
+
+            // Radio buttons (TF or MCQ)
+            const radioInputs = document.querySelectorAll(`input[name="q${i}"][type="radio"]`);
+            if (radioInputs.length > 0) {
+                const checked = document.querySelector(`input[name="q${i}"]:checked`);
+                if (checked) {
+                    userAnswer = checked.value;
+                    userAnswerDisplay = userAnswer;
+                    isCorrect = (userAnswer === correctAnswer);
+                    const lbl = checked.closest('.tf-option,.multi-choice-option');
+                    if (lbl) lbl.classList.add(isCorrect ? 'correct' : 'incorrect');
+                }
+                const qContainer = radioInputs[0].closest('.tf-question,.multi-choice-question');
+                if (qContainer) {
+                    if (isCorrect) qContainer.classList.add('correct');
+                    else {
+                        qContainer.classList.add('incorrect');
+                        const correctOpt = qContainer.querySelector(`input[value="${correctAnswer}"]`);
+                        if (correctOpt) {
+                            const correctLbl = correctOpt.closest('.tf-option,.multi-choice-option');
+                            if (correctLbl) correctLbl.classList.add('correct-answer-highlight');
+                        }
+                    }
+                }
+                if (isCorrect) score++;
+            } else {
+                const inputEl = getInputEl(i);
+                if (inputEl && inputEl.tagName === 'SELECT') {
+                    userAnswer = inputEl.value;
+                    userAnswerDisplay = userAnswer || 'Not Answered';
+                    isCorrect = (userAnswer === correctAnswer);
+                    const rowEl = inputEl.closest('.matching-form-row') || inputEl;
+                    if (isCorrect) { score++; rowEl.classList.add('correct'); }
+                    else {
+                        rowEl.classList.add('incorrect');
+                        const sp = document.createElement('span');
+                        sp.className = 'correct-answer-display';
+                        sp.innerHTML = `&nbsp;➜&nbsp;<span class="correct-answer-highlight">${correctAnswerText}</span>`;
+                        inputEl.parentNode.insertBefore(sp, inputEl.nextSibling);
+                    }
+                } else if (inputEl && inputEl.tagName === 'INPUT') {
+                    userAnswer = inputEl.value.trim();
+                    userAnswerDisplay = userAnswer || 'Not Answered';
+                    isCorrect = checkTextAnswer(userAnswer, correctAnswer);
+                    inputEl.classList.add(isCorrect ? 'correct' : 'incorrect');
+                    if (isCorrect) {
+                        score++;
+                    } else {
+                        const sp = document.createElement('span');
+                        sp.className = 'correct-answer-display';
+                        sp.innerHTML = `&nbsp;➜&nbsp;<span class="correct-answer-highlight">${correctAnswerText}</span>`;
+                        inputEl.parentNode.insertBefore(sp, inputEl.nextSibling);
+                    }
+                }
+            }
+
+            resultsDetailsContainer.innerHTML += `<div class="result-row ${isCorrect ? '' : 'incorrect'}"><span class="q-num">${i}</span><span class="user-ans">${userAnswerDisplay}</span><span class="correct-ans">${correctAnswerText || '—'}</span></div>`;
+            const navBtn = document.querySelector(`.subQuestion[onclick="goToQuestion(${i})"]`);
+            if (navBtn) { navBtn.classList.remove('answered','active'); navBtn.classList.add(isCorrect ? 'correct' : 'incorrect'); }
+        }
+
+        document.getElementById('results-score').textContent = score;
+        document.getElementById('results-band').textContent  = calculateBandScore(score);
+        document.getElementById('results-modal').classList.remove('hidden');
+    }
+
+    function calculateBandScore(score) {
+        const m = {40:9.0,39:9.0,38:8.5,37:8.5,36:8.0,35:8.0,34:7.5,33:7.5,32:7.0,31:7.0,30:7.0,29:6.5,28:6.5,27:6.5,26:6.0,25:6.0,24:6.0,23:5.5,22:5.5,21:5.5,20:5.5,19:5.0,18:5.0,17:5.0,16:5.0,15:5.0,14:4.5,13:4.5,12:4.0,11:4.0,10:4.0,9:3.5,8:3.5,7:3.0,6:3.0,5:2.5,4:2.5,3:2.0,2:2.0,1:1.0,0:0.0};
+        return m[score] !== undefined ? m[score] : '0.0';
+    }
+
+    // ═══════════════════════════════════════════
+    //  PART SWITCHING & NAVIGATION
+    // ═══════════════════════════════════════════
+    function switchToPart(partNumber) {
+        currentPassage = partNumber;
+        document.querySelectorAll('.reading-passage,.question-set,.part-header').forEach(el => el.classList.add('hidden'));
+        document.getElementById(`passage-text-${partNumber}`).classList.remove('hidden');
+        document.getElementById(`questions-${partNumber}`).classList.remove('hidden');
+        document.getElementById(`part-header-${partNumber}`).classList.remove('hidden');
+        document.querySelectorAll('.footer__questionWrapper___1tZ46').forEach((w,idx) => {
+            w.classList.toggle('selected', (idx+1) === partNumber);
+        });
+        const firstQ = {1:1, 2:14, 3:27}[partNumber];
+        goToQuestion(firstQ);
+    }
+
+    function goToQuestion(questionNumber) {
+        currentQuestion = questionNumber;
+        let partNum = 1;
+        if (questionNumber >= 14 && questionNumber <= 26) partNum = 2;
+        else if (questionNumber >= 27) partNum = 3;
+
+        if (currentPassage !== partNum) {
+            currentPassage = partNum;
+            document.querySelectorAll('.reading-passage,.question-set,.part-header').forEach(el => el.classList.add('hidden'));
+            document.getElementById(`passage-text-${partNum}`).classList.remove('hidden');
+            document.getElementById(`questions-${partNum}`).classList.remove('hidden');
+            document.getElementById(`part-header-${partNum}`).classList.remove('hidden');
+            document.querySelectorAll('.footer__questionWrapper___1tZ46').forEach((w,idx) => {
+                w.classList.toggle('selected', (idx+1) === partNum);
+            });
+        }
+
+        if (activeQuestionElement) activeQuestionElement.classList.remove('active-question','active-input');
+
+        // For Q18-22, scroll to the multi-select block
+        let targetEl = null;
+        if (questionNumber >= 18 && questionNumber <= 22) {
+            targetEl = document.querySelector('[data-q-start="18"]');
+        } else {
+            targetEl = document.querySelector(`[data-q-start="${questionNumber}"]`);
+        }
+
+        if (targetEl) {
+            activeQuestionElement = targetEl;
+            targetEl.classList.add('active-question');
+            scrollIntoViewIfNeeded(targetEl);
+        }
+        updateNavigation();
+    }
+
+    function updateNavigation() {
+        document.querySelectorAll('.subQuestion').forEach(btn => btn.classList.remove('active'));
+        const activeNav = document.querySelector(`.subQuestion[onclick="goToQuestion(${currentQuestion})"]`);
+        if (activeNav) activeNav.classList.add('active');
+
+        document.querySelectorAll('.answer-input').forEach(input => input.classList.remove('active-input'));
+
+        // highlight the relevant input
+        let partId;
+        if (currentQuestion <= 13) partId = 'questions-1';
+        else if (currentQuestion <= 26) partId = 'questions-2';
+        else partId = 'questions-3';
+        const section = document.getElementById(partId);
+        if (section) {
+            const el = section.querySelector(`#q${currentQuestion}`);
+            if (el) {
+                el.classList.add('active-input');
+                if (typeof el.focus === 'function') el.focus();
+            }
+        }
+    }
+
+    window.nextQuestion     = () => currentQuestion < 40 && goToQuestion(currentQuestion + 1);
+    window.previousQuestion = () => currentQuestion > 1  && goToQuestion(currentQuestion - 1);
+
+    function updateAllIndicators() {
+        updateAttemptedCount(1, 1, 13);
+        updateAttemptedCount(2, 14, 26);
+        updateAttemptedCount(3, 27, 40);
+        updateAnsweredNav();
+    }
+
+    function updateAnsweredNav() {
+        document.querySelectorAll('.subQuestion').forEach(btn => {
+            const qNum = parseInt(btn.textContent, 10);
+            if (!isNaN(qNum)) btn.classList.toggle('answered', isQuestionAnswered(qNum));
+        });
+    }
+
+    function isQuestionAnswered(n) {
+        if (n >= 18 && n <= 22) {
+            return document.querySelectorAll('input[name="q18_22"]:checked').length > 0;
+        }
+        let partId = n <= 13 ? 'questions-1' : n <= 26 ? 'questions-2' : 'questions-3';
+        const section = document.getElementById(partId);
+        if (section) {
+            const el = section.querySelector(`#q${n}`);
+            if (el && el.tagName === 'INPUT' && el.type === 'text' && el.value.trim()) return true;
+            if (el && el.tagName === 'SELECT' && el.value) return true;
+        }
+        if (document.querySelector(`input[name="q${n}"]:checked`)) return true;
+        return false;
+    }
+
+    function scrollIntoViewIfNeeded(element) {
+        const panel = element.closest('.questions-panel,.passage-panel');
+        if (!panel) return;
+        const panelRect = panel.getBoundingClientRect();
+        const elemRect  = element.getBoundingClientRect();
+        if (elemRect.top < panelRect.top || elemRect.bottom > panelRect.bottom) {
+            element.scrollIntoView({behavior:'smooth', block:'center'});
+        }
+    }
+
+    function updateAttemptedCount(part, startQ, endQ) {
+        let answered = 0;
+        for (let i = startQ; i <= endQ; i++) {
+            if (isQuestionAnswered(i)) answered++;
+        }
+        const allWrappers = document.querySelectorAll('.footer__questionWrapper___1tZ46');
+        const wrapper = allWrappers[part - 1];
+        if (wrapper) {
+            const span = wrapper.querySelector('.attemptedCount');
+            if (span) span.textContent = `${answered} of ${endQ - startQ + 1}`;
+        }
+    }
+
+    // ═══════════════════════════════════════════
+    //  TIMER
+    // ═══════════════════════════════════════════
+    function startTimer() {
+        if (timerInterval) clearInterval(timerInterval);
+        timerInterval = setInterval(() => {
+            timeInSeconds--;
+            updateTimerDisplay();
+            if (timeInSeconds <= 0) { clearInterval(timerInterval); timerDisplay.textContent = "Time's up!"; }
+        }, 1000);
+        timerToggleButton.innerHTML = pauseIcon;
+    }
+    function pauseTimer() { clearInterval(timerInterval); timerToggleButton.innerHTML = playIcon; }
+    function toggleTimer() {
+        if (timerToggleButton.innerHTML.includes('M6 19h4V5H6v14z')) pauseTimer(); else startTimer();
+    }
+    function resetTimer() {
+        timeInSeconds = 3600; updateTimerDisplay(); startTimer();
+        timerToggleButton.innerHTML = pauseIcon;
+    }
+    function updateTimerDisplay() {
+        const m = Math.floor(timeInSeconds / 60), s = timeInSeconds % 60;
+        timerDisplay.textContent = `${String(m).padStart(2,'0')}:${String(s).padStart(2,'0')}`;
+    }
+
+    // ═══════════════════════════════════════════
+    //  RESIZER
+    // ═══════════════════════════════════════════
+    function initResize(e) {
+        e.preventDefault();
+        const startX = e.clientX, startWidth = passagePanel.offsetWidth;
+        const doDrag = e => {
+            const nw = startWidth + e.clientX - startX;
+            if (nw > 200 && (document.body.clientWidth - nw - resizer.offsetWidth) > 200)
+                passagePanel.style.flex = `0 0 ${nw}px`;
+        };
+        const stopDrag = () => { window.removeEventListener('mousemove', doDrag); window.removeEventListener('mouseup', stopDrag); };
+        window.addEventListener('mousemove', doDrag);
+        window.addEventListener('mouseup', stopDrag);
+    }
+
+    // ═══════════════════════════════════════════
+    //  HIGHLIGHT TOOLBAR
+    // ═══════════════════════════════════════════
+    function initializeHighlightToolbar() {
+        const panels = [passagePanel, questionsPanel];
+        const selectionBtns = document.getElementById('toolbar-selection-btns');
+        const highlightBtns = document.getElementById('toolbar-highlight-btns');
+
+        document.addEventListener('selectionchange', () => {
+            const sel = window.getSelection();
+            if (sel && !sel.isCollapsed && sel.toString().trim().length > 0) {
+                const range = sel.getRangeAt(0);
+                if (panels.some(p => p.contains(range.commonAncestorContainer))) {
+                    selectedRange = range.cloneRange();
+                    selectedText  = sel.toString();
+                }
+            }
+        });
+
+        document.addEventListener('mouseup', e => {
+            if (highlightToolbar.contains(e.target)) return;
+            if (noteInputOverlay.contains(e.target)) return;
+            const sel = window.getSelection();
+            const overHighlight = e.target.closest('.highlight,.comment-highlight');
+            if (overHighlight && (!sel || sel.isCollapsed)) {
+                highlightTarget = overHighlight; lastAppliedHighlight = null; selectedRange = null;
+                selectionBtns.style.display = 'none'; highlightBtns.style.display = 'inline';
+                positionAndShowToolbar(e); return;
+            }
+            if (sel && !sel.isCollapsed && sel.toString().trim().length > 0) {
+                const range = sel.getRangeAt(0);
+                if (panels.some(p => p.contains(range.commonAncestorContainer))) {
+                    highlightTarget = null; lastAppliedHighlight = null;
+                    const startNode = range.startContainer;
+                    const existingHL = (startNode.nodeType === 3 ? startNode.parentElement : startNode).closest('.highlight,.comment-highlight');
+                    if (existingHL) highlightTarget = existingHL;
+                    selectionBtns.style.display = 'inline'; highlightBtns.style.display = 'none';
+                    positionAndShowToolbar(e); return;
+                }
+            }
+            hideToolbar();
+        });
+
+        document.addEventListener('keydown', e => { if (e.key === 'Escape') hideToolbar(); });
+        passagePanel.addEventListener('scroll', hideToolbar);
+        questionsPanel.addEventListener('scroll', hideToolbar);
+    }
+
+    function positionAndShowToolbar(e) {
+        highlightToolbar.classList.add('visible');
+        requestAnimationFrame(() => {
+            const tbW = highlightToolbar.offsetWidth || 300, tbH = highlightToolbar.offsetHeight || 44;
+            let left = e.pageX - tbW / 2, top = e.pageY - tbH - 14;
+            if (left < 8) left = 8;
+            if (left + tbW > window.innerWidth - 8) left = window.innerWidth - tbW - 8;
+            if (top < 68) top = e.pageY + 14;
+            highlightToolbar.style.left = left + 'px';
+            highlightToolbar.style.top  = top + 'px';
+        });
+    }
+    function hideToolbar() { highlightToolbar.classList.remove('visible'); }
+
+    window.applyHighlight = function(colorClass) {
+        if (!selectedRange || selectedRange.collapsed) { hideToolbar(); return; }
+        try {
+            const span = document.createElement('span');
+            span.className = 'highlight ' + colorClass;
+            span.appendChild(selectedRange.extractContents());
+            selectedRange.insertNode(span);
+            lastAppliedHighlight = span;
+        } catch(err) {}
+        hideToolbar();
+        window.getSelection().removeAllRanges();
+        selectedRange = null;
+    };
+
+    window.recolorHighlight = function(colorClass) {
+        if (!highlightTarget) { hideToolbar(); return; }
+        highlightTarget.className = 'highlight ' + colorClass;
+        highlightTarget = null; hideToolbar();
+    };
+
+    window.clearThisHighlight = function() {
+        const target = highlightTarget || lastAppliedHighlight;
+        if (!target || !target.parentNode) { hideToolbar(); return; }
+        if (target.classList.contains('comment-highlight')) {
+            const idx = notes.findIndex(n => n.spanEl === target);
+            if (idx !== -1) notes.splice(idx, 1);
+            renderNotesList();
+        }
+        unwrapElement(target);
+        highlightTarget = null; lastAppliedHighlight = null; hideToolbar();
+    };
+
+    window.clearAllHighlights = function() {
+        document.querySelectorAll('.highlight,.comment-highlight').forEach(unwrapElement);
+        notes = []; renderNotesList();
+        highlightTarget = null; lastAppliedHighlight = null; hideToolbar();
+    };
+
+    function unwrapElement(el) {
+        const parent = el.parentNode;
+        if (!parent) return;
+        while (el.firstChild) parent.insertBefore(el.firstChild, el);
+        parent.removeChild(el);
+        parent.normalize();
+    }
+
+    // ═══════════════════════════════════════════
+    //  NOTES
+    // ═══════════════════════════════════════════
+    function toggleNotesPanel() { notesPanel.classList.toggle('visible'); }
+
+    window.openNoteInput = function() {
+        if (!selectedRange || selectedRange.collapsed) return;
+        noteTextPreview.textContent = selectedText.length > 120 ? selectedText.slice(0,120) + '…' : selectedText;
+        noteTextarea.value = '';
+        noteInputOverlay.classList.add('visible');
+        setTimeout(() => noteTextarea.focus(), 50);
+    };
+
+    window.cancelNote = function() {
+        noteInputOverlay.classList.remove('visible');
+        hideToolbar();
+        window.getSelection().removeAllRanges();
+        selectedRange = null;
+    };
+
+    window.saveNote = function() {
+        const noteText = noteTextarea.value.trim();
+        if (!noteText) { noteTextarea.focus(); return; }
+        if (!selectedRange || selectedRange.collapsed) { cancelNote(); return; }
+        const span = document.createElement('span');
+        span.className = 'comment-highlight';
+        const tooltip = document.createElement('span');
+        tooltip.className = 'comment-tooltip';
+        tooltip.textContent = noteText;
+        try { span.appendChild(selectedRange.extractContents()); } catch(e) {}
+        span.appendChild(tooltip);
+        selectedRange.insertNode(span);
+        notes.push({ id: nextNoteId++, text: selectedText.slice(0,80), noteText, spanEl: span });
+        renderNotesList();
+        noteInputOverlay.classList.remove('visible');
+        hideToolbar();
+        window.getSelection().removeAllRanges();
+        selectedRange = null;
+    };
+
+    function renderNotesList() {
+        const count = notes.length;
+        notesCount.textContent = count;
+        notesCount.style.display = count > 0 ? 'inline' : 'none';
+        if (count === 0) { notesList.innerHTML = '<p class="notes-empty">No notes yet.</p>'; return; }
+        notesList.innerHTML = notes.map(n => `
+            <div class="note-item" id="note-${n.id}">
+                <div style="display:flex;justify-content:space-between;align-items:flex-start;">
+                    <div class="note-item-text">"${escHtml(n.text)}${n.text.length>=80?'…':''}"</div>
+                    <button class="note-item-delete" onclick="deleteNote(${n.id})">✕</button>
+                </div>
+                <div class="note-item-content">${escHtml(n.noteText)}</div>
+            </div>`).join('');
+    }
+
+    window.deleteNote = function(id) {
+        const idx = notes.findIndex(n => n.id === id);
+        if (idx === -1) return;
+        const note = notes[idx];
+        if (note.spanEl && note.spanEl.parentNode) unwrapElement(note.spanEl);
+        notes.splice(idx, 1);
+        renderNotesList();
+    };
+
+    function escHtml(str) {
+        return str.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+    }
+
+    // ═══════════════════════════════════════════
+    //  MODAL
+    // ═══════════════════════════════════════════
+    window.closeResultsModal = function() { document.getElementById('results-modal').classList.add('hidden'); };
+
+    window.retakeTest = function() {
+        document.querySelectorAll('input, select, textarea').forEach(i => { i.disabled = false; });
+        deliverButton.disabled = false;
+        document.querySelectorAll('.correct,.incorrect,.correct-answer-highlight').forEach(el => {
+            el.classList.remove('correct','incorrect','correct-answer-highlight');
+        });
+        document.querySelectorAll('.correct-answer-display').forEach(el => el.remove());
+        document.querySelectorAll('input[type="text"]').forEach(el => el.value = '');
+        document.querySelectorAll('select').forEach(el => el.value = '');
+        document.querySelectorAll('input[type="radio"], input[type="checkbox"]').forEach(el => el.checked = false);
+        document.querySelectorAll('.subQuestion').forEach(btn => btn.classList.remove('correct','incorrect','answered','active'));
+        resetTimer();
+        document.getElementById('results-modal').classList.add('hidden');
+        switchToPart(1);
+        updateAllIndicators();
+    };
+
+    // ═══════════════════════════════════════════
+    //  GLOBAL EXPOSE
+    // ═══════════════════════════════════════════
+    window.nextQuestion      = window.nextQuestion;
+    window.previousQuestion  = window.previousQuestion;
+    window.goToQuestion      = goToQuestion;
+    window.switchToPart      = switchToPart;
+    window.toggleNotesPanel  = toggleNotesPanel;
+
+    initialize();
+});
+</script>
+</body>
+</html>

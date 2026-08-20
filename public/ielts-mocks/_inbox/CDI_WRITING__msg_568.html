@@ -1,0 +1,849 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IELTS Writing Test with Answer Checking</title>
+    <style>
+        /* General Reset and Body Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background-color: #f8f9fa;
+            line-height: 1.5;
+            font-size: 16px;
+            padding-bottom: 90px;
+            color: #212529;
+        }
+
+        /* Header Styles */
+        .header {
+            background-color: #ffffff;
+            padding: 12px 20px;
+            border-bottom: 1px solid #dee2e6;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            height: 60px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+        }
+
+        .timer-container {
+            color: #dc3545;
+            font-size: 18px;
+            font-weight: 600;
+            background-color: #f8d7da;
+            padding: 5px 12px;
+            border-radius: 50px;
+        }
+
+        .telegram-link {
+            color: #007bff;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 16px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .telegram-link:hover {
+            text-decoration: underline;
+        }
+
+        /* Main Layout Styles */
+        .main-container {
+            margin-top: 60px;
+            display: flex;
+            background: #f8f9fa;
+            height: calc(100vh - 120px);
+            flex-direction: column;
+        }
+
+        .panels-container {
+            display: flex;
+            flex-grow: 1;
+            overflow: hidden;
+        }
+
+        .left-panel,
+        .right-panel {
+            width: 50%;
+            padding: 20px;
+            overflow-y: auto;
+            height: 100%;
+        }
+
+        .left-panel {
+            border-right: 1px solid #dee2e6;
+        }
+
+        /* Part Header Styles */
+        .part-header {
+            background-color: #e9ecef;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            border: 1px solid #ced4da;
+            width: auto;
+            text-align: left;
+            margin-left: 20px;
+            margin-right: 20px;
+        }
+
+        .part-header p {
+            margin: 0;
+        }
+
+        .part-header strong {
+            color: #007bff;
+        }
+
+        /* Task Prompt and Chart Styles */
+        .task-prompt {
+            padding: 15px;
+            margin: 20px 0;
+            border: 1px solid #ced4da;
+            font-style: italic;
+            background-color: #ffffff;
+            border-radius: 8px;
+        }
+
+        .chart-container {
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        .image-container img {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Writing Area Styles */
+        .writing-area {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            background: #ffffff;
+            border-radius: 8px;
+            border: 1px solid #dee2e6;
+            padding: 10px;
+            height: 100%;
+        }
+
+        .writing-textarea {
+            border: none;
+            padding: 15px;
+            font-size: 16px;
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            resize: none;
+            outline: none;
+            flex-grow: 1;
+            width: 100%;
+        }
+
+        .word-count {
+            text-align: right;
+            padding: 8px 15px;
+            font-size: 14px;
+            color: #6c757d;
+            border-top: 1px solid #e9ecef;
+        }
+
+        /* Bottom Navigation Styles */
+        .nav-row {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: #ffffff;
+            border-top: 1px solid #dee2e6;
+            display: flex;
+            align-items: stretch;
+            height: 60px;
+            z-index: 1000;
+            box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.05);
+        }
+
+        .footer__questionWrapper___1tZ46 {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            border-right: 1px solid #e9ecef;
+        }
+
+        .footer__questionWrapper___1tZ46:last-of-type {
+            border-right: none;
+        }
+
+        .footer__questionWrapper___1tZ46.completed::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background-color: #28a745;
+            z-index: 1;
+        }
+
+        .footer__questionNo___3WNct {
+            background: none;
+            border: none;
+            font-size: 16px;
+            font-weight: 600;
+            color: #495057;
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 2px;
+            transition: all 0.2s;
+            width: 100%;
+            height: 100%;
+            position: relative;
+            text-align: center;
+        }
+
+        .footer__questionWrapper___1tZ46 .footer__questionNo___3WNct:hover {
+            background-color: #f8f9fa;
+        }
+
+        .footer__questionWrapper___1tZ46.selected .footer__questionNo___3WNct {
+            background-color: #e9ecef;
+            color: #007bff;
+        }
+
+        .part-title {
+            font-size: 16px;
+            font-weight: bold;
+        }
+
+        .attemptedCount {
+            font-size: 12px;
+            color: #6c757d;
+            font-weight: 400;
+        }
+
+        .footer__deliverButton___3FM07 {
+            background-color: #28a745;
+            color: #ffffff;
+            border: none;
+            padding: 0 25px;
+            border-radius: 0;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background-color 0.2s;
+            height: 100%;
+        }
+
+        .footer__deliverButton___3FM07:hover {
+            background-color: #218838;
+        }
+
+        .footer__deliverButton___3FM07:disabled {
+            background: #e9ecef;
+            color: #6c757d;
+            cursor: not-allowed;
+        }
+
+        .fa-check::before {
+            content: "✓";
+            font-size: 18px;
+            margin-right: 8px;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        /* Results Screen Styles */
+        .results-container {
+            display: none;
+            padding: 20px;
+            max-width: 1200px;
+            margin: 80px auto 20px;
+            background: #f8f9fa;
+        }
+
+        .results-header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding: 30px;
+            background: linear-gradient(135deg, #007bff 0%, #6610f2 100%);
+            color: white;
+            border-radius: 12px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+        }
+
+        .results-header h1 {
+            font-size: 32px;
+            margin-bottom: 10px;
+        }
+
+        .overall-band {
+            font-size: 64px;
+            font-weight: bold;
+            margin: 20px 0;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        .band-description {
+            font-size: 20px;
+            opacity: 0.9;
+        }
+
+        .results-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+
+        .score-card {
+            background: #ffffff;
+            border-radius: 12px;
+            padding: 25px;
+            border-left: 5px solid #007bff;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+        }
+
+        .score-card h3 {
+            color: #343a40;
+            margin-bottom: 20px;
+            font-size: 20px;
+        }
+
+        .criteria-scores {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+
+        .criterion {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .criterion-name {
+            font-weight: bold;
+            color: #495057;
+            margin-bottom: 5px;
+            font-size: 14px;
+        }
+
+        .criterion-score {
+            font-size: 28px;
+            font-weight: bold;
+            color: #007bff;
+        }
+
+        .feedback-section {
+            background: #ffffff;
+            border-radius: 12px;
+            padding: 25px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+        }
+
+        .feedback-section h3 {
+            color: #343a40;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .feedback-list {
+            list-style: none;
+        }
+
+        .feedback-list li {
+            padding: 12px 15px;
+            margin-bottom: 8px;
+            border-radius: 8px;
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            font-size: 15px;
+        }
+
+        .feedback-positive {
+            background: #d4edda;
+            border-left: 4px solid #28a745;
+            color: #155724;
+        }
+
+        .feedback-negative {
+            background: #f8d7da;
+            border-left: 4px solid #dc3545;
+            color: #721c24;
+        }
+
+        .feedback-icon {
+            font-weight: bold;
+            font-size: 18px;
+            line-height: 1.2;
+        }
+
+        .action-buttons {
+            text-align: center;
+            margin-top: 40px;
+        }
+
+        .btn {
+            padding: 12px 28px;
+            margin: 0 10px;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .btn-primary {
+            background: #007bff;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #0056b3;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+        }
+
+        .btn-secondary {
+            background: #6c757d;
+            color: white;
+        }
+
+        .btn-secondary:hover {
+            background: #5a6268;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .panels-container {
+                flex-direction: column;
+                height: auto;
+            }
+
+            .left-panel,
+            .right-panel {
+                width: 100% !important;
+                border-right: none;
+                height: auto;
+            }
+
+            .left-panel {
+                border-bottom: 1px solid #dee2e6;
+            }
+
+            .writing-area {
+                min-height: 300px;
+            }
+
+            .results-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .criteria-scores {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+
+<body>
+    <!-- Header -->
+    <div class="header">
+        <div class="timer-container">
+            <span class="timer-display">60:00</span>
+        </div>
+        <a href="https://t.me/ielts_material_full" target="_blank" class="telegram-link">
+            FULL EXAM MATERIALS
+        </a>
+        <!-- Placeholder for balance -->
+        <div style="width: 150px;"></div>
+    </div>
+
+    <!-- Test Interface -->
+    <div class="main-container" id="mainContainer">
+        <div id="part-header-1" class="part-header">
+            <p><strong>Part 1</strong></p>
+            <p>You should spend about 20 minutes on this task. Write at least 150 words.</p>
+        </div>
+        <div id="part-header-2" class="part-header hidden">
+            <p><strong>Part 2</strong></p>
+            <p>You should spend about 40 minutes on this task. Write at least 250 words.</p>
+        </div>
+
+        <div class="panels-container">
+            <div class="left-panel">
+                <!-- Part 1 Content -->
+                <div id="part-1" class="writing-part">
+                    <div class="task-prompt">
+                        <p><strong>📊TASK 1:The charts below show the percentage of male and female students of different age groups who studied in Australia for full-time and part-time education in 2006.
+
+                        </strong></p>
+                        <p><strong>Summarise the information by selecting and reporting the main features, and make
+                                comparisons where relevant.</strong></p>
+                    </div>
+                    <div class="DICK">
+                        <div class="image-container">
+                            <img
+                                src="https://engnovatewebsitestorage.blob.core.windows.net/ielts-writing-task-1-images/f81885a5274b8fa5" />
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Part 2 Content -->
+                <div id="part-2" class="writing-part hidden">
+                    <div class="task-prompt"> 
+                        <p><em><strong>
+                       📝TASK 2:: Some people think that success in life comes from hard work and determination, whilw others think that there are more important factors such as money and appearance.
+                        </strong></em>
+                        </p>
+                        <p><em><strong>
+                            Discuss both views and give your opinion
+                        </strong></em></p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="right-panel">
+                <div class="writing-area">
+                    <textarea class="writing-textarea" id="writingTextarea"
+                        placeholder="Start writing your response here..." oninput="updateWordCount()"></textarea>
+                    <div class="word-count">
+                        Words: <span id="wordCount">0</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Results Screen -->
+    <div class="results-container" id="resultsContainer">
+        <!-- Dynamic content will be injected here by JavaScript -->
+    </div>
+
+    <!-- Bottom Navigation -->
+    <nav class="nav-row" id="navigation">
+        <div class="footer__questionWrapper___1tZ46 selected" role="tablist">
+            <button role="tab" class="footer__questionNo___3WNct writing" data-part="1" onclick="switchPart(1)">
+                <div class="part-title">Part 1</div>
+                <div class="attemptedCount">0 words</div>
+            </button>
+        </div>
+        <div class="footer__questionWrapper___1tZ46" role="tablist">
+            <button role="tab" class="footer__questionNo___3WNct writing" data-part="2" onclick="switchPart(2)">
+                <div class="part-title">Part 2</div>
+                <div class="attemptedCount">0 words</div>
+            </button>
+        </div>
+        <button id="deliver-button" aria-label="Check Answers" class="footer__deliverButton___3FM07"
+            onclick="submitTest()">
+            <i class="fa fa-check" aria-hidden="true"></i>
+            Submit
+        </button>
+    </nav>
+
+    <script>
+        // --- STATE MANAGEMENT ---
+        let currentPart = 1;
+        let timeInSeconds = 3600;
+        let timerInterval;
+        const partData = {
+            1: { content: '', wordCount: 0 },
+            2: { content: '', wordCount: 0 }
+        };
+
+        // --- DOM ELEMENTS ---
+        const timerDisplay = document.querySelector('.timer-display');
+        const mainContainer = document.getElementById('mainContainer');
+        const resultsContainer = document.getElementById('resultsContainer');
+        const navigation = document.getElementById('navigation');
+        const writingTextarea = document.getElementById('writingTextarea');
+        const wordCountSpan = document.getElementById('wordCount');
+
+        // --- TIMER LOGIC ---
+        function startTimer() {
+            timerInterval = setInterval(() => {
+                timeInSeconds--;
+                const minutes = Math.floor(timeInSeconds / 60);
+                const seconds = timeInSeconds % 60;
+                timerDisplay.textContent =
+                    `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+
+                if (timeInSeconds <= 0) {
+                    clearInterval(timerInterval);
+                    alert("Time's up! Your test will be submitted automatically.");
+                    submitTest();
+                }
+            }, 1000);
+        }
+
+        // --- UI & PART SWITCHING LOGIC ---
+        function switchPart(partNumber) {
+            if (currentPart === partNumber) return;
+
+            // Save current part's data
+            partData[currentPart].content = writingTextarea.value;
+
+            currentPart = partNumber;
+
+            // Update UI for part visibility
+            document.querySelectorAll('.writing-part').forEach(part => part.classList.add('hidden'));
+            document.getElementById(`part-${partNumber}`).classList.remove('hidden');
+
+            document.querySelectorAll('.part-header').forEach(header => header.classList.add('hidden'));
+            document.getElementById(`part-header-${partNumber}`).classList.remove('hidden');
+
+            // Update navigation buttons
+            document.querySelectorAll('.footer__questionWrapper___1tZ46').forEach(wrapper => wrapper.classList.remove('selected'));
+            document.querySelector(`[data-part="${partNumber}"]`).parentElement.classList.add('selected');
+
+            // Load new part's data
+            writingTextarea.value = partData[partNumber].content;
+            updateWordCount();
+            writingTextarea.focus();
+        }
+
+        function updateWordCount() {
+            const text = writingTextarea.value.trim();
+            const wordCount = text === '' ? 0 : text.split(/\s+/).length;
+            wordCountSpan.textContent = wordCount;
+
+            // Update data store
+            partData[currentPart].wordCount = wordCount;
+            partData[currentPart].content = writingTextarea.value;
+
+            // Update navigation indicator
+            const navIndicator = document.querySelector(`[data-part="${currentPart}"] .attemptedCount`);
+            navIndicator.textContent = `${wordCount} words`;
+
+            // Update completion status visual
+            const minWords = currentPart === 1 ? 150 : 250;
+            const wrapper = document.querySelector(`[data-part="${currentPart}"]`).parentElement;
+            if (wordCount >= minWords) {
+                wrapper.classList.add('completed');
+            } else {
+                wrapper.classList.remove('completed');
+            }
+        }
+
+        // --- TEST SUBMISSION & ANALYSIS ---
+        function submitTest() {
+            // Save final content of the current part
+            partData[currentPart].content = writingTextarea.value;
+
+            const totalWords = partData[1].wordCount + partData[2].wordCount;
+            if (totalWords === 0) {
+                alert('Please write a response before submitting.');
+                return;
+            }
+
+            if (confirm(`Are you sure you want to submit?\n\nPart 1: ${partData[1].wordCount} words\nPart 2: ${partData[2].wordCount} words`)) {
+                clearInterval(timerInterval);
+                analyzeAndShowResults();
+            }
+        }
+
+        function analyzeAndShowResults() {
+            // This is a simplified analysis. A real system would use a more complex algorithm or AI.
+            const part1Analysis = analyzeWriting(partData[1].content, 1);
+            const part2Analysis = analyzeWriting(partData[2].content, 2);
+
+            const part1Scores = calculateBandScore(part1Analysis);
+            const part2Scores = calculateBandScore(part2Analysis);
+
+            const overallBand = calculateOverallBand(part1Scores, part2Scores);
+
+            displayResults(part1Scores, part2Scores, overallBand);
+
+            mainContainer.style.display = 'none';
+            navigation.style.display = 'none';
+            resultsContainer.style.display = 'block';
+        }
+
+        function analyzeWriting(text, partNumber) {
+            const wordCount = text.trim() === '' ? 0 : text.trim().split(/\s+/).length;
+            const sentences = text.split(/[.!?]+/).filter(s => s.trim().length > 0);
+            const uniqueWords = new Set(text.toLowerCase().match(/\b\w+\b/g) || []);
+
+            return {
+                wordCount,
+                meetsWordCount: wordCount >= (partNumber === 1 ? 150 : 250),
+                sentenceCount: sentences.length,
+                vocabDiversity: uniqueWords.size / (wordCount || 1)
+            };
+        }
+
+        function calculateBandScore(analysis) {
+            // Simplified scoring logic
+            let taskScore = 5.0;
+            if (analysis.meetsWordCount) taskScore += 1.5;
+            if (analysis.wordCount > (analysis.meetsWordCount ? 180 : 280)) taskScore += 0.5;
+
+            let coherenceScore = 5.0 + (analysis.sentenceCount / 10);
+            let lexicalScore = 4.5 + (analysis.vocabDiversity * 5);
+            let grammarScore = 5.0 + (analysis.sentenceCount / 12);
+
+            const capScore = (score) => Math.min(9, Math.round(score * 2) / 2);
+
+            return {
+                task: capScore(taskScore),
+                coherence: capScore(coherenceScore),
+                lexical: capScore(lexicalScore),
+                grammar: capScore(grammarScore)
+            };
+        }
+
+        function calculateOverallBand(scores1, scores2) {
+            const avg1 = (scores1.task + scores1.coherence + scores1.lexical + scores1.grammar) / 4;
+            const avg2 = (scores2.task + scores2.coherence + scores2.lexical + scores2.grammar) / 4;
+            // Part 2 has more weight in the real test
+            const overall = (avg1 * 0.4) + (avg2 * 0.6);
+            return Math.round(overall * 2) / 2;
+        }
+
+        function getBandDescription(band) {
+            if (band >= 9) return "Expert User";
+            if (band >= 8) return "Very Good User";
+            if (band >= 7) return "Good User";
+            if (band >= 6) return "Competent User";
+            if (band >= 5) return "Modest User";
+            return "Limited User";
+        }
+
+        // --- RESULTS DISPLAY ---
+        function displayResults(scores1, scores2, overallBand) {
+            const bandDescription = getBandDescription(overallBand);
+
+            resultsContainer.innerHTML = `
+                <div class="results-header">
+                    <h1>Your Result</h1>
+                    <div class="overall-band">${overallBand.toFixed(1)}</div>
+                    <div class="band-description">${bandDescription}</div>
+                </div>
+
+                <div class="results-grid">
+                    ${createScoreCardHTML('Part 1 - Task Achievement', scores1)}
+                    ${createScoreCardHTML('Part 2 - Task Response', scores2)}
+                </div>
+
+                ${createFeedbackHTML(scores1, scores2)}
+
+                <div class="action-buttons">
+                    <button class="btn btn-primary" onclick="downloadReport()">Download Report</button>
+                    <button class="btn btn-secondary" onclick="retakeTest()">Retake Test</button>
+                </div>
+            `;
+        }
+
+        function createScoreCardHTML(title, scores) {
+            return `
+                <div class="score-card">
+                    <h3>${title}</h3>
+                    <div class="criteria-scores">
+                        <div class="criterion">
+                            <div class="criterion-name">Task Achievement</div>
+                            <div class="criterion-score">${scores.task.toFixed(1)}</div>
+                        </div>
+                        <div class="criterion">
+                            <div class="criterion-name">Coherence</div>
+                            <div class="criterion-score">${scores.coherence.toFixed(1)}</div>
+                        </div>
+                        <div class="criterion">
+                            <div class="criterion-name">Lexical Resource</div>
+                            <div class="criterion-score">${scores.lexical.toFixed(1)}</div>
+                        </div>
+                        <div class="criterion">
+                            <div class="criterion-name">Grammar</div>
+                            <div class="criterion-score">${scores.grammar.toFixed(1)}</div>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        function createFeedbackHTML(scores1, scores2) {
+            const strengths = [];
+            const improvements = [];
+
+            const avgScore = (scores1.task + scores2.task) / 2;
+            if (avgScore >= 7.0) strengths.push("Strong task achievement. You addressed the prompts well.");
+            else improvements.push("Focus on fully addressing all parts of the question to improve task achievement.");
+
+            if (scores1.lexical >= 7.0 && scores2.lexical >= 7.0) strengths.push("Good range of vocabulary used effectively.");
+            else improvements.push("Try to use a wider range of vocabulary and avoid repetition.");
+
+            if (scores1.grammar >= 7.0 && scores2.grammar >= 7.0) strengths.push("Good control of grammar and sentence structures.");
+            else improvements.push("Pay attention to grammatical accuracy, including punctuation and spelling.");
+
+            return `
+                <div class="feedback-section">
+                    <h3>✅ Strengths</h3>
+                    <ul class="feedback-list">
+                        ${strengths.map(s => `<li class="feedback-positive"><span class="feedback-icon">✓</span><span>${s}</span></li>`).join('')}
+                    </ul>
+                </div>
+                <div class="feedback-section">
+                    <h3>⚠️ Areas for Improvement</h3>
+                    <ul class="feedback-list">
+                         ${improvements.map(i => `<li class="feedback-negative"><span class="feedback-icon">!</span><span>${i}</span></li>`).join('')}
+                    </ul>
+                </div>
+            `;
+        }
+
+        // --- RESULTS ACTIONS ---
+        function downloadReport() {
+            alert("Download functionality is a premium feature.");
+        }
+
+        function retakeTest() {
+            if (confirm('Are you sure you want to start a new test? Your current results will be lost.')) {
+                window.location.reload();
+            }
+        }
+
+        // --- INITIALIZATION ---
+        window.addEventListener('load', () => {
+            startTimer();
+            writingTextarea.focus();
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,7 @@
+{
+  "desktop": [
+    "SHOT home: page.screenshot: Timeout 30000ms exceeded.\nCall log:\n\u001b[2m  - taking page screenshot\u001b[22m\n\u001b[2m  - waiting for fonts to load...\u001b[22m\n\u001b[2m  - fonts loaded\u001b[22m\n",
+    "CONSOLE: Failed to load resource: the server responded with a status of 404 ()"
+  ],
+  "mobile": []
+}

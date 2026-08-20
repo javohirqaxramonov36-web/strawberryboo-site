@@ -1,0 +1,2311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IELTS Full Reading Practice</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #ffffff;
+            line-height: 1.4;
+            font-size: 16px;
+        }
+
+        .header {
+            background-color: #ffffff;
+            padding: 12px 20px;
+            border-bottom: 1px solid #e0e0e0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            height: 60px;
+        }
+
+        .test-info {
+            display: flex;  
+            align-items: center;
+            gap: 30px;
+            font-size: 14px;
+            color: #333;
+        }
+
+        .telegram-link {
+            color: #3e3e3e;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 16px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 6px 12px;
+            border: 2px solid #3e3e3e;
+            border-radius: 9999px;
+            background-color: #ffffff;
+            line-height: 1;
+        }
+
+        .telegram-link:hover {
+            background-color: #f6f6f6;
+        }
+
+        .telegram-link::before {
+            content: '';
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            background-color: currentColor;
+            -webkit-mask-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.78 18.65l.28-4.23l7.68-6.92c.34-.31-.07-.46-.52-.19L7.74 13.3L3.64 12c-.88-.25-.89-1.37.2-1.64l16.56-6.4c.75-.29 1.4.22 1.2.94l-2.67 12.61c-.22.95-1.13 1.18-1.78.73l-4.5-3.32l-2.23 2.15c-.47.44-1.29.21-1.48-.37z"/></svg>');
+            mask-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.78 18.65l.28-4.23l7.68-6.92c.34-.31-.07-.46-.52-.19L7.74 13.3L3.64 12c-.88-.25-.89-1.37.2-1.64l16.56-6.4c.75-.29 1.4.22 1.2.94l-2.67 12.61c-.22.95-1.13 1.18-1.78.73l-4.5-3.32l-2.23 2.15c-.47.44-1.29.21-1.48-.37z"/></svg>');
+            background-size: contain;
+            background-repeat: no-repeat;
+        }
+
+        .timer-container {
+            display: flex;
+            position: relative;
+            cursor: default;
+            color: #333;
+            font-size: 16px;
+            font-weight: 500;
+            align-items: center;
+        }
+
+        .timer-controls {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-left: 15px;
+        }
+
+        .timer-controls button {
+            background: #f0f0f0;
+            border: 1px solid #ccc;
+            border-radius: 50%;
+            padding: 0;
+            cursor: pointer;
+            width: 32px;
+            height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background-color 0.2s;
+        }
+        .timer-controls button:hover {
+            background: #e0e0e0;
+        }
+
+        .timer-controls button svg {
+            width: 20px;
+            height: 20px;
+            fill: #333;
+        }
+
+        /* Page watermark */
+        body::after {
+            content: "Full Exam Materials";
+            position: fixed;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%) rotate(-20deg);
+            font-size: 72px;
+            font-weight: 800;
+            letter-spacing: 2px;
+            color: #000000;
+            opacity: 0.04;
+            pointer-events: none;
+            z-index: 0;
+            white-space: nowrap;
+        }
+
+        .main-container {
+            margin-top: 60px;
+            display: flex;
+            flex-direction: column;
+            background: #ffffff;
+            height: calc(100vh - 60px);
+            position: relative;
+        }
+
+        .panels-container {
+            display: flex;
+            flex: 1;
+            overflow: hidden;
+        }
+
+        .passage-panel {
+            flex: 1;
+            padding: 20px 20px 100px;
+            overflow-y: auto;
+            min-width: 200px;
+        }
+
+        .questions-panel {
+            flex: 1;
+            padding: 20px 20px 100px;
+            overflow-y: auto;
+            min-width: 200px;
+            border-left: 1px solid #e0e0e0;
+        }
+
+        .resizer {
+            position: relative;
+            background: transparent;
+            cursor: col-resize;
+            flex-shrink: 0;
+            flex-grow: 0;
+            z-index: 5;
+            width: 16px;
+            touch-action: none;
+            -webkit-user-select: none;
+            user-select: none;
+        }
+        .resizer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            width: 3px;
+            transform: translateX(-50%);
+            background-color: #3e3e3e;
+        }
+        .resizer::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 36px;
+            height: 36px;
+            background-color: #ffffff;
+            border: 2px solid #3e3e3e;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke="%233e3e3e" fill="%233e3e3e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 8l-4 4 4 4"/><path d="M16 8l4 4-4 4"/><line x1="4" y1="12" x2="20" y2="12"/></svg>');
+            background-repeat: no-repeat;
+            background-size: 60% 60%;
+            background-position: center;
+            pointer-events: none;
+        }
+
+        /* Passage Content */
+        .reading-passage h4 {
+            font-size: 20px;
+            font-weight: bold;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+       
+        .reading-passage p {
+            margin-bottom: 1.2em;
+        }
+
+        .part-header {
+            background-color: #f1f2ec;
+            padding: 15px 20px;
+            border: 1px solid #e0e0e0;
+            text-align: left;
+            margin: 10px 20px;
+            border-radius: 5px;
+        }
+        .part-header p {
+            margin: 0;
+        }
+        .part-header p:first-child {
+            margin-bottom: 5px;
+        }
+
+        /* Questions */
+        .question {
+            margin-bottom: 40px;
+        }
+        .question-prompt {
+            margin-bottom: 20px;
+        }
+        .question-prompt p {
+            margin-bottom: 10px;
+        }
+
+        /* TRUE/FALSE/NOT GIVEN */
+        .tf-question {
+            padding: 10px 0px;
+            border-radius: 4px;
+            transition: border-color 0.3s, background-color 0.3s;
+        }
+        .tf-question-line {
+            display: flex;
+            align-items: center;
+            padding: 5px 0px;
+            border-radius: 4px;
+            gap: 15px;
+        }
+        .tf-question-number {
+            border: 2px solid #ccc;
+            padding: 2px 8px;
+            margin-right: 10px;
+            border-radius: 3px;
+            font-weight: bold;
+            transition: border-color 0.3s;
+            display: inline-block;
+        }
+        .tf-question.active-question .tf-question-number {
+            border-color: #4a90e2;
+        }
+        .tf-question-text {
+            padding-top: 3px;
+            flex: 1;
+        }
+
+        .answer-select {
+            appearance: none;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            background: white;
+            color: #333;
+            border: 2px solid #333;
+            padding: 8px 12px;
+            border-radius: 6px;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            min-width: 120px;
+            text-align: center;
+        }
+
+        .answer-select option {
+            background: white;
+            color: #333;
+            padding: 8px;
+        }
+
+        .answer-select option:first-child {
+            color: #999;
+            font-style: italic;
+        }
+
+        /* Answer checking states for TF/NG */
+        .tf-question.correct .tf-question-line {
+            background-color: #d4edda !important;
+            border-color: #28a745 !important;
+        }
+        .tf-question.incorrect .tf-question-line {
+            background-color: #f8d7da !important;
+            border-color: #dc3545 !important;
+        }
+
+        /* Input fields */
+        .answer-input {
+            border: 1px solid #bfbfbf;
+            border-radius: 4px;
+            background-color: #fff;
+            padding: 2px 8px;
+            font-size: 16px;
+            text-align: left;
+            font-weight: 700;
+            margin-right: 6px;
+            margin-left: 6px;
+            transition: border-color 0.2s ease, box-shadow 0.2s ease;
+            height: 28px;
+            min-width: 150px;
+        }
+        .answer-input.active-input,
+        .answer-input:focus {
+            border-color: #3581d8;
+            border-width: 2px;
+            outline: none;
+        }
+        .answer-input::placeholder {
+            color: #666;
+            font-weight: 700;
+            text-align: center;
+        }
+        .answer-input.correct {
+            border-color: #28a745;
+            background-color: #e9f7ef;
+        }
+        .answer-input.incorrect {
+            border-color: #dc3545;
+            background-color: #f8d7da;
+            color: #721c24;
+        }
+
+        .summary-text {
+            border: 1px solid #000;
+            padding: 10px;
+            margin-top: 15px;
+        }
+        .summary-text p {
+            line-height: 2.0;
+            margin-bottom: 10px;
+        }
+
+        /* Multiple Choice */
+        .multi-choice-question {
+            margin-bottom: 20px;
+            padding: 10px;
+            border-radius: 4px;
+            border: 3px solid transparent;
+            transition: border-color 0.3s, background-color 0.3s;
+        }
+        .multi-choice-question .question-prompt p > strong:first-child {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 24px;
+            padding: 2px 6px;
+            margin-right: 8px;
+            border: 1px solid #d0d7e2;
+            border-radius: 6px;
+            background: #fff;
+        }
+        .multi-choice-question.active-question .question-prompt p > strong:first-child {
+            border-color: #4a90e2;
+            border-width: 2px;
+        }
+        .multi-choice-option {
+            padding: 10px 12px;
+            background-color: #fff;
+            transition: background-color 0.2s ease, border-color 0.2s ease;
+        }
+        .multi-choice-option:hover {
+            background-color: #f1f7ff;
+        }
+        .multi-choice-option:has(input:checked) {
+            background-color: #cfe3f9;
+        }
+        .multi-choice-option.correct {
+            background-color: #d4edda !important;
+            border-color: #28a745 !important;
+        }
+        .multi-choice-option.incorrect {
+            background-color: #f8d7da !important;
+            border-color: #dc3545 !important;
+        }
+        .multi-choice-option.correct-answer-highlight {
+            background-color: #d4edda !important;
+            border-color: #28a745 !important;
+        }
+        .multi-choice-option label {
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        .multi-choice-option input[type="radio"] {
+            margin-right: 12px;
+            transform: scale(1.3);
+            accent-color: #4a90e2;
+        }
+
+        /* Flow chart */
+        .flow-chart {
+            background: #f8f9fa;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        .flow-chart-step {
+            margin-bottom: 20px;
+        }
+        .flow-chart-step:last-child {
+            margin-bottom: 0;
+        }
+        .flow-chart-label {
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 8px;
+        }
+        .flow-chart-content {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .flow-chart-arrow {
+            font-size: 20px;
+            color: #666;
+            margin: 0 10px;
+            text-align: center;
+            display: block;
+        }
+
+        /* Headings Matching */
+        .headings-matching-container {
+            margin-top: 20px;
+        }
+        .headings-drop-zone {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            vertical-align: middle;
+            width: 40px;
+            height: 25px;
+            border: 2px dashed #999;
+            border-radius: 4px;
+            margin: 0 5px;
+            padding: 0 5px;
+            transition: border-color 0.3s;
+            color: #aaa;
+            font-weight: bold;
+        }
+        .headings-drop-zone.filled {
+            border-color: #4a90e2;
+            background-color: transparent;
+            border-style: solid;
+        }
+        .headings-drop-zone .drag-item {
+            font-size: 14px;
+            font-weight: bold;
+            background-color: transparent;
+            border: none;
+            padding: 0;
+            text-align: center;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .headings-options-bank {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            margin-top: 20px;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            background: #f9f9f9;
+        }
+        .headings-options-bank .drag-item {
+            padding: 8px 12px;
+            border: 1px solid #ccc;
+            background: white;
+            cursor: move;
+            font-size: 14px;
+            transition: all 0.2s;
+        }
+        .headings-options-bank .drag-item:hover {
+            background: #e9ecef;
+            transform: translateY(-1px);
+        }
+        .headings-options-bank .drag-item.dragging {
+            opacity: 0.5;
+        }
+
+        /* Drag and drop */
+        .drag-item {
+            background: white;
+            border: 1px solid #9c9c9c;
+            font-weight: 600;
+            padding: 4px 8px;
+            border-radius: 4px;
+            cursor: move;
+            font-size: 14px;
+            transition: all 0.2s;
+            user-select: none;
+        }
+        .drag-item:hover {
+            background: #e9ecef;
+        }
+        .drag-item.dragging {
+            opacity: 0.5;
+        }
+        .drop-zone {
+            border: 2px dashed #aaa;
+            border-radius: 4px;
+            transition: background-color 0.2s, border-color 0.2s;
+            padding: 2px 5px;
+            display: inline-flex;
+            align-items: center;
+            position: relative;
+            color: #afafaf;
+            font-weight: 600;
+            min-width: 60px;
+            min-height: 30px;
+        }
+        .drop-zone.drag-over {
+            background-color: #e6f4ff;
+            border-color: #4a90e2;
+        }
+        .drop-zone.filled {
+            border-color: #4a90e2;
+            border-style: solid;
+            background-color: transparent;
+        }
+        .drop-zone.correct {
+            background-color: #e9f7ef;
+            border-color: #28a745;
+            border-style: solid;
+        }
+        .drop-zone.incorrect {
+            background-color: #f8d7da;
+            border-color: #dc3545;
+            border-style: solid;
+        }
+        .drop-zone.disabled {
+            pointer-events: none;
+        }
+
+        /* Navigation */
+        .nav-arrows {
+            position: fixed;
+            bottom: 100px;
+            right: 20px;
+            display: flex;
+            gap: 6px;
+            z-index: 101;
+        }
+
+        .nav-arrow {
+            width: 48px;
+            height: 48px;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 22px;
+            font-weight: 700;
+            color: #fff;
+            transition: transform 0.1s ease, background-color 0.2s ease, box-shadow 0.2s ease;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.25);
+            outline: none;
+        }
+        .nav-arrow.prev { background-color: #4b5563; }
+        .nav-arrow.next { background-color: #000000; }
+
+        .nav-arrow:hover { transform: translateY(-1px); }
+        .nav-arrow:active { transform: translateY(0); }
+
+        /* Bottom Navigation */
+        .nav-row {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: #ffffff;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            height: 80px;
+            z-index: 100;
+            border-top: 1px solid #e0e0e0;
+        }
+
+        .footer__questionWrapper___1tZ46 {
+            display: flex;
+            align-items: center;
+            margin-right: 20px;
+        }
+
+        .footer__questionNo___3WNct {
+            background: none;
+            border: none;
+            padding: 10px 15px;
+            font-size: 16px;
+            font-weight: 600;
+            color: #333;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            transition: background-color 0.2s;
+        }
+
+        .footer__questionNo___3WNct:hover {
+            background-color: #f8f9fa;
+        }
+
+        .section-prefix {
+            font-size: 16px;
+        }
+
+        .sectionNr {
+            font-size: 16px;
+            font-weight: bold;
+        }
+
+        .attemptedCount {
+            font-size: 14px;
+            color: #666;
+            margin-left: 5px;
+            font-weight: 400;
+        }
+
+        .footer__subquestionWrapper___9GgoP {
+            display: none;
+            gap: 2px;
+            margin-left: 10px;
+        }
+
+        .footer__questionWrapper___1tZ46.selected .footer__subquestionWrapper___9GgoP {
+            display: flex;
+        }
+
+        .subQuestion {
+            width: 32px;
+            height: 32px;
+            border: 1px solid #ccc;
+            background: white;
+            color: #333;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s;
+            border-radius: 2px;
+        }
+
+        .subQuestion.answered {
+            background-color: #e9ecef;
+            border-color: #ddd;
+        }
+        .subQuestion.correct {
+            background-color: #28a745;
+            color: white;
+            border-color: #28a745;
+        }
+        .subQuestion.incorrect {
+            background-color: #dc3545;
+            color: white;
+            border-color: #dc3545;
+        }
+        .subQuestion.active {
+            background-color: #4a90e2;
+            color: white;
+            border-color: #4a90e2;
+        }
+
+        .footer__deliverButton___3FM07 {
+            margin-left: auto;
+            margin-right: 20px;
+            background-color: #f3f4f6;
+            color: #111827;
+            border: 1px solid #d1d5db;
+            padding: 10px 16px;
+            font-size: 15px;
+            font-weight: 700;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            transition: transform 0.08s ease, background-color 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+            min-width: 160px;
+            justify-content: center;
+        }
+
+        .footer__deliverButton___3FM07:hover {
+            background-color: #ebedf0;
+            border-color: #c7ccd4;
+        }
+
+        /* Results Modal */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(17, 24, 39, 0.6);
+            backdrop-filter: blur(3px);
+            z-index: 2000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .modal-overlay.hidden {
+            display: none;
+        }
+        .modal-content {
+            background: #ffffff;
+            padding: 24px;
+            border-radius: 14px;
+            width: 92%;
+            max-width: 780px;
+            max-height: 86vh;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            border: 1px solid #e5e7eb;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.25);
+        }
+        .modal-close-btn {
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            background: none;
+            border: none;
+            font-size: 28px;
+            cursor: pointer;
+            color: #666;
+        }
+        .modal-content h2 {
+            text-align: center;
+            margin-bottom: 18px;
+            color: #111827;
+        }
+        .results-summary {
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+            margin-bottom: 16px;
+            text-align: center;
+            border-bottom: 1px solid #eef2f7;
+            padding-bottom: 12px;
+        }
+        .results-summary p {
+            margin: 0;
+            font-size: 14px;
+            color: #374151;
+        }
+        .results-summary p span {
+            display: inline-block;
+            padding: 4px 10px;
+            margin-left: 6px;
+            border-radius: 999px;
+            background: #f3f4f6;
+            font-weight: 700;
+            color: #111827;
+        }
+        .results-details-container {
+            overflow-y: auto;
+            padding-right: 10px;
+            border-radius: 8px;
+        }
+        .result-row {
+            display: grid;
+            grid-template-columns: 56px 1fr 1fr;
+            gap: 12px;
+            padding: 10px 8px;
+            border-bottom: 1px solid #eef2f7;
+            font-size: 15px;
+            align-items: center;
+        }
+        .result-row.correct {
+            background-color: #f3faf5;
+        }
+        .result-row.incorrect {
+            background-color: #fff5f5;
+        }
+        .result-row .q-num {
+            font-weight: 700;
+            color: #111827;
+            background: #ffffff;
+            border: 1px solid #d1d5db;
+            border-radius: 8px;
+            width: 42px;
+            height: 30px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .result-row .user-ans {
+            color: #374151;
+            background: #f9fafb;
+            border: 1px solid #e5e7eb;
+            padding: 4px 8px;
+            border-radius: 6px;
+        }
+        .result-row .correct-ans {
+            color: #065f46;
+            font-weight: 600;
+            background: #ecfdf5;
+            border: 1px solid #a7f3d0;
+            padding: 4px 8px;
+            border-radius: 6px;
+        }
+
+        .hidden {
+            display: none !important;
+        }
+
+        /* Correct answer display */
+        .correct-answer-display {
+            font-weight: bold;
+            color: #28a745;
+            margin-left: 10px;
+            font-size: 14px;
+        }
+
+        /* Flow chart input fields */
+        .flow-chart-input {
+            width: 120px;
+            margin: 0 5px;
+        }
+
+        /* Context Menu */
+        .context-menu {
+            position: absolute;
+            background: white;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            z-index: 1000;
+            display: none;
+            min-width: 140px;
+        }
+
+        .context-menu-item {
+            padding: 12px 16px;
+            cursor: pointer;
+            font-size: 16px;
+            border-bottom: 1px solid #f0f0f0;
+            transition: background-color 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .context-menu-item:hover {
+            background-color: #f8f9fa;
+        }
+
+        .context-menu-item:last-child {
+            border-bottom: none;
+        }
+
+        .highlight {
+            background-color: #ffff00;
+        }
+
+        .comment-highlight {
+            background-color: #90EE90;
+            position: relative;
+            cursor: help;
+        }
+
+        .comment-tooltip {
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #333;
+            color: white;
+            padding: 8px 12px;
+            border-radius: 4px;
+            font-size: 14px;
+            white-space: nowrap;
+            z-index: 1000;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s;
+        }
+
+        .comment-highlight:hover .comment-tooltip {
+            opacity: 1;
+        }
+
+        /* Answer checking improvements */
+        .answer-check {
+            display: inline-block;
+            margin-left: 10px;
+            font-weight: bold;
+        }
+        .answer-check.correct {
+            color: #28a745;
+        }
+        .answer-check.incorrect {
+            color: #dc3545;
+        }
+
+        /* Headings matching specific */
+        .headings-question {
+            margin-bottom: 15px;
+        }
+        .headings-question p {
+            margin-bottom: 5px;
+        }
+
+        /* Fix for paragraph B heading in passage 3 */
+        .paragraph-heading {
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        /* Active question styling */
+        .active-question {
+            background-color: #f0f8ff !important;
+            border-left: 3px solid #4a90e2 !important;
+        }
+
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border: 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="timer-container">
+            <span class="timer-display">60:00</span>
+            <div class="timer-controls">
+                <button id="timer-toggle-btn" title="Pause/Resume Timer">
+                    <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M8 5v14l11-7L8 5z"/></svg>
+                </button>
+                <button id="timer-reset-btn" title="Reset Timer">
+                    <svg xmlns="http://www.w3.org2000/svg" height="24px" viewBox="0 0 24 24" width="24px"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M12 5V1L7 6l5 5V7c3.31 0 6 2.69 6 6s-2.69 6-6 6-6-2.69-6-6H4c0 4.42 3.58 8 8 8s8-3.58 8-8-3.58-8-8-8z"/></svg>
+                </button>
+            </div>
+        </div>
+        <a href="https://t.me/ielts_material_full" target="_blank" class="telegram-link">
+        Full Exam Materials
+        </a>
+    </div>
+
+    <div class="main-container" id="main-container">
+        <div id="passage-header-container">
+            <div id="part-header-1" class="part-header">
+                <p><strong>Part 1</strong></p>
+                <p>Read the text and answer questions 1-13.</p>
+            </div>
+            <div id="part-header-2" class="part-header hidden">
+                <p><strong>Part 2</strong></p>
+                <p>Read the text and answer questions 14-26.</p>
+            </div>
+            <div id="part-header-3" class="part-header hidden">
+                <p><strong>Part 3</strong></p>
+                <p>Read the text and answer questions 27-40.</p>
+            </div>
+        </div>
+        <div class="panels-container">
+            <div class="passage-panel" id="passage-panel">
+                <!-- Passage 1: Classifying Societies -->
+                <div id="passage-text-1" class="reading-passage">
+                    <h4 class="text-center">Classifying Societies</h4>
+                    <p><strong>A</strong>&nbsp;&nbsp;Although humans have established many types of societies throughout history, sociologists and anthropologists tend to classify different societies according to the degree to which different groups within a society have unequal access to advantages such as resources, prestige or power, and usually refer to four basic types of societies. From least to most socially complex they are clans, tribes, chiefdoms and states.</p>
+                    <p><strong>B</strong>&nbsp;&nbsp;<strong>Clan</strong> – These are small-scale societies of hunters and gatherers, generally of fewer than 100 people, who move seasonally to exploit wild (undomesticated) food resources. Most surviving hunter-gatherer groups are of this kind, such as the Hadza of Tanzania or the San of southern Africa. Clan members are generally kinsfolk, related by descent or marriage. Clans lack formal leaders, so there are no marked economic differences or disparities in status among their members.</p>
+                    <p><strong>C</strong>&nbsp;&nbsp;Because clans are composed of mobile groups of hunter-gatherers, their sites consist mainly of seasonally occupied camps, and other smaller and more specialised sites. Among the latter are kill or butchery sites—locations where large mammals are killed and sometimes butchered — and work sites, where tools are made or other specific activities carried out. The base camp of such a group may give evidence of rather insubstantial dwellings or temporary shelters, along with the debris of residential occupation.</p>
+                    <p><strong>D</strong>&nbsp;&nbsp;<strong>Tribe</strong> – These are generally larger than mobile hunter-gatherer groups, but rarely number more than a few thousand, and their diet or subsistence is based largely on cultivated plants and domesticated animals. Typically, they are settled farmers, but they may be nomadic with a very different, mobile economy based on the intensive exploitation of livestock. These are generally multi-community societies, with the individual communities integrated into the larger society through kinship ties. Although some tribes have officials and even a "capital" or seat of government, such officials lack the economic base necessary for effective use of power.</p>
+                    <p><strong>E</strong>&nbsp;&nbsp;The typical settlement pattern for tribes is one of settled agricultural homesteads or villages. Characteristically, no one settlement dominates any of the others in the region. Instead, the archaeologist finds evidence for isolated, permanently occupied houses or for permanent villages. Such villages may be made up of a collection of free-standing houses, like those of the first farms of the Danube valley in Europe. Or they may be clusters of buildings grouped together, for example, the pueblos of the American Southwest, and the early farming village or small town of Çatalhöyük in modern Turkey.</p>
+                    <p><strong>F</strong>&nbsp;&nbsp;<strong>Chiefdom</strong> – These operate on the principle of ranking—differences in social status between people. Different lineages (a lineage is a group claiming descent from a common ancestor) are graded on a scale of prestige, and the senior lineage, and hence the society as a whole, is governed by a chief. Prestige and rank are determined by how closely related one is to the chief, and there is no true stratification into classes. The role of the chief is crucial.</p>
+                    <p><strong>G</strong>&nbsp;&nbsp;Often, there is local specialisation in craft products, and surpluses of these and of foodstuffs are periodically paid as obligation to the chief. He uses these to maintain his retainers, and may use them for redistribution to his subjects. The chiefdom generally has a center of power, often with temples, residences of the chief and his retainers, and craft specialists. Chiefdoms vary greatly in size, but the range is generally between about 5000 and 20,000 persons.</p>
+                    <p><strong>H</strong>&nbsp;&nbsp;<strong>Early State</strong> – These preserve many of the features of chiefdoms, but the ruler (perhaps a king or sometimes a queen) has explicit authority to establish laws and also to enforce them by the use of a standing army. Society no longer depends totally upon kin relationships: it is now stratified into different classes. Agricultural workers and the poorer urban dwellers form the lowest classes, with the craft specialists above, and the priests and kinsfolk of the ruler higher still. The functions of the ruler are often separated from those of the priest: palace is distinguished from temple. The society is viewed as a territory owned by the ruling lineage and populated by tenants who have an obligation to pay taxes.</p>
+                    <p><strong>I</strong>&nbsp;&nbsp;The central capital houses a bureaucratic administration of officials; one of their principal purposes is to collect revenue (often in the form of taxes and tolls) and distribute it to government, army and craft specialists. Many early states developed complex redistribution systems to support these essential services.</p>
+                    <p><strong>J</strong>&nbsp;&nbsp;This rather simple social typology, set out by Elman Service and elaborated by William Sanders and Joseph Marino, can be criticised, and it should not be used unthinkingly. Nevertheless, if we are seeking to talk about early societies, we must use words and hence concepts to do so. Service's categories provide a good framework to help organise our thoughts.</p>
+                </div>
+
+                <!-- Passage 2: From A Novice to An Expert -->
+                <div id="passage-text-2" class="reading-passage hidden">
+                    <h4 class="text-center">From A Novice to An Expert</h4>
+                    <p><strong>A</strong>&nbsp;&nbsp;Expertise is commitment coupled with creativity. Specifically, it is the commitment of time, energy, and resources to a relatively narrow field of study and the creative energy necessary to generate new knowledge in that field. It takes a considerable amount of time and regular exposure to a large number of cases to become an expert.</p>
+                    <p><strong>B</strong>&nbsp;&nbsp;An individual enters a field of study as a novice. The novice needs to learn the guiding principles and rules of a given task in order to perform that task. Concurrently, the novice needs to be exposed to specific cases, or instances, that test the boundaries of such principles. Generally, a novice will find a mentor to guide her through the process of acquiring new knowledge. A fairly simple example would be someone learning to play chess. The novice chess player seeks a mentor to teach her the object of the game, the number of spaces, the names of the pieces, the function of each piece, how each piece is moved, and the necessary conditions for winning, or losing the game.</p>
+                    <p><strong>C</strong>&nbsp;&nbsp;In time, and with much practice, the novice begins to recognise patterns of behavior within cases and, thus, becomes a journeyman. With more practice and exposure to increasingly complex cases, the journeyman finds patterns not only within cases but also between cases. More importantly, the journeyman learns that these patterns often repeat themselves over time. The journeyman still maintains regular contact with a mentor to solve specific problems and learn more complex strategies. Returning to the example of the chess player, the individual begins to learn patterns of opening moves, offensive and defensive game-playing, strategies, and patterns of victory and defeat.</p>
+                    <p><strong>D</strong>&nbsp;&nbsp;When a journeyman starts to make and test hypotheses about future behavior based on past experiences, she begins the next transition. Once she creatively generates knowledge, rather than simply matching superficial patterns, she becomes an expert. At this point, she is confident in her knowledge and no longer needs a mentor as a guide she becomes responsible for her own knowledge. In the chess example, once a journeyman begins competing against experts, makes predictions based on patterns, and tests those predictions against actual behavior, she is generating new knowledge and a deeper understanding of the game. She is creating her own case, rather than relying on the cases of others.</p>
+                    <p><strong>E</strong>&nbsp;&nbsp;<strong>The Power of Expertise</strong> – An expert perceives meaningful patterns in her domain better than non-experts. Where a novice perceives random or disconnected data points, an expert connects regular patterns within and between cases. This ability to identify patterns is not an innate perceptual skill; rather it reflects the organisation of knowledge after exposure to and experience with thousands of cases.</p>
+                    <p><strong>F</strong>&nbsp;&nbsp;Experts have a deeper understanding of their domains than novices do, and utilise higher-order principles to solve problems. A novice, for example, might group objects together by color or size, whereas an expert would group the same objects according to their function or utility. Experts comprehend the meaning of data and weigh variables with different criteria within their domains better than novices. Experts recognise variables that have the largest influence on a particular problem and focus their attention on those variables.</p>
+                    <p><strong>G</strong>&nbsp;&nbsp;Experts have better domain-specific short-term and long-term memory than novices do. Moreover, experts perform tasks in their domains faster than novices and commit fewer errors while problem solving. Interestingly, experts go about solving problems differently than novices. Experts spend more time thinking about a problem to fully understand it at the beginning of a task than do novices, who immediately seek to find a solution. Experts use their knowledge of previous cases as context for creating mental models to solve given problems.</p>
+                    <p><strong>H</strong>&nbsp;&nbsp;Better at self-monitoring than novices, experts are more aware of instances where they have committed errors or failed to understand a problem. Experts check their solutions more often than novices and recognise when they are missing information necessary for solving a problem. Experts are aware of the limits of their domain knowledge and apply their domain's heuristics to solve problems that fall outside of their experience base.</p>
+                    <p><strong>I</strong>&nbsp;&nbsp;<strong>The Paradox of Expertise</strong> – The strengths of expertise can also be weaknesses. Although one would expect experts to be good forecasters, they are not particularly good at making predictions about the future. Since the 1930s, researchers have been testing the ability of experts to make forecasts. The performance of experts has been tested against actuarial tables to determine if they are better at making predictions than simple statistical models. Seventy years later, with more than two hundred experiments in different domains, it is clear that the answer is no.</p>
+                    <p><strong>J</strong>&nbsp;&nbsp;If supplied with an equal amount of data about a particular case, an actuarial table is as good, or better, than an expert at making calls about the future. Even if an expert is given more specific case information than is available to the statistical model, the expert does not tend to outperform the actuarial table.</p>
+                    <p><strong>K</strong>&nbsp;&nbsp;Theorists and researchers differ when trying to explain why experts are less accurate forecasters than statistical models. Some have argued that experts, like all humans, are inconsistent when using mental models to make predictions. That is, the model an expert uses for predicting X in one month is different from the model used for predicting X in a following month, although precisely the same case and same data set are used in both instances.</p>
+                    <p><strong>L</strong>&nbsp;&nbsp;A number of researchers point to human biases to explain unreliable expert predictions. During the last 30 years, researchers have categorised, experimented, and theorised about the cognitive aspects of forecasting. Despite such efforts, the literature shows little consensus regarding the causes or manifestations of human bias.</p>
+                </div>
+
+                <!-- Passage 3: Accidental Scientists -->
+                <div id="passage-text-3" class="reading-passage hidden">
+                    <h4 class="text-center">Accidental Scientists</h4>
+                    <p><strong>A</strong>&nbsp;&nbsp;A paradox lies close to the heart of scientific discovery. If you know just what you are looking for, finding it can hardly count as a discovery, since it was fully anticipated. But if, on the other hand, you have no notion of what you are looking for, you cannot know when you have found it, and discovery, as such, is out of the question. In the philosophy of science, these extremes map onto the purist forms of deductivism and inductivism: In the former, the outcome is supposed to be logically contained in the premises you start with; in the latter, you are recommended to start with no expectations whatsoever and see what turns up.</p>
+                    <p><strong>B</strong>&nbsp;&nbsp;As in so many things, the ideal position is widely supposed to reside somewhere in between these two impossible-to-realise extremes. You want to have a good enough idea of what you are looking for to be surprised when you find something else of value, and you want to be ignorant enough of your end point that you can entertain alternative outcomes. Scientific discovery should, therefore, have an accidental aspect, but not too much of one. Serendipity is a word that expresses a position something like that. It's a fascinating word, and the late Robert King Merton—"the father of the sociology of science"—liked it well enough to compose its biography, assisted by the French cultural historian Elinor Barber.</p>
+                    <p><strong>C</strong>&nbsp;&nbsp;The word did not appear in the published literature until the early 19th century and did not become well enough known to use without explanation until sometime in the first third of the 20th century. Serendipity means a "happy accident" or "pleasant surprise", specifically, the accident of finding something good or useful without looking for it. The first noted use of "serendipity" in the English language was by Horace Walpole. He explained that it came from the fairy tale, called The Three Princes of Serendip (the ancient name for Ceylon, or present day Sri Lanka), whose heroes "were always making discoveries, by accidents and sagacity, of things which they were not in quest of".</p>
+                    <p><strong>D</strong>&nbsp;&nbsp;Antiquarians, following Walpole, found use for it, as they were always rummaging about for curiosities, and unexpected but pleasant surprises were not unknown to them. Some people just seemed to have a knack for that sort of thing, and serendipity was used to express that special capacity. The other community that came to dwell on serendipity to say something important about their practice was that of scientists, and here usages cut to the heart of the matter and were often vigorously contested.</p>
+                    <p><strong>E</strong>&nbsp;&nbsp;Many scientists, including the Harvard physiologist Walter Cannon and, later, the British immunologist Peter Medawar, liked to emphasise how much of scientific discovery was unplanned and even accidental. One of the examples is Hans Christian Ørsted's discovery of electromagnetism when he unintentionally brought a current-carrying wire parallel to a magnetic needle. Rhetoric about the sufficiency of rational method was so much hot air. Indeed, as Medawar insisted, "There is no such thing as The Scientific Method," no way at all of systematising the process of discovery. Really important discoveries had a way of showing up when they had a mind to do so and not when you were looking for them. Maybe some scientists, like some book collectors, had a happy knack; maybe serendipity described the situation rather than a personal skill or capacity.</p>
+                    <p><strong>F</strong>&nbsp;&nbsp;Some scientists using the word meant to stress those accidents belonging to the situation; some treated serendipity as a personal capacity; many others exploited the ambiguity of the notion. Yet what Cannon and Medawar took as a benign nose-thumbing at Dreams of Method, other scientists found incendiary. To say that science had a significant serendipitous aspect was taken by some as dangerous denigration. If scientific discovery were really accidental, then what was the special basis of expert authority?</p>
+                    <p><strong>G</strong>&nbsp;&nbsp;In this connection, the aphorism of choice came from no less an authority on scientific discovery than Louis Pasteur: "Chance favors the prepared mind." Accidents may happen, and things may turn up unplanned and unforeseen, as one is looking for something else, but the ability to notice such events, to see their potential bearing and meaning, to exploit their occurrence and make constructive use of them—these are the results of systematic mental preparation. What seems like an accident is just another form of expertise. On closer inspection, it is insisted, accident dissolves into sagacity.</p>
+                    <p><strong>H</strong>&nbsp;&nbsp;The context in which scientific serendipity was most contested and had its greatest resonance was that connected with the idea of planned science. The serendipitists were not all inhabitants of academic ivory towers. As Merton and Barber note, two of the great early-20th century American pioneers of industrial research—Willis Whitney and Irving Langmuir, both of General Electric—made much play of serendipity, in the course of arguing against overly rigid research planning.</p>
+                    <p><strong>I</strong>&nbsp;&nbsp;Langmuir thought that misconceptions about the certainty and rationality of the research process did much harm and that a mature acceptance of uncertainty was far more likely to result in productive research policies. For his own part, Langmuir said that satisfactory outcomes "occurred as though we were just drifting with the wind. These things came about by accident." If there is no very determinate relationship between cause and effect in research, he said, "then planning does not get us very far." So, from within the bowels of corporate capitalism came powerful arguments, by way of serendipity, for scientific spontaneity and autonomy. The notion that industry was invariably committed to the regimentation of scientific research just doesn't wash.</p>
+                    <p><strong>J</strong>&nbsp;&nbsp;For Merton himself—who one supposes must have been the senior author – serendipity represented the keystone in the arch of his social scientific work. In 1936, as a very young man, Merton wrote a seminal essay on "The Unanticipated Consequences of Purposive Social Action." It is, he argued, the nature of social action that what one intends is rarely what one gets: Intending to provide resources for buttressing Christian religion, the natural philosophers of the Scientific Revolution laid the groundwork for secularism; people wanting to be alone with nature in Yosemite Valley wind up crowding one another.</p>
+                    <p><strong>K</strong>&nbsp;&nbsp;We just don't know enough—and we can never know enough—to ensure that the past is an adequate guide to the future: Uncertainty about outcomes, even of our best-laid plans, is endemic. All social action, including that undertaken with the best evidence and formulated according to the most rational criteria, is uncertain in its consequences.</p>
+                </div>
+            </div>
+            <div class="resizer" id="resizer"></div>
+            <div class="questions-panel" id="questions-panel">
+                <!-- Questions for Passage 1 -->
+                <div id="questions-1" class="question-set">
+                    <div class="question" data-q-start="1" data-q-end="7">
+                        <div class="question-prompt">
+                            <p><strong>Questions 1-7</strong></p>
+                            <p>Do the following statements agree with the information given in Reading Passage 1?</p>
+                            <p>In boxes 1-7 on your answer sheet, write</p>
+                            <p><strong>TRUE</strong> if the statement agrees with the information</p>
+                            <p><strong>FALSE</strong> if the statement contradicts the information</p>
+                            <p><strong>NOT GIVEN</strong> if there is no information on this</p>
+                        </div>
+                        <div class="tf-question" data-q-start="1" data-q-end="1">
+                            <div class="tf-question-line">
+                                <span class="tf-question-number">1</span>
+                                <span class="tf-question-text">There's little economic difference between members of a clan.</span>
+                                <select name="q1" id="q1" class="answer-select">
+                                    <option value="">Choose...</option>
+                                    <option value="TRUE">TRUE</option>
+                                    <option value="FALSE">FALSE</option>
+                                    <option value="NOT GIVEN">NOT GIVEN</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="tf-question" data-q-start="2" data-q-end="2">
+                            <div class="tf-question-line">
+                                <span class="tf-question-number">2</span>
+                                <span class="tf-question-text">The farmers of a tribe grow a wide range of plants.</span>
+                                <select name="q2" id="q2" class="answer-select">
+                                    <option value="">Choose...</option>
+                                    <option value="TRUE">TRUE</option>
+                                    <option value="FALSE">FALSE</option>
+                                    <option value="NOT GIVEN">NOT GIVEN</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="tf-question" data-q-start="3" data-q-end="3">
+                            <div class="tf-question-line">
+                                <span class="tf-question-number">3</span>
+                                <span class="tf-question-text">One settlement is more important than any other settlements in a tribe.</span>
+                                <select name="q3" id="q3" class="answer-select">
+                                    <option value="">Choose...</option>
+                                    <option value="TRUE">TRUE</option>
+                                    <option value="FALSE">FALSE</option>
+                                    <option value="NOT GIVEN">NOT GIVEN</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="tf-question" data-q-start="4" data-q-end="4">
+                            <div class="tf-question-line">
+                                <span class="tf-question-number">4</span>
+                                <span class="tf-question-text">A member's status in a chiefdom is determined by how much land he owns.</span>
+                                <select name="q4" id="q4" class="answer-select">
+                                    <option value="">Choose...</option>
+                                    <option value="TRUE">TRUE</option>
+                                    <option value="FALSE">FALSE</option>
+                                    <option value="NOT GIVEN">NOT GIVEN</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="tf-question" data-q-start="5" data-q-end="5">
+                            <div class="tf-question-line">
+                                <span class="tf-question-number">5</span>
+                                <span class="tf-question-text">There are people who craft goods in chiefdoms.</span>
+                                <select name="q5" id="q5" class="answer-select">
+                                    <option value="">Choose...</option>
+                                    <option value="TRUE">TRUE</option>
+                                    <option value="FALSE">FALSE</option>
+                                    <option value="NOT GIVEN">NOT GIVEN</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="tf-question" data-q-start="6" data-q-end="6">
+                            <div class="tf-question-line">
+                                <span class="tf-question-number">6</span>
+                                <span class="tf-question-text">The king keeps the order of a state by using an army.</span>
+                                <select name="q6" id="q6" class="answer-select">
+                                    <option value="">Choose...</option>
+                                    <option value="TRUE">TRUE</option>
+                                    <option value="FALSE">FALSE</option>
+                                    <option value="NOT GIVEN">NOT GIVEN</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="tf-question" data-q-start="7" data-q-end="7">
+                            <div class="tf-question-line">
+                                <span class="tf-question-number">7</span>
+                                <span class="tf-question-text">Bureaucratic officers receive higher salaries than other members.</span>
+                                <select name="q7" id="q7" class="answer-select">
+                                    <option value="">Choose...</option>
+                                    <option value="TRUE">TRUE</option>
+                                    <option value="FALSE">FALSE</option>
+                                    <option value="NOT GIVEN">NOT GIVEN</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="question" data-q-start="8" data-q-end="13">
+                        <div class="question-prompt">
+                            <p><strong>Questions 8-13</strong></p>
+                            <p>Answer the questions below.</p>
+                            <p>Choose <strong>NO MORE THAN TWO WORDS OR/AND A NUMBER</strong> from the passage for each answer.</p>
+                            <p>Write your answers in boxes 8-13 on your answer sheet.</p>
+                        </div>
+                        <div class="summary-text">
+                            <p><strong>8</strong> What are made at the clan work sites? <input type="text" class="answer-input" id="q8" placeholder="Answer 8"></p>
+                            <p><strong>9</strong> What is the other way of life for tribes besides settled farming? <input type="text" class="answer-input" id="q9" placeholder="Answer 9"></p>
+                            <p><strong>10</strong> How are Catalhoyuk's housing units arranged? <input type="text" class="answer-input" id="q10" placeholder="Answer 10"></p>
+                            <p><strong>11</strong> What does a chief give to his subjects as rewards besides crafted goods? <input type="text" class="answer-input" id="q11" placeholder="Answer 11"></p>
+                            <p><strong>12</strong> What is the largest possible population of a chiefdom? <input type="text" class="answer-input" id="q12" placeholder="Answer 12"></p>
+                            <p><strong>13</strong> Which group of people is at the bottom of an early state but higher than the farmers? <input type="text" class="answer-input" id="q13" placeholder="Answer 13"></p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Questions for Passage 2 -->
+                <div id="questions-2" class="question-set hidden">
+                    <div class="question" data-q-start="14" data-q-end="19">
+                        <div class="question-prompt">
+                            <p><strong>Questions 14-19</strong></p>
+                            <p>Complete the flow-chart below.</p>
+                            <p>Choose <strong>NO MORE THAN THREE WORDS</strong> from the passage for each answer.</p>
+                            <p>Write your answers in boxes 14-19 on your answer sheet.</p>
+                        </div>
+                        <div class="flow-chart">
+                            <div class="flow-chart-step">
+                                <div class="flow-chart-label">Novice:</div>
+                                <div class="flow-chart-content">
+                                    needs <input type="text" class="answer-input flow-chart-input" id="q14" placeholder="14"> and <input type="text" class="answer-input flow-chart-input" id="q15" placeholder="15"> to perform a given task;
+                                    exposed to specific cases;
+                                    guided by a <input type="text" class="answer-input flow-chart-input" id="q16" placeholder="16"> through learning
+                                </div>
+                            </div>
+                            <div class="flow-chart-arrow">↓</div>
+                            <div class="flow-chart-step">
+                                <div class="flow-chart-label">Journeyman:</div>
+                                <div class="flow-chart-content">
+                                    starts to identify <input type="text" class="answer-input flow-chart-input" id="q17" placeholder="17"> within and between cases;
+                                    often exposed to <input type="text" class="answer-input flow-chart-input" id="q18" placeholder="18"> cases;
+                                    contacts a mentor when facing difficult problems
+                                </div>
+                            </div>
+                            <div class="flow-chart-arrow">↓</div>
+                            <div class="flow-chart-step">
+                                <div class="flow-chart-label">Expert:</div>
+                                <div class="flow-chart-content">
+                                    creates predictions and new <input type="text" class="answer-input flow-chart-input" id="q19" placeholder="19">;
+                                    performs task independently without the help of a mentor
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="question" data-q-start="20" data-q-end="23">
+                        <div class="question-prompt">
+                            <p><strong>Questions 20-23</strong></p>
+                            <p>Do the following statements agree with the information given in Reading Passage 2?</p>
+                            <p>In boxes 20-23 on your answer sheet, write</p>
+                            <p><strong>TRUE</strong> if the statement agrees with the information</p>
+                            <p><strong>FALSE</strong> if the statement contradicts the information</p>
+                            <p><strong>NOT GIVEN</strong> if there is no information on this</p>
+                        </div>
+                        <div class="tf-question" data-q-start="20" data-q-end="20">
+                            <div class="tf-question-line">
+                                <span class="tf-question-number">20</span>
+                                <span class="tf-question-text">Novices and experts use the same system to classify objects.</span>
+                                <select name="q20" id="q20" class="answer-select">
+                                    <option value="">Choose...</option>
+                                    <option value="TRUE">TRUE</option>
+                                    <option value="FALSE">FALSE</option>
+                                    <option value="NOT GIVEN">NOT GIVEN</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="tf-question" data-q-start="21" data-q-end="21">
+                            <div class="tf-question-line">
+                                <span class="tf-question-number">21</span>
+                                <span class="tf-question-text">A novice's training is focused on memory skills.</span>
+                                <select name="q21" id="q21" class="answer-select">
+                                    <option value="">Choose...</option>
+                                    <option value="TRUE">TRUE</option>
+                                    <option value="FALSE">FALSE</option>
+                                    <option value="NOT GIVEN">NOT GIVEN</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="tf-question" data-q-start="22" data-q-end="22">
+                            <div class="tf-question-line">
+                                <span class="tf-question-number">22</span>
+                                <span class="tf-question-text">Experts have higher efficiency than novices when solving problems in their own field.</span>
+                                <select name="q22" id="q22" class="answer-select">
+                                    <option value="">Choose...</option>
+                                    <option value="TRUE">TRUE</option>
+                                    <option value="FALSE">FALSE</option>
+                                    <option value="NOT GIVEN">NOT GIVEN</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="tf-question" data-q-start="23" data-q-end="23">
+                            <div class="tf-question-line">
+                                <span class="tf-question-number">23</span>
+                                <span class="tf-question-text">Experts are better at recognising their own mistakes and limits.</span>
+                                <select name="q23" id="q23" class="answer-select">
+                                    <option value="">Choose...</option>
+                                    <option value="TRUE">TRUE</option>
+                                    <option value="FALSE">FALSE</option>
+                                    <option value="NOT GIVEN">NOT GIVEN</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="question" data-q-start="24" data-q-end="26">
+                        <div class="question-prompt">
+                            <p><strong>Questions 24-26</strong></p>
+                            <p>Complete the summary below.</p>
+                            <p>Choose <strong>NO MORE THAN TWO WORDS</strong> from the passage for each answer.</p>
+                            <p>Write your answers in boxes 24-26 on your answer sheet.</p>
+                        </div>
+                        <div class="summary-text">
+                            <p>Though experts are quite effective at solving problems in their own domains, their strengths can also be turned against them. Studies have shown that experts are less <input type="text" class="answer-input" id="q24" placeholder="24"> at making predictions than statistical models. Some researchers theorise it is because experts can also be inconsistent like all others. Yet some believe it is due to <input type="text" class="answer-input" id="q25" placeholder="25">, but there isn't a great deal of <input type="text" class="answer-input" id="q26" placeholder="26"> as to its cause and manifestation.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Questions for Passage 3 -->
+                <div id="questions-3" class="question-set hidden">
+                    <div class="question" data-q-start="27" data-q-end="32">
+                        <div class="question-prompt">
+                            <p><strong>Questions 27-32</strong></p>
+                            <p>Reading Passage 3 has seven paragraphs, A-G.</p>
+                            <p>Choose the most suitable heading for paragraphs A-G from the list of headings below.</p>
+                            <p>Write the appropriate number, i-x, in boxes 27-32 on your answer sheet.</p>
+                        </div>
+                        <div class="headings-matching-container">
+                            <p><strong>List of Headings</strong></p>
+                            <div class="headings-options-bank" data-dnd-group="p3-headings">
+                                <span class="drag-item" draggable="true" data-dnd-group="p3-headings" data-value="i">i. Examples of some scientific discoveries</span>
+                                <span class="drag-item" draggable="true" data-dnd-group="p3-headings" data-value="ii">ii. Horace Walpole's fairy tale</span>
+                                <span class="drag-item" draggable="true" data-dnd-group="p3-headings" data-value="iii">iii. Resolving the contradiction</span>
+                                <span class="drag-item" draggable="true" data-dnd-group="p3-headings" data-value="iv">iv. What is the Scientific Method</span>
+                                <span class="drag-item" draggable="true" data-dnd-group="p3-headings" data-value="v">v. The contradiction of views on scientific discovery</span>
+                                <span class="drag-item" draggable="true" data-dnd-group="p3-headings" data-value="vi">vi. Some misunderstandings of serendipity</span>
+                                <span class="drag-item" draggable="true" data-dnd-group="p3-headings" data-value="vii">vii. Opponents of authority</span>
+                                <span class="drag-item" draggable="true" data-dnd-group="p3-headings" data-value="viii">viii. Reality doesn't always match expectation</span>
+                                <span class="drag-item" draggable="true" data-dnd-group="p3-headings" data-value="ix">ix. How the word came into being</span>
+                                <span class="drag-item" draggable="true" data-dnd-group="p3-headings" data-value="x">x. Illustration of serendipity in the business sector</span>
+                            </div>
+                            
+                            <div class="headings-question" data-q-start="27" data-q-end="27">
+                                <p><strong>27</strong> Paragraph A: <span class="headings-drop-zone" data-q-start="27" data-dnd-group="p3-headings"></span></p>
+                            </div>
+                            <div class="headings-question" data-q-start="28" data-q-end="28">
+                                <p><strong>28</strong> Paragraph C: <span class="headings-drop-zone" data-q-start="28" data-dnd-group="p3-headings"></span></p>
+                            </div>
+                            <div class="headings-question" data-q-start="29" data-q-end="29">
+                                <p><strong>29</strong> Paragraph D: <span class="headings-drop-zone" data-q-start="29" data-dnd-group="p3-headings"></span></p>
+                            </div>
+                            <div class="headings-question" data-q-start="30" data-q-end="30">
+                                <p><strong>30</strong> Paragraph E: <span class="headings-drop-zone" data-q-start="30" data-dnd-group="p3-headings"></span></p>
+                            </div>
+                            <div class="headings-question" data-q-start="31" data-q-end="31">
+                                <p><strong>31</strong> Paragraph F: <span class="headings-drop-zone" data-q-start="31" data-dnd-group="p3-headings"></p>
+                            </div>
+                            <div class="headings-question" data-q-start="32" data-q-end="32">
+                                <p><strong>32</strong> Paragraph G: <span class="headings-drop-zone" data-q-start="32" data-dnd-group="p3-headings"></span></p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="question" data-q-start="33" data-q-end="37">
+                        <div class="question-prompt">
+                            <p><strong>Questions 33-37</strong></p>
+                            <p>Choose the correct letter, <strong>A, B, C or D</strong>.</p>
+                            <p>Write the correct letter in boxes 33-37 on your answer sheet.</p>
+                        </div>
+                        <div class="multi-choice-question" data-q-start="33" data-q-end="33">
+                            <div class="question-prompt">
+                                <p><strong>33.</strong> In paragraph A, the word "inductivism" means</p>
+                            </div>
+                            <div class="multi-choice-option"><label><input type="radio" name="q33" value="A"> anticipate results in the beginning.</label></div>
+                            <div class="multi-choice-option"><label><input type="radio" name="q33" value="B"> work with prepared premises.</label></div>
+                            <div class="multi-choice-option"><label><input type="radio" name="q33" value="C"> accept chance discoveries.</label></div>
+                            <div class="multi-choice-option"><label><input type="radio" name="q33" value="D"> look for what you want.</label></div>
+                        </div>
+                        <div class="multi-choice-question" data-q-start="34" data-q-end="34">
+                            <div class="question-prompt">
+                                <p><strong>34.</strong> Medawar says "there is no such thing as The Scientific Method" because</p>
+                            </div>
+                            <div class="multi-choice-option"><label><input type="radio" name="q34" value="A"> discoveries are made by people with determined mind.</label></div>
+                            <div class="multi-choice-option"><label><input type="radio" name="q34" value="B"> discoveries tend to happen unplanned.</label></div>
+                            <div class="multi-choice-option"><label><input type="radio" name="q34" value="C"> the process of discovery is unpleasant.</label></div>
+                            <div class="multi-choice-option"><label><input type="radio" name="q34" value="D"> serendipity is not a skill.</label></div>
+                        </div>
+                        <div class="multi-choice-question" data-q-start="35" data-q-end="35">
+                            <div class="question-prompt">
+                                <p><strong>35.</strong> Many scientists dislike the idea of serendipity because</p>
+                            </div>
+                            <div class="multi-choice-option"><label><input type="radio" name="q35" value="A"> it is easily misunderstood and abused.</label></div>
+                            <div class="multi-choice-option"><label><input type="radio" name="q35" value="B"> it is too unpredictable.</label></div>
+                            <div class="multi-choice-option"><label><input type="radio" name="q35" value="C"> it is beyond their comprehension.</label></div>
+                            <div class="multi-choice-option"><label><input type="radio" name="q35" value="D"> it devalues their scientific expertise.</label></div>
+                        </div>
+                        <div class="multi-choice-question" data-q-start="36" data-q-end="36">
+                            <div class="question-prompt">
+                                <p><strong>36.</strong> The writer mentions Irving Langmuir to illustrate</p>
+                            </div>
+                            <div class="multi-choice-option"><label><input type="radio" name="q36" value="A"> planned science should be avoided.</label></div>
+                            <div class="multi-choice-option"><label><input type="radio" name="q36" value="B"> industrial development needs uncertainty.</label></div>
+                            <div class="multi-choice-option"><label><input type="radio" name="q36" value="C"> people tend to misunderstand the relationship between cause and effect.</label></div>
+                            <div class="multi-choice-option"><label><input type="radio" name="q36" value="D"> accepting uncertainty can help produce positive results.</label></div>
+                        </div>
+                        <div class="multi-choice-question" data-q-start="37" data-q-end="37">
+                            <div class="question-prompt">
+                                <p><strong>37.</strong> The example of Yosemite is to show</p>
+                            </div>
+                            <div class="multi-choice-option"><label><input type="radio" name="q37" value="A"> the conflict between reality and expectation.</label></div>
+                            <div class="multi-choice-option"><label><input type="radio" name="q37" value="B"> the importance of systematic planning.</label></div>
+                            <div class="multi-choice-option"><label><input type="radio" name="q37" value="C"> the intention of social action.</label></div>
+                            <div class="multi-choice-option"><label><input type="radio" name="q37" value="D"> the power of anticipation.</label></div>
+                        </div>
+                    </div>
+
+                    <div class="question" data-q-start="38" data-q-end="40">
+                        <div class="question-prompt">
+                            <p><strong>Questions 38-40</strong></p>
+                            <p>Answer the questions below.</p>
+                            <p>Choose <strong>NO MORE THAN TWO WORDS</strong> from the passage for each answer.</p>
+                            <p>Write your answers in boxes 38-40 on your answer sheet.</p>
+                        </div>
+                        <div class="summary-text">
+                            <p><strong>38</strong> Who is the person that first used the word "serendipity"? <input type="text" class="answer-input" id="q38" placeholder="Answer 38"></p>
+                            <p><strong>39</strong> What kind of story does the word come from? <input type="text" class="answer-input" id="q39" placeholder="Answer 39"></p>
+                            <p><strong>40</strong> What is the present name of serendip? <input type="text" class="answer-input" id="q40" placeholder="Answer 40"></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navigation Arrows -->
+    <div class="nav-arrows">
+        <button class="nav-arrow prev" onclick="previousQuestion()" id="prevBtn" aria-label="Previous question">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M15 18l-6-6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+        </button>
+        <button class="nav-arrow next" onclick="nextQuestion()" id="nextBtn" aria-label="Next question">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M9 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+        </button>
+    </div>
+
+    <!-- Bottom Navigation -->
+    <nav class="nav-row perScorableItem" aria-label="Questions">
+        <div class="footer__questionWrapper___1tZ46 selected multiple" role="tablist">
+            <button role="tab" class="footer__questionNo___3WNct" onclick="switchToPart(1)">
+                <span>
+                    <span aria-hidden="true" class="section-prefix">Part </span>
+                    <span class="sectionNr" aria-hidden="true">1</span>
+                    <span class="attemptedCount" aria-hidden="true">0 of 13</span>
+                </span>
+            </button>
+            <div class="footer__subquestionWrapper___9GgoP">
+                <button class="subQuestion scorable-item" onclick="goToQuestion(1)"><span class="sr-only">Question 1</span><span aria-hidden="true">1</span></button>
+                <button class="subQuestion scorable-item" onclick="goToQuestion(2)"><span class="sr-only">Question 2</span><span aria-hidden="true">2</span></button>
+                <button class="subQuestion scorable-item" onclick="goToQuestion(3)"><span class="sr-only">Question 3</span><span aria-hidden="true">3</span></button>
+                <button class="subQuestion scorable-item" onclick="goToQuestion(4)"><span class="sr-only">Question 4</span><span aria-hidden="true">4</span></button>
+                <button class="subQuestion scorable-item" onclick="goToQuestion(5)"><span class="sr-only">Question 5</span><span aria-hidden="true">5</span></button>
+                <button class="subQuestion scorable-item" onclick="goToQuestion(6)"><span class="sr-only">Question 6</span><span aria-hidden="true">6</span></button>
+                <button class="subQuestion scorable-item" onclick="goToQuestion(7)"><span class="sr-only">Question 7</span><span aria-hidden="true">7</span></button>
+                <button class="subQuestion scorable-item" onclick="goToQuestion(8)"><span class="sr-only">Question 8</span><span aria-hidden="true">8</span></button>
+                <button class="subQuestion scorable-item" onclick="goToQuestion(9)"><span class="sr-only">Question 9</span><span aria-hidden="true">9</span></button>
+                <button class="subQuestion scorable-item" onclick="goToQuestion(10)"><span class="sr-only">Question 10</span><span aria-hidden="true">10</span></button>
+                <button class="subQuestion scorable-item" onclick="goToQuestion(11)"><span class="sr-only">Question 11</span><span aria-hidden="true">11</span></button>
+                <button class="subQuestion scorable-item" onclick="goToQuestion(12)"><span class="sr-only">Question 12</span><span aria-hidden="true">12</span></button>
+                <button class="subQuestion scorable-item" onclick="goToQuestion(13)"><span class="sr-only">Question 13</span><span aria-hidden="true">13</span></button>
+            </div>
+        </div>
+        
+        <div class="footer__questionWrapper___1tZ46 multiple" role="tablist">
+            <button role="tab" class="footer__questionNo___3WNct" onclick="switchToPart(2)">
+                <span>
+                    <span aria-hidden="true" class="section-prefix">Part </span>
+                    <span class="sectionNr" aria-hidden="true">2</span>
+                    <span class="attemptedCount" aria-hidden="true">0 of 13</span>
+                </span>
+            </button>
+            <div class="footer__subquestionWrapper___9GgoP">
+                <button class="subQuestion scorable-item" onclick="goToQuestion(14)"><span class="sr-only">Question 14</span><span aria-hidden="true">14</span></button>
+                <button class="subQuestion scorable-item" onclick="goToQuestion(15)"><span class="sr-only">Question 15</span><span aria-hidden="true">15</span></button>
+                <button class="subQuestion scorable-item" onclick="goToQuestion(16)"><span class="sr-only">Question 16</span><span aria-hidden="true">16</span></button>
+                <button class="subQuestion scorable-item" onclick="goToQuestion(17)"><span class="sr-only">Question 17</span><span aria-hidden="true">17</span></button>
+                <button class="subQuestion scorable-item" onclick="goToQuestion(18)"><span class="sr-only">Question 18</span><span aria-hidden="true">18</span></button>
+                <button class="subQuestion scorable-item" onclick="goToQuestion(19)"><span class="sr-only">Question 19</span><span aria-hidden="true">19</span></button>
+                <button class="subQuestion scorable-item" onclick="goToQuestion(20)"><span class="sr-only">Question 20</span><span aria-hidden="true">20</span></button>
+                <button class="subQuestion scorable-item" onclick="goToQuestion(21)"><span class="sr-only">Question 21</span><span aria-hidden="true">21</span></button>
+                <button class="subQuestion scorable-item" onclick="goToQuestion(22)"><span class="sr-only">Question 22</span><span aria-hidden="true">22</span></button>
+                <button class="subQuestion scorable-item" onclick="goToQuestion(23)"><span class="sr-only">Question 23</span><span aria-hidden="true">23</span></button>
+                <button class="subQuestion scorable-item" onclick="goToQuestion(24)"><span class="sr-only">Question 24</span><span aria-hidden="true">24</span></button>
+                <button class="subQuestion scorable-item" onclick="goToQuestion(25)"><span class="sr-only">Question 25</span><span aria-hidden="true">25</span></button>
+                <button class="subQuestion scorable-item" onclick="goToQuestion(26)"><span class="sr-only">Question 26</span><span aria-hidden="true">26</span></button>
+            </div>
+        </div>
+        
+        <div class="footer__questionWrapper___1tZ46 multiple" role="tablist">
+            <button role="tab" class="footer__questionNo___3WNct" onclick="switchToPart(3)">
+                <span>
+                    <span aria-hidden="true" class="section-prefix">Part </span>
+                    <span class="sectionNr" aria-hidden="true">3</span>
+                    <span class="attemptedCount" aria-hidden="true">0 of 14</span>
+                </span>
+            </button>
+            <div class="footer__subquestionWrapper___9GgoP">
+                <button class="subQuestion scorable-item" onclick="goToQuestion(27)"><span class="sr-only">Question 27</span><span aria-hidden="true">27</span></button>
+                <button class="subQuestion scorable-item" onclick="goToQuestion(28)"><span class="sr-only">Question 28</span><span aria-hidden="true">28</span></button>
+                <button class="subQuestion scorable-item" onclick="goToQuestion(29)"><span class="sr-only">Question 29</span><span aria-hidden="true">29</span></button>
+                <button class="subQuestion scorable-item" onclick="goToQuestion(30)"><span class="sr-only">Question 30</span><span aria-hidden="true">30</span></button>
+                <button class="subQuestion scorable-item" onclick="goToQuestion(31)"><span class="sr-only">Question 31</span><span aria-hidden="true">31</span></button>
+                <button class="subQuestion scorable-item" onclick="goToQuestion(32)"><span class="sr-only">Question 32</span><span aria-hidden="true">32</span></button>
+                <button class="subQuestion scorable-item" onclick="goToQuestion(33)"><span class="sr-only">Question 33</span><span aria-hidden="true">33</span></button>
+                <button class="subQuestion scorable-item" onclick="goToQuestion(34)"><span class="sr-only">Question 34</span><span aria-hidden="true">34</span></button>
+                <button class="subQuestion scorable-item" onclick="goToQuestion(35)"><span class="sr-only">Question 35</span><span aria-hidden="true">35</span></button>
+                <button class="subQuestion scorable-item" onclick="goToQuestion(36)"><span class="sr-only">Question 36</span><span aria-hidden="true">36</span></button>
+                <button class="subQuestion scorable-item" onclick="goToQuestion(37)"><span class="sr-only">Question 37</span><span aria-hidden="true">37</span></button>
+                <button class="subQuestion scorable-item" onclick="goToQuestion(38)"><span class="sr-only">Question 38</span><span aria-hidden="true">38</span></button>
+                <button class="subQuestion scorable-item" onclick="goToQuestion(39)"><span class="sr-only">Question 39</span><span aria-hidden="true">39</span></button>
+                <button class="subQuestion scorable-item" onclick="goToQuestion(40)"><span class="sr-only">Question 40</span><span aria-hidden="true">40</span></button>
+            </div>
+        </div>
+        
+        <button id="deliver-button" aria-label="Review your answers" class="footer__deliverButton___3FM07">
+            <i class="fa fa fa-check" aria-hidden="true"></i>
+            <span>Check Answers</span>
+        </button>
+    </nav>
+
+    <!-- Context Menu -->
+    <div id="contextMenu" class="context-menu">
+        <div id="menu-highlight" class="context-menu-item" onclick="highlightText()">
+            Highlight
+        </div>
+        <div id="menu-note" class="context-menu-item" onclick="addNote()">
+            Note
+        </div>
+        <div id="menu-clear" class="context-menu-item" onclick="clearHighlight()">
+            Clear
+        </div>
+        <div id="menu-clear-all" class="context-menu-item" onclick="clearAllHighlights()">
+            Clear All
+        </div>
+    </div>
+
+    <div id="results-modal" class="modal-overlay hidden">
+        <div class="modal-content">
+            <button class="modal-close-btn" onclick="closeResultsModal()">&times;</button>
+            <h2>Results</h2>
+            <div class="results-summary">
+                <p>Score: <span id="results-score"></span> / 40</p>
+                <p>IELTS Band: <span id="results-band"></span></p>
+            </div>
+            <div id="results-details" class="results-details-container">
+                <!-- Results for each question will be injected here -->
+            </div>
+        </div>
+    </div>
+
+    <script>
+    document.addEventListener('DOMContentLoaded', () => {
+        // --- STATE VARIABLES ---
+        let currentPassage = 1;
+        let currentQuestion = 1;
+        let selectedRange = null;
+        let timeInSeconds = 3600;
+        let timerInterval;
+        let draggedItem = null;
+        let activeQuestionElement = null;
+
+        // --- DOM ELEMENTS ---
+        const timerDisplay = document.querySelector('.timer-display');
+        const timerToggleButton = document.getElementById('timer-toggle-btn');
+        const timerResetButton = document.getElementById('timer-reset-btn');
+        const deliverButton = document.getElementById('deliver-button');
+        const resizer = document.getElementById('resizer');
+        const passagePanel = document.getElementById('passage-panel');
+        const questionsPanel = document.getElementById('questions-panel');
+        const contextMenu = document.getElementById('contextMenu');
+
+        // --- ICON SVGs ---
+        const playIcon = '<svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M8 5v14l11-7L8 5z"/></svg>';
+        const pauseIcon = '<svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>';
+
+        // --- CORRECT ANSWERS ---
+        const correctAnswers = {
+            // Part 1: Classifying Societies (Questions 1-13)
+            '1': 'TRUE',
+            '2': 'NOT GIVEN',
+            '3': 'FALSE',
+            '4': 'FALSE',
+            '5': 'TRUE',
+            '6': 'TRUE',
+            '7': 'NOT GIVEN',
+            '8': 'tools',
+            '9': 'nomadic',
+            '10': ['clusters of buildings', 'clustered together', 'clusters', 'grouped together'],
+            '11': ['foodstuffs', 'surpluses of foodstuffs'],
+            '12': ['20,000', '20000'],
+            '13': ['poorer urban dwellers', 'urban dwellers'],
+            
+            // Part 2: From A Novice to An Expert (Questions 14-26)
+            '14': ['guiding principles', 'principles'],
+            '15': ['rules'],
+            '16': ['mentor'],
+            '17': ['patterns'],
+            '18': ['increasingly complex', 'complex'],
+            '19': ['knowledge'],
+            '20': 'FALSE',
+            '21': 'NOT GIVEN',
+            '22': 'TRUE',
+            '23': 'TRUE',
+            '24': ['accurate', 'good'],
+            '25': ['human biases', 'biases'],
+            '26': ['consensus'],
+            
+            // Part 3: Accidental Scientists (Questions 27-40)
+            '27': 'v',
+            '28': 'ix',
+            '29': 'i',
+            '30': 'vi',
+            '31': 'x',
+            '32': 'viii',
+            '33': 'C',
+            '34': 'B',
+            '35': 'D',
+            '36': 'D',
+            '37': 'A',
+            '38': ['Horace Walpole'],
+            '39': ['fairy tale'],
+            '40': ['Sri Lanka']
+        };
+
+        // --- INITIALIZATION ---
+        function initialize() {
+            console.log(`🚀 Initializing application...`);
+            startTimer();
+            initializeDragAndDrop();
+            switchToPart(1);
+            
+            document.body.addEventListener('input', updateAllIndicators);
+            document.body.addEventListener('change', updateAllIndicators);
+            deliverButton.addEventListener('click', checkAnswers);
+            timerToggleButton.addEventListener('click', toggleTimer);
+            timerResetButton.addEventListener('click', resetTimer);
+
+            // Add click listeners to question containers for navigation
+            document.querySelectorAll('[data-q-start]').forEach(el => {
+                el.addEventListener('click', (event) => {
+                    event.stopPropagation();
+                    const qNum = parseInt(el.dataset.qStart, 10);
+                    const qEnd = parseInt(el.dataset.qEnd, 10);
+                    
+                    if (isNaN(qNum)) return;
+                    
+                    if (qNum === qEnd || el.classList.contains('tf-question') || el.classList.contains('multi-choice-question')) {
+                        if (currentQuestion !== qNum) {
+                            goToQuestion(qNum);
+                        }
+                    }
+                });
+            });
+            
+            // Add specific click listeners for individual question elements
+            document.querySelectorAll('.tf-question, .summary-text, .flow-chart-step, .headings-question').forEach(el => {
+                el.addEventListener('click', (event) => {
+                    event.stopPropagation();
+                    const qNum = parseInt(el.dataset.qStart, 10);
+                    if (isNaN(qNum)) return;
+                    
+                    if (currentQuestion !== qNum) {
+                        goToQuestion(qNum);
+                    }
+                });
+            });
+            
+            // Add click listeners for input elements
+            document.querySelectorAll('.answer-input').forEach(input => {
+                input.addEventListener('click', (event) => {
+                    event.stopPropagation();
+                    const qNum = parseInt(input.id.replace('q', ''), 10);
+                    if (currentQuestion !== qNum) {
+                        goToQuestion(qNum);
+                    }
+                });
+            });
+
+            resizer.addEventListener('mousedown', initResize, false);
+            initializeContextMenu();
+        }
+
+        // --- CORE TEST LOGIC ---
+
+        function checkAnswers() {
+            // Disable all inputs
+            const allInputs = document.querySelectorAll('input, select, textarea');
+            allInputs.forEach(input => {
+                input.disabled = true;
+            });
+
+            // Disable drag and drop
+            document.querySelectorAll('.drag-item').forEach(item => {
+                item.setAttribute('draggable', 'false');
+                item.style.cursor = 'not-allowed';
+                item.style.pointerEvents = 'none';
+            });
+
+            document.querySelectorAll('.drop-zone, .headings-drop-zone').forEach(zone => {
+                zone.style.pointerEvents = 'none';
+                zone.classList.add('disabled');
+            });
+
+            // Disable submit button
+            deliverButton.disabled = true;
+            deliverButton.style.cursor = 'not-allowed';
+            
+            clearInterval(timerInterval);
+            let score = 0;
+            const totalQuestions = 40;
+            const resultsDetailsContainer = document.getElementById('results-details');
+            resultsDetailsContainer.innerHTML = '';
+
+            // Clear previous checking styles
+            document.querySelectorAll('.correct, .incorrect, .correct-answer-highlight, .correct-answer-display').forEach(el => {
+                el.classList.remove('correct', 'incorrect', 'correct-answer-highlight');
+                if (el.classList.contains('correct-answer-display')) {
+                    el.remove();
+                }
+            });
+
+            for (let i = 1; i <= totalQuestions; i++) {
+                const questionKey = String(i);
+                const correctAnswer = correctAnswers[questionKey];
+                let userAnswer = '';
+                let isCorrect = false;
+                let userAnswerDisplay = 'Not Answered';
+                const correctAnswerText = Array.isArray(correctAnswer) ? correctAnswer.join(' / ') : correctAnswer;
+
+                // Handle TRUE/FALSE/NOT GIVEN questions (1-7, 20-23)
+                if ((i >= 1 && i <= 7) || (i >= 20 && i <= 23)) {
+                    const select = document.getElementById(`q${i}`);
+                    if (select) {
+                        userAnswer = select.value;
+                        userAnswerDisplay = userAnswer || 'Not Answered';
+                        isCorrect = userAnswer === correctAnswer;
+                        
+                        const tfQuestion = select.closest('.tf-question');
+                        if (tfQuestion) {
+                            if (isCorrect) {
+                                score++;
+                                tfQuestion.classList.add('correct');
+                            } else {
+                                tfQuestion.classList.add('incorrect');
+                                // Show correct answer
+                                const correctAnswerSpan = document.createElement('span');
+                                correctAnswerSpan.className = 'correct-answer-display';
+                                correctAnswerSpan.textContent = `Correct: ${correctAnswer}`;
+                                tfQuestion.querySelector('.tf-question-line').appendChild(correctAnswerSpan);
+                            }
+                        }
+                    }
+                }
+                // Handle text input questions (8-13, 14-19 flow chart, 24-26, 38-40)
+                else if ((i >= 8 && i <= 13) || (i >= 14 && i <= 19) || (i >= 24 && i <= 26) || (i >= 38 && i <= 40)) {
+                    const input = document.getElementById(`q${i}`);
+                    if (input) {
+                        userAnswer = input.value.trim().toLowerCase();
+                        userAnswerDisplay = userAnswer || 'Not Answered';
+                        
+                        // Handle multiple correct answers (array) or single answer
+                        if (Array.isArray(correctAnswer)) {
+                            isCorrect = correctAnswer.some(ans => 
+                                userAnswer === ans.toLowerCase().trim()
+                            );
+                        } else {
+                            isCorrect = userAnswer === correctAnswer.toLowerCase().trim();
+                        }
+                        
+                        if (isCorrect) {
+                            score++;
+                            input.classList.add('correct');
+                        } else {
+                            input.classList.add('incorrect');
+                            // Show correct answer
+                            const correctAnswerSpan = document.createElement('span');
+                            correctAnswerSpan.className = 'correct-answer-display';
+                            correctAnswerSpan.textContent = `Correct: ${Array.isArray(correctAnswer) ? correctAnswer.join(' or ') : correctAnswer}`;
+                            input.parentNode.appendChild(correctAnswerSpan);
+                        }
+                    }
+                }
+                // Handle drag and drop headings (27-32)
+                else if (i >= 27 && i <= 32) {
+                    const dropZone = document.querySelector(`.headings-drop-zone[data-q-start="${i}"]`);
+                    if (dropZone) {
+                        const dragItem = dropZone.querySelector('.drag-item');
+                        if (dragItem) {
+                            userAnswer = dragItem.dataset.value;
+                            userAnswerDisplay = userAnswer;
+                            isCorrect = userAnswer === correctAnswer;
+                            
+                            if (isCorrect) {
+                                score++;
+                                dropZone.classList.add('correct');
+                            } else {
+                                dropZone.classList.add('incorrect');
+                                // Show correct answer
+                                const correctAnswerSpan = document.createElement('span');
+                                correctAnswerSpan.className = 'correct-answer-display';
+                                correctAnswerSpan.textContent = `Correct: ${correctAnswer}`;
+                                dropZone.parentNode.appendChild(correctAnswerSpan);
+                            }
+                        } else {
+                            // No answer provided
+                            dropZone.classList.add('incorrect');
+                            const correctAnswerSpan = document.createElement('span');
+                            correctAnswerSpan.className = 'correct-answer-display';
+                            correctAnswerSpan.textContent = `Correct: ${correctAnswer}`;
+                            dropZone.parentNode.appendChild(correctAnswerSpan);
+                        }
+                    }
+                }
+                // Handle multiple choice questions (33-37)
+                else if (i >= 33 && i <= 37) {
+                    const checkedRadio = document.querySelector(`input[name="q${i}"]:checked`);
+                    if (checkedRadio) {
+                        userAnswer = checkedRadio.value;
+                        userAnswerDisplay = userAnswer;
+                        isCorrect = userAnswer === correctAnswer;
+                        
+                        const userLabel = checkedRadio.closest('.multi-choice-option');
+                        if (userLabel) {
+                            userLabel.classList.add(isCorrect ? 'correct' : 'incorrect');
+                        }
+                        
+                        if (isCorrect) {
+                            score++;
+                        } else {
+                            // Highlight correct answer
+                            const correctOptionEl = document.querySelector(`input[name="q${i}"][value="${correctAnswer}"]`);
+                            if (correctOptionEl) {
+                                const correctLabel = correctOptionEl.closest('.multi-choice-option');
+                                if (correctLabel) {
+                                    correctLabel.classList.add('correct-answer-highlight');
+                                }
+                            }
+                        }
+                    } else {
+                        userAnswerDisplay = 'Not Answered';
+                        // Highlight correct answer
+                        const correctOptionEl = document.querySelector(`input[name="q${i}"][value="${correctAnswer}"]`);
+                        if (correctOptionEl) {
+                            const correctLabel = correctOptionEl.closest('.multi-choice-option');
+                            if (correctLabel) {
+                                correctLabel.classList.add('correct-answer-highlight');
+                            }
+                        }
+                    }
+                }
+
+                // Add result to modal
+                const resultRow = `
+                    <div class="result-row ${isCorrect ? '' : 'incorrect'}">
+                        <span class="q-num">${i}</span>
+                        <span class="user-ans">${userAnswerDisplay}</span>
+                        <span class="correct-ans">${correctAnswerText}</span>
+                    </div>`;
+                resultsDetailsContainer.innerHTML += resultRow;
+                
+                // Update nav button color
+                const navButton = document.querySelector(`.subQuestion[onclick="goToQuestion(${i})"]`);
+                if (navButton) {
+                    navButton.classList.remove('answered', 'active');
+                    navButton.classList.add(isCorrect ? 'correct' : 'incorrect');
+                }
+            }
+
+            document.getElementById('results-score').textContent = score;
+            document.getElementById('results-band').textContent = calculateBandScore(score);
+            document.body.classList.add('results-mode');
+            document.getElementById('results-modal').classList.remove('hidden');
+            
+            // Change button to "My Result"
+            deliverButton.innerHTML = `<span>My Result</span>`;
+            deliverButton.style.backgroundColor = '#4CAF50';
+            deliverButton.style.color = 'white';
+            deliverButton.style.borderColor = '#4CAF50';
+            deliverButton.disabled = false;
+            deliverButton.style.cursor = 'pointer';
+            deliverButton.removeEventListener('click', checkAnswers);
+            deliverButton.addEventListener('click', showResultsModal);
+        }
+
+        function calculateBandScore(score) {
+            if (score >= 39) return '9.0';
+            const mapping = {
+                40: 9.0, 39: 9.0, 38: 8.5, 37: 8.5, 36: 8.0, 35: 8.0, 34: 7.5,
+                33: 7.5, 32: 7.0, 31: 7.0, 30: 7.0, 29: 6.5, 28: 6.5, 27: 6.5,
+                26: 6.0, 25: 6.0, 24: 6.0, 23: 5.5, 22: 5.5, 21: 5.5, 20: 5.5,
+                19: 5.0, 18: 5.0, 17: 5.0, 16: 5.0, 15: 5.0, 14: 4.5, 13: 4.5,
+                12: 4.0, 11: 4.0, 10: 4.0, 9: 3.5, 8: 3.5, 7: 3.0, 6: 3.0,
+                5: 2.5, 4: 2.5
+            };
+            if (score <= 0) return 0.0;
+            if (score === 1) return 1.0;
+            if (score <= 3) return 2.0;
+            if (score <= 5) return 2.5;
+            return mapping[score] || 0.0;
+        }
+
+        function isQuestionAnswered(qNum) {
+            // Text inputs
+            const textInput = document.getElementById(`q${qNum}`);
+            if (textInput && textInput.value.trim() !== '') {
+                return true;
+            }
+            
+            // Select dropdowns
+            const select = document.getElementById(`q${qNum}`);
+            if (select && select.tagName === 'SELECT' && select.value !== '') {
+                return true;
+            }
+            
+            // Radio buttons
+            const radio = document.querySelector(`input[name="q${qNum}"]:checked`);
+            if (radio) {
+                return true;
+            }
+            
+            // Drag and drop headings
+            if (qNum >= 27 && qNum <= 32) {
+                const dropZone = document.querySelector(`.headings-drop-zone[data-q-start="${qNum}"]`);
+                if (dropZone && dropZone.querySelector('.drag-item')) {
+                    return true;
+                }
+            }
+            
+            return false;
+        }
+
+        function switchToPart(partNumber) {
+            console.log(`🔀 switchToPart called with partNumber: ${partNumber}`);
+            
+            currentPassage = partNumber;
+
+            // Hide all passages and questions
+            document.querySelectorAll('.reading-passage, .question-set, .part-header').forEach(el => {
+                el.classList.add('hidden');
+            });
+
+            // Show the correct passage, questions, and header
+            document.getElementById(`passage-text-${partNumber}`).classList.remove('hidden');
+            document.getElementById(`questions-${partNumber}`).classList.remove('hidden');
+            document.getElementById(`part-header-${partNumber}`).classList.remove('hidden');
+
+            // Update bottom navigation 'selected' state
+            document.querySelectorAll('.footer__questionWrapper___1tZ46').forEach((wrapper, index) => {
+                wrapper.classList.toggle('selected', (index + 1) === partNumber);
+            });
+
+            // Go to first question of the part
+            let firstQuestionOfPart = 1;
+            if (partNumber === 2) firstQuestionOfPart = 14;
+            else if (partNumber === 3) firstQuestionOfPart = 27;
+            
+            goToQuestion(firstQuestionOfPart);
+        }
+        
+        function goToQuestion(questionNumber) {
+            console.log(`🎯 goToQuestion called with questionNumber: ${questionNumber}`);
+            
+            currentQuestion = questionNumber;
+
+            let passageNumber = 1;
+            if (questionNumber >= 14 && questionNumber <= 26) passageNumber = 2;
+            else if (questionNumber >= 27) passageNumber = 3;
+            
+            if (currentPassage !== passageNumber) {
+                switchToPart(passageNumber);
+                return;
+            }
+
+            // Remove active style from previous question
+            if (activeQuestionElement) {
+                activeQuestionElement.classList.remove('active-question', 'active-input');
+                const prevBlock = activeQuestionElement.closest('[data-q-start]');
+                if (prevBlock) prevBlock.classList.remove('active-question');
+            }
+
+            // Find and activate the current question
+            let targetEl = document.getElementById(`q${questionNumber}`);
+            if (targetEl) {
+                activeQuestionElement = targetEl;
+                targetEl.classList.add('active-input');
+                scrollIntoViewIfNeeded(targetEl);
+            } else {
+                // Look for question containers
+                targetEl = document.querySelector(`[data-q-start="${questionNumber}"]`);
+                if (targetEl) {
+                    activeQuestionElement = targetEl;
+                    targetEl.classList.add('active-question');
+                    scrollIntoViewIfNeeded(targetEl);
+                } else {
+                    // For drag and drop headings
+                    const dropZone = document.querySelector(`.headings-drop-zone[data-q-start="${questionNumber}"]`);
+                    if (dropZone) {
+                        activeQuestionElement = dropZone;
+                        dropZone.classList.add('active-question');
+                        scrollIntoViewIfNeeded(dropZone);
+                    }
+                }
+            }
+
+            updateNavigation();
+        }
+        
+        // --- UI & NAVIGATION ---
+
+        function updateNavigation() {
+            const navButtons = document.querySelectorAll('.subQuestion');
+            navButtons.forEach(btn => btn.classList.remove('active'));
+            const activeNav = document.querySelector(`.subQuestion[onclick="goToQuestion(${currentQuestion})"]`);
+            if (activeNav) {
+                activeNav.classList.add('active');
+            }
+
+            // Focus on current input if any
+            const activeInput = document.getElementById(`q${currentQuestion}`);
+            if (activeInput) {
+                activeInput.classList.add('active-input');
+                if (typeof activeInput.focus === 'function') {
+                    setTimeout(() => activeInput.focus(), 100);
+                }
+            }
+        }
+        
+        function updateAllIndicators() {
+            // Update attempted counts for each part
+            const partCounts = [
+                {start: 1, end: 13, part: 1},
+                {start: 14, end: 26, part: 2},
+                {start: 27, end: 40, part: 3}
+            ];
+            
+            partCounts.forEach(({start, end, part}) => {
+                let answeredCount = 0;
+                for (let i = start; i <= end; i++) {
+                    if (isQuestionAnswered(i)) {
+                        answeredCount++;
+                    }
+                }
+                const partHeader = document.querySelector(`.footer__questionNo___3WNct[onclick="switchToPart(${part})"]`);
+                if (partHeader) {
+                    const countSpan = partHeader.querySelector('.attemptedCount');
+                    if (countSpan) {
+                        countSpan.textContent = `${answeredCount} of ${end - start + 1}`;
+                    }
+                }
+            });
+            
+            // Update nav buttons
+            const navButtons = document.querySelectorAll('.subQuestion');
+            navButtons.forEach(btn => {
+                const qNum = parseInt(btn.textContent, 10);
+                if (isQuestionAnswered(qNum)) {
+                    btn.classList.add('answered');
+                } else {
+                    btn.classList.remove('answered');
+                }
+            });
+        }
+        
+        window.nextQuestion = () => currentQuestion < 40 && goToQuestion(currentQuestion + 1);
+        window.previousQuestion = () => currentQuestion > 1 && goToQuestion(currentQuestion - 1);
+
+        // --- DRAG AND DROP ---
+        
+        function initializeDragAndDrop() {
+            document.querySelectorAll('.drag-item').forEach(item => {
+                item.addEventListener('dragstart', handleDragStart);
+                item.addEventListener('dragend', handleDragEnd);
+            });
+            
+            document.querySelectorAll('.drop-zone, .headings-drop-zone, .headings-options-bank').forEach(zone => {
+                zone.addEventListener('dragover', handleDragOver);
+                zone.addEventListener('dragleave', handleDragLeave);
+                zone.addEventListener('drop', handleDrop);
+            });
+        }
+
+        function handleDragStart(e) {
+            draggedItem = e.target;
+            setTimeout(() => e.target.classList.add('dragging'), 0);
+            e.dataTransfer.setData('text/plain', e.target.dataset.value);
+        }
+
+        function handleDragEnd(e) {
+            e.target.classList.remove('dragging');
+            draggedItem = null;
+        }
+
+        function handleDragOver(e) {
+            e.preventDefault();
+            const targetZone = e.currentTarget;
+            if (draggedItem && draggedItem.dataset.dndGroup === targetZone.dataset.dndGroup) {
+                targetZone.classList.add('drag-over');
+            }
+        }
+
+        function handleDragLeave(e) {
+            e.currentTarget.classList.remove('drag-over');
+        }
+
+        function handleDrop(e) {
+            e.preventDefault();
+            const targetZone = e.currentTarget;
+            targetZone.classList.remove('drag-over');
+
+            if (!draggedItem || draggedItem.dataset.dndGroup !== targetZone.dataset.dndGroup) {
+                return;
+            }
+
+            // For headings drop zones
+            if (targetZone.classList.contains('headings-drop-zone')) {
+                // Clear existing item in target zone
+                const existingItem = targetZone.querySelector('.drag-item');
+                if (existingItem) {
+                    document.querySelector('.headings-options-bank').appendChild(existingItem);
+                }
+                
+                // Move dragged item to target zone
+                targetZone.appendChild(draggedItem);
+                targetZone.classList.add('filled');
+                
+                // Update indicators
+                updateAllIndicators();
+            }
+        }
+
+        // --- TIMER ---
+        
+        function startTimer() {
+            if (timerInterval) clearInterval(timerInterval);
+            timerInterval = setInterval(() => {
+                timeInSeconds--;
+                const minutes = Math.floor(timeInSeconds / 60);
+                const seconds = timeInSeconds % 60;
+                timerDisplay.textContent = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+                if (timeInSeconds <= 0) {
+                    clearInterval(timerInterval);
+                    timerDisplay.textContent = "Time's up!";
+                }
+            }, 1000);
+            timerToggleButton.innerHTML = pauseIcon;
+        }
+
+        function pauseTimer() {
+            clearInterval(timerInterval);
+            timerToggleButton.innerHTML = playIcon;
+        }
+
+        function toggleTimer() {
+            if (timerToggleButton.innerHTML.includes('M6 19h4V5H6v14z')) {
+                pauseTimer();
+            } else {
+                startTimer();
+            }
+        }
+
+        function resetTimer() {
+            timeInSeconds = 3600;
+            const minutes = Math.floor(timeInSeconds / 60);
+            const seconds = timeInSeconds % 60;
+            timerDisplay.textContent = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+            startTimer();
+            timerToggleButton.innerHTML = pauseIcon;
+        }
+        
+        // --- RESIZER ---
+        
+        function initResize(e) {
+            e.preventDefault();
+            const startX = e.clientX;
+            const startWidth = passagePanel.offsetWidth;
+            
+            const doDrag = (e) => {
+                const newWidth = startWidth + e.clientX - startX;
+                if (newWidth > 200 && (document.body.clientWidth - newWidth - resizer.offsetWidth) > 200) {
+                    passagePanel.style.flex = `0 0 ${newWidth}px`;
+                }
+            };
+            
+            const stopDrag = () => {
+                window.removeEventListener('mousemove', doDrag, false);
+                window.removeEventListener('mouseup', stopDrag, false);
+            };
+            
+            window.addEventListener('mousemove', doDrag, false);
+            window.addEventListener('mouseup', stopDrag, false);
+        }
+        
+        // --- CONTEXT MENU (Highlighting) ---
+        
+        function initializeContextMenu() {
+            const panels = [passagePanel, questionsPanel];
+            let targetElementForClear = null;
+
+            document.addEventListener('selectionchange', () => {
+                const selection = window.getSelection();
+                if (selection && !selection.isCollapsed && selection.toString().trim().length > 0) {
+                    const range = selection.getRangeAt(0);
+                    if (panels.some(panel => panel.contains(range.commonAncestorContainer))) {
+                        selectedRange = range;
+                        targetElementForClear = null;
+                    }
+                }
+            });
+
+            const showContextMenu = (e) => {
+                const target = e.target;
+                const isClickOnHighlight = target.closest('.highlight, .comment-highlight');
+                const isSelectionActive = selectedRange && selectedRange.toString().trim().length > 0;
+                
+                let showMenu = false;
+
+                if (isClickOnHighlight) {
+                    document.getElementById('menu-highlight').style.display = 'none';
+                    document.getElementById('menu-note').style.display = 'none';
+                    document.getElementById('menu-clear').style.display = 'block';
+                    document.getElementById('menu-clear-all').style.display = 'block';
+                    contextMenu.targetElementForClear = isClickOnHighlight;
+                    showMenu = true;
+                } else if (isSelectionActive && panels.some(panel => panel.contains(selectedRange.commonAncestorContainer))) {
+                    document.getElementById('menu-highlight').style.display = 'flex';
+                    document.getElementById('menu-note').style.display = 'flex';
+                    document.getElementById('menu-clear').style.display = 'none';
+                    document.getElementById('menu-clear-all').style.display = 'block';
+                    showMenu = true;
+                }
+
+                if (showMenu) {
+                    e.preventDefault();
+                    contextMenu.style.display = 'block';
+                    const menuHeight = contextMenu.offsetHeight;
+                    const menuWidth = contextMenu.offsetWidth;
+                    let left = e.pageX;
+                    let top = e.pageY;
+                    if (left + menuWidth > window.innerWidth) left = window.innerWidth - menuWidth - 5;
+                    if (top + menuHeight > window.innerHeight) top = e.pageY - menuHeight - 5;
+                    else top = e.pageY - menuHeight - 5;
+                    
+                    contextMenu.style.left = `${left}px`;
+                    contextMenu.style.top = `${top}px`;
+                }
+            };
+
+            panels.forEach(panel => {
+                panel.addEventListener('contextmenu', showContextMenu);
+            });
+
+            document.addEventListener('click', (e) => {
+                if (contextMenu.style.display === 'block' && !contextMenu.contains(e.target)) {
+                    closeContextMenu();
+                }
+            });
+        }
+
+        function closeContextMenu() {
+            contextMenu.style.display = 'none';
+            selectedRange = null;
+        }
+
+        function unwrapElement(element) {
+            const parent = element.parentNode;
+            if (!parent) return;
+            while (element.firstChild) {
+                parent.insertBefore(element.firstChild, element);
+            }
+            parent.removeChild(element);
+            parent.normalize();
+        }
+
+        window.highlightText = () => {
+            if (selectedRange && !selectedRange.collapsed) {
+                const span = document.createElement('span');
+                span.className = 'highlight';
+                span.appendChild(selectedRange.extractContents());
+                selectedRange.insertNode(span);
+            }
+            closeContextMenu();
+            window.getSelection().removeAllRanges();
+        };
+
+        window.addNote = () => {
+            const note = prompt('Enter your note:');
+            if (note && selectedRange && !selectedRange.collapsed) {
+                const span = document.createElement('span');
+                span.className = 'comment-highlight';
+                const tooltip = document.createElement('span');
+                tooltip.className = 'comment-tooltip';
+                tooltip.textContent = note;
+                span.appendChild(selectedRange.extractContents());
+                span.appendChild(tooltip);
+                selectedRange.insertNode(span);
+            }
+            closeContextMenu();
+            window.getSelection().removeAllRanges();
+        };
+
+        window.clearHighlight = () => {
+             const elementToClear = contextMenu.targetElementForClear;
+             if (elementToClear) {
+                 unwrapElement(elementToClear);
+             }
+             closeContextMenu();
+             window.getSelection().removeAllRanges();
+        };
+        
+        window.clearAllHighlights = () => {
+            document.querySelectorAll('.highlight, .comment-highlight').forEach(unwrapElement);
+            closeContextMenu();
+            window.getSelection().removeAllRanges();
+        };
+
+        // --- HELPER FUNCTIONS ---
+        
+        function scrollIntoViewIfNeeded(element) {
+            const panel = element.closest('.questions-panel, .passage-panel');
+            const panelRect = panel.getBoundingClientRect();
+            const elementRect = element.getBoundingClientRect();
+            if (elementRect.top < panelRect.top || elementRect.bottom > panelRect.bottom) {
+                element.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }
+        }
+        
+        function showResultsModal() {
+            document.getElementById('results-modal').classList.remove('hidden');
+        }
+
+        window.closeResultsModal = function() {
+            document.getElementById('results-modal').classList.add('hidden');
+            document.body.classList.remove('results-mode');
+        }
+
+        // --- GLOBAL FUNCTION EXPOSURE ---
+        window.nextQuestion = nextQuestion;
+        window.previousQuestion = previousQuestion;
+        window.goToQuestion = goToQuestion;
+        window.switchToPart = switchToPart;
+        window.closeResultsModal = closeResultsModal;
+        window.highlightText = highlightText;
+        window.addNote = addNote;
+        window.clearHighlight = clearHighlight;
+        window.clearAllHighlights = clearAllHighlights;
+
+        // --- START THE APP ---
+        initialize();
+    });
+    </script>
+</body>
+</html>

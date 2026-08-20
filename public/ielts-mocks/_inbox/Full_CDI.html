@@ -1,0 +1,2648 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@600&display=swap" rel="stylesheet">
+    <title>IELTS Full Reading Practice</title>
+    <style>
+        /* All CSS styles remain exactly the same - unchanged */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #ffffff;
+            line-height: 1.4;
+            font-size: 16px;
+        }
+
+        .header {
+            background-color: #ffffff;
+            padding: 12px 20px;
+            border-bottom: 1px solid #e0e0e0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            height: 60px;
+        }
+
+        .ielts-logo {
+            display: none;
+        }
+
+        .test-info {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+            font-size: 14px;
+            color: #333;
+        }
+
+        .audio-indicator {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 16px;
+        }
+
+        .audio-icon {
+            width: 16px;
+            height: 16px;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon></svg>') no-repeat center;
+        }
+
+        .header-icons {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+
+        .telegram-link {
+            color: #0088cc;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 16px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .telegram-link:hover {
+            text-decoration: underline;
+        }
+
+        .telegram-link::before {
+            content: '';
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            background-color: currentColor;
+            -webkit-mask-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.78 18.65l.28-4.23l7.68-6.92c.34-.31-.07-.46-.52-.19L7.74 13.3L3.64 12c-.88-.25-.89-1.37.2-1.64l16.56-6.4c.75-.29 1.4.22 1.2.94l-2.67 12.61c-.22.95-1.13 1.18-1.78.73l-4.5-3.32l-2.23 2.15c-.47.44-1.29.21-1.48-.37z"/></svg>');
+            mask-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.78 18.65l.28-4.23l7.68-6.92c.34-.31-.07-.46-.52-.19L7.74 13.3L3.64 12c-.88-.25-.89-1.37.2-1.64l16.56-6.4c.75-.29 1.4.22 1.2.94l-2.67 12.61c-.22.95-1.13 1.18-1.78.73l-4.5-3.32l-2.23 2.15c-.47.44-1.29.21-1.48-.37z"/></svg>');
+            background-size: contain;
+            background-repeat: no-repeat;
+        }
+
+        #volume-slider {
+            -webkit-appearance: none;
+            width: 80px;
+            height: 4px;
+            background: #ddd;
+            outline: none;
+            border-radius: 2px;
+            cursor: pointer;
+        }
+
+        #volume-slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            background: #333;
+            cursor: pointer;
+        }
+
+        #volume-slider::-moz-range-thumb {
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            background: #333;
+            cursor: pointer;
+            border: none;
+        }
+
+        .icon {
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
+            opacity: 0.7;
+            color: #333;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .icon:hover {
+            opacity: 1;
+        }
+        
+        #play-pause-btn {
+            background: none;
+            border: none;
+            padding: 0;
+        }
+
+        .main-container {
+            margin-top: 60px;
+            display: flex;
+            flex-direction: column;
+            background: #ffffff;
+            height: calc(100vh - 60px); /* Full height minus header */
+        }
+
+        .panels-container {
+            display: flex;
+            flex: 1;
+            overflow: hidden;
+        }
+
+        .passage-panel {
+            flex: 1;
+            padding: 20px 20px 100px;
+            overflow-y: auto;
+            min-width: 200px; /* Minimum width */
+        }
+
+        /* Passage Content */
+        .text-center {
+            text-align: center;
+        }
+        .reading-passage h4 {
+            font-family: 'Merriweather', serif; /* Oqlangan serif shrift */
+            font-size: 22px; /* Biroz kattaroq */
+            font-weight: 600; /* O‘rtacha qalinlik */
+            color: #2c3e50; /* To‘q kulrang ko‘k rang */
+            line-height: 1.4; /* Qulay satr oralig‘i */
+            margin-bottom: 20px; /* Ko‘proq bo‘shliq */
+            text-align: center;
+            border-bottom: 2px solid #4a90e2; /* Ko‘k chegara */
+            padding-bottom: 5px; /* Chegara bilan matn oralig‘i */
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1); /* Engil soya */
+        }
+       
+        .reading-passage p {
+            margin-bottom: 1.2em;
+        }
+
+        .question ul li label {
+            display: block;
+            margin-top: 8px;
+            cursor: pointer;
+        }
+
+        .questions-panel {
+            flex: 1;
+            padding: 20px 20px 100px;
+            overflow-y: auto;
+            min-width: 200px; /* Minimum width */
+            border-left: 1px solid #e0e0e0;
+        }
+
+        .resizer {
+            width: 10px;
+            cursor: col-resize;
+            background-color: #f0f0f0;
+            background-image: url('data:image/svg+xml;charset=UTF-8,<svg xmlns="http://www.w3.org/2000/svg" width="10" height="30" viewBox="0 0 10 30"><path d="M4 11h2v2H4zM4 15h2v2H4zM4 19h2v2H4z" fill="%23888"/></svg>');
+            background-repeat: no-repeat;
+            background-position: center;
+            flex-shrink: 0;
+            flex-grow: 0;
+        }
+
+        /* Left Panel */
+        .left-panel {
+            width: 100%;
+            padding: 20px;
+        }
+
+        /* Right Panel */
+        .right-panel {
+            display: none;
+            width: 50%;
+            padding: 20px;
+            position: relative;
+        }
+
+        .help-button {
+            background: #4a90e2;
+            color: white;
+            border: none;
+            padding: 6px 12px;
+            border-radius: 4px;
+            font-size: 14px;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            margin-bottom: 20px;
+        }
+
+        .help-button:hover {
+            background: #357abd;
+        }
+
+        .section-title {
+            font-weight: bold;
+            margin-bottom: 15px;
+            font-size: 18px;
+        }
+
+        .people-section {
+            margin-bottom: 30px;
+        }
+
+        .people-table {
+            width: 100%;
+            border-collapse: collapse;
+            border: 1px solid #ccc;
+        }
+
+        .people-table th {
+            text-align: left;
+            padding: 10px;
+            font-weight: bold;
+            border: 1px solid #ddd;
+        }
+
+        .people-table td {
+            padding: 8px 10px;
+            border: 1px solid #ddd;
+        }
+
+        .person-name {
+            font-size: 16px;
+        }
+
+        .question-number {
+            background: white;
+            border: 1px solid #4a90e2;
+            padding: 4px 8px;
+            border-radius: 3px;
+            font-weight: bold;
+            font-size: 14px;
+            color: #4a90e2;
+            min-width: 30px;
+            text-align: center;
+        }
+
+        .assigned-responsibility {
+            background: #f0f0f0;
+            padding: 4px 8px;
+            border-radius: 3px;
+            font-size: 14px;
+            border: 1px solid #ddd;
+        }
+
+        .responsibilities-section {
+            margin-bottom: 30px;
+        }
+
+        .responsibility-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 8px;
+            margin-bottom: 20px;
+        }
+
+        .responsibility-item {
+            background: #f8f9fa;
+            border: 1px solid #ddd;
+            padding: 8px 12px;
+            border-radius: 4px;
+            cursor: move;
+            font-size: 16px;
+            text-align: center;
+            transition: all 0.2s;
+        }
+
+        .responsibility-item:hover {
+            background: #e9ecef;
+            transform: translateY(-1px);
+        }
+
+        .responsibility-item.dragging {
+            opacity: 0.5;
+        }
+
+        .questions-section {
+            margin-bottom: 20px;
+        }
+
+        .question-title {
+            font-weight: bold;
+            margin-bottom: 10px;
+            font-size: 16px;
+        }
+
+        .instruction {
+            margin-bottom: 20px;
+            font-size: 16px;
+            color: #666;
+        }
+
+        /* Map Styles */
+        .map-container {
+            position: relative;
+            margin: 20px 0;
+            display: flex;
+            justify-content: center;
+        }
+
+        .map-svg {
+            border: 2px solid #333;
+            background: white;
+        }
+
+        .map-room {
+            fill: #f9f9f9;
+            stroke: #333;
+            stroke-width: 1;
+        }
+
+        .map-text {
+            font-family: Arial, sans-serif;
+            font-size: 13px;
+            text-anchor: middle;
+            fill: #333;
+        }
+
+        .map-number {
+            font-family: Arial, sans-serif;
+            font-size: 16px;
+            font-weight: bold;
+            text-anchor: middle;
+            fill: #333;
+        }
+
+        .room-labels {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            margin: 20px 0;
+        }
+
+        .room-label {
+            background: #f8f9fa;
+            border: 1px solid #ddd;
+            padding: 8px 12px;
+            border-radius: 4px;
+            cursor: move;
+            font-size: 16px;
+            text-align: center;
+            transition: all 0.2s;
+        }
+
+        .room-label:hover {
+            background: #e9ecef;
+            transform: translateY(-1px);
+        }
+
+        .room-label.dragging {
+            opacity: 0.5;
+        }
+
+        /* Navigation Arrows */
+        .nav-arrows {
+            position: fixed;
+            bottom: 100px;
+            right: 20px;
+            display: flex;
+            gap: 5px;
+            z-index: 101;
+        }
+
+        .nav-arrow {
+            width: 50px;
+            height: 50px;
+            background: #333;
+            color: white;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 22px;
+            font-weight: bold;
+        }
+
+        .nav-arrow:hover {
+            background: #555;
+        }
+
+        .nav-arrow:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+        }
+
+        /* Bottom Navigation - Exact Match */
+        .nav-row {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: #ffffff;
+        
+            padding: 0;
+            display: flex;
+            align-items: center;
+            height: 80px;
+            z-index: 100;
+        }
+
+        .footer__questionWrapper___1tZ46 {
+            display: flex;
+            align-items: center;
+            margin-right: 20px;
+        }
+
+
+        .footer__questionNo___3WNct {
+            background: none;
+            border: none;
+            padding: 10px 15px;
+            font-size: 16px;
+            font-weight: 600;
+            color: #333;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            transition: background-color 0.2s;
+        }
+
+        .footer__questionNo___3WNct:hover {
+            background-color: #f8f9fa;
+        }
+
+        .section-prefix {
+            font-size: 16px;
+        }
+
+        .sectionNr {
+            font-size: 16px;
+            font-weight: bold;
+        }
+
+        .attemptedCount {
+            font-size: 14px;
+            color: #666;
+            margin-left: 5px;
+            font-weight: 400; /* Normal weight */
+        }
+
+        @media (max-width: 768px) {
+            .attemptedCount {
+                display: none;
+            }
+        }
+
+        .footer__questionWrapper___1tZ46.selected .attemptedCount {
+            display: none;
+        }
+
+        .footer__subquestionWrapper___9GgoP {
+            display: none;
+            gap: 2px;
+            margin-left: 10px;
+        }
+
+        .footer__questionWrapper___1tZ46.selected .footer__subquestionWrapper___9GgoP {
+            display: flex;
+        }
+
+        .subQuestion {
+            width: 32px;
+            height: 32px;
+            border: 1px solid #ccc;
+            background: white;
+            color: #333;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s;
+            border-radius: 2px;
+        }
+
+        .subQuestion.answered {
+            background-color: #e9ecef;
+            border-color: #ddd;
+        }
+        .subQuestion.correct {
+            background-color: #28a745;
+            color: white;
+            border-color: #28a745;
+        }
+        .subQuestion.incorrect {
+            background-color: #dc3545;
+            color: white;
+            border-color: #dc3545;
+        }
+
+        .subQuestion:hover {
+            background-color: #f0f0f0;
+            border-color: #999;
+        }
+
+        .subQuestion.active {
+            background-color: #4a90e2;
+            color: white;
+            border-color: #4a90e2;
+        }
+
+        .subQuestion.completed {
+            background-color: #28a745;
+            color: white;
+            border-color: #28a745;
+        }
+
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border: 0;
+        }
+
+        .footer__deliverButton___3FM07 {
+            margin-left: auto;
+            margin-right: 20px;
+            background-color: #f0f0f0;
+            color: #333;
+            border: 1px solid #ccc;
+            padding: 12px 20px;
+            border-radius: 4px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: background-color 0.2s, border-color 0.2s;
+            min-width: 170px;
+            justify-content: center;
+        }
+
+        .footer__deliverButton___3FM07:hover {
+            background-color: #e0e0e0;
+            border-color: #bbb;
+        }
+
+        .footer__deliverButton___3FM07:disabled {
+            background: #e9ecef;
+            color: #6c757d;
+            cursor: not-allowed;
+            border-color: #ddd;
+        }
+
+        .fa-check::before {
+            content: "✓";
+        }
+
+        .hidden {
+            display: none !important;
+        }
+
+        /* Context Menu */
+        .context-menu {
+            position: absolute;
+            background: white;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            z-index: 1000;
+            display: none;
+            min-width: 140px;
+        }
+
+        .context-menu-item {
+            padding: 12px 16px;
+            cursor: pointer;
+            font-size: 16px;
+            border-bottom: 1px solid #f0f0f0;
+            transition: background-color 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .context-menu-item:hover {
+            background-color: #f8f9fa;
+        }
+
+        .context-menu-item:last-child {
+            border-bottom: none;
+        }
+
+        .highlight {
+            background-color: #ffff00;
+        }
+
+        .comment-highlight {
+            background-color: #90EE90;
+            position: relative;
+            cursor: help;
+        }
+
+        .comment-tooltip {
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #333;
+            color: white;
+            padding: 8px 12px;
+            border-radius: 4px;
+            font-size: 14px;
+            white-space: nowrap;
+            z-index: 1000;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s;
+        }
+
+        .comment-highlight:hover .comment-tooltip {
+            opacity: 1;
+        }
+
+        .question {
+            margin-bottom: 40px;
+        }
+        .question p {
+            margin-bottom: 10px;
+        }
+        .question ul, .question .people-table {
+            margin-top: 0;
+        }
+        .question-prompt {
+            margin-bottom: 20px;
+        }
+        .question ul {
+            list-style: none;
+            padding-left: 0;
+        }
+        .question ul li {
+            margin-bottom: 5px;
+        }
+        .answer-input {
+            border: 1px solid #888;
+            border-radius: 4px;
+            background-color: #fff;
+            padding: 2px 5px;
+            font-size: 16px;
+            text-align: center;
+            margin-right: 4px;
+            margin-left: 4px;
+            transition: border-color 0.3s, box-shadow 0.3s;
+            height: 28px; /* Standard height */
+            width: 150px; /* Standard width */
+        }
+        .answer-input.active-input {
+            border-color: #4a90e2;
+            box-shadow: 0 0 3px 1px rgba(74, 144, 226, 0.5);
+        }
+        .answer-input::placeholder {
+            color: #999;
+            font-weight: bold;
+            text-align: center;
+        }
+        .answer-input.correct {
+            border-color: #28a745;
+            background-color: #e9f7ef;
+        }
+        .answer-input.incorrect {
+            border-color: #dc3545;
+            background-color: #f8d7da;
+            color: #721c24;
+        }
+        .answer-input {
+    z-index: 10;
+    position: relative;
+    pointer-events: auto;
+}
+        .drag-drop-container {
+            display: flex;
+            gap: 30px;
+            margin-top: 20px;
+            align-items: flex-start;
+        }
+        .recommendations-box {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+            min-height: 200px;
+        }
+        .drag-item {
+            background: white;
+            border: 1px solid #ddd;
+            padding: 8px 12px;
+            border-radius: 4px;
+            cursor: move;
+            font-size: 16px;
+            transition: all 0.2s;
+            user-select: none;
+        }
+        .drag-item:hover {
+            background: #e9ecef;
+        }
+        .drag-item.dragging {
+            opacity: 0.5;
+        }
+        .drag-item.selected {
+            border-color: #4a90e2;
+            box-shadow: 0 0 0 2px rgba(74, 144, 226, 0.5);
+        }
+        .drop-zone {
+            border: 2px dashed #aaa;
+            border-radius: 4px;
+            width: 50%;
+            margin-top: 19px;
+            margin-bottom: 5px;
+            transition: background-color 0.2s, border-color 0.2s;
+            padding: 0.5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+        .drop-zone.drag-over {
+            background-color: #e6f4ff;
+            border-color: #4a90e2;
+        }
+        .drop-zone.correct {
+            background-color: #e9f7ef;
+            border-color: #28a745;
+            border-style: solid;
+        }
+        .drop-zone.incorrect {
+            background-color: #f8d7da;
+            border-color: #dc3545;
+            border-style: solid;
+        }
+        .drop-zone.disabled {
+            pointer-events: none;
+        }
+        .drop-zone .drag-item {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 15px;
+            padding: 2px;
+        }
+        .drag-options-container {
+            margin-top: 10px;
+        }
+        .drag-options-container .drag-item {
+            display: block;
+            width: fit-content;
+            font-size: 15px;
+            padding: 0.5px 10px;
+            margin-bottom: 5px;
+        }
+        .drag-options-container .drag-item:last-child {
+            margin-bottom: 0;
+        }
+        .q-number {
+            color: #888;
+            font-size: 14px;
+            font-weight: bold;
+        }
+        .questions-container {
+            width: 100%;
+        }
+        audio {
+            width: 100%;
+            margin-bottom: 20px;
+        }
+        .part-header {
+            background-color: #f1f2ec;
+            padding: 15px 20px;
+            border: 1px solid #e0e0e0;
+            text-align: left;
+            margin: 10px 20px;
+            border-radius: 5px;
+        }
+        .part-header p {
+            margin: 0;
+        }
+        .part-header p:first-child {
+            margin-bottom: 5px;
+        }
+
+        .question li.correct {
+            color: #155724;
+            font-weight: bold;
+        }
+        .question li.incorrect {
+            color: #721c24;
+        }
+        .question li.correct::before {
+            content: '✔ ';
+            color: #28a745;
+        }
+        .question li.incorrect::before {
+            content: '✖ ';
+            color: #dc3545;
+        }
+
+        .example-box {
+            border: 1px solid #ddd;
+            background-color: #f9f9f9;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 20px 0;
+        }
+
+        .timer-container {
+            display: flex;
+            position: relative;
+            cursor: default;
+            color: #333;
+            font-size: 16px;
+            font-weight: 500;
+            align-items: center;
+        }
+        .timer-container .timer-tooltip {
+            display: none;
+        }
+
+        .timer-controls {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-left: 15px;
+        }
+
+        .timer-controls button {
+            background: #f0f0f0;
+            border: 1px solid #ccc;
+            border-radius: 50%;
+            padding: 0;
+            cursor: pointer;
+            width: 32px;
+            height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background-color 0.2s;
+        }
+        .timer-controls button:hover {
+            background: #e0e0e0;
+        }
+
+        .timer-controls button svg {
+            width: 20px;
+            height: 20px;
+            fill: #333;
+        }
+
+        .audio-modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(40, 40, 40, 0.9);
+            z-index: 2000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            text-align: center;
+        }
+        .audio-modal-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+            max-width: 500px;
+            padding: 20px;
+        }
+        .audio-modal-content p {
+            font-size: 16px;
+            line-height: 1.5;
+            color: #eee;
+        }
+        .audio-modal-icon {
+            margin-bottom: 20px;
+        }
+        .modal-play-btn {
+            background-color: #000;
+            color: white;
+            border: 1px solid white;
+            padding: 12px 24px;
+            border-radius: 6px;
+            font-size: 18px;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: background-color 0.2s;
+        }
+        .modal-play-btn:hover {
+            background-color: #333;
+        }
+        #goto-widget {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        #goto-input {
+            width: 80px;
+            padding: 4px 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        #goto-btn {
+            padding: 4px 10px;
+            border: 1px solid #ccc;
+            background-color: #f0f0f0;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        /* Styles for TRUE/FALSE/NOT GIVEN questions */
+        .tf-question {
+            margin-bottom: 25px;
+            padding: 10px 0px;
+            border-radius: 4px;
+            transition: border-color 0.3s, background-color 0.3s;
+        }
+        .tf-question-line {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 15px;
+            padding: 5px 0px;
+            border-radius: 4px;
+        }
+        .tf-question-number, .question-number-box {
+            border: 2px solid #ccc;
+            padding: 2px 8px;
+            margin-right: 10px;
+            border-radius: 3px;
+            font-weight: bold;
+            transition: border-color 0.3s;
+            display: inline-block;
+        }
+        .tf-question-text {
+            padding-top: 3px;
+        }
+        .tf-options {
+            padding-left: 5px;
+        }
+        .tf-option {
+            display: block;
+            margin-bottom: 12px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+        }
+        .tf-option input[type="radio"] {
+            margin-right: 10px;
+            transform: scale(1.2);
+        }
+        .tf-question.correct .tf-question-line {
+            background-color: #e9f7ef;
+        }
+        .tf-question.incorrect .tf-question-line {
+            background-color: #f8d7da;
+        }
+        .matching-question-container {
+            display: flex;
+            gap: 20px;
+            margin-top: 15px;
+        }
+        .matching-options-bank {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+        .matching-questions {
+            flex: 1.5;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        .matching-question-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+
+            border: 2px solid transparent;
+            border-radius: 4px;
+            transition: border-color 0.3s;
+        }
+        .matching-question-item > span {
+            flex: 1;
+        }
+        .matching-question-item.correct {
+            background-color: #e9f7ef;
+            border-color: #28a745 !important;
+        }
+        .matching-question-item.incorrect {
+            background-color: #f8d7da;
+            border-color: #dc3545 !important;
+        }
+        .matching-question-item .drop-zone {
+            width: 200px;
+            flex-shrink: 0;
+            margin: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            color: #aaa;
+        }
+        .matching-options-bank .drag-item {
+            font-size: 15px;
+            text-align: center;
+            border: 1px solid #ccc;
+            background: #f9f9f9;
+        }
+
+        .questions-panel {
+            flex: 1;
+            padding: 20px 20px 100px;
+            overflow-y: auto;
+            min-width: 200px; /* Minimum width */
+            border-left: 1px solid #e0e0e0;
+        }
+        .matching-question-item.incorrect {
+            background-color: #f8d7da;
+            border-color: #dc3545 !important;
+        }
+        .summary-completion-container {
+            margin-top: 20px;
+        }
+        .summary-text p {
+            line-height: 2.5;
+            font-size: 16px;
+        }
+        .summary-drop-zone {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            vertical-align: middle;
+            max-width:200px;
+            height: 25px;
+            border: 2px dashed #999;
+            border-radius: 4px;
+            margin: 0 5px;
+            padding: 0 5px;
+            transition: border-color 0.3s, box-shadow 0.3s, background-color 0.3s;
+            color: #aaa;
+            font-weight: bold;
+        }
+        .summary-drop-zone.filled {
+            border-color: #4a90e2;
+        }
+        .summary-drop-zone.active-input {
+             border-color: #4a90e2;
+             box-shadow: none;
+        }
+        .summary-drop-zone .drag-item {
+            font-size: 15px;
+            font-weight: bold;
+            background-color: transparent;
+            border: none;
+            padding: 0;
+            text-align: center;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .summary-options-bank {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 20px;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        .summary-options-bank .drag-item {
+            flex-grow: 1;
+            min-width: 100px;
+            text-align: center;
+        }
+        .multi-choice-question {
+            margin-bottom: 20px;
+            padding: 10px;
+            border-radius: 4px;
+            border: 3px solid transparent;
+            transition: border-color 0.3s, background-color 0.3s;
+        }
+        .multi-choice-option {
+            margin-bottom: 10px;
+            padding: 8px;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+        }
+        .multi-choice-option label {
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        .multi-choice-option input[type="checkbox"],
+        .multi-choice-option input[type="radio"] {
+            margin-right: 12px;
+            transform: scale(1.3);
+            accent-color: #4a90e2;
+        }
+        .multi-choice-option.correct {
+            background-color: #e9f7ef;
+        }
+        .multi-choice-option.incorrect {
+            background-color: #f8d7da;
+        }
+        .matching-question-item.incorrect {
+            background-color: #f8d7da;
+            border-color: #dc3545 !important;
+        }
+        .matching-question-item .drop-zone.filled {
+            border-color: #4a90e2;
+        }
+        .matching-question-item .drop-zone {
+            width: 200px;
+            height: 40px;
+        }
+        .paragraph-matching-question {
+            align-items: center;
+            justify-content: space-between;
+            gap: 15px;
+            margin-bottom: 12px;
+        }
+        .paragraph-matching-question .answer-input {
+            width: 80px;
+            flex-shrink: 0;
+        }
+
+        .matching-form-container {
+            margin-top: 20px;
+        }
+        .matching-form-row {
+            display: flex;
+            align-items: center;
+            margin-bottom: 12px;
+        }
+        .matching-form-label {
+            width: 180px;
+            flex-shrink: 0;
+        }
+
+        /* Results Modal */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            z-index: 2000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .modal-overlay.hidden {
+            display: none;
+        }
+        .modal-content {
+            background: white;
+            padding: 25px;
+            border-radius: 8px;
+            width: 90%;
+            max-width: 600px;
+            max-height: 80vh;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+        }
+        .modal-close-btn {
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            background: none;
+            border: none;
+            font-size: 28px;
+            cursor: pointer;
+            color: #888;
+        }
+        .modal-content h2 {
+            text-align: center;
+            margin-bottom: 15px;
+            color: #333;
+        }
+        .results-summary {
+            display: flex;
+            justify-content: space-around;
+            margin-bottom: 20px;
+            font-size: 18px;
+            font-weight: bold;
+            text-align: center;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 15px;
+        }
+        .results-details-container {
+            overflow-y: auto;
+            padding-right: 10px; /* For scrollbar */
+        }
+        .result-row {
+            display: grid;
+            grid-template-columns: 40px 1fr 1fr;
+            gap: 15px;
+            padding: 8px 5px;
+            border-bottom: 1px solid #f0f0f0;
+            font-size: 15px;
+        }
+        .result-row.incorrect {
+            background-color: #f8d7da;
+        }
+        .result-row .q-num {
+            font-weight: bold;
+        }
+        .result-row .user-ans {
+            color: #555;
+        }
+        .result-row .correct-ans {
+            color: #155724;
+            font-weight: 500;
+        }
+        .correct-answer-display {
+            font-weight: bold;
+            color: #28a745;
+            margin-left: 10px;
+            font-size: 14px;
+        }
+        .correct-answer-highlight, .tf-option.correct-answer-highlight, .multi-choice-option.correct-answer-highlight {
+            background-color: #d4edda !important;
+            border: 1px solid #c3e6cb !important;
+            border-radius: 4px;
+            padding: 4px;
+        }
+        .correct-answer-highlight {
+            background-color: #d4edda;
+            border: 1px solid #c3e6cb;
+            border-radius: 4px;
+        }
+        .centered-title {
+    text-align: center;
+    font-size: 50px;
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="timer-container">
+            <span class="timer-display">60:00</span>
+            <div class="timer-controls">
+                <button id="timer-toggle-btn" title="Pause/Resume Timer">
+                    <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M8 5v14l11-7L8 5z"/></svg>
+                </button>
+                <button id="timer-reset-btn" title="Reset Timer">
+                    <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M12 5V1L7 6l5 5V7c3.31 0 6 2.69 6 6s-2.69 6-6 6-6-2.69-6-6H4c0 4.42 3.58 8 8 8s8-3.58 8-8-3.58-8-8-8z"/></svg>
+                </button>
+            </div>
+        </div>
+        <a href="https://t.me/ielts_material_full" target="_blank" class="telegram-link">
+            Full Exam Materials
+        </a>
+    </div>
+
+    <div class="main-container" id="main-container">
+        <div id="passage-header-container">
+            <div id="part-header-1" class="part-header">
+                <p><strong>Part 1</strong></p>
+                <p>Read the text and answer questions 1-13.</p>
+            </div>
+            <div id="part-header-2" class="part-header hidden">
+                <p><strong>Part 2</strong></p>
+                <p>Read the text and answer questions 14-27.</p>
+            </div>
+            <div id="part-header-3" class="part-header hidden">
+                <p><strong>Part 3</strong></p>
+                <p>Read the text and answer questions 28-40.</p>
+            </div>
+        </div>
+        <div class="panels-container">
+            <div class="passage-panel" id="passage-panel">
+                <div id="passage-text-1" class="reading-passage">
+                    <h4 class="text-center">Copy your neighbour</h4>
+                    <p><strong>A</strong>&nbsp;&nbsp;THERE'S no animal that symbolises rainforest diversity quite as spectacularly as the tropical butterfly. Anyone lucky enough to see these creatures flitting between patches of sunlight cannot fail to be impressed by the variety of their patterns. But why do they display such colourful exuberance? Until recently, this was almost as pertinent a question as it had been when the 19th-century naturalists, armed only with butterfly nets and insatiable curiosity, battle through the rainforests. These early explorers soon realised that although some of the butterflies' bright colours are there to attract a mate, others are warning signals. They send out a message to any predators: "Keep off, we're poisonous." And because wearing certain patterns affords protection, other species copy them. Biologists use the term "mimicry rings" for these clusters of impostors and their evolutionary idol.</p>
+                    <p><strong>B</strong>&nbsp;&nbsp;But here's the conundrum. "Classical mimicry theory says that only a single ring should be found in any one area," explains George Beccaloni of the Natural History Museum, London. The idea is that in each locality there should be just the one pattern that best protects its wearers. Predators would quickly learn to avoid it and eventually, all mimetic species in a region should converge upon it. "The fact that this is patently not the case has been one of the major problems in mimicry research," says Beccaloni. In pursuit of a solution to the mystery of mimetic exuberance, Beccaloni set off for one of the mega centres for butterfly diversity, the point where the western edge of the Amazon basin meets the foothills of the Andes in Ecuador. "It's exceptionally rich, but comparatively well collected, so I pretty much knew what was there, says Beccaloni." The trick was to work out how all the butterflies were organised and how this related to mimicry.</p>
+                    <p><strong>C</strong>&nbsp;&nbsp;Working at the Jatun Sach Biological Research Station on the banks of the Rio Napo, Beccaloni focused his attention on a group of butterflies called ithomiines. These distant relatives of Britain's Camberwell Beauty are abundant throughout Central and South America and the Caribbean. They are famous for their bright colours, toxic bodies and complex mimetic relationships. "They can comprise up to 85 per cent of the individuals in a mimicry ring and their patterns are mimicked not just by butterflies, but by other insects as diverse as damselflies and true bugs," says Philip DeVries of the Milwaukee Public Museum's Center for Biodiversity Studies.</p>
+                    <p><strong>D</strong>&nbsp;&nbsp;Even though all ithomiines are poisonous, it is in their interests to evolve to look like one another because predators that learn to avoid one species will also avoid others that resemble it. This is known as Müllerian mimicry. Mimicry rings may also contain insects that are not toxic but gain protection by looking likes a model species that is: an adaptation called Batesian mimicry. So strong is an experienced predator's avoidance response that even quite inept resemblance gives some protection. "Often there will be a whole series of species that mimic, with varying degrees of verisimilitude, a focal or model species," says John Turner from the University of Leeds. "The results of these deceptions are some of the most exquisite examples of evolution known to science." In addition to colour, many mimics copy behaviours and even the flight pattern of their model species.</p>
+                    <p><strong>E</strong>&nbsp;&nbsp;But why are there so many different mimicry rings? One idea is that species flying at the same height in the forest canopy evolve to look like one another. "It had been suggested since the 1970s that mimicry complexes were stratified by flight height," says DeVries. The idea is that wing colour patterns are camouflaged against the different patterns of light and shadow at each level in the canopy, providing the first line of defence against predators." But the light patterns and wing patterns don't match very well," he says. And observations show that the insects do not shift in height as the day progresses and the light patterns change. Worse still, according to DeVries, this theory doesn't explain why the model species is flying at that particular height in the first place.</p>
+                    <p><strong>F</strong>&nbsp;&nbsp;"When I first went out to Ecuador, I didn't believe the flight height hypothesis and set out to test it," says Beccaloni. "A few weeks with the collecting net convinced me otherwise. They really flew that way." What he didn't accept, however, was the explanation about light patterns. "I thought if this idea really is true, can I can work out why it could help explain why there are so many different warning patterns in any not place. Then we might finally understand how they could evolve in such a complex way." The job was complicated by the sheer diversity of species involved at Jatun Sach. Not only were there 56 ithomiine butterfly species divided among eight mimicry rings, but there were also 69 other insect species, including 34 day-flying moths and a damselfly, all in a 200-hectare study area. Like many entomologists before him, Beccaloni used a large bag-like net to capture his prey. This allowed him to sample the 2.5 metres immediately above the forest floor. Unlike many previous workers, he kept very precise notes on exactly where he caught his specimens.</p>
+                    <p><strong>G</strong>&nbsp;&nbsp;The attention to detail paid off. Beccaloni found that the mimicry rings were flying at two quite separate altitudes. "Their use of the forest was quite distinctive," he recalls. "For example, most members of the clear-winged mimicry ring would fly close to the forest floor, while the majority of the 12 species in the tiger-winged ring fly high up." Each mimicry wing had its own characteristic flight height.</p>
+                    <p><strong>H</strong>&nbsp;&nbsp;However, this being practice rather than theory, things were a bit fuzzy. "They'd spend the majority of their time flying at a certain height. But they'd also spend a smaller proportion of their time flying at other heights," Beccaloni admits. Species weren't stacked rigidly like passenger jets waiting to land, but they did appear to have preferred airspace in the forest. So far, so good, but he still hadn't explained what causes the various groups of ithomiines and their chromatic consorts to fly in formations at these particular heights.</p>
+                    <p><strong>I</strong>&nbsp;&nbsp;Then Beccaloni had a bright idea. "I started looking at the distribution of ithomiine larval food plants within the canopy," he says. "For each one, I'd record the height to which the host plant grew and the height above the ground at which the eggs or larvae were found. Once I got them back to the field station's lab, it was just a matter of keeping them alive until they pupated and then hatched into adults which I could identify."</p>
+                </div>
+                <div id="passage-text-2" class="reading-passage hidden">
+                    <h4 class="text-center">European Heat Wave</h4>
+                    <p><strong>A</strong>&nbsp;&nbsp;IT WAS the summer, scientists now realise, when felt. We knew that summer 2003 was remarkable; global warming, at last, made itself unmistakably Britain experienced its record high temperature and continental Europe saw forest fires raging out of control, great rivers drying of a trickle and thousands of heat-related deaths. But just how remarkable is only now becoming clean.</p>
+                    <p><strong>B</strong>&nbsp;&nbsp;The three months of June, July and August were the warmest ever recorded in western and central Europe, with record national highs in Portugal, Germany and Switzerland as well as Britain. And they were the warmest by a very long way Over a great rectangular block of the earth stretching from west of Paris to northern Italy, taking in Switzerland and southern Germany, the average temperature for the summer months was 3.78°C above the long-term norm, said the Climatic Research Unit (CRU) of the University of East Anglia in Norwich, which is one of the world's leading institutions for the monitoring and analysis of temperature records.</p>
+                    <p><strong>C</strong>&nbsp;&nbsp;That excess might not seem a lot until you are aware of the context – but then you realise it is enormous. There is nothing like this in previous data, anywhere. It is considered so exceptional that Professor Phil Jones, the CRU's director, is prepared to say openly – in a way few scientists have done before – that the 2003 extreme may be directly attributed, not to natural climate variability, but to global warming caused by human actions.</p>
+                    <p><strong>D</strong>&nbsp;&nbsp;Meteorologists have hitherto contented themselves with the formula that recent high temperatures are consistent with predictions of climate. For the great block of the map – that stretching between 35-50N and 0-20E – the CRU has reliable temperature records dating back to 1781. Using as a baseline the average summer temperature recorded between 1961 and 1990, departures from the temperature norm, or 'anomalies': over the area as a whole can easily be plotted. As the graph shows, such as the variability of our climate that over the past 200 years, there have been at least half a dozen anomalies, in terms of excess temperature – the peaks on the graph denoting very hot years – approaching, or even exceeding, 20°C. But there has been nothing remotely like 2003 when the anomaly is nearly four degrees.</p>
+                    <p><strong>E</strong>&nbsp;&nbsp;"This is quite remarkable," Professor Jones told The Independent. "It's very unusual in a statistical sense. If this series had a normal statistical distribution, you wouldn't get this number. There turn period "how often it could be expected to recur" would be something like one in a thou-sand years. If we look at an excess above the average of nearly four degrees, then perhaps nearly three degrees of that is natural variability, because we've seen that in past summers. But the final degree of it is likely to be due to global warming, caused by human actions.</p>
+                    <p><strong>F</strong>&nbsp;&nbsp;The summer of 2003 has, in a sense, been one that climate scientists have long been expecting. Until now, the warming has been manifesting itself mainly in winters that have been less cold than in summers that have been much hotter. Last week, the United Nations predicted that winters were warming so quickly that winter sports would die out in Europe's lower-level ski resorts. But sooner or later the unprecedentedly hot summer was bound to come, and this year it did.</p>
+                    <p><strong>G</strong>&nbsp;&nbsp;One of the most dramatic features of the summer was the hot nights, especially in the first half of August. In Paris, the temperature never dropped below 230°C (73.40°F) at all between 7 and 14 August, and the city recorded its warmest-ever night on 11-12 August, when the mercury did not drop below 25.50°C (77.90°F). Germany recorded its warmest-ever night at Weinbiet in the Rhine valley with the lowest figure of 27.60°C (80.60°F) on 13 August, and similar record-breaking night-time temperatures were recorded in Switzerland and Italy.</p>
+                    <p><strong>H</strong>&nbsp;&nbsp;The 15,000 excess deaths in France during August, compared with previous years, have been related to the high night-time temperatures. The number gradually increased during the first 12 days of the month, peaking at about 2,000 per day on the night of 12-13 August, the fell off dramatically after 14 August when the minimum temperatures fell by about 50C. The elderly were most affected, with a 70 per cent increase in mortality rate in those aged 75-94.</p>
+                    <p><strong>I</strong>&nbsp;&nbsp;For Britain, the year as a whole is likely to be the warmest ever recorded, but despite the high-temperature record on 10 August, the summer itself – defined as the June, July and August period – still comes behind 1976 and 1955, when there were long periods of intense heat. At the moment, the year is on course to be the third-hottest ever in the global temperature record, which goes back to 1856, behind 1988 and 2002 but when all the records for October, November and December are collated, it might move into second place, Professor Jones said. The 10 hottest years in the record have all now occurred since 1990. Professor Jones is in no doubt about the astonishing nature of the European summer of 2003. "The temperatures recorded were out of all proportion to the previous record," he said. "It was the warmest summer in the past 500 years and probably way beyond what it was enormously exceptional."</p>
+                    <p><strong>J</strong>&nbsp;&nbsp;His colleagues at the University of East Anglia's Tyndall Centre for Climate Change Research are now planning a special study of it. "It was a summer that has not: been experienced before, either in terms of the temperature extremes that were reached, or the range and diversity of the impacts of the extreme heat," said the centre's executive director, Professor Mike Hulme. "It will certainly have left its mark on a number of countries, as to how they think and plan for climate change in the future, much as the 2000 floods have revolutionised the way the Government is thinking about flooding in the UK. "The 2003 heatwave will have similar repercussions across Europe."</p>
+                </div>
+                <div id="passage-text-3" class="reading-passage">
+                    <h4 class="text-center">Environmentally-friendly! vehicles</h4>
+                    <p><strong>A</strong>&nbsp;&nbsp;In the early 1990s, the California Air Resources Board (CARB), the government of California’s “clean air agency”, began a push for more fuel-efficient, lower-emissions vehicles, with the ultimate goal being a move to zero-emissions vehicles such as electric vehicles. In response, automakers developed electric models, including the Chrysler TEVan, Ford Ranger EV pickup truck, GM EV1 and S10 EV pickup, Honda EV Plus hatchback, Nissan lithium-battery Altra EV miniwagon and Toyota RAV4 EV. Ford Fusion is manufactured at Ford’s Hermosillo Stamping & Assembly plant, located in Sonora Mexico. I thought going green was supposed to provide the U.S. with more jobs.</p>
+                
+                    <p><strong>B</strong>&nbsp;&nbsp;The automakers were accused of pandering to the wishes of CARB in order to continue to be allowed to sell cars in the lucrative Californian market, while failing to adequately promote their electric vehicles in order to create the impression that the consumers were not interested in the cars, all the while joining oil industry lobbyists in vigorously protesting CARB’s mandate. GM’s program came under particular scrutiny; in an unusual move, consumers were not allowed to purchase EV1s, but were instead asked to sign closed-end leases, meaning that the cars had to be returned to GM at the end of the lease period, with no option to purchase, despite lesser interest in continuing to own the cars. Chrysler, Toyota, and a group of GM dealers sued CARB in Federal court, leading to the eventual neutering of CARB’s ZEV Mandate.</p>
+                
+                    <p><strong>C</strong>&nbsp;&nbsp;After public protests by EV drivers’ groups upset by the repossession of their cars, Toyota offered the last 328 RAV4-EVs for sale to the general public during six months, up until November 22, 2002. Almost all other production electric cars were withdrawn from the market and were in some cases seen to have been destroyed by their manufactures. Toyota continues to support the several hundred Toyota RAV4-EV in the hands of the general public and in fleet usage. GM famously de-activated the few EV1s that were donated to engineering schools and museums.</p>
+                
+                    <p><strong>D</strong>&nbsp;&nbsp;Throughout the 1990s, the appeal of fuel-efficient or environmentally friendly cars declined among Americans, who instead favored sport utility vehicles, which were affordable to operate despite their poor fuel efficiency thanks to lower gasoline prices. American automakers chose to focus their product lines around the truck-based vehicles, which enjoyed larger profit margins than the smaller cars which were preferred in places like Europe or Japan. In 1999, the Honda Insight hybrid car became the first hybrid to be sold in North America since the little-known Woods hybrid of 1917.</p>
+                
+                    <p><strong>E</strong>&nbsp;&nbsp;In 1995, Toyota debuted a hybrid concept car at the Tokyo Motor Show, with testing following a year later. The first Prius, model NHW10, went on sale on December 10, 1997. It was available only in Japan, though it has been imported privately to at least the United Kingdom, Australia, and New Zealand. The first-generation Prius, at its launch, became the world’s first mass-produced gasoline-electric hybrid car. The NHW10 Prius styling originated from California designers, who were selected over competing designs from other Toyota design studios.</p>
+                
+                    <p><strong>F</strong>&nbsp;&nbsp;In the United States, the NHW11 was the first Prius to be sold. The Prius was marketed between the smaller Corolla and the larger Camry. The published retail price of the car was US$19,995. The NHW11 Prius became more powerful partly to satisfy the higher speeds and longer distances that Americans drive. Air conditioning and electric power steering were standard equipment. The vehicle was the second mass-produced hybrid on the American market, after the two-seat Honda Insight. While the larger Prius could seat five, its battery pack restricted cargo space.</p>
+                
+                    <p><strong>G</strong>&nbsp;&nbsp;Hybrids, which featured a combined gasoline and electric powertrain, were seen as a balance, offering an environmentally friendly image and improved fuel economy, without being hindered by the low range of electric vehicles, albeit at an increased price over comparable gasoline cars. Sales were poor, the lack of interest attributed to the car’s small size and the lack of necessity for a fuel-efficient car at the time. The 2000s energy crisis brought renewed interest in hybrid and electric cars. In America, sales of the Toyota Prius jumped, and a variety of automakers followed suit, releasing hybrid models of their own. Several began to produce new electric car prototypes, as consumers called for cars that would free them from the fluctuations of oil prices.</p>
+                
+                    <p><strong>H</strong>&nbsp;&nbsp;In 2000, Hybrid Technologies, later renamed Li-ion Motors, started manufacturing electric cars in Mooresville, North Carolina. There has been increasing controversy with Li-ion Motors though due to the ongoing ‘Lemon issues’ regarding their product. And their attempt to cover it up. California electric-car maker Tesla Motors began development in 2004 on the Tesla Roadster, which was first delivered to customers in 2008. The Roadster remained the only highway-capable EV in serial production and available for sale until 2010. Senior leaders at several large automakers, including Nissan and General Motors, have stated that the Roadster was a catalyst which demonstrated that there is pent-up consumer demand for more efficient vehicles. GM Vice Chairman Bob Lutz said in 2007 that the Tesla Roadster inspired him to push GM to develop the Chevrolet Volt, a plug-in hybrid sedan prototype that aims to reverse years of dwindling market share and massive financial losses for America’s largest automaker. In an August 2009 edition of The New Yorker, Lutz was quoted as saying, “All the geniuses here at General Motors kept saying lithium-ion technology is 10 years away, and Toyota agreed with us – and boom, along comes Tesla. So I said, ‘How come some tiny little California startup, run by guys who know nothing about the car business, can do this, and we can’t?’ That was the crowbar that helped break up the log jam.”</p>
+                </div>
+            </div>
+            <div class="resizer" id="resizer"></div>
+            <div class="questions-panel" id="questions-panel">
+                <div id="questions-1" class="question-set">
+                    <div class="questions-container">
+                        <div class="question" data-q-start="1" data-q-end="5">
+                            <div class="question-prompt">
+                                <p><strong>Questions 1-5</strong><br>The reading Passage has seven paragraphs A-I</p>
+                                <p>Which paragraph contains the following information?</p>
+                                <p>Write the correct letter A-I, in boxes 1-5 on your answer sheet.</p>
+                                <p>NB You may use any letter more than once.</p>
+                            </div>
+                            <div class="matching-form-container">
+                                <div class="matching-form-row">
+                                    <label for="q1" class="matching-form-label"><strong>1</strong>&nbsp;&nbsp;Criticism against flight height theory of butterfly</label>
+                                    <select class="answer-input" id="q1"><option value=""></option><option value="A">A</option><option value="B">B</option><option value="C">C</option><option value="D">D</option><option value="E">E</option><option value="F">F</option><option value="G">G</option><option value="H">H</option><option value="I">I</option></select>
+                                </div>
+                                <div class="matching-form-row">
+                                    <label for="q2" class="matching-form-label"><strong>2</strong>&nbsp;&nbsp;Explained why Beccaloni carried out research in Ecuador.</label>
+                                    <select class="answer-input" id="q2"><option value=""></option><option value="A">A</option><option value="B">B</option><option value="C">C</option><option value="D">D</option><option value="E">E</option><option value="F">F</option><option value="G">G</option><option value="H">H</option><option value="I">I</option></select>
+                                </div>
+                                <div class="matching-form-row">
+                                    <label for="q3" class="matching-form-label"><strong>3</strong>&nbsp;&nbsp;Different mimicry ring flies at different height</label>
+                                    <select class="answer-input" id="q3"><option value=""></option><option value="A">A</option><option value="B">B</option><option value="C">C</option><option value="D">D</option><option value="E">E</option><option value="F">F</option><option value="G">G</option><option value="H">H</option><option value="I">I</option></select>
+                                </div>
+                                <div class="matching-form-row">
+                                    <label for="q4" class="matching-form-label"><strong>4</strong>&nbsp;&nbsp;The method of catching butterfly by Beccaloni</label>
+                                    <select class="answer-input" id="q4"><option value=""></option><option value="A">A</option><option value="B">B</option><option value="C">C</option><option value="D">D</option><option value="E">E</option><option value="F">F</option><option value="G">G</option><option value="H">H</option><option value="I">I</option></select>
+                                </div>
+                                <div class="matching-form-row">
+                                    <label for="q5" class="matching-form-label"><strong>5</strong>&nbsp;&nbsp;Not all Mimicry patterns are toxic information sent out from insects.</label>
+                                    <select class="answer-input" id="q5"><option value=""></option><option value="A">A</option><option value="B">B</option><option value="C">C</option><option value="D">D</option><option value="E">E</option><option value="F">F</option><option value="G">G</option><option value="H">H</option><option value="I">I</option></select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="question" data-q-start="6" data-q-end="11">
+                            <div class="question-prompt">
+                                <p><strong>Questions 6-11</strong><br>Do the following statements agree with the information given in Reading Passage 1?</p>
+                                <p>In boxes 6-11 on your answer sheet, write</p>
+                                <ul style="list-style: none; padding-left: 0;">
+                                    <li><strong>TRUE</strong> if the statement is true</li>
+                                    <li><strong>FALSE</strong> if the statement is false</li>
+                                    <li><strong>NOT GIVEN</strong> if the information is not given in the passage</li>
+                                </ul>
+                            </div>
+                            <div class="tf-question" data-q-start="6" data-q-end="6">
+                                <div class="tf-question-line"><span class="tf-question-number">6</span><span class="tf-question-text">All butterflies' colours of wings reflect the sense of warning to other predators.</span></div>
+                                <div class="tf-options"><label class="tf-option"><input type="radio" name="q6" value="TRUE"> TRUE</label><label class="tf-option"><input type="radio" name="q6" value="FALSE"> FALSE</label><label class="tf-option"><input type="radio" name="q6" value="NOT GIVEN"> NOT GIVEN</label></div>
+                            </div>
+                            <div class="tf-question" data-q-start="7" data-q-end="7">
+                                <div class="tf-question-line"><span class="tf-question-number">7</span><span class="tf-question-text">Insects may imitate butterflies' wing pattern as well.</span></div>
+                                <div class="tf-options"><label class="tf-option"><input type="radio" name="q7" value="TRUE"> TRUE</label><label class="tf-option"><input type="radio" name="q7" value="FALSE"> FALSE</label><label class="tf-option"><input type="radio" name="q7" value="NOT GIVEN"> NOT GIVEN</label></div>
+                            </div>
+                            <div class="tf-question" data-q-start="8" data-q-end="8">
+                                <div class="tf-question-line"><span class="tf-question-number">8</span><span class="tf-question-text">Flying Altitude of the butterfly is determined by their food.</span></div>
+                                <div class="tf-options"><label class="tf-option"><input type="radio" name="q8" value="TRUE"> TRUE</label><label class="tf-option"><input type="radio" name="q8" value="FALSE"> FALSE</label><label class="tf-option"><input type="radio" name="q8" value="NOT GIVEN"> NOT GIVEN</label></div>
+                            </div>
+                            <div class="tf-question" data-q-start="9" data-q-end="9">
+                                <div class="tf-question-line"><span class="tf-question-number">9</span><span class="tf-question-text">Beccaloni agreed with the flight height hypothesis and decided to reassure its validity.</span></div>
+                                <div class="tf-options"><label class="tf-option"><input type="radio" name="q9" value="TRUE"> TRUE</label><label class="tf-option"><input type="radio" name="q9" value="FALSE"> FALSE</label><label class="tf-option"><input type="radio" name="q9" value="NOT GIVEN"> NOT GIVEN</label></div>
+                            </div>
+                            <div class="tf-question" data-q-start="10" data-q-end="10">
+                                <div class="tf-question-line"><span class="tf-question-number">10</span><span class="tf-question-text">Jatun Sacha has the richest diversity of breeds in the world.</span></div>
+                                <div class="tf-options"><label class="tf-option"><input type="radio" name="q10" value="TRUE"> TRUE</label><label class="tf-option"><input type="radio" name="q10" value="FALSE"> FALSE</label><label class="tf-option"><input type="radio" name="q10" value="NOT GIVEN"> NOT GIVEN</label></div>
+                            </div>
+                            <div class="tf-question" data-q-start="11" data-q-end="11">
+                                <div class="tf-question-line"><span class="tf-question-number">11</span><span class="tf-question-text">Beccaloni has more detailed records on the location of butterfly collection than others.</span></div>
+                                <div class="tf-options"><label class="tf-option"><input type="radio" name="q11" value="TRUE"> TRUE</label><label class="tf-option"><input type="radio" name="q11" value="FALSE"> FALSE</label><label class="tf-option"><input type="radio" name="q11" value="NOT GIVEN"> NOT GIVEN</label></div>
+                            </div>
+                        </div>
+                        <div class="question" data-q-start="12" data-q-end="13">
+                            <div class="question-prompt">
+                                <p><strong>Questions 12-13</strong><br>Choose the correct letter A, B, C or D</p>
+                                <p>Write your answers in boxes 12-13 on your answer sheet.</p>
+                            </div>
+                            <div class="multi-choice-question" data-q-start="12" data-q-end="12">
+                                <div class="multi-choice-options">
+                                    <p><strong>12 Which is correct about butterflies flight altitude?</strong></p>
+                                    <div class="multi-choice-option"><label><input type="radio" name="q12" value="A"> Flight height theory already established</label></div>
+                                    <div class="multi-choice-option"><label><input type="radio" name="q12" value="B"> Butterfly always flies at a certain height</label></div>
+                                    <div class="multi-choice-option"><label><input type="radio" name="q12" value="C"> It is like the airplane's flying phenomenon</label></div>
+                                    <div class="multi-choice-option"><label><input type="radio" name="q12" value="D"> Each butterfly has its own favorable height</label></div>
+                                </div>
+                            </div>
+                            <div class="multi-choice-question" data-q-start="13" data-q-end="13">
+                                <div class="multi-choice-options">
+                                    <p><strong>13 Which is correct about Beccaloni next investigation after flight height?</strong></p>
+                                    <div class="multi-choice-option"><label><input type="radio" name="q13" value="A"> Some certain statistics have already been collected</label></div>
+                                    <div class="multi-choice-option"><label><input type="radio" name="q13" value="B"> Try to find connections between larval height and adult ones</label></div>
+                                    <div class="multi-choice-option"><label><input type="radio" name="q13" value="C"> It's very difficult to raise butterfly larval</label></div>
+                                    <div class="multi-choice-option"><label><input type="radio" name="q13" value="D"> Different larval favors different kinds of trees</label></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="questions-2" class="question-set hidden">
+                    <div class="questions-container">
+                        <div class="question" data-q-start="14" data-q-end="19">
+                            <div class="question-prompt">
+                                <p><strong>Questions 14-19</strong><br>Do the following statements agree with the information given in Reading Passage 2?</p>
+                                <p>In boxes 14-19 on your answer sheet, write</p>
+                                <ul style="list-style: none; padding-left: 0;">
+                                    <li><strong>TRUE</strong> if the statement is true</li>
+                                    <li><strong>FALSE</strong> if the statement is false</li>
+                                    <li><strong>NOT GIVEN</strong> if the information is not given in the passage</li>
+                                </ul>
+                            </div>
+                            <div class="tf-question" data-q-start="14" data-q-end="14">
+                                <div class="tf-question-line"><span class="tf-question-number">14</span><span class="tf-question-text">The average summer temperature in 2003 is approximately four degrees higher than that of the past.</span></div>
+                                <div class="tf-options"><label class="tf-option"><input type="radio" name="q14" value="TRUE"> TRUE</label><label class="tf-option"><input type="radio" name="q14" value="FALSE"> FALSE</label><label class="tf-option"><input type="radio" name="q14" value="NOT GIVEN"> NOT GIVEN</label></div>
+                            </div>
+                            <div class="tf-question" data-q-start="15" data-q-end="15">
+                                <div class="tf-question-line"><span class="tf-question-number">15</span><span class="tf-question-text">Jones believes the temperature statistic is within the normal range.</span></div>
+                                <div class="tf-options"><label class="tf-option"><input type="radio" name="q15" value="TRUE"> TRUE</label><label class="tf-option"><input type="radio" name="q15" value="FALSE"> FALSE</label><label class="tf-option"><input type="radio" name="q15" value="NOT GIVEN"> NOT GIVEN</label></div>
+                            </div>
+                            <div class="tf-question" data-q-start="16" data-q-end="16">
+                                <div class="tf-question-line"><span class="tf-question-number">16</span><span class="tf-question-text">The human factor is one of the reasons that caused the hot summer.</span></div>
+                                <div class="tf-options"><label class="tf-option"><input type="radio" name="q16" value="TRUE"> TRUE</label><label class="tf-option"><input type="radio" name="q16" value="FALSE"> FALSE</label><label class="tf-option"><input type="radio" name="q16" value="NOT GIVEN"> NOT GIVEN</label></div>
+                            </div>
+                            <div class="tf-question" data-q-start="17" data-q-end="17">
+                                <div class="tf-question-line"><span class="tf-question-number">17</span><span class="tf-question-text">In a large city, people usually measure temperature twice a day.</span></div>
+                                <div class="tf-options"><label class="tf-option"><input type="radio" name="q17" value="TRUE"> TRUE</label><label class="tf-option"><input type="radio" name="q17" value="FALSE"> FALSE</label><label class="tf-option"><input type="radio" name="q17" value="NOT GIVEN"> NOT GIVEN</label></div>
+                            </div>
+                            <div class="tf-question" data-q-start="18" data-q-end="18">
+                                <div class="tf-question-line"><span class="tf-question-number">18</span><span class="tf-question-text">Global warming has an obvious effect of warmer winter instead of hotter summer before 2003.</span></div>
+                                <div class="tf-options"><label class="tf-option"><input type="radio" name="q18" value="TRUE"> TRUE</label><label class="tf-option"><input type="radio" name="q18" value="FALSE"> FALSE</label><label class="tf-option"><input type="radio" name="q18" value="NOT GIVEN"> NOT GIVEN</label></div>
+                            </div>
+                            <div class="tf-question" data-q-start="19" data-q-end="19">
+                                <div class="tf-question-line"><span class="tf-question-number">19</span><span class="tf-question-text">New ski resorts are to be built on a high-altitude spot.</span></div>
+                                <div class="tf-options"><label class="tf-option"><input type="radio" name="q19" value="TRUE"> TRUE</label><label class="tf-option"><input type="radio" name="q19" value="FALSE"> FALSE</label><label class="tf-option"><input type="radio" name="q19" value="NOT GIVEN"> NOT GIVEN</label></div>
+                            </div>
+                        </div>
+                        <div class="question" data-q-start="20" data-q-end="21">
+                            <div class="question-prompt">
+                                <p><strong>Questions 20-21</strong><br>Answer the questions below using NO MORE THAN THREE WORDS AND/OR NUMBERS from the passage for each answer.</p>
+                                <p>Write your answers in boxes 20-21 on your answer sheet.</p>
+                            </div>
+                            <p><strong>20</strong>&nbsp;&nbsp;What are the two hottest years in Britain besides 2003? <input type="text" class="answer-input" id="q20" placeholder="20"></p>
+                            <p><strong>21</strong>&nbsp;&nbsp;What will affect UK government policies besides climate change according to Hulme? <input type="text" class="answer-input" id="q21" placeholder="21"></p>
+                        </div>
+                        <div class="question" data-q-start="22" data-q-end="26">
+                            <div class="question-prompt">
+                                <p><strong>Questions 22-26</strong><br>Complete the summary below using NO MORE THAN TWO WORDS from the passage.</p>
+                                <p>Write your answers in boxes 22-26 on your answer sheet</p>
+                            </div>
+                            <p>In the summer of 2003, thousands of extra death occurred in the country of <input type="text" class="answer-input" id="q22" placeholder="22">. Moreover, world-widely, the third record of hottest summer date from <input type="text" class="answer-input" id="q23" placeholder="23">, after the year of <input type="text" class="answer-input" id="q24" placeholder="24">. According to Jones, all the 10 hottest years happened from <input type="text" class="answer-input" id="q25" placeholder="25">. However, the summer of 2003 was at the peak of the previous <input type="text" class="answer-input" id="q26" placeholder="26"> years, perhaps even more.</p>
+                        </div>
+                        <div class="question" data-q-start="27" data-q-end="27">
+                            <div class="question-prompt">
+                                <p><strong>Question 27</strong><br>Choose the correct letter A, B, C or D</p>
+                                <p>Write your answer in box 27 on your answer sheet.</p>
+                            </div>
+                            <div class="multi-choice-question" data-q-start="27" data-q-end="27">
+                                <p><strong>27.Which one can be best served as the title of this passage in the following options?</strong></p>
+                                <div class="multi-choice-options">
+                                    <div class="multi-choice-option"><label><input type="radio" name="q27" value="A"> Global Warming effect</label></div>
+                                    <div class="multi-choice-option"><label><input type="radio" name="q27" value="B"> Global Warming in Europe</label></div>
+                                    <div class="multi-choice-option"><label><input type="radio" name="q27" value="C"> The Effects of hot temperature</label></div>
+                                    <div class="multi-choice-option"><label><input type="radio" name="q27" value="D"> Hottest summer in Europe</label></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="questions-3" class="question-set hidden">
+                    <div class="question" data-q-start="28" data-q-end="40">
+                        <div class="question-prompt">
+                            <p><strong>Questions 28-30</strong><br>Choose the correct letter, A, B, C or D.</p>
+                            <p>Write your answers in boxes 28-30 on your answer sheet.</p>
+                        </div>
+                    
+                        <!-- Question 27 -->
+                        <div class="multi-choice-question" data-q-start="28" data-q-end="28">
+                            <p><strong>27&nbsp;&nbsp;What does the author think of the factory in Sonora in Mexico where the ford fusion is manufactured?</strong></p>
+                            <div class="multi-choice-options">
+                                <div class="multi-choice-option"><label><input type="radio" name="q28" value="A"> the factory should be helpful in the US soil business</label></div>
+                                <div class="multi-choice-option"><label><input type="radio" name="q28" value="B"> Employment of US will be created as consumers change their awareness</label></div>
+                                <div class="multi-choice-option"><label><input type="radio" name="q28" value="C"> More competitive cars will be introduced into the market</label></div>
+                                <div class="multi-choice-option"><label><input type="radio" name="q28" value="D"> this issue is hard to give a predict</label></div>
+                            </div>
+                        </div>
+                    
+                        <!-- Question 29 -->
+                        <div class="multi-choice-question" data-q-start="29" data-q-end="29">
+                            <p><strong>29&nbsp;&nbsp;What did GM notably send to engineering schools and museums?</strong></p>
+                            <div class="multi-choice-options">
+                                <div class="multi-choice-option"><label><input type="radio" name="q29" value="A"> EV 1</label></div>
+                                <div class="multi-choice-option"><label><input type="radio" name="q29" value="B"> CARB</label></div>
+                                <div class="multi-choice-option"><label><input type="radio" name="q29" value="C"> RAV4</label></div>
+                                <div class="multi-choice-option"><label><input type="radio" name="q29" value="D"> MINI E</label></div>
+                            </div>
+                        </div>
+                    
+                        <!-- Question 30 -->
+                        <div class="multi-choice-question" data-q-start="30" data-q-end="30">
+                            <p><strong>30&nbsp;&nbsp;Nissan and GM high-level leaders declared the real reason for the popularity of Roadster is its</strong></p>
+                            <div class="multi-choice-options">
+                                <div class="multi-choice-option"><label><input type="radio" name="q30" value="A"> legendary concert</label></div>
+                                <div class="multi-choice-option"><label><input type="radio" name="q30" value="B"> huge population in the market</label></div>
+                                <div class="multi-choice-option"><label><input type="radio" name="q30" value="C"> bursting demand</label></div>
+                                <div class="multi-choice-option"><label><input type="radio" name="q30" value="D"> artistic design</label></div>
+                            </div>
+                        </div>
+                    
+                        <!-- Questions 31-35 (YES / NO / NOT GIVEN) -->
+                        <div class="question-prompt" style="margin-top:18px;">
+                            <p><strong>Questions 31-35</strong><br>Do the following statements agree with the information given in Reading Passage 3?</p>
+                            <p>In boxes 31-35 on your answer sheet, write</p>
+                            <ul style="list-style:none; padding-left:0;">
+                                <li><strong>YES</strong> if the statement is true</li>
+                                <li><strong>NO</strong> if the statement is false</li>
+                                <li><strong>NOT GIVEN</strong> if the information is not given in the passage</li>
+                            </ul>
+                        </div>
+                    
+                        <div class="tf-question" data-q-start="31" data-q-end="31">
+                            <div class="tf-question-line"><span class="tf-question-number">31</span><span class="tf-question-text">Some automakers mislead and suppressed the real demand for electric cars of keeping profit in a certain market by luring the want of CARB.</span></div>
+                            <div class="tf-options"><label class="tf-option"><input type="radio" name="q31" value="YES"> YES</label><label class="tf-option"><input type="radio" name="q31" value="NO"> NO</label><label class="tf-option"><input type="radio" name="q31" value="NOT GIVEN"> NOT GIVEN</label></div>
+                        </div>
+                    
+                        <div class="tf-question" data-q-start="32" data-q-end="32">
+                            <div class="tf-question-line"><span class="tf-question-number">32</span><span class="tf-question-text">Toyota started to sell 328 RAV4-EVs for taking up the market share</span></div>
+                            <div class="tf-options"><label class="tf-option"><input type="radio" name="q32" value="YES"> YES</label><label class="tf-option"><input type="radio" name="q32" value="NO"> NO</label><label class="tf-option"><input type="radio" name="q32" value="NOT GIVEN"> NOT GIVEN</label></div>
+                        </div>
+                    
+                        <div class="tf-question" data-q-start="33" data-q-end="33">
+                            <div class="tf-question-line"><span class="tf-question-number">33</span><span class="tf-question-text">In some countries, American auto-makers would like to grab the opportunity to earn money in the vehicle of bigger litre engine cars rather than smaller ones</span></div>
+                            <div class="tf-options"><label class="tf-option"><input type="radio" name="q33" value="YES"> YES</label><label class="tf-option"><input type="radio" name="q33" value="NO"> NO</label><label class="tf-option"><input type="radio" name="q33" value="NOT GIVEN"> NOT GIVEN</label></div>
+                        </div>
+                    
+                        <div class="tf-question" data-q-start="34" data-q-end="34">
+                            <div class="tf-question-line"><span class="tf-question-number">34</span><span class="tf-question-text">Hybrids cars are superior vehicles that combine the impression of an environmental friend electric power engine and a lower price in the unit sale.</span></div>
+                            <div class="tf-options"><label class="tf-option"><input type="radio" name="q34" value="YES"> YES</label><label class="tf-option"><input type="radio" name="q34" value="NO"> NO</label><label class="tf-option"><input type="radio" name="q34" value="NOT GIVEN"> NOT GIVEN</label></div>
+                        </div>
+                    
+                        <div class="tf-question" data-q-start="35" data-q-end="35">
+                            <div class="tf-question-line"><span class="tf-question-number">35</span><span class="tf-question-text">an inspiration to make an effort to produce hybrid cars is to cope with economic difficulties result from a declining market for General Motors.</span></div>
+                            <div class="tf-options"><label class="tf-option"><input type="radio" name="q35" value="YES"> YES</label><label class="tf-option"><input type="radio" name="q35" value="NO"> NO</label><label class="tf-option"><input type="radio" name="q35" value="NOT GIVEN"> NOT GIVEN</label></div>
+                        </div>
+                    
+                        <!-- Questions 36-40: Summary (use word list A-L) -->
+                        <div class="question-prompt">
+                            <p><strong>Questions 36–40</strong><br>
+                            Complete the summary using the list of words, <strong>A–L</strong> below</p>
+                            <p>Write the correct letter, A–L in boxes 36–40 on your answer sheet.</p>
+                          </div>
+                        
+                          <div class="summary-text" style="margin-bottom:15px;">
+                            <p>
+                              A <strong>36</strong> <input type="text" name="q36" class="summary-input" style="width:60px; text-align:center; border-bottom:1px solid #000;"> 
+                              &nbsp;was firstly introduced by Car maker Toyota in 1995. Then it started for sale in 1997 with a new first-generation model. Not only in Japan but included other countries such as 
+                              <strong>37</strong> <input type="text" name="q37" class="summary-input" style="width:60px; text-align:center; border-bottom:1px solid #000;"> 
+                              &nbsp;and Oceania in which <em>the Prius</em> was imported to. The first-generation Prius was the first car in mass production which is powered by 
+                              <strong>38</strong> <input type="text" name="q38" class="summary-input" style="width:60px; text-align:center; border-bottom:1px solid #000;">.
+                              The model NHW10 was designed by a winning Californian designer. The innovated NHW11 Prius has considerably higher running velocity and 
+                              <strong>39</strong> <input type="text" name="q39" class="summary-input" style="width:60px; text-align:center; border-bottom:1px solid #000;"> 
+                              &nbsp;than American counterparts. Still, the load capacity of current Prius version was limited in its 
+                              <strong>40</strong> <input type="text" name="q40" class="summary-input" style="width:60px; text-align:center; border-bottom:1px solid #000;">.
+                            </p>
+                          </div>
+                        
+                          <table class="word-list" style="border-collapse:collapse; width:100%; max-width:700px; margin:auto; font-size:15px;">
+                            <tr>
+                              <td><strong>A</strong> electric car</td>
+                              <td><strong>B</strong> United Kingdom</td>
+                              <td><strong>C</strong> Market</td>
+                              <td><strong>D</strong> concept car</td>
+                            </tr>
+                            <tr>
+                              <td><strong>E</strong> longer distances</td>
+                              <td><strong>F</strong> Emissions</td>
+                              <td><strong>G</strong> battery</td>
+                              <td><strong>H</strong> Consumers</td>
+                            </tr>
+                            <tr>
+                              <td><strong>I</strong> gasoline-electricity</td>
+                              <td><strong>J</strong> inspiration</td>
+                              <td><strong>K</strong> cargo space</td>
+                              <td><strong>L</strong> orientation</td>
+                            </tr>
+                          </table>
+                        </div>
+                        </div>
+                    </div>
+
+    <!-- Navigation Arrows -->
+    <div class="nav-arrows">
+        <button class="nav-arrow" onclick="previousQuestion()" id="prevBtn">‹</button>
+        <button class="nav-arrow" onclick="nextQuestion()" id="nextBtn">›</button>
+    </div>
+
+    <!-- Bottom Navigation -->
+    <nav class="nav-row perScorableItem" aria-label="Questions">
+        <div class="footer__questionWrapper___1tZ46 selected multiple" role="tablist">
+            <button role="tab" class="footer__questionNo___3WNct" onclick="switchToPart(1)">
+                <span>
+                    <span aria-hidden="true" class="section-prefix">Part </span>
+                    <span class="sectionNr" aria-hidden="true">1</span>
+                    <span class="attemptedCount" aria-hidden="true">0 of 13</span>
+                </span>
+            </button>
+            <div class="footer__subquestionWrapper___9GgoP">
+                <button class="subQuestion scorable-item" onclick="goToQuestion(1)"><span class="sr-only">Question 1</span><span aria-hidden="true">1</span></button>
+                <button class="subQuestion scorable-item" onclick="goToQuestion(2)"><span class="sr-only">Question 2</span><span aria-hidden="true">2</span></button>
+                <button class="subQuestion scorable-item" onclick="goToQuestion(3)"><span class="sr-only">Question 3</span><span aria-hidden="true">3</span></button>
+                <button class="subQuestion scorable-item" onclick="goToQuestion(4)"><span class="sr-only">Question 4</span><span aria-hidden="true">4</span></button>
+                <button class="subQuestion scorable-item" onclick="goToQuestion(5)"><span class="sr-only">Question 5</span><span aria-hidden="true">5</span></button>
+                <button class="subQuestion scorable-item" onclick="goToQuestion(6)"><span class="sr-only">Question 6</span><span aria-hidden="true">6</span></button>
+                <button class="subQuestion scorable-item" onclick="goToQuestion(7)"><span class="sr-only">Question 7</span><span aria-hidden="true">7</span></button>
+                <button class="subQuestion scorable-item" onclick="goToQuestion(8)"><span class="sr-only">Question 8</span><span aria-hidden="true">8</span></button>
+                <button class="subQuestion scorable-item" onclick="goToQuestion(9)"><span class="sr-only">Question 9</span><span aria-hidden="true">9</span></button>
+                <button class="subQuestion scorable-item" onclick="goToQuestion(10)"><span class="sr-only">Question 10</span><span aria-hidden="true">10</span></button>
+                <button class="subQuestion scorable-item" onclick="goToQuestion(11)"><span class="sr-only">Question 11</span><span aria-hidden="true">11</span></button>
+                <button class="subQuestion scorable-item" onclick="goToQuestion(12)"><span class="sr-only">Question 12</span><span aria-hidden="true">12</span></button>
+                <button class="subQuestion scorable-item" onclick="goToQuestion(13)"><span class="sr-only">Question 13</span><span aria-hidden="true">13</span></button>
+            </div>
+        </div>
+        
+        <div class="footer__questionWrapper___1tZ46 multiple" role="tablist">
+            <button role="tab" class="footer__questionNo___3WNct" onclick="switchToPart(2)">
+                <span>
+                    <span aria-hidden="true" class="section-prefix">Part </span>
+                    <span class="sectionNr" aria-hidden="true">2</span>
+                    <span class="attemptedCount" aria-hidden="true">0 of 14</span>
+                </span>
+            </button>
+            <div class="footer__subquestionWrapper___9GgoP">
+                <button class="subQuestion scorable-item" onclick="goToQuestion(14)"><span class="sr-only">Question 14</span><span aria-hidden="true">14</span></button>
+                <button class="subQuestion scorable-item" onclick="goToQuestion(15)"><span class="sr-only">Question 15</span><span aria-hidden="true">15</span></button>
+                <button class="subQuestion scorable-item" onclick="goToQuestion(16)"><span class="sr-only">Question 16</span><span aria-hidden="true">16</span></button>
+                <button class="subQuestion scorable-item" onclick="goToQuestion(17)"><span class="sr-only">Question 17</span><span aria-hidden="true">17</span></button>
+                <button class="subQuestion scorable-item" onclick="goToQuestion(18)"><span class="sr-only">Question 18</span><span aria-hidden="true">18</span></button>
+                <button class="subQuestion scorable-item" onclick="goToQuestion(19)"><span class="sr-only">Question 19</span><span aria-hidden="true">19</span></button>
+                <button class="subQuestion scorable-item" onclick="goToQuestion(20)"><span class="sr-only">Question 20</span><span aria-hidden="true">20</span></button>
+                <button class="subQuestion scorable-item" onclick="goToQuestion(21)"><span class="sr-only">Question 21</span><span aria-hidden="true">21</span></button>
+                <button class="subQuestion scorable-item" onclick="goToQuestion(22)"><span class="sr-only">Question 22</span><span aria-hidden="true">22</span></button>
+                <button class="subQuestion scorable-item" onclick="goToQuestion(23)"><span class="sr-only">Question 23</span><span aria-hidden="true">23</span></button>
+                <button class="subQuestion scorable-item" onclick="goToQuestion(24)"><span class="sr-only">Question 24</span><span aria-hidden="true">24</span></button>
+                <button class="subQuestion scorable-item" onclick="goToQuestion(25)"><span class="sr-only">Question 25</span><span aria-hidden="true">25</span></button>
+                <button class="subQuestion scorable-item" onclick="goToQuestion(26)"><span class="sr-only">Question 26</span><span aria-hidden="true">26</span></button>
+                <button class="subQuestion scorable-item" onclick="goToQuestion(27)"><span class="sr-only">Question 27</span><span aria-hidden="true">27</span></button>
+            </div>
+        </div>
+        
+        <div class="footer__questionWrapper___1tZ46 multiple" role="tablist">
+            <button role="tab" class="footer__questionNo___3WNct" onclick="switchToPart(3)">
+                <span>
+                    <span aria-hidden="true" class="section-prefix">Part </span>
+                    <span class="sectionNr" aria-hidden="true">3</span>
+                    <span class="attemptedCount" aria-hidden="true">0 of 13</span>
+                </span>
+            </button>
+            <div class="footer__subquestionWrapper___9GgoP">
+                <button class="subQuestion scorable-item" onclick="goToQuestion(28)"><span class="sr-only">Question 28</span><span aria-hidden="true">28</span></button>
+                <button class="subQuestion scorable-item" onclick="goToQuestion(29)"><span class="sr-only">Question 29</span><span aria-hidden="true">29</span></button>
+                <button class="subQuestion scorable-item" onclick="goToQuestion(30)"><span class="sr-only">Question 30</span><span aria-hidden="true">30</span></button>
+                <button class="subQuestion scorable-item" onclick="goToQuestion(31)"><span class="sr-only">Question 31</span><span aria-hidden="true">31</span></button>
+                <button class="subQuestion scorable-item" onclick="goToQuestion(32)"><span class="sr-only">Question 32</span><span aria-hidden="true">32</span></button>
+                <button class="subQuestion scorable-item" onclick="goToQuestion(33)"><span class="sr-only">Question 33</span><span aria-hidden="true">33</span></button>
+                <button class="subQuestion scorable-item" onclick="goToQuestion(34)"><span class="sr-only">Question 34</span><span aria-hidden="true">34</span></button>
+                <button class="subQuestion scorable-item" onclick="goToQuestion(35)"><span class="sr-only">Question 35</span><span aria-hidden="true">35</span></button>
+                <button class="subQuestion scorable-item" onclick="goToQuestion(36)"><span class="sr-only">Question 36</span><span aria-hidden="true">36</span></button>
+                <button class="subQuestion scorable-item" onclick="goToQuestion(37)"><span class="sr-only">Question 37</span><span aria-hidden="true">37</span></button>
+                <button class="subQuestion scorable-item" onclick="goToQuestion(38)"><span class="sr-only">Question 38</span><span aria-hidden="true">38</span></button>
+                <button class="subQuestion scorable-item" onclick="goToQuestion(39)"><span class="sr-only">Question 39</span><span aria-hidden="true">39</span></button>
+                <button class="subQuestion scorable-item" onclick="goToQuestion(40)"><span class="sr-only">Question 40</span><span aria-hidden="true">40</span></button>
+            </div>
+        </div>
+        
+        <button id="deliver-button" aria-label="Review your answers" class="footer__deliverButton___3FM07">
+            <i class="fa fa fa-check" aria-hidden="true"></i>
+            <span>Check Answers</span>
+        </button>
+    </nav>
+
+    <!-- Context Menu -->
+    <div id="contextMenu" class="context-menu">
+        <div id="menu-highlight" class="context-menu-item" onclick="highlightText()">
+            Highlight
+        </div>
+        <div id="menu-note" class="context-menu-item" onclick="addNote()">
+            Note
+        </div>
+        <div id="menu-clear" class="context-menu-item" onclick="clearHighlight()">
+            Clear
+        </div>
+        <div id="menu-clear-all" class="context-menu-item" onclick="clearAllHighlights()">
+            Clear All
+        </div>
+    </div>
+
+    <div id="results-modal" class="modal-overlay hidden">
+        <div class="modal-content">
+            <button class="modal-close-btn" onclick="closeResultsModal()">&times;</button>
+            <h2>Results</h2>
+            <div class="results-summary">
+                <p>Score: <span id="results-score"></span> / 40</p>
+                <p>IELTS Band: <span id="results-band"></span></p>
+            </div>
+            <div id="results-details" class="results-details-container">
+                <!-- Results for each question will be injected here -->
+            </div>
+        </div>
+    </div>
+
+    <script>
+    document.addEventListener('DOMContentLoaded', () => {
+        // --- STATE VARIABLES ---
+        let currentPassage = 1;
+        let currentQuestion = 1;
+        let selectedRange = null;
+        let timeInSeconds = 3600;
+        let timerInterval;
+        let draggedItem = null;
+        let activeQuestionElement = null;
+        let selectedDragItem = null;
+
+        // --- DOM ELEMENTS ---
+        const timerDisplay = document.querySelector('.timer-display');
+        const timerToggleButton = document.getElementById('timer-toggle-btn');
+        const timerResetButton = document.getElementById('timer-reset-btn');
+        const deliverButton = document.getElementById('deliver-button');
+        const resizer = document.getElementById('resizer');
+        const passagePanel = document.getElementById('passage-panel');
+        const questionsPanel = document.getElementById('questions-panel');
+        const contextMenu = document.getElementById('contextMenu');
+
+        // --- ICON SVGs ---
+        const playIcon = '<svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M8 5v14l11-7L8 5z"/></svg>';
+        const pauseIcon = '<svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>';
+
+        // --- ANSWERS ---
+        const correctAnswers = {
+            '1': 'E', '2': 'B', '3': 'G', '4': 'F', '5': 'D',
+            '6': 'FALSE', '7': 'TRUE', '8': 'NOT GIVEN', '9': 'FALSE', '10': 'NOT GIVEN', '11': 'TRUE',
+            '12': 'D', '13': 'B',
+            '14': 'TRUE', '15': 'FALSE', '16': 'TRUE', '17': 'NOT GIVEN', '18': 'TRUE', '19': 'NOT GIVEN',
+            '20': '1976 and 1955', '21': 'flooding',
+            '22': 'France', '23': '1856', '24': '1988 and 2002', '25': '1990', '26': '500',
+            '27': 'D',
+            '28': 'B', '29': 'A', '30': 'C', '31': 'YES', '32': 'NO', '33': 'NOT GIVEN',
+            '34': 'NO', '35': 'YES', '36': 'D', '37': 'B',
+            '38': 'I', '39': 'E', '40': ''
+        };
+
+        // --- INITIALIZATION ---
+        function initialize() {
+            startTimer();
+            initializeDragAndDrop();
+            setupCheckboxLimits();
+            setupExampleHeading();
+            switchToPart(1); // Also calls goToQuestion(1) and updateNavigation
+            
+            document.body.addEventListener('input', updateAllIndicators);
+            document.body.addEventListener('change', updateAllIndicators);
+            deliverButton.addEventListener('click', checkAnswers);
+            timerToggleButton.addEventListener('click', toggleTimer);
+            timerResetButton.addEventListener('click', resetTimer);
+
+            // Add click listeners to question containers for navigation
+            document.querySelectorAll('[data-q-start]').forEach(el => {
+                el.addEventListener('click', () => {
+                    const qNum = parseInt(el.dataset.qStart, 10);
+                    if (currentQuestion !== qNum) {
+                        goToQuestion(qNum);
+                    }
+                });
+            });
+
+            resizer.addEventListener('mousedown', initResize, false);
+            initializeContextMenu();
+        }
+
+        // --- CORE TEST LOGIC ---
+
+        function checkAnswers() {
+            // Disable all inputs to prevent changes
+            const allInputs = document.querySelectorAll('input, select, textarea');
+            allInputs.forEach(input => {
+                input.disabled = true;
+            });
+
+            // Disable submit button
+            deliverButton.disabled = true;
+            deliverButton.style.cursor = 'not-allowed';
+            
+            clearInterval(timerInterval);
+            let score = 0;
+            const totalQuestions = 40;
+            const resultsDetailsContainer = document.getElementById('results-details');
+            resultsDetailsContainer.innerHTML = '';
+
+            document.querySelectorAll('.correct, .incorrect, .correct-answer-highlight').forEach(el => {
+                el.classList.remove('correct', 'incorrect', 'correct-answer-highlight');
+            });
+            document.querySelectorAll('.correct-answer-display').forEach(el => el.remove());
+
+            for (let i = 1; i <= totalQuestions; i++) {
+                const questionKey = String(i);
+                const correctAnswer = correctAnswers[questionKey];
+                let userAnswer = '';
+                let isCorrect = false;
+                
+                let userAnswerDisplay = 'Not Answered';
+                const correctAnswerText = Array.isArray(correctAnswer) ? correctAnswer.join(' / ') : correctAnswer;
+
+                const textInput = document.getElementById(`q${i}`);
+                const radioGroup = document.querySelectorAll(`input[name="q${i}"][type="radio"]`);
+                const selectInput = document.getElementById(`q${i}`);
+                const checkboxGroup = document.querySelectorAll(`input[name="q${i}"][type="checkbox"]:checked`);
+                
+                // Handle Text Inputs
+                if (textInput && textInput.tagName === 'INPUT' && textInput.type === 'text') {
+                    const element = textInput.closest('.matching-form-row') || textInput;
+                    userAnswer = textInput.value.trim();
+                    userAnswerDisplay = userAnswer || 'Not Answered';
+
+                    isCorrect = Array.isArray(correctAnswer) ?
+                        correctAnswer.some(ans => userAnswer.toLowerCase() === ans.toLowerCase()) :
+                        userAnswer.toLowerCase() === correctAnswer.toLowerCase();
+                    
+                    if (isCorrect) {
+                        score++;
+                        element.classList.add('correct');
+                    } else {
+                        element.classList.add('incorrect');
+                        const correctAnswerSpan = document.createElement('span');
+                        correctAnswerSpan.className = 'correct-answer-display';
+                        correctAnswerSpan.innerHTML = `&nbsp;➜&nbsp;<span class="correct-answer-highlight">${correctAnswerText}</span>`;
+                        textInput.parentNode.insertBefore(correctAnswerSpan, textInput.nextSibling);
+                    }
+                }
+                // Handle Select Inputs
+                else if (selectInput && selectInput.tagName === 'SELECT') {
+                    const element = selectInput.closest('.matching-form-row') || selectInput;
+                    userAnswer = selectInput.value;
+                    userAnswerDisplay = userAnswer || 'Not Answered';
+
+                    isCorrect = userAnswer === correctAnswer;
+                    
+                    if (isCorrect) {
+                        score++;
+                        element.classList.add('correct');
+                    } else {
+                        element.classList.add('incorrect');
+                        const correctAnswerSpan = document.createElement('span');
+                        correctAnswerSpan.className = 'correct-answer-display';
+                        correctAnswerSpan.innerHTML = `&nbsp;➜&nbsp;<span class="correct-answer-highlight">${correctAnswerText}</span>`;
+                        selectInput.parentNode.insertBefore(correctAnswerSpan, selectInput.nextSibling);
+                    }
+                }
+                // Handle Radio Button Inputs (T/F, MCQs)
+                else if (radioGroup.length > 0) {
+                    const questionContainer = radioGroup[0].closest('.tf-question') || radioGroup[0].closest('.multi-choice-question');
+                    const checkedRadio = document.querySelector(`input[name="q${i}"]:checked`);
+
+                    if (checkedRadio) {
+                        userAnswer = checkedRadio.value;
+                        userAnswerDisplay = userAnswer;
+                        isCorrect = userAnswer === correctAnswer;
+
+                        const userLabel = checkedRadio.closest('.tf-option, .multi-choice-option');
+                        if (userLabel) {
+                            userLabel.classList.add(isCorrect ? 'correct' : 'incorrect');
+                        }
+                    }
+
+                    if (isCorrect) {
+                        score++;
+                    } else {
+                        if (questionContainer){
+                            const correctOptionEl = questionContainer.querySelector(`input[value="${correctAnswerText}"]`);
+                            if (correctOptionEl) {
+                                const correctLabel = correctOptionEl.closest('.tf-option, .multi-choice-option');
+                                if (correctLabel) {
+                                    correctLabel.classList.add('correct-answer-highlight');
+                                }
+                            }
+                        }
+                    }
+                }
+                // Handle Checkbox Inputs (Questions 38-40)
+                else if (checkboxGroup.length > 0 && (i >= 38 && i <= 40)) {
+                    const checkedValues = Array.from(checkboxGroup).map(cb => cb.value).sort().join(',');
+                    const correctValues = Array.isArray(correctAnswer) ? correctAnswer.sort().join(',') : correctAnswer;
+                    userAnswerDisplay = checkedValues || 'Not Answered';
+                    isCorrect = checkedValues === correctValues;
+
+                    if (isCorrect) {
+                        score++;
+                    }
+                }
+                 
+                // For showing results in the modal
+                 const resultRow = `
+                    <div class="result-row ${isCorrect ? '' : 'incorrect'}">
+                        <span class="q-num">${i}</span>
+                        <span class="user-ans">${userAnswerDisplay}</span>
+                        <span class="correct-ans">${correctAnswerText}</span>
+                    </div>`;
+                resultsDetailsContainer.innerHTML += resultRow;
+                
+                // Update nav button color
+                const navButton = document.querySelector(`.subQuestion[onclick="goToQuestion(${i})"]`);
+                if (navButton) {
+                    navButton.classList.remove('answered', 'active');
+                    navButton.classList.add(isCorrect ? 'correct' : 'incorrect');
+                }
+            }
+
+            document.getElementById('results-score').textContent = score;
+            document.getElementById('results-band').textContent = calculateBandScore(score);
+            document.getElementById('results-modal').classList.remove('hidden');
+        }
+
+        function calculateBandScore(score) {
+            if (score >= 39) return '9.0';
+            const mapping = {
+                40: 9.0, 39: 9.0, 38: 8.5, 37: 8.5, 36: 8.0, 35: 8.0, 34: 7.5,
+                33: 7.5, 32: 7.0, 31: 7.0, 30: 7.0, 29: 6.5, 28: 6.5, 27: 6.5,
+                26: 6.0, 25: 6.0, 24: 6.0, 23: 5.5, 22: 5.5, 21: 5.5, 20: 5.5,
+                19: 5.0, 18: 5.0, 17: 5.0, 16: 5.0, 15: 5.0, 14: 4.5, 13: 4.5,
+                12: 4.0, 11: 4.0, 10: 4.0, 9: 3.5, 8: 3.5, 7: 3.0, 6: 3.0,
+                5: 2.5, 4: 2.5
+            };
+            if (score <= 0) return 0.0;
+            if (score === 1) return 1.0;
+            if (score <= 3) return 2.0;
+            if (score <= 5) return 2.5;
+            return mapping[score] || 0.0;
+        }
+
+        function getUserAnswer(qNum) {
+            const textInput = document.getElementById(`q${qNum}`);
+            const radioInput = document.querySelector(`input[name="q${qNum}"]:checked`);
+            const dropZone = document.querySelector(`.drop-zone[data-q-start="${qNum}"]`);
+
+            if (textInput) { // Handles <input type="text"> and <select>
+                return { value: textInput.value, text: textInput.value || 'N/A' };
+            }
+            if (radioInput) {
+                return { value: radioInput.value, text: radioInput.value };
+            }
+            if (dropZone) {
+                const droppedItem = dropZone.querySelector('.drag-item');
+                return { 
+                    value: droppedItem ? droppedItem.dataset.value : null, 
+                    text: droppedItem ? droppedItem.textContent.trim() : 'N/A' 
+                };
+            }
+            return { value: null, text: 'N/A' };
+        }
+
+        function displayCorrectAnswer(qNum, correctAnswer) {
+            // Handle multi-choice group questions (e.g., 38-40)
+            if (qNum >= 38 && qNum <= 40) {
+                 const correctAnswersArr = Array.isArray(correctAnswer) ? correctAnswer : [correctAnswer];
+                 correctAnswersArr.forEach(ansValue => {
+                    const correctInput = document.querySelector(`input[name="q38-40"][value="${ansValue}"]`);
+                    correctInput?.closest('.multi-choice-option')?.classList.add('correct-answer-highlight');
+                 });
+                 return;
+            }
+
+            // Handle radio button questions by highlighting the correct label
+            const correctRadioInput = document.querySelector(`input[name="q${qNum}"][value="${correctAnswer}"]`);
+            if (correctRadioInput) {
+                const parentOption = correctRadioInput.closest('.tf-option, .multi-choice-option');
+                if (parentOption) {
+                    parentOption.classList.add('correct-answer-highlight');
+                    return;
+                }
+            }
+
+            // Handle text inputs, select dropdowns, and others by showing the answer next to them
+            const inputEl = document.getElementById(`q${qNum}`);
+            if (inputEl) {
+                const displaySpan = document.createElement('span');
+                displaySpan.className = 'correct-answer-display';
+                displaySpan.textContent = ` ✓ ${correctAnswer}`;
+                inputEl.insertAdjacentElement('afterend', displaySpan);
+                return; // Done
+            }
+            
+            // Fallback for questions identified by a container (e.g., some T/F/NG questions)
+            const element = findQuestionElement(qNum);
+            if (element) {
+                const displaySpan = document.createElement('span');
+                displaySpan.className = 'correct-answer-display';
+                displaySpan.textContent = ` ✓ ${correctAnswer}`;
+                const itemContainer = element.querySelector('.tf-question-text');
+                if (itemContainer) {
+                     itemContainer.appendChild(displaySpan);
+                } else {
+                     element.appendChild(displaySpan);
+                }
+            }
+        }
+        
+        function findQuestionElement(qNum) {
+             return document.querySelector(`[data-q-start="${qNum}"]`);
+        }
+
+        function addResultToModal(qNum, userAnswer, correctAnswer, isCorrect) {
+            const resultsDetails = document.getElementById('results-details');
+            const row = document.createElement('div');
+            row.className = 'result-row';
+            if (!isCorrect) {
+                row.classList.add('incorrect');
+            }
+            row.innerHTML = `
+                <span class="q-num">${qNum}</span>
+                <span class="user-ans">${userAnswer}</span>
+                <span class="correct-ans">${correctAnswer}</span>
+            `;
+            resultsDetails.appendChild(row);
+        }
+
+        function showResultsModal() {
+            document.getElementById('results-modal').classList.remove('hidden');
+        }
+
+        window.closeResultsModal = function() {
+            document.getElementById('results-modal').classList.add('hidden');
+        }
+        
+        function disableInputs() {
+            deliverButton.innerHTML = `<span>Checked! View Results.</span>`;
+            deliverButton.removeEventListener('click', checkAnswers);
+            deliverButton.onclick = showResultsModal;
+
+            document.querySelectorAll('input, select').forEach(el => {
+                el.disabled = true;
+                 if (el.matches('input[type=radio], input[type=checkbox]')) {
+                     el.style.cursor = 'not-allowed';
+                     el.parentElement.style.cursor = 'not-allowed';
+                 }
+            });
+            document.querySelectorAll('.drag-item').forEach(el => {
+                el.setAttribute('draggable', 'false');
+                el.style.cursor = 'default';
+            });
+            document.querySelectorAll('.drop-zone').forEach(el => {
+                el.classList.add('disabled');
+            });
+        }
+
+        function checkValue(userValue, correctValue) {
+            if (userValue === null || userValue === undefined) return false;
+            const formattedUserValue = userValue.trim().toLowerCase();
+            if (Array.isArray(correctValue)) {
+                return correctValue.map(v => v.toLowerCase()).includes(formattedUserValue);
+            } else {
+                return formattedUserValue === String(correctValue).toLowerCase();
+            }
+        }
+
+        function markQuestion(qNum, isCorrect) {
+            const subQuestionBtn = document.querySelector(`.subQuestion[onclick="goToQuestion(${qNum})"]`);
+            subQuestionBtn?.classList.add(isCorrect ? 'correct' : 'incorrect');
+
+            const elementsToMark = [
+                document.querySelector(`.tf-question[data-q-start="${qNum}"]`),
+                document.querySelector(`.multi-choice-question[data-q-start="${qNum}"]`),
+                document.querySelector(`.matching-question-item[data-q-start="${qNum}"]`),
+                document.querySelector(`.drop-zone[data-q-start="${qNum}"]`),
+                document.getElementById(`q${qNum}`),
+                document.querySelector(`input[name="q${qNum}"]:checked`)?.closest('.tf-option'),
+                document.querySelector(`input[name="q${qNum}"]:checked`)?.closest('.multi-choice-option')
+            ];
+            
+            elementsToMark.forEach(el => {
+                if (el) el.classList.add(isCorrect ? 'correct' : 'incorrect');
+            });
+
+             if (qNum >= 38 && qNum <= 40) {
+                const multiChoiceContainer = document.querySelector('.multi-choice-question[data-q-start="38"]');
+                if (multiChoiceContainer) multiChoiceContainer.classList.add(isCorrect ? 'correct' : 'incorrect');
+             } else if (qNum >= 20 && qNum <= 26) {
+                const pMatchInput = document.getElementById(`q${qNum}`);
+                if (pMatchInput) pMatchInput.classList.add(isCorrect ? 'correct' : 'incorrect');
+             }
+        }
+
+        function switchToPart(partNumber) {
+            currentPassage = partNumber;
+
+            // Hide all passages and questions
+            document.querySelectorAll('.reading-passage, .question-set, .part-header').forEach(el => {
+                el.classList.add('hidden');
+            });
+
+            // Show the correct passage, questions, and header
+            document.getElementById(`passage-text-${partNumber}`).classList.remove('hidden');
+            document.getElementById(`questions-${partNumber}`).classList.remove('hidden');
+            document.getElementById(`part-header-${partNumber}`).classList.remove('hidden');
+
+            // Update bottom navigation 'selected' state
+            document.querySelectorAll('.footer__questionWrapper___1tZ46').forEach((wrapper, index) => {
+                wrapper.classList.toggle('selected', (index + 1) === partNumber);
+            });
+
+            // Go to the first question of the part
+            const firstQuestionOfPart = {1: 1, 2: 14, 3: 28}[partNumber];
+            goToQuestion(firstQuestionOfPart);
+        }
+        
+        function goToQuestion(questionNumber) {
+            currentQuestion = questionNumber;
+
+            let passageNumber = 1;
+            if (questionNumber >= 14 && questionNumber <= 27) passageNumber = 2;
+            else if (questionNumber >= 28) passageNumber = 3;
+            
+            if (currentPassage !== passageNumber) {
+                switchToPart(passageNumber);
+                return; 
+            }
+
+            if (activeQuestionElement) {
+                activeQuestionElement.classList.remove('active-question', 'active-input');
+            }
+
+            let targetEl = document.querySelector(`[data-q-start="${questionNumber}"]`);
+
+            if (targetEl) {
+                activeQuestionElement = targetEl;
+                 if (targetEl.matches('input[type="text"]') || targetEl.matches('select')) {
+                     targetEl.classList.add('active-input');
+                 } else {
+                     targetEl.classList.add('active-question');
+                 }
+                 scrollIntoViewIfNeeded(targetEl);
+            } else {
+                 const pMatch = document.querySelector(`.paragraph-matching-question select[id="q${questionNumber}"]`);
+                 if(pMatch) {
+                    activeQuestionElement = pMatch;
+                    pMatch.classList.add('active-input');
+                    scrollIntoViewIfNeeded(pMatch);
+                 }
+            }
+
+            updateNavigation();
+        }
+        
+        // --- UI & NAVIGATION ---
+
+        function updateNavigation() {
+            const navButtons = document.querySelectorAll('.subQuestion');
+            navButtons.forEach(btn => btn.classList.remove('active'));
+            const activeNav = document.querySelector(`.subQuestion[onclick="goToQuestion(${currentQuestion})"]`);
+            if (activeNav) {
+                activeNav.classList.add('active');
+            }
+
+            const inputs = document.querySelectorAll('.answer-input, .drop-zone.filled, .summary-drop-zone.filled');
+            inputs.forEach(input => input.classList.remove('active-input'));
+            
+            const activeInput = document.getElementById(`q${currentQuestion}`);
+            if (activeInput) {
+                activeInput.classList.add('active-input');
+                if (typeof activeInput.focus === 'function') {
+                    activeInput.focus();
+                }
+            } else {
+                const activeQuestionBlock = document.querySelector(`[data-q-start="${currentQuestion}"]`);
+                if (activeQuestionBlock) {
+                    const firstInput = activeQuestionBlock.querySelector('input, select');
+                    if(firstInput) {
+                        firstInput.classList.add('active-input');
+                         if (typeof firstInput.focus === 'function') {
+                            firstInput.focus();
+                        }
+                    }
+                }
+            }
+        }
+        
+        function selectDragItem(item) {
+            if (selectedDragItem) {
+                selectedDragItem.classList.remove('selected');
+            }
+            selectedDragItem = item;
+            if (selectedDragItem) {
+                selectedDragItem.classList.add('selected');
+            }
+        }
+        
+        window.nextQuestion = () => currentQuestion < 40 && goToQuestion(currentQuestion + 1);
+        window.previousQuestion = () => currentQuestion > 1 && goToQuestion(currentQuestion - 1);
+
+        function updateAllIndicators() {
+            updateAttemptedCount(1, 1, 13);
+            updateAttemptedCount(2, 14, 27);
+            updateAttemptedCount(3, 28, 40);
+            updateAnsweredNav();
+        }
+        
+        function updateAnsweredNav() {
+            const navButtons = document.querySelectorAll('.subQuestion');
+            navButtons.forEach(btn => {
+                const qNum = parseInt(btn.textContent, 10);
+                if (isQuestionAnswered(qNum)) {
+                    btn.classList.add('answered');
+                } else {
+                    btn.classList.remove('answered');
+                }
+            });
+        }
+        
+        function isQuestionAnswered(qNum) {
+            const textInput = document.getElementById(`q${qNum}`);
+            if (textInput && (textInput.value.trim() !== '' || (textInput.classList.contains('drop-zone') && textInput.children.length > 0))) {
+                return true;
+            }
+            const radio = document.querySelector(`input[name="q${qNum}"]:checked`);
+            if (radio) {
+                return true;
+            }
+            const checkbox = document.querySelector(`input[name="q${qNum}"]:checked`);
+            if (checkbox) {
+                return true;
+            }
+            return false;
+        }
+
+        function scrollIntoViewIfNeeded(element) {
+            const panel = element.closest('.questions-panel, .passage-panel');
+            const panelRect = panel.getBoundingClientRect();
+            const elementRect = element.getBoundingClientRect();
+            if (elementRect.top < panelRect.top || elementRect.bottom > panelRect.bottom) {
+                element.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }
+        }
+        
+        // --- DRAG AND DROP ---
+        
+        function initializeDragAndDrop() {
+            document.querySelectorAll('.drag-item').forEach(item => {
+                item.addEventListener('dragstart', handleDragStart);
+                item.addEventListener('dragend', handleDragEnd);
+                item.addEventListener('click', () => selectDragItem(item));
+            });
+            document.querySelectorAll('.drop-zone, .drag-options-container').forEach(zone => {
+                zone.addEventListener('dragover', handleDragOver);
+                zone.addEventListener('dragleave', handleDragLeave);
+                zone.addEventListener('drop', handleDrop);
+            });
+        }
+
+        function handleDragStart(e) {
+            draggedItem = e.target;
+            setTimeout(() => e.target.classList.add('dragging'), 0);
+        }
+
+        function handleDragEnd(e) {
+            e.target.classList.remove('dragging');
+            draggedItem = null;
+        }
+
+        function handleDragOver(e) {
+            e.preventDefault();
+            const targetZone = e.currentTarget;
+            if (draggedItem && draggedItem.dataset.dndGroup === targetZone.dataset.dndGroup) {
+                targetZone.classList.add('drag-over');
+            }
+        }
+
+        function handleDragLeave(e) {
+            e.currentTarget.classList.remove('drag-over');
+        }
+
+        function handleDrop(e) {
+            e.preventDefault();
+            const targetZone = e.currentTarget;
+            targetZone.classList.remove('drag-over');
+
+            if (!draggedItem || draggedItem.dataset.dndGroup !== targetZone.dataset.dndGroup) {
+                return;
+            }
+
+            const sourceZone = draggedItem.parentElement;
+            if (sourceZone === targetZone) return; // Prevent dropping on itself
+
+            const existingItemInTarget = targetZone.classList.contains('drop-zone') 
+                ? targetZone.querySelector('.drag-item') 
+                : null;
+
+            // First, clear the target drop-zone of any text (like question numbers) before adding the new item.
+            if (targetZone.classList.contains('drop-zone')) {
+                Array.from(targetZone.childNodes).forEach(node => {
+                    if (node.nodeType === Node.TEXT_NODE) {
+                        node.remove();
+                    }
+                });
+            }
+
+            // Move the item that was in the target (if any) to the source zone.
+            if (existingItemInTarget) {
+                sourceZone.appendChild(existingItemInTarget);
+            }
+            
+            // Finally, move the dragged item to the target zone.
+            targetZone.appendChild(draggedItem);
+            targetZone.classList.add('filled');
+
+            // After the move, clean up the source zone if it's a drop-zone and is now empty.
+            if (sourceZone.classList.contains('drop-zone') && !sourceZone.querySelector('.drag-item')) {
+                 sourceZone.classList.remove('filled');
+                 const qNum = sourceZone.dataset.qStart;
+                 sourceZone.innerText = qNum; // Restore the question number
+            }
+            
+            updateAllIndicators();
+        }
+        
+        // --- MISC HELPERS ---
+        
+        function startTimer() {
+            if (timerInterval) clearInterval(timerInterval); // Ensure no multiple intervals
+            timerInterval = setInterval(() => {
+                timeInSeconds--;
+                const minutes = Math.floor(timeInSeconds / 60);
+                const seconds = timeInSeconds % 60;
+                timerDisplay.textContent = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+                if (timeInSeconds <= 0) {
+                    clearInterval(timerInterval);
+                    timerDisplay.textContent = "Time's up!";
+                    // checkAnswers(); // Disabled to prevent modal from opening automatically.
+                }
+            }, 1000);
+            timerToggleButton.innerHTML = pauseIcon;
+        }
+
+        function pauseTimer() {
+            clearInterval(timerInterval);
+            timerToggleButton.innerHTML = playIcon;
+        }
+
+        function toggleTimer() {
+            // Check based on the icon currently displayed
+            if (timerToggleButton.innerHTML.includes('M6 19h4V5H6v14z')) { // Check for pause icon shape
+                pauseTimer();
+            } else {
+                startTimer();
+            }
+        }
+
+        function resetTimer() {
+            timeInSeconds = 3600;
+            updateTimerDisplay();
+            startTimer();
+            timerToggleButton.innerHTML = pauseIcon;
+        }
+        
+        function setupCheckboxLimits() {
+            const checkboxGroups = [
+                { name: 'q38-40', limit: 3 }
+            ];
+            checkboxGroups.forEach(group => {
+                const checkboxes = document.querySelectorAll(`input[name="${group.name}"]`);
+                checkboxes.forEach(checkbox => {
+                    checkbox.addEventListener('change', () => {
+                        const checkedCount = document.querySelectorAll(`input[name="${group.name}"]:checked`).length;
+                        if (checkedCount > group.limit) checkbox.checked = false;
+                        updateAllIndicators();
+                    });
+                });
+            });
+        }
+
+        function setupExampleHeading() {
+            const exampleBox = document.querySelector('.example-box');
+            if(exampleBox){
+                const title = document.createElement('p');
+                title.style.fontWeight = 'bold';
+                title.textContent = 'List of Headings';
+                exampleBox.insertBefore(title, exampleBox.firstChild);
+            }
+        }
+        
+        function initResize(e) {
+            e.preventDefault();
+            const startX = e.clientX;
+            const startWidth = passagePanel.offsetWidth;
+            
+            const doDrag = (e) => {
+                const newWidth = startWidth + e.clientX - startX;
+                if (newWidth > 200 && (document.body.clientWidth - newWidth - resizer.offsetWidth) > 200) {
+                    passagePanel.style.flex = `0 0 ${newWidth}px`;
+                }
+            };
+            const stopDrag = () => {
+                window.removeEventListener('mousemove', doDrag, false);
+                window.removeEventListener('mouseup', stopDrag, false);
+            };
+            
+            window.addEventListener('mousemove', doDrag, false);
+            window.addEventListener('mouseup', stopDrag, false);
+        }
+        
+        // --- CONTEXT MENU (Highlighting) ---
+        
+        function initializeContextMenu() {
+            const panels = [passagePanel, questionsPanel];
+            let targetElementForClear = null;
+
+            // This listener simply tracks the last valid text selection in either panel.
+            document.addEventListener('selectionchange', () => {
+                const selection = window.getSelection();
+                if (selection && !selection.isCollapsed && selection.toString().trim().length > 0) {
+                    const range = selection.getRangeAt(0);
+                    if (panels.some(panel => panel.contains(range.commonAncestorContainer))) {
+                        selectedRange = range;
+                        targetElementForClear = null; // New selection overrides clearing a specific element
+                    }
+                }
+            });
+
+            const showContextMenu = (e) => {
+                const target = e.target;
+                const isClickOnHighlight = target.closest('.highlight, .comment-highlight');
+                const isSelectionActive = selectedRange && selectedRange.toString().trim().length > 0;
+                
+                let showMenu = false;
+
+                if (isClickOnHighlight) {
+                    document.getElementById('menu-highlight').style.display = 'none';
+                    document.getElementById('menu-note').style.display = 'none';
+                    document.getElementById('menu-clear').style.display = 'block';
+                    document.getElementById('menu-clear-all').style.display = 'block';
+                    contextMenu.targetElementForClear = isClickOnHighlight;
+                    showMenu = true;
+                } else if (isSelectionActive && panels.some(panel => panel.contains(selectedRange.commonAncestorContainer))) {
+                    document.getElementById('menu-highlight').style.display = 'flex';
+                    document.getElementById('menu-note').style.display = 'flex';
+                    document.getElementById('menu-clear').style.display = 'none';
+                    document.getElementById('menu-clear-all').style.display = 'block'; // Always show clear all
+                    showMenu = true;
+                }
+
+                if (showMenu) {
+                    e.preventDefault();
+                    contextMenu.style.display = 'block';
+                    const menuHeight = contextMenu.offsetHeight;
+                    const menuWidth = contextMenu.offsetWidth;
+                    let left = e.pageX;
+                    let top = e.pageY;
+                    if (left + menuWidth > window.innerWidth) left = window.innerWidth - menuWidth - 5;
+                    if (top + menuHeight > window.innerHeight) top = e.pageY - menuHeight - 5;
+                    else top = e.pageY - menuHeight - 5;
+                    
+                    contextMenu.style.left = `${left}px`;
+                    contextMenu.style.top = `${top}px`;
+                }
+            };
+
+            panels.forEach(panel => {
+                panel.addEventListener('contextmenu', showContextMenu);
+            });
+
+            document.addEventListener('click', (e) => {
+                if (contextMenu.style.display === 'block' && !contextMenu.contains(e.target)) {
+                    closeContextMenu();
+                }
+            });
+        }
+
+        function closeContextMenu() {
+            contextMenu.style.display = 'none';
+            selectedRange = null; // Clear range after menu closes
+        }
+
+        function unwrapElement(element) {
+            const parent = element.parentNode;
+            if (!parent) return;
+            while (element.firstChild) {
+                parent.insertBefore(element.firstChild, element);
+            }
+            parent.removeChild(element);
+            parent.normalize();
+        }
+
+        window.highlightText = () => {
+            if (selectedRange && !selectedRange.collapsed) {
+                const span = document.createElement('span');
+                span.className = 'highlight';
+                span.appendChild(selectedRange.extractContents());
+                selectedRange.insertNode(span);
+            }
+            closeContextMenu();
+            window.getSelection().removeAllRanges();
+        };
+
+        window.addNote = () => {
+            const note = prompt('Enter your note:');
+            if (note && selectedRange && !selectedRange.collapsed) {
+                const span = document.createElement('span');
+                span.className = 'comment-highlight';
+                const tooltip = document.createElement('span');
+                tooltip.className = 'comment-tooltip';
+                tooltip.textContent = note;
+                span.appendChild(selectedRange.extractContents());
+                span.appendChild(tooltip);
+                selectedRange.insertNode(span);
+            }
+            closeContextMenu();
+            window.getSelection().removeAllRanges();
+        };
+
+        window.clearHighlight = () => {
+             const elementToClear = contextMenu.targetElementForClear;
+             if (elementToClear) {
+                 unwrapElement(elementToClear);
+             }
+             closeContextMenu();
+             window.getSelection().removeAllRanges();
+        };
+        
+        window.clearAllHighlights = () => {
+            document.querySelectorAll('.highlight, .comment-highlight').forEach(unwrapElement);
+            closeContextMenu();
+            window.getSelection().removeAllRanges();
+        };
+
+        function updateAttemptedCount(part, startQ, endQ) {
+            let answeredCount = 0;
+            for (let i = startQ; i <= endQ; i++) {
+                if (isQuestionAnswered(i)) {
+                    answeredCount++;
+                }
+            }
+            const partHeader = document.querySelector(`.footer__questionNo___3WNct[onclick="switchToPart(${part})"]`);
+            if (partHeader) {
+                const countSpan = partHeader.querySelector('.attemptedCount');
+                if (countSpan) {
+                     countSpan.textContent = `${answeredCount} of ${endQ - startQ + 1}`;
+                }
+            }
+        }
+
+        // --- GLOBAL FUNCTION EXPOSURE ---
+        window.nextQuestion = nextQuestion;
+        window.previousQuestion = previousQuestion;
+        window.goToQuestion = goToQuestion;
+        window.switchToPart = switchToPart;
+        window.closeResultsModal = closeResultsModal;
+        window.highlightText = highlightText;
+        window.addNote = addNote;
+        window.clearHighlight = clearHighlight;
+        window.clearAllHighlights = clearAllHighlights;
+
+        // --- START THE APP ---
+        initialize();
+    });
+    </script>
+</body>
+</html>

@@ -1,0 +1,29 @@
+# Tayanch
+
+
+> Tayanch is an Uzbek-language platform offering 13 self-paced online courses on AI, prompt engineering, IELTS, and studying abroad.
+
+
+Courses are purchased once for lifetime access, with a completion certificate issued per course. Payments are processed manually through Telegram.
+
+
+## Product
+
+
+- [Home](https://javohirqaxramonov36-web.github.io/strawberryboo-site): Site overview and entry point for all courses.
+- [Courses](https://javohirqaxramonov36-web.github.io/strawberryboo-site/kurslar): Catalog of 13 self-paced Uzbek-language courses.
+- [Pricing](https://javohirqaxramonov36-web.github.io/strawberryboo-site/narxlar): Course pricing with one-time payment and lifetime access details.
+- [My Path](https://javohirqaxramonov36-web.github.io/strawberryboo-site/mening-yolim): Instructor or founder background and story page.
+
+
+## Company
+
+
+- [About Us](https://javohirqaxramonov36-web.github.io/strawberryboo-site/biz-haqimizda): Information about Tayanch and its mission.
+- [Contact](https://javohirqaxramonov36-web.github.io/strawberryboo-site/bog-lanish): Contact details, including Telegram-based payment and support.
+
+
+## Legal
+
+
+- [Privacy Policy](https://javohirqaxramonov36-web.github.io/strawberryboo-site/maxfiylik-siyosati): Site privacy policy and data handling terms.

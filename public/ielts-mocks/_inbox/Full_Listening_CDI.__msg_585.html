@@ -1,0 +1,1998 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IELTS Listening Test 71</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #ffffff;
+            line-height: 1.4;
+            font-size: 16px;
+            padding-bottom: 90px;
+        }
+
+        /* Page watermark */
+        body::after {
+            content: "@Full Exam Materials";
+            position: fixed;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%) rotate(-20deg);
+            font-size: 72px;
+            font-weight: 800;
+            letter-spacing: 2px;
+            color: #000000;
+            opacity: 0.02;
+            pointer-events: none;
+            z-index: 0;
+            white-space: nowrap;
+        }
+
+        .header {
+            background-color: #ffffff;
+            padding: 12px 20px;
+            border-bottom: 1px solid #e0e0e0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            height: 60px;
+        }
+
+        .telegram-link {
+            color: #3e3e3e;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 16px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 6px 12px;
+            border: 2px solid #3e3e3e;
+            border-radius: 9999px;
+            background-color: #ffffff;
+            line-height: 1;
+        }
+
+        .telegram-link:hover {
+            background-color: #f6f6f6;
+        }
+
+        .telegram-link::before {
+            content: '';
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            background-color: currentColor;
+            -webkit-mask-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.78 18.65l.28-4.23l7.68-6.92c.34-.31-.07-.46-.52-.19L7.74 13.3L3.64 12c-.88-.25-.89-1.37.2-1.64l16.56-6.4c.75-.29 1.4.22 1.2.94l-2.67 12.61c-.22.95-1.13 1.18-1.78.73l-4.5-3.32l-2.23 2.15c-.47.44-1.29.21-1.48-.37z"/></svg>');
+            mask-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.78 18.65l.28-4.23l7.68-6.92c.34-.31-.07-.46-.52-.19L7.74 13.3L3.64 12c-.88-.25-.89-1.37.2-1.64l16.56-6.4c.75-.29 1.4.22 1.2.94l-2.67 12.61c-.22.95-1.13 1.18-1.78.73l-4.5-3.32l-2.23 2.15c-.47.44-1.29.21-1.48-.37z"/></svg>');
+            background-size: contain;
+            background-repeat: no-repeat;
+        }
+
+        .icon {
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
+            opacity: 0.7;
+            color: #333;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .icon:hover {
+            opacity: 1;
+        }
+        
+        #play-pause-btn {
+            background: none;
+            border: none;
+            padding: 0;
+        }
+
+        .main-container {
+            margin-top: 60px;
+            display: flex;
+            background: #ffffff;
+            padding-bottom: 100px;
+        }
+
+        .main-container.results-mode {
+            display: flex;
+            flex-direction: row;
+        }
+
+        /* Left Panel */
+        .left-panel {
+            width: 100%;
+            padding: 20px;
+            transition: width 0.4s ease;
+        }
+
+        .main-container.results-mode .left-panel {
+            width: 75%;
+            overflow-y: auto;
+            height: calc(100vh - 195px);
+        }
+
+        /* Right Panel */
+        .right-panel {
+            display: none;
+            width: 50%;
+            padding: 20px;
+            position: relative;
+            border-left: 1px solid #e0e0e0;
+            overflow-y: auto;
+            height: calc(100vh - 195px);
+        }
+
+        #transcription-container h2 {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        #transcription-text {
+            white-space: pre-wrap;
+            font-family: inherit;
+            font-size: 15px;
+            line-height: 1.7;
+        }
+
+        .main-container.results-mode .right-panel {
+            display: block;
+            width: 25%;
+            border-left: 1px solid #e0e0e0;
+            border-top: none;
+            height: calc(100vh - 195px);
+            overflow-y: auto;
+        }
+
+        .correct-inline {
+            color: #28a745;
+            font-weight: 700;
+            margin-left: 10px;
+            display: inline-block;
+            vertical-align: middle;
+            white-space: nowrap;
+        }
+        .correct-inline::before {
+            content: "\2192  ";
+            font-weight: 700;
+        }
+
+        .question {
+            margin-bottom: 40px;
+        }
+        .question p {
+            margin-bottom: 10px;
+        }
+        .question-prompt {
+            margin-bottom: 20px;
+        }
+        .question ul {
+            list-style: none;
+            padding-left: 0;
+        }
+        .question ul li {
+            margin-bottom: 5px;
+        }
+        .answer-input {
+            border: 1px solid #9aa3ad;
+            border-radius: 4px;
+            background-color: #fff;
+            padding: 4px 8px;
+            font-size: 16px;
+            text-align: left;
+            margin-right: 4px;
+            width: 140px;
+            max-width: 160px;
+            min-width: 120px;
+            word-break: break-word;
+            overflow-wrap: break-word;
+            white-space: normal;
+            height: 28px;
+            min-height: 28px;
+            line-height: 1.2;
+            vertical-align: middle;
+            transition: border-color 0.15s ease, box-shadow 0.15s ease;
+        }
+        .answer-input::placeholder {
+            color: #999;
+            font-weight: bold;
+            text-align: center;
+        }
+        .answer-input:focus {
+            outline: none;
+            border-color: #2c6bed;
+            border-width: 2px;
+        }
+        .answer-input.correct {
+            border-color: #28a745;
+            background-color: #e9f7ef;
+        }
+        .answer-input.incorrect {
+            border-color: #dc3545;
+            background-color: #f8d7da;
+            color: #721c24;
+        }
+        .answer-input {
+            z-index: 10;
+            position: relative;
+            pointer-events: auto;
+            font-weight: 600;
+        }
+
+        /* Navigation Arrows */
+        .nav-arrows {
+            position: fixed;
+            bottom: 100px;
+            right: 20px;
+            display: flex;
+            gap: 5px;
+            z-index: 101;
+        }
+
+        .nav-arrow {
+            width: 50px;
+            height: 50px;
+            background: #333;
+            color: white;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 22px;
+            font-weight: bold;
+        }
+
+        .nav-arrow:hover {
+            background: #555;
+        }
+
+        .nav-arrow:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+        }
+
+        /* Bottom Navigation */
+        .nav-row {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: #ffffff;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            height: 80px;
+            z-index: 100;
+            overflow-x: auto;
+            overflow-y: hidden;
+            white-space: nowrap;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .footer__questionWrapper___1tZ46 {
+            display: flex;
+            align-items: center;
+            margin-right: 20px;
+            flex-shrink: 0;
+        }
+
+        .footer__questionNo___3WNct {
+            background: none;
+            border: none;
+            padding: 10px 15px;
+            font-size: 16px;
+            font-weight: 600;
+            color: #333;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            transition: background-color 0.2s;
+        }
+
+        .footer__questionNo___3WNct:hover {
+            background-color: #f8f9fa;
+        }
+
+        .section-prefix {
+            font-size: 16px;
+        }
+
+        .sectionNr {
+            font-size: 16px;
+            font-weight: bold;
+        }
+
+        .attemptedCount {
+            font-size: 14px;
+            color: #666;
+            margin-left: 5px;
+            font-weight: 400;
+        }
+
+        @media (max-width: 1024px) {
+            .attemptedCount {
+                display: none;
+            }
+        }
+
+        .footer__questionWrapper___1tZ46.selected .attemptedCount {
+            display: none;
+        }
+
+        .footer__subquestionWrapper___9GgoP {
+            display: none;
+            gap: 2px;
+            margin-left: 10px;
+        }
+
+        .footer__questionWrapper___1tZ46.selected .footer__subquestionWrapper___9GgoP {
+            display: flex;
+        }
+
+        .subQuestion {
+            width: 32px;
+            height: 32px;
+            border: 1px solid #ccc;
+            background: white;
+            color: #333;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s;
+            border-radius: 2px;
+        }
+
+        .subQuestion.answered {
+            background-color: #e9ecef;
+            border-color: #ddd;
+        }
+        .subQuestion.correct {
+            background-color: #28a745;
+            color: white;
+            border-color: #28a745;
+        }
+        .subQuestion.incorrect {
+            background-color: #dc3545;
+            color: white;
+            border-color: #dc3545;
+        }
+
+        .subQuestion:hover {
+            background-color: #f0f0f0;
+            border-color: #999;
+        }
+
+        .subQuestion.completed {
+            background-color: #28a745;
+            color: white;
+            border-color: #28a745;
+        }
+
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border: 0;
+        }
+
+        .footer__deliverButton___3FM07 {
+            margin-left: auto;
+            margin-right: 20px;
+            background-color: #f0f0f0;
+            color: #333;
+            border: 1px solid #ccc;
+            padding: 12px 20px;
+            border-radius: 4px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: background-color 0.2s, border-color 0.2s;
+            min-width: 170px;
+            justify-content: center;
+        }
+
+        .footer__deliverButton___3FM07:hover {
+            background-color: #e0e0e0;
+            border-color: #bbb;
+        }
+        .footer__deliverButton___3FM07.success {
+            background-color: #28a745;
+            color: #fff;
+            border-color: #28a745;
+        }
+        .footer__deliverButton___3FM07.success:hover {
+            background-color: #218838;
+            border-color: #1e7e34;
+        }
+
+        .footer__deliverButton___3FM07:disabled {
+            background: #e9ecef;
+            color: #6c757d;
+            cursor: not-allowed;
+            border-color: #ddd;
+        }
+
+        .fa-check::before {
+            content: "✓";
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .part-header {
+            background-color: #f1f2ec;
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            border: 1px solid #e0e0e0;
+        }
+        .part-header p {
+            margin: 0;
+        }
+
+        .timer-container {
+            display: none;
+            color: #333;
+            font-size: 16px;
+            font-weight: 500;
+        }
+
+        /* Audio Player Styles */
+        .audio-player-container {
+            position: fixed;
+            top: 65px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 500px;
+            max-width: 90%;
+            height: 40px;
+            background: #f9f9f9;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            padding: 0 15px;
+            z-index: 99;
+            gap: 10px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        .main-container {
+            margin-top: 115px;
+        }
+        .player-btn {
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .player-btn svg {
+            width: 20px;
+            height: 20px;
+            fill: #333;
+        }
+        .progress-container {
+            flex-grow: 1;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        #progress-bar {
+            flex-grow: 1;
+            -webkit-appearance: none;
+            appearance: none;
+            height: 4px;
+            background: #ddd;
+            outline: none;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+        #progress-bar::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: #4a90e2;
+            cursor: pointer;
+        }
+        #progress-bar::-moz-range-thumb {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: #4a90e2;
+            cursor: pointer;
+            border: none;
+        }
+        #current-time, #total-duration {
+            font-size: 12px;
+            color: #555;
+            min-width: 35px;
+            text-align: center;
+        }
+        .controls-container {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .volume-container {
+            display: flex;
+            align-items: center;
+            position: relative;
+        }
+        #new-volume-slider {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 60px;
+            height: 3px;
+            background: #ccc;
+            outline: none;
+            border-radius: 2px;
+            cursor: pointer;
+            margin-left: 8px;
+            display: block; 
+        }
+    
+        #new-volume-slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: #333;
+        }
+        #new-volume-slider::-moz-range-thumb {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: #333;
+            border: none;
+        }
+        .speed-container {
+            position: relative;
+        }
+        #speed-btn {
+            font-size: 12px;
+            font-weight: 600;
+            color: #333;
+            background-color: #e9ecef;
+            border: 1px solid #ced4da;
+            border-radius: 4px;
+            padding: 4px 8px;
+        }
+        #speed-options {
+            position: absolute;
+            top: calc(100% + 5px);
+            right: 0;
+            background: white;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            z-index: 100;
+        }
+        #speed-options div {
+            padding: 8px 15px;
+            cursor: pointer;
+        }
+        #speed-options div:hover {
+            background-color: #f0f0f0;
+        }
+
+        /* MCQ styling */
+        .mcq-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        .mcq-table th,
+        .mcq-table td {
+            border: 1px solid #ddd;
+            padding: 8px 12px;
+            vertical-align: middle;
+            text-align: left;
+        }
+        .mcq-table th {
+            background-color: #1e6de6;
+            color: #ffffff;
+            font-weight: 600;
+            text-align: center;
+        }
+        .mcq-table th:first-child {
+            text-align: left;
+        }
+        .mcq-table tbody td:first-child {
+            font-weight: 500;
+        }
+        .mcq-table tr:nth-child(even) td {
+            background-color: #f8faff;
+        }
+        .mcq-options {
+            list-style: none;
+            padding-left: 0;
+            margin: 10px 0;
+        }
+        .mcq-options li {
+            margin-bottom: 10px;
+            padding: 8px;
+            border: 1px solid #e0e0e0;
+            border-radius: 4px;
+        }
+        .mcq-options li label {
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+        }
+        .mcq-options li input[type="radio"] {
+            margin-right: 10px;
+        }
+
+        /* Results Modal */
+        .modal-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.55);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 3000;
+            padding: 20px;
+        }
+        .modal-content {
+            background: #ffffff;
+            width: 100%;
+            max-width: 900px;
+            max-height: 85vh;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+        .modal-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 14px 18px;
+            border-bottom: 1px solid #e5e7eb;
+            background: #f8fafc;
+            position: sticky;
+            top: 0;
+            z-index: 1;
+        }
+        .modal-header h2 {
+            margin: 0;
+            font-size: 20px;
+            font-weight: 700;
+            color: #111827;
+        }
+        .modal-close-btn {
+            background: transparent;
+            border: none;
+            font-size: 26px;
+            line-height: 1;
+            cursor: pointer;
+            color: #6b7280;
+        }
+        .modal-close-btn:hover {
+            color: #111827;
+        }
+        .modal-body {
+            padding: 16px 18px;
+            overflow: auto;
+        }
+        #score-summary {
+            font-size: 16px;
+            font-weight: 600;
+            color: #111827;
+            background: #f1f5f9;
+            border: 1px solid #e2e8f0;
+            padding: 10px 12px;
+            border-radius: 8px;
+            display: inline-block;
+        }
+        #result-details {
+            overflow: auto;
+        }
+        #result-details table {
+            width: 100%;
+            border-collapse: collapse;
+            border: 1px solid #e5e7eb;
+        }
+        #result-details th, #result-details td {
+            padding: 10px 12px;
+            border-bottom: 1px solid #e5e7eb;
+            text-align: left;
+            font-size: 14px;
+        }
+        #result-details thead th {
+            position: sticky;
+            top: 0;
+            background: #f1f5f9;
+            z-index: 1;
+        }
+        #result-details tr:nth-child(even) td {
+            background: #fafafa;
+        }
+        #result-details td.result-correct {
+            color: #0f5132;
+            font-weight: 600;
+        }
+        #result-details td.result-incorrect {
+            color: #842029;
+            font-weight: 600;
+        }
+
+        @keyframes flash {
+            0% { background-color: #e6f4ff; }
+            100% { background-color: transparent; }
+        }
+
+        .question.flash {
+            animation: flash 1s ease-out;
+        }
+
+        /* Highlight and Comment Styles */
+        .highlight {
+            background-color: #ffff00 !important;
+            color: #000 !important;
+            padding: 0 2px;
+            border-radius: 2px;
+        }
+
+        .comment-highlight {
+            background-color: #90EE90 !important;
+            color: #000 !important;
+            padding: 0 2px;
+            border-radius: 2px;
+            position: relative;
+            cursor: help;
+        }
+
+        .comment-tooltip {
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #333;
+            color: white;
+            padding: 8px 12px;
+            border-radius: 4px;
+            font-size: 14px;
+            white-space: nowrap;
+            z-index: 1000;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s;
+            max-width: 300px;
+            word-wrap: break-word;
+            white-space: normal;
+        }
+
+        .comment-highlight:hover .comment-tooltip {
+            opacity: 1;
+        }
+
+        /* Context Menu */
+        .context-menu {
+            position: absolute;
+            background: white;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            z-index: 1000;
+            display: none;
+            min-width: 140px;
+        }
+
+        .context-menu-item {
+            padding: 12px 16px;
+            cursor: pointer;
+            font-size: 16px;
+            border-bottom: 1px solid #f0f0f0;
+            transition: background-color 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .context-menu-item:hover {
+            background-color: #f8f9fa;
+        }
+
+        .context-menu-item:last-child {
+            border-bottom: none;
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .main-container {
+                flex-direction: column;
+            }
+            .right-panel, .main-container.results-mode .right-panel {
+                display: none;
+            }
+            .left-panel, .main-container.results-mode .left-panel {
+                width: 100%;
+                padding: 20px 10px;
+                height: auto;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="timer-container">
+            <span class="timer-display">60:00</span>
+        </div>
+        <a href="https://t.me/ielts_material_full" target="_blank" class="telegram-link">
+           Full Exam Materials
+        </a>
+        <div class="header-icons"></div>
+    </div>
+
+    <div class="audio-player-container">
+        <button id="play-pause-btn" class="player-btn">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+        </button>
+        <div class="progress-container">
+            <span id="current-time">0:00</span>
+            <input type="range" id="progress-bar" value="0" step="1" style="width: 100%;">
+            <span id="total-duration">0:00</span>
+        </div>
+        <div class="controls-container">
+            <div class="volume-container">
+                <button id="volume-btn" class="player-btn">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path></svg>
+                </button>
+                <input type="range" id="new-volume-slider" min="0" max="1" step="0.01" value="1">
+            </div>
+            <div class="speed-container">
+                <button id="speed-btn" class="player-btn">1x</button>
+                <div id="speed-options" class="hidden">
+                    <div data-speed="0.5">0.5x</div>
+                    <div data-speed="0.75">0.75x</div>
+                    <div data-speed="1">1x</div>
+                    <div data-speed="1.25">1.25x</div>
+                    <div data-speed="1.5">1.5x</div>
+                    <div data-speed="2">2x</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="main-container">
+        <!-- Left Panel -->
+        <div class="left-panel">
+            <!-- Part 1 -->
+            <div id="part-1" class="question-part">
+                <div class="part-header">
+                    <p><strong>Part 1</strong></p>
+                    <p>Listen and answer questions 1–10.</p>
+                </div>
+                <div class="questions-container">
+                    <div class="question">
+                        <div class="question-prompt">
+                            <p><strong>Questions 1-5</strong></p>
+                            <p>Complete the sentences below. Write <strong>NO MORE THAN TWO WORDS AND/OR A NUMBER</strong> for each answer.</p>
+                        </div>
+                        
+                        <div style="margin-top: 20px; line-height: 1.8;">
+                            <p>1. Keep your <input type="text" id="q1" class="answer-input" placeholder="1" autocomplete="off" style="width: 180px;"> in a safe place throughout your visit.</p>
+                            <p>2. Pass through the <input type="text" id="q2" class="answer-input" placeholder="2" autocomplete="off" style="width: 180px;"> to enter and leave the museum.</p>
+                            <p>3. You need to buy a <input type="text" id="q3" class="answer-input" placeholder="3" autocomplete="off" style="width: 180px;"> if you want to use a camera in the museum.</p>
+                            <p>4. Look after your <input type="text" id="q4" class="answer-input" placeholder="4" autocomplete="off" style="width: 180px;"> and mobile phone.</p>
+                            <p>5. Arrive at the cinema about <input type="text" id="q5" class="answer-input" placeholder="5" autocomplete="off" style="width: 180px;"> before the start of the show.</p>
+                        </div>
+                        
+                        <div class="question-prompt" style="margin-top: 40px;">
+                            <p><strong>Questions 6-10</strong></p>
+                            <p>Complete the table below. Write <strong>NO MORE THAN TWO WORDS AND/OR A NUMBER</strong> for each answer.</p>
+                        </div>
+                        
+                        <div style="margin-top: 20px;">
+                            <table class="mcq-table">
+                                <thead>
+                                    <tr>
+                                        <th>Name of film</th>
+                                        <th>Time</th>
+                                        <th>What you will see</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>The Secrets of Nile</td>
+                                        <td>10 am</td>
+                                        <td>the first <input type="text" id="q6" class="answer-input" placeholder="6" autocomplete="off" style="width: 150px;"> along the river Nile</td>
+                                    </tr>
+                                    <tr>
+                                        <td><input type="text" id="q7" class="answer-input" placeholder="7" autocomplete="off" style="width: 150px;"> Ocean</td>
+                                        <td>11.45 am</td>
+                                        <td>life at the bottom of the sea</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Dinosaurs Alive</td>
+                                        <td><input type="text" id="q8" class="answer-input" placeholder="8" autocomplete="off" style="width: 150px;"></td>
+                                        <td>a re-creation of a <input type="text" id="q9" class="answer-input" placeholder="9" autocomplete="off" style="width: 150px;"> of dinosaur</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Arabia</td>
+                                        <td>2.30 pm</td>
+                                        <td>a trip across the <input type="text" id="q10" class="answer-input" placeholder="10" autocomplete="off" style="width: 150px;"> and a dive in the Red Sea</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Part 2 -->
+            <div id="part-2" class="question-part hidden">
+                <div class="part-header">
+                    <p><strong>Part 2</strong></p>
+                    <p>Listen and answer questions 11–20.</p>
+                </div>
+                <div class="questions-container">
+                    <div class="question">
+                        <div class="question-prompt">
+                            <p><strong>Questions 11-17</strong></p>
+                            <p>Choose the correct letter <strong>A, B or C</strong>.</p>
+                        </div>
+                        
+                        <div style="margin-top: 20px; line-height: 1.8;">
+                            <p>11. The main purpose of the service is to</p>
+                            <ul class="mcq-options">
+                                <li><label><input type="radio" name="q11" value="A"> A educate people</label></li>
+                                <li><label><input type="radio" name="q11" value="B"> B persuade people to fly</label></li>
+                                <li><label><input type="radio" name="q11" value="C"> C provide people with comfort</label></li>
+                            </ul>
+                            
+                            <p style="margin-top: 20px;">12. The number of people working at Sydney Airport is</p>
+                            <ul class="mcq-options">
+                                <li><label><input type="radio" name="q12" value="A"> A 200</label></li>
+                                <li><label><input type="radio" name="q12" value="B"> B 360</label></li>
+                                <li><label><input type="radio" name="q12" value="C"> C 440</label></li>
+                            </ul>
+                            
+                            <p style="margin-top: 20px;">13. Dogs are chosen according to</p>
+                            <ul class="mcq-options">
+                                <li><label><input type="radio" name="q13" value="A"> A their ability to stay calm</label></li>
+                                <li><label><input type="radio" name="q13" value="B"> B their friendliness</label></li>
+                                <li><label><input type="radio" name="q13" value="C"> C their skill at locating narcotics</label></li>
+                            </ul>
+                            
+                            <p style="margin-top: 20px;">14. The number of postal items processed last year amounted to</p>
+                            <ul class="mcq-options">
+                                <li><label><input type="radio" name="q14" value="A"> A 4,400</label></li>
+                                <li><label><input type="radio" name="q14" value="B"> B 52,000</label></li>
+                                <li><label><input type="radio" name="q14" value="C"> C 72,000</label></li>
+                            </ul>
+                            
+                            <p style="margin-top: 20px;">15. People carrying items that are not allowed</p>
+                            <ul class="mcq-options">
+                                <li><label><input type="radio" name="q15" value="A"> A will get arrested</label></li>
+                                <li><label><input type="radio" name="q15" value="B"> B will be refused on board</label></li>
+                                <li><label><input type="radio" name="q15" value="C"> C will be given a warning</label></li>
+                            </ul>
+                            
+                            <p style="margin-top: 20px;">16. Which of the following is NOT allowed to be taken on the flight?</p>
+                            <ul class="mcq-options">
+                                <li><label><input type="radio" name="q16" value="A"> A carry-on items</label></li>
+                                <li><label><input type="radio" name="q16" value="B"> B plant seeds</label></li>
+                                <li><label><input type="radio" name="q16" value="C"> C parcels</label></li>
+                            </ul>
+                            
+                            <p style="margin-top: 20px;">17. What is the proper security protocol for a pocket knife found in a carry-on suitcase?</p>
+                            <ul class="mcq-options">
+                                <li><label><input type="radio" name="q17" value="A"> A it is returned to the passenger after examination</label></li>
+                                <li><label><input type="radio" name="q17" value="B"> B it is thrown away in a safe receptacle</label></li>
+                                <li><label><input type="radio" name="q17" value="C"> C it is passed on to higher level authorities</label></li>
+                            </ul>
+                        </div>
+                        
+                        <div class="question-prompt" style="margin-top: 40px;">
+                            <p><strong>Questions 18-20</strong></p>
+                            <p>Complete the sentences below. Write <strong>NO MORE THAN THREE WORDS</strong> for each answer.</p>
+                        </div>
+                        
+                        <div style="margin-top: 20px; line-height: 1.8;">
+                            <p>18. The acceptable material for packing goods in Australia is <input type="text" id="q18" class="answer-input" placeholder="18" autocomplete="off" style="width: 200px;"></p>
+                            <p>19. The belongings most of the time are refused due to problems with the <input type="text" id="q19" class="answer-input" placeholder="19" autocomplete="off" style="width: 200px;"></p>
+                            <p>20. The customs must be given notice of the goods from <input type="text" id="q20" class="answer-input" placeholder="20" autocomplete="off" style="width: 200px;"> days before it arrives in Australia.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Part 3 -->
+            <div id="part-3" class="question-part hidden">
+                <div class="part-header">
+                    <p><strong>Part 3</strong></p>
+                    <p>Listen and answer questions 21–30.</p>
+                </div>
+                <div class="questions-container">
+                    <div class="question">
+                        <div class="question-prompt">
+                            <p><strong>Questions 21-30</strong></p>
+                            <p>Choose the correct letter <strong>A, B or C</strong>.</p>
+                        </div>
+                        
+                        <div style="margin-top: 20px; line-height: 1.8;">
+                            <p>21. The continuing education program is for people who</p>
+                            <ul class="mcq-options">
+                                <li><label><input type="radio" name="q21" value="A"> A want to learn new hobbies</label></li>
+                                <li><label><input type="radio" name="q21" value="B"> B want to start getting another degree</label></li>
+                                <li><label><input type="radio" name="q21" value="C"> C cannot find employment elsewhere</label></li>
+                            </ul>
+                            
+                            <p style="margin-top: 20px;">22. The woman is interested in</p>
+                            <ul class="mcq-options">
+                                <li><label><input type="radio" name="q22" value="A"> A making money to travel the world</label></li>
+                                <li><label><input type="radio" name="q22" value="B"> B learning about accounting</label></li>
+                                <li><label><input type="radio" name="q22" value="C"> C being an entrepreneur</label></li>
+                            </ul>
+                            
+                            <p style="margin-top: 20px;">23. The city centre is accessible by public transportation but</p>
+                            <ul class="mcq-options">
+                                <li><label><input type="radio" name="q23" value="A"> A is under renovation now</label></li>
+                                <li><label><input type="radio" name="q23" value="B"> B does not offer as many classes</label></li>
+                                <li><label><input type="radio" name="q23" value="C"> C is more expensive</label></li>
+                            </ul>
+                            
+                            <p style="margin-top: 20px;">24. The woman takes care of her ill father during</p>
+                            <ul class="mcq-options">
+                                <li><label><input type="radio" name="q24" value="A"> A weekends</label></li>
+                                <li><label><input type="radio" name="q24" value="B"> B the evening</label></li>
+                                <li><label><input type="radio" name="q24" value="C"> C normal working hours</label></li>
+                            </ul>
+                            
+                            <p style="margin-top: 20px;">25. The man finally suggests taking classes</p>
+                            <ul class="mcq-options">
+                                <li><label><input type="radio" name="q25" value="A"> A through the internet</label></li>
+                                <li><label><input type="radio" name="q25" value="B"> B at the city centre campus</label></li>
+                                <li><label><input type="radio" name="q25" value="C"> C at the suburban satellite campus</label></li>
+                            </ul>
+                            
+                            <p style="margin-top: 20px;">26. The class for returning students teaches time management techniques like</p>
+                            <ul class="mcq-options">
+                                <li><label><input type="radio" name="q26" value="A"> A how to organize and use one's time efficiently</label></li>
+                                <li><label><input type="radio" name="q26" value="B"> B how to talk to your teachers</label></li>
+                                <li><label><input type="radio" name="q26" value="C"> C making friends in class</label></li>
+                            </ul>
+                            
+                            <p style="margin-top: 20px;">27. The class that reviews study skills goes over</p>
+                            <ul class="mcq-options">
+                                <li><label><input type="radio" name="q27" value="A"> A beginning English grammar</label></li>
+                                <li><label><input type="radio" name="q27" value="B"> B basic math skills</label></li>
+                                <li><label><input type="radio" name="q27" value="C"> C writing for academic classes</label></li>
+                            </ul>
+                            
+                            <p style="margin-top: 20px;">28. According to the dialogue, the woman can go online in order to</p>
+                            <ul class="mcq-options">
+                                <li><label><input type="radio" name="q28" value="A"> A email fellow students</label></li>
+                                <li><label><input type="radio" name="q28" value="B"> B contact teachers</label></li>
+                                <li><label><input type="radio" name="q28" value="C"> C sign up for classes</label></li>
+                            </ul>
+                            
+                            <p style="margin-top: 20px;">29. The price of online classes is</p>
+                            <ul class="mcq-options">
+                                <li><label><input type="radio" name="q29" value="A"> A the same as everything else</label></li>
+                                <li><label><input type="radio" name="q29" value="B"> B cheaper than going to either campus</label></li>
+                                <li><label><input type="radio" name="q29" value="C"> C more expensive than going to the city centre campus</label></li>
+                            </ul>
+                            
+                            <p style="margin-top: 20px;">30. Textbooks and other course materials are</p>
+                            <ul class="mcq-options">
+                                <li><label><input type="radio" name="q30" value="A"> A free when taking the online course</label></li>
+                                <li><label><input type="radio" name="q30" value="B"> B available at campus bookstores</label></li>
+                                <li><label><input type="radio" name="q30" value="C"> C available online</label></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Part 4 -->
+            <div id="part-4" class="question-part hidden">
+                <div class="part-header">
+                    <p><strong>Part 4</strong></p>
+                    <p>Listen and answer questions 31–40.</p>
+                </div>
+                <div class="questions-container">
+                    <div class="question">
+                        <div class="question-prompt">
+                            <p><strong>Questions 31-37</strong></p>
+                            <p>Complete the notes below. Write <strong>NO MORE THAN TWO WORDS AND/OR A NUMBER</strong> for each answer.</p>
+                        </div>
+                        
+                        <div style="margin-top: 20px; line-height: 1.8;">
+                            <p style="font-weight: bold; margin-top: 20px">Source</p>
+                            <p>31. There are some man-made materials like <input type="text" id="q31" class="answer-input" placeholder="31" autocomplete="off" style="width: 150px;"></p>
+                            <p>32. Before being used, material undergoes <input type="text" id="q32" class="answer-input" placeholder="32" autocomplete="off" style="width: 150px;"></p>
+                            <p>33. Wood should be cut and <input type="text" id="q33" class="answer-input" placeholder="33" autocomplete="off" style="width: 150px;"></p>
+                            <p>34. Stone should be cut and <input type="text" id="q34" class="answer-input" placeholder="34" autocomplete="off" style="width: 150px;"></p>
+                            
+                            <p style="font-weight: bold; margin-top: 20px">Selection</p>
+                            <p>35. Aside from environmental factors, one should take <input type="text" id="q35" class="answer-input" placeholder="35" autocomplete="off" style="width: 150px;"> into account during construction.</p>
+                            <p>36. Some properties of materials affect mood, such as <input type="text" id="q36" class="answer-input" placeholder="36" autocomplete="off" style="width: 150px;">, texture, and color.</p>
+                            <p>37. Use a mathematical formula to choose the type of wood, because <input type="text" id="q37" class="answer-input" placeholder="37" autocomplete="off" style="width: 150px;"> are subjective, which are ambiguous in verbal descriptions</p>
+                        </div>
+                        
+                        <div class="question-prompt" style="margin-top: 40px;">
+                            <p><strong>Questions 38-40</strong></p>
+                            <p>Complete the table below. Write <strong>NO MORE THAN TWO WORDS AND/OR A NUMBER</strong> for each answer.</p>
+                        </div>
+                        
+                        <div style="margin-top: 20px;">
+                            <table class="mcq-table">
+                                <thead>
+                                    <tr>
+                                        <th>Material</th>
+                                        <th>Reflectance rate</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Polished silver</td>
+                                        <td>almost 1.0</td>
+                                    </tr>
+                                    <tr>
+                                        <td>White painted plastic</td>
+                                        <td>approximately <input type="text" id="q38" class="answer-input" placeholder="38" autocomplete="off" style="width: 100px;"></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Quarry tile</td>
+                                        <td>approximately <input type="text" id="q39" class="answer-input" placeholder="39" autocomplete="off" style="width: 100px;"></td>
+                                    </tr>
+                                    <tr>
+                                        <td><input type="text" id="q40" class="answer-input" placeholder="40" autocomplete="off" style="width: 150px;"></td>
+                                        <td>almost 0.0</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Right Panel -->
+        <div class="right-panel">
+            <div id="transcription-container">
+                <h2>Transcription</h2>
+                <div id="transcription-text"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Transcription Data -->
+    <div id="transcription-data" style="display:none;">
+        <div data-part="1"><strong>SECTION 1</strong>
+
+            Now turn to section one.
+            (0:34) Good morning everyone and welcome to the museum. (0:38) There are a few points that you need to remember so before you go in I'll just run through them. (0:45) Then you can all go off and have a good time.
+            (0:49) So first of all you've all paid and you all have a ticket that allows you to go anywhere (0:56) in the museum and includes one trip to the 3D cinema. (1:01) So you need to make sure that you put the ticket somewhere that is secure but easy to find. (1:08) This is partly because you'll need to show it to our staff if you decide to go out at any time.
+            (1:15) There are two restaurants which are outdoors for example and anyone who does decide to go outside (1:23) should go and come back through the grey gates. (1:27) Please don't use the emergency exits unless there really is an emergency. (1:35) Now I'm afraid that if you want to take photographs you have to purchase a permit (1:40) at the entrance.
+            (1:42) We don't allow visitors to take photographs of anything in the museum unless they have a permit. (1:49) If you'd like a picture of you and your friends at any time just let us know. (1:54) We have a number of professional photographers who'll take a photo for you.
+            (2:00) Another thing is that you must keep everything that belongs to you with you all the time. (2:07) A lot of people will come to the museum during the day. (2:10) You'll probably be here for most of the day yourselves so don't lose your wallet (2:16) and make sure you don't leave your mobile phone anywhere.
+            (2:20) It's easily done and we aren't responsible for any losses while you're here. (2:26) As I mentioned earlier you can go and see any of the films that are on in the 3D cinema. (2:33) I'll tell you about those in a minute.
+            (2:36) There's also a schedule on the back of the museum guide. (2:40) I suggest you get to the cinema entrance roughly five minutes early. (2:45) It takes very little time to seat everyone so you won't be waiting for the show to begin.
+            (2:51) Well I think those are all the instructions I need to give you. (3:30) Okay the films which are on today are being shown at different times. (3:35) They're also about some amazing subjects.
+            (3:39) Let me tell you a little bit about them. (3:42) The first one is called The Secrets of the Nile and starts in half an hour at 10 o'clock. (3:49) It's a beautiful film and it tells the story of the journey that was made down the river Nile (3:56) for the very first time starting in the mountains of Ethiopia (4:00) and passing through the Sudan and Egypt before reaching the Mediterranean Sea.
+            (4:07) You'll accompany the travellers as they explore some of Africa's truly amazing landscapes. (4:14) The second film moves off land and into the sea. (4:20) It's called Wild Ocean and this one begins at 11.45. (4:26) So you have some time to look around the museum first if you choose this title.
+            (4:32) In this film you'll join the huge number of fish (4:35) and other animals that live far down near the bottom of the sea. (4:40) You'll see them search for food, migrate and fight for survival. (4:47) Dinosaurs Alive is the third film showing today.
+            (4:51) It starts at 1.45pm and runs for just 30 minutes. (4:57) This is a film for people who like special effects because there are plenty of them. (5:04) Scientists now have a lot of evidence to show that some animals from the dinosaur family (5:10) are still living on earth.
+            (5:13) So in this film you'll live with a new species of dinosaur that has been recreated using computers. (5:22) Our final film today is simply titled Arabia. (5:28) It starts at 2.30 and is a little longer than the others but it's a really wonderful experience.
+            (5:37) You'll ride through the desert on a camel. (5:40) You'll also dive among the treasures of the Red Sea (5:43) where you'll explore the ruins of an amazing lost city. (5:48) Sounds great.
+            (5:49) Well these are all magical experiences so I'll let you decide what you want to see. (5:56) If anyone has any questions at all... (6:02) That is the end of section one. (6:05) You now have half a minute to check your answers.
+        </div>
+        <div data-part="2"><strong>SECTION 2</strong>
+
+            Now turn to section two. (6:44) Section two. (6:45) You'll hear a talk by a security worker from Sydney airport (6:49) who is introducing the day-to-day operations of the Australian Quarantine Service.
+            (6:55) First you have some time to look at questions 11 to 17. (7:30) Now listen carefully and answer questions 11 to 17. (7:36) Hi everyone and welcome to Sydney airport.
+            (7:39) Today I'll be giving you the inside information on the day-to-day operations (7:43) of the Australian Quarantine Service here. (7:45) We hope to provide you with a better understanding of why such heavy security regulations (7:51) are necessary by educating you on how we operate and why we do the things we do. (7:57) We're not here to try to persuade you to fly through Sydney airport (8:00) though we hope you'll find your experience relatively stress-free and comfortable.
+            (8:05) First things first, our personnel. (8:08) Can anyone guess how many people work at Sydney airport? (8:11) We have 200 alone working in Terminal 2. (8:14) So can you guess how many in the whole airport? (8:17) I heard someone say 360. (8:19) That's getting closer.
+            (8:22) What? (8:22) Did someone say 2,000? (8:24) That's way too high. (8:26) Sydney airport actually employs 440 people. (8:30) A lot, right? (8:32) And about half of those employees work in security related matters.
+            (8:36) Moving on to our not-so-human employees. (8:39) Let's come and see our favourite pooch, Milton. (8:43) Milton is our best drug-sniffing dog on the force.
+            (8:47) He's friendly to most people. (8:49) You can even come pet him at the end of our tour. (8:52) Burnouts, beware though.
+            (8:54) He'll find everything. (8:56) Notice that even though there are so many of us around him, (8:59) Milton stays quite calm. (9:02) This is the precise reason he was chosen for the job.
+            (9:05) Dogs that are chosen are not predisposed to sniff out different narcotics. (9:10) That's something we teach them already. (9:13) So here's a part of the airport most people never notice.
+            (9:16) The cargo transport terminal. (9:18) This is where packages are shipped to and from. (9:22) Normally, we ship around 4,400 packages per month.
+            (9:26) In this airport alone, over 52,000 packages were shipped in and out over the past year. (9:33) We ship to and from 170 different countries. (9:37) Not bad, eh? (9:38) Probably it will go up to over 72,000 packages this year.
+            (9:43) And despite over 100 flights in and out of here daily, (9:47) the number of lost or delayed packages is impressively low. (9:52) If you send your package through here, rest assured, we'll get it where it's going. (9:57) Let's move on to the area most of us are familiar with, the passenger terminals.
+            (10:02) In order to be allowed into this area, you must pass through security with your ticket, (10:06) and if you're travelling internationally, your passport. (10:10) If you're travelling domestically, you just need a legal form of ID. (10:14) If you don't have those, you will not be allowed to pass through security and board your flight.
+            (10:19) During the security scan, your carry-on items will be checked for dangerous items such as weapons, (10:25) sharp objects, and liquids that exceed our specified limit. (10:29) If you attempt to pass any of the prohibited items on this list posted at the entrance, (10:33) you are still allowed to board the plane, (10:36) but you'll be given a warning and your item will be confiscated. (10:39) Don't worry, we will not arrest you for having too much shampoo in your bag or anything like that.
+            (10:44) We also search your carry-ons and parcels for any perishable items. (10:48) We prohibit the transportation of local vegetation, (10:51) and prohibit parcels containing any insects in them. (10:55) You may or may not have learnt about this in biology class, (10:58) but when some plants are introduced to a new environment, (11:00) they spread wildly and wipe out the current species around it.
+            (11:05) It is important to control the introduction of new plants into an ecosystem, (11:10) so we must prohibit the transport of any fertile seeds. (11:14) So what happens to parcels containing possibly suspicious items? (11:19) It's of course something we do not take lightly here. (11:22) If an object passes through the scanner that appears suspicious in any way, (11:26) it is separated out for manual search by a member of our trained security personnel.
+            (11:33) If an illegal plant or simple sharp object like a pocket knife is found, (11:38) it is simply disposed of in our biohazard waste containers, (11:43) and the package itself is returned to the sender, (11:45) or passenger if it is for a passenger flight. (11:49) More serious weapons are reported to higher authorities for investigation. (11:55) Before you hear the rest of the talk, (11:57) you have some time to look at questions 18 to 20.
+            (12:16) Now listen and answer questions 18 to 20. (12:22) As far as parcel security, the material of the parcel is important. (12:28) For shipped goods, the most common material used and the most widely accepted is paper.
+            (12:34) Make sure it is packed sturdy enough with no rips or tears. (12:38) We've definitely had packages rip open before due to haphazard packing. (12:43) A more common problem though is the package labels.
+            (12:46) When an item does not make it to the right place, this is the most common reason. (12:51) The label may not be in the right place or marked clearly enough. (12:56) If you're receiving any items from abroad that must be declared, (12:59) please remember our guidelines in order to ensure the timely delivery of your item.
+            (13:04) Make sure it is packed correctly, and we ask that you notify customs (13:08) between two and ten days within the item's scheduled arrival date. (13:13) OK, before we move on, are there any questions? (13:18) That is the end of section two. (13:20) You now have half a minute to check your answers.       </div>
+        <div data-part="3"><strong>SECTION 3</strong>
+
+            Now turn to section three. (13:54) Section three. (13:56) You'll hear a conversation in a continuing education institute's office.
+            (14:00) First you have some time to look at questions 21 to 25. (14:24) Now listen carefully and answer questions 21 to 25. (14:29) Welcome.
+            (14:30) My name is Jeremy Holtz. (14:32) Hello, Jeremy. (14:33) I was told to come to this office and ask about your continuing education programme.
+            (14:38) I'm interested in taking classes and want to know more about the programme. (14:42) Certainly. (14:43) We have several different programmes depending on your education goals (14:46) and on what you are doing now.
+            (14:48) For example, we have continuing education programmes (14:52) for those who want to finish a degree or start a new one, (14:55) and we also have a programme for working adults. (14:58) Well, I'm working part-time now, (14:59) and I'm interested in completing a degree in business administration. (15:03) I am working at a hospital, you see, but I want to change my job, (15:07) either work in hospital management or have my own business.
+            (15:11) OK, that sounds great. (15:13) Many students in our programme want to advance in their current careers (15:16) or even change them. (15:17) What kind of degree do you have now? (15:19) I am a registered nurse with a two-year degree.
+            (15:22) Great. First, we have to figure out where you want to take classes. (15:26) We have satellite campuses all over the region.
+            (15:30) The ones at the city centre are accessible by public transportation (15:33) but offer fewer course times. (15:36) A car is the best way to attend classes at our satellite campuses in the suburbs, (15:40) but they have more classrooms and therefore more courses. (15:44) Well, I have been saving up for a car, (15:46) but I don't have enough money to buy one yet.
+            (15:48) I think the city centre campus will be better. (15:52) OK, now we have to decide which programme you want to register for. (15:56) We have night courses where the classes generally run from 7pm to 10pm.
+            (16:02) Classes during these hours are usually once a week. (16:05) There are also courses during the day that might work for you, (16:09) depending on your work schedule. (16:11) Well, like I said, I'm working part-time (16:13) and unfortunately I work during the evenings.
+            (16:16) You see, I'm living at my parents' house right now. (16:18) My father is quite ill, actually, and since my mother works normal hours, (16:23) I take care of him during the day (16:25) and my mum takes care of him in the evening when I work. (16:28) The city centre campus doesn't offer classes during the weekends? (16:32) No, the suburban one does, but unfortunately, (16:35) there are no classes during that time at the city centre campus.
+            (16:39) You know, maybe the online courses will be better for you. (16:42) Do you have access to the internet? (16:44) Yes, I have a computer at home. (16:46) That might be the best way for you then.
+            (16:49) It's still a new programme. (16:51) We're still working out the bugs, but it will allow you to work part-time, (16:55) take care of your father and take classes. (16:58) The completion of your degree will probably take longer, however.
+            (17:03) Before you hear the rest of the conversation, (17:05) you have some time to look at questions 26 to 30. (17:28) Now listen and answer questions 26 to 30. (17:32) So, how exactly does this work? (17:35) I'm slightly nervous about studying again.
+            (17:38) It's been years since I've been a student. (17:40) Yes, it can be a bit daunting at times. (17:43) Continuing your education and improving yourself are well worth the effort.
+            (17:48) Actually, before you start taking online classes, (17:50) there are several refresher courses that you are required to take. (17:54) What kind of courses are those? (17:56) These are especially made for the returning adult student. (18:00) We understand that education is just one of a number of priorities (18:03) for those that take classes with us.
+            (18:06) The refresher courses teach you how to manage time (18:09) and juggle between different areas in your life. (18:13) Techniques like writing down your daily schedule (18:15) and ways to avoid procrastinating are talked about. (18:18) Also, there is one course that reviews basic study skills, (18:22) like the most efficient way to read the course text, (18:25) as well as basic academic writing.
+            (18:27) I think that would be really helpful for me. (18:30) I enjoyed studying when I was going to school, (18:32) but I definitely need some tips on how to manage my classes (18:36) along with the rest of my life. (18:38) Many students I've seen are in a similar position.
+            (18:41) They have to balance both their work and family life with their education. (18:45) It's not easy, but it is very rewarding for the ones (18:48) that finish their education all the way through. (18:50) OK, so how do I register for the classes? (18:54) You need to go online to do that.
+            (18:56) I will give you a brochure with the appropriate web address. (18:59) You can choose which course modules to take online. (19:02) You can go through them as time allows.
+            (19:04) There is even a place to keep track of progress towards your degree. (19:08) All right, can I ask then about the cost of the online courses? (19:12) They are cheaper than classes at either campus, of course. (19:16) Online, you'll see a number of different ways to pay.
+            (19:18) You can pay up front for each course module you take, (19:21) or pay over a number of months. (19:23) The latter method of payment will probably be better for me. (19:26) Are the textbooks and other course materials expensive? (19:29) No, not at all, actually.
+            (19:31) With all online courses, the relevant materials are included free of charge. (19:36) They are available to download after you register. (19:38) That sounds great.
+            Thank you so much. (19:41) No problem. My contact information is also in the brochure.
+            (19:48) That is the end of Section 3. (19:49) You now have half a minute to check your answers. (20:19)       </div>
+        <div data-part="4"><strong>SECTION 4</strong>
+
+            Now turn to Section 4. (20:24) Section 4. (20:26) You will hear a lecture about how to choose flooring materials. (20:31) First, you have some time to look at questions 31 to 40.
+            (20:57) Now listen carefully and answer questions 31 to 40. (21:05) We've been talking about choosing building materials in the last week. (21:09) Now, a great many factors influence the choice of building materials.
+            (21:13) You can't make a house of cards, right? (21:15) And people who live in glass houses and all that. (21:18) Anyhow, today I'd like to say a few words about flooring. (21:22) Some artificial materials can be used, like plastic, for instance, (21:26) which offer mixed blessings when used as a flooring surface.
+            (21:30) On the one hand, plastic is cheaper than nearly any other alternative, short of bare ground. (21:35) Plastic also does not warp like wood. (21:38) On the other hand, the best that can be said about plastic is that it looks like wood or stone.
+            (21:44) However, it cannot replace the real materials. (21:47) As I have mentioned, I'm fixing up a new house. (21:50) The decorator my wife hired told me plastic does a great job of looking exactly like plastic.
+            (21:56) Besides, it scratches easily, fades or discolours and starts cracking within a year or two. (22:02) So if you're fitting out a sleazy hotel or plan to live in a trailer park, go with the plastic. (22:08) Really though, for all intents and purposes, (22:10) this leaves us with wood or stone as choices for flooring.
+            (22:14) Stone and wood are alike in at least one respect. (22:17) Both go through processing before they can be put to use. (22:21) Since few of us cut our own lumber or quarry our own stone, (22:26) this is not perhaps a pressing concern.
+            (22:28) Still, do it yourself as wood do well to remember to buy only properly seasoned wood. (22:34) Unseasoned wood warps, and a warped floor quickly becomes firewood, (22:38) and its owner quickly becomes poorer. (22:41) Likewise, except for dull-hued materials like slate or sandstone, (22:44) most stone floors are polished before installation.
+            (22:47) The choice goes well beyond just wood or stone. (22:50) Each type requires many further considerations. (22:53) A few special remarks are called for when considering wood, for example.
+            (22:57) As always, aesthetics, personal taste and layout all play roles, (23:02) as well as the type of house or room. (23:04) Oh, and certainly don't forget the cost. (23:07) When it comes to cost, a rule of thumb is that the softer and less exotic the wood, (23:10) the lower the cost.
+            (23:12) In the US, for instance, pine is both ubiquitous and cheap. (23:15) Mahogany is imported and exorbitantly expensive. (23:20) If you're on any kind of budget when remodelling, (23:22) it's really helpful to remember to go for the softer woods.
+            (23:25) Aside from cost, there are still lots of different factors (23:28) that are important in choosing the best flooring for the job. (23:32) Continuing with the example of wood, (23:34) one must consider the effects of each type of wood on the mood of the room. (23:39) When selecting the best wood to use, (23:40) particular attention needs to be paid to its grain patterns, texture and colour.
+            (23:46) In rooms where relaxation or deep thought is the aim, (23:50) say bedrooms or the study, (23:52) dark, strong-grained woods are the rule. (23:55) Here, the grain ought to match the furniture for a feeling of homogeneity. (23:59) In rooms where activity and motion are typical, (24:02) the dining room or living room, (24:04) lighter, finer-grained lumber is more suitable.
+            (24:07) In such a setting, the wood grain might be useful (24:09) in offering a contrast to the furniture. (24:12) This leads to a feel of subconscious excitement in keeping with the room's function. (24:17) In either case, though, consult a decorator.
+            (24:20) It is a decorator's job to know what materials to use to fit the function of the room. (24:25) Though some things about putting together a room are subjective (24:28) and based on one's individual taste, (24:30) materials appropriate to a room's function are much more straightforward. (24:35) A decorator takes the needs of the customer and uses a mathematical formula (24:39) rather than subjective words.
+            (24:42) Since feelings vary from person to person, (24:44) verbal descriptions of wood types tend to be ambiguous. (24:48) You want the wood you select, not something approximate. (24:52) And if you do decide to do it yourself, (24:54) remember that all wood must be treated with preservatives (24:57) to enhance its appearance and preserve its natural beauty.
+            (25:05) In the case of stone or quarry tile, (25:08) as flat-cut flooring stone is properly called, (25:10) a new set of considerations must be weighed up. (25:14) Simple colour aside, the degree of reflection must be kept in mind. (25:18) This is called the reflectance rate, (25:20) which is expressed in a number between 0.0 and 1.0, (25:24) depending on the amount of light it reflects.
+            (25:26) At one end of the scale is polished silver. (25:29) At a rating of 1.0, (25:30) this shiny surface reflects nearly all of the light directed at it. (25:34) Numbers closer to zero describe materials that absorb more light.
+            (25:39) Moving down the scale a bit, (25:40) we see that plastic that has been painted white has a rate of 0.8, (25:45) which makes sense. (25:46) We know that the colour white reflects all other colour, (25:49) while black absorbs all colour, (25:51) and plastic itself is a relatively reflective material. (25:55) Materials that are denser and darker (25:57) have reflectance rates much closer to zero.
+            (26:00) The quarry tile I mentioned a while ago has a rate of 0.1. (26:04) As you may know, quarry tile is generally dark brown and made from clay, (26:07) so it is quite dense. (26:09) Of course, there is considerable variation among types of quarry tile (26:13) because of the hue or treatment of the clay during its creation. (26:18) Does anyone have any guesses as to what material may have a rate of almost 0.0? (26:23) We can guess most of these materials are black in colour, (26:26) but plastic, wood and even stone reflect some light.
+            (26:30) One material with a rate of almost 0.0 is black velvet. (26:34) The texture produces almost no shine at all. (26:39) Carrara marble, despite its white hue, (26:41) is actually lower in reflectivity than black onyx.
+            (26:45) In any case, the fact that tiles vary somewhat should not be forgotten. (26:49) A highly reflective floor would not be suitable in a library. (26:52) It would be indispensable in a ballroom, (26:55) should your home be large enough to feature one.
+            (26:57) Again, a rule of thumb is that light means lively. (27:01) Since form and material follow function, (27:03) one should only use the more reflective materials in rooms (27:06) where the cultivation and expression of energy is important. (27:10) Bear in mind, too, that most types of stone cost more than all but the rarest of wood.
+            (27:15) Of course, there is no reason why some rooms of a house (27:18) should not feature wood floors or other stone tiles. (27:22) You can even mix the two. (27:24) A room with wood panels on the walls can have a beautiful stone floor.
+            (27:28) My bedroom has white birch walls and a light blue slate floor. (27:32) The place looks like a Russian hunting lodge. (27:35) Remember, though, go with what feels right for you.
+            (27:39) Good taste and the laws of interior design are the homeowner's servants, not his master. (27:44) It's only beautiful when you decide it is. (27:47) I mean, you're the one who lives there, not the decorator, right? (27:51) OK, are there any questions?
+                  </div>
+    </div>
+
+    <audio id="global-audio-player" class="hidden"></audio>
+
+    <!-- Navigation Arrows -->
+    <div class="nav-arrows">
+        <button class="nav-arrow" onclick="previousPart()" id="prevBtn">‹</button>
+        <button class="nav-arrow" onclick="nextPart()" id="nextBtn">›</button>
+    </div>
+
+    <!-- Bottom Navigation -->
+    <nav class="nav-row perScorableItem" aria-label="Questions">
+        <!-- Part 1 -->
+        <div class="footer__questionWrapper___1tZ46 selected multiple" role="tablist">
+            <button role="tab" class="footer__questionNo___3WNct" onclick="switchToPart(1)">
+                <span>
+                    <span aria-hidden="true" class="section-prefix">Part </span>
+                    <span class="sectionNr" aria-hidden="true">1</span>
+                    <span class="attemptedCount" aria-hidden="true">0 of 10</span>
+                </span>
+            </button>
+            <div class="footer__subquestionWrapper___9GgoP">
+                <button class="subQuestion scorable-item" onclick="goToQuestion(1)"><span class="sr-only">Question 1</span><span aria-hidden="true">1</span></button>
+                <button class="subQuestion scorable-item" onclick="goToQuestion(2)"><span class="sr-only">Question 2</span><span aria-hidden="true">2</span></button>
+                <button class="subQuestion scorable-item" onclick="goToQuestion(3)"><span class="sr-only">Question 3</span><span aria-hidden="true">3</span></button>
+                <button class="subQuestion scorable-item" onclick="goToQuestion(4)"><span class="sr-only">Question 4</span><span aria-hidden="true">4</span></button>
+                <button class="subQuestion scorable-item" onclick="goToQuestion(5)"><span class="sr-only">Question 5</span><span aria-hidden="true">5</span></button>
+                <button class="subQuestion scorable-item" onclick="goToQuestion(6)"><span class="sr-only">Question 6</span><span aria-hidden="true">6</span></button>
+                <button class="subQuestion scorable-item" onclick="goToQuestion(7)"><span class="sr-only">Question 7</span><span aria-hidden="true">7</span></button>
+                <button class="subQuestion scorable-item" onclick="goToQuestion(8)"><span class="sr-only">Question 8</span><span aria-hidden="true">8</span></button>
+                <button class="subQuestion scorable-item" onclick="goToQuestion(9)"><span class="sr-only">Question 9</span><span aria-hidden="true">9</span></button>
+                <button class="subQuestion scorable-item" onclick="goToQuestion(10)"><span class="sr-only">Question 10</span><span aria-hidden="true">10</span></button>
+            </div>
+        </div>
+        
+        <!-- Part 2 -->
+        <div class="footer__questionWrapper___1tZ46 multiple" role="tablist">
+            <button role="tab" class="footer__questionNo___3WNct" onclick="switchToPart(2)">
+                <span>
+                    <span aria-hidden="true" class="section-prefix">Part </span>
+                    <span class="sectionNr" aria-hidden="true">2</span>
+                    <span class="attemptedCount" aria-hidden="true">0 of 10</span>
+                </span>
+            </button>
+            <div class="footer__subquestionWrapper___9GgoP">
+                <button class="subQuestion scorable-item" onclick="goToQuestion(11)"><span class="sr-only">Question 11</span><span aria-hidden="true">11</span></button>
+                <button class="subQuestion scorable-item" onclick="goToQuestion(12)"><span class="sr-only">Question 12</span><span aria-hidden="true">12</span></button>
+                <button class="subQuestion scorable-item" onclick="goToQuestion(13)"><span class="sr-only">Question 13</span><span aria-hidden="true">13</span></button>
+                <button class="subQuestion scorable-item" onclick="goToQuestion(14)"><span class="sr-only">Question 14</span><span aria-hidden="true">14</span></button>
+                <button class="subQuestion scorable-item" onclick="goToQuestion(15)"><span class="sr-only">Question 15</span><span aria-hidden="true">15</span></button>
+                <button class="subQuestion scorable-item" onclick="goToQuestion(16)"><span class="sr-only">Question 16</span><span aria-hidden="true">16</span></button>
+                <button class="subQuestion scorable-item" onclick="goToQuestion(17)"><span class="sr-only">Question 17</span><span aria-hidden="true">17</span></button>
+                <button class="subQuestion scorable-item" onclick="goToQuestion(18)"><span class="sr-only">Question 18</span><span aria-hidden="true">18</span></button>
+                <button class="subQuestion scorable-item" onclick="goToQuestion(19)"><span class="sr-only">Question 19</span><span aria-hidden="true">19</span></button>
+                <button class="subQuestion scorable-item" onclick="goToQuestion(20)"><span class="sr-only">Question 20</span><span aria-hidden="true">20</span></button>
+            </div>
+        </div>
+        
+        <!-- Part 3 -->
+        <div class="footer__questionWrapper___1tZ46 multiple" role="tablist">
+            <button role="tab" class="footer__questionNo___3WNct" onclick="switchToPart(3)">
+                <span>
+                    <span aria-hidden="true" class="section-prefix">Part </span>
+                    <span class="sectionNr" aria-hidden="true">3</span>
+                    <span class="attemptedCount" aria-hidden="true">0 of 10</span>
+                </span>
+            </button>
+            <div class="footer__subquestionWrapper___9GgoP">
+                <button class="subQuestion scorable-item" onclick="goToQuestion(21)"><span class="sr-only">Question 21</span><span aria-hidden="true">21</span></button>
+                <button class="subQuestion scorable-item" onclick="goToQuestion(22)"><span class="sr-only">Question 22</span><span aria-hidden="true">22</span></button>
+                <button class="subQuestion scorable-item" onclick="goToQuestion(23)"><span class="sr-only">Question 23</span><span aria-hidden="true">23</span></button>
+                <button class="subQuestion scorable-item" onclick="goToQuestion(24)"><span class="sr-only">Question 24</span><span aria-hidden="true">24</span></button>
+                <button class="subQuestion scorable-item" onclick="goToQuestion(25)"><span class="sr-only">Question 25</span><span aria-hidden="true">25</span></button>
+                <button class="subQuestion scorable-item" onclick="goToQuestion(26)"><span class="sr-only">Question 26</span><span aria-hidden="true">26</span></button>
+                <button class="subQuestion scorable-item" onclick="goToQuestion(27)"><span class="sr-only">Question 27</span><span aria-hidden="true">27</span></button>
+                <button class="subQuestion scorable-item" onclick="goToQuestion(28)"><span class="sr-only">Question 28</span><span aria-hidden="true">28</span></button>
+                <button class="subQuestion scorable-item" onclick="goToQuestion(29)"><span class="sr-only">Question 29</span><span aria-hidden="true">29</span></button>
+                <button class="subQuestion scorable-item" onclick="goToQuestion(30)"><span class="sr-only">Question 30</span><span aria-hidden="true">30</span></button>
+            </div>
+        </div>
+        
+        <!-- Part 4 -->
+        <div class="footer__questionWrapper___1tZ46 multiple" role="tablist">
+            <button role="tab" class="footer__questionNo___3WNct" onclick="switchToPart(4)">
+                <span>
+                    <span aria-hidden="true" class="section-prefix">Part </span>
+                    <span class="sectionNr" aria-hidden="true">4</span>
+                    <span class="attemptedCount" aria-hidden="true">0 of 10</span>
+                </span>
+            </button>
+            <div class="footer__subquestionWrapper___9GgoP">
+                <button class="subQuestion scorable-item" onclick="goToQuestion(31)"><span class="sr-only">Question 31</span><span aria-hidden="true">31</span></button>
+                <button class="subQuestion scorable-item" onclick="goToQuestion(32)"><span class="sr-only">Question 32</span><span aria-hidden="true">32</span></button>
+                <button class="subQuestion scorable-item" onclick="goToQuestion(33)"><span class="sr-only">Question 33</span><span aria-hidden="true">33</span></button>
+                <button class="subQuestion scorable-item" onclick="goToQuestion(34)"><span class="sr-only">Question 34</span><span aria-hidden="true">34</span></button>
+                <button class="subQuestion scorable-item" onclick="goToQuestion(35)"><span class="sr-only">Question 35</span><span aria-hidden="true">35</span></button>
+                <button class="subQuestion scorable-item" onclick="goToQuestion(36)"><span class="sr-only">Question 36</span><span aria-hidden="true">36</span></button>
+                <button class="subQuestion scorable-item" onclick="goToQuestion(37)"><span class="sr-only">Question 37</span><span aria-hidden="true">37</span></button>
+                <button class="subQuestion scorable-item" onclick="goToQuestion(38)"><span class="sr-only">Question 38</span><span aria-hidden="true">38</span></button>
+                <button class="subQuestion scorable-item" onclick="goToQuestion(39)"><span class="sr-only">Question 39</span><span aria-hidden="true">39</span></button>
+                <button class="subQuestion scorable-item" onclick="goToQuestion(40)"><span class="sr-only">Question 40</span><span aria-hidden="true">40</span></button>
+            </div>
+        </div>
+        
+        <button id="deliver-button" aria-label="Review your answers" class="footer__deliverButton___3FM07">
+            <i class="fa fa fa-check" aria-hidden="true"></i>
+            <span>Check Answers</span>
+        </button>
+    </nav>
+
+    <!-- Context Menu -->
+    <div id="contextMenu" class="context-menu">
+        <div class="context-menu-item" id="highlight-item" onclick="highlightText()">
+            <span class="context-menu-icon">
+                <svg viewBox="0 0 24 24" fill="black" width="16" height="16"><path d="M15.24 12.32L12.28 9.36l-1.04 1.04-1.04-1.04-1.04 1.04-1.04-1.04-1.04 1.04-1.04-1.04-3.12 3.12c-.59.58-1.54.58-2.12 0l-1.04-1.04c-.58-.59-.58-1.54 0-2.12L7.88.88c.59-.58 1.54-.58 2.12 0l1.04 1.04 1.04-1.04 1.04 1.04 1.04-1.04 1.04 1.04 1.04-1.04 3.12 3.12c.58.59.58 1.54 0 2.12l-1.04 1.04c-.58.59-1.54.59-2.12 0zM12 15l-3 3-7-7 3-3 7 7zm-9-5l-2.29 2.29c-.39.39-.39 1.02 0 1.41l8.29 8.29c.39.39 1.02.39 1.41 0L22.7 8.41c.39-.39.39-1.02 0-1.41L14.42.29c-.39-.39-1.02-.39-1.41 0L3 10z"/></svg>
+            </span>
+            <span>Highlight</span>
+        </div>
+        <div class="context-menu-item" id="comment-item" onclick="addComment()">
+            <span class="context-menu-icon">
+                <svg viewBox="0 0 24 24" fill="black" width="16" height="16"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-1 12H5.17L4 15.17V4h16v10z"/></svg>
+            </span>
+            <span>Comment</span>
+        </div>
+        <div class="context-menu-item" id="clear-item" onclick="clearHighlight()" style="display:none;">
+            <span class="context-menu-icon">
+                <svg viewBox="0 0 24 24" fill="black" width="16" height="16"><path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z"/></svg>
+            </span>
+            <span>Clear</span>
+        </div>
+        <div class="context-menu-item" onclick="clearAllHighlights()">
+            <span class="context-menu-icon">
+                <svg viewBox="0 0 24 24" fill="black" width="16" height="16"><path d="M16 9h-2.29l3-3-1.42-1.42-3 3V5h-2v2.29l-3-3-1.42 1.42 3 3H5v2h2.29l-3 3 1.42 1.42 3-3V17h2v-2.29l3 3 1.42-1.42-3-3H17V9h-2zm-4 4h-2v-2h2v2z"/></svg>
+            </span>
+            <span>Clear All</span>
+        </div>
+    </div>
+
+    <!-- Result Modal -->
+    <div id="result-modal" class="modal-overlay" style="display: none;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Your Results</h2>
+                <button id="modal-close-button" class="modal-close-btn">&times;</button>
+            </div>
+            <div class="modal-body">
+                <p id="score-summary"></p>
+                <div id="result-details"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let currentPart = 1;
+        let currentQuestion = 1;
+        let selectedText = '';
+        let selectedRange = null;
+        let testStarted = false;
+        let timeInSeconds = 3600;
+        let contextElement = null;
+
+        const audioPlayer = document.getElementById('global-audio-player');
+        const playPauseBtn = document.getElementById('play-pause-btn');
+        const progressBar = document.getElementById('progress-bar');
+        const currentTimeEl = document.getElementById('current-time');
+        const totalDurationEl = document.getElementById('total-duration');
+        const volumeSlider = document.getElementById('new-volume-slider');
+        const speedBtn = document.getElementById('speed-btn');
+        const speedOptions = document.getElementById('speed-options');
+
+        // Correct answers from the PDF
+        const correctAnswers = {
+            'q1': ['ticket'],
+            'q2': ['grey gates'],
+            'q3': ['permit'],
+            'q4': ['wallet'],
+            'q5': ['5 minutes'],
+            'q6': ['journey'],
+            'q7': ['wild'],
+            'q8': ['1.45 pm'],
+            'q9': ['new species'],
+            'q10': ['desert'],
+            'q11': 'A',
+            'q12': 'C',
+            'q13': 'A',
+            'q14': 'B',
+            'q15': 'C',
+            'q16': 'B',
+            'q17': 'B',
+            'q18': ['paper'],
+            'q19': ['package labels'],
+            'q20': ['two to ten'],
+            'q21': 'B',
+            'q22': 'C',
+            'q23': 'B',
+            'q24': 'C',
+            'q25': 'A',
+            'q26': 'A',
+            'q27': 'C',
+            'q28': 'C',
+            'q29': 'B',
+            'q30': 'A',
+            'q31': ['plastic'],
+            'q32': ['processing'],
+            'q33': ['seasoned'],
+            'q34': ['polished'],
+            'q35': ['cost'],
+            'q36': ['grain patterns'],
+            'q37': ['words'],
+            'q38': ['0.8'],
+            'q39': ['0.1'],
+            'q40': ['black velvet']
+        };
+
+        const questionTypes = {
+            'q1': 'text', 'q2': 'text', 'q3': 'text', 'q4': 'text', 'q5': 'text',
+            'q6': 'text', 'q7': 'text', 'q8': 'text', 'q9': 'text', 'q10': 'text',
+            'q11': 'radio', 'q12': 'radio', 'q13': 'radio', 'q14': 'radio', 'q15': 'radio',
+            'q16': 'radio', 'q17': 'radio', 'q18': 'text', 'q19': 'text', 'q20': 'text',
+            'q21': 'radio', 'q22': 'radio', 'q23': 'radio', 'q24': 'radio', 'q25': 'radio',
+            'q26': 'radio', 'q27': 'radio', 'q28': 'radio', 'q29': 'radio', 'q30': 'radio',
+            'q31': 'text', 'q32': 'text', 'q33': 'text', 'q34': 'text', 'q35': 'text',
+            'q36': 'text', 'q37': 'text', 'q38': 'text', 'q39': 'text', 'q40': 'text'
+        };
+
+        function switchToPart(partNumber) {
+            if (currentPart !== partNumber) {
+                const firstQuestionOfPart = (partNumber - 1) * 10 + 1;
+                currentQuestion = firstQuestionOfPart;
+            }
+            
+            currentPart = partNumber;
+
+            updateNavigation();
+            document.querySelectorAll('.question-part').forEach(part => part.classList.add('hidden'));
+            const partToShow = document.getElementById(`part-${partNumber}`);
+            if (partToShow) {
+                partToShow.classList.remove('hidden');
+            }
+
+            if (document.querySelector('.main-container.results-mode')) {
+                const transcriptionSource = document.querySelector(`#transcription-data [data-part="${partNumber}"]`);
+                const transcriptionTarget = document.getElementById('transcription-text');
+                if (transcriptionSource && transcriptionTarget) {
+                    transcriptionTarget.innerHTML = transcriptionSource.innerHTML;
+                }
+            }
+
+            updateNavigation();
+        }
+
+        function updateNavigation() {
+            document.querySelectorAll('.footer__questionWrapper___1tZ46').forEach((wrapper, index) => {
+                wrapper.classList.remove('selected');
+                updateAttemptedCount(index + 1);
+            });
+            const currentWrapper = document.querySelectorAll('.footer__questionWrapper___1tZ46')[currentPart - 1];
+            if (currentWrapper) {
+                currentWrapper.classList.add('selected');
+            }
+            document.getElementById('prevBtn').disabled = currentQuestion === 1;
+            document.getElementById('nextBtn').disabled = currentQuestion === 40;
+        }
+
+        function goToQuestion(questionNumber) {
+            currentQuestion = questionNumber;
+            let partNumber = 1;
+            if (questionNumber > 10 && questionNumber <= 20) partNumber = 2;
+            else if (questionNumber > 20 && questionNumber <= 30) partNumber = 3;
+            else if (questionNumber > 30) partNumber = 4;
+            
+            if (currentPart !== partNumber) {
+                switchToPart(partNumber);
+            }
+            
+            document.querySelectorAll('.subQuestion').forEach(btn => btn.classList.remove('active'));
+            const questionBtn = document.querySelector(`.subQuestion[onclick="goToQuestion(${questionNumber})"]`);
+            if (questionBtn) questionBtn.classList.add('active');
+
+            let questionElement;
+            questionElement = document.getElementById(`q${questionNumber}`) ||
+                            document.querySelector(`input[name="q${questionNumber}"]`);
+            
+            if (questionElement) {
+                const questionContainer = questionElement.closest('.question');
+                if(questionContainer) {
+                    questionContainer.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    questionContainer.classList.add('flash');
+                    setTimeout(() => {
+                        questionContainer.classList.remove('flash');
+                    }, 1000);
+                }
+            }
+            updateNavigation();
+        }
+
+        function nextPart() {
+            if (currentQuestion < 40) {
+                goToQuestion(currentQuestion + 1);
+            }
+        }
+
+        function previousPart() {
+            if (currentQuestion > 1) {
+                goToQuestion(currentQuestion - 1);
+            }
+        }
+
+        function updateAnsweredIndicators() {
+            for (let qNum = 1; qNum <= 40; qNum++) {
+                const btn = document.querySelector(`.subQuestion[onclick="goToQuestion(${qNum})"]`);
+                if (!btn) continue;
+
+                if (btn.classList.contains('correct') || btn.classList.contains('incorrect')) {
+                    continue;
+                }
+
+                let isAnswered = false;
+                const textInput = document.getElementById(`q${qNum}`);
+                const radioInputs = document.querySelectorAll(`input[name="q${qNum}"]`);
+                
+                if (textInput && typeof textInput.value === 'string' && textInput.value.trim() !== '') {
+                    isAnswered = true;
+                } 
+                else if (radioInputs.length > 0) {
+                    for (let radio of radioInputs) {
+                        if (radio.checked) {
+                            isAnswered = true;
+                            break;
+                        }
+                    }
+                }
+
+                if (isAnswered) {
+                    btn.classList.add('answered');
+                } else {
+                    btn.classList.remove('answered');
+                }
+            }
+            updateAttemptedCount(currentPart);
+        }
+
+        function updateAttemptedCount(partNumber) {
+            const partContainer = document.getElementById(`part-${partNumber}`);
+            if (!partContainer) return;
+            
+            let answeredCount = 0;
+            
+            for (let q = (partNumber-1)*10 + 1; q <= partNumber*10; q++) {
+                const textInput = document.getElementById(`q${q}`);
+                const radioInputs = document.querySelectorAll(`input[name="q${q}"]`);
+                
+                if (textInput && typeof textInput.value === 'string' && textInput.value.trim() !== '') {
+                    answeredCount++;
+                } 
+                else if (radioInputs.length > 0) {
+                    for (let radio of radioInputs) {
+                        if (radio.checked) {
+                            answeredCount++;
+                            break;
+                        }
+                    }
+                }
+            }
+            
+            const countDisplay = document.querySelector(`.footer__questionWrapper___1tZ46:nth-child(${partNumber}) .attemptedCount`);
+            if (countDisplay) countDisplay.textContent = `${answeredCount} of 10`;
+        }
+
+        // Highlight and Comment Functions
+        function highlightText() {
+            if (!selectedRange || selectedRange.collapsed) {
+                closeContextMenu();
+                return;
+            }
+            
+            try {
+                const span = document.createElement('span');
+                span.className = 'highlight';
+                selectedRange.surroundContents(span);
+            } catch(err) {
+                // For complex selections, use a simpler approach
+                const selection = window.getSelection();
+                if (selection.rangeCount > 0) {
+                    const range = selection.getRangeAt(0);
+                    const span = document.createElement('span');
+                    span.className = 'highlight';
+                    range.surroundContents(span);
+                }
+            }
+            
+            window.getSelection().removeAllRanges();
+            closeContextMenu();
+        }
+
+        function addComment() {
+            const commentText = prompt('Enter your comment:');
+            if (!commentText || !selectedRange || selectedRange.collapsed) {
+                closeContextMenu();
+                return;
+            }
+            
+            try {
+                const span = document.createElement('span');
+                span.className = 'comment-highlight';
+                
+                const tooltip = document.createElement('span');
+                tooltip.className = 'comment-tooltip';
+                tooltip.textContent = commentText;
+                span.appendChild(tooltip);
+                
+                selectedRange.surroundContents(span);
+            } catch(err) {
+                console.warn('Could not add comment to selection');
+            }
+            
+            window.getSelection().removeAllRanges();
+            closeContextMenu();
+        }
+
+        function clearHighlight() {
+            const elementToClear = contextElement;
+            if (!elementToClear) {
+                closeContextMenu();
+                return;
+            }
+            
+            const parent = elementToClear.parentNode;
+            const fragment = document.createDocumentFragment();
+            
+            while (elementToClear.firstChild) {
+                if (elementToClear.firstChild.nodeType === 1 && 
+                    elementToClear.firstChild.classList.contains('comment-tooltip')) {
+                    elementToClear.removeChild(elementToClear.firstChild);
+                } else {
+                    fragment.appendChild(elementToClear.firstChild);
+                }
+            }
+            
+            parent.replaceChild(fragment, elementToClear);
+            parent.normalize();
+            closeContextMenu();
+        }
+
+        function clearAllHighlights() {
+            document.querySelectorAll('.highlight, .comment-highlight').forEach(element => {
+                const parent = element.parentNode;
+                const fragment = document.createDocumentFragment();
+                
+                while (element.firstChild) {
+                    if (element.firstChild.nodeType === 1 && 
+                        element.firstChild.classList.contains('comment-tooltip')) {
+                        element.removeChild(element.firstChild);
+                    } else {
+                        fragment.appendChild(element.firstChild);
+                    }
+                }
+                
+                parent.replaceChild(fragment, element);
+                parent.normalize();
+            });
+            closeContextMenu();
+        }
+        
+        function closeContextMenu() {
+            document.getElementById('contextMenu').style.display = 'none';
+            contextElement = null;
+        }
+
+        function checkAnswers() {
+            let score = 0;
+            let resultsData = [];
+            
+            document.querySelectorAll('.correct, .incorrect, .correct-inline').forEach(el => {
+                if (el.classList.contains('correct-inline')) {
+                    el.remove();
+                } else {
+                    el.classList.remove('correct', 'incorrect');
+                }
+            });
+            
+            Object.keys(correctAnswers).forEach(key => {
+                const correctAnswer = correctAnswers[key];
+                let userAnswer = '';
+                let isCorrect = false;
+                const questionType = questionTypes[key];
+                const qNum = parseInt(key.replace('q', ''));
+                const btn = document.querySelector(`.subQuestion[onclick="goToQuestion(${qNum})"]`);
+                
+                switch (questionType) {
+                    case 'text':
+                        const textElement = document.getElementById(key);
+                        userAnswer = textElement ? textElement.value.trim() : '';
+                        const acceptedAnswers = Array.isArray(correctAnswer) ? correctAnswer : [String(correctAnswer)];
+                        isCorrect = acceptedAnswers.some(ans => ans.toLowerCase() === userAnswer.toLowerCase());
+                        
+                        if (textElement) {
+                            textElement.classList.add(isCorrect ? 'correct' : 'incorrect');
+                            if (!isCorrect) {
+                                const correctAnswerSpan = document.createElement('span');
+                                correctAnswerSpan.className = 'correct-inline';
+                                correctAnswerSpan.textContent = acceptedAnswers[0];
+                                textElement.insertAdjacentElement('afterend', correctAnswerSpan);
+                            }
+                        }
+                        break;
+                        
+                    case 'radio':
+                        const selectedRadio = document.querySelector(`input[name="${key}"]:checked`);
+                        userAnswer = selectedRadio ? selectedRadio.value : '';
+                        isCorrect = userAnswer === correctAnswer;
+                        
+                        if (selectedRadio) {
+                            const label = selectedRadio.closest('label');
+                            if (label) {
+                                if (isCorrect) {
+                                    label.style.color = '#28a745';
+                                    label.style.fontWeight = 'bold';
+                                } else {
+                                    label.style.color = '#dc3545';
+                                }
+                            }
+                        }
+                        
+                        if (!isCorrect && correctAnswer) {
+                            const correctRadio = document.querySelector(`input[name="${key}"][value="${correctAnswer}"]`);
+                            if (correctRadio) {
+                                const correctLabel = correctRadio.closest('label');
+                                if (correctLabel) {
+                                    correctLabel.style.color = '#28a745';
+                                    correctLabel.style.fontWeight = 'bold';
+                                }
+                            }
+                        }
+                        break;
+                }
+
+                if (btn) {
+                    btn.classList.remove('answered');
+                    btn.classList.add(isCorrect ? 'correct' : 'incorrect');
+                }
+
+                resultsData.push({
+                    question: qNum,
+                    userAnswer: userAnswer || 'No Answer',
+                    correctAnswer: Array.isArray(correctAnswer) ? correctAnswer.join(' / ') : String(correctAnswer),
+                    isCorrect: isCorrect
+                });
+
+                if (isCorrect) {
+                    score++;
+                }
+            });
+
+            const deliverButton = document.getElementById('deliver-button');
+            const band = (function(raw){
+                if(raw>=39) return 9;
+                if(raw>=37) return 8.5;
+                if(raw>=35) return 8;
+                if(raw>=32) return 7.5;
+                if(raw>=30) return 7;
+                if(raw>=26) return 6.5;
+                if(raw>=23) return 6;
+                if(raw>=18) return 5.5;
+                if(raw>=16) return 5;
+                if(raw>=13) return 4.5;
+                if(raw>=10) return 4;
+                if(raw>=8)  return 3.5;
+                if(raw>=6)  return 3;
+                if(raw>=4)  return 2.5;
+                if(raw>=2)  return 2;
+                if(raw===1) return 1.5;
+                return 0;
+            })(score);
+
+            document.querySelectorAll('.answer-input, input[type="radio"]').forEach(input => {
+                input.disabled = true;
+            });
+
+            document.querySelector('.main-container').classList.add('results-mode');
+            switchToPart(currentPart);
+
+            const modal = document.getElementById('result-modal');
+            const scoreSummary = document.getElementById('score-summary');
+            const resultDetails = document.getElementById('result-details');
+            
+            scoreSummary.textContent = `You scored ${score} out of 40 (Band ${band}).`;
+            
+            let tableHTML = '<table><thead><tr><th>Question</th><th>Your Answer</th><th>Correct Answer</th><th>Result</th></tr></thead><tbody>';
+            resultsData.sort((a,b) => parseInt(a.question, 10) - parseInt(b.question, 10)).forEach(res => {
+                tableHTML += `
+                    <tr>
+                        <td>${res.question}</td>
+                        <td>${res.userAnswer}</td>
+                        <td>${res.correctAnswer}</td>
+                        <td class="${res.isCorrect ? 'result-correct' : 'result-incorrect'}">
+                            ${res.isCorrect ? '✔ Correct' : '✖ Incorrect'}
+                        </td>
+                    </tr>
+                `;
+            });
+            tableHTML += '</tbody></table>';
+            resultDetails.innerHTML = tableHTML;
+
+            deliverButton.classList.add('success');
+            deliverButton.innerHTML = '<span>My Results</span>';
+            deliverButton.disabled = false;
+
+            const myResultsBtn = deliverButton.cloneNode(true);
+            deliverButton.parentNode.replaceChild(myResultsBtn, deliverButton);
+            myResultsBtn.addEventListener('click', () => {
+                const modalEl = document.getElementById('result-modal');
+                if (modalEl) modalEl.style.display = 'flex';
+            });
+
+            modal.style.display = 'flex';
+        }
+        
+        function formatTime(seconds) {
+            const minutes = Math.floor(seconds / 60);
+            const remainingSeconds = Math.floor(seconds % 60);
+            return `${minutes}:${remainingSeconds < 10 ? '0' : ''}${remainingSeconds}`;
+        }
+
+        // Event Listeners
+        document.addEventListener('contextmenu', function (e) {
+            const text = window.getSelection().toString();
+            if (!text || e.target.tagName === 'INPUT' || e.target.tagName === 'SELECT') return;
+            
+            e.preventDefault();
+            const menu = document.getElementById('contextMenu');
+            menu.style.left = e.pageX + 'px';
+            menu.style.top = e.pageY + 'px';
+            menu.style.display = 'block';
+
+            const target = e.target;
+            const clearItem = document.getElementById('clear-item');
+            contextElement = target.closest('.highlight, .comment-highlight');
+            if(contextElement){
+                clearItem.style.display = 'block';
+            } else {
+                clearItem.style.display = 'none';
+            }
+            
+            selectedRange = window.getSelection().getRangeAt(0);
+            selectedText = window.getSelection().toString();
+        });
+        
+        document.addEventListener('click', function(e) {
+            if (e.target.closest('.context-menu')) return;
+            document.getElementById('contextMenu').style.display = 'none';
+        });
+
+        playPauseBtn.addEventListener('click', () => {
+            if (!testStarted) {
+                testStarted = true;
+                switchToPart(currentPart, true);
+            }
+        });
+
+        document.getElementById('deliver-button').addEventListener('click', checkAnswers);
+
+        document.getElementById('modal-close-button').addEventListener('click', () => {
+            document.getElementById('result-modal').style.display = 'none';
+        });
+
+        speedBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            speedOptions.classList.toggle('hidden');
+        });
+
+        speedOptions.addEventListener('click', (e) => {
+            if (e.target.dataset.speed) {
+                const speed = parseFloat(e.target.dataset.speed);
+                audioPlayer.playbackRate = speed;
+                speedBtn.textContent = `${speed}x`;
+                speedOptions.classList.add('hidden');
+            }
+        });
+
+        document.addEventListener('click', () => {
+            if (!speedOptions.classList.contains('hidden')) {
+                speedOptions.classList.add('hidden');
+            }
+        });
+
+        document.addEventListener('DOMContentLoaded', () => {
+            switchToPart(1);
+            goToQuestion(1);
+            
+            document.querySelectorAll('.answer-input, input[type="radio"]').forEach(input => {
+                input.addEventListener('input', updateAnsweredIndicators);
+                input.addEventListener('change', updateAnsweredIndicators);
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,1819 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IELTS Full Reading Practice</title>
+    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=IBM+Plex+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #faf9f6;
+            --bg-secondary: #f2f0eb;
+            --bg-tertiary: #e8e5de;
+            --text: #1c1917;
+            --text-muted: #57534e;
+            --text-light: #a8a29e;
+            --border: #e0dbd3;
+            --border-medium: #c9c3b9;
+            --header-bg: #1c1917;
+            --panel-bg: #faf9f6;
+            --nav-bg: #1c1917;
+            --input-bg: #ffffff;
+            --example-bg: #f5f3ee;
+            --modal-bg: #faf9f6;
+            --timer-color: #faf9f6;
+            --resizer-bg: #e8e5de;
+            --active-blue: #2563eb;
+            --active-amber: #d97706;
+            --correct-bg: #f0fdf4;
+            --incorrect-bg: #fff1f2;
+            --correct-border: #16a34a;
+            --incorrect-border: #e11d48;
+            --highlight-color: #fef08a;
+            --passage-title: #1c1917;
+            --subq-bg: #2d2a27;
+            --subq-border: #444;
+            --subq-text: #d6d3d1;
+            --footer-btn-bg: #2d2a27;
+            --footer-btn-border: #444;
+            --toolbar-bg: #111827;
+        }
+
+        body.night-mode {
+            --bg: #111111;
+            --bg-secondary: #1a1a1a;
+            --bg-tertiary: #222;
+            --text: #e7e5e0;
+            --text-muted: #a8a29e;
+            --text-light: #57534e;
+            --border: #2a2a2a;
+            --border-medium: #3a3a3a;
+            --header-bg: #0a0a0a;
+            --panel-bg: #111111;
+            --nav-bg: #0a0a0a;
+            --input-bg: #1a1a1a;
+            --example-bg: #1a1a1a;
+            --modal-bg: #111111;
+            --timer-color: #e7e5e0;
+            --resizer-bg: #1a1a1a;
+            --active-blue: #60a5fa;
+            --active-amber: #fbbf24;
+            --correct-bg: #052e16;
+            --incorrect-bg: #1f0a0e;
+            --correct-border: #22c55e;
+            --incorrect-border: #f43f5e;
+            --passage-title: #e7e5e0;
+            --subq-bg: #1a1a1a;
+            --subq-border: #333;
+            --subq-text: #a8a29e;
+            --footer-btn-bg: #1a1a1a;
+            --footer-btn-border: #333;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'IBM Plex Sans', sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            line-height: 1.5;
+            font-size: 15px;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        .header {
+            background-color: var(--header-bg);
+            padding: 0 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            z-index: 100;
+            height: 56px;
+            border-bottom: 1px solid rgba(255,255,255,0.06);
+        }
+
+        .header-left { display: flex; align-items: center; gap: 12px; }
+
+        .timer-container {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: #faf9f6;
+            font-size: 15px;
+            font-weight: 600;
+            font-variant-numeric: tabular-nums;
+            letter-spacing: 0.05em;
+        }
+
+        .timer-display {
+            background: rgba(255,255,255,0.08);
+            padding: 4px 10px;
+            border-radius: 4px;
+            font-family: 'IBM Plex Sans', monospace;
+        }
+
+        .timer-controls { display: flex; gap: 6px; }
+        .timer-controls button {
+            background: rgba(255,255,255,0.08);
+            border: 1px solid rgba(255,255,255,0.12);
+            border-radius: 4px;
+            padding: 0;
+            cursor: pointer;
+            width: 28px; height: 28px;
+            display: flex; align-items: center; justify-content: center;
+            transition: background 0.2s;
+        }
+        .timer-controls button:hover { background: rgba(255,255,255,0.15); }
+        .timer-controls button svg { width: 16px; height: 16px; fill: #faf9f6; }
+
+        .header-btn {
+            background: rgba(255,255,255,0.08);
+            border: 1px solid rgba(255,255,255,0.12);
+            border-radius: 4px;
+            padding: 5px 12px;
+            cursor: pointer;
+            font-size: 12px;
+            font-weight: 600;
+            color: #faf9f6;
+            font-family: 'IBM Plex Sans', sans-serif;
+            display: flex; align-items: center; gap: 5px;
+            transition: background 0.2s;
+            white-space: nowrap;
+        }
+        .header-btn:hover { background: rgba(255,255,255,0.15); }
+
+        .brand-link {
+            color: #d97706;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 13px;
+            letter-spacing: 0.03em;
+            display: flex; align-items: center; gap: 6px;
+        }
+        .brand-link:hover { color: #fbbf24; }
+
+        .main-container {
+            margin-top: 56px;
+            display: flex;
+            flex-direction: column;
+            height: calc(100vh - 56px);
+        }
+
+        .part-header-bar {
+            background: var(--bg-secondary);
+            border-bottom: 1px solid var(--border);
+            padding: 10px 20px;
+            font-size: 13px;
+            color: var(--text-muted);
+            font-weight: 500;
+            letter-spacing: 0.02em;
+        }
+        .part-header-bar strong { color: var(--text); }
+        .part-header-bar.hidden { display: none; }
+
+        .panels-container {
+            display: flex;
+            flex: 1;
+            overflow: hidden;
+        }
+
+        .passage-panel {
+            flex: 1;
+            padding: 28px 32px 120px;
+            overflow-y: auto;
+            min-width: 220px;
+            background: var(--panel-bg);
+        }
+
+        .reading-passage h4 {
+            font-family: 'Lora', serif;
+            font-size: 20px;
+            font-weight: 600;
+            color: var(--passage-title);
+            margin-bottom: 22px;
+            text-align: center;
+            padding-bottom: 14px;
+            border-bottom: 2px solid var(--active-amber);
+        }
+
+        .reading-passage p {
+            margin-bottom: 1.1em;
+            color: var(--text);
+            line-height: 1.75;
+        }
+
+        .reading-passage .para-label {
+            font-weight: 700;
+            color: var(--active-amber);
+            font-size: 13px;
+            letter-spacing: 0.06em;
+        }
+
+        .questions-panel {
+            flex: 1;
+            padding: 24px 28px 120px;
+            overflow-y: auto;
+            min-width: 220px;
+            border-left: 1px solid var(--border);
+            background: var(--panel-bg);
+        }
+
+        .resizer {
+            width: 8px;
+            cursor: col-resize;
+            background: var(--resizer-bg);
+            flex-shrink: 0;
+            display: flex; align-items: center; justify-content: center;
+        }
+        .resizer::after {
+            content: '';
+            width: 2px; height: 40px;
+            background: var(--border-medium);
+            border-radius: 2px;
+        }
+
+        .question { margin-bottom: 36px; }
+        .question-prompt {
+            margin-bottom: 18px;
+            padding: 14px 16px;
+            background: var(--bg-secondary);
+            border-left: 3px solid var(--active-amber);
+            border-radius: 0 6px 6px 0;
+        }
+        .question-prompt p { margin-bottom: 6px; font-size: 14px; color: var(--text); }
+        .question-prompt ul { list-style: none; padding-left: 0; }
+        .question-prompt ul li { font-size: 13px; color: var(--text-muted); margin-bottom: 3px; }
+        .question-prompt strong { color: var(--text); }
+
+        .answer-input {
+            border: 1.5px solid var(--border-medium);
+            border-radius: 4px;
+            background: var(--input-bg);
+            color: var(--text);
+            padding: 3px 8px;
+            font-size: 14px;
+            font-family: 'IBM Plex Sans', sans-serif;
+            text-align: center;
+            height: 30px;
+            width: 160px;
+            transition: border-color 0.2s, box-shadow 0.2s;
+        }
+        .answer-input.active-input { border-color: var(--active-blue); box-shadow: 0 0 0 3px rgba(37,99,235,0.15); }
+        .answer-input::placeholder { color: var(--text-light); }
+        .answer-input.correct { border-color: var(--correct-border); background: var(--correct-bg); }
+        .answer-input.incorrect { border-color: var(--incorrect-border); background: var(--incorrect-bg); }
+
+        /* TRUE/FALSE/NG questions */
+        .tf-question { margin-bottom: 22px; }
+        .tf-question-line {
+            display: flex; align-items: flex-start; gap: 10px;
+            margin-bottom: 10px; padding: 10px;
+            background: var(--bg-secondary);
+            border-radius: 6px;
+            border: 1.5px solid transparent;
+            transition: border-color 0.2s, background 0.2s;
+        }
+        .tf-question-number {
+            min-width: 26px; height: 26px;
+            background: var(--active-amber);
+            color: #1c1917;
+            font-weight: 700;
+            font-size: 12px;
+            border-radius: 4px;
+            display: flex; align-items: center; justify-content: center;
+            flex-shrink: 0;
+        }
+        .tf-question-text { font-size: 14px; color: var(--text); padding-top: 3px; line-height: 1.5; }
+        .tf-options { display: flex; gap: 10px; flex-wrap: wrap; padding-left: 8px; }
+        .tf-option {
+            display: flex; align-items: center; gap: 6px;
+            cursor: pointer;
+            padding: 5px 12px;
+            border: 1.5px solid var(--border-medium);
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--text);
+            transition: all 0.15s;
+            background: var(--input-bg);
+        }
+        .tf-option:hover { border-color: var(--active-blue); background: rgba(37,99,235,0.05); }
+        .tf-option input[type="radio"] { display: none; }
+        .tf-option.selected { border-color: var(--active-blue); background: rgba(37,99,235,0.1); color: var(--active-blue); }
+        .tf-option.correct { border-color: var(--correct-border); background: var(--correct-bg); color: var(--correct-border); }
+        .tf-option.incorrect { border-color: var(--incorrect-border); background: var(--incorrect-bg); color: var(--incorrect-border); }
+        .tf-option.correct-answer-highlight { border-color: var(--correct-border); background: var(--correct-bg); color: var(--correct-border); }
+
+        .tf-question.correct .tf-question-line { border-color: var(--correct-border); }
+        .tf-question.incorrect .tf-question-line { border-color: var(--incorrect-border); }
+
+        /* Multiple choice */
+        .multi-choice-question { margin-bottom: 24px; }
+        .multi-choice-question > p { font-size: 14px; margin-bottom: 10px; font-weight: 500; color: var(--text); }
+        .multi-choice-option {
+            margin-bottom: 7px;
+            border: 1.5px solid var(--border);
+            border-radius: 6px;
+            overflow: hidden;
+            transition: border-color 0.15s;
+        }
+        .multi-choice-option:hover { border-color: var(--active-blue); }
+        .multi-choice-option label {
+            display: flex; align-items: flex-start; gap: 10px;
+            padding: 9px 12px;
+            cursor: pointer;
+            font-size: 14px;
+            color: var(--text);
+            line-height: 1.5;
+        }
+        .multi-choice-option input[type="radio"] { display: none; }
+        .multi-choice-option .option-letter {
+            min-width: 22px; height: 22px;
+            border: 1.5px solid var(--border-medium);
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 11px; font-weight: 700;
+            flex-shrink: 0; margin-top: 1px;
+            transition: all 0.15s;
+        }
+        .multi-choice-option.selected { border-color: var(--active-blue); background: rgba(37,99,235,0.04); }
+        .multi-choice-option.selected .option-letter { background: var(--active-blue); border-color: var(--active-blue); color: #fff; }
+        .multi-choice-option.correct { border-color: var(--correct-border); background: var(--correct-bg); }
+        .multi-choice-option.incorrect { border-color: var(--incorrect-border); background: var(--incorrect-bg); }
+        .multi-choice-option.correct-answer-highlight { border-color: var(--correct-border); background: var(--correct-bg); }
+
+        /* Matching / form rows */
+        .matching-form-container { margin-top: 12px; }
+        .matching-form-row {
+            display: flex; align-items: center; gap: 12px;
+            margin-bottom: 12px; padding: 8px 10px;
+            border-radius: 6px;
+            border: 1.5px solid var(--border);
+            transition: border-color 0.2s, background 0.2s;
+        }
+        .matching-form-row:hover { border-color: var(--border-medium); }
+        .matching-form-label { flex: 1; font-size: 13.5px; color: var(--text); line-height: 1.5; }
+        .matching-form-row.correct { border-color: var(--correct-border); background: var(--correct-bg); }
+        .matching-form-row.incorrect { border-color: var(--incorrect-border); background: var(--incorrect-bg); }
+
+        .example-box {
+            background: var(--example-bg);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            padding: 14px 16px;
+            margin: 14px 0;
+            font-size: 13.5px;
+            color: var(--text);
+        }
+        .example-box p { margin-bottom: 8px; font-weight: 600; }
+        .example-box ul { list-style: none; padding-left: 0; }
+        .example-box ul li { margin-bottom: 4px; color: var(--text-muted); }
+
+        /* Summary completion (inline text inputs) */
+        .summary-text { font-size: 14px; line-height: 2.2; color: var(--text); }
+        .summary-text .answer-input { width: 130px; vertical-align: middle; margin: 0 4px; }
+
+        .correct-answer-display {
+            font-weight: 700; color: var(--correct-border);
+            margin-left: 6px; font-size: 13px;
+            background: var(--correct-bg);
+            padding: 2px 6px;
+            border-radius: 4px;
+        }
+
+        /* Nav arrows */
+        .nav-arrows {
+            position: fixed; bottom: 90px; right: 16px;
+            display: flex; gap: 4px; z-index: 101;
+        }
+        .nav-arrow {
+            width: 44px; height: 44px;
+            background: var(--header-bg);
+            color: #faf9f6;
+            border: none; cursor: pointer;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 20px; font-weight: bold;
+            border-radius: 6px;
+            transition: background 0.2s;
+        }
+        .nav-arrow:hover { background: #2d2a27; }
+        .nav-arrow:disabled { opacity: 0.3; cursor: not-allowed; }
+
+        /* Bottom nav */
+        .nav-row {
+            position: fixed; bottom: 0; left: 0; right: 0;
+            background: var(--nav-bg);
+            display: flex; align-items: center;
+            height: 72px; z-index: 100;
+            border-top: 1px solid rgba(255,255,255,0.06);
+            padding: 0 8px;
+            overflow-x: auto;
+        }
+
+        .footer__questionWrapper___1tZ46 {
+            display: flex; align-items: center;
+            flex-shrink: 0;
+        }
+
+        .footer__questionNo___3WNct {
+            background: none; border: none;
+            padding: 8px 14px;
+            font-size: 13px; font-weight: 700;
+            color: #a8a29e; cursor: pointer;
+            display: flex; align-items: center; gap: 6px;
+            font-family: 'IBM Plex Sans', sans-serif;
+            letter-spacing: 0.03em;
+            border-radius: 4px;
+            transition: all 0.15s;
+        }
+        .footer__questionNo___3WNct:hover { color: #faf9f6; background: rgba(255,255,255,0.05); }
+        .footer__questionWrapper___1tZ46.selected .footer__questionNo___3WNct { color: #faf9f6; }
+
+        .sectionNr { font-size: 15px; }
+        .section-prefix { font-size: 12px; opacity: 0.7; }
+        .attemptedCount { font-size: 11px; opacity: 0.6; margin-left: 2px; }
+
+        .footer__subquestionWrapper___9GgoP { display: none; gap: 3px; margin-left: 4px; }
+        .footer__questionWrapper___1tZ46.selected .footer__subquestionWrapper___9GgoP { display: flex; }
+
+        .subQuestion {
+            width: 28px; height: 28px;
+            border: 1px solid #3a3a3a;
+            background: #2d2a27;
+            color: #a8a29e;
+            font-size: 11px; font-weight: 600;
+            cursor: pointer;
+            display: flex; align-items: center; justify-content: center;
+            border-radius: 4px;
+            transition: all 0.15s;
+            font-family: 'IBM Plex Sans', sans-serif;
+        }
+        .subQuestion:hover { background: #3a3735; border-color: #555; color: #faf9f6; }
+        .subQuestion.active { background: var(--active-amber); border-color: var(--active-amber); color: #1c1917; }
+        .subQuestion.answered { background: #3b4a6b; border-color: #4a5a80; color: #93c5fd; }
+        .subQuestion.correct { background: #14532d; border-color: #16a34a; color: #86efac; }
+        .subQuestion.incorrect { background: #4c0519; border-color: #e11d48; color: #fda4af; }
+
+        .footer__deliverButton___3FM07 {
+            margin-left: auto;
+            margin-right: 12px;
+            flex-shrink: 0;
+            background: var(--active-amber);
+            color: #1c1917;
+            border: none; padding: 10px 22px;
+            border-radius: 6px;
+            font-size: 13px; font-weight: 700;
+            cursor: pointer;
+            font-family: 'IBM Plex Sans', sans-serif;
+            letter-spacing: 0.03em;
+            transition: all 0.2s;
+        }
+        .footer__deliverButton___3FM07:hover { background: #b45309; color: #faf9f6; }
+        .footer__deliverButton___3FM07:disabled { opacity: 0.4; cursor: not-allowed; }
+
+        .hidden { display: none !important; }
+        .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; }
+
+        /* Highlight toolbar */
+        .highlight-toolbar {
+            position: fixed; display: none;
+            background: #111827;
+            border-radius: 8px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.5);
+            z-index: 2000; padding: 6px 8px;
+            gap: 4px; align-items: center;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+        .highlight-toolbar.visible { display: flex; }
+        .toolbar-btn {
+            display: inline-flex; align-items: center; justify-content: center;
+            gap: 4px; padding: 5px 10px;
+            border: none; border-radius: 5px;
+            cursor: pointer; font-size: 12px; font-weight: 600;
+            transition: all 0.15s; white-space: nowrap;
+            font-family: 'IBM Plex Sans', sans-serif;
+        }
+        .toolbar-btn:hover { filter: brightness(1.2); }
+        .toolbar-btn.btn-yellow { background: #fef08a; color: #1c1917; }
+        .toolbar-btn.btn-green { background: #4ade80; color: #14532d; }
+        .toolbar-btn.btn-pink { background: #f472b6; color: #831843; }
+        .toolbar-btn.btn-blue { background: #60a5fa; color: #1e3a5f; }
+        .toolbar-btn.btn-clear { background: #4b5563; color: #fff; }
+        .toolbar-btn.btn-note { background: #d97706; color: #fff; }
+        .toolbar-sep { width: 1px; height: 20px; background: rgba(255,255,255,0.15); margin: 0 2px; }
+
+        .highlight { background-color: #fef08a; border-radius: 2px; }
+        .highlight.hl-green { background-color: #bbf7d0; }
+        .highlight.hl-pink { background-color: #fecdd3; }
+        .highlight.hl-blue { background-color: #bfdbfe; }
+        body.night-mode .highlight { background-color: #854d0e; color: #fef9c3; }
+        body.night-mode .highlight.hl-green { background-color: #14532d; color: #bbf7d0; }
+        body.night-mode .highlight.hl-pink { background-color: #831843; color: #fce7f3; }
+        body.night-mode .highlight.hl-blue { background-color: #1e3a5f; color: #bfdbfe; }
+
+        .comment-highlight { background: #fef3c7; border-bottom: 2px dotted #d97706; border-radius: 2px; cursor: help; position: relative; }
+        body.night-mode .comment-highlight { background: #451a03; border-bottom-color: #f59e0b; color: #fef3c7; }
+        .comment-tooltip {
+            position: absolute; bottom: calc(100% + 8px); left: 50%;
+            transform: translateX(-50%);
+            background: #111827; color: #f9fafb;
+            padding: 7px 11px; border-radius: 6px;
+            font-size: 12px; max-width: 240px; white-space: normal;
+            z-index: 3000; opacity: 0; pointer-events: none;
+            transition: opacity 0.2s;
+            box-shadow: 0 4px 14px rgba(0,0,0,0.4);
+        }
+        .comment-tooltip::after {
+            content: ''; position: absolute; top: 100%; left: 50%;
+            transform: translateX(-50%);
+            border: 5px solid transparent; border-top-color: #111827;
+        }
+        .comment-highlight:hover .comment-tooltip { opacity: 1; }
+        .comment-highlight::after { content: '📝'; font-size: 10px; vertical-align: super; margin-left: 2px; }
+
+        /* Notes panel */
+        .notes-panel {
+            position: fixed; right: 16px; top: 66px;
+            width: 260px; max-height: calc(100vh - 160px);
+            background: var(--modal-bg); border: 1px solid var(--border);
+            border-radius: 10px; box-shadow: 0 8px 30px rgba(0,0,0,0.15);
+            z-index: 500; overflow-y: auto; display: none; flex-direction: column;
+        }
+        .notes-panel.visible { display: flex; }
+        .notes-panel-header {
+            padding: 12px 14px; border-bottom: 1px solid var(--border);
+            display: flex; justify-content: space-between; align-items: center;
+            font-weight: 700; font-size: 13px; color: var(--text);
+            background: var(--bg-secondary); border-radius: 10px 10px 0 0;
+        }
+        .notes-panel-close { background: none; border: none; cursor: pointer; font-size: 16px; color: var(--text-muted); }
+        .notes-list { padding: 10px; }
+        .note-item { background: var(--bg-secondary); border: 1px solid var(--border); border-radius: 6px; padding: 10px; margin-bottom: 8px; font-size: 12px; color: var(--text); }
+        .note-item-text { font-weight: 600; color: #d97706; margin-bottom: 4px; font-size: 11px; }
+        .note-item-delete { background: none; border: none; color: var(--incorrect-border); cursor: pointer; font-size: 11px; float: right; }
+        .notes-empty { color: var(--text-muted); font-size: 12px; padding: 10px; text-align: center; }
+
+        /* Note input modal */
+        .note-input-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.6); z-index: 3000; display: none; align-items: center; justify-content: center; }
+        .note-input-overlay.visible { display: flex; }
+        .note-input-box { background: var(--modal-bg); border-radius: 12px; padding: 22px; width: 360px; max-width: 90vw; box-shadow: 0 16px 40px rgba(0,0,0,0.3); border: 1px solid var(--border); }
+        .note-input-box h3 { margin-bottom: 10px; font-size: 15px; color: var(--text); }
+        .note-input-box .selected-text-preview { background: var(--bg-secondary); border-left: 3px solid #d97706; padding: 8px 10px; margin-bottom: 12px; font-size: 12px; color: var(--text-muted); border-radius: 0 4px 4px 0; max-height: 56px; overflow: hidden; }
+        .note-input-box textarea { width: 100%; min-height: 72px; padding: 9px; border: 1px solid var(--border-medium); border-radius: 6px; font-size: 13px; background: var(--input-bg); color: var(--text); resize: vertical; outline: none; font-family: 'IBM Plex Sans', sans-serif; }
+        .note-input-box textarea:focus { border-color: var(--active-blue); }
+        .note-input-actions { display: flex; gap: 8px; margin-top: 10px; justify-content: flex-end; }
+        .note-input-actions button { padding: 7px 16px; border-radius: 6px; border: none; cursor: pointer; font-size: 13px; font-weight: 600; font-family: 'IBM Plex Sans', sans-serif; }
+        .btn-save-note { background: #d97706; color: #fff; }
+        .btn-cancel-note { background: var(--bg-secondary); color: var(--text); border: 1px solid var(--border) !important; }
+
+        /* Results modal */
+        .modal-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.7); z-index: 2000; display: flex; justify-content: center; align-items: center; }
+        .modal-overlay.hidden { display: none; }
+        .modal-content { background: var(--modal-bg); padding: 28px; border-radius: 14px; width: 90%; max-width: 580px; max-height: 82vh; display: flex; flex-direction: column; position: relative; border: 1px solid var(--border); }
+        .modal-close-btn { position: absolute; top: 12px; right: 16px; background: none; border: none; font-size: 24px; cursor: pointer; color: var(--text-muted); }
+        .modal-content h2 { text-align: center; margin-bottom: 18px; font-family: 'Lora', serif; color: var(--text); font-size: 22px; }
+        .results-summary { display: flex; justify-content: space-around; margin-bottom: 18px; border-bottom: 1px solid var(--border); padding-bottom: 14px; }
+        .results-summary-item { text-align: center; }
+        .results-summary-item .value { font-size: 32px; font-weight: 700; color: var(--active-amber); font-family: 'Lora', serif; }
+        .results-summary-item .label { font-size: 12px; color: var(--text-muted); font-weight: 500; margin-top: 2px; }
+        .results-details-container { overflow-y: auto; padding-right: 8px; flex: 1; }
+        .result-row { display: grid; grid-template-columns: 36px 1fr 1fr; gap: 10px; padding: 8px 6px; border-bottom: 1px solid var(--border); font-size: 13px; }
+        .result-row.incorrect { background: var(--incorrect-bg); }
+        .result-row .q-num { font-weight: 700; color: var(--active-amber); }
+        .result-row .user-ans { color: var(--text-muted); }
+        .result-row .correct-ans { color: var(--correct-border); font-weight: 600; }
+        .modal-actions { display: flex; gap: 10px; justify-content: center; margin-top: 16px; padding-top: 14px; border-top: 1px solid var(--border); }
+        .modal-actions button { padding: 10px 24px; border-radius: 8px; font-size: 14px; font-weight: 700; cursor: pointer; font-family: 'IBM Plex Sans', sans-serif; }
+        .btn-retake { background: var(--active-blue); color: #fff; border: none; }
+        .btn-review { background: var(--bg-secondary); color: var(--text); border: 1px solid var(--border-medium); }
+
+        .active-question { outline: 2px solid var(--active-blue); outline-offset: 2px; border-radius: 6px; }
+
+        select.answer-input option { background: var(--input-bg); color: var(--text); }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="header-left">
+            <div class="timer-container">
+                <span class="timer-display">60:00</span>
+                <div class="timer-controls">
+                    <button id="timer-toggle-btn" title="Pause/Resume">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
+                    </button>
+                    <button id="timer-reset-btn" title="Reset">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 5V1L7 6l5 5V7c3.31 0 6 2.69 6 6s-2.69 6-6 6-6-2.69-6-6H4c0 4.42 3.58 8 8 8s8-3.58 8-8-3.58-8-8-8z"/></svg>
+                    </button>
+                </div>
+            </div>
+            <button class="header-btn" id="night-mode-btn">🌙 Night</button>
+            <button class="header-btn" id="notes-toggle-btn">📝 Notes <span id="notes-count" style="background:#d97706;color:#fff;border-radius:10px;padding:1px 6px;font-size:10px;display:none;margin-left:2px;">0</span></button>
+        </div>
+        <a href="https://t.me/ielts_material_full" target="_blank" class="brand-link">📚 Full Exam Materials</a>
+    </div>
+
+    <div class="main-container">
+        <div id="part-header-1" class="part-header-bar">
+            <strong>Part 1</strong> — Read the text and answer Questions 1–13.
+        </div>
+        <div id="part-header-2" class="part-header-bar hidden">
+            <strong>Part 2</strong> — Read the text and answer Questions 14–26.
+        </div>
+        <div id="part-header-3" class="part-header-bar hidden">
+            <strong>Part 3</strong> — Read the text and answer Questions 27–40.
+        </div>
+
+        <div class="panels-container">
+            <!-- ═══════════════════════════════ PASSAGE PANEL ═══════════════════════════════ -->
+            <div class="passage-panel" id="passage-panel">
+
+                <!-- PASSAGE 1 -->
+                <div id="passage-text-1" class="reading-passage">
+                    <h4>A Decibel Hell: The Effects of Living in a Noisy World</h4>
+                    <p><span class="para-label">SECTION A</span><br>It's not difficult for a person to encounter sound at levels that can cause adverse health effects. During a single day, people living in a typical urban environment can experience a wide range of sounds in many locations, even once-quiet locales have become polluted with noise. In fact, it's difficult today to escape sound completely. In its 1999 Guidelines for Community Noise, the World Health Organization (WHO) declared, "Worldwide, noise-induced hearing impairment is the most prevalent irreversible occupational hazard, and it is estimated that 120 million people worldwide have disabling hearing difficulties." Growing evidence also points to many other health effects of too much volume.</p>
+                    <p>Mark Stephenson, a Cincinnati, Ohio-based senior research audiologist at the National Institute for Occupational Safety and Health (NIOSH), says his agency's definition of hazardous noise is sound that exceeds the time-weighted average of 85 dBA, meaning the average noise exposure measured over a typical eight-hour work day. Other measures and definitions are used for other purposes.</p>
+                    <p><span class="para-label">SECTION B — Growing Volume</span><br>In the United States, about 30 million workers are exposed to hazardous sound levels on the job, according to NIOSH. Industries having a high number of workers exposed to loud sounds include construction, agriculture, mining, manufacturing, utilities, transportation, and the military.</p>
+                    <p>Noise in U.S. industry is an extremely difficult problem to monitor, acknowledges Craig Moulton, a senior industrial hygienist for the Occupational Safety and Health Administration (OSHA). "Still," he says, "OSHA does require that any employer with workers overexposed to noise provide protection for those employees against the harmful effects of noise. Additionally, employers must implement a continuing, effective hearing conservation program as outlined in OSHA's Noise Standard."</p>
+                    <p><span class="para-label">SECTION C — Scary Sound Effects</span><br>Numerous scientific studies over the years have confirmed that exposure to certain levels of sound can damage hearing. Prolonged exposure can actually change the structure of the hair cells in the inner ear, resulting in hearing loss. It can also cause tinnitus, a ringing, roaring, buzzing, or clicking in the ears.</p>
+                    <p>NIOSH studies from the mid to late 1990s show that 90% of coal miners have hearing impairment by age 52 – compared to 9% of the general population – and 70% of male metal/nonmetal miners will experience hearing impairment by age 60 (Stephenson notes that from adolescence onward, females tend to have better hearing than males). Neitzel says nearly half of all construction workers have some degree of hearing loss. "NIOSH research also reveals that by age twenty-five, the average carpenter's hearing is equivalent to an otherwise healthy fifty-year-old male who hasn't been exposed to noise," he says.</p>
+                    <p>William Luxford, medical director of the House Ear Clinic of St. Vincent Medical Center in Los Angeles, points out one piece of good news: "It's true that continuous noise exposure will lead to the continuation of hearing loss, but as soon as the exposure is stopped, the hearing loss stops. So a change in environment can improve a person's hearing health."</p>
+                    <p>Research is catching up with this anecdotal evidence. In the July 2001 issue of Pediatrics, researchers from the Centers for Disease Control and Prevention reported that, based on audiometric testing of 5,249 children as part of the Third National Health and Nutrition Examination Survey, an estimated 12.5% of American children have noise-induced hearing threshold shifts – or dulled hearing – in one or both ears. Most children with noise-induced hearing threshold shifts have only limited hearing damage, but continued exposure to excessive noise can lead to difficulties with high-frequency sound discrimination. The report listed stereos, music concerts, toys (such as toy telephones and certain rattles), lawn mowers, and fireworks as producing potentially harmful sounds.</p>
+                    <p><span class="para-label">SECTION D — Beyond the Ears</span><br>The effects of sound don't stop with the ears. Nonauditory effects of noise exposure are those effects that don't cause hearing loss but still can be measured, such as elevated blood pressure, loss of sleep, increased heart rate, cardiovascular constriction, labored breathing, and changes in brain chemistry.</p>
+                    <p>The nonauditory effects of noise were noted as early as 1930 in a study published by E.L. Smith and D.L. Laird in volume 2 of the Journal of the Acoustical Society of America. The results showed that exposure to noise caused stomach contractions in healthy human beings. Reports to noise's nonauditory effects published since that pioneering study have been both contradictory and controversial in some areas.</p>
+                    <p>Bronzaft and the school principal persuaded the school board to have acoustical tile installed in the classrooms adjacent to the tracks. The Transit Authority also treated the tracks near the school to make them less noisy. A follow-up study published in the September 1981 issue of the Journal of Environmental Psychology found that children's reading scores improved after these interventions were put in place.</p>
+                    <p><span class="para-label">SECTION E — Fighting for Quiet</span><br>Anti-noise activists say that Europe and several countries in Asia are more advanced that the United States in terms of combating noise. "Population pressure has prompted Europe to move more quickly on the noise issue that the United States has," Hume says. In the European Union, countries with cities of at least 250,000 people are creating noise maps of those cities to help leaders determine noise pollution policies. Paris has already prepared its first noise maps. The map data, which must be finished by 2007, will be fed into computer models that will help test the sound impact of street designs or new buildings before construction begins.</p>
+                    <p>Activists in other countries say they too want the United States to play a more leading role on the noise issue. But as in other areas of environmental health, merely having a more powerful government agency in place that can set more regulations is not the ultimate answer, according to other experts. Bronzaft stresses that governments worldwide need to increase funding for noise research and do a better job coordinating their noise pollution efforts so they can establish health and environmental policies based on solid scientific research. "Governments have a responsibility to protect their citizens by curbing noise pollution," she says.</p>
+                </div>
+
+                <!-- PASSAGE 2 -->
+                <div id="passage-text-2" class="reading-passage hidden">
+                    <h4>TV Addiction</h4>
+                    <p><span class="para-label">A</span><br>The amount of time people spend watching television is astonishing. On average, individuals in the industrialized world devote three hours a day to the pursuit – fully half of their leisure time, and more than on any single activity save work and sleep. At this rate, someone who lives to 75 would spend nine years in front of the tube. To some commentators, this devotion means simply that people enjoy TV and make a conscious decision to watch it. But if that is the whole story, why do so many people experience misgivings about how much they view? In Gallup polls in 1992 and 1999, two out of five adult respondents and seven out of 10 teenagers said they spent too much time watching TV. Other surveys have consistently shown that roughly 10 percent of adults call themselves TV addicts.</p>
+                    <p><span class="para-label">B</span><br>To study people's reactions to TV, researchers have undertaken laboratory experiments in which they have monitored the brain waves (using an electroencephalograph, or EEG) to track behavior and emotion in the normal course of life, as opposed to the artificial conditions of the lab. Participants carried a beeper, and we signaled them six to eight times a day, at random, over the period of a week; whenever they heard the beep, they wrote down what they were doing and how they were feeling using a standardized scorecard.</p>
+                    <p><span class="para-label">C</span><br>As one might expect, people who were watching TV when we beeped them reported feeling relaxed and passive. The EEG studies similarly show less mental stimulation, as measured by alpha brain-wave production, during viewing than during reading. What is more surprising is that the sense of relaxation ends when the set is turned off, but the feelings of passivity and lowered alertness continue. Survey participants say they have more difficulty concentrating after viewing than before. In contrast, they rarely indicate such difficulty after reading. After playing sports or engaging in hobbies, people report improvements in mood. After watching TV, people's moods are about the same or worse than before. That may be because viewers' vague learned sense that they will feel less relaxed if they stop viewing. So they tend not to turn the set off. Viewing begets more viewing which is the same as the experience of habit-forming drugs. Thus, the irony of TV: people watch a great deal longer than they plan to, even though prolonged viewing is less rewarding. In our ESM studies the longer people sat in front of the set, the less satisfaction they said they derived from it. For some, a twinge of unease or guilt that they aren't doing something more productive may also accompany and depreciate the enjoyment of prolonged viewing. Researchers in Japan, the U.K. and the U.S. have found that this guilt occurs much more among middle-class viewers than among less affluent ones.</p>
+                    <p><span class="para-label">D</span><br>What is it about TV that has such a hold on us? In part, the attraction seems to spring from our biological 'orienting response.' First described by Ivan Pavlov in 1927, the orienting response is our instinctive visual or auditory reaction to any sudden or novel stimulus. It is part of our evolutionary heritage, a built-in sensitivity to movement and potential predatory threats. In 1986 Byron Reeves of Stanford University, Esther Thorson of the University of Missouri and their colleagues began to study whether the simple formal features of television – cuts, edits, zooms, pans, sudden noises – activate the orienting response, thereby keeping attention on the screen. By watching how brain waves were affected by formal features, the researchers concluded that these stylistic tricks can indeed trigger involuntary responses and 'derive their attentional value through the evolutionary significance of detecting movement… It is the form, not the content, of television that is unique.'</p>
+                    <p><span class="para-label">E</span><br>The natural attraction to television's sound and light starts very early in life. Dafna Lemish of Tel Aviv University has described babies at six to eight weeks attending to television. We have observed slightly older infants who, when lying on their backs on the floor, crane their necks around 180 degrees to catch what light through yonder window breaks. This inclination suggests how deeply rooted the orienting response is.</p>
+                    <p><span class="para-label">F</span><br>The Experience Sampling Method permitted us to look closely at most every domain of everyday life: working, eating, reading, talking to friends, playing a sport, and so on. We found that heavy viewers report feeling significantly more anxious and less happy than light viewers do in unstructured situations, such as doing nothing, daydreaming or waiting in line. The difference widens when the viewer is alone. Subsequently, Robert D. McIlwraith of the University of Manitoba extensively studies those who called themselves TV addicts on surveys. On a measure called the Short Imaginal Processes Inventory (SIPI), he found that the self-described addicts are more easily bored and distracted and have poorer attentional control than the non-addicts. The addicts said they used TV to distract themselves from unpleasant thoughts and to fill time. Other studies over the years have shown that heavy viewers are less likely to participate in community activities and sports and are more likely to be obese than moderate viewers or non-viewers.</p>
+                    <p><span class="para-label">G</span><br>More than 25 years ago psychologist Tannis M. MacBeth Williams of the University of British Columbia studied a mountain community that had no television until cable finally arrived. Over time, both adults and children in the town became less creative in problem solving, less able to persevere at tasks, and less tolerant of unstructured time.</p>
+                    <p><span class="para-label">H</span><br>Nearly 40 years ago Gary A. Steiner of the University of Chicago collected fascinating individual accounts of families whose set had broken. In experiments, families have volunteered or been paid to stop viewing, typically for a week or a month. Some fought, verbally and physically. In a review of these cold-turkey studies, Charles Winick of the City University of New York concluded: 'The first three or four days for most persons were the worst, even in many homes where viewing was minimal and where there were other ongoing activities. In over half of all the households, during these first few days of loss, the regular routines were disrupted, family members had difficulties in dealing with the newly available time, anxiety and aggressions were expressed…. By the second week, a move toward adaptation to the situation was common.' Unfortunately, researchers have yet to flesh out these anecdotes; no one has systematically gathered statistics on the prevalence of these withdrawal symptoms.</p>
+                    <p><span class="para-label">I</span><br>Even though TV does seem to meet the criteria for substance dependence, not all researchers would go so far as to call TV addictive. McIlwraith said in 1988 that 'displacement of other activities by television may be socially significant but still fall short of the clinical requirement of significant impairment.' He argued that a new category of 'TV addiction' may not be necessary if heavy viewing stems from conditions such as depression and social phobia. Nevertheless, whether or not we formally diagnose someone as TV-dependent, millions of people sense that they cannot readily control the amount of television they watch.</p>
+                </div>
+
+                <!-- PASSAGE 3 -->
+                <div id="passage-text-3" class="reading-passage hidden">
+                    <h4>Communication in Science</h4>
+                    <p><span class="para-label">A</span><br>Science plays an increasingly significant role in people's lives, making the faithful communication of scientific developments more important than ever. Yet such communication is fraught with challenges that can easily distort discussions, leading to unnecessary confusion and misunderstandings.</p>
+                    <p><span class="para-label">B</span><br>Some problems stem from the esoteric nature of current research and the associated difficulty of finding sufficiently faithful terminology. Abstraction and complexity are not signs that a given scientific direction is wrong, as some commentators have suggested, but are instead a tribute to the success of human ingenuity in meeting the increasingly complex challenges that nature presents. They can, however, make communication more difficult. But many of the biggest challenges for science reporting arise because in areas of evolving research, scientists themselves often only partly understand the full implications of any particular advance or development. Since that dynamic applies to most of the scientific developments that directly affect people's lives – global warming, cancer research, diet studies – learning how to overcome it is critical to spurring a more informed scientific debate among the broader public.</p>
+                    <p><span class="para-label">C</span><br>Ambiguous word choices are the source of some misunderstandings. Scientists often employ colloquial terminology, which they then assign a specific meaning that is impossible to fathom without proper training. The term "relativity," for example, is intrinsically misleading. Many interpret the theory to mean that everything is relative and there are no absolutes. Yet although the measurements any observer makes depend on his coordinates and reference frame, the physical phenomena he measures have an invariant description that transcends that observer's particular coordinates. Einstein's theory of relativity is really about finding an invariant description of physical phenomena. True, Einstein agreed with the idea that his theory would have been better named "Invarianten theorie." But the term "relativity" was already entrenched at the time for him to change.</p>
+                    <p><span class="para-label">D</span><br>"The uncertainty principle" is another frequently abused term. It is sometimes interpreted as a limitation on observers and their ability to make measurements.</p>
+                    <p><span class="para-label">E</span><br>But it is not about intrinsic limitations on any one particular measurement; it is about the inability to precisely measure particular pairs of quantities simultaneously. The first interpretation is perhaps more engaging from a philosophical or political perspective. It's just not what the science is about.</p>
+                    <p><span class="para-label">F</span><br>Even the word "theory" can be a problem. Unlike most people, who use the word to describe a passing conjecture that they often regard as suspect, physicists have very specific ideas in mind when they talk about theories. For physicists, theories entail a definite physical framework embodied in a set of fundamental assumptions about the world that lead to a specific set of equations and predictions – ones that are borne out by successful predictions. Theories aren't necessarily shown to be correct or complete immediately. Even Einstein took the better part of a decade to develop the correct version of his theory of general relativity. But eventually both the ideas and the measurements settle down and theories are either proven correct, abandoned or absorbed into other, more encompassing theories.</p>
+                    <p><span class="para-label">G</span><br>"Global warming" is another example of problematic terminology. Climatologists predict more drastic fluctuations in temperature and rainfall – not necessarily that every place will be warmer. The name sometimes subverts the debate, since it lets people argue that their winter was worse, so how could there be global warming? Clearly "global climate change" would have been a better name. But not all problems stem solely from poor word choices. Some stem from the intrinsically complex nature of much of modern science. Science sometimes transcends this limitation: remarkably, chemists were able to detail the precise chemical processes involved in the destruction of the ozone layer, making the evidence that chlorofluorocarbon gases (Freon, for example) were destroying the ozone layer indisputable.</p>
+                    <p><span class="para-label">H</span><br>A better understanding of the mathematical significance of results and less insistence on a simple story would help to clarify many scientific discussions. For several months, Harvard was tortured by empty debates over the relative intrinsic scientific abilities of men and women. One of the more amusing aspects of the discussion was that those who believed in the differences and those who didn't used the same evidence about gender-specific special ability. How could that be? The answer is that the data shows no substantial effects. Social factors might account for these tiny differences, which in any case have an unclear connection to scientific ability. Not much of a headline when phrased that way, is it? Each type of science has its own source of complexity and potential for miscommunication. Yet there are steps we can take to improve public understanding in all cases. The first would be to inculcate greater understanding and acceptance of indirect scientific evidence. The information from an unmanned space mission is no less legitimate than the information from one in which people are on board.</p>
+                    <p><span class="para-label">I</span><br>This doesn't mean never questioning an interpretation, but it also doesn't mean equating indirect evidence with blind belief, as people sometimes suggest. Second, we might need different standards for evaluating science with urgent policy implications than research with purely theoretical value. When scientists say they are not certain about their predictions, it doesn't necessarily mean they've found nothing substantial. It would be better if scientists were more open about the mathematical significance of their results and if the public didn't treat math as quite so scary; statistics and errors, which tell us the uncertainty in a measurement, give us the tools to evaluate new developments fairly.</p>
+                    <p><span class="para-label">J</span><br>But most important, people have to recognize that science can be complex. If we accept only simple stories, the description will necessarily be distorted. When advances are subtle or complicated, scientists should be willing to go the extra distance to give proper explanations and the public should be more patient about the truth. Even so, some difficulties are unavoidable. Most developments reflect work in progress, so the story is complex because no one yet knows the big picture.</p>
+                </div>
+            </div>
+
+            <div class="resizer" id="resizer"></div>
+
+            <!-- ═══════════════════════════════ QUESTIONS PANEL ═══════════════════════════════ -->
+            <div class="questions-panel" id="questions-panel">
+
+                <!-- ── QUESTIONS 1–13 ── -->
+                <div id="questions-1" class="question-set">
+
+                    <!-- Q1–5: Summary completion -->
+                    <div class="question" data-q-start="1" data-q-end="5">
+                        <div class="question-prompt">
+                            <p><strong>Questions 1–5</strong></p>
+                            <p>Complete the summary below.</p>
+                            <p>Choose <strong>NO MORE THAN TWO WORDS</strong> from the passage for each answer.</p>
+                        </div>
+                        <div class="summary-text">
+                            <p>Nowadays it seems difficult for people to avoid the effects of living in a noisy world. Noise is the sound beyond average of <strong>1 </strong><input type="text" class="answer-input" id="q1" placeholder="answer"> referring to the agency's definition. Scientific studies over the years from the mid to late 1990s have confirmed that exposure to certain levels of sound can cause damage <strong>2 </strong><input type="text" class="answer-input" id="q2" placeholder="answer"> on certain senior age.</p>
+                            <p>From the testing of 5,249 children, those who are constantly exposed to excessive noise may have trouble in <strong>3 </strong><input type="text" class="answer-input" id="q3" placeholder="answer"> sound discrimination. The effects of sound don't stop with the ears; exposure to noise may lead to unease of <strong>4 </strong><input type="text" class="answer-input" id="q4" placeholder="answer"> in healthy people. Europe has taken steps on the noise issue; big cities of over 250,000 people are creating <strong>5 </strong><input type="text" class="answer-input" id="q5" placeholder="answer"> to help creating noise pollution policies.</p>
+                        </div>
+                    </div>
+
+                    <!-- Q6–10: Matching researchers -->
+                    <div class="question" data-q-start="6" data-q-end="10">
+                        <div class="question-prompt">
+                            <p><strong>Questions 6–10</strong></p>
+                            <p>Look at the following researchers and the list of findings below. Match each researcher with the correct finding.</p>
+                            <p>Write the correct letter in boxes 6–10 on your answer sheet.</p>
+                        </div>
+                        <div class="example-box">
+                            <p>List of People or Organisations</p>
+                            <ul>
+                                <li><strong>A</strong> – WHO</li>
+                                <li><strong>B</strong> – William Luxford (the House Ear Clinic)</li>
+                                <li><strong>C</strong> – Craig Moulton (OSHA)</li>
+                                <li><strong>D</strong> – Arline Bronzaft</li>
+                                <li><strong>E</strong> – Centers for Disease Control and Prevention</li>
+                            </ul>
+                        </div>
+                        <div class="matching-form-container">
+                            <div class="matching-form-row">
+                                <label for="q6" class="matching-form-label"><strong>6</strong> &nbsp;People can change the environment to improve hearing health.</label>
+                                <select class="answer-input" id="q6">
+                                    <option value=""></option>
+                                    <option>A</option><option>B</option><option>C</option><option>D</option><option>E</option>
+                                </select>
+                            </div>
+                            <div class="matching-form-row">
+                                <label for="q7" class="matching-form-label"><strong>7</strong> &nbsp;Government should continue the research on anti-noise research with fund.</label>
+                                <select class="answer-input" id="q7">
+                                    <option value=""></option>
+                                    <option>A</option><option>B</option><option>C</option><option>D</option><option>E</option>
+                                </select>
+                            </div>
+                            <div class="matching-form-row">
+                                <label for="q8" class="matching-form-label"><strong>8</strong> &nbsp;Companies should be required to protect the employees to avoid noise.</label>
+                                <select class="answer-input" id="q8">
+                                    <option value=""></option>
+                                    <option>A</option><option>B</option><option>C</option><option>D</option><option>E</option>
+                                </select>
+                            </div>
+                            <div class="matching-form-row">
+                                <label for="q9" class="matching-form-label"><strong>9</strong> &nbsp;Noise has posed effect on American children's hearing ability.</label>
+                                <select class="answer-input" id="q9">
+                                    <option value=""></option>
+                                    <option>A</option><option>B</option><option>C</option><option>D</option><option>E</option>
+                                </select>
+                            </div>
+                            <div class="matching-form-row">
+                                <label for="q10" class="matching-form-label"><strong>10</strong> &nbsp;Noise has seriously affected human beings where they live worldwide.</label>
+                                <select class="answer-input" id="q10">
+                                    <option value=""></option>
+                                    <option>A</option><option>B</option><option>C</option><option>D</option><option>E</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Q11–13: MCQ -->
+                    <div class="question" data-q-start="11" data-q-end="13">
+                        <div class="question-prompt">
+                            <p><strong>Questions 11–13</strong></p>
+                            <p>Choose the correct letter A, B, C or D.</p>
+                        </div>
+
+                        <div class="multi-choice-question" data-q-start="11" data-q-end="11">
+                            <p><strong>11</strong> &nbsp;The board of schools built close to the tracks are convinced to:</p>
+                            <div class="multi-choice-options">
+                                <div class="multi-choice-option"><label><input type="radio" name="q11" value="A"><span class="option-letter">A</span> Moved the classrooms away from the noisy track.</label></div>
+                                <div class="multi-choice-option"><label><input type="radio" name="q11" value="B"><span class="option-letter">B</span> Regulated the track usage to a less extent.</label></div>
+                                <div class="multi-choice-option"><label><input type="radio" name="q11" value="C"><span class="option-letter">C</span> Utilised a special material into classroom buildings lessening the effect of outside noise.</label></div>
+                                <div class="multi-choice-option"><label><input type="radio" name="q11" value="D"><span class="option-letter">D</span> Organised a team for a follow-up study.</label></div>
+                            </div>
+                        </div>
+
+                        <div class="multi-choice-question" data-q-start="12" data-q-end="12">
+                            <p><strong>12</strong> &nbsp;In the European countries, the big cities' research on noise focuses on:</p>
+                            <div class="multi-choice-options">
+                                <div class="multi-choice-option"><label><input type="radio" name="q12" value="A"><span class="option-letter">A</span> How to record pollution details of the city on maps.</label></div>
+                                <div class="multi-choice-option"><label><input type="radio" name="q12" value="B"><span class="option-letter">B</span> The impact of noise on population shift in the European cities.</label></div>
+                                <div class="multi-choice-option"><label><input type="radio" name="q12" value="C"><span class="option-letter">C</span> How wide can a city be to avoid noise pollution.</label></div>
+                                <div class="multi-choice-option"><label><input type="radio" name="q12" value="D"><span class="option-letter">D</span> Helping the authorities better make a decision on management of the city.</label></div>
+                            </div>
+                        </div>
+
+                        <div class="multi-choice-question" data-q-start="13" data-q-end="13">
+                            <p><strong>13</strong> &nbsp;What is the best title of paragraph 1?</p>
+                            <div class="multi-choice-options">
+                                <div class="multi-choice-option"><label><input type="radio" name="q13" value="A"><span class="option-letter">A</span> How people cope with noise pollutions.</label></div>
+                                <div class="multi-choice-option"><label><input type="radio" name="q13" value="B"><span class="option-letter">B</span> The fight against the noise with powerful technology.</label></div>
+                                <div class="multi-choice-option"><label><input type="radio" name="q13" value="C"><span class="option-letter">C</span> The Effects of Living in a Noisy World.</label></div>
+                                <div class="multi-choice-option"><label><input type="radio" name="q13" value="D"><span class="option-letter">D</span> The Effects of noise on children's learning.</label></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ── QUESTIONS 14–26 ── -->
+                <div id="questions-2" class="question-set hidden">
+
+                    <!-- Q14–18: TRUE/FALSE/NOT GIVEN -->
+                    <div class="question" data-q-start="14" data-q-end="18">
+                        <div class="question-prompt">
+                            <p><strong>Questions 14–18</strong></p>
+                            <p>Do the following statements agree with the claims of the writer in Reading Passage 2?</p>
+                            <ul>
+                                <li><strong>TRUE</strong> — if the statement is true</li>
+                                <li><strong>FALSE</strong> — if the statement is false</li>
+                                <li><strong>NOT GIVEN</strong> — if the information is not given in the passage</li>
+                            </ul>
+                        </div>
+                        <div class="tf-question" data-q-start="14" data-q-end="14">
+                            <div class="tf-question-line"><span class="tf-question-number">14</span><span class="tf-question-text">Study shows that males are more likely to be addicted on TV than females.</span></div>
+                            <div class="tf-options">
+                                <label class="tf-option"><input type="radio" name="q14" value="TRUE"> TRUE</label>
+                                <label class="tf-option"><input type="radio" name="q14" value="FALSE"> FALSE</label>
+                                <label class="tf-option"><input type="radio" name="q14" value="NOT GIVEN"> NOT GIVEN</label>
+                            </div>
+                        </div>
+                        <div class="tf-question" data-q-start="15" data-q-end="15">
+                            <div class="tf-question-line"><span class="tf-question-number">15</span><span class="tf-question-text">Greater improvements in mood are experienced after watching TV than playing sports.</span></div>
+                            <div class="tf-options">
+                                <label class="tf-option"><input type="radio" name="q15" value="TRUE"> TRUE</label>
+                                <label class="tf-option"><input type="radio" name="q15" value="FALSE"> FALSE</label>
+                                <label class="tf-option"><input type="radio" name="q15" value="NOT GIVEN"> NOT GIVEN</label>
+                            </div>
+                        </div>
+                        <div class="tf-question" data-q-start="16" data-q-end="16">
+                            <div class="tf-question-line"><span class="tf-question-number">16</span><span class="tf-question-text">TV addiction works in similar ways as drugs.</span></div>
+                            <div class="tf-options">
+                                <label class="tf-option"><input type="radio" name="q16" value="TRUE"> TRUE</label>
+                                <label class="tf-option"><input type="radio" name="q16" value="FALSE"> FALSE</label>
+                                <label class="tf-option"><input type="radio" name="q16" value="NOT GIVEN"> NOT GIVEN</label>
+                            </div>
+                        </div>
+                        <div class="tf-question" data-q-start="17" data-q-end="17">
+                            <div class="tf-question-line"><span class="tf-question-number">17</span><span class="tf-question-text">It is reported that people's satisfaction is in proportion to the time they spend watching TV.</span></div>
+                            <div class="tf-options">
+                                <label class="tf-option"><input type="radio" name="q17" value="TRUE"> TRUE</label>
+                                <label class="tf-option"><input type="radio" name="q17" value="FALSE"> FALSE</label>
+                                <label class="tf-option"><input type="radio" name="q17" value="NOT GIVEN"> NOT GIVEN</label>
+                            </div>
+                        </div>
+                        <div class="tf-question" data-q-start="18" data-q-end="18">
+                            <div class="tf-question-line"><span class="tf-question-number">18</span><span class="tf-question-text">Middle-class viewers are more likely to feel guilty about watching TV than the poor.</span></div>
+                            <div class="tf-options">
+                                <label class="tf-option"><input type="radio" name="q18" value="TRUE"> TRUE</label>
+                                <label class="tf-option"><input type="radio" name="q18" value="FALSE"> FALSE</label>
+                                <label class="tf-option"><input type="radio" name="q18" value="NOT GIVEN"> NOT GIVEN</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Q19–23: Matching researchers -->
+                    <div class="question" data-q-start="19" data-q-end="23">
+                        <div class="question-prompt">
+                            <p><strong>Questions 19–23</strong></p>
+                            <p>Match each researcher with the correct statement. Write the correct letter A–H in boxes 19–23.</p>
+                        </div>
+                        <div class="example-box">
+                            <p>List of Statements</p>
+                            <ul>
+                                <li><strong>A</strong> – Audiences would get hypnotized from viewing too much television.</li>
+                                <li><strong>B</strong> – People have been sensitive to the TV signals since a younger age.</li>
+                                <li><strong>C</strong> – People are less likely to accomplish their work with television.</li>
+                                <li><strong>D</strong> – A handful of studies have attempted to study other types of media addiction.</li>
+                                <li><strong>E</strong> – The addictive power of television could probably minimize the problems.</li>
+                                <li><strong>F</strong> – Various media formal characters stimulate people's reaction on the screen.</li>
+                                <li><strong>G</strong> – People who believe themselves to be TV addicts are less likely to join in group activities.</li>
+                                <li><strong>H</strong> – It is hard for people to accept the life without TV at the beginning.</li>
+                            </ul>
+                        </div>
+                        <div class="matching-form-container">
+                            <div class="matching-form-row">
+                                <label for="q19" class="matching-form-label"><strong>19</strong> &nbsp;Byron Reeves and Esther Thorson</label>
+                                <select class="answer-input" id="q19">
+                                    <option value=""></option>
+                                    <option>A</option><option>B</option><option>C</option><option>D</option><option>E</option><option>F</option><option>G</option><option>H</option>
+                                </select>
+                            </div>
+                            <div class="matching-form-row">
+                                <label for="q20" class="matching-form-label"><strong>20</strong> &nbsp;Dafna Lemish</label>
+                                <select class="answer-input" id="q20">
+                                    <option value=""></option>
+                                    <option>A</option><option>B</option><option>C</option><option>D</option><option>E</option><option>F</option><option>G</option><option>H</option>
+                                </select>
+                            </div>
+                            <div class="matching-form-row">
+                                <label for="q21" class="matching-form-label"><strong>21</strong> &nbsp;Robert D. McIlwraith</label>
+                                <select class="answer-input" id="q21">
+                                    <option value=""></option>
+                                    <option>A</option><option>B</option><option>C</option><option>D</option><option>E</option><option>F</option><option>G</option><option>H</option>
+                                </select>
+                            </div>
+                            <div class="matching-form-row">
+                                <label for="q22" class="matching-form-label"><strong>22</strong> &nbsp;Tannis M. MacBeth Williams</label>
+                                <select class="answer-input" id="q22">
+                                    <option value=""></option>
+                                    <option>A</option><option>B</option><option>C</option><option>D</option><option>E</option><option>F</option><option>G</option><option>H</option>
+                                </select>
+                            </div>
+                            <div class="matching-form-row">
+                                <label for="q23" class="matching-form-label"><strong>23</strong> &nbsp;Charles Winick</label>
+                                <select class="answer-input" id="q23">
+                                    <option value=""></option>
+                                    <option>A</option><option>B</option><option>C</option><option>D</option><option>E</option><option>F</option><option>G</option><option>H</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Q24–26: MCQ -->
+                    <div class="question" data-q-start="24" data-q-end="26">
+                        <div class="question-prompt">
+                            <p><strong>Questions 24–26</strong></p>
+                            <p>Choose the correct letter A, B, C or D.</p>
+                        </div>
+
+                        <div class="multi-choice-question" data-q-start="24" data-q-end="24">
+                            <p><strong>24</strong> &nbsp;People in the industrialized world:</p>
+                            <div class="multi-choice-options">
+                                <div class="multi-choice-option"><label><input type="radio" name="q24" value="A"><span class="option-letter">A</span> Devote ten hours watching TV on average.</label></div>
+                                <div class="multi-choice-option"><label><input type="radio" name="q24" value="B"><span class="option-letter">B</span> Spend more time on TV than other entertainment.</label></div>
+                                <div class="multi-choice-option"><label><input type="radio" name="q24" value="C"><span class="option-letter">C</span> Call themselves TV addicts.</label></div>
+                                <div class="multi-choice-option"><label><input type="radio" name="q24" value="D"><span class="option-letter">D</span> Enjoy working best.</label></div>
+                            </div>
+                        </div>
+
+                        <div class="multi-choice-question" data-q-start="25" data-q-end="25">
+                            <p><strong>25</strong> &nbsp;When compared with light viewers, heavy viewers:</p>
+                            <div class="multi-choice-options">
+                                <div class="multi-choice-option"><label><input type="radio" name="q25" value="A"><span class="option-letter">A</span> Like playing sport more than reading.</label></div>
+                                <div class="multi-choice-option"><label><input type="radio" name="q25" value="B"><span class="option-letter">B</span> Feel relaxed after watching TV.</label></div>
+                                <div class="multi-choice-option"><label><input type="radio" name="q25" value="C"><span class="option-letter">C</span> Spend more time in daydreaming.</label></div>
+                                <div class="multi-choice-option"><label><input type="radio" name="q25" value="D"><span class="option-letter">D</span> Are more easily bored while waiting in line.</label></div>
+                            </div>
+                        </div>
+
+                        <div class="multi-choice-question" data-q-start="26" data-q-end="26">
+                            <p><strong>26</strong> &nbsp;Which of the following statements is true about the family experiment?</p>
+                            <div class="multi-choice-options">
+                                <div class="multi-choice-option"><label><input type="radio" name="q26" value="A"><span class="option-letter">A</span> Not all subjects participate in the experiment for free.</label></div>
+                                <div class="multi-choice-option"><label><input type="radio" name="q26" value="B"><span class="option-letter">B</span> There has been a complete gathered data.</label></div>
+                                <div class="multi-choice-option"><label><input type="radio" name="q26" value="C"><span class="option-letter">C</span> People are prevented from other activities during the experiment.</label></div>
+                                <div class="multi-choice-option"><label><input type="radio" name="q26" value="D"><span class="option-letter">D</span> People cannot adapt to the situation until the end.</label></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ── QUESTIONS 27–40 ── -->
+                <div id="questions-3" class="question-set hidden">
+
+                    <!-- Q27–31: MCQ -->
+                    <div class="question" data-q-start="27" data-q-end="31">
+                        <div class="question-prompt">
+                            <p><strong>Questions 27–31</strong></p>
+                            <p>Choose the correct letter A, B, C or D.</p>
+                        </div>
+
+                        <div class="multi-choice-question" data-q-start="27" data-q-end="27">
+                            <p><strong>27</strong> &nbsp;Why is faithful science communication important?</p>
+                            <div class="multi-choice-options">
+                                <div class="multi-choice-option"><label><input type="radio" name="q27" value="A"><span class="option-letter">A</span> Science plays an increasingly significant role in people's lives.</label></div>
+                                <div class="multi-choice-option"><label><input type="radio" name="q27" value="B"><span class="option-letter">B</span> Science is fraught with challenges public are interested in.</label></div>
+                                <div class="multi-choice-option"><label><input type="radio" name="q27" value="C"><span class="option-letter">C</span> The nature of complexity in science communication leads to confusion.</label></div>
+                                <div class="multi-choice-option"><label><input type="radio" name="q27" value="D"><span class="option-letter">D</span> Scientific inventions are more important than ever before.</label></div>
+                            </div>
+                        </div>
+
+                        <div class="multi-choice-question" data-q-start="28" data-q-end="28">
+                            <p><strong>28</strong> &nbsp;What does the author believe is the biggest challenge for science reporting?</p>
+                            <div class="multi-choice-options">
+                                <div class="multi-choice-option"><label><input type="radio" name="q28" value="A"><span class="option-letter">A</span> Phenomena such as global warming, cancer research, diet studies are too complex.</label></div>
+                                <div class="multi-choice-option"><label><input type="radio" name="q28" value="B"><span class="option-letter">B</span> Scientists themselves often only partly understand the Theory of Evolution.</label></div>
+                                <div class="multi-choice-option"><label><input type="radio" name="q28" value="C"><span class="option-letter">C</span> Scientists do not totally comprehend the meaning of certain scientific evolutions.</label></div>
+                                <div class="multi-choice-option"><label><input type="radio" name="q28" value="D"><span class="option-letter">D</span> Scientists themselves often partly understand the esoteric communication nature.</label></div>
+                            </div>
+                        </div>
+
+                        <div class="multi-choice-question" data-q-start="29" data-q-end="29">
+                            <p><strong>29</strong> &nbsp;According to paragraph 3, the reference to "theory of relativity" is to demonstrate:</p>
+                            <div class="multi-choice-options">
+                                <div class="multi-choice-option"><label><input type="radio" name="q29" value="A"><span class="option-letter">A</span> Theory of relativity is about an invariant physical phenomenon.</label></div>
+                                <div class="multi-choice-option"><label><input type="radio" name="q29" value="B"><span class="option-letter">B</span> Common people may be misled by the inaccurate choice of scientific phrase.</label></div>
+                                <div class="multi-choice-option"><label><input type="radio" name="q29" value="C"><span class="option-letter">C</span> The term "relativity" is designed to mislead the public.</label></div>
+                                <div class="multi-choice-option"><label><input type="radio" name="q29" value="D"><span class="option-letter">D</span> Everything is relative and there is no absolute existence.</label></div>
+                            </div>
+                        </div>
+
+                        <div class="multi-choice-question" data-q-start="30" data-q-end="30">
+                            <p><strong>30</strong> &nbsp;Which one is a good example of appropriate word choice?</p>
+                            <div class="multi-choice-options">
+                                <div class="multi-choice-option"><label><input type="radio" name="q30" value="A"><span class="option-letter">A</span> Scientific theory for uncertainty principle.</label></div>
+                                <div class="multi-choice-option"><label><input type="radio" name="q30" value="B"><span class="option-letter">B</span> Phenomenon of Global warming.</label></div>
+                                <div class="multi-choice-option"><label><input type="radio" name="q30" value="C"><span class="option-letter">C</span> The importance of the ozone layer.</label></div>
+                                <div class="multi-choice-option"><label><input type="radio" name="q30" value="D"><span class="option-letter">D</span> Freon's destructive process on the environment.</label></div>
+                            </div>
+                        </div>
+
+                        <div class="multi-choice-question" data-q-start="31" data-q-end="31">
+                            <p><strong>31</strong> &nbsp;What is a surprising finding of the Harvard debates in the passage?</p>
+                            <div class="multi-choice-options">
+                                <div class="multi-choice-option"><label><input type="radio" name="q31" value="A"><span class="option-letter">A</span> There are equal intrinsic scientific abilities of men and women.</label></div>
+                                <div class="multi-choice-option"><label><input type="radio" name="q31" value="B"><span class="option-letter">B</span> The proof applied by both sides seemed to be of no big difference.</label></div>
+                                <div class="multi-choice-option"><label><input type="radio" name="q31" value="C"><span class="option-letter">C</span> The scientific data usually shows no substantial figures to support a debated idea.</label></div>
+                                <div class="multi-choice-option"><label><input type="radio" name="q31" value="D"><span class="option-letter">D</span> Social factors might have a clear connection to scientific ability.</label></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Q32–35: TRUE/FALSE/NOT GIVEN -->
+                    <div class="question" data-q-start="32" data-q-end="35">
+                        <div class="question-prompt">
+                            <p><strong>Questions 32–35</strong></p>
+                            <p>Do the following statements agree with the information given in Reading Passage 3?</p>
+                            <ul>
+                                <li><strong>TRUE</strong> — if the statement is true</li>
+                                <li><strong>FALSE</strong> — if the statement is false</li>
+                                <li><strong>NOT GIVEN</strong> — if the information is not given in the passage</li>
+                            </ul>
+                        </div>
+                        <div class="tf-question" data-q-start="32" data-q-end="32">
+                            <div class="tf-question-line"><span class="tf-question-number">32</span><span class="tf-question-text">"Global warming" scientifically refers to greater fluctuations in temperature and rainfall rather than a universal temperature rise.</span></div>
+                            <div class="tf-options">
+                                <label class="tf-option"><input type="radio" name="q32" value="TRUE"> TRUE</label>
+                                <label class="tf-option"><input type="radio" name="q32" value="FALSE"> FALSE</label>
+                                <label class="tf-option"><input type="radio" name="q32" value="NOT GIVEN"> NOT GIVEN</label>
+                            </div>
+                        </div>
+                        <div class="tf-question" data-q-start="33" data-q-end="33">
+                            <div class="tf-question-line"><span class="tf-question-number">33</span><span class="tf-question-text">More media coverage of "global warming" would help the public to recognize the phenomenon.</span></div>
+                            <div class="tf-options">
+                                <label class="tf-option"><input type="radio" name="q33" value="TRUE"> TRUE</label>
+                                <label class="tf-option"><input type="radio" name="q33" value="FALSE"> FALSE</label>
+                                <label class="tf-option"><input type="radio" name="q33" value="NOT GIVEN"> NOT GIVEN</label>
+                            </div>
+                        </div>
+                        <div class="tf-question" data-q-start="34" data-q-end="34">
+                            <div class="tf-question-line"><span class="tf-question-number">34</span><span class="tf-question-text">Harvard debates should focus more on female scientists and male scientists.</span></div>
+                            <div class="tf-options">
+                                <label class="tf-option"><input type="radio" name="q34" value="TRUE"> TRUE</label>
+                                <label class="tf-option"><input type="radio" name="q34" value="FALSE"> FALSE</label>
+                                <label class="tf-option"><input type="radio" name="q34" value="NOT GIVEN"> NOT GIVEN</label>
+                            </div>
+                        </div>
+                        <div class="tf-question" data-q-start="35" data-q-end="35">
+                            <div class="tf-question-line"><span class="tf-question-number">35</span><span class="tf-question-text">Public understanding and acceptance of indirect scientific evidence in all cases would lead to confusion.</span></div>
+                            <div class="tf-options">
+                                <label class="tf-option"><input type="radio" name="q35" value="TRUE"> TRUE</label>
+                                <label class="tf-option"><input type="radio" name="q35" value="FALSE"> FALSE</label>
+                                <label class="tf-option"><input type="radio" name="q35" value="NOT GIVEN"> NOT GIVEN</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Q36–40: Summary completion -->
+                    <div class="question" data-q-start="36" data-q-end="40">
+                        <div class="question-prompt">
+                            <p><strong>Questions 36–40</strong></p>
+                            <p>Complete the following summary of the paragraphs of Reading Passage.</p>
+                            <p>Use <strong>NO MORE THAN TWO WORDS</strong> from the Reading Passage for each answer.</p>
+                        </div>
+                        <div class="summary-text">
+                            <p>Science Communication is fraught with challenges that can easily distort discussions, leading to unnecessary confusion and misunderstandings. Firstly, Ambiguous <strong>36 </strong><input type="text" class="answer-input" id="q36" placeholder="answer"> are the source of some misunderstandings. Common people without proper training do not understand clearly a specific scientific meaning via the <strong>37 </strong><input type="text" class="answer-input" id="q37" placeholder="answer"> scientists often employed.</p>
+                            <p>Besides, the measurements any <strong>38 </strong><input type="text" class="answer-input" id="q38" placeholder="answer"> makes cannot be confined to describe in a(n) constant <strong>39 </strong><input type="text" class="answer-input" id="q39" placeholder="answer"> yet the phenomenon can be. What's more, even the word "theory" can be a problem. Theories aren't necessarily shown to be correct or complete immediately since scientists often evolved better versions of specific theories; a good example can be the theory of <strong>40 </strong><input type="text" class="answer-input" id="q40" placeholder="answer">. Thus, most importantly people have to recognize that science can be complex.</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div><!-- end questions-panel -->
+        </div><!-- end panels-container -->
+    </div><!-- end main-container -->
+
+    <!-- Nav arrows -->
+    <div class="nav-arrows">
+        <button class="nav-arrow" onclick="previousQuestion()" id="prevBtn">‹</button>
+        <button class="nav-arrow" onclick="nextQuestion()" id="nextBtn">›</button>
+    </div>
+
+    <!-- Bottom nav -->
+    <nav class="nav-row">
+        <div class="footer__questionWrapper___1tZ46 selected" role="tablist">
+            <button class="footer__questionNo___3WNct" onclick="switchToPart(1)">
+                <span class="section-prefix">Part </span><span class="sectionNr">1</span>
+                <span class="attemptedCount">0 of 13</span>
+            </button>
+            <div class="footer__subquestionWrapper___9GgoP">
+                <button class="subQuestion" onclick="goToQuestion(1)">1</button><button class="subQuestion" onclick="goToQuestion(2)">2</button><button class="subQuestion" onclick="goToQuestion(3)">3</button><button class="subQuestion" onclick="goToQuestion(4)">4</button><button class="subQuestion" onclick="goToQuestion(5)">5</button><button class="subQuestion" onclick="goToQuestion(6)">6</button><button class="subQuestion" onclick="goToQuestion(7)">7</button><button class="subQuestion" onclick="goToQuestion(8)">8</button><button class="subQuestion" onclick="goToQuestion(9)">9</button><button class="subQuestion" onclick="goToQuestion(10)">10</button><button class="subQuestion" onclick="goToQuestion(11)">11</button><button class="subQuestion" onclick="goToQuestion(12)">12</button><button class="subQuestion" onclick="goToQuestion(13)">13</button>
+            </div>
+        </div>
+        <div class="footer__questionWrapper___1tZ46" role="tablist">
+            <button class="footer__questionNo___3WNct" onclick="switchToPart(2)">
+                <span class="section-prefix">Part </span><span class="sectionNr">2</span>
+                <span class="attemptedCount">0 of 13</span>
+            </button>
+            <div class="footer__subquestionWrapper___9GgoP">
+                <button class="subQuestion" onclick="goToQuestion(14)">14</button><button class="subQuestion" onclick="goToQuestion(15)">15</button><button class="subQuestion" onclick="goToQuestion(16)">16</button><button class="subQuestion" onclick="goToQuestion(17)">17</button><button class="subQuestion" onclick="goToQuestion(18)">18</button><button class="subQuestion" onclick="goToQuestion(19)">19</button><button class="subQuestion" onclick="goToQuestion(20)">20</button><button class="subQuestion" onclick="goToQuestion(21)">21</button><button class="subQuestion" onclick="goToQuestion(22)">22</button><button class="subQuestion" onclick="goToQuestion(23)">23</button><button class="subQuestion" onclick="goToQuestion(24)">24</button><button class="subQuestion" onclick="goToQuestion(25)">25</button><button class="subQuestion" onclick="goToQuestion(26)">26</button>
+            </div>
+        </div>
+        <div class="footer__questionWrapper___1tZ46" role="tablist">
+            <button class="footer__questionNo___3WNct" onclick="switchToPart(3)">
+                <span class="section-prefix">Part </span><span class="sectionNr">3</span>
+                <span class="attemptedCount">0 of 14</span>
+            </button>
+            <div class="footer__subquestionWrapper___9GgoP">
+                <button class="subQuestion" onclick="goToQuestion(27)">27</button><button class="subQuestion" onclick="goToQuestion(28)">28</button><button class="subQuestion" onclick="goToQuestion(29)">29</button><button class="subQuestion" onclick="goToQuestion(30)">30</button><button class="subQuestion" onclick="goToQuestion(31)">31</button><button class="subQuestion" onclick="goToQuestion(32)">32</button><button class="subQuestion" onclick="goToQuestion(33)">33</button><button class="subQuestion" onclick="goToQuestion(34)">34</button><button class="subQuestion" onclick="goToQuestion(35)">35</button><button class="subQuestion" onclick="goToQuestion(36)">36</button><button class="subQuestion" onclick="goToQuestion(37)">37</button><button class="subQuestion" onclick="goToQuestion(38)">38</button><button class="subQuestion" onclick="goToQuestion(39)">39</button><button class="subQuestion" onclick="goToQuestion(40)">40</button>
+            </div>
+        </div>
+        <button id="deliver-button" class="footer__deliverButton___3FM07">✓ Check Answers</button>
+    </nav>
+
+    <!-- Highlight Toolbar -->
+    <div id="highlightToolbar" class="highlight-toolbar">
+        <span id="toolbar-selection-btns">
+            <button class="toolbar-btn btn-yellow" onclick="applyHighlight('hl-yellow')">🟡</button>
+            <button class="toolbar-btn btn-green" onclick="applyHighlight('hl-green')">🟢</button>
+            <button class="toolbar-btn btn-pink" onclick="applyHighlight('hl-pink')">🔴</button>
+            <button class="toolbar-btn btn-blue" onclick="applyHighlight('hl-blue')">🔵</button>
+            <div class="toolbar-sep"></div>
+            <button class="toolbar-btn btn-note" onclick="openNoteInput()">📝 Note</button>
+            <div class="toolbar-sep"></div>
+            <button class="toolbar-btn btn-clear" onclick="clearThisHighlight()">✕ Remove</button>
+            <button class="toolbar-btn btn-clear" onclick="clearAllHighlights()">⊘ All</button>
+        </span>
+        <span id="toolbar-highlight-btns" style="display:none">
+            <button class="toolbar-btn btn-yellow" onclick="recolorHighlight('hl-yellow')">🟡</button>
+            <button class="toolbar-btn btn-green" onclick="recolorHighlight('hl-green')">🟢</button>
+            <button class="toolbar-btn btn-pink" onclick="recolorHighlight('hl-pink')">🔴</button>
+            <button class="toolbar-btn btn-blue" onclick="recolorHighlight('hl-blue')">🔵</button>
+            <div class="toolbar-sep"></div>
+            <button class="toolbar-btn btn-note" onclick="openNoteInput()">📝 Note</button>
+            <div class="toolbar-sep"></div>
+            <button class="toolbar-btn btn-clear" onclick="clearThisHighlight()">✕ Remove</button>
+            <button class="toolbar-btn btn-clear" onclick="clearAllHighlights()">⊘ All</button>
+        </span>
+    </div>
+
+    <!-- Notes Panel -->
+    <div id="notesPanel" class="notes-panel">
+        <div class="notes-panel-header">
+            <span>📝 My Notes</span>
+            <button class="notes-panel-close" onclick="toggleNotesPanel()">✕</button>
+        </div>
+        <div class="notes-list" id="notesList">
+            <p class="notes-empty">No notes yet. Select text and click "Note".</p>
+        </div>
+    </div>
+
+    <!-- Note Input Modal -->
+    <div id="noteInputOverlay" class="note-input-overlay">
+        <div class="note-input-box">
+            <h3>Add a Note</h3>
+            <div class="selected-text-preview" id="noteTextPreview"></div>
+            <textarea id="noteTextarea" placeholder="Type your note here..."></textarea>
+            <div class="note-input-actions">
+                <button class="btn-cancel-note" onclick="cancelNote()">Cancel</button>
+                <button class="btn-save-note" onclick="saveNote()">Save Note</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Results Modal -->
+    <div id="results-modal" class="modal-overlay hidden">
+        <div class="modal-content">
+            <button class="modal-close-btn" onclick="closeResultsModal()">×</button>
+            <h2>Your Results</h2>
+            <div class="results-summary">
+                <div class="results-summary-item">
+                    <div class="value" id="results-score">—</div>
+                    <div class="label">Score / 40</div>
+                </div>
+                <div class="results-summary-item">
+                    <div class="value" id="results-band">—</div>
+                    <div class="label">IELTS Band</div>
+                </div>
+            </div>
+            <div id="results-details" class="results-details-container"></div>
+            <div class="modal-actions">
+                <button class="btn-retake" onclick="retakeTest()">🔄 Retake Test</button>
+                <button class="btn-review" onclick="closeResultsModal()">Review Answers</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+    document.addEventListener('DOMContentLoaded', () => {
+        let currentPassage = 1;
+        let currentQuestion = 1;
+        let selectedRange = null;
+        let selectedText = '';
+        let highlightTarget = null;
+        let lastAppliedHighlight = null;
+        let timeInSeconds = 3600;
+        let timerInterval;
+        let timerRunning = true;
+        let notes = [];
+        let nextNoteId = 1;
+
+        const timerDisplay      = document.querySelector('.timer-display');
+        const timerToggleBtn    = document.getElementById('timer-toggle-btn');
+        const timerResetBtn     = document.getElementById('timer-reset-btn');
+        const deliverBtn        = document.getElementById('deliver-button');
+        const resizer           = document.getElementById('resizer');
+        const passagePanel      = document.getElementById('passage-panel');
+        const questionsPanel    = document.getElementById('questions-panel');
+        const highlightToolbar  = document.getElementById('highlightToolbar');
+        const nightModeBtn      = document.getElementById('night-mode-btn');
+        const notesToggleBtn    = document.getElementById('notes-toggle-btn');
+        const notesPanel        = document.getElementById('notesPanel');
+        const notesList         = document.getElementById('notesList');
+        const notesCount        = document.getElementById('notes-count');
+        const noteInputOverlay  = document.getElementById('noteInputOverlay');
+        const noteTextarea      = document.getElementById('noteTextarea');
+        const noteTextPreview   = document.getElementById('noteTextPreview');
+
+        const playIcon  = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8 5v14l11-7L8 5z"/></svg>';
+        const pauseIcon = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>';
+
+        // ── CORRECT ANSWERS ──────────────────────────────────
+        // Text inputs: arrays of acceptable variants (lowercase for comparison)
+        const correctAnswers = {
+            // Part 1
+            '1':  ['85 dba', '85 dBA'],
+            '2':  ['hearing', 'hearing impairment'],
+            '3':  ['high-frequency', 'high frequency'],
+            '4':  ['stomach contractions', 'stomach'],
+            '5':  ['noise maps', 'noise map'],
+            '6':  'B',
+            '7':  'D',
+            '8':  'C',
+            '9':  'E',
+            '10': 'A',
+            '11': 'C',
+            '12': 'D',
+            '13': 'C',
+            // Part 2
+            '14': 'NOT GIVEN',
+            '15': 'FALSE',
+            '16': 'TRUE',
+            '17': 'FALSE',
+            '18': 'TRUE',
+            '19': 'F',
+            '20': 'B',
+            '21': 'G',
+            '22': 'C',
+            '23': 'H',
+            '24': 'B',
+            '25': 'D',
+            '26': 'A',
+            // Part 3
+            '27': 'A',
+            '28': 'C',
+            '29': 'B',
+            '30': 'D',
+            '31': 'B',
+            '32': 'TRUE',
+            '33': 'NOT GIVEN',
+            '34': 'NOT GIVEN',
+            '35': 'FALSE',
+            '36': ['word choices', 'word choice'],
+            '37': ['colloquial terminology'],
+            '38': ['observer'],
+            '39': ['invariant description'],
+            '40': ['general relativity', 'theory of general relativity']
+        };
+
+        // ── INIT ─────────────────────────────────────────────
+        function initialize() {
+            startTimer();
+            switchToPart(1);
+            document.body.addEventListener('input', updateAllIndicators);
+            document.body.addEventListener('change', updateAllIndicators);
+            deliverBtn.addEventListener('click', checkAnswers);
+            timerToggleBtn.addEventListener('click', toggleTimer);
+            timerResetBtn.addEventListener('click', resetTimer);
+            nightModeBtn.addEventListener('click', toggleNightMode);
+            notesToggleBtn.addEventListener('click', toggleNotesPanel);
+
+            // Pill-style radio options (TF + MCQ)
+            document.addEventListener('change', e => {
+                const input = e.target;
+                if (input.type !== 'radio') return;
+                const name = input.name;
+                document.querySelectorAll(`input[name="${name}"]`).forEach(r => {
+                    const lbl = r.closest('.tf-option, .multi-choice-option');
+                    if (lbl) lbl.classList.toggle('selected', r.checked);
+                });
+            });
+
+            initResizer();
+            initHighlightToolbar();
+        }
+
+        // ── NIGHT MODE ───────────────────────────────────────
+        function toggleNightMode() {
+            document.body.classList.toggle('night-mode');
+            const isNight = document.body.classList.contains('night-mode');
+            nightModeBtn.textContent = isNight ? '☀️ Day' : '🌙 Night';
+        }
+
+        // ── ANSWER CHECKING ──────────────────────────────────
+        function checkAnswers() {
+            // Reveal all sections so we can read inputs
+            document.querySelectorAll('.question-set.hidden, .reading-passage.hidden, .part-header-bar.hidden')
+                .forEach(s => s.classList.remove('hidden'));
+
+            document.querySelectorAll('input, select').forEach(el => el.disabled = true);
+            deliverBtn.disabled = true;
+            clearInterval(timerInterval);
+            timerRunning = false;
+
+            // Clear old styling
+            document.querySelectorAll('.correct, .incorrect, .correct-answer-highlight').forEach(el =>
+                el.classList.remove('correct', 'incorrect', 'correct-answer-highlight'));
+            document.querySelectorAll('.correct-answer-display').forEach(el => el.remove());
+
+            let score = 0;
+            const detailsEl = document.getElementById('results-details');
+            detailsEl.innerHTML = '';
+
+            function getPartId(qNum) {
+                if (qNum <= 13) return 'questions-1';
+                if (qNum <= 26) return 'questions-2';
+                return 'questions-3';
+            }
+
+            function getSelectOrText(qNum) {
+                const section = document.getElementById(getPartId(qNum));
+                return section ? section.querySelector(`#q${qNum}`) : null;
+            }
+
+            for (let i = 1; i <= 40; i++) {
+                const key = String(i);
+                const correct = correctAnswers[key];
+                let userAnswer = '';
+                let isCorrect = false;
+                let displayAnswer = '';
+
+                // Build display text for correct answer
+                const correctDisplay = Array.isArray(correct)
+                    ? correct[0]
+                    : (correct || '');
+
+                const radioInputs = document.querySelectorAll(`input[name="q${i}"][type="radio"]`);
+
+                if (radioInputs.length > 0) {
+                    // Radio (TF or MCQ)
+                    const checked = document.querySelector(`input[name="q${i}"]:checked`);
+                    const qContainer = radioInputs[0].closest('.tf-question, .multi-choice-question');
+
+                    if (checked) {
+                        userAnswer = checked.value;
+                        displayAnswer = userAnswer;
+                        isCorrect = userAnswer === correct;
+                        const lbl = checked.closest('.tf-option, .multi-choice-option');
+                        if (lbl) lbl.classList.add(isCorrect ? 'correct' : 'incorrect');
+                    } else {
+                        displayAnswer = 'Not answered';
+                    }
+
+                    if (qContainer) {
+                        if (!isCorrect) {
+                            qContainer.classList.add('incorrect');
+                            // Highlight correct answer
+                            const correctInput = qContainer.querySelector(`input[value="${correct}"]`);
+                            if (correctInput) {
+                                const correctLbl = correctInput.closest('.tf-option, .multi-choice-option');
+                                if (correctLbl) correctLbl.classList.add('correct-answer-highlight');
+                            }
+                        }
+                    }
+
+                    if (isCorrect) score++;
+
+                } else {
+                    const el = getSelectOrText(i);
+                    if (el && el.tagName === 'SELECT') {
+                        userAnswer = el.value;
+                        displayAnswer = userAnswer || 'Not answered';
+                        isCorrect = userAnswer === correct;
+                        const row = el.closest('.matching-form-row') || el;
+                        if (isCorrect) {
+                            score++;
+                            row.classList.add('correct');
+                        } else {
+                            row.classList.add('incorrect');
+                            const sp = document.createElement('span');
+                            sp.className = 'correct-answer-display';
+                            sp.textContent = '➜ ' + correctDisplay;
+                            el.after(sp);
+                        }
+                    } else if (el && el.tagName === 'INPUT') {
+                        userAnswer = el.value.trim();
+                        displayAnswer = userAnswer || 'Not answered';
+                        if (Array.isArray(correct)) {
+                            isCorrect = correct.some(a => userAnswer.toLowerCase() === a.toLowerCase());
+                        } else {
+                            isCorrect = userAnswer.toLowerCase() === (correct || '').toLowerCase();
+                        }
+                        el.classList.add(isCorrect ? 'correct' : 'incorrect');
+                        if (isCorrect) {
+                            score++;
+                        } else {
+                            const sp = document.createElement('span');
+                            sp.className = 'correct-answer-display';
+                            sp.textContent = '➜ ' + correctDisplay;
+                            el.after(sp);
+                        }
+                    } else {
+                        displayAnswer = 'Not answered';
+                    }
+                }
+
+                // Results row
+                detailsEl.innerHTML += `<div class="result-row ${isCorrect ? '' : 'incorrect'}">
+                    <span class="q-num">${i}</span>
+                    <span class="user-ans">${escHtml(displayAnswer)}</span>
+                    <span class="correct-ans">${escHtml(correctDisplay)}</span>
+                </div>`;
+
+                // Nav dot
+                const navBtn = document.querySelector(`.subQuestion[onclick="goToQuestion(${i})"]`);
+                if (navBtn) {
+                    navBtn.classList.remove('answered', 'active');
+                    navBtn.classList.add(isCorrect ? 'correct' : 'incorrect');
+                }
+            }
+
+            document.getElementById('results-score').textContent = score;
+            document.getElementById('results-band').textContent = getBand(score);
+            document.getElementById('results-modal').classList.remove('hidden');
+        }
+
+        function getBand(score) {
+            const map = {40:9.0,39:9.0,38:8.5,37:8.5,36:8.0,35:8.0,34:7.5,33:7.5,32:7.0,31:7.0,30:7.0,29:6.5,28:6.5,27:6.5,26:6.0,25:6.0,24:6.0,23:5.5,22:5.5,21:5.5,20:5.5,19:5.0,18:5.0,17:5.0,16:5.0,15:5.0,14:4.5,13:4.5,12:4.0,11:4.0,10:4.0,9:3.5,8:3.5,7:3.0,6:3.0,5:2.5,4:2.5,3:2.0,2:2.0,1:1.0,0:0.0};
+            return map[score] !== undefined ? map[score] : '0.0';
+        }
+
+        // ── PART SWITCHING ───────────────────────────────────
+        window.switchToPart = function(part) {
+            currentPassage = part;
+            document.querySelectorAll('.reading-passage, .question-set, .part-header-bar').forEach(el => el.classList.add('hidden'));
+            document.getElementById(`passage-text-${part}`).classList.remove('hidden');
+            document.getElementById(`questions-${part}`).classList.remove('hidden');
+            document.getElementById(`part-header-${part}`).classList.remove('hidden');
+            document.querySelectorAll('.footer__questionWrapper___1tZ46').forEach((w, idx) =>
+                w.classList.toggle('selected', idx + 1 === part));
+            const firstQ = {1: 1, 2: 14, 3: 27}[part];
+            goToQuestion(firstQ, true);
+        };
+
+        window.goToQuestion = function(qNum, fromPart = false) {
+            currentQuestion = qNum;
+            let needed = 1;
+            if (qNum >= 14 && qNum <= 26) needed = 2;
+            else if (qNum >= 27) needed = 3;
+
+            if (currentPassage !== needed) {
+                switchToPart(needed);
+                return;
+            }
+
+            // Remove previous active highlight
+            document.querySelectorAll('.answer-input.active-input').forEach(el => el.classList.remove('active-input'));
+            document.querySelectorAll('.active-question').forEach(el => el.classList.remove('active-question'));
+
+            // Try to find and focus the input for this question
+            const partId = qNum <= 13 ? 'questions-1' : qNum <= 26 ? 'questions-2' : 'questions-3';
+            const section = document.getElementById(partId);
+            let target = section ? section.querySelector(`#q${qNum}`) : null;
+
+            if (target) {
+                target.classList.add('active-input');
+                scrollToEl(target, questionsPanel);
+            } else {
+                // For radio questions, scroll to their container
+                const block = section ? section.querySelector(`[data-q-start="${qNum}"]`) : null;
+                if (block) {
+                    block.classList.add('active-question');
+                    scrollToEl(block, questionsPanel);
+                }
+            }
+
+            // Update nav dots
+            document.querySelectorAll('.subQuestion').forEach(btn => btn.classList.remove('active'));
+            const activeNav = document.querySelector(`.subQuestion[onclick="goToQuestion(${qNum})"]`);
+            if (activeNav) activeNav.classList.add('active');
+        };
+
+        function scrollToEl(el, panel) {
+            const panelRect = panel.getBoundingClientRect();
+            const elRect = el.getBoundingClientRect();
+            if (elRect.top < panelRect.top + 20 || elRect.bottom > panelRect.bottom - 20) {
+                el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }
+        }
+
+        window.nextQuestion     = () => currentQuestion < 40 && goToQuestion(currentQuestion + 1);
+        window.previousQuestion = () => currentQuestion > 1  && goToQuestion(currentQuestion - 1);
+
+        function updateAllIndicators() {
+            updateCount(1, 1, 13);
+            updateCount(2, 14, 26);
+            updateCount(3, 27, 40);
+            updateNavDots();
+        }
+
+        function updateNavDots() {
+            for (let i = 1; i <= 40; i++) {
+                const btn = document.querySelector(`.subQuestion[onclick="goToQuestion(${i})"]`);
+                if (!btn) continue;
+                if (btn.classList.contains('correct') || btn.classList.contains('incorrect')) continue;
+                btn.classList.toggle('answered', isAnswered(i));
+            }
+        }
+
+        function isAnswered(qNum) {
+            const radios = document.querySelectorAll(`input[name="q${qNum}"]:checked`);
+            if (radios.length > 0) return true;
+            const partId = qNum <= 13 ? 'questions-1' : qNum <= 26 ? 'questions-2' : 'questions-3';
+            const section = document.getElementById(partId);
+            if (!section) return false;
+            const el = section.querySelector(`#q${qNum}`);
+            if (!el) return false;
+            if (el.tagName === 'SELECT') return !!el.value;
+            if (el.tagName === 'INPUT') return el.value.trim().length > 0;
+            return false;
+        }
+
+        function updateCount(part, start, end) {
+            let count = 0;
+            for (let i = start; i <= end; i++) if (isAnswered(i)) count++;
+            const wrapper = document.querySelectorAll('.footer__questionWrapper___1tZ46')[part - 1];
+            if (wrapper) {
+                const span = wrapper.querySelector('.attemptedCount');
+                if (span) span.textContent = `${count} of ${end - start + 1}`;
+            }
+        }
+
+        // ── TIMER ────────────────────────────────────────────
+        function startTimer() {
+            clearInterval(timerInterval);
+            timerInterval = setInterval(() => {
+                timeInSeconds--;
+                updateTimerDisplay();
+                if (timeInSeconds <= 0) {
+                    clearInterval(timerInterval);
+                    timerDisplay.textContent = "Time's up!";
+                }
+            }, 1000);
+            timerRunning = true;
+            timerToggleBtn.innerHTML = pauseIcon;
+        }
+
+        function pauseTimer() {
+            clearInterval(timerInterval);
+            timerRunning = false;
+            timerToggleBtn.innerHTML = playIcon;
+        }
+
+        function toggleTimer() {
+            timerRunning ? pauseTimer() : startTimer();
+        }
+
+        function resetTimer() {
+            timeInSeconds = 3600;
+            updateTimerDisplay();
+            startTimer();
+        }
+
+        function updateTimerDisplay() {
+            const m = Math.floor(timeInSeconds / 60);
+            const s = timeInSeconds % 60;
+            timerDisplay.textContent = `${String(m).padStart(2,'0')}:${String(s).padStart(2,'0')}`;
+        }
+
+        // ── RESIZER ──────────────────────────────────────────
+        function initResizer() {
+            resizer.addEventListener('mousedown', e => {
+                e.preventDefault();
+                const startX = e.clientX;
+                const startW = passagePanel.offsetWidth;
+                const doDrag = e => {
+                    const newW = startW + e.clientX - startX;
+                    if (newW > 200 && (document.body.clientWidth - newW - 8) > 200)
+                        passagePanel.style.flex = `0 0 ${newW}px`;
+                };
+                const stop = () => {
+                    window.removeEventListener('mousemove', doDrag);
+                    window.removeEventListener('mouseup', stop);
+                };
+                window.addEventListener('mousemove', doDrag);
+                window.addEventListener('mouseup', stop);
+            });
+        }
+
+        // ── HIGHLIGHTS ───────────────────────────────────────
+        function initHighlightToolbar() {
+            const panels = [passagePanel, questionsPanel];
+            const selBtns = document.getElementById('toolbar-selection-btns');
+            const hlBtns  = document.getElementById('toolbar-highlight-btns');
+
+            document.addEventListener('selectionchange', () => {
+                const sel = window.getSelection();
+                if (sel && !sel.isCollapsed && sel.toString().trim()) {
+                    try {
+                        const range = sel.getRangeAt(0);
+                        if (panels.some(p => p.contains(range.commonAncestorContainer))) {
+                            selectedRange = range.cloneRange();
+                            selectedText  = sel.toString();
+                        }
+                    } catch(e) {}
+                }
+            });
+
+            document.addEventListener('mouseup', e => {
+                if (highlightToolbar.contains(e.target) || noteInputOverlay.contains(e.target)) return;
+                const sel = window.getSelection();
+                const overHL = e.target.closest('.highlight, .comment-highlight');
+
+                if (overHL && (!sel || sel.isCollapsed)) {
+                    highlightTarget = overHL;
+                    lastAppliedHighlight = null;
+                    selBtns.style.display = 'none';
+                    hlBtns.style.display  = 'inline-flex';
+                    positionToolbar(e);
+                    return;
+                }
+
+                if (sel && !sel.isCollapsed && sel.toString().trim()) {
+                    try {
+                        const range = sel.getRangeAt(0);
+                        if (panels.some(p => p.contains(range.commonAncestorContainer))) {
+                            highlightTarget = null;
+                            const startNode = range.startContainer;
+                            const existingHL = (startNode.nodeType === 3 ? startNode.parentElement : startNode)
+                                               .closest('.highlight, .comment-highlight');
+                            if (existingHL) highlightTarget = existingHL;
+                            selBtns.style.display = 'inline-flex';
+                            hlBtns.style.display  = 'none';
+                            positionToolbar(e);
+                            return;
+                        }
+                    } catch(e) {}
+                }
+                hideToolbar();
+            });
+
+            document.addEventListener('keydown', e => { if (e.key === 'Escape') hideToolbar(); });
+            passagePanel.addEventListener('scroll', hideToolbar);
+            questionsPanel.addEventListener('scroll', hideToolbar);
+        }
+
+        function positionToolbar(e) {
+            highlightToolbar.classList.add('visible');
+            requestAnimationFrame(() => {
+                const tbW = highlightToolbar.offsetWidth || 320;
+                const tbH = highlightToolbar.offsetHeight || 44;
+                let left = e.pageX - tbW / 2;
+                let top  = e.pageY - tbH - 12;
+                if (left < 8) left = 8;
+                if (left + tbW > window.innerWidth - 8) left = window.innerWidth - tbW - 8;
+                if (top < 66) top = e.pageY + 12;
+                highlightToolbar.style.left = left + 'px';
+                highlightToolbar.style.top  = top  + 'px';
+            });
+        }
+
+        function hideToolbar() { highlightToolbar.classList.remove('visible'); }
+
+        window.applyHighlight = function(colorClass) {
+            if (!selectedRange || selectedRange.collapsed) { hideToolbar(); return; }
+            try {
+                const span = document.createElement('span');
+                span.className = 'highlight ' + colorClass;
+                span.appendChild(selectedRange.extractContents());
+                selectedRange.insertNode(span);
+                lastAppliedHighlight = span;
+            } catch(e) {}
+            hideToolbar();
+            window.getSelection().removeAllRanges();
+            selectedRange = null;
+        };
+
+        window.recolorHighlight = function(colorClass) {
+            if (!highlightTarget) { hideToolbar(); return; }
+            highlightTarget.className = 'highlight ' + colorClass;
+            highlightTarget = null;
+            hideToolbar();
+        };
+
+        window.clearThisHighlight = function() {
+            const target = highlightTarget || lastAppliedHighlight;
+            if (!target || !target.parentNode) { hideToolbar(); return; }
+            if (target.classList.contains('comment-highlight')) {
+                const idx = notes.findIndex(n => n.spanEl === target);
+                if (idx !== -1) notes.splice(idx, 1);
+                renderNotes();
+            }
+            unwrap(target);
+            highlightTarget = null;
+            lastAppliedHighlight = null;
+            hideToolbar();
+        };
+
+        window.clearAllHighlights = function() {
+            document.querySelectorAll('.highlight, .comment-highlight').forEach(unwrap);
+            notes = [];
+            renderNotes();
+            highlightTarget = null;
+            lastAppliedHighlight = null;
+            hideToolbar();
+        };
+
+        function unwrap(el) {
+            const p = el.parentNode;
+            if (!p) return;
+            while (el.firstChild) p.insertBefore(el.firstChild, el);
+            p.removeChild(el);
+            p.normalize();
+        }
+
+        // ── NOTES ────────────────────────────────────────────
+        window.toggleNotesPanel = function() { notesPanel.classList.toggle('visible'); };
+
+        window.openNoteInput = function() {
+            if (!selectedRange || selectedRange.collapsed) return;
+            noteTextPreview.textContent = selectedText.length > 100 ? selectedText.slice(0, 100) + '…' : selectedText;
+            noteTextarea.value = '';
+            noteInputOverlay.classList.add('visible');
+            setTimeout(() => noteTextarea.focus(), 50);
+        };
+
+        window.cancelNote = function() {
+            noteInputOverlay.classList.remove('visible');
+            hideToolbar();
+            window.getSelection().removeAllRanges();
+            selectedRange = null;
+        };
+
+        window.saveNote = function() {
+            const text = noteTextarea.value.trim();
+            if (!text || !selectedRange || selectedRange.collapsed) { cancelNote(); return; }
+            const span = document.createElement('span');
+            span.className = 'comment-highlight';
+            const tooltip = document.createElement('span');
+            tooltip.className = 'comment-tooltip';
+            tooltip.textContent = text;
+            try { span.appendChild(selectedRange.extractContents()); } catch(e) {}
+            span.appendChild(tooltip);
+            selectedRange.insertNode(span);
+            notes.push({ id: nextNoteId++, text: selectedText.slice(0, 60), noteText: text, spanEl: span });
+            renderNotes();
+            noteInputOverlay.classList.remove('visible');
+            hideToolbar();
+            window.getSelection().removeAllRanges();
+            selectedRange = null;
+        };
+
+        function renderNotes() {
+            const count = notes.length;
+            notesCount.textContent = count;
+            notesCount.style.display = count > 0 ? 'inline' : 'none';
+            if (count === 0) {
+                notesList.innerHTML = '<p class="notes-empty">No notes yet. Select text and click "Note".</p>';
+                return;
+            }
+            notesList.innerHTML = notes.map(n => `
+                <div class="note-item">
+                    <div style="display:flex;justify-content:space-between;align-items:flex-start;">
+                        <div class="note-item-text">"${escHtml(n.text)}${n.text.length >= 60 ? '…' : ''}"</div>
+                        <button class="note-item-delete" onclick="deleteNote(${n.id})">✕</button>
+                    </div>
+                    <div>${escHtml(n.noteText)}</div>
+                </div>`).join('');
+        }
+
+        window.deleteNote = function(id) {
+            const idx = notes.findIndex(n => n.id === id);
+            if (idx === -1) return;
+            const note = notes[idx];
+            if (note.spanEl && note.spanEl.parentNode) unwrap(note.spanEl);
+            notes.splice(idx, 1);
+            renderNotes();
+        };
+
+        function escHtml(s) {
+            return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+        }
+
+        // ── MODAL ────────────────────────────────────────────
+        window.closeResultsModal = function() {
+            document.getElementById('results-modal').classList.add('hidden');
+        };
+
+        window.retakeTest = function() {
+            document.querySelectorAll('input, select').forEach(el => {
+                el.disabled = false;
+                if (el.type === 'radio' || el.type === 'checkbox') el.checked = false;
+                else if (el.tagName === 'SELECT') el.value = '';
+                else el.value = '';
+            });
+            deliverBtn.disabled = false;
+            document.querySelectorAll('.correct, .incorrect, .correct-answer-highlight, .selected').forEach(el =>
+                el.classList.remove('correct', 'incorrect', 'correct-answer-highlight', 'selected'));
+            document.querySelectorAll('.correct-answer-display').forEach(el => el.remove());
+            document.querySelectorAll('.subQuestion').forEach(btn =>
+                btn.classList.remove('correct', 'incorrect', 'answered', 'active'));
+            resetTimer();
+            document.getElementById('results-modal').classList.add('hidden');
+            switchToPart(1);
+            updateAllIndicators();
+        };
+
+        // Start
+        initialize();
+    });
+    </script>
+</body>
+</html>

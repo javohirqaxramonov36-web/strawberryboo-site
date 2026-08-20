@@ -1,0 +1,2277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IELTS Full Reading Practice</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #ffffff;
+            line-height: 1.4;
+            font-size: 16px;
+        }
+
+        .header {
+            background-color: #ffffff;
+            padding: 12px 20px;
+            border-bottom: 1px solid #e0e0e0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            height: 60px;
+        }
+
+        .timer-container {
+            display: flex;
+            position: relative;
+            cursor: default;
+            color: #333;
+            font-size: 16px;
+            font-weight: 500;
+            align-items: center;
+        }
+
+        .timer-controls {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-left: 15px;
+        }
+
+        .timer-controls button {
+            background: #f0f0f0;
+            border: 1px solid #ccc;
+            border-radius: 50%;
+            padding: 0;
+            cursor: pointer;
+            width: 32px;
+            height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background-color 0.2s;
+        }
+
+        .timer-controls button:hover {
+            background: #e0e0e0;
+        }
+
+        .timer-controls button svg {
+            width: 20px;
+            height: 20px;
+            fill: #333;
+        }
+
+        .telegram-link {
+            color: #3e3e3e;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 16px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 6px 12px;
+            border: 2px solid #3e3e3e;
+            border-radius: 9999px;
+            background-color: #ffffff;
+            line-height: 1;
+        }
+
+        .telegram-link:hover {
+            text-decoration: underline;
+        }
+
+        .main-container {
+            margin-top: 60px;
+            display: flex;
+            flex-direction: column;
+            background: #ffffff;
+            height: calc(100vh - 60px);
+            position: relative;
+        }
+
+        /* Page watermark */
+        body::after {
+            content: "Full Exam MarteriaLS";
+            position: fixed;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%) rotate(-20deg);
+            font-size: 72px;
+            font-weight: 800;
+            letter-spacing: 2px;
+            color: #000000;
+            opacity: 0.04;
+            pointer-events: none;
+            z-index: 0;
+            white-space: nowrap;
+        }
+
+        .panels-container {
+            display: flex;
+            flex: 1;
+            overflow: hidden;
+        }
+
+        .passage-panel {
+            flex: 1;
+            padding: 20px 20px 100px;
+            overflow-y: auto;
+            min-width: 200px;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+        }
+
+        .passage-panel::-webkit-scrollbar {
+            width: 8px;
+            background: transparent;
+        }
+
+        .passage-panel::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        .passage-panel::-webkit-scrollbar-thumb {
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 4px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .passage-panel:hover::-webkit-scrollbar-thumb {
+            opacity: 1;
+        }
+
+        .questions-panel {
+            flex: 1;
+            padding: 20px 20px 100px;
+            overflow-y: auto;
+            min-width: 200px;
+            border-left: 1px solid #e0e0e0;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+        }
+
+        .questions-panel::-webkit-scrollbar {
+            width: 8px;
+            background: transparent;
+        }
+
+        .questions-panel::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        .questions-panel::-webkit-scrollbar-thumb {
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 4px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .questions-panel:hover::-webkit-scrollbar-thumb {
+            opacity: 1;
+        }
+
+        .resizer {
+            position: relative;
+            background: transparent;
+            cursor: col-resize;
+            flex-shrink: 0;
+            flex-grow: 0;
+            z-index: 5;
+            width: 16px;
+            touch-action: none;
+            -webkit-user-select: none;
+            user-select: none;
+        }
+
+        .resizer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            width: 3px;
+            transform: translateX(-50%);
+            background-color: #3e3e3e;
+        }
+
+        .resizer::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 36px;
+            height: 36px;
+            background-color: #ffffff;
+            border: 2px solid #3e3e3e;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke="%233e3e3e" fill="%233e3e3e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 8l-4 4 4 4"/><path d="M16 8l4 4-4 4"/><line x1="4" y1="12" x2="20" y2="12"/></svg>');
+            background-repeat: no-repeat;
+            background-size: 60% 60%;
+            background-position: center;
+            pointer-events: none;
+        }
+
+        .part-header {
+            background-color: #f1f2ec;
+            padding: 15px 20px;
+            border: 1px solid #e0e0e0;
+            text-align: left;
+            margin: 10px 20px;
+            border-radius: 5px;
+        }
+
+        .part-header p {
+            margin: 0;
+        }
+
+        .part-header p:first-child {
+            margin-bottom: 5px;
+        }
+
+        .text-center {
+            text-align: center;
+        }
+
+        .reading-passage h4 {
+            font-size: 20px;
+            font-weight: bold;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        .reading-passage p {
+            margin-bottom: 1.2em;
+        }
+
+        .question {
+            margin-bottom: 40px;
+        }
+
+        .question-prompt {
+            margin-bottom: 20px;
+        }
+
+        .question ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .question ul li {
+            margin-bottom: 5px;
+        }
+
+        .hidden {
+            display: none !important;
+        }
+
+        /* Answer Input Styles */
+        .answer-input {
+            border: 1px solid #bfbfbf;
+            border-radius: 4px;
+            background-color: #fff;
+            padding: 2px 8px;
+            font-size: 16px;
+            text-align: left;
+            font-weight: 700;
+            margin-right: 6px;
+            margin-left: 6px;
+            transition: border-color 0.2s ease, box-shadow 0.2s ease;
+            height: 28px;
+            min-width: 150px;
+            -webkit-autocomplete: none;
+            -moz-autocomplete: none;
+            autocomplete: none;
+        }
+
+        .answer-input.active-input,
+        .answer-input:focus {
+            border-color: #3581d8;
+            border-width: 2px;
+            outline: none;
+        }
+
+        .answer-input::placeholder {
+            color: #666;
+            font-weight: 700;
+            text-align: center;
+        }
+
+        .answer-input.correct {
+            border-color: #28a745;
+            background-color: #e9f7ef;
+        }
+
+        .answer-input.incorrect {
+            border-color: #dc3545;
+            background-color: #f8d7da;
+            color: #721c24;
+        }
+
+        /* TRUE/FALSE/NOT GIVEN & YES/NO/NOT GIVEN Questions */
+        .tf-question {
+            margin-bottom: 25px;
+            padding: 10px 0px;
+            border-radius: 4px;
+            transition: border-color 0.3s, background-color 0.3s;
+        }
+
+        .tf-question-line {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 15px;
+            padding: 5px 0px;
+            border-radius: 4px;
+        }
+
+        .tf-question-number {
+            border: 2px solid #ccc;
+            padding: 2px 8px;
+            margin-right: 10px;
+            border-radius: 3px;
+            font-weight: bold;
+            transition: border-color 0.3s;
+            display: inline-block;
+        }
+
+        .tf-question.active-question .tf-question-number {
+            border-color: #4a90e2;
+        }
+
+        .tf-question-text {
+            padding-top: 3px;
+        }
+
+        .tf-options {
+            padding-left: 5px;
+        }
+
+        .tf-option {
+            display: block;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            padding: 10px 12px;
+            transition: background-color 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+            background-color: #fff;
+        }
+
+        .tf-option:hover {
+            background-color: #f1f7ff;
+            border-color: #c6dcfb;
+        }
+
+        .tf-option:has(input[type="radio"]:checked) {
+            background-color: #cfe3f9;
+            border-color: #7db3f5;
+        }
+
+        .tf-option.correct {
+            background-color: #d4edda !important;
+            border-color: #28a745 !important;
+            border-width: 1px;
+        }
+
+        .tf-option.incorrect {
+            background-color: #f8d7da !important;
+            border-color: #dc3545 !important;
+            border-width: 1px;
+        }
+
+        body.results-mode .tf-option:has(input[type="radio"]:checked) {
+            box-shadow: none;
+        }
+
+        .tf-option input[type="radio"] {
+            margin-right: 10px;
+            transform: scale(1.2);
+        }
+
+        /* Multiple Choice Questions */
+        .multi-choice-question {
+            margin-bottom: 20px;
+            padding: 10px;
+            border-radius: 4px;
+            border: 3px solid transparent;
+            transition: border-color 0.3s, background-color 0.3s;
+        }
+
+        .multi-choice-question .question-prompt p > strong:first-child {
+            border: 2px solid #ccc;
+            padding: 2px 8px;
+            margin-right: 10px;
+            border-radius: 3px;
+            font-weight: bold;
+            transition: border-color 0.3s;
+            display: inline-block;
+        }
+
+        .multi-choice-question.active-question .question-prompt p > strong:first-child {
+            border-color: #4a90e2;
+            border-width: 2px;
+        }
+
+        .multi-choice-option {
+            padding: 10px 12px;
+            background-color: #fff;
+            transition: background-color 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .multi-choice-option:hover {
+            background-color: #f1f7ff;
+            border-color: #c6dcfb;
+        }
+
+        .multi-choice-option:has(input:checked) {
+            background-color: #cfe3f9;
+            border-color: #7db3f5;
+        }
+
+        .multi-choice-option.correct {
+            background-color: #d4edda !important;
+            border-color: #28a745 !important;
+            box-shadow: inset 0 0 0 2px rgba(40, 167, 69, 0.25) !important;
+            border-width: 1px;
+            border-radius: 6px;
+        }
+
+        .multi-choice-option.incorrect {
+            background-color: #f8d7da !important;
+            border-color: #dc3545 !important;
+            box-shadow: inset 0 0 0 2px rgba(220, 53, 69, 0.25) !important;
+            border-width: 1px;
+            border-radius: 6px;
+        }
+
+        .multi-choice-option.correct-answer-highlight {
+            background-color: #d4edda !important;
+            border-color: #28a745 !important;
+        }
+
+        .multi-choice-option label {
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .multi-choice-option input[type="radio"] {
+            margin-right: 12px;
+            transform: scale(1.3);
+            accent-color: #4a90e2;
+        }
+
+        /* Summary Completion */
+        .summary-text {
+            border: 1px solid #000;
+            padding: 10px;
+            margin-bottom: 20px;
+        }
+
+        .summary-text p {
+            line-height: 2.0;
+            font-size: 16px;
+            margin-bottom: 12px;
+        }
+
+        /* Matching Questions */
+        .matching-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            font-size: 14px;
+        }
+
+        .matching-table th {
+            background-color: #007bff;
+            color: white;
+            padding: 12px;
+            text-align: center;
+            font-weight: bold;
+            border: 1px solid #ddd;
+        }
+
+        .matching-table td {
+            padding: 12px;
+            border: 1px solid #ddd;
+            vertical-align: top;
+        }
+
+        .matching-table .statement {
+            text-align: left;
+            width: 60%;
+            font-size: 15px;
+        }
+
+        .matching-table td:not(.statement) {
+            text-align: center;
+            width: 6.67%;
+            min-width: 60px;
+        }
+
+        .matching-table .clickable-cell {
+            cursor: pointer;
+            transition: background-color 0.2s ease;
+            min-height: 40px;
+            border: 1px solid #ddd;
+            position: relative;
+        }
+
+        .matching-table .clickable-cell:hover {
+            background-color: #f0f8ff;
+            border-color: #007bff;
+        }
+
+        .matching-table .clickable-cell.selected {
+            background-color: #e3f2fd;
+        }
+
+        .matching-table .clickable-cell.correct {
+            background-color: #d4edda !important;
+            border-color: #c3e6cb;
+        }
+
+        .matching-table .clickable-cell.incorrect {
+            background-color: #f8d7da !important;
+            border-color: #f5c6cb;
+        }
+
+        /* Navigation Arrows */
+        .nav-arrows {
+            position: fixed;
+            bottom: 100px;
+            right: 20px;
+            display: flex;
+            gap: 6px;
+            z-index: 101;
+        }
+
+        .nav-arrow {
+            width: 48px;
+            height: 48px;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 22px;
+            font-weight: 700;
+            color: #fff;
+            transition: transform 0.1s ease, background-color 0.2s ease, box-shadow 0.2s ease;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.25);
+            outline: none;
+        }
+
+        .nav-arrow.prev { background-color: #4b5563; }
+        .nav-arrow.next { background-color: #000000; }
+
+        .nav-arrow:hover { transform: translateY(-1px); }
+        .nav-arrow:active { transform: translateY(0); }
+        .nav-arrow:focus-visible { box-shadow: 0 0 0 3px rgba(59,130,246,0.4); }
+
+        .nav-arrow:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        /* Bottom Navigation */
+        .nav-row {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: #ffffff;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            height: 80px;
+            z-index: 100;
+        }
+
+        .footer__questionWrapper___1tZ46 {
+            display: flex;
+            align-items: center;
+            margin-right: 20px;
+        }
+
+        .footer__questionNo___3WNct {
+            background: none;
+            border: none;
+            padding: 10px 15px;
+            font-size: 16px;
+            font-weight: 600;
+            color: #333;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            transition: background-color 0.2s;
+        }
+
+        .footer__questionNo___3WNct:hover {
+            background-color: #f8f9fa;
+        }
+
+        .section-prefix {
+            font-size: 16px;
+        }
+
+        .sectionNr {
+            font-size: 16px;
+            font-weight: bold;
+        }
+
+        .attemptedCount {
+            font-size: 14px;
+            color: #666;
+            margin-left: 5px;
+            font-weight: 400;
+        }
+
+        .footer__questionWrapper___1tZ46.selected .attemptedCount {
+            display: none;
+        }
+
+        .footer__subquestionWrapper___9GgoP {
+            display: none;
+            gap: 2px;
+            margin-left: 10px;
+        }
+
+        .footer__questionWrapper___1tZ46.selected .footer__subquestionWrapper___9GgoP {
+            display: flex;
+        }
+
+        .subQuestion {
+            width: 32px;
+            height: 32px;
+            border: 1px solid #ccc;
+            background: white;
+            color: #333;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s;
+            border-radius: 2px;
+        }
+
+        .subQuestion.answered {
+            background-color: #e9ecef;
+            border-color: #ddd;
+        }
+
+        .subQuestion.correct {
+            background-color: #28a745;
+            color: white;
+            border-color: #28a745;
+        }
+
+        .subQuestion.incorrect {
+            background-color: #dc3545;
+            color: white;
+            border-color: #dc3545;
+        }
+
+        .subQuestion:hover {
+            background-color: #f0f0f0;
+            border-color: #999;
+        }
+
+        .subQuestion.active {
+            background-color: #4a90e2;
+            color: white;
+            border-color: #4a90e2;
+        }
+
+        .subQuestion.completed {
+            background-color: #28a745;
+            color: white;
+            border-color: #28a745;
+        }
+
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border: 0;
+        }
+
+        .footer__deliverButton___3FM07 {
+            margin-left: auto;
+            margin-right: 20px;
+            background-color: #f3f4f6;
+            color: #111827;
+            border: 1px solid #d1d5db;
+            padding: 10px 16px;
+            font-size: 15px;
+            font-weight: 700;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            transition: transform 0.08s ease, background-color 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+            min-width: 160px;
+            justify-content: center;
+        }
+
+        .footer__deliverButton___3FM07:hover {
+            background-color: #ebedf0;
+            border-color: #c7ccd4;
+        }
+
+        .footer__deliverButton___3FM07:active {
+            transform: translateY(1px);
+        }
+
+        .footer__deliverButton___3FM07:focus-visible {
+            box-shadow: 0 0 0 3px rgba(59,130,246,0.35);
+            outline: none;
+        }
+
+        .footer__deliverButton___3FM07:disabled {
+            background: #eef0f3;
+            color: #9ca3af;
+            cursor: not-allowed;
+            border-color: #e5e7eb;
+            box-shadow: none;
+        }
+
+        /* Results Modal */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(17, 24, 39, 0.6);
+            backdrop-filter: blur(3px);
+            z-index: 2000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-overlay.hidden {
+            display: none;
+        }
+
+        .modal-content {
+            background: #ffffff;
+            padding: 24px;
+            border-radius: 14px;
+            width: 92%;
+            max-width: 780px;
+            max-height: 86vh;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            border: 1px solid #e5e7eb;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.25);
+        }
+
+        .modal-close-btn {
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            background: none;
+            border: none;
+            font-size: 28px;
+            cursor: pointer;
+            color: #666;
+        }
+
+        .modal-content h2 {
+            text-align: center;
+            margin-bottom: 18px;
+            color: #111827;
+        }
+
+        .results-summary {
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+            margin-bottom: 16px;
+            text-align: center;
+            border-bottom: 1px solid #eef2f7;
+            padding-bottom: 12px;
+        }
+
+        .results-summary p {
+            margin: 0;
+            font-size: 14px;
+            color: #374151;
+        }
+
+        .results-summary p span {
+            display: inline-block;
+            padding: 4px 10px;
+            margin-left: 6px;
+            border-radius: 999px;
+            background: #f3f4f6;
+            font-weight: 700;
+            color: #111827;
+        }
+
+        .results-details-container {
+            overflow-y: auto;
+            padding-right: 10px;
+            border-radius: 8px;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+        }
+
+        .results-details-container::-webkit-scrollbar {
+            width: 8px;
+            background: transparent;
+        }
+
+        .results-details-container::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        .results-details-container::-webkit-scrollbar-thumb {
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 4px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .results-details-container:hover::-webkit-scrollbar-thumb {
+            opacity: 1;
+        }
+
+        .result-row {
+            display: grid;
+            grid-template-columns: 56px 1fr 1fr;
+            gap: 12px;
+            padding: 10px 8px;
+            border-bottom: 1px solid #eef2f7;
+            font-size: 15px;
+            align-items: center;
+        }
+
+        .result-row.correct {
+            background-color: #f3faf5;
+        }
+
+        .result-row.incorrect {
+            background-color: #fff5f5;
+        }
+
+        .result-row .q-num {
+            font-weight: 700;
+            color: #111827;
+            background: #ffffff;
+            border: 1px solid #d1d5db;
+            border-radius: 8px;
+            width: 42px;
+            height: 30px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .result-row .user-ans {
+            color: #374151;
+            background: #f9fafb;
+            border: 1px solid #e5e7eb;
+            padding: 4px 8px;
+            border-radius: 6px;
+        }
+
+        .result-row .correct-ans {
+            color: #065f46;
+            font-weight: 600;
+            background: #ecfdf5;
+            border: 1px solid #a7f3d0;
+            padding: 4px 8px;
+            border-radius: 6px;
+        }
+
+        .correct-answer-display {
+            font-weight: bold;
+            color: #28a745;
+            margin-left: 10px;
+            font-size: 14px;
+        }
+
+        /* Context Menu */
+        .context-menu {
+            position: absolute;
+            background: white;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            z-index: 1000;
+            display: none;
+            min-width: 140px;
+        }
+
+        .context-menu-item {
+            padding: 12px 16px;
+            cursor: pointer;
+            font-size: 16px;
+            border-bottom: 1px solid #f0f0f0;
+            transition: background-color 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .context-menu-item:hover {
+            background-color: #f8f9fa;
+        }
+
+        .context-menu-item:last-child {
+            border-bottom: none;
+        }
+
+        /* Highlight Styles */
+        .highlight {
+            background-color: #ffff00;
+            cursor: pointer;
+        }
+
+        .comment-highlight {
+            background-color: #90EE90;
+            position: relative;
+            cursor: help;
+        }
+
+        .comment-tooltip {
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #333;
+            color: white;
+            padding: 8px 12px;
+            border-radius: 4px;
+            font-size: 14px;
+            white-space: nowrap;
+            z-index: 1000;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s;
+        }
+
+        .comment-highlight:hover .comment-tooltip {
+            opacity: 1;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .attemptedCount {
+                display: none;
+            }
+
+            .resizer {
+                width: 20px;
+            }
+
+            .resizer::after {
+                width: 44px;
+                height: 44px;
+            }
+
+            .header {
+                padding: 10px 15px;
+                height: 70px;
+            }
+
+            .telegram-link {
+                padding: 8px 16px;
+                font-size: 14px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .main-container {
+                flex-direction: column;
+            }
+
+            .passage-panel, .questions-panel {
+                width: 100%;
+                min-width: auto;
+            }
+
+            .resizer {
+                display: none;
+            }
+
+            .footer__questionWrapper___1tZ46 {
+                margin-right: 5px;
+            }
+
+            .footer__questionNo___3WNct {
+                padding: 10px 12px;
+                font-size: 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="timer-container">
+            <span class="timer-display">60:00</span>
+            <div class="timer-controls">
+                <button id="timer-toggle-btn" title="Pause/Resume Timer">
+                    <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M8 5v14l11-7L8 5z"/></svg>
+                </button>
+                <button id="timer-reset-btn" title="Reset Timer">
+                    <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M12 5V1L7 6l5 5V7c3.31 0 6 2.69 6 6s-2.69 6-6 6-6-2.69-6-6H4c0 4.42 3.58 8 8 8s8-3.58 8-8-3.58-8-8-8z"/></svg>
+                </button>
+            </div>
+        </div>
+        <a href="https://t.me/ielts_material_full" target="_blank" class="telegram-link">
+          Full Exam Materials
+        </a>
+    </div>
+
+    <div class="main-container" id="main-container">
+        <div id="passage-header-container">
+            <div id="part-header-1" class="part-header">
+                <p><strong>Part 1</strong></p>
+                <p>Read the text and answer questions 1-13.</p>
+            </div>
+            <div id="part-header-2" class="part-header hidden">
+                <p><strong>Part 2</strong></p>
+                <p>Read the text and answer questions 14-27.</p>
+            </div>
+            <div id="part-header-3" class="part-header hidden">
+                <p><strong>Part 3</strong></p>
+                <p>Read the text and answer questions 28-40.</p>
+            </div>
+        </div>
+        <div class="panels-container">
+            <div class="passage-panel" id="passage-panel">
+                <div id="passage-text-1" class="reading-passage">
+                    <h4 class="text-center">Rural transport plan of "Practical action"</h4>
+                    <p><strong>A</strong>&nbsp;&nbsp;For more than 40 years, Practical Action has worked with poor communities to identify the types of transport that work best, taking into consideration culture, needs and skills. With our technical and practical support, isolated rural communities can design, build and maintain their own solutions.</p>
+                    <p><strong>B</strong>&nbsp;&nbsp;Whilst the focus of National Development Plans in the transport sector lies heavily in the areas of extending road networks and bridges, there are still major gaps identified in addressing the needs of poorer communities. There is a need to develop and promote the sustainable use of alternative transport systems and intermediate means of transportation (IMTs) that complement the linkages of poor people with road networks and other socio-economic infrastructures to improve their livelihoods. On the other hand, the development of all weathered roads (only 30 percent of the rural population have access to this so far) and motorable bridges are very costly for a country with a small and stagnant economy. In addition, these interventions are not always favourable in all geographical contexts environmentally, socially and economically. More than 60 percent of the network is concentrated in the lowland areas of the country. Although there are a number of alternative ways by which transportation and mobility needs of rural communities in the hills can be addressed, a lack of clear government focus and policies, lack of fiscal and economic incentives, lack of adequate technical knowledge and manufacturing capacities have led to under-development of this alternative transport sub-sector including the provision of IMTs.</p>
+                    <p><strong>C</strong>&nbsp;&nbsp;One of the major causes of poverty is isolation. Improving the access and mobility of the isolated poor paves the way for access to markets, services and opportunities. By improving transport poorer people are able to access markets where they can buy or sell goods for income, and make better use of essential services such as health and education. No proper roads or vehicles mean women and children are forced to spend many hours each day attending to their most basic needs, such as collecting water and firewood. This valuable time could be used to tend crops, care for the family, study or develop small business ideas to generate much-needed income.</p>
+                    <p><strong>D</strong>&nbsp;&nbsp;Without roads, rural communities are extremely restricted. Collecting water and firewood, and going to local markets is a huge task, therefore it is understandable that the construction of roads is a major priority for many rural communities. Practical Action is helping to improve rural access/transport infrastructures through the construction and rehabilitation of short rural roads, small bridges, culverts and other transport-related functions. The aim is to use methods that encourage community-driven development. This means villagers can improve their own lives through better access to markets, health care, education and other economic and social opportunities, as well as bringing improved services and supplies to the now-accessible villages.</p>
+                    <p><strong>E</strong>&nbsp;&nbsp;Practical Action and the communities we work with are constantly crafting and honing new ideas to help poor people. Cycle trailers have practical business use too, helping people carry their goods, such as vegetables and charcoal, to markets for sale. Not only that, but those on the poverty-line can earn a decent income by making, maintaining and operating bicycle taxis. With Practical Action's know-how, Sri Lanka communities have been able to start a bus service and maintain the roads along which it travels. The impact has been remarkable. This service has put an end to rural people's social isolation. Quick and affordable, it gives them a reliable way to travel to the nearest town; and now their children can get an education, making it far more likely they'll find a path out of poverty. Practical Action is also an active member of many national and regional networks through which exchange of knowledge and advocating based on action research are carried out and one conspicuous example is the Lanka Organic Agriculture Movement.</p>
+                    <p><strong>F</strong>&nbsp;&nbsp;For people who live in remote, mountainous areas, getting food to market in order to earn enough money to survive is a serious issue. The hills are so steep that travelling down them is dangerous. A porter can help but they are expensive, and it would still take hours or even a day. The journey can take so long that their goods start to perish and become worthless and less. Practical Action has developed an ingenious solution called an aerial ropeway. It can either operate by gravitation force or with the use of external power. The ropeway consists of two trolleys rolling over support tracks connected to a control cable in the middle which moves in a traditional flywheel system. The trolley at the top is loaded with goods and can take up to 120kg. This is pulled down to the station at the bottom, either by the force of gravity or by an external power. The other trolley at the bottom is, therefore, pulled upwards automatically. The external power can be produced by a micro-hydro system if access to an electricity grid is not an option.</p>
+                    <p><strong>G</strong>&nbsp;&nbsp;Practical Action developed a two-wheeled iron trailer that can be attached (via a hitch behind the seat) to a bicycle and be used to carry heavy loads (up to around 200 kgs) of food, water or even passengers. People can now carry three times as much as before and still pedal the bicycle. The cycle trailers are used for transporting goods by local producers, as ambulances, as mobile shops, and even as mobile libraries. They are made in small village workshops from iron tubing, which is cut, bent, welded and drilled to make the frame and wheels. Modifications are also carried out to the trailers in these workshops at the request of the buyers. The two-wheeled 'ambulance' is made from moulded metal, with standard rubber-tyred wheels. The "bed" section can be padded with cushions to make the patient comfortable, while the "seat" section allows a family member to attend to the patient during transit. A dedicated bicycle is needed to pull the ambulance trailer, so that other community members do not need to go without the bicycles they depend on in their daily lives. A joining mechanism allows for easy removal and attachment. In response to user comments, a cover has been designed that can be added to give protection to the patient and attendant in poor weather. Made of treated cotton, the cover is durable and waterproof.</p>
+                </div>
+                <div id="passage-text-2" class="reading-passage hidden">
+                    <h4 class="text-center">Malaria Combat in Italy</h4>
+                    <p><strong>A</strong>&nbsp;&nbsp;Mal-aria. Bad air. Even the world is Italian, and this horrible disease marked the life of those in the peninsula for thousands of years. Giuseppe Garibaldi's wife died of the disease, as did the country's first prime minister, Cavour, in 1861. Yet by 1962, Italy was officially declared malaria-free, and it has remained so ever since. Frank Snowden's study of this success story is a remarkable piece of historical work. Original, crystal-clear, analytical and passionate, Snowden (who has previously written about cholera) takes us to areas historians have rarely visited before.</p>
+                    <p><strong>B</strong>&nbsp;&nbsp;Everybody now knows that malaria is carried by mosquitoes. Malaria has always been the subject of research for medical practitioners from time immemorial. However, many ancient texts, especially medical literature, mention of various aspects of malaria and even of its possible link with mosquitoes and insects. Early man, confronting the manifestations of malaria, attributed the fevers to supernatural influences: evil spirits, angered deities, or the black magic of sorcerers. But in the 19th century, most experts believed that the disease was not produced by unclean air ("miasma" or "poisoning of the air"). Two Americans, Josiah Clark Nott and Lewis Daniel Beauperthy, echoed Crawford's ideas. Nott in his essay "Yellow Fever Contrasted with Bilious Fever," published in 1850, dismissed the miasma theory as worthless, arguing that microscopic insects somehow transmitted by mosquitoes caused both malaria and yellow fever. Others made a link between swamps, water and malaria, but did not make the further leap towards insects. The consequences of these theories were that little was done to combat the disease before the end of the century. Things became so bad that 11m Italians (from a total population of 25m) were "permanently at risk". In malarial zones, the life expectancy of land workers was a terrifying 22.5 years. Those who escaped death were weakened or suffered from splenomegaly – a "painful enlargement of the spleen" and "a lifeless stare". The economic impact of the disease was immense. Epidemics were blamed on southern Italians, given the widespread belief that malaria was hereditary. In the 1880s, such theories began to collapse as the dreaded mosquito was identified as the real culprit.</p>
+                    <p><strong>C</strong>&nbsp;&nbsp;Italian scientists, drawing on the pioneering work of French doctor Alphonse Laveran, were able to predict the cycles of fever but it was in Rome that further key discoveries were made. Giovanni Battista Grassi, a naturalist, found that a particular type of mosquito was the carrier of malaria. By experimenting on healthy volunteers (mosquitoes were released into rooms where they drank the blood of the human guinea pigs), Grassi was able to make the direct link between the insects (all females of a certain kind) and the disease. Soon, doctors and scientists made another startling discovery: the mosquitoes themselves were also infected and not mere carriers. Every year, during the mosquito season, malarial blood was moved around the population by the insects. Definitive proof of these new theories was obtained after an extraordinary series of experiments in Italy, where healthy people were introduced into malarial zones but kept free of mosquito bites – and remained well. The new Italian state had the necessary information to tackle the disease.</p>
+                    <p><strong>D</strong>&nbsp;&nbsp;A complicated approach was adopted, which made use of quinine – a drug obtained from tree bark which had long been used to combat fever but was now seen as a crucial part of the war on malaria. Italy introduced a quinine law and a quinine tax in 1904, and the drug was administered to large numbers of rural workers. Despite its often terrible side-effects (the headaches produced were known as the "quinine-buzz"), the drug was successful in limiting the spread of the disease, and in breaking cycles of infection. In addition, Italy set up rural health centres and invested heavily in education programmes. Malaria, as Snowden shows, was not just a medical problem, but a social and regional issue, and could only be defeated through multi-layered strategies. Politics was itself transformed by the anti-malarial campaigns.</p>
+                    <p><strong>E</strong>&nbsp;&nbsp;It was originally decided to give quinine to all those in certain regions – even healthy people; peasants were often suspicious of the medicine being forced upon them. Doctors were sometimes met with hostility and refusal, and many were dubbed "poisoners". Despite these problems, the strategy was hugely successful. Deaths from malaria fell by some 80% in the first decade of the 20th century and some areas escaped altogether from the scourge of the disease.</p>
+                    <p><strong>F</strong>&nbsp;&nbsp;Shamefully, the Italian malaria expert Alberto Missiroli had a role to play in the disaster: he did not distribute quinine, despite being well aware of the epidemic to come. Snowden claims that Missiroli was already preparing a new strategy – with the support of the US Rockefeller Foundation – using a new pesticide, DDT. Missiroli allowed the epidemic to spread, in order to create the ideal conditions for a massive, and lucrative, human experiment. Fifty-five thousand cases of malaria were recorded in the province of Littoria alone in 1944. It is estimated that more than a bird of those in the affected area contracted the disease. Thousands, nobody knows how many, died.</p>
+                    <p><strong>G</strong>&nbsp;&nbsp;With the war over, the US government and the Rockefeller Foundation were free to experiment. DDT was sprayed from the air and 3m Italians had their bodies covered with the chemical. The effects were dramatic, and nobody really cared about the toxic effects of the chemical. By 1962, malaria was more or less gone from the whole peninsula. The last cases were noted in a poor region of Sicily. One of the final victims to die of the disease in Italy was the popular cyclist, Fausto Coppi. He had contracted malaria in Africa in 1960, and the failure of doctors in the north of Italy to spot the disease was a sign of the times. A few decades earlier, they would have immediately noticed the tell-tale signs; it was later claimed that a small dose of quinine would have saved his life.</p>
+                    <p><strong>H</strong>&nbsp;&nbsp;As there are still more than 1m deaths every year from malaria worldwide, Snowden's book also has contemporary relevance. This is a disease that affects every level of the societies where it is rampant. As Snowden writes: "In Italy, malaria undermined agricultural productivity, decimated the army, destroyed communities and left families impoverished." The economic miracle of the 50s and 60s which made Italy into a modern industrial nation would not have been possible without the eradication of malaria. Moreover, this book convincingly argues that the disease was "an integral part of the big picture of modern Italian history". This magnificent study, beautifully written and impeccably documented, deserves an audience beyond specialists in history, or in Italy. It also provides us with "a message of hope for a world struggling with the great present-day medical emergency".</p>
+                </div>
+                <div id="passage-text-3" class="reading-passage hidden">
+                    <h4 class="text-center">Video Games' Unexpected Benefits to Human Brain</h4>
+                    <p><strong>A</strong>&nbsp;&nbsp;James Paul Gee, professor of education at the University of Wisconsin-Madison, played his first video game years ago when his six-year-old son Sam was playing Pajama Sam: No Need to Hide When It's Dark Outside. He wanted to play the game so he could support Sam's problem-solving. Though Pajama Sam is not an "educational game", it is replete with the types of problems psychologists study when they study thinking and learning. When he saw how well the game held Sam's attention, he wondered what sort of beast a more mature video game might be.</p>
+                    <p><strong>B</strong>&nbsp;&nbsp;Video and computer games, like many other popular, entertaining and addicting kid's activities, are looked down upon by many parents as time-wasters, and worse, parents think that these games rot the brain. Violent video games are readily blamed by the media and some experts as the reason why some youth become violent or commit extreme anti-social behavior. Recent content analyses of video games show that as many as 89% of games contain some violent content, but there is no form of aggressive content for 70% of popular games. Many scientists and psychologists, like James Paul Gee, find that video games actually have many benefits – the main one being making kids smart. Video games may actually teach kids high-level thinking skills that they will need in the future.</p>
+                    <p><strong>C</strong>&nbsp;&nbsp;"Video games change your brain," according to University of Wisconsin psychologist Shawn Green. Video games change the brain's physical structure the same way as do learning to read, playing the piano, or navigating using a map. Much like exercise can build muscle, the powerful combination of concentration and rewarding surges of neurotransmitters like dopamine, which strengthens neural circuits, can build the player's brain.</p>
+                    <p><strong>D</strong>&nbsp;&nbsp;Video games give your child's brain a real workout. In many video games, the skills required to win involve abstract and high-level thinking. These skills are not even taught at school. Some of the mental skills trained by video games include: following instructions, problem-solving, logic, hand-eye coordination, fine motor and spatial skills. Research also suggests that people can learn iconic, spatial, and visual attention skills from video games. There have been even studies with adults showing that experience with video games is related to better surgical skills. Jacob Benjamin, a doctor from Beth Israel Medical Center NY, found a direct link between skill at video gaming and skill at keyhole or laparoscopic surgery. Also, a reason given by experts as to why fighter pilots of today are more skillful is that this generation's pilots are being weaned on video games.</p>
+                    <p><strong>E</strong>&nbsp;&nbsp;The players learn to manage resources that are limited and decide the best use of resources, the same way as in real life. In strategy games, for instance, while developing a city, an unexpected surprise like an enemy might emerge. This forces the player to be flexible and quickly change tactics. Sometimes the player does this almost every second of the game giving the brain a real workout. According to researchers at the University of Rochester, led by Daphne Bavelier, a cognitive scientist, games simulating stressful events such as those found in battle or action games could be a training tool for real-world situations. The study suggests that playing action video games primes the brain to make quick decisions. Video games can be used to train soldiers and surgeons, according to the study Steven Johnson, author of Everything Bad is Good For You: How Today's Popular Culture, says gamers must deal with immediate problems while keeping their long-term goals on their horizon. Young gamers force themselves to read to get instructions, follow storylines of games, and get information from the game texts.</p>
+                    <p><strong>F</strong>&nbsp;&nbsp;James Paul Gee, professor of education at the University of Wisconsin-Madison, says that playing a video game is similar to working through a science problem. Like students in a laboratory, gamers must come up with a hypothesis. For example, players in some games constantly try out combinations of weapons and powers to use to defeat an enemy. If one does not work, they change the hypothesis and try the next one. Video games are goal-driven experiences, says Gee, which is fundamental to learning. Also, using math skills is important to win in many games that involve quantitative analysis like managing resources. In higher levels of a game, players usually fail the first time around, but they keep on trying until they succeed and move on to the next level.</p>
+                    <p><strong>G</strong>&nbsp;&nbsp;Many games are played online and involve cooperation with other online players in order to win. Video and computer games also help children gain self-confidence and many games are based on history, city building, and governance and so on. Such games indirectly teach children about aspects of life on earth.</p>
+                    <p><strong>H</strong>&nbsp;&nbsp;In an upcoming study in the journal Current Biology, authors Daphne Bavelier, Alexandre Pouget, and C. Shawn Green report that video games could provide a potent training regimen for speeding up reactions in many types of real-life situations. The researchers tested dozens of 18 to 25-year-olds who were not ordinarily video game players. They split the subjects into two groups. One group played 50 hours of the fast-paced action video games "Call of Duty 2" and "Unreal Tournament," and the other group played 50 hours of the slow-moving strategy game "The Sims 2." After this training period, all of the subjects were asked to make quick decisions in several tasks designed by the researchers. The action game players were up to 25 percent faster at coming to a conclusion and answered just as many questions correctly as their strategy game playing peers.</p>
+                </div>
+            </div>
+            <div class="resizer" id="resizer"></div>
+            <div class="questions-panel" id="questions-panel">
+                <div id="questions-1" class="question-set">
+                    <div class="questions-container">
+                        <div class="question" data-q-start="1" data-q-end="4">
+                            <div class="question-prompt">
+                                <p><strong>Questions 1-4</strong></p>
+                                <p>Do the following statements agree with the information given in Reading Passage 1?</p>
+                                <p>In boxes 1-4 on your answer sheet, write</p>
+                                <ul style="list-style: none; padding-left: 0;">
+                                    <li><strong>YES</strong> if the statement is true</li>
+                                    <li><strong>NO</strong> if the statement is false</li>
+                                    <li><strong>NOT GIVEN</strong> if the information is not given in the passage</li>
+                                </ul>
+                            </div>
+                            <div class="tf-question" data-q-start="1" data-q-end="1">
+                                <div class="tf-question-line"><span class="tf-question-number">1</span><span class="tf-question-text">A slow-developing economy often can not afford some road networks, especially for those used regardless of weather conditions.</span></div>
+                                <div class="tf-options">
+                                    <label class="tf-option"><input type="radio" name="q1" value="YES"> YES</label>
+                                    <label class="tf-option"><input type="radio" name="q1" value="NO"> NO</label>
+                                    <label class="tf-option"><input type="radio" name="q1" value="NOT GIVEN"> NOT GIVEN</label>
+                                </div>
+                            </div>
+                            <div class="tf-question" data-q-start="2" data-q-end="2">
+                                <div class="tf-question-line"><span class="tf-question-number">2</span><span class="tf-question-text">Rural communities' officials know how to improve alternative transport technically.</span></div>
+                                <div class="tf-options">
+                                    <label class="tf-option"><input type="radio" name="q2" value="YES"> YES</label>
+                                    <label class="tf-option"><input type="radio" name="q2" value="NO"> NO</label>
+                                    <label class="tf-option"><input type="radio" name="q2" value="NOT GIVEN"> NOT GIVEN</label>
+                                </div>
+                            </div>
+                            <div class="tf-question" data-q-start="3" data-q-end="3">
+                                <div class="tf-question-line"><span class="tf-question-number">3</span><span class="tf-question-text">The primary aim for Practical Action to improve rural transport infrastructures is meant to increase the trade among villages.</span></div>
+                                <div class="tf-options">
+                                    <label class="tf-option"><input type="radio" name="q3" value="YES"> YES</label>
+                                    <label class="tf-option"><input type="radio" name="q3" value="NO"> NO</label>
+                                    <label class="tf-option"><input type="radio" name="q3" value="NOT GIVEN"> NOT GIVEN</label>
+                                </div>
+                            </div>
+                            <div class="tf-question" data-q-start="4" data-q-end="4">
+                                <div class="tf-question-line"><span class="tf-question-number">4</span><span class="tf-question-text">Lanka Organic Agriculture Movement provided service that Practical Action highly involved in.</span></div>
+                                <div class="tf-options">
+                                    <label class="tf-option"><input type="radio" name="q4" value="YES"> YES</label>
+                                    <label class="tf-option"><input type="radio" name="q4" value="NO"> NO</label>
+                                    <label class="tf-option"><input type="radio" name="q4" value="NOT GIVEN"> NOT GIVEN</label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="question" data-q-start="5" data-q-end="8">
+                            <div class="question-prompt">
+                                <p><strong>Questions 5-8</strong></p>
+                                <p>Answer the questions below.</p>
+                                <p>Choose <strong>NO MORE THAN THREE WORDS AND/OR A NUMBER</strong> from the passage for each answer.</p>
+                            </div>
+                            <div class="summary-text">
+                                <p><strong>5</strong> What is the first duty for many rural communities to reach unrestricted development? <input type="text" class="answer-input" id="q5" placeholder="Answer 5" autocomplete="off"></p>
+                                <p><strong>6</strong> What was one of the new ideas to help poor people carry their goods, such as vegetables and charcoal, to markets for sale? <input type="text" class="answer-input" id="q6" placeholder="Answer 6" autocomplete="off"></p>
+                                <p><strong>7</strong> What service has put an end to rural people's social isolation in Sri Lanka? <input type="text" class="answer-input" id="q7" placeholder="Answer 7" autocomplete="off"></p>
+                                <p><strong>8</strong> What solution had been applied for people who live in remote mountainous areas getting food to market? <input type="text" class="answer-input" id="q8" placeholder="Answer 8" autocomplete="off"></p>
+                            </div>
+                        </div>
+
+                        <div class="question" data-q-start="9" data-q-end="13">
+                            <div class="question-prompt">
+                                <p><strong>Questions 9-13</strong></p>
+                                <p>Complete the following summary of the paragraphs of Reading Passage.</p>
+                                <p>Using <strong>NO MORE THAN TWO WORDS</strong> from the Reading Passage for each answer.</p>
+                            </div>
+                            <div class="summary-text">
+                                <p>Besides normal transport task, changes are also implemented to the trailers in these workshops at the request of the buyers when it was used on a medical emergency or a moveable <input type="text" class="answer-input" id="q9" placeholder="Answer 9" autocomplete="off">; 'Ambulance' is made from metal, with rubber wheels and drive-by another bicycle. When put with <input type="text" class="answer-input" id="q10" placeholder="Answer 10" autocomplete="off"> in the two-wheeled 'ambulance', the patient can stay comfortable and which another <input type="text" class="answer-input" id="q11" placeholder="Answer 11" autocomplete="off"> can sit on caring for the patient in transport journey. In order to dismantle or attach other equipment, and assembling <input type="text" class="answer-input" id="q12" placeholder="Answer 12" autocomplete="off"> is designed. Later, as users suggest, <input type="text" class="answer-input" id="q13" placeholder="Answer 13" autocomplete="off"> has also been added to give protection to the patient.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="questions-2" class="question-set hidden">
+                    <div class="questions-container">
+                        <div class="question" data-q-start="14" data-q-end="17">
+                            <div class="question-prompt">
+                                <p><strong>Questions 14-17</strong></p>
+                                <p>Complete the following summary of the paragraphs of Reading Passage 2.</p>
+                                <p>Using <strong>NO MORE THAN TWO WORDS</strong> from the Reading Passage for each answer.</p>
+                            </div>
+                            <div class="summary-text">
+                                <p>Theories for malaria origin have always been the issue of research for medical practitioners from ancient time. Although the link between malaria and mosquito was established lately, it has been recorded in words that <input type="text" class="answer-input" id="q14" placeholder="Answer 14" autocomplete="off">, including mosquito, may play the major culprits. In the 19th century, most experts rejected the idea of the miasma theory which related malaria to <input type="text" class="answer-input" id="q15" placeholder="Answer 15" autocomplete="off">. Even another widespread theory arose that southern Italians were blamed, to whom malaria was <input type="text" class="answer-input" id="q16" placeholder="Answer 16" autocomplete="off">. In southern Italy, the situation became so severe that near half the Italians population was thought to be "permanently at risk". In malarial areas the <input type="text" class="answer-input" id="q17" placeholder="Answer 17" autocomplete="off"> of rural workers was surprisingly shorter. In the 1880s, such theories began to withdraw as the mosquito was identified as the true cause.</p>
+                            </div>
+                        </div>
+
+                        <div class="question" data-q-start="18" data-q-end="21">
+                            <div class="question-prompt">
+                                <p><strong>Questions 18-21</strong></p>
+                                <p>Do the following statements agree with the claims of the writer in Reading Passage 2?</p>
+                                <p>In boxes 18-21 on your answer sheet write</p>
+                                <ul style="list-style: none; padding-left: 0;">
+                                    <li><strong>YES</strong> if the statement agrees with the claims of the writer</li>
+                                    <li><strong>NO</strong> if the statement contradicts the claims of the writer</li>
+                                    <li><strong>NOT GIVEN</strong> if it is impossible to say what the writer thinks about this</li>
+                                </ul>
+                            </div>
+                            <div class="tf-question" data-q-start="18" data-q-end="18">
+                                <div class="tf-question-line"><span class="tf-question-number">18</span><span class="tf-question-text">The volunteers in Grassi experiments were from all parts over Italy.</span></div>
+                                <div class="tf-options">
+                                    <label class="tf-option"><input type="radio" name="q18" value="YES"> YES</label>
+                                    <label class="tf-option"><input type="radio" name="q18" value="NO"> NO</label>
+                                    <label class="tf-option"><input type="radio" name="q18" value="NOT GIVEN"> NOT GIVEN</label>
+                                </div>
+                            </div>
+                            <div class="tf-question" data-q-start="19" data-q-end="19">
+                                <div class="tf-question-line"><span class="tf-question-number">19</span><span class="tf-question-text">Healthy people could remain safe in malaria-infectious zone if they did not have mosquito bites.</span></div>
+                                <div class="tf-options">
+                                    <label class="tf-option"><input type="radio" name="q19" value="YES"> YES</label>
+                                    <label class="tf-option"><input type="radio" name="q19" value="NO"> NO</label>
+                                    <label class="tf-option"><input type="radio" name="q19" value="NOT GIVEN"> NOT GIVEN</label>
+                                </div>
+                            </div>
+                            <div class="tf-question" data-q-start="20" data-q-end="20">
+                                <div class="tf-question-line"><span class="tf-question-number">20</span><span class="tf-question-text">Quinine is an effective drug which had long been used to combat malaria.</span></div>
+                                <div class="tf-options">
+                                    <label class="tf-option"><input type="radio" name="q20" value="YES"> YES</label>
+                                    <label class="tf-option"><input type="radio" name="q20" value="NO"> NO</label>
+                                    <label class="tf-option"><input type="radio" name="q20" value="NOT GIVEN"> NOT GIVEN</label>
+                                </div>
+                            </div>
+                            <div class="tf-question" data-q-start="21" data-q-end="21">
+                                <div class="tf-question-line"><span class="tf-question-number">21</span><span class="tf-question-text">Eradicating malaria was a goal combined both medical and political significance.</span></div>
+                                <div class="tf-options">
+                                    <label class="tf-option"><input type="radio" name="q21" value="YES"> YES</label>
+                                    <label class="tf-option"><input type="radio" name="q21" value="NO"> NO</label>
+                                    <label class="tf-option"><input type="radio" name="q21" value="NOT GIVEN"> NOT GIVEN</label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="question" data-q-start="22" data-q-end="27">
+                            <div class="question-prompt">
+                                <p><strong>Questions 22-27</strong></p>
+                                <p>Reading Passage 2 has 8 paragraphs, A-H.</p>
+                                <p>Which paragraph contains the following information?</p>
+                                <p>Write the correct letter <strong>A-H</strong> in boxes 22-27 on your answer sheet.</p>
+                            </div>
+                            <div class="table-container">
+                                <table class="matching-table">
+                                    <thead>
+                                        <tr>
+                                            <th>Question</th>
+                                            <th>A</th>
+                                            <th>B</th>
+                                            <th>C</th>
+                                            <th>D</th>
+                                            <th>E</th>
+                                            <th>F</th>
+                                            <th>G</th>
+                                            <th>H</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td class="statement"><strong>22</strong> A breakthrough was found that mosquito was the carrier of malaria</td>
+                                            <td class="clickable-cell" data-question="22" data-value="A" onclick="selectCell(this, 22, 'A')"></td>
+                                            <td class="clickable-cell" data-question="22" data-value="B" onclick="selectCell(this, 22, 'B')"></td>
+                                            <td class="clickable-cell" data-question="22" data-value="C" onclick="selectCell(this, 22, 'C')"></td>
+                                            <td class="clickable-cell" data-question="22" data-value="D" onclick="selectCell(this, 22, 'D')"></td>
+                                            <td class="clickable-cell" data-question="22" data-value="E" onclick="selectCell(this, 22, 'E')"></td>
+                                            <td class="clickable-cell" data-question="22" data-value="F" onclick="selectCell(this, 22, 'F')"></td>
+                                            <td class="clickable-cell" data-question="22" data-value="G" onclick="selectCell(this, 22, 'G')"></td>
+                                            <td class="clickable-cell" data-question="22" data-value="H" onclick="selectCell(this, 22, 'H')"></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="statement"><strong>23</strong> A scientist intentionally failed to restrict the epidemic area.</td>
+                                            <td class="clickable-cell" data-question="23" data-value="A" onclick="selectCell(this, 23, 'A')"></td>
+                                            <td class="clickable-cell" data-question="23" data-value="B" onclick="selectCell(this, 23, 'B')"></td>
+                                            <td class="clickable-cell" data-question="23" data-value="C" onclick="selectCell(this, 23, 'C')"></td>
+                                            <td class="clickable-cell" data-question="23" data-value="D" onclick="selectCell(this, 23, 'D')"></td>
+                                            <td class="clickable-cell" data-question="23" data-value="E" onclick="selectCell(this, 23, 'E')"></td>
+                                            <td class="clickable-cell" data-question="23" data-value="F" onclick="selectCell(this, 23, 'F')"></td>
+                                            <td class="clickable-cell" data-question="23" data-value="G" onclick="selectCell(this, 23, 'G')"></td>
+                                            <td class="clickable-cell" data-question="23" data-value="H" onclick="selectCell(this, 23, 'H')"></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="statement"><strong>24</strong> This successful story still holds true for today's readers worldwide.</td>
+                                            <td class="clickable-cell" data-question="24" data-value="A" onclick="selectCell(this, 24, 'A')"></td>
+                                            <td class="clickable-cell" data-question="24" data-value="B" onclick="selectCell(this, 24, 'B')"></td>
+                                            <td class="clickable-cell" data-question="24" data-value="C" onclick="selectCell(this, 24, 'C')"></td>
+                                            <td class="clickable-cell" data-question="24" data-value="D" onclick="selectCell(this, 24, 'D')"></td>
+                                            <td class="clickable-cell" data-question="24" data-value="E" onclick="selectCell(this, 24, 'E')"></td>
+                                            <td class="clickable-cell" data-question="24" data-value="F" onclick="selectCell(this, 24, 'F')"></td>
+                                            <td class="clickable-cell" data-question="24" data-value="G" onclick="selectCell(this, 24, 'G')"></td>
+                                            <td class="clickable-cell" data-question="24" data-value="H" onclick="selectCell(this, 24, 'H')"></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="statement"><strong>25</strong> One of the final cases reported dying of malaria in Italy</td>
+                                            <td class="clickable-cell" data-question="25" data-value="A" onclick="selectCell(this, 25, 'A')"></td>
+                                            <td class="clickable-cell" data-question="25" data-value="B" onclick="selectCell(this, 25, 'B')"></td>
+                                            <td class="clickable-cell" data-question="25" data-value="C" onclick="selectCell(this, 25, 'C')"></td>
+                                            <td class="clickable-cell" data-question="25" data-value="D" onclick="selectCell(this, 25, 'D')"></td>
+                                            <td class="clickable-cell" data-question="25" data-value="E" onclick="selectCell(this, 25, 'E')"></td>
+                                            <td class="clickable-cell" data-question="25" data-value="F" onclick="selectCell(this, 25, 'F')"></td>
+                                            <td class="clickable-cell" data-question="25" data-value="G" onclick="selectCell(this, 25, 'G')"></td>
+                                            <td class="clickable-cell" data-question="25" data-value="H" onclick="selectCell(this, 25, 'H')"></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="statement"><strong>26</strong> the negative symptoms of the highly effective drug</td>
+                                            <td class="clickable-cell" data-question="26" data-value="A" onclick="selectCell(this, 26, 'A')"></td>
+                                            <td class="clickable-cell" data-question="26" data-value="B" onclick="selectCell(this, 26, 'B')"></td>
+                                            <td class="clickable-cell" data-question="26" data-value="C" onclick="selectCell(this, 26, 'C')"></td>
+                                            <td class="clickable-cell" data-question="26" data-value="D" onclick="selectCell(this, 26, 'D')"></td>
+                                            <td class="clickable-cell" data-question="26" data-value="E" onclick="selectCell(this, 26, 'E')"></td>
+                                            <td class="clickable-cell" data-question="26" data-value="F" onclick="selectCell(this, 26, 'F')"></td>
+                                            <td class="clickable-cell" data-question="26" data-value="G" onclick="selectCell(this, 26, 'G')"></td>
+                                            <td class="clickable-cell" data-question="26" data-value="H" onclick="selectCell(this, 26, 'H')"></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="statement"><strong>27</strong> A list of the speculative hypothesis was cited.</td>
+                                            <td class="clickable-cell" data-question="27" data-value="A" onclick="selectCell(this, 27, 'A')"></td>
+                                            <td class="clickable-cell" data-question="27" data-value="B" onclick="selectCell(this, 27, 'B')"></td>
+                                            <td class="clickable-cell" data-question="27" data-value="C" onclick="selectCell(this, 27, 'C')"></td>
+                                            <td class="clickable-cell" data-question="27" data-value="D" onclick="selectCell(this, 27, 'D')"></td>
+                                            <td class="clickable-cell" data-question="27" data-value="E" onclick="selectCell(this, 27, 'E')"></td>
+                                            <td class="clickable-cell" data-question="27" data-value="F" onclick="selectCell(this, 27, 'F')"></td>
+                                            <td class="clickable-cell" data-question="27" data-value="G" onclick="selectCell(this, 27, 'G')"></td>
+                                            <td class="clickable-cell" data-question="27" data-value="H" onclick="selectCell(this, 27, 'H')"></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="questions-3" class="question-set hidden">
+                    <div class="questions-container">
+                        <div class="question" data-q-start="28" data-q-end="31">
+                            <div class="question-prompt">
+                                <p><strong>Questions 28-31</strong></p>
+                                <p>Choose the correct letter, <strong>A, B, C or D</strong>.</p>
+                            </div>
+                            <div class="multi-choice-question" data-q-start="28" data-q-end="28">
+                                <div class="question-prompt">
+                                    <p><strong>28.</strong> What is the main purpose of paragraph ONE?</p>
+                                </div>
+                                <div class="multi-choice-option"><label><input type="radio" name="q28" value="A"> Introduction of professor James Paul Gee.</label></div>
+                                <div class="multi-choice-option"><label><input type="radio" name="q28" value="B"> Introduction of the video game: Pajamas Sam.</label></div>
+                                <div class="multi-choice-option"><label><input type="radio" name="q28" value="C"> Introduction of types of video games.</label></div>
+                                <div class="multi-choice-option"><label><input type="radio" name="q28" value="D"> Introduction of the background of this passage.</label></div>
+                            </div>
+                            <div class="multi-choice-question" data-q-start="29" data-q-end="29">
+                                <div class="question-prompt">
+                                    <p><strong>29.</strong> What does the author want to express in the second paragraph?</p>
+                                </div>
+                                <div class="multi-choice-option"><label><input type="radio" name="q29" value="A"> Video games are widely considered harmful for children's brain.</label></div>
+                                <div class="multi-choice-option"><label><input type="radio" name="q29" value="B"> Most violent video games are a direct reason for juvenile delinquency.</label></div>
+                                <div class="multi-choice-option"><label><input type="radio" name="q29" value="C"> Even there is a certain proportion of violence in most video games; scientists and psychologists see its benefits of children's intellectual abilities.</label></div>
+                                <div class="multi-choice-option"><label><input type="radio" name="q29" value="D"> Many parents regard video games as time-wasters, which rot children's brain.</label></div>
+                            </div>
+                            <div class="multi-choice-question" data-q-start="30" data-q-end="30">
+                                <div class="question-prompt">
+                                    <p><strong>30.</strong> What is correctly mentioned in paragraph four?</p>
+                                </div>
+                                <div class="multi-choice-option"><label><input type="radio" name="q30" value="A"> Some schools use video games to teach students abstract and high-level thinking.</label></div>
+                                <div class="multi-choice-option"><label><input type="radio" name="q30" value="B"> Video games improve brain ability in various aspects.</label></div>
+                                <div class="multi-choice-option"><label><input type="radio" name="q30" value="C"> some surgeons have better skills because they play more video games.</label></div>
+                                <div class="multi-choice-option"><label><input type="radio" name="q30" value="D"> Skillful fighter pilots in this generation love to play video games.</label></div>
+                            </div>
+                            <div class="multi-choice-question" data-q-start="31" data-q-end="31">
+                                <div class="question-prompt">
+                                    <p><strong>31.</strong> What is the expectation of the experiment the three researchers did?</p>
+                                </div>
+                                <div class="multi-choice-option"><label><input type="radio" name="q31" value="A"> Gamers have to make the best use of the limited resource.</label></div>
+                                <div class="multi-choice-option"><label><input type="radio" name="q31" value="B"> Gamers with better math skills will win in the end.</label></div>
+                                <div class="multi-choice-option"><label><input type="radio" name="q31" value="C"> Strategy game players have a better ability to make quick decisions.</label></div>
+                                <div class="multi-choice-option"><label><input type="radio" name="q31" value="D"> Video games help increase the speed of the players' reaction effectively.</label></div>
+                            </div>
+                        </div>
+
+                        <div class="question" data-q-start="32" data-q-end="35">
+                            <div class="question-prompt">
+                                <p><strong>Questions 32-35</strong></p>
+                                <p>Do the following statements agree with the information given in Reading Passage 3?</p>
+                                <p>In boxes 32-35 on your answer sheet, write</p>
+                                <ul style="list-style: none; padding-left: 0;">
+                                    <li><strong>TRUE</strong> if the statement is true</li>
+                                    <li><strong>FALSE</strong> if the statement is false</li>
+                                    <li><strong>NOT GIVEN</strong> if the information is not given in the passage</li>
+                                </ul>
+                            </div>
+                            <div class="tf-question" data-q-start="32" data-q-end="32">
+                                <div class="tf-question-line"><span class="tf-question-number">32</span><span class="tf-question-text">Most video games are popular because of their violent content.</span></div>
+                                <div class="tf-options">
+                                    <label class="tf-option"><input type="radio" name="q32" value="TRUE"> TRUE</label>
+                                    <label class="tf-option"><input type="radio" name="q32" value="FALSE"> FALSE</label>
+                                    <label class="tf-option"><input type="radio" name="q32" value="NOT GIVEN"> NOT GIVEN</label>
+                                </div>
+                            </div>
+                            <div class="tf-question" data-q-start="33" data-q-end="33">
+                                <div class="tf-question-line"><span class="tf-question-number">33</span><span class="tf-question-text">The action game players minimized the percentage of making mistakes in the experiment.</span></div>
+                                <div class="tf-options">
+                                    <label class="tf-option"><input type="radio" name="q33" value="TRUE"> TRUE</label>
+                                    <label class="tf-option"><input type="radio" name="q33" value="FALSE"> FALSE</label>
+                                    <label class="tf-option"><input type="radio" name="q33" value="NOT GIVEN"> NOT GIVEN</label>
+                                </div>
+                            </div>
+                            <div class="tf-question" data-q-start="34" data-q-end="34">
+                                <div class="tf-question-line"><span class="tf-question-number">34</span><span class="tf-question-text">It would be a good idea for schools to apply video games in their classrooms.</span></div>
+                                <div class="tf-options">
+                                    <label class="tf-option"><input type="radio" name="q34" value="TRUE"> TRUE</label>
+                                    <label class="tf-option"><input type="radio" name="q34" value="FALSE"> FALSE</label>
+                                    <label class="tf-option"><input type="radio" name="q34" value="NOT GIVEN"> NOT GIVEN</label>
+                                </div>
+                            </div>
+                            <div class="tf-question" data-q-start="35" data-q-end="35">
+                                <div class="tf-question-line"><span class="tf-question-number">35</span><span class="tf-question-text">Those people who are addicted to video games have lots of dopamine in their brains.</span></div>
+                                <div class="tf-options">
+                                    <label class="tf-option"><input type="radio" name="q35" value="TRUE"> TRUE</label>
+                                    <label class="tf-option"><input type="radio" name="q35" value="FALSE"> FALSE</label>
+                                    <label class="tf-option"><input type="radio" name="q35" value="NOT GIVEN"> NOT GIVEN</label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="question" data-q-start="36" data-q-end="40">
+                            <div class="question-prompt">
+                                <p><strong>Questions 36-40</strong></p>
+                                <p>Use the information in the passage to match the people (listed A-F) with opinions or deeds below.</p>
+                                <p>Write the appropriate letters <strong>A-F</strong> in boxes 36-40 on your answer sheet.</p>
+                                <ul style="list-style: none; padding-left: 0;">
+                                    <li><strong>A</strong> The writer's opinion</li>
+                                    <li><strong>B</strong> James Paul Gee</li>
+                                    <li><strong>C</strong> Shawn Green</li>
+                                    <li><strong>D</strong> Daphne Bavelier</li>
+                                    <li><strong>E</strong> Steven Johnson</li>
+                                    <li><strong>F</strong> Jacob Benjamin</li>
+                                </ul>
+                            </div>
+                            <div class="table-container">
+                                <table class="matching-table">
+                                    <thead>
+                                        <tr>
+                                            <th>Question</th>
+                                            <th>A</th>
+                                            <th>B</th>
+                                            <th>C</th>
+                                            <th>D</th>
+                                            <th>E</th>
+                                            <th>F</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td class="statement"><strong>36</strong> Video games as other daily life skills alter the brain's physical structure.</td>
+                                            <td class="clickable-cell" data-question="36" data-value="A" onclick="selectCell(this, 36, 'A')"></td>
+                                            <td class="clickable-cell" data-question="36" data-value="B" onclick="selectCell(this, 36, 'B')"></td>
+                                            <td class="clickable-cell" data-question="36" data-value="C" onclick="selectCell(this, 36, 'C')"></td>
+                                            <td class="clickable-cell" data-question="36" data-value="D" onclick="selectCell(this, 36, 'D')"></td>
+                                            <td class="clickable-cell" data-question="36" data-value="E" onclick="selectCell(this, 36, 'E')"></td>
+                                            <td class="clickable-cell" data-question="36" data-value="F" onclick="selectCell(this, 36, 'F')"></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="statement"><strong>37</strong> The brain is ready to make decisions without hesitation when players are immersed in playing stressful games.</td>
+                                            <td class="clickable-cell" data-question="37" data-value="A" onclick="selectCell(this, 37, 'A')"></td>
+                                            <td class="clickable-cell" data-question="37" data-value="B" onclick="selectCell(this, 37, 'B')"></td>
+                                            <td class="clickable-cell" data-question="37" data-value="C" onclick="selectCell(this, 37, 'C')"></td>
+                                            <td class="clickable-cell" data-question="37" data-value="D" onclick="selectCell(this, 37, 'D')"></td>
+                                            <td class="clickable-cell" data-question="37" data-value="E" onclick="selectCell(this, 37, 'E')"></td>
+                                            <td class="clickable-cell" data-question="37" data-value="F" onclick="selectCell(this, 37, 'F')"></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="statement"><strong>38</strong> The purpose-motivated experience that video games offer plays an essential role in studying.</td>
+                                            <td class="clickable-cell" data-question="38" data-value="A" onclick="selectCell(this, 38, 'A')"></td>
+                                            <td class="clickable-cell" data-question="38" data-value="B" onclick="selectCell(this, 38, 'B')"></td>
+                                            <td class="clickable-cell" data-question="38" data-value="C" onclick="selectCell(this, 38, 'C')"></td>
+                                            <td class="clickable-cell" data-question="38" data-value="D" onclick="selectCell(this, 38, 'D')"></td>
+                                            <td class="clickable-cell" data-question="38" data-value="E" onclick="selectCell(this, 38, 'E')"></td>
+                                            <td class="clickable-cell" data-question="38" data-value="F" onclick="selectCell(this, 38, 'F')"></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="statement"><strong>39</strong> Players are good at tackling prompt issues with future intentions.</td>
+                                            <td class="clickable-cell" data-question="39" data-value="A" onclick="selectCell(this, 39, 'A')"></td>
+                                            <td class="clickable-cell" data-question="39" data-value="B" onclick="selectCell(this, 39, 'B')"></td>
+                                            <td class="clickable-cell" data-question="39" data-value="C" onclick="selectCell(this, 39, 'C')"></td>
+                                            <td class="clickable-cell" data-question="39" data-value="D" onclick="selectCell(this, 39, 'D')"></td>
+                                            <td class="clickable-cell" data-question="39" data-value="E" onclick="selectCell(this, 39, 'E')"></td>
+                                            <td class="clickable-cell" data-question="39" data-value="F" onclick="selectCell(this, 39, 'F')"></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="statement"><strong>40</strong> It helps children broaden their horizon in many aspects and gain self-confidence.</td>
+                                            <td class="clickable-cell" data-question="40" data-value="A" onclick="selectCell(this, 40, 'A')"></td>
+                                            <td class="clickable-cell" data-question="40" data-value="B" onclick="selectCell(this, 40, 'B')"></td>
+                                            <td class="clickable-cell" data-question="40" data-value="C" onclick="selectCell(this, 40, 'C')"></td>
+                                            <td class="clickable-cell" data-question="40" data-value="D" onclick="selectCell(this, 40, 'D')"></td>
+                                            <td class="clickable-cell" data-question="40" data-value="E" onclick="selectCell(this, 40, 'E')"></td>
+                                            <td class="clickable-cell" data-question="40" data-value="F" onclick="selectCell(this, 40, 'F')"></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navigation Arrows -->
+    <div class="nav-arrows">
+        <button class="nav-arrow prev" onclick="previousQuestion()" id="prevBtn" aria-label="Previous question">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M15 18l-6-6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+        </button>
+        <button class="nav-arrow next" onclick="nextQuestion()" id="nextBtn" aria-label="Next question">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M9 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+        </button>
+    </div>
+
+    <!-- Bottom Navigation -->
+    <nav class="nav-row perScorableItem" aria-label="Questions">
+        <div class="footer__questionWrapper___1tZ46 selected multiple" role="tablist">
+            <button role="tab" class="footer__questionNo___3WNct" onclick="switchToPart(1)">
+                <span>
+                    <span aria-hidden="true" class="section-prefix">Part </span>
+                    <span class="sectionNr" aria-hidden="true">1</span>
+                    <span class="attemptedCount" aria-hidden="true">0 of 13</span>
+                </span>
+            </button>
+            <div class="footer__subquestionWrapper___9GgoP">
+                <button class="subQuestion scorable-item" onclick="goToQuestion(1)"><span class="sr-only">Question 1</span><span aria-hidden="true">1</span></button>
+                <button class="subQuestion scorable-item" onclick="goToQuestion(2)"><span class="sr-only">Question 2</span><span aria-hidden="true">2</span></button>
+                <button class="subQuestion scorable-item" onclick="goToQuestion(3)"><span class="sr-only">Question 3</span><span aria-hidden="true">3</span></button>
+                <button class="subQuestion scorable-item" onclick="goToQuestion(4)"><span class="sr-only">Question 4</span><span aria-hidden="true">4</span></button>
+                <button class="subQuestion scorable-item" onclick="goToQuestion(5)"><span class="sr-only">Question 5</span><span aria-hidden="true">5</span></button>
+                <button class="subQuestion scorable-item" onclick="goToQuestion(6)"><span class="sr-only">Question 6</span><span aria-hidden="true">6</span></button>
+                <button class="subQuestion scorable-item" onclick="goToQuestion(7)"><span class="sr-only">Question 7</span><span aria-hidden="true">7</span></button>
+                <button class="subQuestion scorable-item" onclick="goToQuestion(8)"><span class="sr-only">Question 8</span><span aria-hidden="true">8</span></button>
+                <button class="subQuestion scorable-item" onclick="goToQuestion(9)"><span class="sr-only">Question 9</span><span aria-hidden="true">9</span></button>
+                <button class="subQuestion scorable-item" onclick="goToQuestion(10)"><span class="sr-only">Question 10</span><span aria-hidden="true">10</span></button>
+                <button class="subQuestion scorable-item" onclick="goToQuestion(11)"><span class="sr-only">Question 11</span><span aria-hidden="true">11</span></button>
+                <button class="subQuestion scorable-item" onclick="goToQuestion(12)"><span class="sr-only">Question 12</span><span aria-hidden="true">12</span></button>
+                <button class="subQuestion scorable-item" onclick="goToQuestion(13)"><span class="sr-only">Question 13</span><span aria-hidden="true">13</span></button>
+            </div>
+        </div>
+        
+        <div class="footer__questionWrapper___1tZ46 multiple" role="tablist">
+            <button role="tab" class="footer__questionNo___3WNct" onclick="switchToPart(2)">
+                <span>
+                    <span aria-hidden="true" class="section-prefix">Part </span>
+                    <span class="sectionNr" aria-hidden="true">2</span>
+                    <span class="attemptedCount" aria-hidden="true">0 of 14</span>
+                </span>
+            </button>
+            <div class="footer__subquestionWrapper___9GgoP">
+                <button class="subQuestion scorable-item" onclick="goToQuestion(14)"><span class="sr-only">Question 14</span><span aria-hidden="true">14</span></button>
+                <button class="subQuestion scorable-item" onclick="goToQuestion(15)"><span class="sr-only">Question 15</span><span aria-hidden="true">15</span></button>
+                <button class="subQuestion scorable-item" onclick="goToQuestion(16)"><span class="sr-only">Question 16</span><span aria-hidden="true">16</span></button>
+                <button class="subQuestion scorable-item" onclick="goToQuestion(17)"><span class="sr-only">Question 17</span><span aria-hidden="true">17</span></button>
+                <button class="subQuestion scorable-item" onclick="goToQuestion(18)"><span class="sr-only">Question 18</span><span aria-hidden="true">18</span></button>
+                <button class="subQuestion scorable-item" onclick="goToQuestion(19)"><span class="sr-only">Question 19</span><span aria-hidden="true">19</span></button>
+                <button class="subQuestion scorable-item" onclick="goToQuestion(20)"><span class="sr-only">Question 20</span><span aria-hidden="true">20</span></button>
+                <button class="subQuestion scorable-item" onclick="goToQuestion(21)"><span class="sr-only">Question 21</span><span aria-hidden="true">21</span></button>
+                <button class="subQuestion scorable-item" onclick="goToQuestion(22)"><span class="sr-only">Question 22</span><span aria-hidden="true">22</span></button>
+                <button class="subQuestion scorable-item" onclick="goToQuestion(23)"><span class="sr-only">Question 23</span><span aria-hidden="true">23</span></button>
+                <button class="subQuestion scorable-item" onclick="goToQuestion(24)"><span class="sr-only">Question 24</span><span aria-hidden="true">24</span></button>
+                <button class="subQuestion scorable-item" onclick="goToQuestion(25)"><span class="sr-only">Question 25</span><span aria-hidden="true">25</span></button>
+                <button class="subQuestion scorable-item" onclick="goToQuestion(26)"><span class="sr-only">Question 26</span><span aria-hidden="true">26</span></button>
+                <button class="subQuestion scorable-item" onclick="goToQuestion(27)"><span class="sr-only">Question 27</span><span aria-hidden="true">27</span></button>
+            </div>
+        </div>
+        
+        <div class="footer__questionWrapper___1tZ46 multiple" role="tablist">
+            <button role="tab" class="footer__questionNo___3WNct" onclick="switchToPart(3)">
+                <span>
+                    <span aria-hidden="true" class="section-prefix">Part </span>
+                    <span class="sectionNr" aria-hidden="true">3</span>
+                    <span class="attemptedCount" aria-hidden="true">0 of 13</span>
+                </span>
+            </button>
+            <div class="footer__subquestionWrapper___9GgoP">
+                <button class="subQuestion scorable-item" onclick="goToQuestion(28)"><span class="sr-only">Question 28</span><span aria-hidden="true">28</span></button>
+                <button class="subQuestion scorable-item" onclick="goToQuestion(29)"><span class="sr-only">Question 29</span><span aria-hidden="true">29</span></button>
+                <button class="subQuestion scorable-item" onclick="goToQuestion(30)"><span class="sr-only">Question 30</span><span aria-hidden="true">30</span></button>
+                <button class="subQuestion scorable-item" onclick="goToQuestion(31)"><span class="sr-only">Question 31</span><span aria-hidden="true">31</span></button>
+                <button class="subQuestion scorable-item" onclick="goToQuestion(32)"><span class="sr-only">Question 32</span><span aria-hidden="true">32</span></button>
+                <button class="subQuestion scorable-item" onclick="goToQuestion(33)"><span class="sr-only">Question 33</span><span aria-hidden="true">33</span></button>
+                <button class="subQuestion scorable-item" onclick="goToQuestion(34)"><span class="sr-only">Question 34</span><span aria-hidden="true">34</span></button>
+                <button class="subQuestion scorable-item" onclick="goToQuestion(35)"><span class="sr-only">Question 35</span><span aria-hidden="true">35</span></button>
+                <button class="subQuestion scorable-item" onclick="goToQuestion(36)"><span class="sr-only">Question 36</span><span aria-hidden="true">36</span></button>
+                <button class="subQuestion scorable-item" onclick="goToQuestion(37)"><span class="sr-only">Question 37</span><span aria-hidden="true">37</span></button>
+                <button class="subQuestion scorable-item" onclick="goToQuestion(38)"><span class="sr-only">Question 38</span><span aria-hidden="true">38</span></button>
+                <button class="subQuestion scorable-item" onclick="goToQuestion(39)"><span class="sr-only">Question 39</span><span aria-hidden="true">39</span></button>
+                <button class="subQuestion scorable-item" onclick="goToQuestion(40)"><span class="sr-only">Question 40</span><span aria-hidden="true">40</span></button>
+            </div>
+        </div>
+        
+        <button id="deliver-button" aria-label="Review your answers" class="footer__deliverButton___3FM07">
+            <i class="fa fa fa-check" aria-hidden="true"></i>
+            <span>Check Answers</span>
+        </button>
+    </nav>
+
+    <!-- Context Menu -->
+    <div id="contextMenu" class="context-menu">
+        <div id="menu-highlight" class="context-menu-item" onclick="highlightText()">
+            Highlight
+        </div>
+        <div id="menu-note" class="context-menu-item" onclick="addNote()">
+            Note
+        </div>
+        <div id="menu-clear" class="context-menu-item" onclick="clearHighlight()">
+            Clear Highlight
+        </div>
+        <div id="menu-clear-all" class="context-menu-item" onclick="clearAllHighlights()">
+            Clear All Highlights
+        </div>
+    </div>
+
+    <!-- Results Modal -->
+    <div id="results-modal" class="modal-overlay hidden">
+        <div class="modal-content">
+            <button class="modal-close-btn" onclick="closeResultsModal()">&times;</button>
+            <h2>Results</h2>
+            <div class="results-summary">
+                <p>Score: <span id="results-score"></span> / 40</p>
+                <p>IELTS Band: <span id="results-band"></span></p>
+            </div>
+            <div id="results-details" class="results-details-container">
+                <!-- Results for each question will be injected here -->
+            </div>
+        </div>
+    </div>
+
+    <script>
+    document.addEventListener('DOMContentLoaded', () => {
+        // --- STATE VARIABLES ---
+        let currentPassage = 1;
+        let currentQuestion = 1;
+        let timeInSeconds = 3600;
+        let timerInterval;
+        let activeQuestionElement = null;
+        let selectedRange = null;
+
+        // --- DOM ELEMENTS ---
+        const timerDisplay = document.querySelector('.timer-display');
+        const timerToggleButton = document.getElementById('timer-toggle-btn');
+        const timerResetButton = document.getElementById('timer-reset-btn');
+        const deliverButton = document.getElementById('deliver-button');
+        const resizer = document.getElementById('resizer');
+        const passagePanel = document.getElementById('passage-panel');
+        const questionsPanel = document.getElementById('questions-panel');
+        const contextMenu = document.getElementById('contextMenu');
+
+        // --- ICON SVGs ---
+        const playIcon = '<svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M8 5v14l11-7L8 5z"/></svg>';
+        const pauseIcon = '<svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>';
+
+        // --- ANSWERS ---
+        const correctAnswers = {
+            // Part 1 (1-13) - Rural transport plan of "Practical action"
+            '1': 'YES',
+            '2': 'NO',
+            '3': 'NOT GIVEN',
+            '4': 'YES',
+            '5': 'construction of roads',
+            '6': 'cycle trailers',
+            '7': 'bus service',
+            '8': 'aerial ropeway',
+            '9': 'library',
+            '10': 'cushions',
+            '11': 'family member',
+            '12': 'joining mechanism',
+            '13': 'cover',
+            // Part 2 (14-27) - Malaria Combat in Italy
+            '14': 'insects',
+            '15': 'unclean air',
+            '16': 'hereditary',
+            '17': 'life expectancy',
+            '18': 'NOT GIVEN',
+            '19': 'YES',
+            '20': 'YES',
+            '21': 'YES',
+            '22': 'C',
+            '23': 'F',
+            '24': 'H',
+            '25': 'G',
+            '26': 'D',
+            '27': 'B',
+            // Part 3 (28-40) - Video Games' Unexpected Benefits to Human Brain
+            '28': 'D',
+            '29': 'C',
+            '30': 'B',
+            '31': 'D',
+            '32': 'NOT GIVEN',
+            '33': 'NOT GIVEN',
+            '34': 'NOT GIVEN',
+            '35': 'NOT GIVEN',
+            '36': 'C',
+            '37': 'D',
+            '38': 'B',
+            '39': 'E',
+            '40': 'A'
+        };
+
+        // --- INITIALIZATION ---
+        function initialize() {
+            startTimer();
+            initializeContextMenu();
+            switchToPart(1);
+            
+            document.body.addEventListener('input', updateAllIndicators);
+            document.body.addEventListener('change', updateAllIndicators);
+            deliverButton.addEventListener('click', checkAnswers);
+            timerToggleButton.addEventListener('click', toggleTimer);
+            timerResetButton.addEventListener('click', resetTimer);
+
+            // Add click listeners to question containers for navigation
+            document.querySelectorAll('[data-q-start]').forEach(el => {
+                el.addEventListener('click', (event) => {
+                    event.stopPropagation();
+                    const qNum = parseInt(el.dataset.qStart, 10);
+                    const qEnd = parseInt(el.dataset.qEnd, 10);
+                    
+                    if (isNaN(qNum)) return;
+                    
+                    if (qNum === qEnd || el.classList.contains('tf-question') || el.classList.contains('multi-choice-question')) {
+                        if (currentQuestion !== qNum) {
+                            goToQuestion(qNum);
+                        }
+                    }
+                });
+            });
+
+            resizer.addEventListener('mousedown', initResize, false);
+        }
+
+        // --- CONTEXT MENU FUNCTIONS ---
+        function initializeContextMenu() {
+            const panels = [passagePanel, questionsPanel];
+            let targetElementForClear = null;
+
+            // Track text selection
+            document.addEventListener('selectionchange', () => {
+                const selection = window.getSelection();
+                if (selection && !selection.isCollapsed && selection.toString().trim().length > 0) {
+                    const range = selection.getRangeAt(0);
+                    if (panels.some(panel => panel.contains(range.commonAncestorContainer))) {
+                        selectedRange = range;
+                        targetElementForClear = null;
+                    }
+                }
+            });
+
+            const showContextMenu = (e) => {
+                const target = e.target;
+                const isClickOnHighlight = target.closest('.highlight, .comment-highlight');
+                const isSelectionActive = selectedRange && selectedRange.toString().trim().length > 0;
+                
+                let showMenu = false;
+
+                if (isClickOnHighlight) {
+                    document.getElementById('menu-highlight').style.display = 'none';
+                    document.getElementById('menu-note').style.display = 'none';
+                    document.getElementById('menu-clear').style.display = 'flex';
+                    document.getElementById('menu-clear-all').style.display = 'flex';
+                    contextMenu.targetElementForClear = isClickOnHighlight;
+                    showMenu = true;
+                } else if (isSelectionActive && panels.some(panel => panel.contains(selectedRange.commonAncestorContainer))) {
+                    document.getElementById('menu-highlight').style.display = 'flex';
+                    document.getElementById('menu-note').style.display = 'flex';
+                    document.getElementById('menu-clear').style.display = 'none';
+                    document.getElementById('menu-clear-all').style.display = 'flex';
+                    showMenu = true;
+                }
+
+                if (showMenu) {
+                    e.preventDefault();
+                    contextMenu.style.display = 'block';
+                    const menuHeight = contextMenu.offsetHeight;
+                    const menuWidth = contextMenu.offsetWidth;
+                    let left = e.pageX;
+                    let top = e.pageY;
+                    if (left + menuWidth > window.innerWidth) left = window.innerWidth - menuWidth - 5;
+                    if (top + menuHeight > window.innerHeight) top = e.pageY - menuHeight - 5;
+                    else top = e.pageY - menuHeight - 5;
+                    
+                    contextMenu.style.left = `${left}px`;
+                    contextMenu.style.top = `${top}px`;
+                }
+            };
+
+            panels.forEach(panel => {
+                panel.addEventListener('contextmenu', showContextMenu);
+            });
+
+            document.addEventListener('click', (e) => {
+                if (contextMenu.style.display === 'block' && !contextMenu.contains(e.target)) {
+                    closeContextMenu();
+                }
+            });
+        }
+
+        function closeContextMenu() {
+            contextMenu.style.display = 'none';
+            selectedRange = null;
+        }
+
+        function unwrapElement(element) {
+            const parent = element.parentNode;
+            if (!parent) return;
+            while (element.firstChild) {
+                parent.insertBefore(element.firstChild, element);
+            }
+            parent.removeChild(element);
+            parent.normalize();
+        }
+
+        window.highlightText = () => {
+            if (selectedRange && !selectedRange.collapsed) {
+                const span = document.createElement('span');
+                span.className = 'highlight';
+                span.appendChild(selectedRange.extractContents());
+                selectedRange.insertNode(span);
+            }
+            closeContextMenu();
+            window.getSelection().removeAllRanges();
+        };
+
+        window.addNote = () => {
+            const note = prompt('Enter your note:');
+            if (note && selectedRange && !selectedRange.collapsed) {
+                const span = document.createElement('span');
+                span.className = 'comment-highlight';
+                const tooltip = document.createElement('span');
+                tooltip.className = 'comment-tooltip';
+                tooltip.textContent = note;
+                span.appendChild(selectedRange.extractContents());
+                span.appendChild(tooltip);
+                selectedRange.insertNode(span);
+            }
+            closeContextMenu();
+            window.getSelection().removeAllRanges();
+        };
+
+        window.clearHighlight = () => {
+            const elementToClear = contextMenu.targetElementForClear;
+            if (elementToClear) {
+                unwrapElement(elementToClear);
+            }
+            closeContextMenu();
+            window.getSelection().removeAllRanges();
+        };
+        
+        window.clearAllHighlights = () => {
+            document.querySelectorAll('.highlight, .comment-highlight').forEach(unwrapElement);
+            closeContextMenu();
+            window.getSelection().removeAllRanges();
+        };
+
+        // --- CORE TEST LOGIC ---
+
+        function checkAnswers() {
+            // Disable all inputs to prevent changes
+            const allInputs = document.querySelectorAll('input, select, textarea');
+            allInputs.forEach(input => {
+                input.disabled = true;
+            });
+
+            // Disable submit button
+            deliverButton.disabled = true;
+            deliverButton.style.cursor = 'not-allowed';
+            
+            clearInterval(timerInterval);
+            let score = 0;
+            const totalQuestions = 40;
+            const resultsDetailsContainer = document.getElementById('results-details');
+            resultsDetailsContainer.innerHTML = '';
+
+            // Clear previous results
+            document.querySelectorAll('.correct, .incorrect, .correct-answer-highlight').forEach(el => {
+                el.classList.remove('correct', 'incorrect', 'correct-answer-highlight');
+            });
+            document.querySelectorAll('.correct-answer-display').forEach(el => el.remove());
+
+            for (let i = 1; i <= totalQuestions; i++) {
+                const questionKey = String(i);
+                const correctAnswer = correctAnswers[questionKey];
+                let userAnswer = '';
+                let isCorrect = false;
+                let userAnswerDisplay = 'Not Answered';
+                const correctAnswerText = Array.isArray(correctAnswer) ? correctAnswer.join(' / ') : correctAnswer;
+
+                // Handle text inputs (Questions 5-13, 14-17)
+                const textInput = document.getElementById(`q${i}`);
+                if (textInput) {
+                    userAnswer = textInput.value.trim().toLowerCase();
+                    userAnswerDisplay = userAnswer || 'Not Answered';
+                    
+                    if (Array.isArray(correctAnswer)) {
+                        isCorrect = correctAnswer.some(ans => ans.toLowerCase() === userAnswer);
+                    } else {
+                        isCorrect = userAnswer === correctAnswer.toLowerCase();
+                    }
+                    
+                    if (isCorrect) {
+                        score++;
+                        textInput.classList.add('correct');
+                    } else {
+                        textInput.classList.add('incorrect');
+                        const correctAnswerSpan = document.createElement('span');
+                        correctAnswerSpan.className = 'correct-answer-display';
+                        correctAnswerSpan.innerHTML = `&nbsp;➜&nbsp;<span class="correct-answer-highlight">${correctAnswerText}</span>`;
+                        textInput.parentNode.insertBefore(correctAnswerSpan, textInput.nextSibling);
+                    }
+                }
+                // Handle radio button questions (YES/NO/NOT GIVEN, TRUE/FALSE/NOT GIVEN, Multiple Choice)
+                else {
+                    const radioGroup = document.querySelectorAll(`input[name="q${i}"][type="radio"]`);
+                    if (radioGroup.length > 0) {
+                        const checkedRadio = document.querySelector(`input[name="q${i}"]:checked`);
+                        
+                        if (checkedRadio) {
+                            userAnswer = checkedRadio.value;
+                            userAnswerDisplay = userAnswer;
+                            isCorrect = userAnswer === correctAnswer;
+
+                            const userLabel = checkedRadio.closest('.tf-option, .multi-choice-option');
+                            if (userLabel) {
+                                userLabel.classList.add(isCorrect ? 'correct' : 'incorrect');
+                            }
+                            
+                            // Handle table radio buttons for matching questions
+                            if (checkedRadio.classList.contains('table-radio')) {
+                                const tableCell = checkedRadio.closest('td');
+                                if (tableCell) {
+                                    tableCell.classList.add(isCorrect ? 'correct' : 'incorrect');
+                                }
+                            }
+                        }
+
+                        if (isCorrect) {
+                            score++;
+                        } else {
+                            // Highlight correct answer
+                            const correctOptionEl = document.querySelector(`input[name="q${i}"][value="${correctAnswer}"]`);
+                            if (correctOptionEl) {
+                                const correctLabel = correctOptionEl.closest('.tf-option, .multi-choice-option');
+                                if (correctLabel) {
+                                    correctLabel.classList.add('correct-answer-highlight');
+                                }
+                            }
+                        }
+                    }
+                    // Handle clickable-cell matching questions (22-27, 36-40)
+                    else {
+                        const selectedCell = document.querySelector(`.clickable-cell[data-question="${i}"][data-selected="true"]`);
+                        if (selectedCell) {
+                            userAnswer = selectedCell.dataset.value;
+                            userAnswerDisplay = userAnswer;
+                            isCorrect = userAnswer === correctAnswer;
+                            
+                            selectedCell.classList.add(isCorrect ? 'correct' : 'incorrect');
+                            
+                            if (isCorrect) {
+                                score++;
+                            }
+                        }
+                        
+                        // Handle highlighting correct answers for incorrect responses
+                        if (!isCorrect) {
+                            const correctCell = document.querySelector(`.clickable-cell[data-question="${i}"][data-value="${correctAnswer}"]`);
+                            if (correctCell) {
+                                correctCell.classList.add('correct-answer-highlight');
+                            }
+                        }
+                    }
+                }
+                
+                // Add result to modal
+                const resultRow = `
+                    <div class="result-row ${isCorrect ? '' : 'incorrect'}">
+                        <span class="q-num">${i}</span>
+                        <span class="user-ans">${userAnswerDisplay}</span>
+                        <span class="correct-ans">${correctAnswerText}</span>
+                    </div>`;
+                resultsDetailsContainer.innerHTML += resultRow;
+                
+                // Update nav button color
+                const navButton = document.querySelector(`.subQuestion[onclick="goToQuestion(${i})"]`);
+                if (navButton) {
+                    navButton.classList.remove('answered', 'active');
+                    navButton.classList.add(isCorrect ? 'correct' : 'incorrect');
+                }
+            }
+
+            document.getElementById('results-score').textContent = score;
+            document.getElementById('results-band').textContent = calculateBandScore(score);
+            document.body.classList.add('results-mode');
+            document.getElementById('results-modal').classList.remove('hidden');
+            
+            // Change button to "My Result" with green styling
+            deliverButton.innerHTML = `<span>My Result</span>`;
+            deliverButton.style.backgroundColor = '#4CAF50';
+            deliverButton.style.color = 'white';
+            deliverButton.style.borderColor = '#4CAF50';
+            deliverButton.disabled = false;
+            deliverButton.style.cursor = 'pointer';
+            deliverButton.removeEventListener('click', checkAnswers);
+            deliverButton.addEventListener('click', showResultsModal);
+        }
+
+        function calculateBandScore(score) {
+            if (score >= 39) return '9.0';
+            const mapping = {
+                40: 9.0, 39: 9.0, 38: 8.5, 37: 8.5, 36: 8.0, 35: 8.0, 34: 7.5,
+                33: 7.5, 32: 7.0, 31: 7.0, 30: 7.0, 29: 6.5, 28: 6.5, 27: 6.5,
+                26: 6.0, 25: 6.0, 24: 6.0, 23: 5.5, 22: 5.5, 21: 5.5, 20: 5.5,
+                19: 5.0, 18: 5.0, 17: 5.0, 16: 5.0, 15: 5.0, 14: 4.5, 13: 4.5,
+                12: 4.0, 11: 4.0, 10: 4.0, 9: 3.5, 8: 3.5, 7: 3.0, 6: 3.0,
+                5: 2.5, 4: 2.5
+            };
+            if (score <= 0) return 0.0;
+            if (score === 1) return 1.0;
+            if (score <= 3) return 2.0;
+            if (score <= 5) return 2.5;
+            return mapping[score] || 0.0;
+        }
+
+        function showResultsModal() {
+            document.getElementById('results-modal').classList.remove('hidden');
+        }
+
+        window.closeResultsModal = function() {
+            document.getElementById('results-modal').classList.add('hidden');
+            document.body.classList.remove('results-mode');
+        }
+
+        function switchToPart(partNumber) {
+            currentPassage = partNumber;
+
+            // Hide all passages and questions
+            document.querySelectorAll('.reading-passage, .question-set, .part-header').forEach(el => {
+                el.classList.add('hidden');
+            });
+
+            // Show the correct passage, questions, and header
+            document.getElementById(`passage-text-${partNumber}`).classList.remove('hidden');
+            document.getElementById(`questions-${partNumber}`).classList.remove('hidden');
+            document.getElementById(`part-header-${partNumber}`).classList.remove('hidden');
+
+            // Update bottom navigation 'selected' state
+            document.querySelectorAll('.footer__questionWrapper___1tZ46').forEach((wrapper, index) => {
+                wrapper.classList.toggle('selected', (index + 1) === partNumber);
+            });
+
+            // Go to first question of the part
+            const firstQuestionOfPart = {1: 1, 2: 14, 3: 28}[partNumber];
+            goToQuestion(firstQuestionOfPart);
+        }
+        
+        function goToQuestion(questionNumber) {
+            currentQuestion = questionNumber;
+
+            let passageNumber = 1;
+            if (questionNumber >= 14 && questionNumber <= 27) passageNumber = 2;
+            else if (questionNumber >= 28) passageNumber = 3;
+            
+            if (currentPassage !== passageNumber) {
+                switchToPart(passageNumber);
+                return;
+            }
+
+            if (activeQuestionElement) {
+                activeQuestionElement.classList.remove('active-question', 'active-input');
+                const prevBlock = activeQuestionElement.closest('[data-q-start]');
+                if (prevBlock) prevBlock.classList.remove('active-question');
+            }
+
+            // Find and activate the target element
+            let targetEl = document.getElementById(`q${questionNumber}`);
+            if (targetEl) {
+                activeQuestionElement = targetEl;
+                targetEl.classList.add('active-input');
+                scrollIntoViewIfNeeded(targetEl);
+            } else {
+                targetEl = document.querySelector(`[data-q-start="${questionNumber}"]`);
+                if (targetEl) {
+                    activeQuestionElement = targetEl;
+                    targetEl.classList.add('active-question');
+                    scrollIntoViewIfNeeded(targetEl);
+                }
+            }
+
+            updateNavigation();
+        }
+        
+        // --- UI & NAVIGATION ---
+
+        function updateNavigation() {
+            const navButtons = document.querySelectorAll('.subQuestion');
+            navButtons.forEach(btn => btn.classList.remove('active'));
+            const activeNav = document.querySelector(`.subQuestion[onclick="goToQuestion(${currentQuestion})"]`);
+            if (activeNav) {
+                activeNav.classList.add('active');
+            }
+
+            // Focus on active input
+            const activeInput = document.getElementById(`q${currentQuestion}`);
+            if (activeInput) {
+                activeInput.classList.add('active-input');
+                if (typeof activeInput.focus === 'function') {
+                    activeInput.focus();
+                }
+            }
+        }
+        
+        window.nextQuestion = () => currentQuestion < 40 && goToQuestion(currentQuestion + 1);
+        window.previousQuestion = () => currentQuestion > 1 && goToQuestion(currentQuestion - 1);
+
+        function updateAllIndicators() {
+            updateAttemptedCount(1, 1, 13);
+            updateAttemptedCount(2, 14, 27);
+            updateAttemptedCount(3, 28, 40);
+            updateAnsweredNav();
+        }
+        
+        function updateAnsweredNav() {
+            const navButtons = document.querySelectorAll('.subQuestion');
+            navButtons.forEach(btn => {
+                const qNum = parseInt(btn.textContent, 10);
+                if (isQuestionAnswered(qNum)) {
+                    btn.classList.add('answered');
+                } else {
+                    btn.classList.remove('answered');
+                }
+            });
+        }
+        
+        function isQuestionAnswered(qNum) {
+            const textInput = document.getElementById(`q${qNum}`);
+            if (textInput && textInput.value.trim() !== '') {
+                return true;
+            }
+            
+            const radio = document.querySelector(`input[name="q${qNum}"]:checked`);
+            if (radio) {
+                return true;
+            }
+            
+            const selectedCell = document.querySelector(`.clickable-cell[data-question="${qNum}"][data-selected="true"]`);
+            if (selectedCell) {
+                return true;
+            }
+            
+            return false;
+        }
+
+        function updateAttemptedCount(part, startQ, endQ) {
+            let answeredCount = 0;
+            for (let i = startQ; i <= endQ; i++) {
+                if (isQuestionAnswered(i)) {
+                    answeredCount++;
+                }
+            }
+            const partHeader = document.querySelector(`.footer__questionNo___3WNct[onclick="switchToPart(${part})"]`);
+            if (partHeader) {
+                const countSpan = partHeader.querySelector('.attemptedCount');
+                if (countSpan) {
+                     countSpan.textContent = `${answeredCount} of ${endQ - startQ + 1}`;
+                }
+            }
+        }
+
+        function scrollIntoViewIfNeeded(element) {
+            const panel = element.closest('.questions-panel, .passage-panel');
+            const panelRect = panel.getBoundingClientRect();
+            const elementRect = element.getBoundingClientRect();
+            if (elementRect.top < panelRect.top || elementRect.bottom > panelRect.bottom) {
+                element.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }
+        }
+
+        // --- TIMER FUNCTIONS ---
+        
+        function startTimer() {
+            if (timerInterval) clearInterval(timerInterval);
+            timerInterval = setInterval(() => {
+                timeInSeconds--;
+                const minutes = Math.floor(timeInSeconds / 60);
+                const seconds = timeInSeconds % 60;
+                timerDisplay.textContent = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+                if (timeInSeconds <= 0) {
+                    clearInterval(timerInterval);
+                    timerDisplay.textContent = "Time's up!";
+                }
+            }, 1000);
+            timerToggleButton.innerHTML = pauseIcon;
+        }
+
+        function pauseTimer() {
+            clearInterval(timerInterval);
+            timerToggleButton.innerHTML = playIcon;
+        }
+
+        function toggleTimer() {
+            if (timerToggleButton.innerHTML.includes('M6 19h4V5H6v14z')) {
+                pauseTimer();
+            } else {
+                startTimer();
+            }
+        }
+
+        function resetTimer() {
+            timeInSeconds = 3600;
+            const minutes = Math.floor(timeInSeconds / 60);
+            const seconds = timeInSeconds % 60;
+            timerDisplay.textContent = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+            startTimer();
+            timerToggleButton.innerHTML = pauseIcon;
+        }
+        
+        function initResize(e) {
+            e.preventDefault();
+            const startX = e.clientX;
+            const startWidth = passagePanel.offsetWidth;
+            
+            const doDrag = (e) => {
+                const newWidth = startWidth + e.clientX - startX;
+                if (newWidth > 200 && (document.body.clientWidth - newWidth - resizer.offsetWidth) > 200) {
+                    passagePanel.style.flex = `0 0 ${newWidth}px`;
+                }
+            };
+            const stopDrag = () => {
+                window.removeEventListener('mousemove', doDrag, false);
+                window.removeEventListener('mouseup', stopDrag, false);
+            };
+            
+            window.addEventListener('mousemove', doDrag, false);
+            window.addEventListener('mouseup', stopDrag, false);
+        }
+
+        // Global function for selecting cells in matching tables
+        window.selectCell = function(cell, questionNum, value) {
+            // Remove selected class from all cells in the same row
+            const row = cell.closest('tr');
+            const cellsInRow = row.querySelectorAll('.clickable-cell');
+            cellsInRow.forEach(c => {
+                c.classList.remove('selected');
+                c.removeAttribute('data-selected');
+                c.removeAttribute('data-answer');
+            });
+            
+            // Add selected class to clicked cell
+            cell.classList.add('selected');
+            cell.setAttribute('data-selected', 'true');
+            cell.setAttribute('data-answer', value);
+            cell.setAttribute('data-value', value);
+            
+            updateAllIndicators();
+        };
+
+        // --- GLOBAL FUNCTION EXPOSURE ---
+        window.nextQuestion = nextQuestion;
+        window.previousQuestion = previousQuestion;
+        window.goToQuestion = goToQuestion;
+        window.switchToPart = switchToPart;
+        window.closeResultsModal = closeResultsModal;
+        window.selectCell = selectCell;
+        window.highlightText = highlightText;
+        window.addNote = addNote;
+        window.clearHighlight = clearHighlight;
+        window.clearAllHighlights = clearAllHighlights;
+
+        // --- START THE APP ---
+        initialize();
+    });
+    </script>
+</body>
+</html>

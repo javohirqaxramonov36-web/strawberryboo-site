@@ -1,0 +1,1877 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IELTS Full Reading Practice</title>
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;1,300&family=Source+Sans+3:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #ffffff;
+            --bg-secondary: #f8f9fa;
+            --bg-tertiary: #f1f2ec;
+            --text: #1a1a1a;
+            --text-muted: #555;
+            --text-light: #888;
+            --border: #e0e0e0;
+            --border-medium: #ccc;
+            --header-bg: #ffffff;
+            --panel-bg: #ffffff;
+            --nav-bg: #ffffff;
+            --input-bg: #ffffff;
+            --example-bg: #f9f9f9;
+            --context-menu-bg: #ffffff;
+            --modal-bg: #ffffff;
+            --timer-color: #333;
+            --resizer-bg: #f0f0f0;
+            --active-blue: #2563eb;
+            --correct-bg: #e9f7ef;
+            --incorrect-bg: #fde8e8;
+            --correct-border: #16a34a;
+            --incorrect-border: #dc2626;
+            --highlight-color: #fef08a;
+            --subq-bg: #ffffff;
+            --subq-border: #ccc;
+            --subq-text: #333;
+            --footer-btn-bg: #f0f0f0;
+            --footer-btn-border: #ccc;
+            --passage-title: #1e3a5f;
+            --toolbar-bg: #1a1a2e;
+            --toolbar-shadow: 0 4px 20px rgba(0,0,0,0.25);
+            --accent: #2563eb;
+        }
+
+        body.night-mode {
+            --bg: #121212;
+            --bg-secondary: #1e1e1e;
+            --bg-tertiary: #252525;
+            --text: #e0e0e0;
+            --text-muted: #aaa;
+            --text-light: #777;
+            --border: #333;
+            --border-medium: #444;
+            --header-bg: #1a1a1a;
+            --panel-bg: #1a1a1a;
+            --nav-bg: #1a1a1a;
+            --input-bg: #252525;
+            --example-bg: #252525;
+            --context-menu-bg: #2a2a2a;
+            --modal-bg: #1e1e1e;
+            --timer-color: #e0e0e0;
+            --resizer-bg: #2a2a2a;
+            --active-blue: #60a5fa;
+            --correct-bg: #1a3a2a;
+            --incorrect-bg: #3a1a1a;
+            --correct-border: #4ade80;
+            --incorrect-border: #f87171;
+            --highlight-color: #f9a825;
+            --subq-bg: #252525;
+            --subq-border: #444;
+            --subq-text: #ccc;
+            --footer-btn-bg: #2a2a2a;
+            --footer-btn-border: #444;
+            --passage-title: #93c5fd;
+            --toolbar-bg: #0d0d1a;
+            --toolbar-shadow: 0 4px 20px rgba(0,0,0,0.6);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Source Sans 3', Arial, sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            font-size: 15.5px;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        .header {
+            background-color: var(--header-bg);
+            padding: 10px 20px;
+            border-bottom: 2px solid var(--accent);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            z-index: 100;
+            height: 58px;
+            transition: background-color 0.3s, border-color 0.3s;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+        }
+
+        .header-left { display: flex; align-items: center; gap: 12px; }
+
+        .timer-container {
+            display: flex; position: relative; cursor: default;
+            color: var(--timer-color); font-size: 17px; font-weight: 700;
+            align-items: center; letter-spacing: 1px;
+            background: var(--bg-secondary);
+            padding: 4px 12px;
+            border-radius: 6px;
+            border: 1px solid var(--border);
+        }
+
+        .timer-controls { display: flex; align-items: center; gap: 6px; margin-left: 10px; }
+        .timer-controls button {
+            background: var(--footer-btn-bg); border: 1px solid var(--border-medium);
+            border-radius: 50%; padding: 0; cursor: pointer;
+            width: 28px; height: 28px;
+            display: flex; align-items: center; justify-content: center;
+            transition: background-color 0.2s;
+        }
+        .timer-controls button:hover { background: var(--border); }
+        .timer-controls button svg { width: 16px; height: 16px; fill: var(--timer-color); }
+
+        #night-mode-btn, #notes-toggle-btn {
+            background: var(--footer-btn-bg); border: 1px solid var(--border-medium);
+            border-radius: 20px; padding: 4px 12px; cursor: pointer;
+            font-size: 12px; font-weight: 700; color: var(--text);
+            display: flex; align-items: center; gap: 5px;
+            transition: all 0.2s; white-space: nowrap;
+            font-family: 'Source Sans 3', sans-serif;
+        }
+        #night-mode-btn:hover, #notes-toggle-btn:hover { background: var(--border); }
+
+        .telegram-link {
+            color: #0088cc; text-decoration: none;
+            font-weight: 700; font-size: 14px;
+            display: flex; align-items: center; gap: 7px;
+        }
+        .telegram-link:hover { text-decoration: underline; }
+
+        .main-container {
+            margin-top: 58px;
+            display: flex; flex-direction: column;
+            background: var(--bg);
+            height: calc(100vh - 58px);
+        }
+
+        .panels-container { display: flex; flex: 1; overflow: hidden; }
+
+        .passage-panel {
+            flex: 1; padding: 24px 26px 110px;
+            overflow-y: auto; min-width: 200px;
+            background: var(--panel-bg);
+        }
+
+        .reading-passage h4 {
+            font-family: 'Merriweather', serif;
+            font-size: 20px; font-weight: 700;
+            color: var(--passage-title);
+            line-height: 1.4; margin-bottom: 6px;
+            text-align: center;
+            border-bottom: 2.5px solid var(--accent);
+            padding-bottom: 8px;
+        }
+        .reading-passage .passage-subtitle {
+            text-align: center; font-style: italic;
+            color: var(--text-muted); margin-bottom: 6px;
+            font-size: 14px;
+        }
+        .reading-passage .passage-intro {
+            font-style: italic; color: var(--text-muted);
+            margin-bottom: 18px; font-size: 14.5px;
+            border-left: 3px solid var(--accent);
+            padding-left: 10px;
+        }
+        .reading-passage p { margin-bottom: 1.1em; color: var(--text); }
+        .reading-passage .para-label {
+            font-weight: 700; color: var(--accent);
+        }
+
+        .questions-panel {
+            flex: 1; padding: 20px 22px 110px;
+            overflow-y: auto; min-width: 200px;
+            border-left: 1px solid var(--border);
+            background: var(--panel-bg);
+        }
+
+        .resizer {
+            width: 9px; cursor: col-resize;
+            background-color: var(--resizer-bg);
+            background-image: url('data:image/svg+xml;charset=UTF-8,<svg xmlns="http://www.w3.org/2000/svg" width="9" height="30" viewBox="0 0 9 30"><circle cx="4.5" cy="11" r="1.5" fill="%23999"/><circle cx="4.5" cy="16" r="1.5" fill="%23999"/><circle cx="4.5" cy="21" r="1.5" fill="%23999"/></svg>');
+            background-repeat: no-repeat; background-position: center;
+            flex-shrink: 0; flex-grow: 0;
+        }
+
+        .part-header {
+            background: linear-gradient(135deg, var(--accent) 0%, #1e40af 100%);
+            color: #fff; padding: 12px 18px;
+            margin: 0 0 0 0;
+            font-size: 14px;
+        }
+        .part-header p { margin: 0; }
+        .part-header p:first-child { font-weight: 700; font-size: 15px; margin-bottom: 3px; }
+
+        .question { margin-bottom: 36px; color: var(--text); }
+        .question p { margin-bottom: 8px; color: var(--text); }
+        .question-prompt {
+            background: var(--bg-secondary);
+            border-left: 4px solid var(--accent);
+            padding: 12px 14px;
+            border-radius: 0 6px 6px 0;
+            margin-bottom: 18px;
+        }
+        .question-prompt p { margin-bottom: 6px; }
+        .question-prompt p:last-child { margin-bottom: 0; }
+        .question-prompt ul { list-style: none; padding-left: 0; margin-top: 8px; }
+        .question-prompt ul li { margin-bottom: 3px; padding: 2px 0; }
+        .question-prompt ul li strong {
+            display: inline-block; min-width: 90px;
+            background: var(--accent); color: #fff;
+            padding: 1px 7px; border-radius: 3px;
+            font-size: 12px; margin-right: 6px;
+        }
+
+        .answer-input {
+            border: 1.5px solid var(--border-medium); border-radius: 4px;
+            background-color: var(--input-bg); color: var(--text);
+            padding: 3px 7px; font-size: 15px; text-align: center;
+            margin: 0 4px; transition: border-color 0.2s, box-shadow 0.2s;
+            height: 30px; font-family: 'Source Sans 3', sans-serif;
+        }
+        .answer-input:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 0 2px rgba(37,99,235,0.15); }
+        .answer-input.active-input { border-color: var(--accent); box-shadow: 0 0 0 2px rgba(37,99,235,0.15); }
+        .answer-input::placeholder { color: #aaa; font-style: italic; }
+        .answer-input.correct { border-color: var(--correct-border); background-color: var(--correct-bg); }
+        .answer-input.incorrect { border-color: var(--incorrect-border); background-color: var(--incorrect-bg); color: var(--incorrect-border); }
+
+        select.answer-input { width: 160px; cursor: pointer; }
+        input.answer-input[type="text"] { width: 180px; }
+
+        .tf-question {
+            margin-bottom: 20px; padding: 10px 12px;
+            border-radius: 6px; border: 1.5px solid var(--border);
+            transition: border-color 0.2s, background-color 0.2s;
+        }
+        .tf-question-line {
+            display: flex; align-items: flex-start;
+            margin-bottom: 12px; gap: 10px;
+        }
+        .tf-question-number {
+            border: 2px solid var(--accent); color: var(--accent);
+            padding: 1px 8px; border-radius: 4px;
+            font-weight: 700; font-size: 13px;
+            display: inline-block; flex-shrink: 0; margin-top: 1px;
+        }
+        .tf-question-text { color: var(--text); line-height: 1.5; }
+        .tf-options { padding-left: 4px; display: flex; gap: 8px; flex-wrap: wrap; }
+        .tf-option {
+            display: flex; align-items: center; cursor: pointer;
+            padding: 5px 12px; border-radius: 5px;
+            border: 1.5px solid var(--border);
+            background: var(--bg-secondary);
+            transition: all 0.15s; font-size: 14px;
+        }
+        .tf-option:hover { border-color: var(--accent); background: var(--bg); }
+        .tf-option input[type="radio"] { margin-right: 7px; accent-color: var(--accent); }
+        .tf-question.correct { background-color: var(--correct-bg); border-color: var(--correct-border); }
+        .tf-question.incorrect { background-color: var(--incorrect-bg); border-color: var(--incorrect-border); }
+
+        .multi-choice-question {
+            margin-bottom: 22px; padding: 12px 14px;
+            border-radius: 6px; border: 1.5px solid var(--border);
+            transition: border-color 0.2s, background-color 0.2s;
+        }
+        .multi-choice-question > p { font-weight: 600; margin-bottom: 12px; }
+        .multi-choice-option { margin-bottom: 8px; }
+        .multi-choice-option label {
+            display: flex; align-items: flex-start; cursor: pointer;
+            padding: 6px 10px; border-radius: 5px;
+            border: 1.5px solid transparent;
+            background: var(--bg-secondary);
+            transition: all 0.15s; font-size: 15px; gap: 8px;
+        }
+        .multi-choice-option label:hover { border-color: var(--accent); background: var(--bg); }
+        .multi-choice-option input[type="radio"] { margin-top: 2px; flex-shrink: 0; accent-color: var(--accent); }
+        .multi-choice-option.correct label { background: var(--correct-bg); border-color: var(--correct-border); }
+        .multi-choice-option.incorrect label { background: var(--incorrect-bg); border-color: var(--incorrect-border); }
+
+        .matching-form-container { margin-top: 16px; }
+        .matching-form-row {
+            display: flex; align-items: center;
+            margin-bottom: 12px; gap: 12px;
+            padding: 8px 10px; border-radius: 5px;
+            border: 1.5px solid var(--border);
+            background: var(--bg-secondary);
+        }
+        .matching-form-label { flex: 1; color: var(--text); font-size: 15px; }
+        .matching-form-row.correct { background: var(--correct-bg); border-color: var(--correct-border); }
+        .matching-form-row.incorrect { background: var(--incorrect-bg); border-color: var(--incorrect-border); }
+
+        /* Table completion (Q7-13) */
+        .table-completion-container { margin-top: 10px; overflow-x: auto; }
+        .table-completion-container table {
+            width: 100%; border-collapse: collapse;
+            font-size: 14.5px;
+        }
+        .table-completion-container th {
+            background: var(--accent); color: #fff;
+            padding: 9px 12px; text-align: left; font-weight: 700;
+            border: 1px solid var(--border);
+        }
+        .table-completion-container td {
+            padding: 9px 12px; border: 1px solid var(--border);
+            vertical-align: middle; color: var(--text);
+            background: var(--bg);
+        }
+        .table-completion-container tr:nth-child(even) td { background: var(--bg-secondary); }
+        .table-completion-container input.answer-input { width: 140px; }
+
+        /* Summary box */
+        .summary-box {
+            background: var(--bg-secondary); border: 1.5px solid var(--border);
+            border-radius: 8px; padding: 16px 18px; margin-top: 14px;
+            line-height: 2.4; font-size: 15px;
+        }
+        .summary-box p { margin-bottom: 10px; }
+
+        /* Word bank */
+        .word-bank {
+            background: var(--example-bg); border: 1.5px solid var(--border);
+            border-radius: 6px; padding: 14px 16px; margin: 12px 0;
+        }
+        .word-bank-title { font-weight: 700; margin-bottom: 10px; font-size: 13.5px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.5px; }
+        .word-bank-grid {
+            display: grid; grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+            gap: 8px;
+        }
+        .word-bank-item {
+            background: var(--bg); border: 1.5px solid var(--border);
+            padding: 6px 10px; border-radius: 5px;
+            font-size: 14px; text-align: center; color: var(--text);
+            font-weight: 500;
+        }
+
+        /* Headings matching */
+        .heading-match-container { margin-top: 12px; }
+        .heading-match-row {
+            display: flex; align-items: center; margin-bottom: 10px;
+            gap: 12px; padding: 8px 10px;
+            border-radius: 5px; border: 1.5px solid var(--border);
+            background: var(--bg-secondary);
+        }
+        .heading-match-label { width: 90px; flex-shrink: 0; font-weight: 700; color: var(--text); }
+        .heading-match-row.correct { background: var(--correct-bg); border-color: var(--correct-border); }
+        .heading-match-row.incorrect { background: var(--incorrect-bg); border-color: var(--incorrect-border); }
+
+        .example-box {
+            border: 1px solid var(--border); background: var(--example-bg);
+            padding: 12px 15px; border-radius: 6px; margin: 14px 0;
+            font-size: 14px; color: var(--text);
+        }
+        .example-box strong { color: var(--accent); }
+
+        .correct-answer-display { font-weight: 700; color: var(--correct-border); margin-left: 8px; font-size: 13px; }
+        .correct-answer-highlight { background: var(--correct-bg) !important; border: 1px solid var(--correct-border) !important; border-radius: 3px; padding: 2px 5px; }
+
+        /* Navigation */
+        .nav-arrows {
+            position: fixed; bottom: 95px; right: 16px;
+            display: flex; gap: 4px; z-index: 101;
+        }
+        .nav-arrow {
+            width: 44px; height: 44px;
+            background: var(--accent); color: white;
+            border: none; cursor: pointer;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 20px; font-weight: bold; border-radius: 6px;
+            transition: background 0.2s;
+        }
+        .nav-arrow:hover { background: #1d4ed8; }
+        .nav-arrow:disabled { background: #ccc; cursor: not-allowed; }
+
+        .nav-row {
+            position: fixed; bottom: 0; left: 0; right: 0;
+            background: var(--nav-bg); padding: 0;
+            display: flex; align-items: center;
+            height: 76px; z-index: 100;
+            border-top: 2px solid var(--accent);
+            box-shadow: 0 -2px 10px rgba(0,0,0,0.08);
+        }
+
+        .footer__questionWrapper___1tZ46 {
+            display: flex; align-items: center; margin-right: 16px;
+        }
+        .footer__questionNo___3WNct {
+            background: none; border: none; padding: 8px 12px;
+            font-size: 15px; font-weight: 700; color: var(--text);
+            cursor: pointer; display: flex; align-items: center; gap: 5px;
+            transition: background 0.2s; border-radius: 6px;
+            font-family: 'Source Sans 3', sans-serif;
+        }
+        .footer__questionNo___3WNct:hover { background: var(--bg-secondary); }
+        .attemptedCount { font-size: 12px; color: var(--text-muted); margin-left: 4px; font-weight: 400; }
+
+        .footer__subquestionWrapper___9GgoP { display: none; gap: 3px; margin-left: 8px; }
+        .footer__questionWrapper___1tZ46.selected .footer__subquestionWrapper___9GgoP { display: flex; flex-wrap: wrap; }
+        .footer__questionWrapper___1tZ46.selected .attemptedCount { display: none; }
+
+        .subQuestion {
+            width: 30px; height: 30px;
+            border: 1.5px solid var(--subq-border);
+            background: var(--subq-bg); color: var(--subq-text);
+            font-size: 13px; font-weight: 600;
+            cursor: pointer; display: flex; align-items: center; justify-content: center;
+            transition: all 0.15s; border-radius: 4px;
+            font-family: 'Source Sans 3', sans-serif;
+        }
+        .subQuestion:hover { background: var(--bg-secondary); border-color: var(--accent); }
+        .subQuestion.active { background: var(--accent); color: #fff; border-color: var(--accent); }
+        .subQuestion.answered { background: #93c5fd; color: #1e3a5f; border-color: #60a5fa; }
+        .subQuestion.correct { background: var(--correct-border); color: #fff; border-color: var(--correct-border); }
+        .subQuestion.incorrect { background: var(--incorrect-border); color: #fff; border-color: var(--incorrect-border); }
+
+        .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); border: 0; }
+
+        .footer__deliverButton___3FM07 {
+            margin-left: auto; margin-right: 16px;
+            background: var(--accent); color: #fff;
+            border: none; padding: 10px 20px; border-radius: 6px;
+            font-size: 15px; font-weight: 700; cursor: pointer;
+            display: flex; align-items: center; gap: 7px;
+            transition: background 0.2s; min-width: 160px;
+            justify-content: center; font-family: 'Source Sans 3', sans-serif;
+        }
+        .footer__deliverButton___3FM07:hover { background: #1d4ed8; }
+        .footer__deliverButton___3FM07:disabled { background: #94a3b8; cursor: not-allowed; }
+
+        .hidden { display: none !important; }
+
+        /* Highlight Toolbar */
+        .highlight-toolbar {
+            position: fixed; display: none;
+            background: var(--toolbar-bg); border-radius: 8px;
+            box-shadow: var(--toolbar-shadow); z-index: 2000;
+            padding: 6px 8px; gap: 4px; align-items: center;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+        .highlight-toolbar.visible { display: flex; }
+        .toolbar-btn {
+            display: inline-flex; align-items: center; justify-content: center;
+            gap: 4px; padding: 5px 9px; border: none; border-radius: 5px;
+            cursor: pointer; font-size: 13px; font-weight: 700;
+            transition: all 0.15s; white-space: nowrap; font-family: 'Source Sans 3', sans-serif;
+        }
+        .toolbar-btn:hover { filter: brightness(1.2); transform: translateY(-1px); }
+        .toolbar-btn.btn-yellow { background: #f9a825; color: #1a1a1a; }
+        .toolbar-btn.btn-green  { background: #16a34a; color: #fff; }
+        .toolbar-btn.btn-pink   { background: #db2777; color: #fff; }
+        .toolbar-btn.btn-blue   { background: #2563eb; color: #fff; }
+        .toolbar-btn.btn-clear  { background: #6b7280; color: #fff; }
+        .toolbar-btn.btn-note   { background: #d97706; color: #fff; }
+        .toolbar-sep { width: 1px; height: 20px; background: rgba(255,255,255,0.2); margin: 0 2px; }
+
+        .highlight { background-color: #fef08a; border-radius: 2px; }
+        .highlight.hl-green { background-color: #bbf7d0; }
+        .highlight.hl-pink  { background-color: #fbcfe8; }
+        .highlight.hl-blue  { background-color: #bfdbfe; }
+        body.night-mode .highlight         { background-color: #f9a825; color: #000; }
+        body.night-mode .highlight.hl-green { background-color: #166534; color: #fff; }
+        body.night-mode .highlight.hl-pink  { background-color: #9d174d; color: #fff; }
+        body.night-mode .highlight.hl-blue  { background-color: #1e40af; color: #fff; }
+
+        .comment-highlight {
+            background-color: #fef9c3; position: relative; cursor: help;
+            border-bottom: 2px dotted #d97706; border-radius: 2px;
+        }
+        .comment-tooltip {
+            position: absolute; bottom: calc(100% + 8px); left: 50%;
+            transform: translateX(-50%);
+            background: #1f2937; color: #fff;
+            padding: 7px 11px; border-radius: 6px;
+            font-size: 13px; white-space: normal;
+            max-width: 260px; z-index: 3000;
+            opacity: 0; pointer-events: none; transition: opacity 0.2s;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+        }
+        .comment-tooltip::after {
+            content: ''; position: absolute; top: 100%; left: 50%;
+            transform: translateX(-50%);
+            border: 6px solid transparent; border-top-color: #1f2937;
+        }
+        .comment-highlight:hover .comment-tooltip { opacity: 1; }
+        .comment-highlight::after { content: '📝'; font-size: 10px; vertical-align: super; margin-left: 2px; }
+
+        /* Notes panel */
+        .notes-panel {
+            position: fixed; right: 16px; top: 68px;
+            width: 270px; max-height: calc(100vh - 160px);
+            background: var(--modal-bg); border: 1px solid var(--border);
+            border-radius: 10px; box-shadow: 0 8px 30px rgba(0,0,0,0.15);
+            z-index: 500; overflow-y: auto; display: none;
+            flex-direction: column;
+        }
+        .notes-panel.visible { display: flex; }
+        .notes-panel-header {
+            padding: 10px 14px; border-bottom: 1px solid var(--border);
+            display: flex; justify-content: space-between; align-items: center;
+            font-weight: 700; font-size: 13px; color: var(--text);
+            background: var(--bg-secondary); border-radius: 10px 10px 0 0;
+        }
+        .notes-panel-close { background: none; border: none; cursor: pointer; font-size: 17px; color: var(--text-muted); }
+        .notes-list { padding: 8px; flex: 1; }
+        .note-item {
+            background: var(--bg-secondary); border: 1px solid var(--border);
+            border-radius: 5px; padding: 8px 10px; margin-bottom: 7px;
+            font-size: 13px;
+        }
+        .note-item-text { font-weight: 700; color: #d97706; margin-bottom: 3px; font-size: 11px; }
+        .note-item-delete { background: none; border: none; color: var(--incorrect-border); cursor: pointer; font-size: 12px; float: right; }
+        .notes-empty { color: var(--text-muted); font-size: 13px; padding: 10px; text-align: center; }
+
+        .note-input-overlay {
+            position: fixed; inset: 0; background: rgba(0,0,0,0.5);
+            z-index: 3000; display: none; align-items: center; justify-content: center;
+        }
+        .note-input-overlay.visible { display: flex; }
+        .note-input-box {
+            background: var(--modal-bg); border-radius: 12px; padding: 22px;
+            width: 360px; max-width: 92vw;
+            box-shadow: 0 12px 40px rgba(0,0,0,0.3); border: 1px solid var(--border);
+        }
+        .note-input-box h3 { margin-bottom: 8px; font-size: 15px; color: var(--text); }
+        .selected-text-preview {
+            background: var(--bg-secondary); border-left: 3px solid #d97706;
+            padding: 7px 10px; margin-bottom: 12px; font-size: 13px;
+            color: var(--text-muted); border-radius: 0 4px 4px 0;
+            max-height: 55px; overflow: hidden;
+        }
+        .note-input-box textarea {
+            width: 100%; min-height: 75px; padding: 9px;
+            border: 1px solid var(--border-medium); border-radius: 6px;
+            font-size: 14px; background: var(--input-bg); color: var(--text);
+            resize: vertical; outline: none; font-family: 'Source Sans 3', sans-serif;
+        }
+        .note-input-box textarea:focus { border-color: var(--accent); }
+        .note-input-actions { display: flex; gap: 8px; margin-top: 10px; justify-content: flex-end; }
+        .note-input-actions button {
+            padding: 7px 16px; border-radius: 5px; border: none;
+            cursor: pointer; font-size: 13.5px; font-weight: 700;
+            font-family: 'Source Sans 3', sans-serif;
+        }
+        .btn-save-note { background: #d97706; color: #fff; }
+        .btn-cancel-note { background: var(--bg-secondary); color: var(--text); border: 1px solid var(--border) !important; }
+
+        /* Results Modal */
+        .modal-overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.75); z-index: 2000;
+            display: flex; justify-content: center; align-items: center;
+        }
+        .modal-overlay.hidden { display: none; }
+        .modal-content {
+            background: var(--modal-bg); padding: 24px; border-radius: 12px;
+            width: 92%; max-width: 580px; max-height: 82vh;
+            display: flex; flex-direction: column; position: relative;
+            border: 1px solid var(--border);
+        }
+        .modal-close-btn { position: absolute; top: 10px; right: 13px; background: none; border: none; font-size: 26px; cursor: pointer; color: var(--text-muted); }
+        .modal-content h2 { text-align: center; margin-bottom: 14px; color: var(--text); font-family: 'Merriweather', serif; }
+        .results-summary {
+            display: flex; justify-content: space-around; margin-bottom: 18px;
+            font-size: 17px; font-weight: 700; text-align: center;
+            border-bottom: 1px solid var(--border); padding-bottom: 14px; color: var(--text);
+        }
+        .results-details-container { overflow-y: auto; padding-right: 8px; }
+        .result-row {
+            display: grid; grid-template-columns: 40px 1fr 1fr;
+            gap: 12px; padding: 7px 5px;
+            border-bottom: 1px solid var(--border); font-size: 14px; color: var(--text);
+        }
+        .result-row.incorrect { background: var(--incorrect-bg); }
+        .result-row .q-num { font-weight: 700; }
+        .result-row .user-ans { color: var(--text-muted); }
+        .result-row .correct-ans { color: var(--correct-border); font-weight: 600; }
+
+        .active-question { outline: 2px solid var(--accent); border-radius: 5px; }
+
+        select.answer-input option { background: var(--input-bg); color: var(--text); }
+
+        /* Section A example display */
+        .example-note {
+            font-size: 13px; color: var(--text-muted); margin-bottom: 14px;
+            padding: 8px 12px; background: var(--bg-secondary);
+            border-radius: 5px; border: 1px dashed var(--border);
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="header-left">
+            <div class="timer-container">
+                <span class="timer-display">60:00</span>
+                <div class="timer-controls">
+                    <button id="timer-toggle-btn" title="Pause/Resume">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M8 5v14l11-7L8 5z"/></svg>
+                    </button>
+                    <button id="timer-reset-btn" title="Reset Timer">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M12 5V1L7 6l5 5V7c3.31 0 6 2.69 6 6s-2.69 6-6 6-6-2.69-6-6H4c0 4.42 3.58 8 8 8s8-3.58 8-8-3.58-8-8-8z"/></svg>
+                    </button>
+                </div>
+            </div>
+            <button id="night-mode-btn" title="Toggle Night Mode"><span>🌙</span> Night Mode</button>
+            <button id="notes-toggle-btn" title="Notes">
+                📝 Notes <span id="notes-count" style="background:#d97706;color:#fff;border-radius:10px;padding:1px 6px;font-size:11px;display:none;">0</span>
+            </button>
+        </div>
+        <a href="https://t.me/ielts_material_full" target="_blank" class="telegram-link">📚 Full Exam Materials</a>
+    </div>
+
+    <div class="main-container" id="main-container">
+        <div id="passage-header-container">
+            <div id="part-header-1" class="part-header">
+                <p>Part 1 &nbsp;|&nbsp; Australian Culture and Culture Shock</p>
+                <p>Read the text and answer Questions 1–13. You should spend about 20 minutes on this section.</p>
+            </div>
+            <div id="part-header-2" class="part-header hidden">
+                <p>Part 2 &nbsp;|&nbsp; Homeopathy</p>
+                <p>Read the text and answer Questions 14–26. You should spend about 20 minutes on this section.</p>
+            </div>
+            <div id="part-header-3" class="part-header hidden">
+                <p>Part 3 &nbsp;|&nbsp; Why Don't Babies Talk Like Adults?</p>
+                <p>Read the text and answer Questions 27–40. You should spend about 20 minutes on this section.</p>
+            </div>
+        </div>
+
+        <div class="panels-container">
+            <!-- ══════════════ PASSAGE PANEL ══════════════ -->
+            <div class="passage-panel" id="passage-panel">
+
+                <!-- PASSAGE 1 -->
+                <div id="passage-text-1" class="reading-passage">
+                    <h4>Australian Culture and Culture Shock</h4>
+                    <div class="passage-subtitle">by Anna Jones and Xuan Quach</div>
+                    <p class="passage-intro">Sometimes work, study or a sense of adventure take us out of our familiar surroundings to go and live in a different culture. The experience can be difficult, even shocking.</p>
+                    <p>Almost everyone who studies, lives or works abroad has problems adjusting to a new culture. This response is commonly referred to as 'culture shock'. Culture shock can be defined as "the physical and emotional discomfort a person experiences when entering a culture different from their own" (Weaver, 1993).</p>
+                    <p>For people moving to Australia, Price (2001) has identified certain values which may give rise to culture shock. Firstly, he argues that Australians place a high value on independence and personal choice. This means that a teacher or course tutor will not tell students what to do, but will give them a number of options and suggest they work out which one is the best in their circumstances. It also means that they are expected to take action if something goes wrong and seek out resources and support for themselves.</p>
+                    <p>Australians are also prepared to accept a range of opinions rather than believing there is one truth. This means that in an educational setting, students will be expected to form their own opinions and defend the reasons for that point of view and the evidence for it.</p>
+                    <p>Price also comments that Australians are uncomfortable with differences in status and hence idealise the idea of treating everyone equally. An illustration of this is that most adult Australians call each other by their first names. This concern with equality means that Australians are uncomfortable taking anything too seriously and are even ready to joke about themselves.</p>
+                    <p>Australians believe that life should have a balance between work and leisure time. As a consequence, some students may be critical of others who they perceive as doing nothing but study.</p>
+                    <p>Australian notions of privacy mean that areas such as financial matters, appearance and relationships are only discussed with close friends. While people may volunteer such information, they may resent someone actually asking them unless the friendship is firmly established. Even then, it is considered very impolite to ask someone what they earn. With older people, it is also rude to ask how old they are, why they are not married or why they do not have children. It is also impolite to ask people how much they have paid for something, unless there is a very good reason for asking.</p>
+                    <p>Kohls (1996) describes culture shock as a process of change marked by four basic stages. During the first stage, the new arrival is excited to be in a new place, so this is often referred to as the "honeymoon" stage. Like a tourist, they are intrigued by all the new sights and sounds, new smells and tastes of their surroundings. They may have some problems, but usually they accept them as just part of the novelty. At this point, it is the similarities that stand out, and it seems to the newcomer that people everywhere and their way of life are very much alike. This period of euphoria may last from a couple of weeks to a month, but the letdown is inevitable.</p>
+                    <p>During the second stage, known as the "rejection" stage, the newcomer starts to experience difficulties due to the differences between the new culture and the way they were accustomed to living. The initial enthusiasm turns into irritation, frustration, anger and depression, and these feelings may have the effect of people rejecting the new culture so that they notice only the things that cause them trouble, which they then complain about. In addition, they may feel homesick, bored, withdrawn and irritable during this period as well.</p>
+                    <p>Fortunately, most people gradually learn to adapt to the new culture and move on to the third stage, known as 'adjustment and reorientation'. During this stage a transition occurs to a new optimistic attitude. As the newcomer begins to understand more of the new culture, they are able to interpret some of the subtle cultural clues which passed by unnoticed earlier. Now things make more sense and the culture seems more familiar. As a result, they begin to develop problem-solving skills, and feelings of disorientation and anxiety no longer affect them.</p>
+                    <p>In Kohls's model in the fourth stage, newcomers undergo a process of adaptation. They have settled into the new culture, and this results in a feeling of direction and self-confidence. They have accepted the new food, drinks, habits and customs and may even find themselves enjoying some of the very customs that bothered them so much previously. In addition, they realise that the new culture has good and bad things to offer and that no way is really better than another, just different.</p>
+                </div>
+
+                <!-- PASSAGE 2 -->
+                <div id="passage-text-2" class="reading-passage hidden">
+                    <h4>Homeopathy</h4>
+                    <p><span class="para-label">A.</span> Homeopathy is an alternative system of medicine, founded in the early 19th century by a German physician, Dr. Samuel Hahnemann. Since 1980, homeopathy has experienced a strong resurgence of interest in North and South America as well as in Europe. Surveys indicate that more than a third of French physicians have prescribed homeopathic remedies and almost 50 percent of British physicians have referred patients for homeopathic treatment.</p>
+                    <p><span class="para-label">B.</span> Hahnemann's discovery of the principle of homeopathy was accidental. After taking some quinine, he noticed that he developed malaria-like symptoms. Since malaria patients were treated with quinine, he speculated that possibly malaria is cured by quinine because it causes malaria-like symptoms in healthy people. He decided to explore his theory by testing other substances used as medicine at the time, such as arsenic and belladonna. His tests were conducted by either taking the substances internally himself or by administering them to healthy volunteers and then recording all of the symptoms the volunteers experienced. He continued his experiments on a wide range of natural substances, often toxic. These recorded results created 'drug pictures' which formed the basis for the new system of medicine. The next step was to give the tested substances to patients suffering from the same group of symptoms represented by the drug picture recorded. The results were incredible. People were being cured from diseases that had never been cured before. He condensed his theory into a single Latin phrase: <em>similia similibus curentur</em> (let likes be cured by likes). This means that a disease can be cured by a medicine which produces in a healthy person, symptoms similar to those experienced by the patient.</p>
+                    <p><span class="para-label">C.</span> The process of making remedies is very precise. A homeopathic remedy is normally a single substance. The substances may be made from plants, minerals and even animals, for example snake venom and cuttlefish ink. To make remedies, the raw material is dissolved in a mixture that contains approximately 90% alcohol and 10% water. The mixture is left to stand for 2 to 4 weeks, shaken occasionally then strained. The resulting liquid or tincture is then diluted according to very specific measures to a factor of 1:100. For example, to produce a remedy called 1c potency or strength, one drop of the tincture is added to 99 drops of alcohol/water mixture. To produce a 2c potency, one drop of the 1c mixture is added to 99 drops of alcohol/water mixture. Between each mixture the remedy is shaken vigorously. Hahnemann believed that through this process, the energy of the substance was released. Once the remedy has been diluted beyond a 12c potency, it is unlikely that even a molecule of the original substance remains. Yet, ironically, the more dilute the remedy, the stronger it is. This makes no sense in light of present-day science but regardless of what science tells us is impossible, in practice, the higher the dilution the stronger and more lasting the effect.</p>
+                    <p><span class="para-label">D.</span> It is this use of high dilutions that has given rise to controversy. Many conventional doctors claim that homeopathy functions only as a placebo because the dosage is so small. However, the clinical experience of homeopathy shows that this tiny dose can be effective: it works on unconscious people and infants, and it even works on animals. Controlled clinical studies performed by medical researchers are demonstrating that homeopathy can be an effective method of treatment for many diseases.</p>
+                    <p><span class="para-label">E.</span> The most important part of homeopathic treatment lies in the lengthy interview which the homeopath conducts with the patient. The idea behind this one to two hour consultation is to build up a psychological, emotional and physical history of the patient, to discover the underlying patterns of disease. The homeopath then decides which medicine to prescribe based on the closest match between the patient's symptoms and the known symptoms elicited by the medicine in a healthy body. A single dose is given for the shortest period of time necessary to stimulate the body's healing power.</p>
+                    <p><span class="para-label">F.</span> How does the concept of homeopathy differ from that of conventional medicine? Very simply, homeopathy attempts to stimulate the body to recover itself. Instead of looking upon the symptoms as something wrong which must be set right, the homeopath sees them as signs of the way the body is attempting to help itself. Another basic difference between conventional medical therapy and homeopathy is in the role of medication. In much of conventional therapy the illness is controlled through regular use of medical substances. If the medication is withdrawn, the person returns to illness. For example, a person who takes a pill for high blood pressure every day is not undergoing a cure but is only controlling the symptoms. Homeopathy's aim is the cure: 'The complete restoration of perfect health,' as Dr. Hahnemann said.</p>
+                    <p><span class="para-label">G.</span> Homeopathy has made significant progress in treating diseases which orthodox medicine finds difficult. Best at dealing with inflammatory conditions such as arthritis, skin conditions, migraines and respiratory problems linked to allergies, it has also proved highly successful at treating asthma. But homeopathy is not an appropriate treatment for degenerative diseases such as emphysema. It cannot treat diseases which destroy tissue, although it can still be beneficial if used in combination with other treatments. Two of the main advantages of homeotherapy are the low cost of the medications and the rarity of adverse reactions. The medicines are inexpensive, safe, and easy to use, so people can learn to handle many of the common illnesses for which they currently seek medical help. The resulting savings in costs and the increase in personal independence represent a significant contribution to health care.</p>
+                </div>
+
+                <!-- PASSAGE 3 -->
+                <div id="passage-text-3" class="reading-passage hidden">
+                    <h4>Why Don't Babies Talk Like Adults?</h4>
+                    <div class="passage-subtitle"><em>Kids go from 'goo-goo' to talkative one step at a time</em></div>
+                    <div class="passage-subtitle" style="margin-bottom:16px;">by Joshua Hartshorne</div>
+                    <p>A recent e-trade advertisement shows a baby speaking directly to the camera: 'Look at this,' he says, 'I'm a free man. I go anywhere I want now.' He describes his stock-buying activities, and then his phone rings. This advertisement proves what comedians have known for years: few things are as funny as a baby who talks like an adult. But it also raises an important question: Why don't young children express themselves clearly like adults?</p>
+                    <p>Many people assume children learn to talk by copying what they hear. In other words, they listen to the words adults use and the situations in which they use them and imitate accordingly. Behaviourism, the scientific approach that dominated American cognitive science for the first half of the 20th century, made exactly this argument.</p>
+                    <p>However, this 'copycat' theory can't explain why toddlers aren't as conversational as adults. After all, you never hear literate adults express themselves in one-word sentences like 'bottle' or 'doggie'. In fact, it's easy for scientists to show that a copycat theory of language acquisition can't explain children's first words. What is hard for them to do is to explain these first words, and how they fit into the language acquisition pattern.</p>
+                    <p>Over the past half-century, scientists have settled on two reasonable possibilities. The first of these is called the 'mental-developmental hypothesis'. It states that one-year-olds speak in baby talk because their immature brains can't handle adult speech. Children don't learn to walk until their bodies are ready. Likewise, they don't speak multi-word sentences or use word endings and function words ('Mummy opened the boxes') before their brains are ready.</p>
+                    <p>The second is called the 'stages-of-language hypothesis', which states that the stages of progress in child speech are necessary stages in language development. A basketball player can't perfect his or her jump shot before learning to (1) jump and (2) shoot. Similarly, children learn to multiply after they have learned to add. This is the order in which children are taught – not the reverse. There's evidence, for instance, that children don't usually begin speaking in two-word sentences until they've learned a certain number of single words. In other words, until they've crossed that linguistic threshold, the word-combination process doesn't get going.</p>
+                    <p>The difference between these theories is this: under the mental-development hypothesis, language learning should depend on the child's age and level of mental development when he or she starts learning a language. Under the stages-of-language hypothesis, however, it shouldn't depend on such patterns, but only on the completion of previous stages.</p>
+                    <p>In 2007, researchers at Harvard University, who were studying the two theories, found a clever way to test them. More than 20,000 internationally adopted children enter the US each year. Many of them no longer hear their birth language after they arrive, and they must learn English more or less the same way infants do – that is, by listening and by trial and error. International adoptees don't take classes or use a dictionary when they are learning their new tongue and most of them don't have a well-developed first language. All of these factors make them an ideal population in which to test these competing hypotheses about how language is learned.</p>
+                    <p>Neuroscientists Jesse Snedeker, Joy Geren and Carissa Shafto studied the language development of 27 children adopted from China between the ages of two and five years. These children began learning English at an older age than US natives and had more mature brains with which to tackle the task. Even so, just as with American-born infants, their first English sentences consisted of single words and were largely bereft of function words, word endings and verbs. The adoptees then went through the same stages as typical American-born children, albeit at a faster clip. The adoptees and native children started combining words in sentences when their vocabulary reached the same sizes, further suggesting that what matters is not how old you are or how mature your brain is, but the number of words you know.</p>
+                    <p>This finding – that having more mature brains did not help the adoptees avoid the toddler-talk stage – suggests that babies speak in babytalk not because they have baby brains, but because they have only just started learning and need time to gain enough vocabulary to be able to expand their conversations. Before long, the one-word stage will give way to the two-word stage and so on. Learning how to chat like an adult is a gradual process.</p>
+                    <p>But this potential answer also raises an even older and more difficult question. Adult immigrants who learn a second language rarely achieve the same proficiency in a foreign language as the average child raised as a native speaker. Researchers have long suspected there is a "critical period" for language development, after which it cannot proceed with full success to fluency. Yet we still do not understand this critical period or know why it ends.</p>
+                </div>
+            </div>
+
+            <div class="resizer" id="resizer"></div>
+
+            <!-- ══════════════ QUESTIONS PANEL ══════════════ -->
+            <div class="questions-panel" id="questions-panel">
+
+                <!-- ── PASSAGE 1 QUESTIONS ── -->
+                <div id="questions-1" class="question-set">
+
+                    <!-- Q1–6: TRUE/FALSE/NOT GIVEN -->
+                    <div class="question" data-q-start="1" data-q-end="6">
+                        <div class="question-prompt">
+                            <p><strong>Questions 1–6</strong></p>
+                            <p>Do the following statements agree with the information given in the reading passage?</p>
+                            <p>In boxes 1–6 on your answer sheet, write:</p>
+                            <ul>
+                                <li><strong>TRUE</strong> if the statement agrees with the information</li>
+                                <li><strong>FALSE</strong> if the statement contradicts the information</li>
+                                <li><strong>NOT GIVEN</strong> if there is no information on this</li>
+                            </ul>
+                        </div>
+
+                        <div class="tf-question" data-q-start="1" data-q-end="1">
+                            <div class="tf-question-line"><span class="tf-question-number">1</span><span class="tf-question-text">Australian teachers will suggest alternatives to students rather than offer one solution.</span></div>
+                            <div class="tf-options">
+                                <label class="tf-option"><input type="radio" name="q1" value="TRUE"> TRUE</label>
+                                <label class="tf-option"><input type="radio" name="q1" value="FALSE"> FALSE</label>
+                                <label class="tf-option"><input type="radio" name="q1" value="NOT GIVEN"> NOT GIVEN</label>
+                            </div>
+                        </div>
+
+                        <div class="tf-question" data-q-start="2" data-q-end="2">
+                            <div class="tf-question-line"><span class="tf-question-number">2</span><span class="tf-question-text">In Australia, teachers will show interest in students' personal circumstances.</span></div>
+                            <div class="tf-options">
+                                <label class="tf-option"><input type="radio" name="q2" value="TRUE"> TRUE</label>
+                                <label class="tf-option"><input type="radio" name="q2" value="FALSE"> FALSE</label>
+                                <label class="tf-option"><input type="radio" name="q2" value="NOT GIVEN"> NOT GIVEN</label>
+                            </div>
+                        </div>
+
+                        <div class="tf-question" data-q-start="3" data-q-end="3">
+                            <div class="tf-question-line"><span class="tf-question-number">3</span><span class="tf-question-text">Australians use people's first names so that everyone feels their status is similar.</span></div>
+                            <div class="tf-options">
+                                <label class="tf-option"><input type="radio" name="q3" value="TRUE"> TRUE</label>
+                                <label class="tf-option"><input type="radio" name="q3" value="FALSE"> FALSE</label>
+                                <label class="tf-option"><input type="radio" name="q3" value="NOT GIVEN"> NOT GIVEN</label>
+                            </div>
+                        </div>
+
+                        <div class="tf-question" data-q-start="4" data-q-end="4">
+                            <div class="tf-question-line"><span class="tf-question-number">4</span><span class="tf-question-text">Students who study all the time may receive positive comments from their colleagues.</span></div>
+                            <div class="tf-options">
+                                <label class="tf-option"><input type="radio" name="q4" value="TRUE"> TRUE</label>
+                                <label class="tf-option"><input type="radio" name="q4" value="FALSE"> FALSE</label>
+                                <label class="tf-option"><input type="radio" name="q4" value="NOT GIVEN"> NOT GIVEN</label>
+                            </div>
+                        </div>
+
+                        <div class="tf-question" data-q-start="5" data-q-end="5">
+                            <div class="tf-question-line"><span class="tf-question-number">5</span><span class="tf-question-text">It is acceptable to discuss financial issues with people you do not know well.</span></div>
+                            <div class="tf-options">
+                                <label class="tf-option"><input type="radio" name="q5" value="TRUE"> TRUE</label>
+                                <label class="tf-option"><input type="radio" name="q5" value="FALSE"> FALSE</label>
+                                <label class="tf-option"><input type="radio" name="q5" value="NOT GIVEN"> NOT GIVEN</label>
+                            </div>
+                        </div>
+
+                        <div class="tf-question" data-q-start="6" data-q-end="6">
+                            <div class="tf-question-line"><span class="tf-question-number">6</span><span class="tf-question-text">Younger Australians tend to be friendlier than older Australians.</span></div>
+                            <div class="tf-options">
+                                <label class="tf-option"><input type="radio" name="q6" value="TRUE"> TRUE</label>
+                                <label class="tf-option"><input type="radio" name="q6" value="FALSE"> FALSE</label>
+                                <label class="tf-option"><input type="radio" name="q6" value="NOT GIVEN"> NOT GIVEN</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Q7–13: Table Completion -->
+                    <div class="question" data-q-start="7" data-q-end="13">
+                        <div class="question-prompt">
+                            <p><strong>Questions 7–13</strong></p>
+                            <p>Complete the table below. Choose <strong>NO MORE THAN TWO WORDS</strong> from the passage for each answer.</p>
+                            <p>Write your answers in boxes 7–13 on your answer sheet.</p>
+                        </div>
+                        <p style="text-align:center; font-weight:700; font-size:16px; margin-bottom:12px; color:var(--accent);">THE STAGES OF CULTURE SHOCK</p>
+                        <div class="table-completion-container">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th style="width:70px;">Stage</th>
+                                        <th style="width:130px;">Name</th>
+                                        <th>Newcomers' reaction to problems</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Stage 1</td>
+                                        <td><input type="text" class="answer-input" id="q7" placeholder="7"></td>
+                                        <td>They notice the <input type="text" class="answer-input" id="q8" placeholder="8" style="width:130px;"> between different nationalities and cultures. They may experience this stage for up to <input type="text" class="answer-input" id="q9" placeholder="9" style="width:100px;"></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Stage 2</td>
+                                        <td>Rejection</td>
+                                        <td>They reject the new culture and lose the <input type="text" class="answer-input" id="q10" placeholder="10" style="width:130px;"> they had at the beginning.</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Stage 3</td>
+                                        <td>Adjustment and reorientation</td>
+                                        <td>They can understand some <input type="text" class="answer-input" id="q11" placeholder="11" style="width:150px;"> which they had not previously observed. They learn <input type="text" class="answer-input" id="q12" placeholder="12" style="width:160px;"> for dealing with difficulties.</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Stage 4</td>
+                                        <td><input type="text" class="answer-input" id="q13" placeholder="13"></td>
+                                        <td>They enjoy some of the customs that annoyed them before.</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ── PASSAGE 2 QUESTIONS ── -->
+                <div id="questions-2" class="question-set hidden">
+
+                    <!-- Q14–19: Matching headings -->
+                    <div class="question" data-q-start="14" data-q-end="19">
+                        <div class="question-prompt">
+                            <p><strong>Questions 14–19</strong></p>
+                            <p>The reading passage has 7 sections A–G. Choose the most suitable headings for sections B–G from the list of headings (i–x).</p>
+                            <p>There are more headings than sections, so you will not use all of them.</p>
+                        </div>
+
+                        <div class="word-bank">
+                            <div class="word-bank-title">List of Headings</div>
+                            <div style="font-size:14px; line-height:2;">
+                                <div><strong>i</strong> &nbsp; The future of homeopathy</div>
+                                <div><strong>ii</strong> &nbsp; Concerns about homeopathy</div>
+                                <div><strong>iii</strong> &nbsp; Comparison with traditional western medicine</div>
+                                <div><strong>iv</strong> &nbsp; Dr. S. Hahnemann</div>
+                                <div><strong>v</strong> &nbsp; Theoretical and experimental basis</div>
+                                <div><strong>vi</strong> &nbsp; Revival of homeopathy</div>
+                                <div><strong>vii</strong> &nbsp; Preparation of medicines</div>
+                                <div><strong>viii</strong> &nbsp; Debate over effectiveness</div>
+                                <div><strong>ix</strong> &nbsp; Advantages and limitations of homeopathy</div>
+                                <div><strong>x</strong> &nbsp; Aspects of treatment</div>
+                            </div>
+                        </div>
+
+                        <div class="example-note">
+                            <strong>Example:</strong> Section A → <strong>vi</strong> (Revival of homeopathy)
+                        </div>
+
+                        <div class="heading-match-container">
+                            <div class="heading-match-row">
+                                <span class="heading-match-label"><strong>14</strong> Section B</span>
+                                <select class="answer-input" id="q14" style="width:260px;">
+                                    <option value=""></option>
+                                    <option value="i">i – The future of homeopathy</option>
+                                    <option value="ii">ii – Concerns about homeopathy</option>
+                                    <option value="iii">iii – Comparison with traditional western medicine</option>
+                                    <option value="iv">iv – Dr. S. Hahnemann</option>
+                                    <option value="v">v – Theoretical and experimental basis</option>
+                                    <option value="vii">vii – Preparation of medicines</option>
+                                    <option value="viii">viii – Debate over effectiveness</option>
+                                    <option value="ix">ix – Advantages and limitations of homeopathy</option>
+                                    <option value="x">x – Aspects of treatment</option>
+                                </select>
+                            </div>
+                            <div class="heading-match-row">
+                                <span class="heading-match-label"><strong>15</strong> Section C</span>
+                                <select class="answer-input" id="q15" style="width:260px;">
+                                    <option value=""></option>
+                                    <option value="i">i – The future of homeopathy</option>
+                                    <option value="ii">ii – Concerns about homeopathy</option>
+                                    <option value="iii">iii – Comparison with traditional western medicine</option>
+                                    <option value="iv">iv – Dr. S. Hahnemann</option>
+                                    <option value="v">v – Theoretical and experimental basis</option>
+                                    <option value="vii">vii – Preparation of medicines</option>
+                                    <option value="viii">viii – Debate over effectiveness</option>
+                                    <option value="ix">ix – Advantages and limitations of homeopathy</option>
+                                    <option value="x">x – Aspects of treatment</option>
+                                </select>
+                            </div>
+                            <div class="heading-match-row">
+                                <span class="heading-match-label"><strong>16</strong> Section D</span>
+                                <select class="answer-input" id="q16" style="width:260px;">
+                                    <option value=""></option>
+                                    <option value="i">i – The future of homeopathy</option>
+                                    <option value="ii">ii – Concerns about homeopathy</option>
+                                    <option value="iii">iii – Comparison with traditional western medicine</option>
+                                    <option value="iv">iv – Dr. S. Hahnemann</option>
+                                    <option value="v">v – Theoretical and experimental basis</option>
+                                    <option value="vii">vii – Preparation of medicines</option>
+                                    <option value="viii">viii – Debate over effectiveness</option>
+                                    <option value="ix">ix – Advantages and limitations of homeopathy</option>
+                                    <option value="x">x – Aspects of treatment</option>
+                                </select>
+                            </div>
+                            <div class="heading-match-row">
+                                <span class="heading-match-label"><strong>17</strong> Section E</span>
+                                <select class="answer-input" id="q17" style="width:260px;">
+                                    <option value=""></option>
+                                    <option value="i">i – The future of homeopathy</option>
+                                    <option value="ii">ii – Concerns about homeopathy</option>
+                                    <option value="iii">iii – Comparison with traditional western medicine</option>
+                                    <option value="iv">iv – Dr. S. Hahnemann</option>
+                                    <option value="v">v – Theoretical and experimental basis</option>
+                                    <option value="vii">vii – Preparation of medicines</option>
+                                    <option value="viii">viii – Debate over effectiveness</option>
+                                    <option value="ix">ix – Advantages and limitations of homeopathy</option>
+                                    <option value="x">x – Aspects of treatment</option>
+                                </select>
+                            </div>
+                            <div class="heading-match-row">
+                                <span class="heading-match-label"><strong>18</strong> Section F</span>
+                                <select class="answer-input" id="q18" style="width:260px;">
+                                    <option value=""></option>
+                                    <option value="i">i – The future of homeopathy</option>
+                                    <option value="ii">ii – Concerns about homeopathy</option>
+                                    <option value="iii">iii – Comparison with traditional western medicine</option>
+                                    <option value="iv">iv – Dr. S. Hahnemann</option>
+                                    <option value="v">v – Theoretical and experimental basis</option>
+                                    <option value="vii">vii – Preparation of medicines</option>
+                                    <option value="viii">viii – Debate over effectiveness</option>
+                                    <option value="ix">ix – Advantages and limitations of homeopathy</option>
+                                    <option value="x">x – Aspects of treatment</option>
+                                </select>
+                            </div>
+                            <div class="heading-match-row">
+                                <span class="heading-match-label"><strong>19</strong> Section G</span>
+                                <select class="answer-input" id="q19" style="width:260px;">
+                                    <option value=""></option>
+                                    <option value="i">i – The future of homeopathy</option>
+                                    <option value="ii">ii – Concerns about homeopathy</option>
+                                    <option value="iii">iii – Comparison with traditional western medicine</option>
+                                    <option value="iv">iv – Dr. S. Hahnemann</option>
+                                    <option value="v">v – Theoretical and experimental basis</option>
+                                    <option value="vii">vii – Preparation of medicines</option>
+                                    <option value="viii">viii – Debate over effectiveness</option>
+                                    <option value="ix">ix – Advantages and limitations of homeopathy</option>
+                                    <option value="x">x – Aspects of treatment</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Q20–22: Description completion (making a remedy) -->
+                    <div class="question" data-q-start="20" data-q-end="22">
+                        <div class="question-prompt">
+                            <p><strong>Questions 20–22</strong></p>
+                            <p>Complete the description below. Choose <strong>NO MORE THAN THREE WORDS</strong> from the passage for each answer.</p>
+                        </div>
+                        <p style="font-weight:700; color:var(--accent); margin-bottom:12px;">Making a homeopathic remedy</p>
+                        <div class="summary-box" style="line-height:2.6;">
+                            <p>The remedies come from plant, animal and mineral sources.</p>
+                            <p>A single product is mixed with <input type="text" class="answer-input" id="q20" placeholder="20" style="width:170px;"> and left to stand for 2–4 weeks.</p>
+                            <p>This mixture is strained to produce a tincture which can be diluted.</p>
+                            <p>1 drop of this tincture is added to 99 drops of alcohol/water.</p>
+                            <p>The mixture is then <input type="text" class="answer-input" id="q21" placeholder="21" style="width:130px;"> vigorously.</p>
+                            <p>This produces a remedy with a potency of 1c.</p>
+                            <p>As the remedy becomes more diluted, it gets <input type="text" class="answer-input" id="q22" placeholder="22" style="width:120px;">.</p>
+                        </div>
+                    </div>
+
+                    <!-- Q23–26: Summary completion (word bank) -->
+                    <div class="question" data-q-start="23" data-q-end="26">
+                        <div class="question-prompt">
+                            <p><strong>Questions 23–26</strong></p>
+                            <p>Complete the summary. Choose your answers from the box below.</p>
+                        </div>
+                        <div class="word-bank">
+                            <div class="word-bank-title">List of Words / Phrases</div>
+                            <div class="word-bank-grid">
+                                <div class="word-bank-item">cheaper</div>
+                                <div class="word-bank-item">cure</div>
+                                <div class="word-bank-item">heal itself</div>
+                                <div class="word-bank-item">illness</div>
+                                <div class="word-bank-item">treatments</div>
+                                <div class="word-bank-item">getting better</div>
+                                <div class="word-bank-item">control symptoms</div>
+                                <div class="word-bank-item">more expensive</div>
+                                <div class="word-bank-item">side effects</div>
+                                <div class="word-bank-item">stronger</div>
+                                <div class="word-bank-item">healthy</div>
+                                <div class="word-bank-item">patients</div>
+                            </div>
+                        </div>
+                        <div class="summary-box" style="line-height:2.8;">
+                            <p>Homeopathy differs from conventional medicine in a number of ways. Conventional medicine views symptoms as an indication of something wrong in the body whereas homeopathy sees them as signs that the body is attempting to
+                            <select class="answer-input" id="q23" style="width:160px;">
+                                <option value=""></option>
+                                <option value="heal itself">heal itself</option>
+                                <option value="cure">cure</option>
+                                <option value="getting better">getting better</option>
+                                <option value="control symptoms">control symptoms</option>
+                            </select>.
+                            The uses of medication differ also. Many types of conventional medication
+                            <select class="answer-input" id="q24" style="width:180px;">
+                                <option value=""></option>
+                                <option value="control symptoms">control symptoms</option>
+                                <option value="cure">cure</option>
+                                <option value="heal itself">heal itself</option>
+                                <option value="treatments">treatments</option>
+                            </select>
+                            but if the medicine is taken away, the illness returns. The intention of homeopathy is to bring about a complete cure. Homeopathic remedies are
+                            <select class="answer-input" id="q25" style="width:140px;">
+                                <option value=""></option>
+                                <option value="cheaper">cheaper</option>
+                                <option value="stronger">stronger</option>
+                                <option value="more expensive">more expensive</option>
+                                <option value="healthy">healthy</option>
+                            </select>
+                            than conventional medicine and have fewer
+                            <select class="answer-input" id="q26" style="width:150px;">
+                                <option value=""></option>
+                                <option value="side effects">side effects</option>
+                                <option value="treatments">treatments</option>
+                                <option value="patients">patients</option>
+                                <option value="illness">illness</option>
+                            </select>.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ── PASSAGE 3 QUESTIONS ── -->
+                <div id="questions-3" class="question-set hidden">
+
+                    <!-- Q27–30: YES/NO/NOT GIVEN -->
+                    <div class="question" data-q-start="27" data-q-end="30">
+                        <div class="question-prompt">
+                            <p><strong>Questions 27–30</strong></p>
+                            <p>Do the following statements agree with the claims of the writer in the reading passage?</p>
+                            <p>In boxes 27–30 on your answer sheet, write:</p>
+                            <ul>
+                                <li><strong>YES</strong> if the statement agrees with the views of the writer</li>
+                                <li><strong>NO</strong> if the statement contradicts the views of the writer</li>
+                                <li><strong>NOT GIVEN</strong> if it is impossible to say what the writer thinks about this</li>
+                            </ul>
+                        </div>
+
+                        <div class="tf-question" data-q-start="27" data-q-end="27">
+                            <div class="tf-question-line"><span class="tf-question-number">27</span><span class="tf-question-text">People are extremely amused when they see a baby talk like an adult.</span></div>
+                            <div class="tf-options">
+                                <label class="tf-option"><input type="radio" name="q27" value="YES"> YES</label>
+                                <label class="tf-option"><input type="radio" name="q27" value="NO"> NO</label>
+                                <label class="tf-option"><input type="radio" name="q27" value="NOT GIVEN"> NOT GIVEN</label>
+                            </div>
+                        </div>
+
+                        <div class="tf-question" data-q-start="28" data-q-end="28">
+                            <div class="tf-question-line"><span class="tf-question-number">28</span><span class="tf-question-text">Behaviourists of the early 20th century argued that children learn to speak by copying adults.</span></div>
+                            <div class="tf-options">
+                                <label class="tf-option"><input type="radio" name="q28" value="YES"> YES</label>
+                                <label class="tf-option"><input type="radio" name="q28" value="NO"> NO</label>
+                                <label class="tf-option"><input type="radio" name="q28" value="NOT GIVEN"> NOT GIVEN</label>
+                            </div>
+                        </div>
+
+                        <div class="tf-question" data-q-start="29" data-q-end="29">
+                            <div class="tf-question-line"><span class="tf-question-number">29</span><span class="tf-question-text">Children have more conversations with adults than with other children.</span></div>
+                            <div class="tf-options">
+                                <label class="tf-option"><input type="radio" name="q29" value="YES"> YES</label>
+                                <label class="tf-option"><input type="radio" name="q29" value="NO"> NO</label>
+                                <label class="tf-option"><input type="radio" name="q29" value="NOT GIVEN"> NOT GIVEN</label>
+                            </div>
+                        </div>
+
+                        <div class="tf-question" data-q-start="30" data-q-end="30">
+                            <div class="tf-question-line"><span class="tf-question-number">30</span><span class="tf-question-text">Scientists have found it easy to work out why babies use one-word sentences.</span></div>
+                            <div class="tf-options">
+                                <label class="tf-option"><input type="radio" name="q30" value="YES"> YES</label>
+                                <label class="tf-option"><input type="radio" name="q30" value="NO"> NO</label>
+                                <label class="tf-option"><input type="radio" name="q30" value="NOT GIVEN"> NOT GIVEN</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Q31–35: Summary completion A–H -->
+                    <div class="question" data-q-start="31" data-q-end="35">
+                        <div class="question-prompt">
+                            <p><strong>Questions 31–35</strong></p>
+                            <p>Complete the summary using the list of words and phrases, A–H, below. Write your answers in boxes 31–35 on your answer sheet.</p>
+                        </div>
+                        <div class="word-bank">
+                            <div class="word-bank-title">Two theories about babytalk</div>
+                            <div class="word-bank-grid">
+                                <div class="word-bank-item"><strong>A</strong> vocabulary level</div>
+                                <div class="word-bank-item"><strong>B</strong> physical movement</div>
+                                <div class="word-bank-item"><strong>C</strong> time</div>
+                                <div class="word-bank-item"><strong>D</strong> attention</div>
+                                <div class="word-bank-item"><strong>E</strong> mathematical knowledge</div>
+                                <div class="word-bank-item"><strong>F</strong> sentence formation</div>
+                                <div class="word-bank-item"><strong>G</strong> learning</div>
+                                <div class="word-bank-item"><strong>H</strong> teaching</div>
+                            </div>
+                        </div>
+                        <div class="summary-box" style="line-height:2.8;">
+                            <p>According to the writer, there are two main theories related to babytalk. One states that a young child's brain needs
+                            <select class="answer-input" id="q31" style="width:170px;">
+                                <option value=""></option>
+                                <option value="A">A – vocabulary level</option>
+                                <option value="B">B – physical movement</option>
+                                <option value="C">C – time</option>
+                                <option value="D">D – attention</option>
+                                <option value="E">E – mathematical knowledge</option>
+                                <option value="F">F – sentence formation</option>
+                                <option value="G">G – learning</option>
+                                <option value="H">H – teaching</option>
+                            </select>
+                            to master language, in the same way that it does to master other abilities such as
+                            <select class="answer-input" id="q32" style="width:200px;">
+                                <option value=""></option>
+                                <option value="A">A – vocabulary level</option>
+                                <option value="B">B – physical movement</option>
+                                <option value="C">C – time</option>
+                                <option value="D">D – attention</option>
+                                <option value="E">E – mathematical knowledge</option>
+                                <option value="F">F – sentence formation</option>
+                                <option value="G">G – learning</option>
+                                <option value="H">H – teaching</option>
+                            </select>.
+                            The second theory states that a child's
+                            <select class="answer-input" id="q33" style="width:200px;">
+                                <option value=""></option>
+                                <option value="A">A – vocabulary level</option>
+                                <option value="B">B – physical movement</option>
+                                <option value="C">C – time</option>
+                                <option value="D">D – attention</option>
+                                <option value="E">E – mathematical knowledge</option>
+                                <option value="F">F – sentence formation</option>
+                                <option value="G">G – learning</option>
+                                <option value="H">H – teaching</option>
+                            </select>
+                            is the key factor. According to this theory, some key steps have to occur in a logical sequence before
+                            <select class="answer-input" id="q34" style="width:200px;">
+                                <option value=""></option>
+                                <option value="A">A – vocabulary level</option>
+                                <option value="B">B – physical movement</option>
+                                <option value="C">C – time</option>
+                                <option value="D">D – attention</option>
+                                <option value="E">E – mathematical knowledge</option>
+                                <option value="F">F – sentence formation</option>
+                                <option value="G">G – learning</option>
+                                <option value="H">H – teaching</option>
+                            </select>
+                            occurs. Children's
+                            <select class="answer-input" id="q35" style="width:200px;">
+                                <option value=""></option>
+                                <option value="A">A – vocabulary level</option>
+                                <option value="B">B – physical movement</option>
+                                <option value="C">C – time</option>
+                                <option value="D">D – attention</option>
+                                <option value="E">E – mathematical knowledge</option>
+                                <option value="F">F – sentence formation</option>
+                                <option value="G">G – learning</option>
+                                <option value="H">H – teaching</option>
+                            </select>
+                            develops in the same way.</p>
+                        </div>
+                    </div>
+
+                    <!-- Q36–40: Multiple Choice -->
+                    <div class="question" data-q-start="36" data-q-end="40">
+                        <div class="question-prompt">
+                            <p><strong>Questions 36–40</strong></p>
+                            <p>Choose the correct letter, A, B, C or D.</p>
+                            <p>Write the correct letter in boxes 36–40 on your answer sheet.</p>
+                        </div>
+
+                        <div class="multi-choice-question" data-q-start="36" data-q-end="36">
+                            <p><strong>36</strong>&nbsp; What is the writer's main purpose in the seventh paragraph?</p>
+                            <div class="multi-choice-options">
+                                <div class="multi-choice-option"><label><input type="radio" name="q36" value="A"> A &nbsp; to give reasons why adopted children were used in the study</label></div>
+                                <div class="multi-choice-option"><label><input type="radio" name="q36" value="B"> B &nbsp; to reject the view that adopted children need two languages</label></div>
+                                <div class="multi-choice-option"><label><input type="radio" name="q36" value="C"> C &nbsp; to argue that culture affects the way children learn a language</label></div>
+                                <div class="multi-choice-option"><label><input type="radio" name="q36" value="D"> D &nbsp; to justify a particular approach to language learning</label></div>
+                            </div>
+                        </div>
+
+                        <div class="multi-choice-question" data-q-start="37" data-q-end="37">
+                            <p><strong>37</strong>&nbsp; Snedeker, Geren and Shafto based their study on children who</p>
+                            <div class="multi-choice-options">
+                                <div class="multi-choice-option"><label><input type="radio" name="q37" value="A"> A &nbsp; were finding it difficult to learn English.</label></div>
+                                <div class="multi-choice-option"><label><input type="radio" name="q37" value="B"> B &nbsp; had come from a number of language backgrounds.</label></div>
+                                <div class="multi-choice-option"><label><input type="radio" name="q37" value="C"> C &nbsp; were learning English at a later age than US children.</label></div>
+                                <div class="multi-choice-option"><label><input type="radio" name="q37" value="D"> D &nbsp; had taken English lessons in China.</label></div>
+                            </div>
+                        </div>
+
+                        <div class="multi-choice-question" data-q-start="38" data-q-end="38">
+                            <p><strong>38</strong>&nbsp; What aspect of the adopted children's language development differed from that of US-born children?</p>
+                            <div class="multi-choice-options">
+                                <div class="multi-choice-option"><label><input type="radio" name="q38" value="A"> A &nbsp; their first words</label></div>
+                                <div class="multi-choice-option"><label><input type="radio" name="q38" value="B"> B &nbsp; the way they learnt English</label></div>
+                                <div class="multi-choice-option"><label><input type="radio" name="q38" value="C"> C &nbsp; the rate at which they acquired language</label></div>
+                                <div class="multi-choice-option"><label><input type="radio" name="q38" value="D"> D &nbsp; the point at which they started producing sentences</label></div>
+                            </div>
+                        </div>
+
+                        <div class="multi-choice-question" data-q-start="39" data-q-end="39">
+                            <p><strong>39</strong>&nbsp; What did the Harvard finding show?</p>
+                            <div class="multi-choice-options">
+                                <div class="multi-choice-option"><label><input type="radio" name="q39" value="A"> A &nbsp; Not all toddlers use babytalk.</label></div>
+                                <div class="multi-choice-option"><label><input type="radio" name="q39" value="B"> B &nbsp; Language learning takes place in ordered steps.</label></div>
+                                <div class="multi-choice-option"><label><input type="radio" name="q39" value="C"> C &nbsp; Some children need more conversation than others.</label></div>
+                                <div class="multi-choice-option"><label><input type="radio" name="q39" value="D"> D &nbsp; Not all brains work in the same way.</label></div>
+                            </div>
+                        </div>
+
+                        <div class="multi-choice-question" data-q-start="40" data-q-end="40">
+                            <p><strong>40</strong>&nbsp; When the writer says 'critical period', he means a period when</p>
+                            <div class="multi-choice-options">
+                                <div class="multi-choice-option"><label><input type="radio" name="q40" value="A"> A &nbsp; studies produce useful results.</label></div>
+                                <div class="multi-choice-option"><label><input type="radio" name="q40" value="B"> B &nbsp; adults need to be taught like children.</label></div>
+                                <div class="multi-choice-option"><label><input type="radio" name="q40" value="C"> C &nbsp; immigrants want to learn another language.</label></div>
+                                <div class="multi-choice-option"><label><input type="radio" name="q40" value="D"> D &nbsp; language learning takes place effectively.</label></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div><!-- end questions-panel -->
+        </div><!-- end panels-container -->
+    </div><!-- end main-container -->
+
+    <!-- Navigation Arrows -->
+    <div class="nav-arrows">
+        <button class="nav-arrow" onclick="previousQuestion()" id="prevBtn">‹</button>
+        <button class="nav-arrow" onclick="nextQuestion()" id="nextBtn">›</button>
+    </div>
+
+    <!-- Bottom Nav -->
+    <nav class="nav-row" aria-label="Questions">
+        <div class="footer__questionWrapper___1tZ46 selected multiple" role="tablist">
+            <button role="tab" class="footer__questionNo___3WNct" onclick="switchToPart(1)">
+                <span><span class="section-prefix">Part </span><span class="sectionNr">1</span><span class="attemptedCount">0 of 13</span></span>
+            </button>
+            <div class="footer__subquestionWrapper___9GgoP">
+                <button class="subQuestion" onclick="goToQuestion(1)"><span class="sr-only">Q1</span>1</button>
+                <button class="subQuestion" onclick="goToQuestion(2)"><span class="sr-only">Q2</span>2</button>
+                <button class="subQuestion" onclick="goToQuestion(3)"><span class="sr-only">Q3</span>3</button>
+                <button class="subQuestion" onclick="goToQuestion(4)"><span class="sr-only">Q4</span>4</button>
+                <button class="subQuestion" onclick="goToQuestion(5)"><span class="sr-only">Q5</span>5</button>
+                <button class="subQuestion" onclick="goToQuestion(6)"><span class="sr-only">Q6</span>6</button>
+                <button class="subQuestion" onclick="goToQuestion(7)"><span class="sr-only">Q7</span>7</button>
+                <button class="subQuestion" onclick="goToQuestion(8)"><span class="sr-only">Q8</span>8</button>
+                <button class="subQuestion" onclick="goToQuestion(9)"><span class="sr-only">Q9</span>9</button>
+                <button class="subQuestion" onclick="goToQuestion(10)"><span class="sr-only">Q10</span>10</button>
+                <button class="subQuestion" onclick="goToQuestion(11)"><span class="sr-only">Q11</span>11</button>
+                <button class="subQuestion" onclick="goToQuestion(12)"><span class="sr-only">Q12</span>12</button>
+                <button class="subQuestion" onclick="goToQuestion(13)"><span class="sr-only">Q13</span>13</button>
+            </div>
+        </div>
+
+        <div class="footer__questionWrapper___1tZ46 multiple" role="tablist">
+            <button role="tab" class="footer__questionNo___3WNct" onclick="switchToPart(2)">
+                <span><span class="section-prefix">Part </span><span class="sectionNr">2</span><span class="attemptedCount">0 of 13</span></span>
+            </button>
+            <div class="footer__subquestionWrapper___9GgoP">
+                <button class="subQuestion" onclick="goToQuestion(14)">14</button>
+                <button class="subQuestion" onclick="goToQuestion(15)">15</button>
+                <button class="subQuestion" onclick="goToQuestion(16)">16</button>
+                <button class="subQuestion" onclick="goToQuestion(17)">17</button>
+                <button class="subQuestion" onclick="goToQuestion(18)">18</button>
+                <button class="subQuestion" onclick="goToQuestion(19)">19</button>
+                <button class="subQuestion" onclick="goToQuestion(20)">20</button>
+                <button class="subQuestion" onclick="goToQuestion(21)">21</button>
+                <button class="subQuestion" onclick="goToQuestion(22)">22</button>
+                <button class="subQuestion" onclick="goToQuestion(23)">23</button>
+                <button class="subQuestion" onclick="goToQuestion(24)">24</button>
+                <button class="subQuestion" onclick="goToQuestion(25)">25</button>
+                <button class="subQuestion" onclick="goToQuestion(26)">26</button>
+            </div>
+        </div>
+
+        <div class="footer__questionWrapper___1tZ46 multiple" role="tablist">
+            <button role="tab" class="footer__questionNo___3WNct" onclick="switchToPart(3)">
+                <span><span class="section-prefix">Part </span><span class="sectionNr">3</span><span class="attemptedCount">0 of 14</span></span>
+            </button>
+            <div class="footer__subquestionWrapper___9GgoP">
+                <button class="subQuestion" onclick="goToQuestion(27)">27</button>
+                <button class="subQuestion" onclick="goToQuestion(28)">28</button>
+                <button class="subQuestion" onclick="goToQuestion(29)">29</button>
+                <button class="subQuestion" onclick="goToQuestion(30)">30</button>
+                <button class="subQuestion" onclick="goToQuestion(31)">31</button>
+                <button class="subQuestion" onclick="goToQuestion(32)">32</button>
+                <button class="subQuestion" onclick="goToQuestion(33)">33</button>
+                <button class="subQuestion" onclick="goToQuestion(34)">34</button>
+                <button class="subQuestion" onclick="goToQuestion(35)">35</button>
+                <button class="subQuestion" onclick="goToQuestion(36)">36</button>
+                <button class="subQuestion" onclick="goToQuestion(37)">37</button>
+                <button class="subQuestion" onclick="goToQuestion(38)">38</button>
+                <button class="subQuestion" onclick="goToQuestion(39)">39</button>
+                <button class="subQuestion" onclick="goToQuestion(40)">40</button>
+            </div>
+        </div>
+
+        <button id="deliver-button" class="footer__deliverButton___3FM07">
+            ✓ Check Answers
+        </button>
+    </nav>
+
+    <!-- Highlight Toolbar -->
+    <div id="highlightToolbar" class="highlight-toolbar">
+        <span id="toolbar-selection-btns">
+            <button class="toolbar-btn btn-yellow" onclick="applyHighlight('hl-yellow')" title="Yellow">🟡</button>
+            <button class="toolbar-btn btn-green"  onclick="applyHighlight('hl-green')"  title="Green">🟢</button>
+            <button class="toolbar-btn btn-pink"   onclick="applyHighlight('hl-pink')"   title="Pink">🔴</button>
+            <button class="toolbar-btn btn-blue"   onclick="applyHighlight('hl-blue')"   title="Blue">🔵</button>
+            <div class="toolbar-sep"></div>
+            <button class="toolbar-btn btn-note"   onclick="openNoteInput()"             title="Note">📝 Note</button>
+            <div class="toolbar-sep"></div>
+            <button class="toolbar-btn btn-clear"  onclick="clearThisHighlight()"        title="Remove">✕</button>
+            <button class="toolbar-btn btn-clear"  onclick="clearAllHighlights()"        title="Clear All">⊘ All</button>
+        </span>
+        <span id="toolbar-highlight-btns" style="display:none">
+            <button class="toolbar-btn btn-yellow" onclick="recolorHighlight('hl-yellow')">🟡</button>
+            <button class="toolbar-btn btn-green"  onclick="recolorHighlight('hl-green')">🟢</button>
+            <button class="toolbar-btn btn-pink"   onclick="recolorHighlight('hl-pink')">🔴</button>
+            <button class="toolbar-btn btn-blue"   onclick="recolorHighlight('hl-blue')">🔵</button>
+            <div class="toolbar-sep"></div>
+            <button class="toolbar-btn btn-note"   onclick="openNoteInput()">📝 Note</button>
+            <div class="toolbar-sep"></div>
+            <button class="toolbar-btn btn-clear"  onclick="clearThisHighlight()">✕ Remove</button>
+            <button class="toolbar-btn btn-clear"  onclick="clearAllHighlights()">⊘ All</button>
+        </span>
+    </div>
+
+    <!-- Notes Panel -->
+    <div id="notesPanel" class="notes-panel">
+        <div class="notes-panel-header">
+            <span>📝 My Notes</span>
+            <button class="notes-panel-close" onclick="toggleNotesPanel()">✕</button>
+        </div>
+        <div class="notes-list" id="notesList">
+            <p class="notes-empty">No notes yet. Select text and click "Note".</p>
+        </div>
+    </div>
+
+    <!-- Note Input -->
+    <div id="noteInputOverlay" class="note-input-overlay">
+        <div class="note-input-box">
+            <h3>Add a Note</h3>
+            <div class="selected-text-preview" id="noteTextPreview"></div>
+            <textarea id="noteTextarea" placeholder="Type your note here..."></textarea>
+            <div class="note-input-actions">
+                <button class="btn-cancel-note" onclick="cancelNote()">Cancel</button>
+                <button class="btn-save-note" onclick="saveNote()">Save Note</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Results Modal -->
+    <div id="results-modal" class="modal-overlay hidden">
+        <div class="modal-content">
+            <button class="modal-close-btn" onclick="closeResultsModal()">&times;</button>
+            <h2>📊 Your Results</h2>
+            <div class="results-summary">
+                <div><div style="font-size:13px;font-weight:400;color:var(--text-muted);">SCORE</div><span id="results-score" style="font-size:28px;color:var(--accent);"></span><span style="font-size:18px;color:var(--text-muted);"> / 40</span></div>
+                <div><div style="font-size:13px;font-weight:400;color:var(--text-muted);">IELTS BAND</div><span id="results-band" style="font-size:28px;color:#16a34a;"></span></div>
+            </div>
+            <div style="font-size:13px;color:var(--text-muted);margin-bottom:10px;display:grid;grid-template-columns:40px 1fr 1fr;gap:12px;padding:0 5px;font-weight:700;">
+                <span>#</span><span>Your Answer</span><span style="color:var(--correct-border);">Correct</span>
+            </div>
+            <div id="results-details" class="results-details-container"></div>
+            <div style="text-align:center; margin-top:14px; padding-top:12px; border-top:1px solid var(--border); display:flex; gap:10px; justify-content:center;">
+                <button onclick="retakeTest()" style="background:var(--accent);color:#fff;border:none;border-radius:6px;padding:10px 24px;font-size:14px;font-weight:700;cursor:pointer;font-family:'Source Sans 3',sans-serif;">🔄 Retake Test</button>
+                <button onclick="closeResultsModal()" style="background:var(--footer-btn-bg);color:var(--text);border:1px solid var(--border-medium);border-radius:6px;padding:10px 20px;font-size:14px;font-weight:600;cursor:pointer;font-family:'Source Sans 3',sans-serif;">Review Answers</button>
+            </div>
+        </div>
+    </div>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    // ═══════ STATE ═══════
+    let currentPassage = 1, currentQuestion = 1;
+    let selectedRange = null, selectedText = '';
+    let highlightTarget = null, lastAppliedHighlight = null;
+    let timeInSeconds = 3600, timerInterval;
+    let activeQuestionElement = null;
+    let notes = [], nextNoteId = 1;
+
+    // ═══════ DOM ═══════
+    const timerDisplay      = document.querySelector('.timer-display');
+    const timerToggleButton = document.getElementById('timer-toggle-btn');
+    const timerResetButton  = document.getElementById('timer-reset-btn');
+    const deliverButton     = document.getElementById('deliver-button');
+    const resizer           = document.getElementById('resizer');
+    const passagePanel      = document.getElementById('passage-panel');
+    const questionsPanel    = document.getElementById('questions-panel');
+    const highlightToolbar  = document.getElementById('highlightToolbar');
+    const nightModeBtn      = document.getElementById('night-mode-btn');
+    const notesToggleBtn    = document.getElementById('notes-toggle-btn');
+    const notesPanel        = document.getElementById('notesPanel');
+    const notesList         = document.getElementById('notesList');
+    const notesCount        = document.getElementById('notes-count');
+    const noteInputOverlay  = document.getElementById('noteInputOverlay');
+    const noteTextarea      = document.getElementById('noteTextarea');
+    const noteTextPreview   = document.getElementById('noteTextPreview');
+
+    const playIcon  = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M8 5v14l11-7L8 5z"/></svg>';
+    const pauseIcon = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>';
+
+    // ═══════ CORRECT ANSWERS ═══════
+    // Passage 1 Q1-6: TRUE/FALSE/NOT GIVEN
+    // Passage 1 Q7-13: Table completion (text inputs)
+    // Passage 2 Q14-19: Heading matching (roman numerals as string)
+    // Passage 2 Q20-22: Text completion
+    // Passage 2 Q23-26: Word bank (select)
+    // Passage 3 Q27-30: YES/NO/NOT GIVEN
+    // Passage 3 Q31-35: Summary A-H (select)
+    // Passage 3 Q36-40: MCQ A-D
+    const correctAnswers = {
+        '1':  'TRUE',
+        '2':  'NOT GIVEN',
+        '3':  'TRUE',
+        '4':  'FALSE',
+        '5':  'FALSE',
+        '6':  'NOT GIVEN',
+        '7':  ['honeymoon', 'the honeymoon'],
+        '8':  ['similarities'],
+        '9':  ['a month', 'one month'],
+        '10': ['initial enthusiasm', 'enthusiasm'],
+        '11': ['cultural clues', 'subtle cultural clues'],
+        '12': ['problem-solving skills', 'problem solving skills'],
+        '13': ['adaptation'],
+        '14': 'v',
+        '15': 'vii',
+        '16': 'viii',
+        '17': 'x',
+        '18': 'iii',
+        '19': 'ix',
+        '20': ['an alcohol/water mixture', 'alcohol and water', '90% alcohol and 10% water', 'alcohol/water mixture'],
+        '21': ['shaken'],
+        '22': ['stronger'],
+        '23': 'heal itself',
+        '24': 'control symptoms',
+        '25': 'cheaper',
+        '26': 'side effects',
+        '27': 'YES',
+        '28': 'YES',
+        '29': 'NOT GIVEN',
+        '30': 'NO',
+        '31': 'C',
+        '32': 'B',
+        '33': 'A',
+        '34': 'F',
+        '35': 'G',
+        '36': 'A',
+        '37': 'C',
+        '38': 'C',
+        '39': 'B',
+        '40': 'D'
+    };
+
+    // Display text for answers
+    const answerDisplayText = {
+        '7': 'honeymoon', '8': 'similarities', '9': 'a month',
+        '10': 'initial enthusiasm', '11': 'cultural clues', '12': 'problem-solving skills',
+        '13': 'adaptation',
+        '14': 'v', '15': 'vii', '16': 'viii', '17': 'x', '18': 'iii', '19': 'ix',
+        '20': 'an alcohol/water mixture', '21': 'shaken', '22': 'stronger',
+        '23': 'heal itself', '24': 'control symptoms', '25': 'cheaper', '26': 'side effects',
+        '31': 'C', '32': 'B', '33': 'A', '34': 'F', '35': 'G',
+        '36': 'A', '37': 'C', '38': 'C', '39': 'B', '40': 'D'
+    };
+
+    // ═══════ INIT ═══════
+    function initialize() {
+        startTimer();
+        switchToPart(1);
+        document.body.addEventListener('input', updateAllIndicators);
+        document.body.addEventListener('change', updateAllIndicators);
+        deliverButton.addEventListener('click', checkAnswers);
+        timerToggleButton.addEventListener('click', toggleTimer);
+        timerResetButton.addEventListener('click', resetTimer);
+        nightModeBtn.addEventListener('click', toggleNightMode);
+        notesToggleBtn.addEventListener('click', toggleNotesPanel);
+        resizer.addEventListener('mousedown', initResize);
+        initializeHighlightToolbar();
+    }
+
+    // ═══════ NIGHT MODE ═══════
+    function toggleNightMode() {
+        document.body.classList.toggle('night-mode');
+        const isNight = document.body.classList.contains('night-mode');
+        nightModeBtn.innerHTML = isNight ? '<span>☀️</span> Day Mode' : '<span>🌙</span> Night Mode';
+    }
+
+    // ═══════ PART SWITCHING ═══════
+    function switchToPart(partNumber) {
+        currentPassage = partNumber;
+        document.querySelectorAll('.reading-passage, .question-set, .part-header').forEach(el => el.classList.add('hidden'));
+        document.getElementById(`passage-text-${partNumber}`).classList.remove('hidden');
+        document.getElementById(`questions-${partNumber}`).classList.remove('hidden');
+        document.getElementById(`part-header-${partNumber}`).classList.remove('hidden');
+        document.querySelectorAll('.footer__questionWrapper___1tZ46').forEach((w, i) => w.classList.toggle('selected', i + 1 === partNumber));
+        const firstQ = {1: 1, 2: 14, 3: 27}[partNumber];
+        goToQuestion(firstQ);
+    }
+
+    // ═══════ GO TO QUESTION ═══════
+    function goToQuestion(qNum) {
+        currentQuestion = qNum;
+        let part = 1;
+        if (qNum >= 14 && qNum <= 26) part = 2;
+        else if (qNum >= 27) part = 3;
+
+        if (currentPassage !== part) {
+            currentPassage = part;
+            document.querySelectorAll('.reading-passage, .question-set, .part-header').forEach(el => el.classList.add('hidden'));
+            document.getElementById(`passage-text-${part}`).classList.remove('hidden');
+            document.getElementById(`questions-${part}`).classList.remove('hidden');
+            document.getElementById(`part-header-${part}`).classList.remove('hidden');
+            document.querySelectorAll('.footer__questionWrapper___1tZ46').forEach((w, i) => w.classList.toggle('selected', i + 1 === part));
+        }
+
+        if (activeQuestionElement) activeQuestionElement.classList.remove('active-question', 'active-input');
+
+        const targetEl = document.querySelector(`[data-q-start="${qNum}"]`);
+        if (targetEl) {
+            activeQuestionElement = targetEl;
+            targetEl.classList.add('active-question');
+            scrollIfNeeded(targetEl, questionsPanel);
+        }
+        updateNavigation();
+    }
+
+    function updateNavigation() {
+        document.querySelectorAll('.subQuestion').forEach(b => b.classList.remove('active'));
+        const activeBtn = document.querySelector(`.subQuestion[onclick="goToQuestion(${currentQuestion})"]`);
+        if (activeBtn) activeBtn.classList.add('active');
+
+        document.querySelectorAll('.answer-input').forEach(i => i.classList.remove('active-input'));
+        const partId = currentQuestion <= 13 ? 'questions-1' : currentQuestion <= 26 ? 'questions-2' : 'questions-3';
+        const section = document.getElementById(partId);
+        const el = section ? section.querySelector(`#q${currentQuestion}`) : null;
+        if (el) {
+            el.classList.add('active-input');
+            try { el.focus(); } catch(e) {}
+        }
+    }
+
+    function scrollIfNeeded(el, panel) {
+        const pr = panel.getBoundingClientRect();
+        const er = el.getBoundingClientRect();
+        if (er.top < pr.top || er.bottom > pr.bottom) el.scrollIntoView({behavior: 'smooth', block: 'center'});
+    }
+
+    window.nextQuestion = () => currentQuestion < 40 && goToQuestion(currentQuestion + 1);
+    window.previousQuestion = () => currentQuestion > 1 && goToQuestion(currentQuestion - 1);
+    window.goToQuestion = goToQuestion;
+    window.switchToPart = switchToPart;
+
+    // ═══════ ANSWER CHECKING ═══════
+    function checkAnswers() {
+        // Reveal all hidden sections temporarily for checking
+        const hidden = document.querySelectorAll('.question-set.hidden, .reading-passage.hidden, .part-header.hidden');
+        hidden.forEach(s => s.classList.remove('hidden'));
+
+        document.querySelectorAll('input, select, textarea').forEach(i => i.disabled = true);
+        deliverButton.disabled = true;
+        clearInterval(timerInterval);
+
+        let score = 0;
+        const detailsEl = document.getElementById('results-details');
+        detailsEl.innerHTML = '';
+
+        // Clear previous styling
+        document.querySelectorAll('.correct, .incorrect, .correct-answer-highlight').forEach(el => {
+            el.classList.remove('correct', 'incorrect', 'correct-answer-highlight');
+        });
+        document.querySelectorAll('.correct-answer-display').forEach(el => el.remove());
+
+        function getInputEl(qNum) {
+            const partId = qNum <= 13 ? 'questions-1' : qNum <= 26 ? 'questions-2' : 'questions-3';
+            const sec = document.getElementById(partId);
+            return sec ? sec.querySelector(`#q${qNum}`) : null;
+        }
+
+        for (let i = 1; i <= 40; i++) {
+            const key = String(i);
+            const correct = correctAnswers[key];
+            let userAnswer = '';
+            let isCorrect = false;
+            let userDisplay = 'Not Answered';
+            const correctDisplay = answerDisplayText[key] || (Array.isArray(correct) ? correct[0] : correct) || '';
+
+            const radios = document.querySelectorAll(`input[name="q${i}"][type="radio"]`);
+
+            if (radios.length > 0) {
+                // Radio (TRUE/FALSE/NOT GIVEN, YES/NO/NOT GIVEN, MCQ)
+                const checked = document.querySelector(`input[name="q${i}"]:checked`);
+                const container = radios[0].closest('.tf-question, .multi-choice-question');
+
+                if (checked) {
+                    userAnswer = checked.value;
+                    userDisplay = userAnswer;
+                    isCorrect = userAnswer === correct;
+                    const lbl = checked.closest('.tf-option, .multi-choice-option');
+                    if (lbl) lbl.classList.add(isCorrect ? 'correct' : 'incorrect');
+                }
+
+                if (container) {
+                    if (!isCorrect) {
+                        container.classList.add('incorrect');
+                        const correctOpt = container.querySelector(`input[value="${correct}"]`);
+                        if (correctOpt) {
+                            const correctLbl = correctOpt.closest('.tf-option, .multi-choice-option');
+                            if (correctLbl) correctLbl.classList.add('correct-answer-highlight');
+                        }
+                    } else if (container.classList.contains('tf-question')) {
+                        container.classList.add('correct');
+                    }
+                }
+                if (isCorrect) score++;
+
+            } else {
+                const el = getInputEl(i);
+                if (!el) {
+                    userDisplay = 'Not Answered';
+                } else if (el.tagName === 'SELECT') {
+                    userAnswer = el.value;
+                    userDisplay = userAnswer || 'Not Answered';
+                    isCorrect = userAnswer === correct;
+                    const row = el.closest('.matching-form-row, .heading-match-row') || el.parentElement;
+                    row.classList.add(isCorrect ? 'correct' : 'incorrect');
+                    if (isCorrect) score++;
+                    else {
+                        const sp = document.createElement('span');
+                        sp.className = 'correct-answer-display';
+                        sp.innerHTML = ` ➜ <span class="correct-answer-highlight">${correctDisplay}</span>`;
+                        el.parentNode.insertBefore(sp, el.nextSibling);
+                    }
+                } else if (el.tagName === 'INPUT') {
+                    userAnswer = el.value.trim();
+                    userDisplay = userAnswer || 'Not Answered';
+                    const corrArr = Array.isArray(correct) ? correct : [correct];
+                    isCorrect = corrArr.some(a => userAnswer.toLowerCase() === a.toLowerCase());
+                    el.classList.add(isCorrect ? 'correct' : 'incorrect');
+                    if (isCorrect) score++;
+                    else {
+                        const sp = document.createElement('span');
+                        sp.className = 'correct-answer-display';
+                        sp.innerHTML = ` ➜ <span class="correct-answer-highlight">${corrArr[0]}</span>`;
+                        el.parentNode.insertBefore(sp, el.nextSibling);
+                    }
+                }
+            }
+
+            detailsEl.innerHTML += `<div class="result-row ${isCorrect ? '' : 'incorrect'}"><span class="q-num">${i}</span><span class="user-ans">${escHtml(userDisplay)}</span><span class="correct-ans">${escHtml(correctDisplay || (Array.isArray(correct)?correct[0]:correct) || '—')}</span></div>`;
+
+            const navBtn = document.querySelector(`.subQuestion[onclick="goToQuestion(${i})"]`);
+            if (navBtn) {
+                navBtn.classList.remove('answered', 'active');
+                navBtn.classList.add(isCorrect ? 'correct' : 'incorrect');
+            }
+        }
+
+        document.getElementById('results-score').textContent = score;
+        document.getElementById('results-band').textContent = calcBand(score);
+        document.getElementById('results-modal').classList.remove('hidden');
+    }
+
+    function calcBand(s) {
+        const m = {40:9.0,39:9.0,38:8.5,37:8.5,36:8.0,35:8.0,34:7.5,33:7.5,32:7.0,31:7.0,30:7.0,29:6.5,28:6.5,27:6.5,26:6.0,25:6.0,24:6.0,23:5.5,22:5.5,21:5.5,20:5.5,19:5.0,18:5.0,17:5.0,16:5.0,15:5.0,14:4.5,13:4.5,12:4.0,11:4.0,10:4.0,9:3.5,8:3.5,7:3.0,6:3.0,5:2.5,4:2.5,3:2.0,2:2.0,1:1.0,0:0.0};
+        return m[s] !== undefined ? m[s] : '0.0';
+    }
+
+    window.closeResultsModal = function() { document.getElementById('results-modal').classList.add('hidden'); };
+    window.retakeTest = function() {
+        document.querySelectorAll('input, select, textarea').forEach(i => { i.disabled = false; if (i.type === 'radio' || i.type === 'checkbox') i.checked = false; else if (i.tagName === 'SELECT') i.value = ''; else i.value = ''; });
+        deliverButton.disabled = false;
+        document.querySelectorAll('.correct, .incorrect, .correct-answer-highlight').forEach(el => el.classList.remove('correct','incorrect','correct-answer-highlight'));
+        document.querySelectorAll('.correct-answer-display').forEach(el => el.remove());
+        document.querySelectorAll('.subQuestion').forEach(b => b.classList.remove('correct','incorrect','answered','active'));
+        closeResultsModal();
+        resetTimer();
+        switchToPart(1);
+        updateAllIndicators();
+    };
+
+    // ═══════ INDICATORS ═══════
+    function updateAllIndicators() {
+        updateAttemptedCount(1, 1, 13);
+        updateAttemptedCount(2, 14, 26);
+        updateAttemptedCount(3, 27, 40);
+        updateAnsweredNav();
+    }
+    function updateAnsweredNav() {
+        document.querySelectorAll('.subQuestion').forEach(b => {
+            const qNum = parseInt(b.textContent.trim(), 10);
+            if (!isNaN(qNum)) b.classList.toggle('answered', isAnswered(qNum));
+        });
+    }
+    function isAnswered(qNum) {
+        if (document.querySelector(`input[name="q${qNum}"]:checked`)) return true;
+        const pid = qNum <= 13 ? 'questions-1' : qNum <= 26 ? 'questions-2' : 'questions-3';
+        const sec = document.getElementById(pid);
+        if (!sec) return false;
+        const el = sec.querySelector(`#q${qNum}`);
+        if (!el) return false;
+        if (el.tagName === 'SELECT') return !!el.value;
+        if (el.tagName === 'INPUT') return !!el.value.trim();
+        return false;
+    }
+    function updateAttemptedCount(part, s, e) {
+        let n = 0;
+        for (let i = s; i <= e; i++) if (isAnswered(i)) n++;
+        const w = document.querySelectorAll('.footer__questionWrapper___1tZ46')[part - 1];
+        if (w) { const sp = w.querySelector('.attemptedCount'); if (sp) sp.textContent = `${n} of ${e - s + 1}`; }
+    }
+
+    // ═══════ TIMER ═══════
+    function startTimer() {
+        if (timerInterval) clearInterval(timerInterval);
+        timerInterval = setInterval(() => {
+            timeInSeconds--;
+            updateTimerDisplay();
+            if (timeInSeconds <= 0) { clearInterval(timerInterval); timerDisplay.textContent = "Time's up!"; }
+        }, 1000);
+        timerToggleButton.innerHTML = pauseIcon;
+    }
+    function pauseTimer() { clearInterval(timerInterval); timerToggleButton.innerHTML = playIcon; }
+    function toggleTimer() {
+        if (timerToggleButton.innerHTML.includes('M6 19h4V5H6v14z')) pauseTimer(); else startTimer();
+    }
+    function resetTimer() { timeInSeconds = 3600; updateTimerDisplay(); startTimer(); }
+    function updateTimerDisplay() {
+        const m = Math.floor(timeInSeconds / 60), s = timeInSeconds % 60;
+        timerDisplay.textContent = `${String(m).padStart(2,'0')}:${String(s).padStart(2,'0')}`;
+    }
+
+    // ═══════ RESIZER ═══════
+    function initResize(e) {
+        e.preventDefault();
+        const startX = e.clientX, startW = passagePanel.offsetWidth;
+        const drag = e => {
+            const nw = startW + e.clientX - startX;
+            if (nw > 200 && (document.body.clientWidth - nw - resizer.offsetWidth) > 200)
+                passagePanel.style.flex = `0 0 ${nw}px`;
+        };
+        const stop = () => { window.removeEventListener('mousemove', drag); window.removeEventListener('mouseup', stop); };
+        window.addEventListener('mousemove', drag);
+        window.addEventListener('mouseup', stop);
+    }
+
+    // ═══════ HIGHLIGHTS ═══════
+    function initializeHighlightToolbar() {
+        const panels = [passagePanel, questionsPanel];
+        const selBtns = document.getElementById('toolbar-selection-btns');
+        const hlBtns  = document.getElementById('toolbar-highlight-btns');
+
+        document.addEventListener('selectionchange', () => {
+            const sel = window.getSelection();
+            if (sel && !sel.isCollapsed && sel.toString().trim()) {
+                const r = sel.getRangeAt(0);
+                if (panels.some(p => p.contains(r.commonAncestorContainer))) {
+                    selectedRange = r.cloneRange(); selectedText = sel.toString();
+                }
+            }
+        });
+
+        document.addEventListener('mouseup', e => {
+            if (highlightToolbar.contains(e.target) || noteInputOverlay.contains(e.target)) return;
+            const sel = window.getSelection();
+            const overHL = e.target.closest('.highlight, .comment-highlight');
+            if (overHL && (!sel || sel.isCollapsed)) {
+                highlightTarget = overHL; lastAppliedHighlight = null; selectedRange = null;
+                selBtns.style.display = 'none'; hlBtns.style.display = 'inline';
+                positionToolbar(e); return;
+            }
+            if (sel && !sel.isCollapsed && sel.toString().trim()) {
+                const r = sel.getRangeAt(0);
+                if (panels.some(p => p.contains(r.commonAncestorContainer))) {
+                    highlightTarget = null; lastAppliedHighlight = null;
+                    const sn = r.startContainer;
+                    const eh = (sn.nodeType === 3 ? sn.parentElement : sn).closest('.highlight, .comment-highlight');
+                    if (eh) highlightTarget = eh;
+                    selBtns.style.display = 'inline'; hlBtns.style.display = 'none';
+                    positionToolbar(e); return;
+                }
+            }
+            hideToolbar();
+        });
+
+        document.addEventListener('keydown', e => { if (e.key === 'Escape') hideToolbar(); });
+        passagePanel.addEventListener('scroll', hideToolbar);
+        questionsPanel.addEventListener('scroll', hideToolbar);
+    }
+
+    function positionToolbar(e) {
+        highlightToolbar.classList.add('visible');
+        requestAnimationFrame(() => {
+            const tw = highlightToolbar.offsetWidth || 300, th = highlightToolbar.offsetHeight || 44;
+            let left = e.pageX - tw / 2, top = e.pageY - th - 14;
+            if (left < 8) left = 8;
+            if (left + tw > window.innerWidth - 8) left = window.innerWidth - tw - 8;
+            if (top < 68) top = e.pageY + 14;
+            highlightToolbar.style.left = left + 'px'; highlightToolbar.style.top = top + 'px';
+        });
+    }
+    function hideToolbar() { highlightToolbar.classList.remove('visible'); }
+
+    window.applyHighlight = function(cls) {
+        if (!selectedRange || selectedRange.collapsed) { hideToolbar(); return; }
+        try {
+            const sp = document.createElement('span');
+            sp.className = 'highlight ' + cls;
+            sp.appendChild(selectedRange.extractContents());
+            selectedRange.insertNode(sp);
+            lastAppliedHighlight = sp;
+        } catch(e) {}
+        hideToolbar(); window.getSelection().removeAllRanges(); selectedRange = null;
+    };
+    window.recolorHighlight = function(cls) {
+        if (!highlightTarget) { hideToolbar(); return; }
+        highlightTarget.className = 'highlight ' + cls; highlightTarget = null; hideToolbar();
+    };
+    window.clearThisHighlight = function() {
+        const t = highlightTarget || lastAppliedHighlight;
+        if (!t || !t.parentNode) { hideToolbar(); return; }
+        if (t.classList.contains('comment-highlight')) {
+            const idx = notes.findIndex(n => n.spanEl === t);
+            if (idx !== -1) notes.splice(idx, 1); renderNotes();
+        }
+        unwrap(t); highlightTarget = null; lastAppliedHighlight = null; hideToolbar();
+    };
+    window.clearAllHighlights = function() {
+        document.querySelectorAll('.highlight, .comment-highlight').forEach(unwrap);
+        notes.forEach(n => n.spanEl = null); notes = []; renderNotes();
+        highlightTarget = null; lastAppliedHighlight = null; hideToolbar();
+    };
+    function unwrap(el) {
+        const p = el.parentNode; if (!p) return;
+        while (el.firstChild) p.insertBefore(el.firstChild, el);
+        p.removeChild(el); p.normalize();
+    }
+
+    // ═══════ NOTES ═══════
+    function toggleNotesPanel() { notesPanel.classList.toggle('visible'); }
+    window.openNoteInput = function() {
+        if (!selectedRange || selectedRange.collapsed) return;
+        noteTextPreview.textContent = selectedText.length > 110 ? selectedText.slice(0,110)+'…' : selectedText;
+        noteTextarea.value = '';
+        noteInputOverlay.classList.add('visible');
+        setTimeout(() => noteTextarea.focus(), 50);
+    };
+    window.cancelNote = function() {
+        noteInputOverlay.classList.remove('visible'); hideToolbar();
+        window.getSelection().removeAllRanges(); selectedRange = null;
+    };
+    window.saveNote = function() {
+        const nt = noteTextarea.value.trim();
+        if (!nt || !selectedRange || selectedRange.collapsed) { cancelNote(); return; }
+        const sp = document.createElement('span'); sp.className = 'comment-highlight';
+        const tt = document.createElement('span'); tt.className = 'comment-tooltip'; tt.textContent = nt;
+        try { sp.appendChild(selectedRange.extractContents()); } catch(e) {}
+        sp.appendChild(tt); selectedRange.insertNode(sp);
+        notes.push({id: nextNoteId++, text: selectedText.slice(0,80), noteText: nt, spanEl: sp});
+        renderNotes(); cancelNote();
+    };
+    function renderNotes() {
+        const c = notes.length;
+        notesCount.textContent = c; notesCount.style.display = c > 0 ? 'inline' : 'none';
+        if (!c) { notesList.innerHTML = '<p class="notes-empty">No notes yet.</p>'; return; }
+        notesList.innerHTML = notes.map(n => `<div class="note-item"><div style="display:flex;justify-content:space-between;"><div class="note-item-text">"${escHtml(n.text)}${n.text.length>=80?'…':''}"</div><button class="note-item-delete" onclick="deleteNote(${n.id})">✕</button></div><div class="note-item-content">${escHtml(n.noteText)}</div></div>`).join('');
+    }
+    window.deleteNote = function(id) {
+        const idx = notes.findIndex(n => n.id === id); if (idx === -1) return;
+        const note = notes[idx];
+        if (note.spanEl && note.spanEl.parentNode) unwrap(note.spanEl);
+        notes.splice(idx, 1); renderNotes();
+    };
+    function escHtml(s) { return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+
+    // Expose globals
+    window.nextQuestion = nextQuestion;
+    window.previousQuestion = previousQuestion;
+    window.goToQuestion = goToQuestion;
+    window.switchToPart = switchToPart;
+    window.closeResultsModal = closeResultsModal;
+    window.toggleNotesPanel = toggleNotesPanel;
+
+    initialize();
+});
+</script>
+</body>
+</html>
