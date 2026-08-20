@@ -64,6 +64,7 @@ const TG = "https://t.me/progression_go"; // Telegram kanal/guruh havolasi
       <nav class="side-nav">
         <a href={base}><span data-i18n="nav.home">Bosh sahifa</span></a>
         <a href={base + 'kurslar/'}><span data-i18n="nav.courses">Kurslar</span></a>
+        <a href={base + 'ielts-mock/'}>IELTS Mock</a>
         <a href={base + 'narxlar/'}><span data-i18n="nav.prices">Narxlar</span></a>
         <a href={base + 'kurs-tanlash/'}><span data-i18n="nav.reco">Kurs tanlash</span></a>
         <a href={base + 'mening-yolim/'}><span data-i18n="nav.journey">Mening yo'lim</span></a>
@@ -87,6 +88,7 @@ const TG = "https://t.me/progression_go"; // Telegram kanal/guruh havolasi
         <span class="mobile-brand"><span class="brand-wordmark"><span class="brand-tay">Tay</span><span class="brand-anch">anch</span></span></span>
         <nav class="top-nav">
           <a href={base + 'kurslar/'}><span data-i18n="nav.courses">Kurslar</span></a>
+          <a href={base + 'ielts-mock/'}>IELTS Mock</a>
           <a href={base + 'narxlar/'}><span data-i18n="nav.prices">Narxlar</span></a>
           <a href={base + 'kurs-tanlash/'}><span data-i18n="nav.reco">Kurs tanlash</span></a>
           <a href={base + 'mening-yolim/'}><span data-i18n="nav.journey">Mening yo'lim</span></a>
@@ -132,12 +134,13 @@ const TG = "https://t.me/progression_go"; // Telegram kanal/guruh havolasi
             <p data-i18n="footer.about">Amaliy onlayn kurslar: AI, IELTS, Admission va shaxsiy bilim bazasi. O'zbek tilida, bepul kurslar ham bor.</p>
             <div class="footer-social">
               <a href="https://t.me/progression_go" aria-label="Telegram" data-i18n="footer.social.tg" target="_blank" rel="noopener noreferrer">Telegram</a>
-              <a href="https://t.me/progression_go" aria-label="Instagram" data-i18n="footer.social.ig" target="_blank" rel="noopener noreferrer">Instagram</a>
+              <a href="https://instagram.com/javohir_kakhramonov" aria-label="Instagram" data-i18n="footer.social.ig" target="_blank" rel="noopener noreferrer">Instagram</a>
             </div>
           </div>
           <div class="footer-col">
             <h4 data-i18n="footer.pages">Sahifalar</h4>
             <a href={base + 'kurslar/'}><span data-i18n="nav.courses">Kurslar</span></a>
+            <a href={base + 'ielts-mock/'}>IELTS Mock</a>
             <a href={base + 'narxlar/'}><span data-i18n="nav.prices">Narxlar</span></a>
             <a href={base + 'kurs-tanlash/'}><span data-i18n="nav.reco">Kurs tanlash</span></a>
             <a href={base + 'mening-yolim/'}><span data-i18n="nav.journey">Mening yo'lim</span></a>
@@ -979,6 +982,8 @@ const TG = "https://t.me/progression_go"; // Telegram kanal/guruh havolasi
       .price { font-size: 1.5rem; color: #ffd700; font-weight: 800; margin: 1rem 0; }
       .start-btn { display: inline-block; padding: 0.65rem 1.5rem; background: var(--accent); color: #fff; border-radius: 10px; text-decoration: none; font-weight: 700; font-size: 0.95rem; transition: background .15s; }
       .start-btn:hover { background: var(--accent-2); }
+      .mock-practice-link { display: block; width: fit-content; margin-top: .7rem; color: var(--accent); font-weight: 700; font-size: .9rem; text-decoration: none; }
+      .mock-practice-link:hover { color: var(--accent-2); text-decoration: underline; text-underline-offset: 3px; }
       .why-us { margin-top: 3rem; background: var(--surface); padding: 2rem; border-radius: 16px; border: 1px solid var(--border); }
       .why-us h2 { color: var(--accent); margin-top: 0; }
       .why-us ul { list-style: none; padding: 0; }

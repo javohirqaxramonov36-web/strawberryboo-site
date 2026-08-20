@@ -109,7 +109,7 @@ window.TayanchAI = (function () {
         initGIS();
         try {
           google.accounts.id.renderButton(container, {
-            theme: 'outline', size: 'medium', type: 'standard', shape: 'pill', text: 'signin_with'
+            theme: 'filled_black', size: 'medium', type: 'standard', shape: 'pill', text: 'signin_with'
           });
           return;
         } catch (e) { console.warn('GIS renderButton xatosi:', e); }
