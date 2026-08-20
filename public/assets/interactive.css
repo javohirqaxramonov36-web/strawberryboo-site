@@ -47,9 +47,10 @@ body .tg-footer-btn:hover {
   transform: translateY(0);
 }
 
-/* 4) Ijtimoiy isbot (social proof) — karta ichida.
+/* 4) Ijtimoiy isbot (social proof) — karta ichida, CTA tugmasi yonida.
    HOZIRCHA YASHIRINGAN: haqiqiy raqamlar kiritilgach bu blokni oching.
-   Yashirish uchun: display:none ni olib tashlang va .social-proof uslublarini tiklang. */
+   Ochish uchun: pastdagi display:none ni olib tashlang va .sp-starters uslubini tiklang.
+   Reyting (yulduz) qismi foydalanuvchi qarori bilan butunlay olib tashlangan. */
 .social-proof {
   display: none;
 }
@@ -57,12 +58,6 @@ body .tg-footer-btn:hover {
   color: var(--muted);
   font-size: 0.82rem;
   font-weight: 600;
-}
-.sp-rating {
-  color: #ffd700;
-  font-size: 0.85rem;
-  letter-spacing: 2px;
-  opacity: 0.55;
 }
 
 /* 5) Kurs tanlash — progress bar */
