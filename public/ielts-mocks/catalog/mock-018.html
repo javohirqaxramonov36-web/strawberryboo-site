@@ -1130,6 +1130,7 @@
                 <div class="attemptedCount">0 of 1</div>
             </button>
         </div>
+        <button id="ai-assess-button" type="button" onclick="assessWritingWithAI()" style="margin-left:10px;background:#2f80ed;color:#fff;border:0;border-radius:6px;padding:10px 14px;font-weight:700;cursor:pointer;">AI baholash</button>
         <button id="deliver-button" aria-label="Submit Writing" class="footer__deliverButton___3FM07" onclick="submitTest()">
             <i class="fa fa-check" aria-hidden="true"></i>
         </button>
@@ -1235,6 +1236,29 @@ COMMON MISTAKES TO AVOID:
         </div>
     </div>
 
+    <script src="../../js/ielts-assessor.js"></script>
+    <script>
+      async function assessWritingWithAI() {
+        if (!window.IELTSAssessor || !IELTSAssessor.hasApiKey()) {
+          alert('AI baholash uchun bepul OpenRouter API kalitini Sozlamalar oynasida kiriting. Kalit faqat shu brauzerda saqlanadi.');
+          if (window.IELTSAssessor) IELTSAssessor.showSettingsDialog(); return;
+        }
+        const editor=document.getElementById('writingTextarea');
+        if (currentPart===1) window.task1Content=editor.value; else window.task2Content=editor.value;
+        const tasks=[{type:'academic_task1',response:window.task1Content||'',node:document.querySelector('#part-1 .task-prompt')},{type:'task2',response:window.task2Content||'',node:document.querySelector('#part-2 .task-prompt')}].filter(t=>t.response.trim());
+        if (!tasks.length) { alert('Avval kamida bitta Task uchun javob yozing.'); return; }
+        const button=document.getElementById('ai-assess-button'); button.disabled=true; button.textContent='Baholanmoqda…';
+        try {
+          const results=await Promise.all(tasks.map(t=>IELTSAssessor.assessWriting({task_type:t.type,prompt:t.node?t.node.innerText.trim():'IELTS Writing task prompt',response:t.response})));
+          const dialog=document.createElement('dialog'); dialog.style.cssText='max-width:900px;width:min(900px,94vw);max-height:88vh;border:0;border-radius:14px;padding:24px;overflow:auto;color:#182230;background:#fff;box-shadow:0 18px 60px rgba(0,0,0,.35)';
+          let html='<div style="display:flex;justify-content:space-between;gap:16px;align-items:center"><h2 style="margin:0">AI Writing practice estimate</h2><button id="closeAiAssessment" type="button">Yopish</button></div><p>Bu rasmiy IELTS bahosi emas. Natija AI practice estimate hisoblanadi.</p>';
+          if(results.length===2){const overall=Math.round(((results[0].task_band+2*results[1].task_band)/3)*2)/2;html+='<p><strong>Umumiy Writing practice estimate: '+overall.toFixed(1)+'</strong> <small>(Task 1 × 1 + Task 2 × 2) / 3</small></p>';}
+          results.forEach((r,i)=>html+='<hr><h3>Task '+(tasks[i].type==='task2'?'2':'1')+'</h3>'+IELTSAssessor.renderAssessmentHTML(r));
+          dialog.innerHTML=html;document.body.appendChild(dialog);dialog.showModal();dialog.querySelector('#closeAiAssessment').onclick=()=>dialog.close();dialog.addEventListener('close',()=>dialog.remove());
+        } catch(error) { alert(error&&error.message?error.message:'AI baholashda xato. Qayta urinib ko‘ring.'); }
+        finally { button.disabled=false;button.textContent='AI baholash'; }
+      }
+    </script>
     <script>
         let currentPart = 1;
         let timeInSeconds = 3600;
