@@ -1,5 +1,6 @@
 ---
 import PaymentInstructions from './PaymentInstructions.astro';
+import CourseProgress from './CourseProgress.astro';
 const { skill, title, eyebrow, description, accent, available, fillNeeded, practiceHref, practiceLabel, sourceNote, mockBonus = false, speakingApp = false, whyUseful, contentTodo, bonusHref, bonusLabel } = Astro.props;
 const base = import.meta.env.BASE_URL;
 const coursePrice = '$7.50 · ≈ 93 750 so‘m';
@@ -7,6 +8,7 @@ const bundleHref = base + 'bog-lanish?course=ielts-full-bundle&price=300000';
 ---
 <article class="ielts-skill" style={`--skill-accent:${accent}`}>
   <header class="course-hero"><p class="eyebrow">{eyebrow} · YANGI SKILL-KURS</p><h1>{title}</h1><div class="price"><span class="now">$7.50</span><span class="uzs">≈ 93 750 so‘m · forever access</span></div><p class="lead">{description}</p></header>
+  <CourseProgress courseId={skill} title={`${title} progressi`} selector=".ielts-skill" itemSelector=".content-grid > article" labelSelector="h3" mode={skill === 'ielts-speaking' ? 'speaking' : 'checklist'} />
   {whyUseful && <aside class="why-useful"><strong>IELTS Writing nima uchun foydali?</strong><p>{whyUseful}</p></aside>}
   <section class="bundle-callout"><div><p class="eyebrow">IELTS FULL BUNDLE</p><h2>4 tasini birga oling — 20% tejang</h2><p>Listening + Reading + Writing + Speaking alohida: <s>375 000 so‘m</s>. Bundle: <strong>300 000 so‘m</strong>. To‘lov mavjud jarayon bo‘yicha Telegram orqali qo‘lda tasdiqlanadi.</p></div><a class="start-btn" href={bundleHref}>Bundle: 300 000 so‘m →</a></section>
   {mockBonus && <aside class="mock-bonus"><strong>IELTS Mock bonusi:</strong> Listening yoki Reading kursini xarid qilganda bir marta 2 Qadam bonus beriladi.</aside>}

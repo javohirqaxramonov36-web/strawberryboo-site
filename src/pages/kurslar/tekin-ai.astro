@@ -1,5 +1,6 @@
 ---
 import Base from "../../layouts/Base.astro";
+import CourseProgress from "../../components/CourseProgress.astro";
 import PaymentInstructions from "../../components/PaymentInstructions.astro";
 import CourseSchema from "../../components/CourseSchema.astro";
 import LeadMagnetCTA from "../../components/LeadMagnetCTA.astro";
@@ -14,6 +15,7 @@ const questions = [
 ---
 
 <Base title={title} description={description}>
+  <CourseProgress courseId="tekin-ai" title="Tekin AI progressi" itemSelector=".ai-tool-grid > article" labelSelector="h3" />
   <CourseSchema name={title} description={description} />
 
 <article class="lesson">

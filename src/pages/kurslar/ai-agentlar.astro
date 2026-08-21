@@ -1,6 +1,7 @@
 ---
 import Base from "../../layouts/Base.astro";
 import PaymentInstructions from "../../components/PaymentInstructions.astro";
+import CourseProgress from "../../components/CourseProgress.astro";
 import CourseSchema from "../../components/CourseSchema.astro";
 import Quiz from "../../components/Quiz.astro";
 const title = "AI Agentlar nega kerak? — Tayanch";
@@ -13,6 +14,7 @@ const questions = [
 ---
 
 <Base title={title} description={description}>
+  <CourseProgress courseId="ai-agentlar" title="AI Agentlar progressi" itemSelector=".modules > li" labelSelector="ol.modules" />
   <CourseSchema name={title} description={description} />
 
 <article class="lesson">

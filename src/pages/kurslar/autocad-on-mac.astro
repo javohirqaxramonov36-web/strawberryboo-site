@@ -1,5 +1,6 @@
 ---
 import Base from "../../layouts/Base.astro";
+import CourseProgress from "../../components/CourseProgress.astro";
 import PaymentInstructions from "../../components/PaymentInstructions.astro";
 import CourseSchema from "../../components/CourseSchema.astro";
 import Quiz from "../../components/Quiz.astro";
@@ -14,6 +15,7 @@ const questions = [
 ---
 
 <Base title={title} description={description}>
+  <CourseProgress courseId="autocad-on-mac" title="AutoCAD on Mac progressi" itemSelector=".modules > li" />
   <CourseSchema name={title} description={description} />
   <article class="lesson">
     <div class="course-hero">

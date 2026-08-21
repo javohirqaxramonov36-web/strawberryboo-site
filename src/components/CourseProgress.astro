@@ -1,0 +1,132 @@
+---
+const {
+  courseId,
+  title = 'Kurs progressi',
+  selector = '',
+  itemSelector = '',
+  labelSelector = '',
+  mode = 'checklist',
+  summaryOnly = false,
+} = Astro.props;
+---
+<section
+  class="course-progress"
+  data-course-progress
+  data-course-id={courseId}
+  data-title={title}
+  data-selector={selector}
+  data-item-selector={itemSelector}
+  data-label-selector={labelSelector}
+  data-mode={mode}
+  data-summary-only={summaryOnly ? 'true' : 'false'}
+  aria-labelledby={`course-progress-${courseId}`}
+>
+  <div class="course-progress__head">
+    <div>
+      <p class="course-progress__eyebrow">SIZNING PROGRESSINGIZ</p>
+      <h2 id={`course-progress-${courseId}`}>{title}</h2>
+    </div>
+    <p class="course-progress__count" data-progress-count>0/0</p>
+  </div>
+  <div class="course-progress__bar" role="progressbar" aria-valuemin="0" aria-valuemax="0" aria-valuenow="0" aria-label={`${title} progressi`}>
+    <span data-progress-fill></span>
+  </div>
+  <p class="course-progress__hint" data-progress-hint>Bo‘limlarni tugatganingizda belgilang. Progress shu qurilmada saqlanadi.</p>
+  <div class="course-progress__items" data-progress-items></div>
+  <button class="course-progress__reset" type="button" data-progress-reset hidden>Progressni tozalash</button>
+</section>
+
+<script>
+  const PREFIX = 'progress:';
+  const safeRead = (key) => {
+    try { return JSON.parse(localStorage.getItem(key) || '{}'); } catch { return {}; }
+  };
+  const safeWrite = (key, value) => {
+    try { localStorage.setItem(key, JSON.stringify(value)); return true; } catch { return false; }
+  };
+  const speakState = () => safeRead('tayanch-speaking-progress-v2');
+  const completedSpeakingDays = () => Object.values(speakState()).filter((day) => day && day.pronunciation_done && day.shadowing_done && day.speaking_done).length;
+
+  document.querySelectorAll('[data-course-progress]').forEach((root) => {
+    const courseId = root.dataset.courseId;
+    const storeKey = PREFIX + courseId;
+    const mode = root.dataset.mode || 'checklist';
+    const list = root.querySelector('[data-progress-items]');
+    const count = root.querySelector('[data-progress-count]');
+    const fill = root.querySelector('[data-progress-fill]');
+    const bar = root.querySelector('.course-progress__bar');
+    const hint = root.querySelector('[data-progress-hint]');
+    const reset = root.querySelector('[data-progress-reset]');
+    const summaryOnly = root.dataset.summaryOnly === 'true';
+
+    if (mode === 'speaking') {
+      const renderSpeaking = () => {
+        const done = Math.min(30, completedSpeakingDays());
+        const pct = Math.round((done / 30) * 100);
+        count.textContent = `${done}/30 · ${pct}%`;
+        fill.style.width = `${pct}%`;
+        bar.setAttribute('aria-valuemax', '30');
+        bar.setAttribute('aria-valuenow', String(done));
+        hint.textContent = 'IELTS Speaking ichidagi 30 kunlik mashq progressidan olinadi. Har kun uchun talaffuz, shadowing va speaking qismlarini yakunlang.';
+      };
+      list.hidden = true;
+      renderSpeaking();
+      window.addEventListener('storage', (event) => { if (event.key === 'tayanch-speaking-progress-v2') renderSpeaking(); });
+      return;
+    }
+
+    const getTargets = () => {
+      const scope = root.dataset.selector ? document.querySelector(root.dataset.selector) : document;
+      if (!scope || !root.dataset.itemSelector) return [];
+      return Array.from(scope.querySelectorAll(root.dataset.itemSelector));
+    };
+    const labelFor = (target, index) => {
+      const candidate = root.dataset.labelSelector ? target.querySelector(root.dataset.labelSelector) : null;
+      return (candidate?.textContent || target.textContent || `Bo‘lim ${index + 1}`).replace(/\s+/g, ' ').trim();
+    };
+    const targets = getTargets();
+    const items = targets.map((target, index) => ({ id: `item-${index + 1}`, label: labelFor(target, index), target }));
+    let state = safeRead(storeKey);
+
+    const update = () => {
+      const done = items.filter((item) => state[item.id]).length;
+      const total = items.length;
+      const pct = total ? Math.round((done / total) * 100) : 0;
+      count.textContent = `${done}/${total} · ${pct}%`;
+      fill.style.width = `${pct}%`;
+      bar.setAttribute('aria-valuemax', String(total));
+      bar.setAttribute('aria-valuenow', String(done));
+      hint.textContent = total ? 'Bo‘limlarni tugatganingizda belgilang. Progress shu qurilmada saqlanadi.' : 'Bu kurs uchun belgilash mumkin bo‘lgan bo‘lim topilmadi.';
+      reset.hidden = done === 0;
+      items.forEach((item) => {
+        const input = list.querySelector(`[data-progress-id="${item.id}"]`);
+        if (input) input.checked = Boolean(state[item.id]);
+        item.target.classList.toggle('is-course-complete', Boolean(state[item.id]));
+      });
+    };
+
+    if (!summaryOnly && items.length) {
+      list.innerHTML = items.map((item, index) => `<label class="course-progress__item"><input type="checkbox" data-progress-id="${item.id}" /><span class="course-progress__box" aria-hidden="true">✓</span><span><b>${index + 1}.</b> ${item.label}</span></label>`).join('');
+      list.querySelectorAll('input').forEach((input) => input.addEventListener('change', () => {
+        state[input.dataset.progressId] = input.checked;
+        if (!safeWrite(storeKey, state)) hint.textContent = 'Progress saqlanmadi: brauzer storage sozlamasini tekshiring.';
+        update();
+      }));
+    } else {
+      list.hidden = true;
+    }
+    reset.addEventListener('click', () => {
+      if (!window.confirm('Bu kurs progressini tozalaysizmi?')) return;
+      state = {};
+      safeWrite(storeKey, state);
+      update();
+    });
+    update();
+  });
+</script>
+
+<style>
+  .course-progress{--progress-accent:var(--accent);max-width:980px;margin:1.4rem auto;padding:1rem 1.1rem;border:1px solid color-mix(in srgb,var(--progress-accent) 48%,var(--border));border-radius:16px;background:linear-gradient(125deg,color-mix(in srgb,var(--progress-accent) 12%,var(--surface)),var(--surface));box-shadow:0 12px 30px rgba(0,0,0,.12)}
+  .course-progress__head{display:flex;align-items:flex-start;justify-content:space-between;gap:1rem}.course-progress__eyebrow{margin:0 0 .25rem;color:var(--progress-accent);font-size:.73rem;font-weight:800;letter-spacing:.1em}.course-progress h2{margin:0;font-size:1.08rem}.course-progress__count{margin:0;white-space:nowrap;color:var(--progress-accent);font-weight:800;font-variant-numeric:tabular-nums}.course-progress__bar{height:9px;margin:.85rem 0 .55rem;overflow:hidden;border-radius:999px;background:color-mix(in srgb,var(--border) 75%,transparent)}.course-progress__bar span{display:block;width:0;height:100%;border-radius:inherit;background:linear-gradient(90deg,var(--progress-accent),#34d399);transition:width .32s ease}.course-progress__hint{margin:0;color:var(--muted);font-size:.87rem;line-height:1.45}.course-progress__items{display:grid;gap:.45rem;margin-top:.9rem}.course-progress__item{display:flex;align-items:flex-start;gap:.6rem;padding:.55rem .65rem;border:1px solid transparent;border-radius:10px;color:var(--text);cursor:pointer;line-height:1.4;font-size:.9rem;transition:background .18s,border-color .18s}.course-progress__item:hover{border-color:var(--progress-accent);background:color-mix(in srgb,var(--progress-accent) 8%,transparent)}.course-progress__item input{position:absolute;opacity:0;pointer-events:none}.course-progress__box{display:grid;flex:0 0 1.1rem;width:1.1rem;height:1.1rem;place-items:center;margin-top:.05rem;border:1px solid var(--border);border-radius:5px;color:transparent;font-size:.78rem;transition:.18s}.course-progress__item input:checked+.course-progress__box{border-color:var(--progress-accent);background:var(--progress-accent);color:#fff}.course-progress__item input:focus-visible+.course-progress__box{outline:2px solid var(--progress-accent);outline-offset:2px}.course-progress__reset{margin-top:.85rem;padding:0;border:0;background:none;color:var(--muted);font:inherit;font-size:.84rem;text-decoration:underline;cursor:pointer}.course-progress__reset:hover{color:var(--text)}
+  @media(max-width:600px){.course-progress{padding:.9rem}.course-progress__head{align-items:center}.course-progress__item{padding:.55rem .35rem}.course-progress__count{font-size:.9rem}}
+</style>

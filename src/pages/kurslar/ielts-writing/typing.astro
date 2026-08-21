@@ -2,6 +2,7 @@
 import Base from '../../../layouts/Base.astro';
 import Quiz from '../../../components/Quiz.astro';
 import TypingPractice from '../../../components/TypingPractice.astro';
+import CourseProgress from '../../../components/CourseProgress.astro';
 const base = import.meta.env.BASE_URL;
 const lessons = [
   { number: '01', title: 'Barmoqlar joylashuvi', description: 'Uy qatorini toping va ko‘zingizni klaviaturadan uzmasdan qisqa, aniq yozishga odatlaning.', target: 'practice makes progress when every key is pressed calmly', hint: 'Avval aniqlik, keyin tezlik.', quiz: [{ q: 'Touch typingda ko‘zingiz asosan qayerda bo‘lishi kerak?', opts: ['Klaviaturada', 'Ekrandagi matnda', 'Faqat barmoqlarda'], answer: 1 }] },
@@ -10,6 +11,7 @@ const lessons = [
 ];
 ---
 <Base title="IELTS Writing Typing bonusi | Tayanch" description="IELTS Writing uchun tez va aniq typing mashqlari: qisqa quizlar hamda WPM va aniqlikni hisoblaydigan amaliy widget.">
+  <CourseProgress courseId="ielts-writing-typing" title="IELTS Writing Typing progressi" selector=".typing-course" itemSelector=".lesson" labelSelector="h2" />
   <article class="typing-course">
     <header class="course-hero"><div><p class="eyebrow">IELTS WRITING · BONUS MINI-KURS</p><h1>Typing: tez va aniq yozish</h1><p class="lead">Computer-delivered imtihonda fikringizni klaviaturada ravon yozish kerak. Har darsda bitta qisqa nazariy quiz va WPM hamda aniqlikni o‘lchaydigan mashq bor.</p></div></header>
     <section class="how"><h2>Qanday ishlatiladi?</h2><ol><li>Darsdagi qisqa quizni ishlang.</li><li>Matnni textarea ichiga aynan ko‘ringanidek yozing.</li><li>Qizil harflarni to‘g‘rilang va keyingi urinishda WPMni oshiring.</li></ol></section>

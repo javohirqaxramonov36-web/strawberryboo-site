@@ -1,6 +1,7 @@
 ---
 import Base from "../../layouts/Base.astro";
 import PaymentInstructions from "../../components/PaymentInstructions.astro";
+import CourseProgress from "../../components/CourseProgress.astro";
 import Quiz from "../../components/Quiz.astro";
 import ObsidianScreenshotSlots from "../../components/ObsidianScreenshotSlots.astro";
 const title = "Obsidian PKM — Tayanch";
@@ -44,6 +45,7 @@ const plugins = [
 ];
 ---
 <Base title={title} description={description}>
+  <CourseProgress courseId="obsidian" title="Obsidian PKM progressi" itemSelector=".modules > li" labelSelector="ol.modules" />
 <article class="lesson obsidian-course">
   <header class="course-hero course-hero--visual">
     <div class="hero-copy"><span class="eyebrow">PERSONAL KNOWLEDGE MANAGEMENT</span><h1>Obsidian PKM</h1><div class="price"><span class="now">$19</span><span class="old">$29</span><span class="badge badge-new">-35%</span><span class="badge badge-cert">Sertifikat</span><span class="uzs">≈ 240 000 so'm</span></div></div>

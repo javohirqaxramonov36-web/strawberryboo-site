@@ -1,5 +1,6 @@
 ---
 import Base from '../../layouts/Base.astro';
+import CourseProgress from '../../components/CourseProgress.astro';
 import VocabularyMethodCard from '../../components/VocabularyMethodCard.astro';
 const base = import.meta.env.BASE_URL;
 const methods = [
@@ -24,6 +25,7 @@ const methods = [
 ];
 ---
 <Base title="IELTS Vocabulary — Tayanch" description="So‘zlarni flashcards va Obsidian yordamida muntazam yodlash uchun amaliy mini-kurs.">
+  <CourseProgress courseId="ielts-vocabulary" title="IELTS Vocabulary progressi" itemSelector="#flashcards .method-card, #obsidian .method-card" labelSelector="h2" />
   <article class="vocabulary-course">
     <header class="course-hero">
       <p class="eyebrow">05 — IELTS MINI-KURS</p>

@@ -1,6 +1,7 @@
 ---
 import Base from "../../layouts/Base.astro";
 import PaymentInstructions from "../../components/PaymentInstructions.astro";
+import CourseProgress from "../../components/CourseProgress.astro";
 import CourseSchema from "../../components/CourseSchema.astro";
 import LeadMagnetCTA from "../../components/LeadMagnetCTA.astro";
 import Quiz from "../../components/Quiz.astro";
@@ -14,6 +15,7 @@ const questions = [
 ---
 
 <Base title={title} description={description}>
+  <CourseProgress courseId="mac-tezlik-sirlari" title="Mac'da Tezlik Sirlari progressi" itemSelector=".modules > li" labelSelector="ol.modules" />
   <CourseSchema name={title} description={description} />
 
 <article class="lesson">

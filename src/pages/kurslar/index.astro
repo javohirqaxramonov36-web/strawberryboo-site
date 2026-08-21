@@ -29,6 +29,7 @@ const base = import.meta.env.BASE_URL;
     <p>Nima uchun kerak? Qanday foyda? Qayerda qo'llash? — amaliy misollar.</p>
     <p class="price">$29 <span class="uzs">≈ 360 000 so'm</span></p>
     <p class="social-proof"><span class="sp-starters">- kishi boshladi</span></p>
+    <span class="course-card-progress" data-course-progress-meter data-course-id="prompt-engineering" data-total="7" aria-live="polite"></span>
     <a href={base + 'kurslar/prompt-engineering'} class="start-btn">Kursni boshlash →</a>
   </div>
 
@@ -40,6 +41,7 @@ const base = import.meta.env.BASE_URL;
     <p>Shaxsiy bilim bazasi qurish. Tayanch bilan avtomatik capture.</p>
     <p class="price">$19 <span class="uzs">≈ 240 000 so'm</span></p>
     <p class="social-proof"><span class="sp-starters">- kishi boshladi</span></p>
+    <span class="course-card-progress" data-course-progress-meter data-course-id="obsidian" data-total="6" aria-live="polite"></span>
     <a href={base + 'kurslar/obsidian'} class="start-btn">Kursni boshlash →</a>
   </div>
 
@@ -52,17 +54,18 @@ const base = import.meta.env.BASE_URL;
     <p>CrewAI, LangGraph — agent'lar nima uchun kerak, qanday foyda.</p>
     <p class="price">$39 <span class="uzs">≈ 490 000 so'm</span></p>
     <p class="social-proof"><span class="sp-starters">- kishi boshladi</span></p>
+    <span class="course-card-progress" data-course-progress-meter data-course-id="ai-agentlar" data-total="7" aria-live="polite"></span>
     <a href={base + 'kurslar/ai-agentlar'} class="start-btn">Kursni boshlash →</a>
   </div>
 
   <section class="ielts-collection" id="ielts-courses" data-cat="ielts">
     <div class="ielts-collection-head"><div><span class="badge badge-new">Yangi</span><h2>IELTS kurslari</h2><p>4 ta skill va so‘z yodlash uchun mini-kurs: sizga aynan kerakli yo‘nalishni tanlang.</p></div><span class="collection-price">Skill-kurslar: $7.50 · ≈ 93 750 so'm</span></div>
     <div class="ielts-course-grid">
-      <a class="ielts-mini-card listening" href={base + 'kurslar/ielts-listening'}><b>01</b><h3>Listening</h3><p>Signal, raqam, birlik-ko‘plik va distractor mashqlari.</p><span>$7.50 →</span></a>
-      <a class="ielts-mini-card reading" href={base + 'kurslar/ielts-reading'}><b>02</b><h3>Reading</h3><p>Vaqt, savol turi va xato patternlari ustida ishlang.</p><span>$7.50 →</span></a>
-      <a class="ielts-mini-card writing" href={base + 'kurslar/ielts-writing'}><b>03</b><h3>Writing</h3><p>Task 1/2, outline va original practice.</p><span>$7.50 →</span></a>
-      <a class="ielts-mini-card speaking" href={base + 'kurslar/ielts-speaking'}><b>04</b><h3>Speaking</h3><p>AI bilan 30 kunlik talaffuz va gapirish mashqi.</p><span>$7.50 →</span></a>
-      <a class="ielts-mini-card vocabulary" href={base + 'kurslar/ielts-vocabulary'}><b>05</b><h3>Vocabulary</h3><p>Flashcards va Obsidian bilan so‘zlarni tizimli yodlash.</p><span>Mini-kurs →</span></a>
+      <a class="ielts-mini-card listening" href={base + 'kurslar/ielts-listening'}><span class="course-card-progress" data-course-progress-meter data-course-id="ielts-listening" data-total="3" aria-live="polite"></span><b>01</b><h3>Listening</h3><p>Signal, raqam, birlik-ko‘plik va distractor mashqlari.</p><span>$7.50 →</span></a>
+      <a class="ielts-mini-card reading" href={base + 'kurslar/ielts-reading'}><span class="course-card-progress" data-course-progress-meter data-course-id="ielts-reading" data-total="3" aria-live="polite"></span><b>02</b><h3>Reading</h3><p>Vaqt, savol turi va xato patternlari ustida ishlang.</p><span>$7.50 →</span></a>
+      <a class="ielts-mini-card writing" href={base + 'kurslar/ielts-writing'}><span class="course-card-progress" data-course-progress-meter data-course-id="ielts-writing" data-total="3" aria-live="polite"></span><b>03</b><h3>Writing</h3><p>Task 1/2, outline va original practice.</p><span>$7.50 →</span></a>
+      <a class="ielts-mini-card speaking" href={base + 'kurslar/ielts-speaking'}><span class="course-card-progress" data-course-progress-meter data-course-id="ielts-speaking" data-total="30" aria-live="polite"></span><b>04</b><h3>Speaking</h3><p>AI bilan 30 kunlik talaffuz va gapirish mashqi.</p><span>$7.50 →</span></a>
+      <a class="ielts-mini-card vocabulary" href={base + 'kurslar/ielts-vocabulary'}><span class="course-card-progress" data-course-progress-meter data-course-id="ielts-vocabulary" data-total="2" aria-live="polite"></span><b>05</b><h3>Vocabulary</h3><p>Flashcards va Obsidian bilan so‘zlarni tizimli yodlash.</p><span>Mini-kurs →</span></a>
     </div>
     <div class="ielts-bundle"><div><span>IELTS FULL BUNDLE</span><h3>4 tasini birga oling — 20% tejang</h3><p><s>375 000 so'm</s> o‘rniga <b>300 000 so'm</b>. To‘lov Telegram orqali qo‘lda tasdiqlanadi.</p></div><a class="start-btn" href={base + 'bog-lanish?course=ielts-full-bundle&price=300000'}>Bundle’ni olish →</a></div>
   </section>
@@ -88,6 +91,7 @@ const base = import.meta.env.BASE_URL;
     <p>Chet el universitetlariga kirish: hujjatlar, essay, interview.</p>
     <p class="price">49 000 so'mdan <span class="uzs">3 qism alohida tanlanadi</span></p>
     <p class="social-proof"><span class="sp-starters">- kishi boshladi</span></p>
+    <span class="course-card-progress" data-course-progress-meter data-course-id="admission-process" data-total="12" aria-live="polite"></span>
     <a href={base + 'kurslar/admission-process'} class="start-btn">Kursni boshlash →</a>
   </div>
 
@@ -99,6 +103,7 @@ const base = import.meta.env.BASE_URL;
     <p>AI vositalari ro'yxati va amaliy qo'llanma.</p>
     <p class="price">$19 <span class="uzs">≈ 240 000 so'm</span></p>
     <p class="social-proof"><span class="sp-starters">- kishi boshladi</span></p>
+    <span class="course-card-progress" data-course-progress-meter data-course-id="tekin-ai" data-total="6" aria-live="polite"></span>
     <a href={base + 'kurslar/tekin-ai'} class="start-btn">Kursni boshlash →</a>
   </div>
 
@@ -110,6 +115,7 @@ const base = import.meta.env.BASE_URL;
     <p>Raycast, shortcut'lar va Mac vositalari bilan kundalik ishlarni 2 baravar tezroq bajarish — amaliy kurs.</p>
     <p class="price">$15 <span class="uzs">≈ 190 000 so'm</span></p>
     <p class="social-proof"><span class="sp-starters">- kishi boshladi</span></p>
+    <span class="course-card-progress" data-course-progress-meter data-course-id="mac-tezlik-sirlari" data-total="8" aria-live="polite"></span>
     <a href={base + 'kurslar/mac-tezlik-sirlari'} class="start-btn">Kursni boshlash →</a>
   </div>
 
@@ -122,6 +128,7 @@ const base = import.meta.env.BASE_URL;
     <p>UI/UX asoslari, komponentlar va prototip — bepul dizaynga kirish.</p>
     <p class="price">$0 <span class="uzs">Bepul</span></p>
     <p class="social-proof"><span class="sp-starters">- kishi boshladi</span></p>
+    <span class="course-card-progress" data-course-progress-meter data-course-id="figma" data-total="7" aria-live="polite"></span>
     <a href={base + 'kurslar/figma'} class="start-btn">Kursni boshlash →</a>
   </div>
 
@@ -134,6 +141,7 @@ const base = import.meta.env.BASE_URL;
     <p>Mac'da AutoCAD: o'rnatish, interfeys, chizish buyruqlari va bepul litsenziya.</p>
     <p class="price">$29 <span class="uzs">≈ 360 000 so'm</span></p>
     <p class="social-proof"><span class="sp-starters">- kishi boshladi</span></p>
+    <span class="course-card-progress" data-course-progress-meter data-course-id="autocad-on-mac" data-total="10" aria-live="polite"></span>
     <a href={base + 'kurslar/autocad-on-mac'} class="start-btn">Kursni boshlash →</a>
   </div>
 
@@ -147,6 +155,7 @@ const base = import.meta.env.BASE_URL;
     <p>Ta'lim sifati, karyera, shaxsiy rivojlanish va bepul grantlar (El-Yurt Umidi, Chevening, DAAD).</p>
     <p class="price">$0 <span class="uzs">Bepul</span></p>
     <p class="social-proof"><span class="sp-starters">- kishi boshladi</span></p>
+    <span class="course-card-progress" data-course-progress-meter data-course-id="chet-elda-oqish" data-total="5" aria-live="polite"></span>
     <a href={base + 'kurslar/chet-elda-oqish'} class="start-btn">Kursni boshlash →</a>
   </div>
 
@@ -199,6 +208,7 @@ const base = import.meta.env.BASE_URL;
 <p class="quiz-hint" style="margin-top:1.5rem">Qaysi kurs sizga kerakligini bilmayapsizmi? <a href={base + 'kurs-tanlash'} style="color:var(--accent)">Kurs tanlash testi →</a> · <a href={base + 'narxlar'} style="color:var(--accent)">Narxlar va paketlar →</a></p>
 
 <style is:global>
+  .course-card-progress{display:block;margin:.55rem 0;color:var(--muted);font-size:.78rem;font-weight:700;line-height:1.25}.course-card-progress.has-progress{color:var(--accent)}.ielts-mini-card .course-card-progress{margin:.45rem 0 0;font-size:.73rem}.ielts-mini-card .course-card-progress::before{content:'◔ ';color:var(--accent)}
   .course-filter { display: flex; flex-wrap: wrap; gap: 8px; margin: 1.2rem 0 .5rem; }
   .cf-btn { font: 700 13px var(--font-display); color: var(--muted); background: var(--surface); border: 1px solid var(--border); border-radius: 999px; padding: 7px 14px; cursor: pointer; transition: .15s; }
   .cf-btn:hover { color: var(--text); border-color: var(--accent); }
@@ -224,4 +234,22 @@ const base = import.meta.env.BASE_URL;
     });
   }
 </script>
+
+<script>
+  (() => {
+    const read = (key) => { try { return JSON.parse(localStorage.getItem(key) || '{}'); } catch { return {}; } };
+    const speakingDone = () => Object.values(read('tayanch-speaking-progress-v2')).filter((day) => day && day.pronunciation_done && day.shadowing_done && day.speaking_done).length;
+    const render = () => document.querySelectorAll('[data-course-progress-meter]').forEach((meter) => {
+      const id = meter.dataset.courseId;
+      let done, total;
+      if (id === 'ielts-speaking') { done = Math.min(30, speakingDone()); total = 30; }
+      else { const state = read('progress:' + id); const values = Object.values(state); done = values.filter(Boolean).length; total = Number(meter.dataset.total) || values.length; }
+      meter.textContent = total ? `Progress: ${done}/${total} · ${Math.round(done / total * 100)}%` : 'Progressni boshlang';
+      meter.classList.toggle('has-progress', done > 0);
+    });
+    render();
+    window.addEventListener('storage', render);
+  })();
+</script>
+
 </Base>

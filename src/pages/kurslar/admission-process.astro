@@ -1,5 +1,6 @@
 ---
 import Base from "../../layouts/Base.astro";
+import CourseProgress from "../../components/CourseProgress.astro";
 import PaymentInstructions from "../../components/PaymentInstructions.astro";
 import CourseSchema from "../../components/CourseSchema.astro";
 import Quiz from "../../components/Quiz.astro";
@@ -19,6 +20,7 @@ const subcourses = [
 ---
 
 <Base title={title} description={description}>
+  <CourseProgress courseId="admission-process" title="Admission Process progressi" itemSelector=".content-section .lesson-card" labelSelector="h3" />
   <CourseSchema name={title} description={description} />
   <article class="lesson admission-page">
     <div class="course-hero">

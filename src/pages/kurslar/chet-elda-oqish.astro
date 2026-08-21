@@ -1,5 +1,6 @@
 ---
 import Base from "../../layouts/Base.astro";
+import CourseProgress from "../../components/CourseProgress.astro";
 import CourseSchema from "../../components/CourseSchema.astro";
 import LeadMagnetCTA from "../../components/LeadMagnetCTA.astro";
 import Quiz from "../../components/Quiz.astro";
@@ -13,6 +14,7 @@ const questions = [
 ---
 
 <Base title={title} description={description}>
+  <CourseProgress courseId="chet-elda-oqish" title="Chet elda o'qish progressi" itemSelector=".modules > li" />
   <CourseSchema name={title} description={description} />
 
 <article class="lesson">
