@@ -1,0 +1,24 @@
+---
+import Base from '../../../layouts/Base.astro';
+import Quiz from '../../../components/Quiz.astro';
+import TypingPractice from '../../../components/TypingPractice.astro';
+const base = import.meta.env.BASE_URL;
+const lessons = [
+  { number: '01', title: 'Barmoqlar joylashuvi', description: 'Uy qatorini toping va ko‘zingizni klaviaturadan uzmasdan qisqa, aniq yozishga odatlaning.', target: 'practice makes progress when every key is pressed calmly', hint: 'Avval aniqlik, keyin tezlik.', quiz: [{ q: 'Touch typingda ko‘zingiz asosan qayerda bo‘lishi kerak?', opts: ['Klaviaturada', 'Ekrandagi matnda', 'Faqat barmoqlarda'], answer: 1 }] },
+  { number: '02', title: 'IELTS so‘zlari bilan ritm', description: 'Academic Writingda ko‘p uchraydigan so‘zlarni bir xil ritmda yozib, xatolarni kamaytiring.', target: 'analyse compare demonstrate significant evidence conclusion', hint: 'Har bir so‘z oralig‘ini aniq bosing.', quiz: [{ q: 'Tezlikni oshirishdan oldin nimani birinchi nazorat qilish kerak?', opts: ['Aniqlikni', 'Faqat WPMni', 'Klaviatura rangini'], answer: 0 }] },
+  { number: '03', title: 'Vaqt bilan insho parchasi', description: 'Qisqa akademik parcha bilan imtihon ritmiga yaqin mashq qiling. Taymerni yoqib, xato joylarni takrorlang.', target: 'The chart illustrates a gradual increase in the number of students who chose online courses.', hint: 'Avval xatosiz tugating, so‘ng qayta urinib tezlashtiring.', quiz: [{ q: 'Timed writing mashqidan keyin eng foydali keyingi qadam qaysi?', opts: ['Xato joylarni aniqlab qayta yozish', 'Natijani ko‘rmasdan yopish', 'Faqat WPMni eslab qolish'], answer: 0 }] }
+];
+---
+<Base title="IELTS Writing Typing bonusi | Tayanch" description="IELTS Writing uchun tez va aniq typing mashqlari: qisqa quizlar hamda WPM va aniqlikni hisoblaydigan amaliy widget.">
+  <article class="typing-course">
+    <header class="course-hero"><div><p class="eyebrow">IELTS WRITING · BONUS MINI-KURS</p><h1>Typing: tez va aniq yozish</h1><p class="lead">Computer-delivered imtihonda fikringizni klaviaturada ravon yozish kerak. Har darsda bitta qisqa nazariy quiz va WPM hamda aniqlikni o‘lchaydigan mashq bor.</p></div></header>
+    <section class="how"><h2>Qanday ishlatiladi?</h2><ol><li>Darsdagi qisqa quizni ishlang.</li><li>Matnni textarea ichiga aynan ko‘ringanidek yozing.</li><li>Qizil harflarni to‘g‘rilang va keyingi urinishda WPMni oshiring.</li></ol></section>
+    {lessons.map((lesson) => <section class="lesson"><p class="lesson-no">{lesson.number} — DARS</p><h2>{lesson.title}</h2><p class="lesson-desc">{lesson.description}</p><Quiz title="Tezkor quiz" questions={lesson.quiz} /><TypingPractice lessonId={lesson.number} target={lesson.target} hint={lesson.hint} /></section>)}
+    <aside class="keyboard-callout"><p class="eyebrow">IMTIHON OLDIDAN MASLAHAT</p><h2>Noutbuk bilan tayyorlansangiz, desktop klaviaturani ham sinang</h2><p>Imtihonga bir necha hafta qolganda katta desktop klaviaturada ham mashq qiling. Tugmalar orasidagi masofa, bosish chuqurligi va joylashuv noutbuknikidan farq qilishi mumkin; imtihon kuni notanish klaviatura asabiylik va Writing tezligi pasayishiga olib kelmasin.</p></aside>
+    <div class="actions"><a class="start-btn" href={base + 'ielts-practice/writing/'}>Writing practice’ni ochish →</a><a class="back" href={base + 'kurslar/ielts-writing/'}>← IELTS Writing kursi</a></div>
+  </article>
+</Base>
+
+<style>
+.typing-course{max-width:930px;margin:auto}.eyebrow,.lesson-no{color:#fbbf24;font-size:.78rem;font-weight:800;letter-spacing:.1em;margin:0 0 .45rem}.lead,.lesson-desc,.how li{color:var(--muted);line-height:1.65}.how,.lesson,.keyboard-callout{margin:1.35rem 0;padding:clamp(1rem,3vw,1.45rem);border:1px solid var(--border);border-radius:16px;background:var(--surface)}.how h2,.lesson h2,.keyboard-callout h2{margin:.2rem 0 .65rem}.how ol{margin:.5rem 0;padding-left:1.25rem}.how li+li{margin-top:.35rem}.lesson{background:linear-gradient(135deg,rgba(251,191,36,.07),var(--surface))}.lesson :global(.quiz){margin-top:1rem;padding:0;border:0;background:transparent}.lesson :global(.sec-title){font-size:1.1rem}.keyboard-callout{border-color:rgba(251,191,36,.55);background:linear-gradient(135deg,rgba(251,191,36,.12),var(--surface))}.keyboard-callout p:last-child{color:var(--muted);line-height:1.65}.actions{display:flex;flex-wrap:wrap;gap:1rem;align-items:center;margin:1.5rem 0}.back{color:var(--muted)}
+</style>

@@ -1,0 +1,51 @@
+---
+const { lessonId, target, hint } = Astro.props;
+---
+<div class="typing-practice" data-typing-practice data-target={target}>
+  <div class="typing-toolbar"><span>Amaliy mashq</span><span class="typing-hint">{hint}</span></div>
+  <p class="typing-target" aria-label="Yoziladigan matn" data-target-view></p>
+  <label class="sr-only" for={`typing-input-${lessonId}`}>Matnni shu yerga yozing</label>
+  <textarea id={`typing-input-${lessonId}`} data-typing-input rows="4" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" placeholder="Mashqni boshlash uchun matnni shu yerga yozing..."></textarea>
+  <div class="typing-stats" aria-live="polite"><span><b data-wpm>0</b> WPM</span><span><b data-accuracy>100</b>% aniqlik</span><span><b data-time>0</b> soniya</span></div>
+  <button type="button" class="typing-reset" data-reset>Qayta boshlash</button>
+</div>
+
+<style is:global>
+.typing-practice{margin-top:1rem;padding:1rem;border:1px solid var(--border);border-radius:14px;background:rgba(15,23,42,.45)}.typing-toolbar{display:flex;justify-content:space-between;gap:.75rem;align-items:baseline;margin-bottom:.65rem;font-weight:800}.typing-hint{font-size:.82rem;font-weight:500;color:var(--muted)}.typing-target{min-height:4.4rem;margin:.5rem 0;padding:1rem;border-radius:10px;background:#10131d;line-height:1.75;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;color:#cbd5e1;white-space:pre-wrap}.typing-target .correct{color:#86efac}.typing-target .wrong{color:#f87171;text-decoration:underline;text-decoration-thickness:2px}.typing-target .pending{color:#94a3b8}.typing-practice textarea{box-sizing:border-box;width:100%;resize:vertical;padding:.85rem 1rem;border:1px solid var(--border);border-radius:10px;background:#0d1018;color:var(--text);font:1rem/1.65 ui-monospace,SFMono-Regular,Menlo,monospace}.typing-practice textarea:focus{outline:2px solid rgba(251,191,36,.45);border-color:#fbbf24}.typing-stats{display:flex;flex-wrap:wrap;gap:.6rem;margin-top:.75rem}.typing-stats span{padding:.35rem .65rem;border-radius:999px;background:rgba(251,191,36,.1);color:var(--muted);font-size:.86rem}.typing-stats b{color:#fde68a}.typing-reset{margin-top:.8rem;border:1px solid var(--border);border-radius:8px;padding:.45rem .7rem;background:transparent;color:var(--text);font:inherit;cursor:pointer}.typing-reset:hover{border-color:#fbbf24}@media(max-width:520px){.typing-toolbar{align-items:flex-start;flex-direction:column}.typing-target{font-size:.9rem}.typing-practice textarea{font-size:.9rem}}
+</style>
+
+<script>
+  document.querySelectorAll('[data-typing-practice]').forEach((root) => {
+    const target = root.dataset.target || '';
+    const input = root.querySelector('[data-typing-input]');
+    const targetView = root.querySelector('[data-target-view]');
+    const wpm = root.querySelector('[data-wpm]');
+    const accuracy = root.querySelector('[data-accuracy]');
+    const time = root.querySelector('[data-time]');
+    const reset = root.querySelector('[data-reset]');
+    let startedAt = 0;
+    let timer;
+    const render = () => {
+      const typed = input.value;
+      targetView.innerHTML = [...target].map((char, index) => {
+        const state = index < typed.length ? (typed[index] === char ? 'correct' : 'wrong') : 'pending';
+        return `<span class="${state}">${char === ' ' ? '&nbsp;' : char}</span>`;
+      }).join('');
+      const correct = [...typed].reduce((sum, char, index) => sum + (char === target[index] ? 1 : 0), 0);
+      const pct = typed.length ? Math.round((correct / typed.length) * 100) : 100;
+      accuracy.textContent = String(pct);
+      const seconds = startedAt ? Math.max(1, Math.floor((Date.now() - startedAt) / 1000)) : 0;
+      time.textContent = String(seconds);
+      const words = typed.trim().length / 5;
+      wpm.textContent = seconds ? String(Math.round(words / (seconds / 60))) : '0';
+    };
+    const begin = () => {
+      if (startedAt || !input.value.length) return;
+      startedAt = Date.now();
+      timer = window.setInterval(render, 1000);
+    };
+    input.addEventListener('input', () => { begin(); render(); if (input.value === target) window.clearInterval(timer); });
+    reset.addEventListener('click', () => { input.value = ''; startedAt = 0; window.clearInterval(timer); render(); input.focus(); });
+    render();
+  });
+</script>
