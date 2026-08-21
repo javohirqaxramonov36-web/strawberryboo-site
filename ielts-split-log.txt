@@ -1,0 +1,19 @@
+IELTS Split Log
+Date: 2026-08-21 (Asia/Tashkent)
+
+Stage 1 — complete (legacy course retained)
+- Created: /kurslar/ielts-listening
+- Created: /kurslar/ielts-reading
+- Created: /kurslar/ielts-writing
+- Created: /kurslar/ielts-speaking
+- Pricing selected by Javohir: $7.50 / 93 750 so'm each; all four $30 / 375 000 so'm; IELTS Full Bundle 20% off at $24 / 300 000 so'm.
+- Bundle is an offer within the four course pages and the catalog, not a fifth course page; Telegram manual-payment path is retained.
+- Gaps are explicitly marked “TO‘LDIRILISHI KERAK”; no missing course material was fabricated.
+
+Stage 2 — complete
+- IELTS Mock 2-Qadam message applies only to IELTS Listening and IELTS Reading purchasers.
+- Homepage IELTS preview now points to the general IELTS course collection.
+
+Stage 3 — NOT STARTED / requires explicit user confirmation
+- Legacy /kurslar/ielts-prep remains live and unchanged.
+- Redirect, legacy removal, and global link migration are pending confirmation after new pages are reviewed.

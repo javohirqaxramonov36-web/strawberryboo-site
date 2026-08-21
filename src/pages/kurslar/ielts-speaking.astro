@@ -1,0 +1,10 @@
+---
+import Base from "../../layouts/Base.astro";
+import IeltsSkillCourse from "../../components/IeltsSkillCourse.astro";
+import SpeakingPractice from "../../components/SpeakingPractice.astro";
+const props = {skill:'ielts-speaking',title:'IELTS Speaking',eyebrow:'04 — IELTS SKILL',description:'Talaffuz, shadowing va IELTS Part 1/2/3 orqali har kuni aniqroq gapirish va o‘sishni kuzatish kursi.',accent:'#34d399',available:[{title:'30 kunlik AI modul',text:'30 xil mavzu, daily pronunciation, original shadowing va IELTS uslubidagi Speaking Set.'},{title:'Timer va feedback',text:'Part 2 uchun 1 daqiqa tayyorlanish + 2 daqiqa gapirish taymeri, transcript-asosidagi AI practice feedback.'},{title:'Progress va sertifikat',text:'Mahalliy/server progress, trend va 30 kun yakunlanganda qatnashuv sertifikati oqimi.'}],fillNeeded:['Licensed human shadowing audio.','Server-STT va acoustic pronunciation scoring.'],sourceNote:'Mavjud Tayanch IELTS Speaking 30 kunlik AI moduli va 01.IELTS prep Speaking strategiyasi.',speakingApp:false};
+---
+<Base title="IELTS Speaking | Tayanch" description={props.description}>
+  <IeltsSkillCourse {...props} />
+  <section id="speaking-practice"><SpeakingPractice /></section>
+</Base>
