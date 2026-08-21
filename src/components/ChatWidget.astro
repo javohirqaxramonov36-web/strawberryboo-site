@@ -149,6 +149,7 @@
     transition: background .15s;
   }
   .cw-chips button:hover { background: rgba(125,125,245,.22); }
+  .cw-chips button:disabled { opacity: .55; cursor: wait; }
 
   .cw-input { display: flex; gap: 8px; padding: 10px 12px; border-top: 1px solid var(--border); }
   .cw-input input {
@@ -173,6 +174,8 @@
     transition: background .15s;
   }
   .cw-input button:hover { background: var(--accent-2); }
+  .cw-input input:disabled, .cw-input button:disabled { opacity: .65; cursor: wait; }
+  .cw-loading { font-style: italic; opacity: .8; }
 
   @media (max-width: 480px) {
     .cw-panel { right: 12px; left: 12px; width: auto; bottom: 78px; }
@@ -182,6 +185,7 @@
 </style>
 
 <script>
+  const CHAT_PROXY_URL = 'https://tayanch-ai-chat.javohirqaxramonov36.workers.dev';
   const launcher = document.getElementById('cwLauncher');
   const panel = document.getElementById('cwPanel');
   const closeBtn = document.getElementById('cwClose');
@@ -189,133 +193,80 @@
   const form = document.getElementById('cwForm');
   const input = document.getElementById('cwInput');
   const chips = document.getElementById('cwChips');
+  const submitButton = form.querySelector('button[type="submit"]');
 
-  const OFF_TOPIC = "Kechirasiz, men faqat Tayanch saytining kurslari, narxlari va saytdan foydalanish bo'yicha savollarga javob bera olaman. Shaxsiy ma'lumotlar, fayl tizimi yoki boshqa mavzularga kira olmayman. Kurslar: /kurslar · Narxlar: /narxlar";
+  const WELCOME = "Salom! Men Tayanch yordamchisiman. Kurslar, narxlar va saytdan foydalanish haqida bemalol so'rang. Javoblar ingliz tilida beriladi.";
+  const REQUEST_ERROR = "Kechirasiz, hozir javob olishda muammo bo'ldi. Birozdan keyin qayta urinib ko'ring.";
 
-  const FALLBACK = "Afsuski, bu savolga aniq javob bera olmayman. Men faqat shu bo'yicha yordam bera olaman:\n• Kurslar haqida ma'lumot\n• Narxlar va paketlar\n• Saytdan foydalanish\nKurslar: /kurslar · Narxlar: /narxlar";
-
-  const WELCOME = "Salom! Men Tayanch saytining yordamchisiman. Kurslar, narxlar va saytdan foydalanish bo'yicha savollaringizga javob bera olaman. Nima bilan yordam kerak?";
-
-  // --- Bilim bazasi (FAQ). Har yozuv: kalit so'zlar + javob ---
-  const KB = [
-    { kw: ["ro'yxat","nechta","necha","barcha kurs","kurslar","qanday kurslar","mavjud"],
-      a: "Bizda 12 ta kurs mavjud (7 ta pullik + 5 ta bepul):\n• Pullik: Prompt Engineering ($29), Obsidian PKM ($19), AI Agentlar ($39), IELTS Prep ($24), Admission Process ($34), AutoCAD on Mac ($29), Financial Literacy ($19)\n• Bepul: Tekin AI, Mac'da Tezlik Sirlari, Figma, Nega chet elda o'qish, El-Yurt Umidi (tez orada)\nBatafsil: /kurslar" },
-
-    { course: true, kw: ["prompt","prompt engineering","promt","prompty"],
-      a: "Prompt Engineering — AI bilan to'g'ri muloqot qilish san'ati. Nima uchun kerak, qanday foyda va qayerda qo'llash amaliy misollar bilan o'rgatiladi.\nNarxi: $29 (≈360 000 so'm).\nBatafsil: /kurslar/prompt-engineering" },
-
-    { course: true, kw: ["obsidian","pkm","bilim bazasi","knowledge","notes"],
-      a: "Obsidian PKM — shaxsiy bilim bazasi (PKM) qurish kursi. Tayanch bilan avtomatik capture qilishni o'rgatadi.\nNarxi: $19 (≈240 000 so'm).\nBatafsil: /kurslar/obsidian" },
-
-    { course: true, kw: ["agent","agentlar","ai agent","crewai","langgraph"],
-      a: "AI Agentlar nega kerak? — CrewAI, LangGraph asosida agent'lar nima uchun kerakligi va qanday foyda keltirishi.\nNarxi: $39 (≈490 000 so'm).\nBatafsil: /kurslar/ai-agentlar" },
-
-    { course: true, kw: ["ielts","ingliz tili","toefl"],
-      a: "IELTS kurslari — Listening, Reading, Writing va Speaking alohida tanlanadi.\nHar biri: $7.50 (≈93 750 so'm). Full Bundle: $24 (≈300 000 so'm).\nBatafsil: /kurslar/#ielts-courses" },
-
-    { course: true, kw: ["admission","universitet","unist","kirish","hujjat","essay","intervyu"],
-      a: "Admission Process — chet el universitetlariga kirish: hujjatlar, essay, interview.\nNarxi: $34 (≈425 000 so'm).\nBatafsil: /kurslar/admission-process" },
-
-    { course: true, kw: ["autocad","auto cad","chizish","muhandislik","dizayn dastur"],
-      a: "AutoCAD on Mac — Mac'da AutoCAD: o'rnatish, interfeys, chizish buyruqlari va bepul talaba litsenziyasi.\nNarxi: $29 (≈360 000 so'm).\nBatafsil: /kurslar/autocad-on-mac" },
-
-    { course: true, kw: ["financial","moliyaviy","pul","byudjet","budget","tejash"],
-      a: "Financial Literacy — moliyaviy savodxonlik: pulni boshqarish, byudjet tuzish va moliyaviy qarorlar. Talaba hayoti uchun asosiy ko'nikma.\nNarxi: $19 (≈240 000 so'm).\nBatafsil: /kurslar/financial-literacy" },
-
-    { course: true, kw: ["tekin ai","bepul ai","free ai","tekin model","ollama","llama"],
-      a: "Tekin AI modellar va agentlar — AI vositalari ro'yxati va amaliy qo'llanma. Narx: $19 (≈ 240 000 so'm).\nBatafsil: /kurslar/tekin-ai" },
-
-    { course: true, kw: ["mac","macbook","raycast","tezlik","shortcut","klaviatura","tezkor"],
-      a: "Mac'da Tezlik Sirlari — Raycast, shortcut'lar va Mac vositalari bilan kundalik ishlarni 2 baravar tezroq bajarish. Bepul ($0).\nBatafsil: /kurslar/mac-tezlik-sirlari" },
-
-    { course: true, kw: ["figma","dizayn","ui/ux","ui ux","ux","prototip"],
-      a: "Figma / Dizayn — UI/UX asoslari, komponentlar va prototip yaratish. Bepul ($0) kirish.\nBatafsil: /kurslar/figma" },
-
-    { course: true, kw: ["chet el","chet elda","chetga","chevening","daad","grant","stipendiya"],
-      a: "Nega chet elda o'qish kerak — ta'lim sifati, karyera, shaxsiy rivojlanish va bepul grantlar (El-Yurt Umidi, Chevening, DAAD). Bepul ($0).\nBatafsil: /kurslar/chet-elda-oqish" },
-
-    { course: true, kw: ["el-yurt","el yurt","yurt umidi","grant suhbat"],
-      a: "El-Yurt Umidi'ni yutaylik — davlat granti bo'yicha suhbatga tayyorgarlik kursi. Material tez orada qo'shiladi (Tez orada).\nBatafsil: /kurslar/el-yurt-umidi" },
-
-    { kw: ["bepul","tekin","free","ozod"],
-      a: "Bizda bir nechta bepul kurslar bor: Tekin AI modellar va agentlar, Mac'da Tezlik Sirlari, Figma/Dizayn, Nega chet elda o'qish kerak. Batafsil: /kurslar" },
-
-    { kw: ["qaysi kurs","menga mos","menga kerak","tanlash","tavsiya","recommend","qayerdan boshlasam","boshlasam","qaysi biri"],
-      a: "Qaysi kurs sizga mosligini aniqlash uchun kichik test tayyorladik: /kurs-tanlash\nYoki maqsadingizni ayting — masalan \"IELTS yozishni o'rganmoqchiman\" yoki \"Mac'da tezroq ishlash\", shunda aniq kurs tavsiya qilaman." },
-
-    { kw: ["narx","pul","qancha","tezroq","arzon","qimmat","paket","chegirma","tolov","to'lov","tolash","sotib olish","price","стоимость","сколько","summa","raqam"],
-      a: "Narxlar:\n• Bitta kurs — $19 dan boshlab (≈240 000 so'm)\n• AI Stack (Prompt + AI Agentlar + Obsidian) — $70, 20% chegirma (was $87)\n• Full access — $99 (barcha 12 ta kurs, yangi kurslar bepul)\nBarcha paketlarda forever access (abadiy kirish) va sertifikat bor.\nBatafsil: /narxlar" },
-
-    { kw: ["ro'yxatdan","sotib olish","tolov","to'lov","tolash","karta","payme","click","uzum","usul","til","o'zbek","rus","ingliz","inglizcha","telegram","sertifikat","access","abadiy","forever","qayerda","foydalanish","ishlatish","saytdan","yozishish","uloash","ulashish"],
-      a: "Saytdan foydalanish:\n• Kursni tanlang → \"Kursni boshlash\" → bog'lanish sahifasida to'lov usulini tanlang.\n• Barcha kurslarda forever access (abadiy kirish) va sertifikat bor.\n• Tillarni yuqoridagi UZ/RU/EN tugmalari orqali almashtiring.\n• Savollaringizga Telegram orqali javob beramiz.\nBatafsil: /bog-lanish" },
-
-    { kw: ["salom","assalom","hello","hi","hey","xayr","privet","здравств","добр","привет"],
-      a: "Salom! Men Tayanch saytining yordamchisiman. Kurslar, narxlar va saytdan foydalanish bo'yicha savollaringizga javob bera olaman. Nima bilan yordam kerak?" }
-  ];
-
-  // Mavzu chegarasi: shaxsiy ma'lumotlar / tizim so'zlari → rad etish
-  const BAD = ['shaxsiy ma\'lumot','parol','password','karta raqami','pasport','manzil','telefon raqam','api kalit','api key','workbuddy','fayl tizimi','file system','obsidian vault','vault','menging obsidian','menging fayl','menging ma\'lumot','menging parol','secret','личн','пароль','мои данные'];
-
-  function kwMatch(text, kw){
-    const esc = kw.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-    return new RegExp('(^|[^a-z0-9])' + esc, 'i').test(text);
-  }
-
-  function isOffTopic(t){ return BAD.some(w => kwMatch(t, w)); }
-
-  function findAnswer(text){
-    let courseBest = null, courseScore = 0;
-    let genBest = null, genScore = 0;
-    for (const e of KB){
-      let s = 0;
-      for (const k of e.kw){ if (kwMatch(text, k)) s += (k.length >= 5 ? 2 : 1); }
-      if (s <= 0) continue;
-      if (e.course){ if (s > courseScore){ courseScore = s; courseBest = e; } }
-      else { if (s > genScore){ genScore = s; genBest = e; } }
-    }
-    const best = courseBest || genBest;
-    return best ? best.a : null;
-  }
-
-  function addMsg(text, who){
+  function addMsg(text, who, options = {}) {
     const el = document.createElement('div');
-    el.className = 'cw-msg ' + who;
+    el.className = `cw-msg ${who}${options.loading ? ' cw-loading' : ''}`;
     el.textContent = text;
     messages.appendChild(el);
     messages.scrollTop = messages.scrollHeight;
+    return el;
+  }
+
+  function setBusy(isBusy) {
+    input.disabled = isBusy;
+    submitButton.disabled = isBusy;
+    chips.querySelectorAll('button').forEach((button) => { button.disabled = isBusy; });
   }
 
   let welcomed = false;
-  function openPanel(){
+  function openPanel() {
     panel.hidden = false;
-    launcher.setAttribute('aria-expanded','true');
-    if (!welcomed){ addMsg(WELCOME, 'bot'); welcomed = true; }
+    launcher.setAttribute('aria-expanded', 'true');
+    if (!welcomed) {
+      addMsg(WELCOME, 'bot');
+      welcomed = true;
+    }
     input.focus();
   }
-  function closePanel(){
+
+  function closePanel() {
     panel.hidden = true;
-    launcher.setAttribute('aria-expanded','false');
+    launcher.setAttribute('aria-expanded', 'false');
   }
 
-  function handle(raw){
-    const text = raw.trim().toLowerCase();
-    if (!text) return;
-    addMsg(raw.trim(), 'user');
-    const reply = isOffTopic(text) ? OFF_TOPIC : (findAnswer(text) || FALLBACK);
-    setTimeout(() => addMsg(reply, 'bot'), 350);
+  async function handle(raw) {
+    const message = raw.trim();
+    if (!message) return;
+
+    addMsg(message, 'user');
+    setBusy(true);
+    const loading = addMsg('Yozmoqda…', 'bot', { loading: true });
+
+    try {
+      const response = await fetch(CHAT_PROXY_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ message })
+      });
+      const data = await response.json().catch(() => ({}));
+      loading.remove();
+      addMsg(data.reply || data.error || REQUEST_ERROR, 'bot');
+    } catch (error) {
+      console.error('Tayanch chat request failed:', error);
+      loading.remove();
+      addMsg(REQUEST_ERROR, 'bot');
+    } finally {
+      setBusy(false);
+      input.focus();
+    }
   }
 
   launcher.addEventListener('click', () => { panel.hidden ? openPanel() : closePanel(); });
   closeBtn.addEventListener('click', closePanel);
 
-  form.addEventListener('submit', (e) => {
-    e.preventDefault();
-    const v = input.value;
+  form.addEventListener('submit', (event) => {
+    event.preventDefault();
+    const value = input.value;
     input.value = '';
-    handle(v);
+    handle(value);
   });
 
-  chips.querySelectorAll('button').forEach(b => {
-    b.addEventListener('click', () => handle(b.dataset.q));
+  chips.querySelectorAll('button').forEach((button) => {
+    button.addEventListener('click', () => handle(button.dataset.q || ''));
   });
 </script>
