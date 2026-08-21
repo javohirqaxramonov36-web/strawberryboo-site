@@ -540,1772 +540,1915 @@
   },
   {
     "day": 8,
-    "week_focus": "L/R sounds: place and movement",
+    "week_focus": "Short and long vowels: /ɪ/ va /iː/",
     "pronunciation": [
       [
-        "light",
-        "/see dictionary/",
-        "Aniq talaffuz va gap urg‘usiga e’tibor bering."
+        "meal",
+        "/miːl/",
+        "cho‘ziq /iː/ dan keyin /l/ ni aniq tugating"
       ],
       [
-        "right",
-        "/see dictionary/",
-        "Aniq talaffuz va gap urg‘usiga e’tibor bering."
+        "fish",
+        "/fɪʃ/",
+        "qisqa /ɪ/; /fiːʃ/ deb cho‘zmang"
       ],
       [
-        "road",
-        "/see dictionary/",
-        "Aniq talaffuz va gap urg‘usiga e’tibor bering."
+        "cheese",
+        "/tʃiːz/",
+        "cho‘ziq /iː/ va oxirgi /z/"
       ],
       [
-        "really",
-        "/see dictionary/",
-        "Aniq talaffuz va gap urg‘usiga e’tibor bering."
+        "dish",
+        "/dɪʃ/",
+        "qisqa /ɪ/ bilan bir bo‘g‘in"
       ],
       [
-        "travel",
-        "/see dictionary/",
-        "Aniq talaffuz va gap urg‘usiga e’tibor bering."
+        "kitchen",
+        "/ˈkɪtʃ.ɪn/",
+        "ikkala bo‘g‘inda qisqa /ɪ/"
       ],
       [
-        "already",
-        "/see dictionary/",
-        "Aniq talaffuz va gap urg‘usiga e’tibor bering."
+        "recipe",
+        "/ˈres.ə.pi/",
+        "birinchi bo‘g‘in urg‘uli"
       ],
       [
-        "around",
-        "/see dictionary/",
-        "Aniq talaffuz va gap urg‘usiga e’tibor bering."
+        "ingredient",
+        "/ɪnˈɡriː.di.ənt/",
+        "urg‘uli bo‘g‘inda cho‘ziq /iː/"
       ],
       [
-        "library",
-        "/see dictionary/",
-        "Aniq talaffuz va gap urg‘usiga e’tibor bering."
+        "sweet",
+        "/swiːt/",
+        "/iː/ ni /ɪ/ ga aylantirmang"
+      ],
+      [
+        "quickly",
+        "/ˈkwɪk.li/",
+        "birinchi bo‘g‘inda qisqa /ɪ/"
+      ],
+      [
+        "delicious",
+        "/dɪˈlɪʃ.əs/",
+        "ikkinchi bo‘g‘in urg‘uli, /ɪ/ qisqa"
       ]
     ],
     "shadowing": {
-      "audio_text": "I have learned that local places and services can be easier to discuss when I give one clear example and explain my reason. Today I will speak at a steady pace, connect my ideas, and leave short pauses between important points.",
-      "target_duration_sec": 38,
-      "source": "original-course-script",
-      "license": "Original Tayanch course script; browser TTS reference only."
-    },
-    "speaking_set": {
-      "topic": "Local places and services",
-      "part1": [
-        "What comes to your mind when you think about local places and services?",
-        "How has your experience of local places and services changed over time?",
-        "Do people around you talk much about local places and services?"
-      ],
-      "part2": {
-        "cue_card": "Describe a useful place in your local area.",
-        "bullets": [
-          "where it is",
-          "what people do there",
-          "how often you visit",
-          "why it is useful"
-        ],
-        "prep_time_sec": 60,
-        "speak_time_sec": 120
-      },
-      "part3": [
-        "Why is local places and services important in modern life?",
-        "How can communities make local places and services better for different people?",
-        "What role should schools or governments play in relation to local places and services?",
-        "How might local places and services change in the next twenty years?"
-      ]
-    }
-  },
-  {
-    "day": 9,
-    "week_focus": "L/R sounds: daily routines",
-    "pronunciation": [
-      [
-        "cook",
-        "/see dictionary/",
-        "Aniq talaffuz va gap urg‘usiga e’tibor bering."
-      ],
-      [
-        "book",
-        "/see dictionary/",
-        "Aniq talaffuz va gap urg‘usiga e’tibor bering."
-      ],
-      [
-        "look",
-        "/see dictionary/",
-        "Aniq talaffuz va gap urg‘usiga e’tibor bering."
-      ],
-      [
-        "food",
-        "/see dictionary/",
-        "Aniq talaffuz va gap urg‘usiga e’tibor bering."
-      ],
-      [
-        "good",
-        "/see dictionary/",
-        "Aniq talaffuz va gap urg‘usiga e’tibor bering."
-      ],
-      [
-        "would",
-        "/see dictionary/",
-        "Aniq talaffuz va gap urg‘usiga e’tibor bering."
-      ],
-      [
-        "should",
-        "/see dictionary/",
-        "Aniq talaffuz va gap urg‘usiga e’tibor bering."
-      ],
-      [
-        "could",
-        "/see dictionary/",
-        "Aniq talaffuz va gap urg‘usiga e’tibor bering."
-      ]
-    ],
-    "shadowing": {
-      "audio_text": "I have learned that food and cooking can be easier to discuss when I give one clear example and explain my reason. Today I will speak at a steady pace, connect my ideas, and leave short pauses between important points.",
-      "target_duration_sec": 38,
+      "audio_text": "I enjoy cooking when I have enough time to prepare one dish properly. I usually start with simple ingredients and follow a recipe only as a guide. The best part is sharing the meal afterwards, because a home-cooked dinner often gives everyone a chance to talk without rushing.",
+      "target_duration_sec": 45,
       "source": "original-course-script",
       "license": "Original Tayanch course script; browser TTS reference only."
     },
     "speaking_set": {
       "topic": "Food and cooking",
       "part1": [
-        "What comes to your mind when you think about food and cooking?",
-        "How has your experience of food and cooking changed over time?",
-        "Do people around you talk much about food and cooking?"
+        "What meal do you most enjoy cooking at home?",
+        "When you are busy, how do you decide what to eat?",
+        "Is there a food from your childhood that you still like?",
+        "Who usually does most of the cooking in your household?"
       ],
       "part2": {
-        "cue_card": "Describe a meal you enjoy preparing or eating.",
+        "cue_card": "Describe a dish that you would like to learn to cook well.",
         "bullets": [
-          "what it is",
-          "when you have it",
-          "who you have it with",
-          "why you enjoy it"
+          "what the dish is",
+          "where you first tried or heard about it",
+          "what ingredients or skills it requires",
+          "why you want to learn to make it"
         ],
         "prep_time_sec": 60,
         "speak_time_sec": 120
       },
       "part3": [
-        "Why is food and cooking important in modern life?",
-        "How can communities make food and cooking better for different people?",
-        "What role should schools or governments play in relation to food and cooking?",
-        "How might food and cooking change in the next twenty years?"
+        "Why are some traditional dishes difficult for younger people to continue making?",
+        "How have food-delivery apps changed the way people eat?",
+        "Should schools teach children how to prepare basic meals?",
+        "What can restaurants do to reduce food waste?"
       ]
     }
   },
   {
-    "day": 10,
-    "week_focus": "Word stress: two-syllable words",
+    "day": 9,
+    "week_focus": "Short and long vowels: /ʊ/ va /uː/",
     "pronunciation": [
       [
-        "record",
-        "/see dictionary/",
-        "Aniq talaffuz va gap urg‘usiga e’tibor bering."
+        "book",
+        "/bʊk/",
+        "qisqa /ʊ/; /buːk/ deb cho‘zmang"
       ],
       [
-        "present",
-        "/see dictionary/",
-        "Aniq talaffuz va gap urg‘usiga e’tibor bering."
+        "look",
+        "/lʊk/",
+        "qisqa /ʊ/ va aniq /k/"
       ],
       [
-        "project",
-        "/see dictionary/",
-        "Aniq talaffuz va gap urg‘usiga e’tibor bering."
+        "school",
+        "/skuːl/",
+        "undoshdan keyin cho‘ziq /uː/"
       ],
       [
-        "reason",
-        "/see dictionary/",
-        "Aniq talaffuz va gap urg‘usiga e’tibor bering."
+        "choose",
+        "/tʃuːz/",
+        "cho‘ziq /uː/ va oxirgi /z/"
       ],
       [
-        "message",
-        "/see dictionary/",
-        "Aniq talaffuz va gap urg‘usiga e’tibor bering."
+        "good",
+        "/ɡʊd/",
+        "qisqa /ʊ/; lablarni ortiqcha yumaloqlamang"
       ],
       [
-        "between",
-        "/see dictionary/",
-        "Aniq talaffuz va gap urg‘usiga e’tibor bering."
+        "novel",
+        "/ˈnɒv.əl/",
+        "birinchi bo‘g‘in urg‘uli"
       ],
       [
-        "important",
-        "/see dictionary/",
-        "Aniq talaffuz va gap urg‘usiga e’tibor bering."
+        "author",
+        "/ˈɔː.θə/",
+        "birinchi bo‘g‘indagi cho‘ziq /ɔː/"
       ],
       [
-        "develop",
-        "/see dictionary/",
-        "Aniq talaffuz va gap urg‘usiga e’tibor bering."
+        "review",
+        "/rɪˈvjuː/",
+        "oxirgi bo‘g‘inda cho‘ziq /uː/"
+      ],
+      [
+        "useful",
+        "/ˈjuːs.fəl/",
+        "boshlanishida /j/ va cho‘ziq /uː/"
+      ],
+      [
+        "chapter",
+        "/ˈtʃæp.tə/",
+        "birinchi bo‘g‘in urg‘uli"
       ]
     ],
     "shadowing": {
-      "audio_text": "I have learned that books and reading can be easier to discuss when I give one clear example and explain my reason. Today I will speak at a steady pace, connect my ideas, and leave short pauses between important points.",
-      "target_duration_sec": 38,
+      "audio_text": "A book becomes memorable when it gives me a new way to see an ordinary situation. I do not always finish a long novel quickly, but I like returning to it for a few pages each evening. Reading slowly helps me notice ideas that I would otherwise miss.",
+      "target_duration_sec": 45,
       "source": "original-course-script",
       "license": "Original Tayanch course script; browser TTS reference only."
     },
     "speaking_set": {
       "topic": "Books and reading",
       "part1": [
-        "What comes to your mind when you think about books and reading?",
-        "How has your experience of books and reading changed over time?",
-        "Do people around you talk much about books and reading?"
+        "What kind of reading do you do most often at the moment?",
+        "Do you ever reread a book that you have already finished?",
+        "Where is your favourite place to read?",
+        "How do you choose a book when there are many options?"
       ],
       "part2": {
-        "cue_card": "Describe a book that made you think.",
+        "cue_card": "Describe a book that changed your opinion about a subject.",
         "bullets": [
-          "what it is about",
+          "what the book was",
+          "what subject it made you think about",
           "when you read it",
-          "what you learned",
-          "why it stayed with you"
+          "how it changed your opinion"
         ],
         "prep_time_sec": 60,
         "speak_time_sec": 120
       },
       "part3": [
-        "Why is books and reading important in modern life?",
-        "How can communities make books and reading better for different people?",
-        "What role should schools or governments play in relation to books and reading?",
-        "How might books and reading change in the next twenty years?"
+        "Why do some people prefer short online articles to books?",
+        "How can public libraries remain useful in a digital age?",
+        "Do book reviews influence what people choose to read?",
+        "Is reading fiction as valuable as reading non-fiction?"
       ]
     }
   },
   {
-    "day": 11,
-    "week_focus": "Word stress: longer words",
+    "day": 10,
+    "week_focus": "Word stress and sentence rhythm",
     "pronunciation": [
       [
         "music",
-        "/see dictionary/",
-        "Aniq talaffuz va gap urg‘usiga e’tibor bering."
+        "/ˈmjuː.zɪk/",
+        "birinchi bo‘g‘in urg‘uli"
       ],
       [
-        "popular",
-        "/see dictionary/",
-        "Aniq talaffuz va gap urg‘usiga e’tibor bering."
+        "concert",
+        "/ˈkɒn.sət/",
+        "birinchi bo‘g‘in kuchli, ikkinchisi yengil"
       ],
       [
-        "comfortable",
-        "/see dictionary/",
-        "Aniq talaffuz va gap urg‘usiga e’tibor bering."
+        "performance",
+        "/pəˈfɔː.məns/",
+        "urg‘u ikkinchi bo‘g‘inda"
       ],
       [
-        "communication",
-        "/see dictionary/",
-        "Aniq talaffuz va gap urg‘usiga e’tibor bering."
+        "audience",
+        "/ˈɔː.di.əns/",
+        "birinchi bo‘g‘indagi /ɔː/ ni cho‘zing"
       ],
       [
-        "opportunity",
-        "/see dictionary/",
-        "Aniq talaffuz va gap urg‘usiga e’tibor bering."
+        "instrument",
+        "/ˈɪn.strə.mənt/",
+        "birinchi bo‘g‘in urg‘uli"
       ],
       [
-        "community",
-        "/see dictionary/",
-        "Aniq talaffuz va gap urg‘usiga e’tibor bering."
+        "cinema",
+        "/ˈsɪn.ə.mə/",
+        "uch bo‘g‘inni bir xil kuchda aytmang"
       ],
       [
-        "entertainment",
-        "/see dictionary/",
-        "Aniq talaffuz va gap urg‘usiga e’tibor bering."
+        "comedy",
+        "/ˈkɒm.ə.di/",
+        "birinchi bo‘g‘in urg‘uli"
       ],
       [
-        "different",
-        "/see dictionary/",
-        "Aniq talaffuz va gap urg‘usiga e’tibor bering."
+        "documentary",
+        "/ˌdɒk.jəˈmen.tər.i/",
+        "asosiy urg‘u /men/ bo‘g‘inida"
+      ],
+      [
+        "relaxing",
+        "/rɪˈlæk.sɪŋ/",
+        "ikkinchi bo‘g‘in urg‘uli"
+      ],
+      [
+        "rhythm",
+        "/ˈrɪð.əm/",
+        "birinchi bo‘g‘in kuchli, o‘rtadagi /ð/ yumshoq"
       ]
     ],
     "shadowing": {
-      "audio_text": "I have learned that music and entertainment can be easier to discuss when I give one clear example and explain my reason. Today I will speak at a steady pace, connect my ideas, and leave short pauses between important points.",
-      "target_duration_sec": 38,
+      "audio_text": "Music can change the atmosphere of a place almost immediately. When I need energy, I choose songs with a clear rhythm; when I need to relax, I prefer quieter music. A live performance feels different from listening at home because the audience shares the same moment.",
+      "target_duration_sec": 44,
       "source": "original-course-script",
       "license": "Original Tayanch course script; browser TTS reference only."
     },
     "speaking_set": {
       "topic": "Music and entertainment",
       "part1": [
-        "What comes to your mind when you think about music and entertainment?",
-        "How has your experience of music and entertainment changed over time?",
-        "Do people around you talk much about music and entertainment?"
+        "What type of music helps you relax after a demanding day?",
+        "Do you usually listen to music alone or with other people?",
+        "Have you ever been to a live performance that you remember clearly?",
+        "What kind of programmes do you choose when you want light entertainment?"
       ],
       "part2": {
-        "cue_card": "Describe a song or piece of music you enjoy.",
+        "cue_card": "Describe a film, show, or musical performance that you would recommend to a friend.",
         "bullets": [
-          "what it is",
-          "when you listen to it",
-          "how it affects you",
-          "why you recommend it"
+          "what it was",
+          "when and where you experienced it",
+          "what you liked most about it",
+          "who you would recommend it to and why"
         ],
         "prep_time_sec": 60,
         "speak_time_sec": 120
       },
       "part3": [
-        "Why is music and entertainment important in modern life?",
-        "How can communities make music and entertainment better for different people?",
-        "What role should schools or governments play in relation to music and entertainment?",
-        "How might music and entertainment change in the next twenty years?"
+        "Why do people enjoy attending live events even when recorded entertainment is available?",
+        "How do streaming services affect smaller artists and performers?",
+        "Should public money support local music and theatre?",
+        "Can entertainment programmes teach people useful ideas?",
+        "Why do tastes in entertainment often differ between generations?"
       ]
     }
   },
   {
-    "day": 12,
-    "week_focus": "Word stress: review and contrast",
+    "day": 11,
+    "week_focus": "Final consonants: /t/, /d/, /k/ and /s/",
     "pronunciation": [
       [
-        "purchase",
-        "/see dictionary/",
-        "Aniq talaffuz va gap urg‘usiga e’tibor bering."
+        "cost",
+        "/kɒst/",
+        "oxirdagi /st/ ketma-ketligini aniq ayting"
       ],
       [
-        "quality",
-        "/see dictionary/",
-        "Aniq talaffuz va gap urg‘usiga e’tibor bering."
+        "paid",
+        "/peɪd/",
+        "-ed bu so‘zda /d/ bo‘ladi"
       ],
       [
-        "value",
-        "/see dictionary/",
-        "Aniq talaffuz va gap urg‘usiga e’tibor bering."
+        "price",
+        "/praɪs/",
+        "oxirgi /s/ ni tushirib qoldirmang"
+      ],
+      [
+        "product",
+        "/ˈprɒd.ʌkt/",
+        "oxirdagi /kt/ ni to‘liq tugating"
+      ],
+      [
+        "brand",
+        "/brænd/",
+        "oxirgi /d/ ni yumshoq, ammo eshitilarli ayting"
+      ],
+      [
+        "discount",
+        "/ˈdɪs.kaʊnt/",
+        "oxirgi /t/ ni aniq yoping"
       ],
       [
         "budget",
-        "/see dictionary/",
-        "Aniq talaffuz va gap urg‘usiga e’tibor bering."
+        "/ˈbʌdʒ.ɪt/",
+        "birinchi bo‘g‘in urg‘uli, yakunda /t/"
       ],
       [
-        "useful",
-        "/see dictionary/",
-        "Aniq talaffuz va gap urg‘usiga e’tibor bering."
+        "quality",
+        "/ˈkwɒl.ə.ti/",
+        "birinchi bo‘g‘in kuchli"
       ],
       [
-        "expensive",
-        "/see dictionary/",
-        "Aniq talaffuz va gap urg‘usiga e’tibor bering."
+        "compare",
+        "/kəmˈpeə/",
+        "urg‘u ikkinchi bo‘g‘inda"
       ],
       [
-        "decision",
-        "/see dictionary/",
-        "Aniq talaffuz va gap urg‘usiga e’tibor bering."
-      ],
-      [
-        "customer",
-        "/see dictionary/",
-        "Aniq talaffuz va gap urg‘usiga e’tibor bering."
+        "choice",
+        "/tʃɔɪs/",
+        "oxirgi /s/ aniq"
       ]
     ],
     "shadowing": {
-      "audio_text": "I have learned that shopping and consumer choices can be easier to discuss when I give one clear example and explain my reason. Today I will speak at a steady pace, connect my ideas, and leave short pauses between important points.",
-      "target_duration_sec": 38,
+      "audio_text": "Before buying something expensive, I compare more than the price. I check whether the product will last, whether I really need it, and whether repairs are possible. A cheaper item is not always the best choice if it has to be replaced after a short time.",
+      "target_duration_sec": 43,
       "source": "original-course-script",
       "license": "Original Tayanch course script; browser TTS reference only."
     },
     "speaking_set": {
       "topic": "Shopping and consumer choices",
       "part1": [
-        "What comes to your mind when you think about shopping and consumer choices?",
-        "How has your experience of shopping and consumer choices changed over time?",
-        "Do people around you talk much about shopping and consumer choices?"
+        "What do you usually consider before buying an expensive item?",
+        "Do you enjoy looking for discounts, or do you prefer to buy quickly?",
+        "Have your shopping habits changed in the last few years?",
+        "What is one item that you prefer to buy in person rather than online?"
       ],
       "part2": {
-        "cue_card": "Describe something you bought that was worth the money.",
+        "cue_card": "Describe a purchase that you considered carefully before making.",
         "bullets": [
-          "what it was",
-          "why you bought it",
-          "how you use it",
-          "why it was worthwhile"
+          "what you bought",
+          "why you needed or wanted it",
+          "how you compared the options",
+          "why you were satisfied or dissatisfied with the choice"
         ],
         "prep_time_sec": 60,
         "speak_time_sec": 120
       },
       "part3": [
-        "Why is shopping and consumer choices important in modern life?",
-        "How can communities make shopping and consumer choices better for different people?",
-        "What role should schools or governments play in relation to shopping and consumer choices?",
-        "How might shopping and consumer choices change in the next twenty years?"
+        "Why do advertisements sometimes make people buy things they do not need?",
+        "How can consumers judge whether an online review is trustworthy?",
+        "Should companies be responsible for making products easy to repair?",
+        "How might concern about the environment change consumer choices?"
       ]
     }
   },
   {
-    "day": 13,
-    "week_focus": "Sentence stress: key words",
+    "day": 12,
+    "week_focus": "Linking consonants and vowels in natural speech",
     "pronunciation": [
       [
-        "friend",
-        "/see dictionary/",
-        "Aniq talaffuz va gap urg‘usiga e’tibor bering."
+        "meet up",
+        "/ˈmiːt‿ʌp/",
+        "/t/ ni keyingi unliga bog‘lang"
       ],
       [
-        "stress",
-        "/see dictionary/",
-        "Aniq talaffuz va gap urg‘usiga e’tibor bering."
+        "old friend",
+        "/ˈəʊld‿frend/",
+        "/d/ dan keyin tabiiy oqimni saqlang"
       ],
       [
-        "enjoy",
-        "/see dictionary/",
-        "Aniq talaffuz va gap urg‘usiga e’tibor bering."
+        "talk about",
+        "/ˈtɔːk‿əˌbaʊt/",
+        "/k/ ni schwa bilan ulang"
       ],
       [
-        "support",
-        "/see dictionary/",
-        "Aniq talaffuz va gap urg‘usiga e’tibor bering."
+        "keep in touch",
+        "/ˌkiːp‿ɪn‿ˈtʌtʃ/",
+        "so‘zlar orasida ortiqcha tanaffus qilmang"
       ],
       [
-        "important",
-        "/see dictionary/",
-        "Aniq talaffuz va gap urg‘usiga e’tibor bering."
+        "good advice",
+        "/ɡʊd‿ədˈvaɪs/",
+        "/d/ ni keyingi unliga ulang"
+      ],
+      [
+        "helpful",
+        "/ˈhelp.fəl/",
+        "birinchi bo‘g‘in urg‘uli"
       ],
       [
         "honest",
-        "/see dictionary/",
-        "Aniq talaffuz va gap urg‘usiga e’tibor bering."
+        "/ˈɒn.ɪst/",
+        "boshlanishida /h/ aytilmaydi"
       ],
       [
-        "together",
-        "/see dictionary/",
-        "Aniq talaffuz va gap urg‘usiga e’tibor bering."
+        "supportive",
+        "/səˈpɔː.tɪv/",
+        "urg‘u ikkinchi bo‘g‘inda"
       ],
       [
-        "favourite",
-        "/see dictionary/",
-        "Aniq talaffuz va gap urg‘usiga e’tibor bering."
+        "relationship",
+        "/rɪˈleɪ.ʃən.ʃɪp/",
+        "asosiy urg‘u /leɪ/ bo‘g‘inida"
+      ],
+      [
+        "trust",
+        "/trʌst/",
+        "oxirdagi /st/ ni aniq ayting"
       ]
     ],
     "shadowing": {
-      "audio_text": "I have learned that friends and relationships can be easier to discuss when I give one clear example and explain my reason. Today I will speak at a steady pace, connect my ideas, and leave short pauses between important points.",
-      "target_duration_sec": 38,
+      "audio_text": "A strong friendship does not require constant contact, but it does require attention. Good friends listen carefully, remember important details, and offer honest advice when it is needed. Even a short conversation can be valuable when both people feel comfortable speaking openly.",
+      "target_duration_sec": 42,
       "source": "original-course-script",
       "license": "Original Tayanch course script; browser TTS reference only."
     },
     "speaking_set": {
       "topic": "Friends and relationships",
       "part1": [
-        "What comes to your mind when you think about friends and relationships?",
-        "How has your experience of friends and relationships changed over time?",
-        "Do people around you talk much about friends and relationships?"
+        "What qualities make someone easy for you to become friends with?",
+        "How do you usually keep in touch with friends who live far away?",
+        "Do you prefer meeting one close friend or spending time in a large group?",
+        "Has social media changed the way you maintain friendships?"
       ],
       "part2": {
-        "cue_card": "Describe a friend you enjoy spending time with.",
+        "cue_card": "Describe a friend who has helped you at an important time.",
         "bullets": [
           "who the person is",
-          "how you met",
-          "what you do together",
-          "why the friendship matters"
+          "what situation you were facing",
+          "what the friend did or said",
+          "why their help mattered to you"
         ],
         "prep_time_sec": 60,
         "speak_time_sec": 120
       },
       "part3": [
-        "Why is friends and relationships important in modern life?",
-        "How can communities make friends and relationships better for different people?",
-        "What role should schools or governments play in relation to friends and relationships?",
-        "How might friends and relationships change in the next twenty years?"
+        "Why can it become harder to make close friends as people get older?",
+        "Do online friendships provide the same support as face-to-face friendships?",
+        "Should parents influence their children’s choice of friends?",
+        "How do shared activities help people build relationships?",
+        "What causes misunderstandings between friends?"
+      ]
+    }
+  },
+  {
+    "day": 13,
+    "week_focus": "Clear place descriptions and /r/–/l/ contrast",
+    "pronunciation": [
+      [
+        "local",
+        "/ˈləʊ.kəl/",
+        "birinchi bo‘g‘in urg‘uli, /l/ aniq"
+      ],
+      [
+        "library",
+        "/ˈlaɪ.brər.i/",
+        "birinchi bo‘g‘in kuchli; o‘rtasini tezlashtirmang"
+      ],
+      [
+        "park",
+        "/pɑːk/",
+        "cho‘ziq /ɑː/ dan keyin /k/"
+      ],
+      [
+        "road",
+        "/rəʊd/",
+        "cho‘ziq diftong va oxirgi /d/"
+      ],
+      [
+        "nearby",
+        "/ˌnɪəˈbaɪ/",
+        "urg‘u oxirgi bo‘g‘inda"
+      ],
+      [
+        "public",
+        "/ˈpʌb.lɪk/",
+        "birinchi bo‘g‘in urg‘uli, yakunda /k/"
+      ],
+      [
+        "reliable",
+        "/rɪˈlaɪ.ə.bəl/",
+        "/r/ va /l/ tovushlarini farqlang"
+      ],
+      [
+        "repair",
+        "/rɪˈpeə/",
+        "boshlanishdagi /r/ ni aniq ayting"
+      ],
+      [
+        "available",
+        "/əˈveɪ.lə.bəl/",
+        "urg‘u ikkinchi bo‘g‘inda"
+      ],
+      [
+        "convenient",
+        "/kənˈviː.ni.ənt/",
+        "/viː/ bo‘g‘inida urg‘u"
+      ]
+    ],
+    "shadowing": {
+      "audio_text": "The most useful local places are not always the biggest or newest ones. A reliable repair shop, a quiet library, or a well-kept park can make daily life much easier. I value services that are nearby, affordable, and run by people who understand the needs of local residents.",
+      "target_duration_sec": 46,
+      "source": "original-course-script",
+      "license": "Original Tayanch course script; browser TTS reference only."
+    },
+    "speaking_set": {
+      "topic": "Local places and services",
+      "part1": [
+        "Which local service do you use most often in your area?",
+        "Is there a public place near your home where you like to spend time?",
+        "What service would you like to see improved in your neighbourhood?",
+        "Do you prefer using a small local business or a large chain when both are available?"
+      ],
+      "part2": {
+        "cue_card": "Describe a local place that you think is especially useful to residents.",
+        "bullets": [
+          "where the place is",
+          "what service or activity it provides",
+          "who uses it",
+          "why it is valuable for the local area"
+        ],
+        "prep_time_sec": 60,
+        "speak_time_sec": 120
+      },
+      "part3": [
+        "What public services have the greatest effect on people’s daily lives?",
+        "Why do some small local businesses develop loyal customers?",
+        "Should local governments spend more on parks, libraries, or transport?",
+        "How can towns make information about local services easier to find?"
       ]
     }
   },
   {
     "day": 14,
-    "week_focus": "Sentence stress: contrast and emphasis",
+    "week_focus": "Week 2 review: stress, linking and confident answers",
     "pronunciation": [
       [
         "career",
-        "/see dictionary/",
-        "Aniq talaffuz va gap urg‘usiga e’tibor bering."
+        "/kəˈrɪə/",
+        "urg‘u ikkinchi bo‘g‘inda"
       ],
       [
         "future",
-        "/see dictionary/",
-        "Aniq talaffuz va gap urg‘usiga e’tibor bering."
+        "/ˈfjuː.tʃə/",
+        "birinchi bo‘g‘inda /fjuː/ ni cho‘zing"
       ],
       [
-        "training",
-        "/see dictionary/",
-        "Aniq talaffuz va gap urg‘usiga e’tibor bering."
+        "salary",
+        "/ˈsæl.ər.i/",
+        "birinchi bo‘g‘in urg‘uli"
       ],
       [
-        "responsible",
-        "/see dictionary/",
-        "Aniq talaffuz va gap urg‘usiga e’tibor bering."
-      ],
-      [
-        "creative",
-        "/see dictionary/",
-        "Aniq talaffuz va gap urg‘usiga e’tibor bering."
-      ],
-      [
-        "professional",
-        "/see dictionary/",
-        "Aniq talaffuz va gap urg‘usiga e’tibor bering."
+        "manager",
+        "/ˈmæn.ɪ.dʒə/",
+        "birinchi bo‘g‘in kuchli"
       ],
       [
         "opportunity",
-        "/see dictionary/",
-        "Aniq talaffuz va gap urg‘usiga e’tibor bering."
+        "/ˌɒp.əˈtʃuː.nə.ti/",
+        "asosiy urg‘u /tʃuː/ bo‘g‘inida"
       ],
       [
-        "experience",
-        "/see dictionary/",
-        "Aniq talaffuz va gap urg‘usiga e’tibor bering."
+        "responsible",
+        "/rɪˈspɒn.sə.bəl/",
+        "ikkinchi bo‘g‘in urg‘uli"
+      ],
+      [
+        "work out",
+        "/ˈwɜːk‿aʊt/",
+        "/k/ ni keyingi unliga ulang"
+      ],
+      [
+        "take on",
+        "/ˈteɪk‿ɒn/",
+        "so‘zlar orasidagi bog‘lanishni saqlang"
+      ],
+      [
+        "learn from",
+        "/ˈlɜːn‿frɒm/",
+        "/n/ dan keyin oqimni uzmang"
+      ],
+      [
+        "goal",
+        "/ɡəʊl/",
+        "diftongni aniq ayting, oxirgi /l/ ni saqlang"
       ]
     ],
     "shadowing": {
-      "audio_text": "I have learned that work and future careers can be easier to discuss when I give one clear example and explain my reason. Today I will speak at a steady pace, connect my ideas, and leave short pauses between important points.",
-      "target_duration_sec": 38,
+      "audio_text": "When I think about a future career, I consider more than a salary. I want work that lets me develop useful skills, solve real problems, and continue learning from experienced people. A good opportunity should challenge me, but it should also leave room for a balanced life outside work.",
+      "target_duration_sec": 47,
       "source": "original-course-script",
       "license": "Original Tayanch course script; browser TTS reference only."
     },
     "speaking_set": {
       "topic": "Work and future careers",
       "part1": [
-        "What comes to your mind when you think about work and future careers?",
-        "How has your experience of work and future careers changed over time?",
-        "Do people around you talk much about work and future careers?"
+        "What type of work environment helps you do your best?",
+        "Is there a profession that you admired when you were younger?",
+        "What skill would you most like to develop for your future career?",
+        "Do you think people should change careers if their interests change?"
       ],
       "part2": {
-        "cue_card": "Describe a job you would like to try for a day.",
+        "cue_card": "Describe a job or career that you would like to learn more about.",
         "bullets": [
           "what the job is",
-          "where you would do it",
-          "what skills it needs",
-          "why it interests you"
+          "what responsibilities it involves",
+          "what skills or training are needed",
+          "why you want to know more about it"
         ],
         "prep_time_sec": 60,
         "speak_time_sec": 120
       },
       "part3": [
-        "Why is work and future careers important in modern life?",
-        "How can communities make work and future careers better for different people?",
-        "What role should schools or governments play in relation to work and future careers?",
-        "How might work and future careers change in the next twenty years?"
+        "How is technology changing the skills that employers look for?",
+        "Should universities focus more on career preparation or broad education?",
+        "Why do some people value job security more than job satisfaction?",
+        "How can employers help young workers develop professionally?",
+        "Will people in the future be more likely to have several careers during their lives?"
       ]
     }
   },
   {
     "day": 15,
-    "week_focus": "Sentence stress: weekly review",
+    "week_focus": "V va W sounds: personal style",
     "pronunciation": [
       [
-        "clothes",
-        "/see dictionary/",
-        "Aniq talaffuz va gap urg‘usiga e’tibor bering."
+        "wardrobe",
+        "/ˈwɔː.drəʊb/",
+        "boshlanishdagi /w/ uchun lablarni yumaloqlang"
       ],
       [
-        "colour",
-        "/see dictionary/",
-        "Aniq talaffuz va gap urg‘usiga e’tibor bering."
+        "wear",
+        "/weə/",
+        "/w/ dan keyingi /eə/ ni birga ayting"
+      ],
+      [
+        "vivid",
+        "/ˈvɪv.ɪd/",
+        "/v/ aytganda pastki lab yuqori tishga tegadi"
       ],
       [
         "comfortable",
-        "/see dictionary/",
-        "Aniq talaffuz va gap urg‘usiga e’tibor bering."
-      ],
-      [
-        "fashion",
-        "/see dictionary/",
-        "Aniq talaffuz va gap urg‘usiga e’tibor bering."
-      ],
-      [
-        "practical",
-        "/see dictionary/",
-        "Aniq talaffuz va gap urg‘usiga e’tibor bering."
+        "/ˈkʌm.fə.tə.bəl/",
+        "tez nutqda o‘rtadagi bo‘g‘inlarni yutib yubormang"
       ],
       [
         "formal",
-        "/see dictionary/",
-        "Aniq talaffuz va gap urg‘usiga e’tibor bering."
+        "/ˈfɔː.məl/",
+        "birinchi bo‘g‘inga urg‘u"
       ],
       [
         "casual",
-        "/see dictionary/",
-        "Aniq talaffuz va gap urg‘usiga e’tibor bering."
+        "/ˈkæʒ.u.əl/",
+        "/ʒ/ tovushini yumshoq ayting"
       ],
       [
-        "personal",
-        "/see dictionary/",
-        "Aniq talaffuz va gap urg‘usiga e’tibor bering."
+        "weatherproof",
+        "/ˈweð.ə.pruːf/",
+        "ovozli /ð/ ni saqlang"
+      ],
+      [
+        "vintage",
+        "/ˈvɪn.tɪdʒ/",
+        "oxirgi /dʒ/ aniq"
+      ],
+      [
+        "favourite",
+        "/ˈfeɪ.vər.ɪt/",
+        "birinchi bo‘g‘inga urg‘u"
       ]
     ],
     "shadowing": {
-      "audio_text": "I have learned that clothes and personal style can be easier to discuss when I give one clear example and explain my reason. Today I will speak at a steady pace, connect my ideas, and leave short pauses between important points.",
-      "target_duration_sec": 38,
+      "audio_text": "I do not choose clothes only because they look fashionable. On a busy day, I prefer simple items that are comfortable and suitable for the weather. However, I also think personal style can show something about a person’s character. For example, a colourful scarf or an unusual bag can make an ordinary outfit feel more individual. The best choice is usually practical, but still makes me feel confident.",
+      "target_duration_sec": 52,
       "source": "original-course-script",
       "license": "Original Tayanch course script; browser TTS reference only."
     },
     "speaking_set": {
       "topic": "Clothes and personal style",
       "part1": [
-        "What comes to your mind when you think about clothes and personal style?",
-        "How has your experience of clothes and personal style changed over time?",
-        "Do people around you talk much about clothes and personal style?"
+        "What kinds of clothes do you usually wear during the week?",
+        "Do you enjoy choosing clothes for special occasions?",
+        "Has your taste in clothes changed since you were younger?",
+        "Do people in your area follow fashion trends closely?"
       ],
       "part2": {
-        "cue_card": "Describe an item of clothing you like wearing.",
+        "cue_card": "Describe an item of clothing that you like wearing.",
         "bullets": [
-          "what it is",
-          "when you wear it",
-          "where you got it",
-          "why you like it"
+          "what the item is",
+          "when and where you wear it",
+          "how you got it",
+          "why you like wearing it"
         ],
         "prep_time_sec": 60,
         "speak_time_sec": 120
       },
       "part3": [
-        "Why is clothes and personal style important in modern life?",
-        "How can communities make clothes and personal style better for different people?",
-        "What role should schools or governments play in relation to clothes and personal style?",
-        "How might clothes and personal style change in the next twenty years?"
+        "Why do some people care strongly about fashion?",
+        "How does clothing influence first impressions?",
+        "Should schools have a uniform policy?",
+        "Why are some traditional clothes still popular today?",
+        "How has online shopping changed the way people buy clothes?"
       ]
     }
   },
   {
     "day": 16,
-    "week_focus": "Linking: consonant to vowel",
+    "week_focus": "V va W sounds: describing the natural world",
     "pronunciation": [
       [
-        "nature",
-        "/see dictionary/",
-        "Aniq talaffuz va gap urg‘usiga e’tibor bering."
+        "wildlife",
+        "/ˈwaɪld.laɪf/",
+        "/w/ va /aɪ/ ni aniq bog‘lang"
       ],
       [
-        "mountain",
-        "/see dictionary/",
-        "Aniq talaffuz va gap urg‘usiga e’tibor bering."
-      ],
-      [
-        "forest",
-        "/see dictionary/",
-        "Aniq talaffuz va gap urg‘usiga e’tibor bering."
+        "valley",
+        "/ˈvæl.i/",
+        "/v/ bilan boshlang"
       ],
       [
         "river",
-        "/see dictionary/",
-        "Aniq talaffuz va gap urg‘usiga e’tibor bering."
+        "/ˈrɪv.ər/",
+        "o‘rtadagi /v/ ovozli"
       ],
       [
-        "beautiful",
-        "/see dictionary/",
-        "Aniq talaffuz va gap urg‘usiga e’tibor bering."
-      ],
-      [
-        "protect",
-        "/see dictionary/",
-        "Aniq talaffuz va gap urg‘usiga e’tibor bering."
+        "waterfall",
+        "/ˈwɔː.tə.fɔːl/",
+        "ikki bo‘g‘indagi cho‘ziq unlilar"
       ],
       [
         "environment",
-        "/see dictionary/",
-        "Aniq talaffuz va gap urg‘usiga e’tibor bering."
+        "/ɪnˈvaɪ.rən.mənt/",
+        "urg‘u ikkinchi bo‘g‘inda"
       ],
       [
-        "wildlife",
-        "/see dictionary/",
-        "Aniq talaffuz va gap urg‘usiga e’tibor bering."
+        "preserve",
+        "/prɪˈzɜːv/",
+        "oxirgi /v/ ovozli"
+      ],
+      [
+        "vegetation",
+        "/ˌvedʒ.əˈteɪ.ʃən/",
+        "urg‘u uchinchi bo‘g‘inda"
+      ],
+      [
+        "viewpoint",
+        "/ˈvjuː.pɔɪnt/",
+        "/vjuː/ ni bitta oqimda ayting"
+      ],
+      [
+        "renewable",
+        "/rɪˈnjuː.ə.bəl/",
+        "urg‘u ikkinchi bo‘g‘inda"
       ]
     ],
     "shadowing": {
-      "audio_text": "I have learned that nature and the environment can be easier to discuss when I give one clear example and explain my reason. Today I will speak at a steady pace, connect my ideas, and leave short pauses between important points.",
-      "target_duration_sec": 38,
+      "audio_text": "Nature is easiest to appreciate when people can experience it responsibly. A walk beside a river or through a park can make a crowded city feel less stressful. At the same time, natural areas need protection from litter, noise, and uncontrolled building. I believe visitors should have clear paths and good information, while sensitive places should be carefully protected. This balance allows more people to enjoy nature without damaging it for the future.",
+      "target_duration_sec": 53,
       "source": "original-course-script",
       "license": "Original Tayanch course script; browser TTS reference only."
     },
     "speaking_set": {
       "topic": "Nature and the environment",
       "part1": [
-        "What comes to your mind when you think about nature and the environment?",
-        "How has your experience of nature and the environment changed over time?",
-        "Do people around you talk much about nature and the environment?"
+        "Do you spend much time outdoors?",
+        "Is there a natural place near where you live?",
+        "What do you notice first when you visit a park?",
+        "Did you enjoy nature-related activities as a child?"
       ],
       "part2": {
-        "cue_card": "Describe a natural place you would like to visit.",
+        "cue_card": "Describe a natural place that you would like to visit.",
         "bullets": [
           "where it is",
-          "what you know about it",
-          "who you would go with",
-          "why you want to visit"
+          "what you know about the place",
+          "what you would do there",
+          "why you want to visit it"
         ],
         "prep_time_sec": 60,
         "speak_time_sec": 120
       },
       "part3": [
-        "Why is nature and the environment important in modern life?",
-        "How can communities make nature and the environment better for different people?",
-        "What role should schools or governments play in relation to nature and the environment?",
-        "How might nature and the environment change in the next twenty years?"
+        "Why do people need access to green spaces?",
+        "What environmental problems affect cities most?",
+        "Should visitors pay to enter protected natural areas?",
+        "How can schools encourage children to care about nature?",
+        "Can tourism help to protect wildlife?"
       ]
     }
   },
   {
     "day": 17,
-    "week_focus": "Linking: common function words",
+    "week_focus": "V va W sounds: weather vocabulary and rhythm",
     "pronunciation": [
       [
-        "season",
-        "/see dictionary/",
-        "Aniq talaffuz va gap urg‘usiga e’tibor bering."
-      ],
-      [
         "weather",
-        "/see dictionary/",
-        "Aniq talaffuz va gap urg‘usiga e’tibor bering."
+        "/ˈweð.ər/",
+        "o‘rtadagi /ð/ ovozli"
       ],
       [
-        "spring",
-        "/see dictionary/",
-        "Aniq talaffuz va gap urg‘usiga e’tibor bering."
+        "warmth",
+        "/wɔːmθ/",
+        "oxirgi /θ/ ni aniq tugating"
       ],
       [
-        "summer",
-        "/see dictionary/",
-        "Aniq talaffuz va gap urg‘usiga e’tibor bering."
+        "windy",
+        "/ˈwɪn.di/",
+        "qisqa /ɪ/ bilan"
       ],
       [
-        "autumn",
-        "/see dictionary/",
-        "Aniq talaffuz va gap urg‘usiga e’tibor bering."
+        "forecast",
+        "/ˈfɔː.kɑːst/",
+        "birinchi bo‘g‘inga urg‘u"
       ],
       [
-        "winter",
-        "/see dictionary/",
-        "Aniq talaffuz va gap urg‘usiga e’tibor bering."
+        "varied",
+        "/ˈveə.rid/",
+        "boshlanishdagi /v/ ovozli"
       ],
       [
         "temperature",
-        "/see dictionary/",
-        "Aniq talaffuz va gap urg‘usiga e’tibor bering."
+        "/ˈtem.prə.tʃər/",
+        "o‘rtadagi bo‘g‘inni shoshirmang"
       ],
       [
-        "usually",
-        "/see dictionary/",
-        "Aniq talaffuz va gap urg‘usiga e’tibor bering."
+        "humid",
+        "/ˈhjuː.mɪd/",
+        "birinchi bo‘g‘inga urg‘u"
+      ],
+      [
+        "winter",
+        "/ˈwɪn.tər/",
+        "/w/ bilan boshlang"
+      ],
+      [
+        "weathering",
+        "/ˈweð.ər.ɪŋ/",
+        "/ð/ tovushini saqlang"
       ]
     ],
     "shadowing": {
-      "audio_text": "I have learned that weather and seasons can be easier to discuss when I give one clear example and explain my reason. Today I will speak at a steady pace, connect my ideas, and leave short pauses between important points.",
-      "target_duration_sec": 38,
+      "audio_text": "Weather often changes the rhythm of a normal day. When the morning is bright and cool, I am more willing to walk rather than take a car. Heavy rain, on the other hand, can make people change their plans very quickly. I enjoy the first signs of a new season because they bring different colours, foods, and activities. Even an ordinary weekend can feel memorable when the weather is pleasant.",
+      "target_duration_sec": 49,
       "source": "original-course-script",
       "license": "Original Tayanch course script; browser TTS reference only."
     },
     "speaking_set": {
       "topic": "Weather and seasons",
       "part1": [
-        "What comes to your mind when you think about weather and seasons?",
-        "How has your experience of weather and seasons changed over time?",
-        "Do people around you talk much about weather and seasons?"
+        "What kind of weather do you enjoy most?",
+        "Does the weather affect what you do in your free time?",
+        "Which season is usually the busiest for you?",
+        "Do you check the weather forecast often?"
       ],
       "part2": {
-        "cue_card": "Describe a season you enjoy most.",
+        "cue_card": "Describe a day when the weather was especially memorable.",
         "bullets": [
-          "which season it is",
-          "what the weather is like",
-          "what you usually do",
-          "why you enjoy it"
+          "when and where it was",
+          "what the weather was like",
+          "what you did that day",
+          "why you remember it"
         ],
         "prep_time_sec": 60,
         "speak_time_sec": 120
       },
       "part3": [
-        "Why is weather and seasons important in modern life?",
-        "How can communities make weather and seasons better for different people?",
-        "What role should schools or governments play in relation to weather and seasons?",
-        "How might weather and seasons change in the next twenty years?"
+        "How does weather affect people’s moods?",
+        "Why do some people prefer living in places with distinct seasons?",
+        "How can cities prepare for more extreme weather?",
+        "Should weather forecasts be taught in schools?",
+        "How might climate change affect seasonal traditions?"
       ]
     }
   },
   {
     "day": 18,
-    "week_focus": "Linking: thought groups",
+    "week_focus": "V va W sounds: expressive storytelling",
     "pronunciation": [
       [
-        "film",
-        "/see dictionary/",
-        "Aniq talaffuz va gap urg‘usiga e’tibor bering."
+        "viewer",
+        "/ˈvjuː.ər/",
+        "boshlanishdagi /vjuː/ ni bitta oqimda ayting"
       ],
       [
-        "story",
-        "/see dictionary/",
-        "Aniq talaffuz va gap urg‘usiga e’tibor bering."
+        "voiceover",
+        "/ˈvɔɪs.əʊ.vər/",
+        "birinchi bo‘g‘inga urg‘u"
+      ],
+      [
+        "visual",
+        "/ˈvɪʒ.u.əl/",
+        "/v/ va /ʒ/ ni aniq ayting"
+      ],
+      [
+        "villain",
+        "/ˈvɪl.ən/",
+        "birinchi /v/ ovozli"
+      ],
+      [
+        "writer",
+        "/ˈraɪ.tər/",
+        "/r/ dan keyingi /aɪ/"
+      ],
+      [
+        "wonder",
+        "/ˈwʌn.dər/",
+        "/w/ dan keyingi qisqa /ʌ/"
+      ],
+      [
+        "review",
+        "/rɪˈvjuː/",
+        "urg‘u oxirgi bo‘g‘inda"
       ],
       [
         "character",
-        "/see dictionary/",
-        "Aniq talaffuz va gap urg‘usiga e’tibor bering."
+        "/ˈkær.ək.tər/",
+        "birinchi bo‘g‘inga urg‘u"
       ],
       [
-        "cinema",
-        "/see dictionary/",
-        "Aniq talaffuz va gap urg‘usiga e’tibor bering."
-      ],
-      [
-        "director",
-        "/see dictionary/",
-        "Aniq talaffuz va gap urg‘usiga e’tibor bering."
-      ],
-      [
-        "interesting",
-        "/see dictionary/",
-        "Aniq talaffuz va gap urg‘usiga e’tibor bering."
-      ],
-      [
-        "memorable",
-        "/see dictionary/",
-        "Aniq talaffuz va gap urg‘usiga e’tibor bering."
-      ],
-      [
-        "recommend",
-        "/see dictionary/",
-        "Aniq talaffuz va gap urg‘usiga e’tibor bering."
+        "powerful",
+        "/ˈpaʊə.fəl/",
+        "birinchi bo‘g‘inga urg‘u"
       ]
     ],
     "shadowing": {
-      "audio_text": "I have learned that films and storytelling can be easier to discuss when I give one clear example and explain my reason. Today I will speak at a steady pace, connect my ideas, and leave short pauses between important points.",
-      "target_duration_sec": 38,
+      "audio_text": "A memorable film does more than tell viewers what happened. It gives them characters whose choices feel believable, even when the story is imaginary. I usually enjoy films with a clear setting and a small number of important details rather than too many special effects. After watching a strong film, I often think about its message for several days. A good ending does not need to be perfect, but it should feel earned.",
+      "target_duration_sec": 51,
       "source": "original-course-script",
       "license": "Original Tayanch course script; browser TTS reference only."
     },
     "speaking_set": {
       "topic": "Films and storytelling",
       "part1": [
-        "What comes to your mind when you think about films and storytelling?",
-        "How has your experience of films and storytelling changed over time?",
-        "Do people around you talk much about films and storytelling?"
+        "What types of films do you enjoy watching?",
+        "Do you prefer watching films at home or at a cinema?",
+        "Have you ever watched a film more than once?",
+        "Do you like films based on real events?"
       ],
       "part2": {
-        "cue_card": "Describe a film you would watch again.",
+        "cue_card": "Describe a film that you found memorable.",
         "bullets": [
-          "what it is",
+          "what the film was about",
           "when you watched it",
-          "what happens in it",
-          "why you would watch it again"
+          "which part you remember most clearly",
+          "why it stayed in your mind"
         ],
         "prep_time_sec": 60,
         "speak_time_sec": 120
       },
       "part3": [
-        "Why is films and storytelling important in modern life?",
-        "How can communities make films and storytelling better for different people?",
-        "What role should schools or governments play in relation to films and storytelling?",
-        "How might films and storytelling change in the next twenty years?"
+        "Why do stories matter to people in every culture?",
+        "What makes a film character believable?",
+        "Do special effects make a film better?",
+        "How have streaming services changed film-viewing habits?",
+        "Should films based on history be completely accurate?"
       ]
     }
   },
   {
     "day": 19,
-    "week_focus": "Intonation: yes/no questions",
+    "week_focus": "V va W sounds: events and traditions",
     "pronunciation": [
       [
-        "celebrate",
-        "/see dictionary/",
-        "Aniq talaffuz va gap urg‘usiga e’tibor bering."
+        "celebration",
+        "/ˌsel.ɪˈbreɪ.ʃən/",
+        "urg‘u uchinchi bo‘g‘inda"
       ],
       [
         "festival",
-        "/see dictionary/",
-        "Aniq talaffuz va gap urg‘usiga e’tibor bering."
-      ],
-      [
-        "tradition",
-        "/see dictionary/",
-        "Aniq talaffuz va gap urg‘usiga e’tibor bering."
-      ],
-      [
-        "family",
-        "/see dictionary/",
-        "Aniq talaffuz va gap urg‘usiga e’tibor bering."
-      ],
-      [
-        "special",
-        "/see dictionary/",
-        "Aniq talaffuz va gap urg‘usiga e’tibor bering."
-      ],
-      [
-        "together",
-        "/see dictionary/",
-        "Aniq talaffuz va gap urg‘usiga e’tibor bering."
+        "/ˈfes.tɪ.vəl/",
+        "birinchi bo‘g‘inga urg‘u"
       ],
       [
         "ceremony",
-        "/see dictionary/",
-        "Aniq talaffuz va gap urg‘usiga e’tibor bering."
+        "/ˈser.ə.mə.ni/",
+        "bo‘g‘inlarni aniq ayting"
       ],
       [
-        "occasion",
-        "/see dictionary/",
-        "Aniq talaffuz va gap urg‘usiga e’tibor bering."
+        "welcome",
+        "/ˈwel.kəm/",
+        "/w/ bilan boshlang"
+      ],
+      [
+        "valuable",
+        "/ˈvæl.ju.ə.bəl/",
+        "birinchi /v/ ovozli"
+      ],
+      [
+        "traditional",
+        "/trəˈdɪʃ.ən.əl/",
+        "urg‘u ikkinchi bo‘g‘inda"
+      ],
+      [
+        "visitor",
+        "/ˈvɪz.ɪ.tər/",
+        "o‘rtadagi /z/ ovozli"
+      ],
+      [
+        "wedding",
+        "/ˈwed.ɪŋ/",
+        "birinchi bo‘g‘inga urg‘u"
+      ],
+      [
+        "community",
+        "/kəˈmjuː.nə.ti/",
+        "urg‘u ikkinchi bo‘g‘inda"
       ]
     ],
     "shadowing": {
-      "audio_text": "I have learned that celebrations and traditions can be easier to discuss when I give one clear example and explain my reason. Today I will speak at a steady pace, connect my ideas, and leave short pauses between important points.",
-      "target_duration_sec": 38,
+      "audio_text": "Celebrations are valuable because they bring people together around a shared memory or hope. A family event may include familiar food, music, and stories that older relatives pass on to younger people. I think traditions remain meaningful when people understand the reason behind them, not only the rules. At the same time, every generation can add a small new idea. That makes a celebration feel both respectful and alive.",
+      "target_duration_sec": 50,
       "source": "original-course-script",
       "license": "Original Tayanch course script; browser TTS reference only."
     },
     "speaking_set": {
       "topic": "Celebrations and traditions",
       "part1": [
-        "What comes to your mind when you think about celebrations and traditions?",
-        "How has your experience of celebrations and traditions changed over time?",
-        "Do people around you talk much about celebrations and traditions?"
+        "What celebrations are important in your family?",
+        "Do you prefer large celebrations or small ones?",
+        "What traditional food is connected with special events where you live?",
+        "Do young people take part in local traditions?"
       ],
       "part2": {
-        "cue_card": "Describe a celebration you enjoy.",
+        "cue_card": "Describe a traditional celebration that you have taken part in.",
         "bullets": [
-          "what it is",
-          "when it happens",
-          "what people do",
-          "why it is meaningful"
+          "what the celebration was",
+          "where it took place",
+          "what people did there",
+          "why it was meaningful to you"
         ],
         "prep_time_sec": 60,
         "speak_time_sec": 120
       },
       "part3": [
-        "Why is celebrations and traditions important in modern life?",
-        "How can communities make celebrations and traditions better for different people?",
-        "What role should schools or governments play in relation to celebrations and traditions?",
-        "How might celebrations and traditions change in the next twenty years?"
+        "Why do communities keep traditional celebrations?",
+        "How can traditions change without losing their meaning?",
+        "Should governments support cultural festivals?",
+        "What can young people learn from older relatives at celebrations?",
+        "Can social media help preserve local traditions?"
       ]
     }
   },
   {
     "day": 20,
-    "week_focus": "Intonation: wh-questions",
+    "week_focus": "V va W sounds: learning a language",
     "pronunciation": [
       [
-        "language",
-        "/see dictionary/",
-        "Aniq talaffuz va gap urg‘usiga e’tibor bering."
+        "vocabulary",
+        "/vəˈkæb.jə.lər.i/",
+        "urg‘u ikkinchi bo‘g‘inda"
+      ],
+      [
+        "word",
+        "/wɜːd/",
+        "cho‘ziq /ɜː/ bilan"
       ],
       [
         "conversation",
-        "/see dictionary/",
-        "Aniq talaffuz va gap urg‘usiga e’tibor bering."
+        "/ˌkɒn.vəˈseɪ.ʃən/",
+        "urg‘u uchinchi bo‘g‘inda"
       ],
       [
-        "practice",
-        "/see dictionary/",
-        "Aniq talaffuz va gap urg‘usiga e’tibor bering."
+        "variety",
+        "/vəˈraɪ.ə.ti/",
+        "/v/ bilan boshlang"
       ],
       [
-        "confident",
-        "/see dictionary/",
-        "Aniq talaffuz va gap urg‘usiga e’tibor bering."
+        "pronunciation",
+        "/prəˌnʌn.siˈeɪ.ʃən/",
+        "urg‘u oxirgi bo‘g‘inda"
       ],
       [
-        "expression",
-        "/see dictionary/",
-        "Aniq talaffuz va gap urg‘usiga e’tibor bering."
+        "repeat",
+        "/rɪˈpiːt/",
+        "cho‘ziq /iː/"
       ],
       [
-        "understand",
-        "/see dictionary/",
-        "Aniq talaffuz va gap urg‘usiga e’tibor bering."
+        "worldwide",
+        "/ˌwɜːldˈwaɪd/",
+        "ikki /w/ tovushi"
       ],
       [
-        "improve",
-        "/see dictionary/",
-        "Aniq talaffuz va gap urg‘usiga e’tibor bering."
+        "valuable",
+        "/ˈvæl.ju.ə.bəl/",
+        "/v/ va /l/ ni farqlang"
       ],
       [
-        "communicate",
-        "/see dictionary/",
-        "Aniq talaffuz va gap urg‘usiga e’tibor bering."
+        "confidence",
+        "/ˈkɒn.fɪ.dəns/",
+        "birinchi bo‘g‘inga urg‘u"
       ]
     ],
     "shadowing": {
-      "audio_text": "I have learned that learning a language can be easier to discuss when I give one clear example and explain my reason. Today I will speak at a steady pace, connect my ideas, and leave short pauses between important points.",
-      "target_duration_sec": 38,
+      "audio_text": "Learning another language becomes easier when it is part of daily life. I try to notice useful words in short videos, signs, and conversations instead of memorising long lists without context. Speaking is sometimes uncomfortable because mistakes are obvious, but it is also the fastest way to find gaps. I have learned that regular practice matters more than a perfect plan. A few focused minutes every day can gradually build confidence.",
+      "target_duration_sec": 50,
       "source": "original-course-script",
       "license": "Original Tayanch course script; browser TTS reference only."
     },
     "speaking_set": {
       "topic": "Learning a language",
       "part1": [
-        "What comes to your mind when you think about learning a language?",
-        "How has your experience of learning a language changed over time?",
-        "Do people around you talk much about learning a language?"
+        "What language would you like to improve most?",
+        "Which part of language learning do you find hardest?",
+        "Do you like learning new words from books or from videos?",
+        "How often do you use another language outside lessons?"
       ],
       "part2": {
-        "cue_card": "Describe a time you used English successfully.",
+        "cue_card": "Describe a useful method you have used to learn a language.",
         "bullets": [
-          "when it happened",
-          "who you spoke with",
-          "what you said",
-          "how you felt"
+          "what the method is",
+          "when you used it",
+          "how you used it",
+          "why it was useful for you"
         ],
         "prep_time_sec": 60,
         "speak_time_sec": 120
       },
       "part3": [
-        "Why is learning a language important in modern life?",
-        "How can communities make learning a language better for different people?",
-        "What role should schools or governments play in relation to learning a language?",
-        "How might learning a language change in the next twenty years?"
+        "Why do some people learn languages more easily than others?",
+        "Should children start learning a second language at an early age?",
+        "How can technology support language learners?",
+        "Is it necessary to understand a culture to speak its language well?",
+        "Will machine translation reduce the need to learn languages?"
       ]
     }
   },
   {
     "day": 21,
-    "week_focus": "Intonation: agreement and uncertainty",
+    "week_focus": "V va W sounds: movement and directions",
     "pronunciation": [
       [
+        "vehicle",
+        "/ˈviː.ɪ.kəl/",
+        "birinchi bo‘g‘indagi cho‘ziq /iː/"
+      ],
+      [
+        "waiting",
+        "/ˈweɪ.tɪŋ/",
+        "/w/ bilan boshlang"
+      ],
+      [
         "journey",
-        "/see dictionary/",
-        "Aniq talaffuz va gap urg‘usiga e’tibor bering."
+        "/ˈdʒɜː.ni/",
+        "cho‘ziq /ɜː/"
       ],
       [
-        "traffic",
-        "/see dictionary/",
-        "Aniq talaffuz va gap urg‘usiga e’tibor bering."
+        "route",
+        "/ruːt/",
+        "cho‘ziq /uː/ bilan"
       ],
       [
-        "station",
-        "/see dictionary/",
-        "Aniq talaffuz va gap urg‘usiga e’tibor bering."
+        "convenient",
+        "/kənˈviː.ni.ənt/",
+        "o‘rtadagi /v/ ovozli"
       ],
       [
-        "delayed",
-        "/see dictionary/",
-        "Aniq talaffuz va gap urg‘usiga e’tibor bering."
+        "crowded",
+        "/ˈkraʊ.dɪd/",
+        "/r/ dan keyingi /aʊ/"
       ],
       [
-        "alternative",
-        "/see dictionary/",
-        "Aniq talaffuz va gap urg‘usiga e’tibor bering."
+        "arrival",
+        "/əˈraɪ.vəl/",
+        "urg‘u ikkinchi bo‘g‘inda"
       ],
       [
-        "patient",
-        "/see dictionary/",
-        "Aniq talaffuz va gap urg‘usiga e’tibor bering."
+        "transfer",
+        "/ˈtræns.fɜːr/",
+        "birinchi bo‘g‘inga urg‘u"
       ],
       [
-        "arrive",
-        "/see dictionary/",
-        "Aniq talaffuz va gap urg‘usiga e’tibor bering."
-      ],
-      [
-        "unexpected",
-        "/see dictionary/",
-        "Aniq talaffuz va gap urg‘usiga e’tibor bering."
+        "weekday",
+        "/ˈwiːk.deɪ/",
+        "cho‘ziq /iː/"
       ]
     ],
     "shadowing": {
-      "audio_text": "I have learned that public transport and travel can be easier to discuss when I give one clear example and explain my reason. Today I will speak at a steady pace, connect my ideas, and leave short pauses between important points.",
-      "target_duration_sec": 38,
+      "audio_text": "Public transport can make a city easier to live in when it is reliable, safe, and simple to understand. On a good bus or metro journey, passengers know when the vehicle will arrive and where they need to change. I also value clean stops and enough space for older people or parents with children. Although travelling with many people can be tiring, a strong public network reduces traffic and gives people more choices.",
+      "target_duration_sec": 52,
       "source": "original-course-script",
       "license": "Original Tayanch course script; browser TTS reference only."
     },
     "speaking_set": {
-      "topic": "Public transport and travel",
+      "topic": "Public transport",
       "part1": [
-        "What comes to your mind when you think about public transport and travel?",
-        "How has your experience of public transport and travel changed over time?",
-        "Do people around you talk much about public transport and travel?"
+        "How do you usually travel around your city?",
+        "Do you use buses or trains very often?",
+        "What do you do while waiting for public transport?",
+        "Is public transport convenient where you live?"
       ],
       "part2": {
-        "cue_card": "Describe a journey that did not go as planned.",
+        "cue_card": "Describe a public transport journey that you remember well.",
         "bullets": [
           "where you were going",
-          "what happened",
-          "how you responded",
-          "what you learned"
+          "which type of transport you used",
+          "what happened during the journey",
+          "why you remember it"
         ],
         "prep_time_sec": 60,
         "speak_time_sec": 120
       },
       "part3": [
-        "Why is public transport and travel important in modern life?",
-        "How can communities make public transport and travel better for different people?",
-        "What role should schools or governments play in relation to public transport and travel?",
-        "How might public transport and travel change in the next twenty years?"
+        "Why do people choose private cars instead of public transport?",
+        "What makes a public transport system reliable?",
+        "How can transport be made easier for older passengers?",
+        "Should cities make public transport free for some groups?",
+        "How might public transport change in the future?"
       ]
     }
   },
   {
     "day": 22,
-    "week_focus": "Intonation: weekly review",
+    "week_focus": "/h/ va so‘z boshidagi aniqlik",
     "pronunciation": [
       [
         "home",
-        "/see dictionary/",
-        "Aniq talaffuz va gap urg‘usiga e’tibor bering."
+        "/həʊm/",
+        "boshlanishdagi /h/ ni nafas bilan ayting"
       ],
       [
-        "room",
-        "/see dictionary/",
-        "Aniq talaffuz va gap urg‘usiga e’tibor bering."
+        "household",
+        "/ˈhaʊs.həʊld/",
+        "ikki /h/ tovushini aniq saqlang"
+      ],
+      [
+        "hallway",
+        "/ˈhɔːl.weɪ/",
+        "birinchi bo‘g‘inga urg‘u bering"
       ],
       [
         "comfortable",
-        "/see dictionary/",
-        "Aniq talaffuz va gap urg‘usiga e’tibor bering."
+        "/ˈkʌm.fə.tə.bəl/",
+        "o‘rtadagi qisqa /ə/ larni tabiiy ayting"
       ],
       [
-        "quiet",
-        "/see dictionary/",
-        "Aniq talaffuz va gap urg‘usiga e’tibor bering."
+        "neighbourhood",
+        "/ˈneɪ.bə.hʊd/",
+        "/h/ ni tushirib qoldirmang"
       ],
       [
         "furniture",
-        "/see dictionary/",
-        "Aniq talaffuz va gap urg‘usiga e’tibor bering."
+        "/ˈfɜː.nɪ.tʃə/",
+        "birinchi bo‘g‘in urg‘uli"
       ],
       [
-        "window",
-        "/see dictionary/",
-        "Aniq talaffuz va gap urg‘usiga e’tibor bering."
+        "kitchen",
+        "/ˈkɪtʃ.ɪn/",
+        "/tʃ/ tovushini aniq tugating"
       ],
       [
-        "relax",
-        "/see dictionary/",
-        "Aniq talaffuz va gap urg‘usiga e’tibor bering."
-      ],
-      [
-        "private",
-        "/see dictionary/",
-        "Aniq talaffuz va gap urg‘usiga e’tibor bering."
+        "spacious",
+        "/ˈspeɪ.ʃəs/",
+        "/ʃəs/ oxirini qisqa ayting"
       ]
     ],
     "shadowing": {
-      "audio_text": "I have learned that home and accommodation can be easier to discuss when I give one clear example and explain my reason. Today I will speak at a steady pace, connect my ideas, and leave short pauses between important points.",
-      "target_duration_sec": 38,
+      "audio_text": "The place where we live affects many small parts of daily life. A quiet home can make it easier to rest and concentrate, while a convenient location can save time every day. For me, the most important thing is having a comfortable space where family members can talk and relax.",
+      "target_duration_sec": 46,
       "source": "original-course-script",
       "license": "Original Tayanch course script; browser TTS reference only."
     },
     "speaking_set": {
       "topic": "Home and accommodation",
       "part1": [
-        "What comes to your mind when you think about home and accommodation?",
-        "How has your experience of home and accommodation changed over time?",
-        "Do people around you talk much about home and accommodation?"
+        "What do you like most about the place where you live?",
+        "Which room in your home do you spend the most time in?",
+        "Would you prefer to live in a house or an apartment?",
+        "Has your home changed since you were a child?"
       ],
       "part2": {
-        "cue_card": "Describe a room where you feel comfortable.",
+        "cue_card": "Describe a home that you would like to live in.",
         "bullets": [
-          "where it is",
-          "what it looks like",
-          "what you do there",
-          "why you feel comfortable"
+          "where it would be located",
+          "what rooms or features it would have",
+          "who you would live with",
+          "why this home would suit you"
         ],
         "prep_time_sec": 60,
         "speak_time_sec": 120
       },
       "part3": [
-        "Why is home and accommodation important in modern life?",
-        "How can communities make home and accommodation better for different people?",
-        "What role should schools or governments play in relation to home and accommodation?",
-        "How might home and accommodation change in the next twenty years?"
+        "Why do some young adults continue living with their parents?",
+        "How does housing affect people’s quality of life?",
+        "Should cities build more apartments or more houses?",
+        "What makes a neighbourhood suitable for families?",
+        "How might homes change in the next twenty years?"
       ]
     }
   },
   {
     "day": 23,
-    "week_focus": "Complex sentences: because and although",
+    "week_focus": "/æ/ va /e/ unlilari: farqni eshitish",
     "pronunciation": [
       [
         "family",
-        "/see dictionary/",
-        "Aniq talaffuz va gap urg‘usiga e’tibor bering."
+        "/ˈfæm.əl.i/",
+        "birinchi /æ/ unlisini keng ayting"
       ],
       [
-        "advice",
-        "/see dictionary/",
-        "Aniq talaffuz va gap urg‘usiga e’tibor bering."
+        "parent",
+        "/ˈpeə.rənt/",
+        "birinchi unli /eə/ ga yaqin"
       ],
       [
-        "experience",
-        "/see dictionary/",
-        "Aniq talaffuz va gap urg‘usiga e’tibor bering."
+        "grandparent",
+        "/ˈɡrænˌpeə.rənt/",
+        "/græn/ bo‘lagini aniq ayting"
       ],
       [
         "generation",
-        "/see dictionary/",
-        "Aniq talaffuz va gap urg‘usiga e’tibor bering."
+        "/ˌdʒen.əˈreɪ.ʃən/",
+        "/dʒen/ va /reɪ/ ni ajrating"
+      ],
+      [
+        "relative",
+        "/ˈrel.ə.tɪv/",
+        "birinchi bo‘g‘in urg‘uli"
       ],
       [
         "support",
-        "/see dictionary/",
-        "Aniq talaffuz va gap urg‘usiga e’tibor bering."
+        "/səˈpɔːt/",
+        "ikkinchi bo‘g‘indagi cho‘ziq /ɔː/"
       ],
       [
-        "careful",
-        "/see dictionary/",
-        "Aniq talaffuz va gap urg‘usiga e’tibor bering."
+        "advice",
+        "/ədˈvaɪs/",
+        "oxiridagi /s/ ovozsiz"
       ],
       [
-        "valuable",
-        "/see dictionary/",
-        "Aniq talaffuz va gap urg‘usiga e’tibor bering."
-      ],
-      [
-        "remember",
-        "/see dictionary/",
-        "Aniq talaffuz va gap urg‘usiga e’tibor bering."
+        "different",
+        "/ˈdɪf.ər.ənt/",
+        "birinchi bo‘g‘inni qisqa ayting"
       ]
     ],
     "shadowing": {
-      "audio_text": "I have learned that family and generations can be easier to discuss when I give one clear example and explain my reason. Today I will speak at a steady pace, connect my ideas, and leave short pauses between important points.",
-      "target_duration_sec": 38,
+      "audio_text": "Families often bring together people of different ages and experiences. Older relatives may share practical advice, while younger members can introduce new ideas or technology. Although generations sometimes disagree, regular conversations can help family members understand each other better.",
+      "target_duration_sec": 43,
       "source": "original-course-script",
       "license": "Original Tayanch course script; browser TTS reference only."
     },
     "speaking_set": {
       "topic": "Family and generations",
       "part1": [
-        "What comes to your mind when you think about family and generations?",
-        "How has your experience of family and generations changed over time?",
-        "Do people around you talk much about family and generations?"
+        "How often do you spend time with your extended family?",
+        "Who gives you useful advice in your family?",
+        "Do you think young people and older people have enough opportunities to talk?"
       ],
       "part2": {
-        "cue_card": "Describe advice from an older person that helped you.",
+        "cue_card": "Describe an older person who has influenced you.",
         "bullets": [
-          "who gave it",
-          "what the advice was",
-          "when you used it",
-          "why it was helpful"
+          "who the person is",
+          "how you know this person",
+          "what you learned from them",
+          "why their influence has been important"
         ],
         "prep_time_sec": 60,
         "speak_time_sec": 120
       },
       "part3": [
-        "Why is family and generations important in modern life?",
-        "How can communities make family and generations better for different people?",
-        "What role should schools or governments play in relation to family and generations?",
-        "How might family and generations change in the next twenty years?"
+        "What can young people learn from older generations?",
+        "Why do some families find it difficult to spend time together?",
+        "Should adult children be expected to care for elderly parents?",
+        "How has technology changed communication between generations?",
+        "What can communities do to reduce loneliness among older people?"
       ]
     }
   },
   {
     "day": 24,
-    "week_focus": "Complex sentences: relative clauses",
+    "week_focus": "/v/ va /w/ farqi",
     "pronunciation": [
       [
-        "technology",
-        "/see dictionary/",
-        "Aniq talaffuz va gap urg‘usiga e’tibor bering."
+        "invent",
+        "/ɪnˈvent/",
+        "/v/ uchun pastki lab yuqori tishga tegadi"
       ],
       [
-        "application",
-        "/see dictionary/",
-        "Aniq talaffuz va gap urg‘usiga e’tibor bering."
+        "device",
+        "/dɪˈvaɪs/",
+        "ikkinchi bo‘g‘inda /v/ aniq"
+      ],
+      [
+        "wireless",
+        "/ˈwaɪə.ləs/",
+        "boshlanishdagi /w/ uchun lablarni dumaloqlang"
+      ],
+      [
+        "voice",
+        "/vɔɪs/",
+        "ovozli /v/ ni ravshan ayting"
       ],
       [
         "website",
-        "/see dictionary/",
-        "Aniq talaffuz va gap urg‘usiga e’tibor bering."
+        "/ˈweb.saɪt/",
+        "/w/ va /b/ ni birga ayting"
       ],
       [
-        "schedule",
-        "/see dictionary/",
-        "Aniq talaffuz va gap urg‘usiga e’tibor bering."
+        "available",
+        "/əˈveɪ.lə.bəl/",
+        "/veɪ/ bo‘g‘iniga urg‘u bering"
       ],
       [
-        "efficient",
-        "/see dictionary/",
-        "Aniq talaffuz va gap urg‘usiga e’tibor bering."
+        "worldwide",
+        "/ˌwɜːldˈwaɪd/",
+        "ikki /w/ tovushini ajrating"
       ],
       [
-        "information",
-        "/see dictionary/",
-        "Aniq talaffuz va gap urg‘usiga e’tibor bering."
-      ],
-      [
-        "convenient",
-        "/see dictionary/",
-        "Aniq talaffuz va gap urg‘usiga e’tibor bering."
-      ],
-      [
-        "solution",
-        "/see dictionary/",
-        "Aniq talaffuz va gap urg‘usiga e’tibor bering."
+        "innovation",
+        "/ˌɪn.əˈveɪ.ʃən/",
+        "/veɪ/ bo‘g‘inini cho‘zing"
       ]
     ],
     "shadowing": {
-      "audio_text": "I have learned that technology and inventions can be easier to discuss when I give one clear example and explain my reason. Today I will speak at a steady pace, connect my ideas, and leave short pauses between important points.",
-      "target_duration_sec": 38,
+      "audio_text": "Useful inventions do not always need to be complicated. Sometimes a simple device saves people time, improves safety, or helps them communicate. I think the best technologies are designed around real problems, rather than being created only because they look new or impressive.",
+      "target_duration_sec": 44,
       "source": "original-course-script",
       "license": "Original Tayanch course script; browser TTS reference only."
     },
     "speaking_set": {
       "topic": "Technology and inventions",
       "part1": [
-        "What comes to your mind when you think about technology and inventions?",
-        "How has your experience of technology and inventions changed over time?",
-        "Do people around you talk much about technology and inventions?"
+        "What piece of technology do you use most often each day?",
+        "Is there an invention that has made your daily life easier?",
+        "Do you enjoy learning how new devices work?",
+        "What technology do you find unnecessary?"
       ],
       "part2": {
-        "cue_card": "Describe an app or website that saves you time.",
+        "cue_card": "Describe an invention that you think has been especially useful.",
         "bullets": [
-          "what it is",
-          "how you use it",
-          "what problem it solves",
-          "why you would recommend it"
+          "what the invention is",
+          "when you first used or learned about it",
+          "how it helps people",
+          "why you think it is useful"
         ],
         "prep_time_sec": 60,
         "speak_time_sec": 120
       },
       "part3": [
-        "Why is technology and inventions important in modern life?",
-        "How can communities make technology and inventions better for different people?",
-        "What role should schools or governments play in relation to technology and inventions?",
-        "How might technology and inventions change in the next twenty years?"
+        "What problems should inventors focus on solving today?",
+        "Do new technologies always improve people’s lives?",
+        "Why do some older people find new devices difficult to use?",
+        "Should governments invest in scientific research?",
+        "How might artificial intelligence affect future inventions?"
       ]
     }
   },
   {
     "day": 25,
-    "week_focus": "Complex sentences: conditionals",
+    "week_focus": "So‘z urg‘usi: ko‘p bo‘g‘inli so‘zlar",
     "pronunciation": [
       [
         "education",
-        "/see dictionary/",
-        "Aniq talaffuz va gap urg‘usiga e’tibor bering."
+        "/ˌedʒ.ʊˈkeɪ.ʃən/",
+        "/keɪ/ bo‘g‘iniga urg‘u bering"
       ],
       [
-        "skill",
-        "/see dictionary/",
-        "Aniq talaffuz va gap urg‘usiga e’tibor bering."
+        "practical",
+        "/ˈpræk.tɪ.kəl/",
+        "birinchi bo‘g‘in urg‘uli"
       ],
       [
-        "practice",
-        "/see dictionary/",
-        "Aniq talaffuz va gap urg‘usiga e’tibor bering."
+        "qualification",
+        "/ˌkwɒl.ɪ.fɪˈkeɪ.ʃən/",
+        "oxiridan oldingi urg‘u"
       ],
       [
-        "progress",
-        "/see dictionary/",
-        "Aniq talaffuz va gap urg‘usiga e’tibor bering."
-      ],
-      [
-        "challenge",
-        "/see dictionary/",
-        "Aniq talaffuz va gap urg‘usiga e’tibor bering."
+        "independent",
+        "/ˌɪn.dɪˈpen.dənt/",
+        "/pen/ bo‘g‘ini urg‘uli"
       ],
       [
         "improve",
-        "/see dictionary/",
-        "Aniq talaffuz va gap urg‘usiga e’tibor bering."
+        "/ɪmˈpruːv/",
+        "oxirgi bo‘g‘in urg‘uli"
+      ],
+      [
+        "research",
+        "/rɪˈsɜːtʃ/",
+        "ikkinchi bo‘g‘inni cho‘zing"
       ],
       [
         "knowledge",
-        "/see dictionary/",
-        "Aniq talaffuz va gap urg‘usiga e’tibor bering."
+        "/ˈnɒl.ɪdʒ/",
+        "/dʒ/ tovushi bilan tugating"
       ],
       [
         "opportunity",
-        "/see dictionary/",
-        "Aniq talaffuz va gap urg‘usiga e’tibor bering."
+        "/ˌɒp.əˈtʃuː.nə.ti/",
+        "/tʃuː/ bo‘g‘iniga urg‘u"
       ]
     ],
     "shadowing": {
-      "audio_text": "I have learned that education and skills can be easier to discuss when I give one clear example and explain my reason. Today I will speak at a steady pace, connect my ideas, and leave short pauses between important points.",
-      "target_duration_sec": 38,
+      "audio_text": "Education is not only about passing exams. It can also help people develop confidence, curiosity, and useful habits. In my view, students learn more effectively when they can connect new information with real situations and have time to practise important skills.",
+      "target_duration_sec": 42,
       "source": "original-course-script",
       "license": "Original Tayanch course script; browser TTS reference only."
     },
     "speaking_set": {
       "topic": "Education and skills",
       "part1": [
-        "What comes to your mind when you think about education and skills?",
-        "How has your experience of education and skills changed over time?",
-        "Do people around you talk much about education and skills?"
+        "What skill would you like to improve at the moment?",
+        "Did you enjoy learning practical skills at school?",
+        "Do you prefer learning from a teacher or from online videos?"
       ],
       "part2": {
-        "cue_card": "Describe a skill you would like to improve.",
+        "cue_card": "Describe a skill that you learned outside school.",
         "bullets": [
-          "what it is",
-          "why it matters",
-          "how you would practise",
-          "what would improve if you learned it"
+          "what the skill is",
+          "how you learned it",
+          "how long it took to become confident",
+          "how you use the skill now"
         ],
         "prep_time_sec": 60,
         "speak_time_sec": 120
       },
       "part3": [
-        "Why is education and skills important in modern life?",
-        "How can communities make education and skills better for different people?",
-        "What role should schools or governments play in relation to education and skills?",
-        "How might education and skills change in the next twenty years?"
+        "Which skills will be most important for future jobs?",
+        "Should schools teach more financial and communication skills?",
+        "Why do some adults stop learning new things?",
+        "How can employers help staff develop professionally?",
+        "Is learning from experience as valuable as formal education?"
       ]
     }
   },
   {
     "day": 26,
-    "week_focus": "Cohesion: signposting ideas",
+    "week_focus": "Intonatsiya: fikr va sabablarni ta’kidlash",
     "pronunciation": [
       [
         "creative",
-        "/see dictionary/",
-        "Aniq talaffuz va gap urg‘usiga e’tibor bering."
+        "/kriˈeɪ.tɪv/",
+        "ikkinchi bo‘g‘in urg‘uli"
       ],
       [
         "painting",
-        "/see dictionary/",
-        "Aniq talaffuz va gap urg‘usiga e’tibor bering."
+        "/ˈpeɪn.tɪŋ/",
+        "/eɪ/ unlisini cho‘zing"
       ],
       [
-        "design",
-        "/see dictionary/",
-        "Aniq talaffuz va gap urg‘usiga e’tibor bering."
+        "audience",
+        "/ˈɔː.di.əns/",
+        "birinchi bo‘g‘in urg‘uli"
+      ],
+      [
+        "performance",
+        "/pəˈfɔː.məns/",
+        "/fɔː/ bo‘g‘iniga urg‘u"
+      ],
+      [
+        "exhibition",
+        "/ˌek.sɪˈbɪʃ.ən/",
+        "/bɪʃ/ bo‘g‘ini aniq"
       ],
       [
         "imagine",
-        "/see dictionary/",
-        "Aniq talaffuz va gap urg‘usiga e’tibor bering."
-      ],
-      [
-        "inspiration",
-        "/see dictionary/",
-        "Aniq talaffuz va gap urg‘usiga e’tibor bering."
-      ],
-      [
-        "carefully",
-        "/see dictionary/",
-        "Aniq talaffuz va gap urg‘usiga e’tibor bering."
+        "/ɪˈmædʒ.ɪn/",
+        "/dʒ/ tovushini ravshan ayting"
       ],
       [
         "express",
-        "/see dictionary/",
-        "Aniq talaffuz va gap urg‘usiga e’tibor bering."
+        "/ɪkˈspres/",
+        "oxirgi bo‘g‘in urg‘uli"
       ],
       [
-        "original",
-        "/see dictionary/",
-        "Aniq talaffuz va gap urg‘usiga e’tibor bering."
+        "inspiring",
+        "/ɪnˈspaɪə.rɪŋ/",
+        "/spaɪ/ bo‘g‘inini ajrating"
       ]
     ],
     "shadowing": {
-      "audio_text": "I have learned that art and creativity can be easier to discuss when I give one clear example and explain my reason. Today I will speak at a steady pace, connect my ideas, and leave short pauses between important points.",
-      "target_duration_sec": 38,
+      "audio_text": "Creative activities can offer a different way to communicate. A painting, a song, or a photograph may express an idea without using many words. Even people who do not consider themselves artists can benefit from making something carefully and noticing small details around them.",
+      "target_duration_sec": 45,
       "source": "original-course-script",
       "license": "Original Tayanch course script; browser TTS reference only."
     },
     "speaking_set": {
       "topic": "Art and creativity",
       "part1": [
-        "What comes to your mind when you think about art and creativity?",
-        "How has your experience of art and creativity changed over time?",
-        "Do people around you talk much about art and creativity?"
+        "Do you enjoy making or creating things?",
+        "What kinds of art can people see in your local area?",
+        "Did you have any art or music lessons at school?"
       ],
       "part2": {
-        "cue_card": "Describe a creative activity you have tried.",
+        "cue_card": "Describe a piece of art or creative work that you like.",
         "bullets": [
-          "what you did",
-          "when you did it",
-          "who was involved",
-          "how you felt about it"
+          "what it is",
+          "where you saw or heard it",
+          "what it is about or looks like",
+          "why it made an impression on you"
         ],
         "prep_time_sec": 60,
         "speak_time_sec": 120
       },
       "part3": [
-        "Why is art and creativity important in modern life?",
-        "How can communities make art and creativity better for different people?",
-        "What role should schools or governments play in relation to art and creativity?",
-        "How might art and creativity change in the next twenty years?"
+        "Why is creativity valuable outside the arts?",
+        "Should public money be used to support museums and theatres?",
+        "How can art make a city more attractive?",
+        "Do digital tools change what it means to be an artist?",
+        "Should children be encouraged to make art even if they are not talented?"
       ]
     }
   },
   {
     "day": 27,
-    "week_focus": "Cohesion: examples and reasons",
+    "week_focus": "Undosh klasterlari: /sp/, /str/ va /ks/",
     "pronunciation": [
       [
-        "exercise",
-        "/see dictionary/",
-        "Aniq talaffuz va gap urg‘usiga e’tibor bering."
-      ],
-      [
-        "healthy",
-        "/see dictionary/",
-        "Aniq talaffuz va gap urg‘usiga e’tibor bering."
-      ],
-      [
-        "regular",
-        "/see dictionary/",
-        "Aniq talaffuz va gap urg‘usiga e’tibor bering."
-      ],
-      [
-        "balance",
-        "/see dictionary/",
-        "Aniq talaffuz va gap urg‘usiga e’tibor bering."
+        "sport",
+        "/spɔːt/",
+        "/s/ va /p/ orasida unli qo‘shmang"
       ],
       [
         "strength",
-        "/see dictionary/",
-        "Aniq talaffuz va gap urg‘usiga e’tibor bering."
+        "/streŋθ/",
+        "/str/ va oxirgi /ŋθ/ ni sekin mashq qiling"
       ],
       [
-        "routine",
-        "/see dictionary/",
-        "Aniq talaffuz va gap urg‘usiga e’tibor bering."
+        "exercise",
+        "/ˈek.sə.saɪz/",
+        "/ks/ birikmasini aniq ayting"
       ],
       [
-        "energy",
-        "/see dictionary/",
-        "Aniq talaffuz va gap urg‘usiga e’tibor bering."
+        "stretch",
+        "/stretʃ/",
+        "/str/ dan keyin /e/ qisqa"
       ],
       [
-        "improve",
-        "/see dictionary/",
-        "Aniq talaffuz va gap urg‘usiga e’tibor bering."
+        "regular",
+        "/ˈreɡ.jə.lə/",
+        "birinchi bo‘g‘inga urg‘u"
+      ],
+      [
+        "healthy",
+        "/ˈhel.θi/",
+        "oxirgi /θ/ ni aniq ayting"
+      ],
+      [
+        "balance",
+        "/ˈbæl.əns/",
+        "birinchi /æ/ unlisini keng ayting"
+      ],
+      [
+        "competition",
+        "/ˌkɒm.pəˈtɪʃ.ən/",
+        "/tɪʃ/ bo‘g‘iniga urg‘u"
       ]
     ],
     "shadowing": {
-      "audio_text": "I have learned that sports and exercise can be easier to discuss when I give one clear example and explain my reason. Today I will speak at a steady pace, connect my ideas, and leave short pauses between important points.",
-      "target_duration_sec": 38,
+      "audio_text": "Regular exercise can improve both physical health and mood. It does not have to involve an expensive gym or intense training. A daily walk, a team sport, or a short workout at home can be easier to continue when the activity is enjoyable and fits a person’s schedule.",
+      "target_duration_sec": 47,
       "source": "original-course-script",
       "license": "Original Tayanch course script; browser TTS reference only."
     },
     "speaking_set": {
       "topic": "Sports and exercise",
       "part1": [
-        "What comes to your mind when you think about sports and exercise?",
-        "How has your experience of sports and exercise changed over time?",
-        "Do people around you talk much about sports and exercise?"
+        "What kind of exercise do you enjoy, if any?",
+        "Did you play any sports when you were at school?",
+        "Do you prefer exercising alone or with other people?",
+        "Is there a sport you would like to try?"
       ],
       "part2": {
-        "cue_card": "Describe an exercise habit you would like to keep.",
+        "cue_card": "Describe an exercise or sport that you would like to do more often.",
         "bullets": [
           "what it is",
-          "when you do it",
-          "how you started",
-          "why you want to continue"
+          "where you would do it",
+          "who you would do it with",
+          "how it could benefit you"
         ],
         "prep_time_sec": 60,
         "speak_time_sec": 120
       },
       "part3": [
-        "Why is sports and exercise important in modern life?",
-        "How can communities make sports and exercise better for different people?",
-        "What role should schools or governments play in relation to sports and exercise?",
-        "How might sports and exercise change in the next twenty years?"
+        "Why do some people find it hard to exercise regularly?",
+        "What can cities do to make physical activity easier?",
+        "Should schools give students more time for sport?",
+        "Are competitive sports good for children?",
+        "How has technology changed the way people exercise?"
       ]
     }
   },
   {
     "day": 28,
-    "week_focus": "Cohesion: summaries and conclusions",
+    "week_focus": "Gap ritmi: asosiy ma’no beruvchi so‘zlar",
     "pronunciation": [
       [
         "news",
-        "/see dictionary/",
-        "Aniq talaffuz va gap urg‘usiga e’tibor bering."
-      ],
-      [
-        "article",
-        "/see dictionary/",
-        "Aniq talaffuz va gap urg‘usiga e’tibor bering."
+        "/njuːz/",
+        "boshlanishdagi /nj/ birikmasini saqlang"
       ],
       [
         "source",
-        "/see dictionary/",
-        "Aniq talaffuz va gap urg‘usiga e’tibor bering."
+        "/sɔːs/",
+        "cho‘ziq /ɔː/ unlisini ayting"
       ],
       [
-        "discuss",
-        "/see dictionary/",
-        "Aniq talaffuz va gap urg‘usiga e’tibor bering."
+        "report",
+        "/rɪˈpɔːt/",
+        "ikkinchi bo‘g‘in urg‘uli"
       ],
       [
         "reliable",
-        "/see dictionary/",
-        "Aniq talaffuz va gap urg‘usiga e’tibor bering."
+        "/rɪˈlaɪ.ə.bəl/",
+        "/laɪ/ bo‘g‘iniga urg‘u"
+      ],
+      [
+        "article",
+        "/ˈɑː.tɪ.kəl/",
+        "birinchi bo‘g‘in urg‘uli"
+      ],
+      [
+        "journalist",
+        "/ˈdʒɜː.nə.lɪst/",
+        "/dʒɜː/ ni cho‘zing"
+      ],
+      [
+        "headline",
+        "/ˈhed.laɪn/",
+        "ikki bo‘g‘inni ajrating"
       ],
       [
         "information",
-        "/see dictionary/",
-        "Aniq talaffuz va gap urg‘usiga e’tibor bering."
-      ],
-      [
-        "different",
-        "/see dictionary/",
-        "Aniq talaffuz va gap urg‘usiga e’tibor bering."
-      ],
-      [
-        "opinion",
-        "/see dictionary/",
-        "Aniq talaffuz va gap urg‘usiga e’tibor bering."
+        "/ˌɪn.fəˈmeɪ.ʃən/",
+        "/meɪ/ bo‘g‘iniga urg‘u"
       ]
     ],
     "shadowing": {
-      "audio_text": "I have learned that news and information can be easier to discuss when I give one clear example and explain my reason. Today I will speak at a steady pace, connect my ideas, and leave short pauses between important points.",
-      "target_duration_sec": 38,
+      "audio_text": "News can help us understand events beyond our immediate lives, but it is important to choose reliable sources. I usually read a short summary first and then look for more detail when a story affects my community, my studies, or plans for the future.",
+      "target_duration_sec": 45,
       "source": "original-course-script",
       "license": "Original Tayanch course script; browser TTS reference only."
     },
     "speaking_set": {
       "topic": "News and information",
       "part1": [
-        "What comes to your mind when you think about news and information?",
-        "How has your experience of news and information changed over time?",
-        "Do people around you talk much about news and information?"
+        "How do you usually find out about current events?",
+        "Do you prefer reading news or watching it?",
+        "Is there a type of news that you try not to follow?"
       ],
       "part2": {
-        "cue_card": "Describe a news story you discussed with someone.",
+        "cue_card": "Describe a news story that you found interesting recently.",
         "bullets": [
-          "what it was about",
-          "where you heard it",
-          "who you discussed it with",
-          "why it was interesting"
+          "what the story was about",
+          "where you first heard about it",
+          "why it caught your attention",
+          "what you thought after learning more"
         ],
         "prep_time_sec": 60,
         "speak_time_sec": 120
       },
       "part3": [
-        "Why is news and information important in modern life?",
-        "How can communities make news and information better for different people?",
-        "What role should schools or governments play in relation to news and information?",
-        "How might news and information change in the next twenty years?"
+        "Why do people trust different news sources?",
+        "How can people check whether online information is accurate?",
+        "Should schools teach students how to identify misleading information?",
+        "Does frequent exposure to negative news affect people?",
+        "Will printed newspapers disappear completely?"
       ]
     }
   },
   {
     "day": 29,
-    "week_focus": "Full-course review: clarity and pace",
+    "week_focus": "Kelajak haqida gapirish: /l/ va /r/ aniqligi",
     "pronunciation": [
       [
-        "ambition",
-        "/see dictionary/",
-        "Aniq talaffuz va gap urg‘usiga e’tibor bering."
+        "plan",
+        "/plæn/",
+        "/pl/ birikmasini ajratmang"
       ],
       [
-        "achieve",
-        "/see dictionary/",
-        "Aniq talaffuz va gap urg‘usiga e’tibor bering."
+        "career",
+        "/kəˈrɪə/",
+        "ikkinchi bo‘g‘in urg‘uli"
       ],
       [
-        "develop",
-        "/see dictionary/",
-        "Aniq talaffuz va gap urg‘usiga e’tibor bering."
-      ],
-      [
-        "focus",
-        "/see dictionary/",
-        "Aniq talaffuz va gap urg‘usiga e’tibor bering."
+        "goal",
+        "/ɡəʊl/",
+        "so‘z oxiridagi /l/ ni yengil ayting"
       ],
       [
         "future",
-        "/see dictionary/",
-        "Aniq talaffuz va gap urg‘usiga e’tibor bering."
+        "/ˈfjuː.tʃə/",
+        "/fjuː/ bo‘lagini cho‘zing"
       ],
       [
-        "progress",
-        "/see dictionary/",
-        "Aniq talaffuz va gap urg‘usiga e’tibor bering."
+        "ambition",
+        "/æmˈbɪʃ.ən/",
+        "ikkinchi bo‘g‘in urg‘uli"
       ],
       [
-        "confidence",
-        "/see dictionary/",
-        "Aniq talaffuz va gap urg‘usiga e’tibor bering."
+        "achieve",
+        "/əˈtʃiːv/",
+        "/tʃiːv/ bo‘g‘inini cho‘zing"
+      ],
+      [
+        "realistic",
+        "/ˌrɪəˈlɪs.tɪk/",
+        "/r/ va /l/ tovushlarini ajrating"
       ],
       [
         "opportunity",
-        "/see dictionary/",
-        "Aniq talaffuz va gap urg‘usiga e’tibor bering."
+        "/ˌɒp.əˈtʃuː.nə.ti/",
+        "/tʃuː/ bo‘g‘iniga urg‘u"
       ]
     ],
     "shadowing": {
-      "audio_text": "I have learned that plans and ambitions can be easier to discuss when I give one clear example and explain my reason. Today I will speak at a steady pace, connect my ideas, and leave short pauses between important points.",
-      "target_duration_sec": 38,
+      "audio_text": "Making plans can give people direction, especially during busy periods of life. However, plans do not need to be fixed forever. I think it is sensible to set a clear goal, take small steps toward it, and remain ready to adjust when new opportunities appear.",
+      "target_duration_sec": 44,
       "source": "original-course-script",
       "license": "Original Tayanch course script; browser TTS reference only."
     },
     "speaking_set": {
       "topic": "Plans and ambitions",
       "part1": [
-        "What comes to your mind when you think about plans and ambitions?",
-        "How has your experience of plans and ambitions changed over time?",
-        "Do people around you talk much about plans and ambitions?"
+        "Do you enjoy making plans for the future?",
+        "What is one goal you hope to achieve in the next few years?",
+        "Do you usually write down your plans or keep them in your mind?",
+        "Has an unexpected event ever changed one of your plans?"
       ],
       "part2": {
-        "cue_card": "Describe an ambition you are working towards.",
+        "cue_card": "Describe an ambition that you have for the future.",
         "bullets": [
-          "what it is",
-          "why you chose it",
-          "what steps you are taking",
-          "how success would affect you"
+          "what the ambition is",
+          "why it matters to you",
+          "what steps you need to take",
+          "what difficulties you might face"
         ],
         "prep_time_sec": 60,
         "speak_time_sec": 120
       },
       "part3": [
-        "Why is plans and ambitions important in modern life?",
-        "How can communities make plans and ambitions better for different people?",
-        "What role should schools or governments play in relation to plans and ambitions?",
-        "How might plans and ambitions change in the next twenty years?"
+        "Why do some people find it difficult to set long-term goals?",
+        "Should schools help students plan their careers?",
+        "How do social media influence people’s ambitions?",
+        "Is it better to have one clear ambition or several possible plans?",
+        "How can people stay motivated when progress is slow?"
       ]
     }
   },
   {
     "day": 30,
-    "week_focus": "Full-course review: confident delivery",
+    "week_focus": "30-kun review: ravonlik, urg‘u va ishonch",
     "pronunciation": [
       [
         "community",
-        "/see dictionary/",
-        "Aniq talaffuz va gap urg‘usiga e’tibor bering."
+        "/kəˈmjuː.nə.ti/",
+        "/mjuː/ bo‘g‘iniga urg‘u"
       ],
       [
         "volunteer",
-        "/see dictionary/",
-        "Aniq talaffuz va gap urg‘usiga e’tibor bering."
-      ],
-      [
-        "support",
-        "/see dictionary/",
-        "Aniq talaffuz va gap urg‘usiga e’tibor bering."
+        "/ˌvɒl.ənˈtɪə/",
+        "oxiridan oldingi urg‘u"
       ],
       [
         "neighbour",
-        "/see dictionary/",
-        "Aniq talaffuz va gap urg‘usiga e’tibor bering."
+        "/ˈneɪ.bə/",
+        "birinchi bo‘g‘in urg‘uli"
       ],
       [
-        "practical",
-        "/see dictionary/",
-        "Aniq talaffuz va gap urg‘usiga e’tibor bering."
+        "support",
+        "/səˈpɔːt/",
+        "/pɔːt/ bo‘g‘inini cho‘zing"
       ],
       [
-        "generous",
-        "/see dictionary/",
-        "Aniq talaffuz va gap urg‘usiga e’tibor bering."
+        "charity",
+        "/ˈtʃær.ə.ti/",
+        "birinchi /æ/ unlisini keng ayting"
       ],
       [
-        "together",
-        "/see dictionary/",
-        "Aniq talaffuz va gap urg‘usiga e’tibor bering."
+        "organise",
+        "/ˈɔː.ɡən.aɪz/",
+        "/ɔː/ bo‘g‘ini cho‘ziq"
       ],
       [
         "contribute",
-        "/see dictionary/",
-        "Aniq talaffuz va gap urg‘usiga e’tibor bering."
+        "/kənˈtrɪb.juːt/",
+        "/trɪb/ bo‘g‘ini aniq"
+      ],
+      [
+        "benefit",
+        "/ˈben.ɪ.fɪt/",
+        "birinchi bo‘g‘in urg‘uli"
       ]
     ],
     "shadowing": {
-      "audio_text": "I have learned that community and volunteering can be easier to discuss when I give one clear example and explain my reason. Today I will speak at a steady pace, connect my ideas, and leave short pauses between important points.",
-      "target_duration_sec": 38,
+      "audio_text": "Volunteering can connect people who might not otherwise meet. By giving a little time, someone can support a local event, help a neighbour, or share a useful skill. These activities can strengthen a community because they remind people that small contributions can have a real effect.",
+      "target_duration_sec": 46,
       "source": "original-course-script",
       "license": "Original Tayanch course script; browser TTS reference only."
     },
     "speaking_set": {
       "topic": "Community and volunteering",
       "part1": [
-        "What comes to your mind when you think about community and volunteering?",
-        "How has your experience of community and volunteering changed over time?",
-        "Do people around you talk much about community and volunteering?"
+        "Do you know people who volunteer in your community?",
+        "Would you like to help with a local event?",
+        "What places in your area bring people together?",
+        "Do neighbours usually help one another where you live?"
       ],
       "part2": {
-        "cue_card": "Describe a time you helped someone.",
+        "cue_card": "Describe a time when you helped someone in your community.",
         "bullets": [
           "who you helped",
           "what you did",
-          "why you helped",
+          "why the person or group needed help",
           "how you felt afterwards"
         ],
         "prep_time_sec": 60,
         "speak_time_sec": 120
       },
       "part3": [
-        "Why is community and volunteering important in modern life?",
-        "How can communities make community and volunteering better for different people?",
-        "What role should schools or governments play in relation to community and volunteering?",
-        "How might community and volunteering change in the next twenty years?"
+        "Why do some people choose to volunteer while others do not?",
+        "How can local governments encourage volunteering?",
+        "Should employers give staff time to do community work?",
+        "What benefits can young people gain from volunteering?",
+        "Can online communities provide the same support as local communities?"
       ]
     }
   }
