@@ -260,6 +260,39 @@ python3 .telegram/telegram_bot.py attach &lt;update_id&gt;</code></pre>
     </div>
   </section>
 
+  <section class="performance-bonus" aria-labelledby="performance-bonus-title">
+    <div class="performance-bonus__head">
+      <div><p class="performance-bonus__eyebrow">🎁 BONUS</p><h2 id="performance-bonus-title">AI orqali kompyuter tezligini xavfsiz diagnostika qilish</h2></div>
+      <button class="performance-copy" id="performanceCopy" type="button">Nusxalash</button>
+    </div>
+    <p>MacBook sekinlashib qoldimi? Joy to'lib qolyaptimi? Quyidagi promptni ChatGPT, Claude yoki boshqa AI yordamchiga (terminal/kod ishga tushirish imkoniyati bo'lgan) bering — u avval faqat diagnostika qiladi, hech narsani sizning tasdig'ingizsiz o'chirmaydi.</p>
+    <pre class="performance-prompt"><code id="performancePrompt">Vazifa: MacBook'ning ishlash tezligini (performance) xavfsiz tarzda diagnostika qil va optimallashtir.
+
+Qadam 1: Diagnostika (hech narsani o'zgartirmasdan)
+Avval quyidagilarni tekshir va menga hisobot ber:
+- CPU va xotira (RAM) yuklamasini (Activity Monitor orqali yoki top/ps buyrug'i bilan) — eng ko'p resurs yeyayotgan 5-10 ta jarayonni ko'rsat
+- Disk bo'sh joyi qancha qolgan (df -h)
+- Login items — Mac yoqilganda avtomatik ishga tushadigan dasturlar ro'yxati
+- Background/xizmat jarayonlari (launch agents/daemons) — qanchasi keraksiz bo'lishi mumkin
+- Xotira siqilishi (memory pressure) holati
+- macOS versiyasi va oxirgi yangilanish sanasi
+
+Qadam 2: Tavsiyalar (hali hech narsa o'chirmasdan)
+Diagnostika natijasiga asoslanib:
+- Qaysi dasturlar/jarayonlar ko'p resurs yeyayotganini va nima uchun ekanini tushuntir
+- Qaysi login items'ni o'chirish xavfsiz ekanini ko'rsat
+- Disk tozalash kerak bo'lsa, qaysi papkalar/keshlar xavfsiz o'chirilishi mumkinligini ayt (masalan Xcode derived data, brew cache, npm cache va h.k.)
+- Har bir tavsiya uchun taxminiy qanday foyda berishini yoz (masalan "bu 2GB RAM bo'shatadi")
+
+Qadam 3: Amalga oshirish (FAQAT tasdiqdan keyin)
+- Hech qanday faylni o'chirish, dasturni o'rnatish/o'chirish, yoki tizim sozlamasini o'zgartirishdan OLDIN ro'yxat ko'rsat va tasdiq so'ra
+- Har bir amaldan keyin nima qilinganini aniq yoz
+- Muhim tizim fayllariga yoki foydalanuvchi hujjatlariga (Documents, Desktop, Downloads ichidagi shaxsiy fayllarga) TEGMA — faqat kesh, vaqtinchalik fayllar va tasdiqlangan keraksiz dasturlar bilan ishla
+
+Muhim: hech qachon sudo rm -rf kabi keng qamrovli o'chirish buyruqlarini ishlatma. Har doim aniq, tor maqsadli buyruqlardan foydalan.</code></pre>
+    <p class="performance-copy-status" id="performanceCopyStatus" role="status" aria-live="polite"></p>
+  </section>
+
   <a href={import.meta.env.BASE_URL + 'kurslar'} class="course-nav-link" style="margin-left:1rem;" data-i18n="mt.all">← Barcha kurslar</a>
 
   <Quiz title="O'z bilimingizni tekshiring" titleI18n="mt.quizTitle" questions={questions} />
@@ -269,10 +302,13 @@ python3 .telegram/telegram_bot.py attach &lt;update_id&gt;</code></pre>
 
 <style>
 .shortcut-lab{padding:clamp(1.1rem,3vw,1.6rem);border:1px solid color-mix(in srgb,#38bdf8 42%,var(--border));border-radius:18px;background:radial-gradient(circle at 92% 8%,color-mix(in srgb,#38bdf8 17%,transparent),transparent 25%),linear-gradient(135deg,color-mix(in srgb,var(--accent) 11%,var(--surface)),var(--surface))}.shortcut-lab>div:first-child>span{font-size:.72rem;letter-spacing:.12em;font-weight:800;color:#a5b4fc}.shortcut-lab h2{margin:.25rem 0 .4rem}.shortcut-lab p{margin:0;color:var(--muted)}.shortcut-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:.65rem;margin:1.2rem 0}.shortcut-card{display:grid;grid-template-columns:auto auto auto;align-items:center;justify-content:center;gap:.32rem;padding:.8rem .45rem;border:1px solid var(--border);border-radius:12px;background:color-mix(in srgb,var(--bg) 36%,var(--surface));color:var(--text);font:inherit;cursor:pointer;transition:transform .18s,border-color .18s,box-shadow .18s}.shortcut-card:hover,.shortcut-card.is-active{transform:translateY(-3px);border-color:#38bdf8;box-shadow:0 9px 22px -15px #38bdf8}.shortcut-card:focus-visible{outline:2px solid #7dd3fc;outline-offset:2px}.shortcut-card kbd{padding:.22rem .35rem;border:1px solid color-mix(in srgb,var(--border) 85%,#fff);border-radius:5px;background:var(--surface);font:700 .82rem ui-monospace,SFMono-Regular,monospace}.shortcut-card>b{color:#a5b4fc}.shortcut-card strong{grid-column:1/-1;margin-top:.25rem;font-size:.76rem;color:var(--muted)}.shortcut-output{display:flex;gap:.7rem;align-items:center;padding:.85rem 1rem;border:1px solid color-mix(in srgb,#38bdf8 35%,var(--border));border-radius:11px;background:color-mix(in srgb,#38bdf8 8%,var(--surface));animation:shortcut-pop .24s ease both}.shortcut-output>span{display:grid;place-items:center;flex:0 0 30px;width:30px;height:30px;border-radius:8px;background:#38bdf8;color:#062a3a;font-weight:800}.shortcut-output p{font-size:.9rem}.shortcut-output b{color:var(--text)}@keyframes shortcut-pop{from{opacity:.4;transform:scale(.985)}to{opacity:1;transform:scale(1)}}@media(max-width:620px){.shortcut-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}@media(prefers-reduced-motion:reduce){.shortcut-card{transition:none}.shortcut-output{animation:none}}
+.performance-bonus{margin:3rem 0 1.6rem;padding:clamp(1rem,3vw,1.5rem);border:1px solid color-mix(in srgb,#38bdf8 45%,var(--border));border-radius:18px;background:radial-gradient(circle at 92% 8%,color-mix(in srgb,#38bdf8 14%,transparent),transparent 26%),var(--surface)}.performance-bonus__head{display:flex;justify-content:space-between;gap:1rem;align-items:center}.performance-bonus__eyebrow{margin:0 0 .35rem;color:#7dd3fc;font-size:.76rem;font-weight:800;letter-spacing:.11em}.performance-bonus h2{margin:.1rem 0 .65rem}.performance-bonus>p{max-width:850px;color:var(--muted);line-height:1.65}.performance-prompt{box-sizing:border-box;max-height:550px;margin:1rem 0 0;padding:1rem;border:1px solid var(--border);border-radius:12px;overflow:auto;background:#0c1018;color:#dbeafe;font:500 .88rem/1.65 ui-monospace,SFMono-Regular,Menlo,monospace;white-space:pre-wrap}.performance-copy{flex:0 0 auto;padding:.58rem .9rem;border:1px solid #38bdf8;border-radius:9px;background:rgba(56,189,248,.12);color:#bae6fd;font:700 .9rem var(--font-display);cursor:pointer}.performance-copy:hover,.performance-copy:focus-visible{background:rgba(56,189,248,.22);outline:none}.performance-copy-status{min-height:1.25rem;margin:.6rem 0 0!important;color:#86efac!important;font-size:.9rem}@media(max-width:620px){.performance-bonus__head{align-items:flex-start;flex-direction:column}.performance-prompt{font-size:.8rem;padding:.85rem}}
 </style>
 <script>
   const shortcutInfo={search:"<b>Cmd + Space</b> — Raycast yoki Spotlight oynasini ochib, ilova va fayllarni tez topish uchun.",switch:"<b>Cmd + Tab</b> — ochiq ilovalar orasida almashish uchun.",close:"<b>Cmd + W</b> — joriy oynani yopish uchun.",windows:"<b>Cmd + `</b> — bitta ilovaning oynalari orasida o'tish uchun."};
   document.querySelectorAll('.shortcut-lab').forEach((lab)=>{const output=lab.querySelector('[data-shortcut-output]');lab.querySelectorAll('[data-shortcut]').forEach((button)=>button.addEventListener('click',()=>{lab.querySelectorAll('[data-shortcut]').forEach((item)=>item.classList.toggle('is-active',item===button));if(output){output.innerHTML=shortcutInfo[button.dataset.shortcut];output.parentElement?.animate([{transform:'scale(.985)',opacity:.5},{transform:'scale(1)',opacity:1}],{duration:220,easing:'ease-out'});}}));});
+  const performanceCopy=document.querySelector('#performanceCopy'),performancePrompt=document.querySelector('#performancePrompt'),performanceCopyStatus=document.querySelector('#performanceCopyStatus');
+  performanceCopy?.addEventListener('click',async()=>{try{await navigator.clipboard.writeText(performancePrompt?.textContent||'');performanceCopy.textContent='Nusxalandi ✓';performanceCopyStatus.textContent='Prompt nusxalandi — AI yordamchingizga joylashtiring.';setTimeout(()=>performanceCopy.textContent='Nusxalash',1800)}catch{performanceCopyStatus.textContent='Nusxalash ishlamadi. Promptni qo‘lda belgilang va nusxalang.'}});
 </script>
 
 </Base>
