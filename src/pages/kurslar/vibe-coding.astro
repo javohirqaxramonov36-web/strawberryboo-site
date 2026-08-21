@@ -1,0 +1,91 @@
+---
+import Base from "../../layouts/Base.astro";
+const title = "Vibe Coding: G'oyadan Saytgacha | Tayanch";
+const description = "AI agentlar yordamida bepul yoki arzon vositalar bilan sayt va loyiha qurishni o'rganing. 10 modul, amaliy darslar.";
+const base = import.meta.env.BASE_URL;
+---
+<Base title={title} description={description}>
+  <article class="lesson">
+    <div class="course-hero">
+      <h1>Vibe Coding: G'oyadan Saytgacha</h1>
+      <div class="price">
+        <span class="now">Tez orada</span>
+        <span class="uzs">Bepul / arzon AI vositalar bilan</span>
+      </div>
+    </div>
+
+    <p class="lead">
+      Vibe coding — bu dasturchi kodni qo'lda yozmaydi, balki AI agentga <b>nima kerakligini</b>
+      aniq tushuntiradi; agent esa kodni yozadi, tahrirlaydi va testdan o'tkazadi. Siz esa natijani
+      ko'rib chiqib, yo'naltirasiz.
+    </p>
+
+    <!-- ISHONCH DALILI -->
+    <div class="welcome-module">
+      <div class="welcome-kicker">ISHONCH DALILI</div>
+      <h2>Siz hozir aynan shu usulda qurilgan saytni ko'ryapsiz</h2>
+      <div class="welcome-grid">
+        <div>
+          <b>Haqiqiy misol</b>
+          <p>Bu Tayanch sayti vibe coding yondashuvi bilan, bir necha hafta ichida qurilgan. Siz ko'rayotgan har bir bo'lim — AI agentga berilgan aniq topshiriqlar natijasi.</p>
+        </div>
+        <div>
+          <b>Tejamkorlik</b>
+          <p>Pullik AI kodlash vositalari (Cursor Pro, Claude Code Max, GitHub Copilot) odatda oyiga $10–$60+ turadi. Kursda siz xuddi shu ishni bepul yoki juda arzon alternativalar bilan qilishni o'rganasiz.</p>
+        </div>
+        <div>
+          <b>Amaliyot</b>
+          <p>Nazariya emas — kurs davomida haqiqiy sayt va loyiha qurasiz. Dasturchi bo'lish shart emas.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- MARKETING XABARLAR -->
+    <section class="vibe-why">
+      <h2>Nima uchun aynan bu kurs?</h2>
+      <ul class="modules">
+        <li><b>Amaliylik:</b> Nazariya emas — kurs davomida haqiqiy sayt/loyiha qurasiz.</li>
+        <li><b>Tejamkorlik:</b> Pullik vositalar oyiga $10–$60+; kursda bepul/arzon alternativalarni (OpenCode + bepul model provayderlar) ishlatishni o'rganasiz.</li>
+        <li><b>Kirish to'sigi past:</b> Dasturchi bo'lish shart emas — vibe coding aynan shuning uchun yaratilgan.</li>
+        <li><b>Ishonch dalili:</b> Bu saytning o'zi shu usulda, bir necha hafta ichida qurilgan.</li>
+      </ul>
+    </section>
+
+    <!-- DASTUR -->
+    <section class="vibe-program">
+      <div class="sec-head">
+        <h2 class="sec-title">Kurs dasturi — 10 modul</h2>
+      </div>
+      <ol class="modules">
+        <li><b>Vibe Coding nima o'zi?</b> Ta'rif, case study (shu sayt), kimlar uchun mo'ljallangan.</li>
+        <li><b>AI kodlash agentlariga kirish.</b> Pullik (Cursor, Copilot, Claude Code) vs bepul/ochiq (OpenCode, Cline, Continue).</li>
+        <li><b>OpenCode'ni o'rnatish.</b> Terminal orqali o'rnatish, bepul provayder ulash (OpenCode Zen, Gemini/Groq, Ollama).</li>
+        <li><b>Birinchi loyiha: oddiy landing page.</b> AI agentga bosqichma-bosqich topshiriq berib HTML/CSS sahifa yasash.</li>
+        <li><b>Prompt yozish san'ati.</b> Yaxshi/yomon prompt, AGENTS.md / loyiha qoidalari fayli yozish.</li>
+        <li><b>Xatolarni tuzatish va nazorat.</b> Diff'ni o'qish, testlar, "auto-approve" rejimidan ehtiyot bo'lish.</li>
+        <li><b>MCP va integratsiyalar.</b> Model Context Protocol, GitHub va boshqa vositalarni ulash; token sarfini boshqarish.</li>
+        <li><b>Real loyiha: shu sayt qanday qurilgan.</b> Qaysi bo'limlar qanday promptlar bilan yaratilgani, xatolardan qanday saboq olingani.</li>
+        <li><b>Vibe coding orqali pul topish.</b> Frilanserlik, portfolio saytlari, mijozlar uchun tezkor prototiplar, narx belgilash.</li>
+        <li><b>Xavfsizlik va yaxshi amaliyotlar.</b> API key'larni himoyalash, .gitignore, xarajat limiti, "auto-approve" xavfi.</li>
+      </ol>
+    </section>
+
+    <p style="margin-top:2rem;">
+      <a href={base + 'kurslar'} class="course-nav-link">← Barcha kurslar</a>
+    </p>
+
+    <div class="donate-cta" style="margin-top:2rem;text-align:center">
+      <a href="https://t.me/progression_go" class="start-btn" target="_blank" rel="noopener noreferrer">Telegram'da kurs chiqishini kuzatib boring →</a>
+    </div>
+  </article>
+</Base>
+
+<style>
+  .vibe-why { margin-top: 2.5rem; }
+  .vibe-why h2 { color: var(--accent); font-size: 1.4rem; margin: 0 0 1rem; }
+  .vibe-program { margin-top: 2.5rem; }
+  .vibe-program .sec-head { margin: 0 0 1rem; border: 0; padding: 0; }
+  .vibe-program .sec-title { font-size: 1.4rem; }
+  /* modullar ro'yxati uchun kurs sahifasidagi .modules uslubini qayta ishlatamiz */
+  .lesson .modules li { font-size: 15px; }
+</style>

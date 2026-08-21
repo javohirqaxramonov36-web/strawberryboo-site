@@ -1,0 +1,111 @@
+---
+import Base from "../layouts/Base.astro";
+const title = "Homiylik | Tayanch";
+const description = "Tayanch kurslarini bepul va sifatli saqlash uchun ixtiyoriy homiylik. Click, Payme, Paynet va karta orqali.";
+const base = import.meta.env.BASE_URL;
+---
+<Base title={title} description={description}>
+  <section class="donate">
+    <div class="donate-head">
+      <span class="badge badge-free" data-i18n="donate.badge">Homiylik</span>
+      <h1 data-i18n="donate.title">Homiylik</h1>
+      <p class="lead" data-i18n="donate.lead">
+        Tayanch kurslarini bepul va sifatli saqlash uchun yordamingiz kerak. Kichik homiylik ham
+        saytning server, domen va yangi kurslariga yordam beradi.
+      </p>
+      <p class="donate-sub" data-i18n="donate.sub">
+        Bu ixtiyoriy. Hech qanday kursga yozilmasdan ham loyihani qo'llab-quvvatlashingiz mumkin.
+      </p>
+    </div>
+
+    <div class="donate-why">
+      <h2 data-i18n="donate.whyTitle">Nima uchun homiylik?</h2>
+      <ul class="modules">
+        <li data-i18n="donate.why1">Barcha asosiy kurslar (IELTS, AI, Admission) bepul qoladi.</li>
+        <li data-i18n="donate.why2">Sayt reklamasiz va sizning shaxsiy ma'lumotlaringizni sigmaydi.</li>
+        <li data-i18n="donate.why3">Har bir so'm yangi dars, yangi vosita va ochiq manbali loyihalarga sarflanadi.</li>
+      </ul>
+    </div>
+
+    <div class="donate-methods">
+      <h2 data-i18n="donate.methodsTitle">To'lov usullari</h2>
+      <div class="pay-grid">
+        <div class="pay-card">
+          <div class="pay-ic" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7h18v10H3z"/><path d="M3 11h18"/></svg>
+          </div>
+          <h3 data-i18n="donate.click">Click</h3>
+          <p data-i18n="donate.clickDesc">Rasmiy Click havolasi tez orada qo'shiladi.</p>
+          <span class="pay-soon" data-i18n="donate.soon">Tez orada</span>
+        </div>
+        <div class="pay-card">
+          <div class="pay-ic" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v18"/><path d="M3 12h18"/></svg>
+          </div>
+          <h3 data-i18n="donate.payme">Payme</h3>
+          <p data-i18n="donate.paymeDesc">Rasmiy Payme havolasi tez orada qo'shiladi.</p>
+          <span class="pay-soon" data-i18n="donate.soon">Tez orada</span>
+        </div>
+        <div class="pay-card">
+          <div class="pay-ic" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg>
+          </div>
+          <h3 data-i18n="donate.paynet">Paynet</h3>
+          <p data-i18n="donate.paynetDesc">Rasmiy Paynet havolasi tez orada qo'shiladi.</p>
+          <span class="pay-soon" data-i18n="donate.soon">Tez orada</span>
+        </div>
+        <div class="pay-card">
+          <div class="pay-ic" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/></svg>
+          </div>
+          <h3 data-i18n="donate.card">Karta (UZCARD / HUMO)</h3>
+          <p data-i18n="donate.cardDesc">UZCARD / HUMO karta raqami tez orada qo'shiladi.</p>
+          <span class="pay-soon" data-i18n="donate.soon">Tez orada</span>
+        </div>
+      </div>
+      <p class="donate-note" data-i18n="donate.note">
+        Homiylik ixtiyoriy va qo'shimcha majburiyat keltirmaydi. Rahmat!
+      </p>
+    </div>
+
+    <div class="donate-cta">
+      <a href={base + 'kurslar/'} class="start-btn" data-i18n="cta.view">Kurslarni ko'rish</a>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .donate { max-width: 920px; margin: 0 auto; padding: 2.6rem 20px 3rem; }
+  .donate-head { text-align: center; margin-bottom: 2.4rem; }
+  .donate-head h1 { font-family: var(--font-display); font-size: 2.4rem; margin: .5rem 0 .7rem; letter-spacing: -.02em; }
+  .donate-head .lead { color: var(--muted); max-width: 680px; margin: 0 auto; font-size: 1.05rem; line-height: 1.65; }
+  .donate-sub { color: var(--accent); font-weight: 600; margin-top: .8rem; }
+  .donate-why { margin-bottom: 2.6rem; }
+  .donate-why h2, .donate-methods h2 { color: var(--accent); font-size: 1.4rem; margin: 0 0 1rem; }
+  .pay-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.1rem; }
+  .pay-card {
+    background: var(--surface); border: 1px solid var(--border); border-radius: 16px;
+    padding: 22px; text-align: center; box-shadow: var(--shadow);
+    transition: transform .15s, border-color .15s;
+  }
+  .pay-card:hover { transform: translateY(-4px); border-color: var(--accent); }
+  .pay-ic {
+    width: 52px; height: 52px; border-radius: 14px; margin: 0 auto 14px;
+    display: grid; place-items: center; color: var(--accent);
+    background: color-mix(in srgb, var(--accent) 14%, transparent);
+  }
+  .pay-ic svg { width: 26px; height: 26px; }
+  .pay-card h3 { margin: 0 0 .5rem; font-size: 1.1rem; color: var(--text); }
+  .pay-card p { color: var(--muted); font-size: .9rem; margin: 0 0 1rem; min-height: 2.6rem; }
+  .pay-soon {
+    display: inline-block; font: 700 12px var(--font-display); letter-spacing: .04em;
+    color: var(--accent); background: var(--accent-soft); padding: 6px 14px; border-radius: 999px;
+  }
+  .donate-note {
+    text-align: center; color: var(--muted); font-size: .9rem; margin-top: 1.6rem;
+    padding: 14px; border: 1px dashed var(--border); border-radius: 14px;
+    background: color-mix(in srgb, var(--accent) 5%, var(--surface));
+  }
+  .donate-cta { text-align: center; margin-top: 2.4rem; }
+  @media (max-width: 560px) { .donate-head h1 { font-size: 1.9rem; } }
+</style>

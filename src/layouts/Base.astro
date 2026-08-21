@@ -100,7 +100,9 @@ const TG = "https://t.me/progression_go"; // Telegram kanal/guruh havolasi
         <a href={base + 'mening-yolim/'}><span data-i18n="nav.journey">Mening yo'lim</span></a>
         <a href={base + 'profile/'}>Mening profilim</a>
         <a href={base + 'bog-lanish/'}><span data-i18n="nav.contact">Bog'lanish</span></a>
+        <a href={base + 'homiylik/'}><span data-i18n="nav.donate">Homiylik</span></a>
         <a href={base + 'md2pdf/'}><span>Markdown → PDF</span></a>
+        <a href={base + 'tech-lab/'}><span>Tech Lab</span></a>
         <a href={TG} class="tg-nav" aria-label="Telegram" target="_blank" rel="noopener noreferrer">
           <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 4 3 11l5 2 2 5 3-3 4 3 4-13z"/><path d="m8 13 4-4"/></svg>
           Telegram
@@ -125,7 +127,9 @@ const TG = "https://t.me/progression_go"; // Telegram kanal/guruh havolasi
           <a href={base + 'mening-yolim/'}><span data-i18n="nav.journey">Mening yo'lim</span></a>
         <a href={base + 'profile/'}>Mening profilim</a>
           <a href={base + 'bog-lanish/'}><span data-i18n="nav.contact">Bog'lanish</span></a>
+          <a href={base + 'homiylik/'}><span data-i18n="nav.donate">Homiylik</span></a>
           <a href={base + 'md2pdf/'}><span>Markdown → PDF</span></a>
+          <a href={base + 'tech-lab/'}><span>Tech Lab</span></a>
           <a href={TG} class="tg-nav" aria-label="Telegram" target="_blank" rel="noopener noreferrer">
             <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 4 3 11l5 2 2 5 3-3 4 3 4-13z"/><path d="m8 13 4-4"/></svg>
             Telegram
@@ -177,6 +181,8 @@ const TG = "https://t.me/progression_go"; // Telegram kanal/guruh havolasi
             <a href={base + 'kurs-tanlash/'}><span data-i18n="nav.reco">Kurs tanlash</span></a>
             <a href={base + 'mening-yolim/'}><span data-i18n="nav.journey">Mening yo'lim</span></a>
             <a href={base + 'bog-lanish/'}><span data-i18n="nav.contact">Bog'lanish</span></a>
+            <a href={base + 'homiylik/'}><span data-i18n="nav.donate">Homiylik</span></a>
+            <a href={base + 'tech-lab/'}><span>Tech Lab</span></a>
             <a href={base + 'faq/'}>FAQ</a>
             <a href={base + 'biz-haqimizda/'}>Biz haqimizda</a>
             <a href={base + 'maxfiylik-siyosati/'}>Maxfiylik siyosati</a>
@@ -432,8 +438,46 @@ const TG = "https://t.me/progression_go"; // Telegram kanal/guruh havolasi
           "pe.q3o1": "Murakkab vazifani bosqichlab yechish uchun",
           "pe.q3o2": "Rang o'zgartirish uchun",
           "pe.q3o3": "Fayl saqlash uchun",
-          "pe.quizTitle": "O'z bilimingizni tekshiring"
-        },
+           "pe.quizTitle": "O'z bilimingizni tekshiring",
+           "nav.donate": "Homiylik",
+           "donate.badge": "Homiylik",
+           "donate.title": "Homiylik",
+           "donate.lead": "Tayanch kurslarini bepul va sifatli saqlash uchun yordamingiz kerak. Kichik homiylik ham saytning server, domen va yangi kurslariga yordam beradi.",
+           "donate.sub": "Bu ixtiyoriy. Hech qanday kursga yozilmasdan ham loyihani qo'llab-quvvatlashingiz mumkin.",
+           "donate.whyTitle": "Nima uchun homiylik?",
+           "donate.why1": "Barcha asosiy kurslar (IELTS, AI, Admission) bepul qoladi.",
+           "donate.why2": "Sayt reklamasiz va sizning shaxsiy ma'lumotlaringizni sigmaydi.",
+           "donate.why3": "Har bir so'm yangi dars, yangi vosita va ochiq manbali loyihalarga sarflanadi.",
+           "donate.methodsTitle": "To'lov usullari",
+           "donate.click": "Click",
+           "donate.payme": "Payme",
+           "donate.paynet": "Paynet",
+           "donate.card": "Karta (UZCARD / HUMO)",
+           "donate.soon": "Tez orada",
+           "donate.clickDesc": "Rasmiy Click havolasi tez orada qo'shiladi.",
+           "donate.paymeDesc": "Rasmiy Payme havolasi tez orada qo'shiladi.",
+           "donate.paynetDesc": "Rasmiy Paynet havolasi tez orada qo'shiladi.",
+           "donate.cardDesc": "UZCARD / HUMO karta raqami tez orada qo'shiladi.",
+           "donate.note": "Homiylik ixtiyoriy va qo'shimcha majburiyat keltirmaydi. Rahmat!",
+           "nav.techlab": "Tech Lab",
+           "techlab.title": "Tech Lab",
+           "techlab.intro": "AI vositalarini brauzeringizda bevosita sinab ko'ring.",
+           "techlab.onboardTitle": "Xush kelibsiz — Tech Lab",
+           "techlab.onboard1": "Bu yerda o'z Google AI Studio API kalitingiz bilan Gemini modelini sinab ko'rasiz — bu bepul va shaxsiy.",
+           "techlab.onboard2": "Kalit hech qachon mening serverlarimga yuborilmaydi; u faqat sizning brauzeringizda saqlanadi.",
+           "techlab.getKey": "Kalit olish:",
+           "techlab.keyLink": "Google AI Studio → API kaliti",
+           "techlab.steps": "Qadamlar: 1) Google hisobiga kiring. 2) \"Create API key\" tugmasini bosing. 3) Kalitni quyidagi maydonga nusxalang.",
+           "techlab.keyLabel": "Google AI Studio API kaliti",
+           "techlab.remember": "Kalitni brauzerda eslab qolish (faqat shaxsiy qurilmada)",
+           "techlab.connect": "Ulanish",
+           "techlab.clear": "Kalitni o'chirish",
+           "techlab.model": "Model",
+           "techlab.placeholder": "Gemini'ga savolingizni yozing...",
+           "techlab.send": "Yuborish",
+           "techlab.responsibilities": "Kalit — sizning shaxsiy mas'uliyatingiz. U men tomondan saqlanmaydi va ko'rilmaydi. Istalgan vaqtda Google AI Studio'dan bekor qilishingiz mumkin.",
+           "techlab.thinking": "Gemini o'ylayapti..."
+         },
         ru: {
           "skip": "Перейти к основному",
           "nav.home": "Главная",
@@ -649,8 +693,46 @@ const TG = "https://t.me/progression_go"; // Telegram kanal/guruh havolasi
           "pe.q3o1": "Для пошагового решения сложной задачи",
           "pe.q3o2": "Для смены цвета",
           "pe.q3o3": "Для сохранения файла",
-          "pe.quizTitle": "Проверьте свои знания"
-        },
+           "pe.quizTitle": "Проверьте свои знания",
+           "nav.donate": "Поддержать",
+           "donate.badge": "Поддержать",
+           "donate.title": "Поддержать",
+           "donate.lead": "Нам нужна ваша помощь, чтобы курсы Tayanch оставались бесплатными и качественными. Даже небольшая поддержка помогает оплачивать сервер, домен и новые курсы.",
+           "donate.sub": "Это добровольно. Поддержать проект можно, даже не записываясь ни на один курс.",
+           "donate.whyTitle": "Зачем поддерживать?",
+           "donate.why1": "Все основные курсы (IELTS, AI, Admission) остаются бесплатными.",
+           "donate.why2": "Сайт без рекламы и не собирает ваши личные данные.",
+           "donate.why3": "Каждый сум идёт на новые уроки, инструменты и открытые проекты.",
+           "donate.methodsTitle": "Способы оплаты",
+           "donate.click": "Click",
+           "donate.payme": "Payme",
+           "donate.paynet": "Paynet",
+           "donate.card": "Карта (UZCARD / HUMO)",
+           "donate.soon": "Скоро",
+           "donate.clickDesc": "Официальная ссылка Click появится скоро.",
+           "donate.paymeDesc": "Официальная ссылка Payme появится скоро.",
+           "donate.paynetDesc": "Официальная ссылка Paynet появится скоро.",
+           "donate.cardDesc": "Номер карты UZCARD / HUMO появится скоро.",
+           "donate.note": "Поддержка добровольна и не накладывает обязательств. Спасибо!",
+           "nav.techlab": "Tech Lab",
+           "techlab.title": "Tech Lab",
+           "techlab.intro": "Попробуйте ИИ-инструменты прямо в вашем браузере.",
+           "techlab.onboardTitle": "Добро пожаловать — Tech Lab",
+           "techlab.onboard1": "Здесь вы тестируете модель Gemini со своим API-ключом Google AI Studio — бесплатно и приватно.",
+           "techlab.onboard2": "Ключ никогда не отправляется на мои серверы; он хранится только в вашем браузере.",
+           "techlab.getKey": "Получить ключ:",
+           "techlab.keyLink": "Google AI Studio → API-ключ",
+           "techlab.steps": "Шаги: 1) Войдите в аккаунт Google. 2) Нажмите \"Create API key\". 3) Скопируйте ключ в поле ниже.",
+           "techlab.keyLabel": "API-ключ Google AI Studio",
+           "techlab.remember": "Запомнить ключ в браузере (только на личном устройстве)",
+           "techlab.connect": "Подключить",
+           "techlab.clear": "Удалить ключ",
+           "techlab.model": "Модель",
+           "techlab.placeholder": "Напишите свой вопрос для Gemini...",
+           "techlab.send": "Отправить",
+           "techlab.responsibilities": "Ключ — ваша личная ответственность. Я не храню и не вижу его. В любой момент можно отозвать его в Google AI Studio.",
+           "techlab.thinking": "Gemini думает..."
+         },
         en: {
           "skip": "Skip to main content",
           "nav.home": "Home",
@@ -866,8 +948,46 @@ const TG = "https://t.me/progression_go"; // Telegram kanal/guruh havolasi
           "pe.q3o1": "For solving a complex task step by step",
           "pe.q3o2": "For changing colors",
           "pe.q3o3": "For saving files",
-          "pe.quizTitle": "Check your knowledge"
-        }
+           "pe.quizTitle": "Check your knowledge",
+           "nav.donate": "Support us",
+           "donate.badge": "Support us",
+           "donate.title": "Support us",
+           "donate.lead": "We need your help to keep Tayanch courses free and high-quality. Even a small contribution helps cover servers, the domain, and new courses.",
+           "donate.sub": "This is optional. You can support the project without enrolling in any course.",
+           "donate.whyTitle": "Why support?",
+           "donate.why1": "All core courses (IELTS, AI, Admission) stay free.",
+           "donate.why2": "The site is ad-free and doesn't harvest your personal data.",
+           "donate.why3": "Every sum goes to new lessons, tools, and open-source projects.",
+           "donate.methodsTitle": "Payment methods",
+           "donate.click": "Click",
+           "donate.payme": "Payme",
+           "donate.paynet": "Paynet",
+           "donate.card": "Card (UZCARD / HUMO)",
+           "donate.soon": "Coming soon",
+           "donate.clickDesc": "The official Click link will be added soon.",
+           "donate.paymeDesc": "The official Payme link will be added soon.",
+           "donate.paynetDesc": "The official Paynet link will be added soon.",
+           "donate.cardDesc": "The UZCARD / HUMO card number will be added soon.",
+           "donate.note": "Support is optional and carries no obligations. Thank you!",
+           "nav.techlab": "Tech Lab",
+           "techlab.title": "Tech Lab",
+           "techlab.intro": "Try AI tools directly in your browser.",
+           "techlab.onboardTitle": "Welcome — Tech Lab",
+           "techlab.onboard1": "Here you test the Gemini model with your own Google AI Studio API key — free and private.",
+           "techlab.onboard2": "The key is never sent to my servers; it is stored only in your browser.",
+           "techlab.getKey": "Get a key:",
+           "techlab.keyLink": "Google AI Studio → API key",
+           "techlab.steps": "Steps: 1) Sign in to your Google account. 2) Click \"Create API key\". 3) Paste the key into the field below.",
+           "techlab.keyLabel": "Google AI Studio API key",
+           "techlab.remember": "Remember key in browser (personal device only)",
+           "techlab.connect": "Connect",
+           "techlab.clear": "Clear key",
+           "techlab.model": "Model",
+           "techlab.placeholder": "Type your question for Gemini...",
+           "techlab.send": "Send",
+           "techlab.responsibilities": "The key is your personal responsibility. I do not store or see it. You can revoke it anytime from Google AI Studio.",
+           "techlab.thinking": "Gemini is thinking..."
+         }
       };
 
       const LS_KEY = 'org-lam-lang';
