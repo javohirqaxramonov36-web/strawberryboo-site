@@ -1,0 +1,40 @@
+---
+const { section } = Astro.props;
+const base = import.meta.env.BASE_URL + 'images/kurslar/obsidian/';
+const shots = [
+  ['basics','01-vault-basics/obsidian-01-create-vault.webp','Vault yaratish','Obsidian Create new vault oynasini: vault nomi va local folder tanlovi ko‘rinadigan holatda suratga oling.'],
+  ['basics','01-vault-basics/obsidian-02-new-note.webp','Yangi note yaratish','File explorer va New note amali, yangi note nomi kiritilgan holatda ko‘rinsin.'],
+  ['basics','01-vault-basics/obsidian-03-command-palette.webp','Command Palette','Command Palette ochiq bo‘lsin va qidiruv maydonida bitta buyruq yozilgan bo‘lsin.'],
+  ['markdown','02-markdown-links/obsidian-04-markdown-editor-preview.webp','Markdown: editor va Reading view','Bir note’ning Editing hamda Reading view’dagi Markdown renderini suratga oling.'],
+  ['markdown','02-markdown-links/obsidian-05-wikilink-autocomplete.webp','Wikilink autocomplete','Note ichida [[ yozilgani va internal-link suggestion ro‘yxati ko‘rinsin.'],
+  ['embed','03-embed-shortcuts/obsidian-06-youtube-embed-code.webp','YouTube embed kodi','Note ichida YouTube iframe/embed kodi qo‘yilgan holatni suratga oling.'],
+  ['embed','03-embed-shortcuts/obsidian-07-reading-view-video.webp','Reading view’da video','Reading view’da embed qilingan video ko‘rinadigan holatni suratga oling.'],
+  ['callouts','04-callouts/obsidian-08-callout-editor.webp','Callout editor','Editor’da valid > [!tip] callout sintaksisi yozilgan holatni suratga oling.'],
+  ['callouts','04-callouts/obsidian-09-callout-reading-view.webp','Reading view’dagi callout','Reading view’da render bo‘lgan tip calloutni suratga oling.'],
+  ['flashcards','05-flashcards/obsidian-10-community-plugins.webp','Community plugins','Settings > Community plugins va Restricted Mode ogohlantirishi ko‘rinsin.'],
+  ['flashcards','05-flashcards/obsidian-11-flashcards-search.webp','Flashcards qidiruvi','Browse oynasida qidiruvga Flashcards yozilgan holatni suratga oling.'],
+  ['flashcards','05-flashcards/obsidian-12-flashcards-install-enable.webp','Flashcards install va enable','Flashcards plugin sahifasidagi Install yoki Enable holatini suratga oling.'],
+  ['flashcards','05-flashcards/obsidian-13-flashcard-note-syntax.webp','Flashcard note sintaksisi','Vocabulary note ichida term::definition sintaksisi ko‘rinsin.'],
+  ['flashcards','05-flashcards/obsidian-14-flashcards-review.webp','Flashcards review','Flashcards review oynasida bitta kartochka ko‘rinadigan holatni suratga oling.'],
+  ['plugins','06-plugin-patterns/obsidian-15-templater-search.webp','Templater qidiruvi','Community plugins Browse qidiruvida Templater yozilgan holatni suratga oling.'],
+  ['plugins','06-plugin-patterns/obsidian-16-templater-template-folder.webp','Templater template folder','Templater settings’da template folder tanlangan holatni suratga oling.'],
+  ['plugins','06-plugin-patterns/obsidian-17-dataview-search.webp','Dataview qidiruvi','Community plugins Browse qidiruvida Dataview yozilgan holatni suratga oling.'],
+  ['plugins','06-plugin-patterns/obsidian-18-dataview-query.webp','Dataview query va natija','Note ichida Dataview LIST yoki TABLE query va uning natijasini suratga oling.'],
+  ['plugins','06-plugin-patterns/obsidian-19-notebook-navigator.webp','Notebook Navigator','Notebook Navigator panelida daily note’lar guruhlangan holatni suratga oling.'],
+  ['plugins','06-plugin-patterns/obsidian-20-excalidraw-canvas.webp','Obsidian ichidagi Excalidraw','Obsidian ichida ochilgan Excalidraw canvasni suratga oling.'],
+  ['security','07-security-backup/obsidian-21-restricted-mode.webp','Restricted Mode xavfsizligi','Community plugins’dagi Restricted Mode toggle yoki security notice’ni suratga oling.'],
+  ['security','07-security-backup/obsidian-22-git-plugin-settings.webp','Obsidian Git backup sozlamalari','Obsidian Git plugin settings’da backup-related options ko‘rinadigan holatni suratga oling.'],
+  ['graph','08-graph-view/obsidian-23-graph-open.webp','Graph view’ni ochish','Obsidian interfeysidan ochilgan Graph view’ni suratga oling.'],
+  ['graph','08-graph-view/obsidian-24-graph-folder-expanded.webp','Kengaytirilgan Graph view','Folder/filter yoki group kengaytirilgan Graph view’ni suratga oling.']
+].filter(([group]) => group === section);
+---
+<div class="screenshot-grid" aria-label="Haqiqiy Obsidian skrinshotlari uchun joylar">
+  {shots.map(([, path, title, instruction], index) => <figure class="screenshot-placeholder">
+    <img src={base + path} alt={`Obsidian: ${title}. ${instruction}`} loading="lazy" />
+    <div class="screenshot-fallback"><strong>Rasm joyi: {title}</strong><span>{instruction}</span></div>
+    <figcaption><strong>Screenshot {String(index + 1).padStart(2, '0')}.</strong> {title}</figcaption>
+  </figure>)}
+</div>
+<style>
+.screenshot-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:1rem;margin:1rem 0}.screenshot-placeholder{margin:0;border:1px solid var(--border);border-radius:12px;overflow:hidden;background:var(--surface)}.screenshot-placeholder img{display:block;width:100%;aspect-ratio:16/9;object-fit:cover;background:var(--surface)}.screenshot-fallback{padding:.85rem 1rem;min-height:5.5rem;display:grid;gap:.35rem;align-content:center;background:color-mix(in srgb,var(--accent-soft) 70%,transparent);border-top:1px dashed var(--border);color:var(--muted);font-size:.86rem}.screenshot-fallback strong{color:var(--text)}.screenshot-placeholder figcaption{padding:.7rem .9rem;color:var(--muted);font-size:.85rem}.screenshot-placeholder figcaption strong{color:var(--text)}
+</style>
