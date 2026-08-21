@@ -1,12 +1,15 @@
 ---
-import Base from '../../../layouts/Base.astro';
-import SpeakingPractice from '../../../components/SpeakingPractice.astro';
-const base = import.meta.env.BASE_URL;
+const target = import.meta.env.BASE_URL + 'kurslar/ielts-speaking/';
 ---
-<Base title="IELTS Speaking — 30 kunlik AI kursi | Tayanch" description="IELTS Speaking uchun talaffuz, shadowing, Part 1/2/3 savollari va AI practice feedback.">
-  <main class="speaking-page">
-    <a class="back" href={base + 'kurslar/ielts-prep/'}>← IELTS Prep kursiga qaytish</a>
-    <SpeakingPractice />
-  </main>
-</Base>
-<style>.speaking-page{max-width:1180px;margin:0 auto;padding:1.2rem 20px}.back{display:inline-block;margin:.25rem 0 1rem;color:var(--muted);font-size:.92rem}.back:hover{color:var(--accent)}</style>
+<!doctype html>
+<html lang="uz">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="refresh" content={`0; url=${target}`} />
+    <link rel="canonical" href={target} />
+    <meta name="robots" content="noindex,follow" />
+    <title>IELTS Speaking — Tayanch</title>
+    <script define:vars={{ target }}>window.location.replace(target);</script>
+  </head>
+  <body><p>IELTS Speaking sahifasiga yo‘naltirilmoqda… <a href={target}>Davom etish</a></p></body>
+</html>

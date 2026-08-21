@@ -17,3 +17,9 @@ Stage 2 — complete
 Stage 3 — NOT STARTED / requires explicit user confirmation
 - Legacy /kurslar/ielts-prep remains live and unchanged.
 - Redirect, legacy removal, and global link migration are pending confirmation after new pages are reviewed.
+
+Stage 3 — complete (authorized 2026-08-21)
+- Legacy IELTS Prep instructional content removed and replaced with a static redirect to /kurslar/#ielts-courses.
+- Legacy nested Speaking URL redirects to /kurslar/ielts-speaking/.
+- Legacy practice back-links migrated to the general IELTS course collection.
+- Full mapping: IELTS_LINK_MIGRATION.md.
