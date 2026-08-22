@@ -69,9 +69,34 @@ bo'lib qoladi. Bu bosqichma-bosqich: har bir sahifaga `data-i18n`+qiymat qo'shis
 lug'atni to'ldirish orqali kengaytiriladi. IELTS Listening esa to'liq server-rendered
 RU/EN routelar bilan tayyor (qarang: /ru/kurslar/ielts-listening/, /en/...).
 
-MAJBURIY TEKSHIRUV
-------------------
-- Tarjima qilingan matnlar: UI lug'ati (nav/buttons/headings) + IELTS Listening kontenti, UZ/RU/EN.
-- IELTS/texnik atamalar ro'yxati alohida saqlanadi va tarjima qilinmaydi.
-- Narx/kurs strukturasiga tegilmadi. Vibe Coding'ga bitta NAMUNA DARS (Modul 5) qo'shildi,
-  lekin kurs narxi/strukturasi o'zgartirilmadi.
+ MAJBURIY TEKSHIRUV
+ ------------------
+ - Tarjima qilingan matnlar: UI lug'ati (nav/buttons/headings) + IELTS Listening kontenti, UZ/RU/EN.
+ - IELTS/texnik atamalar ro'yxati alohida saqlanadi va tarjima qilinmaydi.
+ - Narx/kurs strukturasiga tegilmadi. Vibe Coding'ga bitta NAMUNA DARS (Modul 5) qo'shildi,
+   lekin kurs narxi/strukturasi o'zgartirilmadi.
+
+ BOSQICH 4 — QOLGAN KURS SAHIFALARINI INSTRUMENTLASH (DAVOMI, BAJARILDI)
+ ---------------------------------------------------------------------
+ Quyidagi kurs sahifalari `[data-i18n]` orqali instrumentlandi va RU/EN tarjimalari
+ Base.astro I18N lug'atiga qo'shildi (scaffolding/struktura matnlari; chuqur dars
+ kontenti — data-driven yoki haqiqiy o'quv matni — UZ saqlangan, xuddi avvalgi kelishuvda):
+   - computer-literacy.astro      (cl.* kalitlari; modul 1/2 nomsiz, "tez orada" holati)
+   - admission-process.astro      (ap.*; welcome, toolkit, sub-kurs sarlavhalari, kontent-list h3)
+   - data-analytics.astro         (da.*; h1, lead, dastur, 6 modul nomi, darslar sarlavhasi)
+   - backend-python.astro         (bp.*; bir xil scaffolding naqsh)
+   - autocad-on-mac.astro         (ac.*; 10 ta modul + bo'lim sarlavhalari)
+   - ielts-... yo'nalishlari uchun qo'shimcha: IeltsSkillCourse komponenti endi
+     writing/reading/speaking uchun ham server-rendered RU/EN routelarga ega:
+       * src/i18n/skills.ts: ieltsWriting / ieltsReading / ieltsSpeaking UZ/RU/EN
+         kontenti (title, description, available, fillNeeded, whyUseful, contentTodo,
+         bonus, mockBonus, speakingApp).
+       * Yangi routelar: /ru/kurslar/ielts-{writing,reading,speaking}/ va
+         /en/kurslar/ielts-{writing,reading,speaking}/ — har birida LocaleSwitch +
+         hreflang alternatelari (uz/ru/en). UZ sahifalarga ham LocaleSwitch + alternates qo'shildi.
+   - ielts-vocabulary.astro       (vo.*; h1, lead, intro, compare, obsidian callout)
+   - vibe-coding.astro            (vc.*; h1, lead, ishonch dalili, nima uchun, 10 modul nomi)
+ Tizim: global `.lang-switch` (UZ/RU/EN) tanlovni `localStorage` da saqlaydi va
+ `applyLang()` orqali `[data-i18n]` elementlarni tarjima qiladi. IELTS skill sahifalari
+ esa subpath routelar (/ru, /en) orqali to'g'ridan-to'g'ri RU/EN kontent beradi (SEO+hreflang).
+ Narx/kurs strukturasiga tegilmadi. Tarjimalar haqiqiy, qo'lda yozilgan.
