@@ -38,7 +38,18 @@ const base = import.meta.env.BASE_URL;
             </div>
             <h3>{m.label}</h3>
             {m.enabled ? (
-              <p class="pay-value">{m.value}</p>
+              m.id === "card" ? (
+                <div class="pay-card-body">
+                  <div class="pay-card-number">
+                    <span class="pay-value">{m.value}</span>
+                    <button type="button" class="pay-copy" data-copy={m.copy} aria-label="Karta raqamini nusxalash">Nusxalash</button>
+                  </div>
+                  {m.owner ? <p class="pay-owner">Karta egasi: <b>{m.owner}</b></p> : null}
+                  <p class="pay-security">Bu karta orqali faqat pul yuborish mumkin — hech qachon karta CVV kodi, amal qilish muddati yoki SMS kodni so'ramaymiz va bermang.</p>
+                </div>
+              ) : (
+                <p class="pay-value">{m.value}</p>
+              )
             ) : (
               <p>{m.note}</p>
             )}
@@ -60,6 +71,22 @@ const base = import.meta.env.BASE_URL;
     </div>
   </section>
 </Base>
+
+<script>
+  document.querySelectorAll('.pay-copy').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var text = btn.getAttribute('data-copy') || '';
+      if (!text) return;
+      navigator.clipboard.writeText(text).then(function () {
+        var old = btn.textContent;
+        btn.textContent = 'Nusxalandi ✓';
+        setTimeout(function () { btn.textContent = old; }, 1500);
+      }).catch(function () {
+        btn.textContent = 'Nusxalab bo‘lmadi';
+      });
+    });
+  });
+</script>
 
 <style>
   .donate { max-width: 920px; margin: 0 auto; padding: 2.6rem 20px 3rem; }
@@ -89,6 +116,22 @@ const base = import.meta.env.BASE_URL;
     letter-spacing: .02em; word-break: break-all; background: var(--accent-soft);
     border: 1px dashed var(--accent); border-radius: 10px; padding: 10px 12px;
     min-height: auto !important;
+  }
+  .pay-card-body { display: flex; flex-direction: column; gap: .5rem; }
+  .pay-card-number { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+  .pay-card-number .pay-value { flex: 1 1 auto; min-width: 0; }
+  .pay-copy {
+    flex: 0 0 auto; cursor: pointer; border: 1px solid var(--accent); color: var(--accent);
+    background: transparent; font-weight: 700; font-size: .82rem; border-radius: 8px;
+    padding: 8px 12px; transition: background .15s, color .15s; white-space: nowrap;
+  }
+  .pay-copy:hover { background: var(--accent); color: #fff; }
+  .pay-owner { color: var(--muted); font-size: .9rem; margin: 0; }
+  .pay-owner b { color: var(--text); }
+  .pay-security {
+    color: var(--muted); font-size: .78rem; line-height: 1.5; margin: 0;
+    padding: 9px 12px; border: 1px solid var(--border); border-radius: 10px;
+    background: color-mix(in srgb, var(--accent) 4%, var(--surface));
   }
   .pay-link {
     display: inline-block; margin-top: .2rem; color: var(--accent); font-weight: 700;
