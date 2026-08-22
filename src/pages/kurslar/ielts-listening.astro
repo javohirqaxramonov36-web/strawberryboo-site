@@ -1,7 +1,17 @@
 ---
 import Base from "../../layouts/Base.astro";
 import IeltsSkillCourse from "../../components/IeltsSkillCourse.astro";
+import LocaleSwitch from "../../components/LocaleSwitch.astro";
+import { getIeltsListening } from "../../i18n/courses";
+const c = getIeltsListening('uz');
+const base = import.meta.env.BASE_URL;
+const alternates = [
+  { lang: 'uz', href: base + 'kurslar/ielts-listening/' },
+  { lang: 'ru', href: base + 'ru/kurslar/ielts-listening/' },
+  { lang: 'en', href: base + 'en/kurslar/ielts-listening/' }
+];
 ---
-<Base title="IELTS Listening mashqlari va tayyorgarlik | Tayanch" description="IELTS Listening (tinglash) tayyorgarlik: raqam, birlik-ko‘plik va distractor xatolarini bartaraf etish uchun original mashqlar va transcript.">
-  <IeltsSkillCourse skill={"ielts-listening"} title={"IELTS Listening"} eyebrow={"01 — IELTS SKILL"} description={"Tinglashdagi birlik-ko‘plik, raqam va distractor xatolarini aniqroq boshqarish uchun original mashqlar."} accent={"#a78bfa"} available={[{"title": "Original mini-practice", "text": "Riverside Community Day mashqi: birlik-ko‘plik, raqam va distractor signallariga e’tibor."}, {"title": "Transcript bilan tekshirish", "text": "Javobdan keyin transcriptni ochib, eshitilgan signal va xatoni solishtirish."}, {"title": "Error-log va tracker", "text": "Xato turi hamda Cambridge natijalarini qurilmada qayd etish uchun mavjud vositalar."}]} fillNeeded={["30 kunlik mustaqil Listening darslar ketma-ketligi.", "Qo‘shimcha original audio mashqlar va mavzuli transcriptlar."]} practiceHref={"ielts-practice/listening/"} practiceLabel={"Original Listening mini-practice’ni ochish"} sourceNote={"01.IELTS prep/7.7.7 unnes/Listening/ va mavjud IELTS Prep original mashqlari."} mockBonus={true} />
+<Base title={c.pageTitle} description={c.pageDescription} lang="uz" localeAlternates={alternates}>
+  <IeltsSkillCourse lang="uz" skill={"ielts-listening"} title={c.title} eyebrow={c.eyebrow} description={c.description} accent={"#a78bfa"} available={c.available} fillNeeded={c.fillNeeded} practiceHref={"ielts-practice/listening/"} practiceLabel={c.practiceLabel} sourceNote={c.sourceNote} priceUzs={c.priceUzs} mockBonus={true} />
+  <LocaleSwitch current="uz" />
 </Base>

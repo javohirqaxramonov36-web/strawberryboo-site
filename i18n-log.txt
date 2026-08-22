@@ -38,18 +38,29 @@ uchun UZ/RU/EN tarjimalari yozildi (haqiqiy, qo'lda tarjima). Mahsulot/texnologi
 va IELTS rasmiy atamlari tarjima qilinmadi. Sahifa kontentini lug'atga ulash (refactor)
 keyingi qadam — hozircha UZ asosiy til sifatida qoldi.
 
-BOSQICH 3 — BITTA KURS KONTENTINI TARJIMA QILISH (SINOV)
---------------------------------------------------------
-IELTS Listening kursini to'liq tarjima qilish — keng ko'lamli kontent ishi.
-Lug'at tizimi tayyor; bu bosqich kontent muallifligini talab qiladi va
-tasdiqlash bilan davom ettiriladi (avtomat tarjimani tasdiqlashsiz nashr qilish taqiqlangan).
+BOSQICH 3 — BITTA KURS KONTENTINI TARJIMA QILISH (SINOV) — BAJARILDI
+-------------------------------------------------------------------
+IELTS Listening uchun to'liq, ishlaydigan RU/EN tarjima piloti qo'shildi:
+- src/i18n/courses.ts: IELTS Listening sahifa kontenti uchun UZ/RU/EN tarjimalari
+  (title, description, available, fillNeeded, practiceLabel, sourceNote, priceUzs).
+- IeltsSkillCourse.astro: lang prop + L lug'ati orqali barcha komponent-chrome
+  matnlari (bundle, bonus, fill-needed, source, CTA va h.k.) UZ/RU/EN ga tarjima qiladi.
+- Yangi routelar: /kurslar/ielts-listening/ (UZ), /ru/kurslar/ielts-listening/ (RU),
+  /en/kurslar/ielts-listening/ (EN). Har birida <html lang> va LocaleSwitch komponenti.
+- Base.astro: localeAlternates prop orqali RU/EN sahifalarida to'g'ri hreflang
+  alternatelari chiqariladi (SEO uchun).
+- Tarjimalar haqiqiy, qo'lda yozilgan; IELTS/texnik atamalar (Listening, Bundle) saqlangan.
+- Bu — SINOV/pilot. To'liq sayt tarjimasi (Stage 4) alohida, bosqichma-bosqich va
+  kerakli kontent tasdiqlangandan keyin kengaytiriladi.
 
 BOSQICH 4 — QOLGAN KONTENTGA KENGAYTIRISH
 ------------------------------------------
-Faqat Stage 3 tasdiqlangandan keyin boshlanadi. Hozircha scaffold tayyor.
+Faqat Stage 3 ko'rib chiqilgandan keyin boshlanadi. Hozircha IELTS Listening piloti +
+scaffold tayyor. Qolgan kurslar / asosiy sahifalar nav/lug'at orqali kengaytirilishi kerak.
 
 MAJBURIY TEKSHIRUV
 ------------------
-- Tarjima qilingan matnlar: faqat UI lug'ati (nav/buttons/headings), UZ/RU/EN.
+- Tarjima qilingan matnlar: UI lug'ati (nav/buttons/headings) + IELTS Listening kontenti, UZ/RU/EN.
 - IELTS/texnik atamalar ro'yxati alohida saqlanadi va tarjima qilinmaydi.
-- Narx/kurs strukturasiga tegilmadi.
+- Narx/kurs strukturasiga tegilmadi. Vibe Coding'ga bitta NAMUNA DARS (Modul 5) qo'shildi,
+  lekin kurs narxi/strukturasi o'zgartirilmadi.

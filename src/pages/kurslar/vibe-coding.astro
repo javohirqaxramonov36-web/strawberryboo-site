@@ -72,6 +72,51 @@ const base = import.meta.env.BASE_URL;
       </ol>
     </section>
 
+    <!-- NAMUNA DARS: MODUL 5 (haqiqiy, yozilgan kontent) -->
+    <section class="vibe-lesson">
+      <div class="sec-head"><h2 class="sec-title">Namuna dars — Modul 5: Prompt yozish san'ati</h2></div>
+      <p class="lesson-lead">
+        Vibe coding muvaffaqiyatining 80 foizi — agentga to'g'ri topshiriq berishda. AI "telepatiya" qila olmaydi:
+        u faqat siz yozgan narsaga qarab ishlaydi. Quyida bitta kichik, amaliy dars — nima uchun bir xil vazifa
+        ikki xil prompt bilan butunlay farqli natija berishi mumkinligini ko'ramiz.
+      </p>
+
+      <h3>1. Yaxshi promptning tuzilmasi</h3>
+      <p>Ko'p hollarda quyidagi elementlarni kiritish natijani sezilarli yaxshilaydi:</p>
+      <ul class="lesson-list">
+        <li><b>Rol (role):</b> "Sen — 10 yillik tajribaga ega frontend dasturchi" kabi kontekst berish.</li>
+        <li><b>Kontekst:</b> loyiha haqida qisqa ma'lumot — qanday texnologiya, kim uchun, qanday muhit.</li>
+        <li><b>Vazifa:</b> aniq, bir vazifa — "shu funksiyani yoz", "shu xatoni tuzat", "refactor qil".</li>
+        <li><b>Cheklovlar:</b> nimalar qilinmasligi kerak (masalan, "yangi kutubxona qo'shma", "faqat CSS bilan").</li>
+        <li><b>Misollar:</b> kichik kirish/chiqish namunasi (few-shot) — AI ga aynan nima kutyog'ingizni ko'rsatadi.</li>
+        <li><b>Format:</b> javob qanday bo'lishi kerak (kod bloki, ro'yxat, JSON, qisqa izoh).</li>
+      </ul>
+
+      <h3>2. Yomon vs yaxshi — bitta misol</h3>
+      <p><b>Yomon prompt:</b> <code>Login sahifasini yasab ber.</code></p>
+      <p>Natija: agent "login"ni o'zi xohlagancha tushunadi — ehtimol keraksiz kutubxona ulaydi, mobilni unutadi, xavfsizlikni e'tiborsiz qoldiradi.</p>
+      <p><b>Yaxshi prompt:</b></p>
+      <pre class="lesson-code">Sen — Tailwind va Astro bilan ishlovchi frontend dasturchi.
+Mening loyiham: statik sayt, faqat HTML/CSS, mobilga mos bo'lishi shart.
+Vazifa: email va parol maydonli, markazlashgan login kartasi yarat.
+Cheklovlar: yangi JS kutubxonasi qo'shilmasing, faqat Tailwind class'lari ishlat.
+Format: faqat &lt;section&gt; blokini qaytar, 3-4 qator izoh bilan tushuntir.</pre>
+      <p>Farq shundaki, ikkinchi promptda agent "chegaralar ichida" harakat qiladi va siz xohlagan natijaga yaqinroq chiqadi.</p>
+
+      <h3>3. Tekshirish ro'yxati (checklist)</h3>
+      <ul class="lesson-list">
+        <li>Bitta promptda bitta aniq vazifami bor?</li>
+        <li>Rol va kontekst aytilganmi?</li>
+        <li>Cheklovlar (nima qilinmasligi) ko'rsatilganmi?</li>
+        <li>Javob formati aniqmi?</li>
+        <li>Agar murakkab bo'lsa, vazifa bosqichlarga bo'linganmi (chain-of-thought)?</li>
+      </ul>
+      <p class="lesson-note">
+        Eslatma: bu — kursning bitta namuna darsi. To'liq 10 modul (o'rnatish, xato tuzatish, MCP, real loyiha)
+        alohida material sifatida, tekshirib tasdiqlangandan keyin qo'shiladi.
+      </p>
+    </section>
+
     <p style="margin-top:2rem;">
       <a href={base + 'kurslar'} class="course-nav-link">← Barcha kurslar</a>
     </p>
@@ -92,4 +137,13 @@ const base = import.meta.env.BASE_URL;
   .vibe-program .sec-title { font-size: 1.4rem; }
   /* modullar ro'yxati uchun kurs sahifasidagi .modules uslubini qayta ishlatamiz */
   .lesson .modules li { font-size: 15px; }
+  .vibe-lesson { margin-top: 2.5rem; padding: 1.4rem 1.5rem; border: 1px solid color-mix(in srgb,var(--accent) 40%,var(--border)); border-radius: 16px; background: linear-gradient(135deg,color-mix(in srgb,var(--accent) 7%,var(--surface)),var(--surface)); }
+  .vibe-lesson .sec-title { color: var(--accent); font-size: 1.35rem; }
+  .vibe-lesson h3 { margin: 1.4rem 0 .5rem; font-size: 1.1rem; }
+  .lesson-lead { color: var(--muted); line-height: 1.7; }
+  .lesson-list { margin: .4rem 0 1rem; padding-left: 1.1rem; }
+  .lesson-list li { margin: .35rem 0; line-height: 1.6; }
+  .lesson-code { background: #0b0c12; color: #e6e6e6; padding: 1rem; border-radius: 12px; overflow:auto; font-size: .85rem; line-height: 1.55; white-space: pre-wrap; }
+  .vibe-lesson code { background: color-mix(in srgb,var(--accent) 16%,var(--surface)); padding: .1rem .4rem; border-radius: 6px; }
+  .lesson-note { margin-top: 1rem; font-size: .9rem; color: var(--muted); border-left: 3px solid var(--accent); padding-left: .8rem; }
 </style>

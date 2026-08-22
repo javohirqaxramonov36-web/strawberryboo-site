@@ -5,6 +5,8 @@ const title = Astro.props.title || "Tayanch";
 const description = Astro.props.description || '';
 const lang = Astro.props.lang || "uz";
 const canonical = Astro.props.canonical || Astro.url.href;
+const localeAlternates = Astro.props.localeAlternates || [];
+const canonicalUz = (localeAlternates.find((a) => a.lang === 'uz') || {}).href || canonical;
 const base = import.meta.env.BASE_URL;
 const TG = "https://t.me/progression_go"; // Telegram kanal/guruh havolasi
 ---
@@ -31,8 +33,9 @@ const TG = "https://t.me/progression_go"; // Telegram kanal/guruh havolasi
     <title>{title}</title>
     <meta name="description" content={description} />
     <link rel="canonical" href={canonical} />
-    <link rel="alternate" hreflang="uz" href={canonical} />
-    <link rel="alternate" hreflang="x-default" href={canonical} />
+    <link rel="alternate" hreflang="uz" href={canonicalUz} />
+    <link rel="alternate" hreflang="x-default" href={canonicalUz} />
+    {localeAlternates.map((a) => <link rel="alternate" hreflang={a.lang} href={a.href} />)}
     <meta name="robots" content="index, follow" />
     <meta name="theme-color" content="#0e0f15" />
     <!-- Favicon (files already live in /public) — use BASE_URL so the project-page base path is included -->
