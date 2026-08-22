@@ -96,3 +96,9 @@ begin
     'last_module', last_mod
   );
 end; $$;
+
+-- RPCs are only for signed-in users; never expose SECURITY DEFINER functions to anon/public.
+revoke execute on function public.upsert_writing_progress(smallint, boolean, boolean) from public, anon;
+revoke execute on function public.get_ielts_streak(uuid) from public, anon;
+grant execute on function public.upsert_writing_progress(smallint, boolean, boolean) to authenticated;
+grant execute on function public.get_ielts_streak(uuid) to authenticated;
