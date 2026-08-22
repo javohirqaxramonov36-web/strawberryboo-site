@@ -103,7 +103,7 @@ const totalDays = days.length;
 
 <script>
   import daysData from '../data/ielts-writing-days.json';
-  import { assessWriting, renderAssessmentHTML, hasApiKey, showSettingsDialog } from '../lib/ielts-assessor.js';
+  import { assessWriting, renderAssessmentHTML, hasApiKey, showSettingsDialog, escapeHtml } from '../lib/ielts-assessor.js';
   import { supabase } from '../lib/supabase';
 
   const LS = 'tayanch-writing-progress-v2';
@@ -246,7 +246,8 @@ const totalDays = days.length;
       elResult.innerHTML = renderAssessmentHTML(res);
       if (!user) showRegisterCta();
     } catch (err) {
-      elResult.innerHTML = `<div style="padding:20px;text-align:center;color:#dc2626">Xatolik: ${err.message}<br><button onclick="window.IELTSAssessor && IELTSAssessor.showSettingsDialog()" style="margin-top:10px;padding:8px 16px;border:1px solid #e5e7eb;background:#fff;border-radius:8px;cursor:pointer">AI Sozlamalar</button></div>`;
+      elResult.innerHTML = `<div style="padding:20px;text-align:center;color:#dc2626">Xatolik: ${escapeHtml(err.message)}<br><button data-err-settings style="margin-top:10px;padding:8px 16px;border:1px solid #e5e7eb;background:#fff;border-radius:8px;cursor:pointer">AI Sozlamalar</button></div>`;
+      elResult.querySelector('[data-err-settings]').addEventListener('click', () => showSettingsDialog());
     }
   }
 

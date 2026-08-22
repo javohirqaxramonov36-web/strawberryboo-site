@@ -101,11 +101,10 @@ Respond with valid JSON only, no extra text:
     openrouter_free: {
       label: 'OpenRouter (Bepul modellar)',
       endpoint: 'https://openrouter.ai/api/v1/chat/completions',
-      model: 'google/gemini-flash-1.5:free',
+      model: 'meta-llama/llama-3.3-70b-instruct:free',
       freeModels: [
-        { value: 'google/gemini-flash-1.5:free', label: 'Gemini Flash 1.5 (Free) — Tavsiya etiladi' },
+        { value: 'meta-llama/llama-3.3-70b-instruct:free', label: 'Llama 3.3 70B (Free) — Tavsiya etiladi' },
         { value: 'meta-llama/llama-3.1-8b-instruct:free', label: 'Llama 3.1 8B (Free)' },
-        { value: 'meta-llama/llama-3.3-70b-instruct:free', label: 'Llama 3.3 70B (Free) — Eng kuchli bepul' },
         { value: 'google/gemini-2.0-flash-exp:free', label: 'Gemini 2.0 Flash (Free, Experimental)' },
         { value: 'mistralai/mistral-7b-instruct:free', label: 'Mistral 7B (Free)' },
         { value: 'qwen/qwen-2.5-7b-instruct:free', label: 'Qwen 2.5 7B (Free)' },
