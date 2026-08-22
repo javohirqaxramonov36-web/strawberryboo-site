@@ -11,6 +11,63 @@ const questions = [
   { q: "Qaysi framework Python'da API yaratish uchun ishlatiladi?", opts: ["FastAPI", "Excel", "Photoshop", "Figma"], answer: 0 },
   { q: "Ma'lumotlarni saqlash uchun ko'pincha nima ishlatiladi?", opts: ["PostgreSQL", "Word", "PowerPoint", "Telegram"], answer: 0 }
 ];
+
+const weeks = [
+  {
+    title: "1-hafta — Python asoslari",
+    lessons: [
+      { n: "1.1", title: "Python o'rnatish va birinchi dastur", desc: "Muhitni tayyorlab, birinchi kod satrini yozamiz.", points: ["Python o'rnatish va tekshirish", "Interpreter va fayl", "print va o'zgaruvchi", "Asosiy tiplar (int, str, bool)"] },
+      { n: "1.2", title: "Shartlar va sikllar", desc: "Dastur mantiqiy oqimini boshqarish.", points: ["if / elif / else", "for sikli va ro'yxatlar", "while sikli", "break / continue"] },
+      { n: "1.3", title: "Funksiyalar va modullar", desc: "Kodni qayta ishlatish va tartibga solish.", points: ["def bilan funksiya", "Parametr va qaytarish (return)", "Modulga ajratish", "Standart kutubxona"] },
+      { n: "1.4", title: "Virtual environment va pip", desc: "Loyihani boshqalardan ajratish.", points: ["venv yaratish va faollashtirish", "pip bilan paket o'rnatish", "requirements.txt", "Paket versiyalarini boshqarish"] }
+    ]
+  },
+  {
+    title: "2-hafta — OOP va tuzilma",
+    lessons: [
+      { n: "2.1", title: "Class va obyekt", desc: "Dunyoni obyekt sifatida modellash.", points: ["Class va obyekt farqi", "Xususiyat (attribute)", "Metod", "Obyekt yaratish"] },
+      { n: "2.2", title: "Konstruktor va meros", desc: "Kodni kengaytirish.", points: ["__init__ konstruktor", "Meros (inheritance)", "Metodni qayta yozish", "Polimorfizm asoslari"] },
+      { n: "2.3", title: "Xatolarni boshqarish", desc: "Dasturni ishonchli qilish.", points: ["try / except", "Xato turlari", "finally", "O'z xatolarini chiqarish"] },
+      { n: "2.4", title: "Fayl va loyiha tuzilmasi", desc: "Katalog tartibi va fayl bilan ishlash.", points: ["Faylni o'qish/yozish", "with operatori", "Loyiha papkasi tuzilmasi", "Modullarni import qilish"] }
+    ]
+  },
+  {
+    title: "3-hafta — FastAPI bilan API",
+    lessons: [
+      { n: "3.1", title: "API va REST tushunchasi", desc: "Klient va server o'rtasidagi aloqa.", points: ["API nima", "REST prinsiplari", "Endpoint va manzil", "JSON formati"] },
+      { n: "3.2", title: "FastAPI ilovasini yaratish", desc: "Birinchi endpoint'ni ishga tushiramiz.", points: ["FastAPI o'rnatish", "app va birinchi @app.get", "Serverni ishga tushirish (uvicorn)", "Swagger hujjat (docs)"] },
+      { n: "3.3", title: "So'rov turlari va Pydantic", desc: "Ma'lumot modelini aniqlash.", points: ["GET va POST farqi", "Pydantic bilan model", "Body va query parametrlari", "Javob formati"] },
+      { n: "3.4", title: "Xatoliklar va status kodlari", desc: "To'g'ri javob qaytarish.", points: ["200, 400, 404, 500", "HTTPException", "Validatsiya xatolari", "Xato javobini shakllantirish"] }
+    ]
+  },
+  {
+    title: "4-hafta — PostgreSQL va bazaga ulash",
+    lessons: [
+      { n: "4.1", title: "Baza tuzilmasi va SQL asoslari", desc: "Ma'lumotlarni saqlash poydevori.", points: ["Jadval yaratish (CREATE TABLE)", "Turlar (INT, VARCHAR, TIMESTAMP)", "Kalitlar (PRIMARY/FOREIGN)", "Oddiy INSERT/SELECT"] },
+      { n: "4.2", title: "SQLAlchemy bilan ulanish", desc: "Python'dan bazaga ulanish.", points: ["SQLAlchemy o'rnatish", "Engine va Session", "Model sifatida jadval", "Ulanishni tekshirish"] },
+      { n: "4.3", title: "CRUD amallari", desc: "Ma'lumotni boshqarish.", points: ["Create (qo'shish)", "Read (o'qish)", "Update (yangilash)", "Delete (o'chirish)"] },
+      { n: "4.4", title: "Aloqalar (relationship)", desc: "Jadvallarni bog'lash.", points: ["Birga-ko'p (one-to-many)", "Foreign key orqali bog'lash", "Bog'liq ma'lumotni olish", "Kaskad o'chirish"] }
+    ]
+  },
+  {
+    title: "5-hafta — Autentifikatsiya va xavfsizlik",
+    lessons: [
+      { n: "5.1", title: "Ro'yxat va parol saqlash", desc: "Foydalanuvchi tizimiga kirish.", points: ["User jadvali", "Parolni hash qilish (bcrypt)", "Ro'yxatdan o'tish endpoint", "Kirish (login)"] },
+      { n: "5.2", title: "JWT token", desc: "Sessiyasiz autentifikatsiya.", points: ["Token nima", "JWT tuzilmasi", "Token yaratish va tekshirish", "Muddat (expiry)"] },
+      { n: "5.3", title: "Himoyalangan endpoint'lar", desc: "Faqat avtorizatsiyalangan kirish.", points: ["Dependency orqali himoya", "Header'dan token o'qish", "Ruxsatni tekshirish", "401/403 javoblari"] },
+      { n: "5.4", title: "Xavfsizlik amaliyoti", desc: "Ilovaning himoyasi.", points: ["Maxfiy kalitlar (.env)", "CORS sozlamalari", "Rate limiting asoslari", "SQL in'ektsiyadan saqlanish"] }
+    ]
+  },
+  {
+    title: "6-hafta — Deploy va mini-loyiha",
+    lessons: [
+      { n: "6.1", title: "Loyiha tanlash va reja", desc: "To-Do yoki kichik CRM ni rejalashtiramiz.", points: ["Loyiha mavzusini tanlash", "Funksiyalarni ro'yxatlash", "Ma'lumotlar modeli", "Bosqichlar rejasi"] },
+      { n: "6.2", title: "API + baza + auth birlashtirish", desc: "Barcha o'rganilganlarni birlashtiramiz.", points: ["Endpoint'lar ro'yxati", "Baza modellari", "Auth ulash", "Integratsiyani tekshirish"] },
+      { n: "6.3", title: "Deploy (Render / Railway)", desc: "Ilovani internetga chiqarish.", points: ["Cloud platformaga tayyorlash", "Environment o'zgaruvchilari", "Deploy qilish", "URL orqali tekshirish"] },
+      { n: "6.4", title: "Dokumentatsiya va taqdimot", desc: "Yakuniy natijani rasmiylashtirish.", points: ["README yozish", "API hujjatini to'ldirish", "Demo tayyorlash", "Loyihani himoya qilish"] }
+    ]
+  }
+];
 ---
 
 <Base title={title} description={description}>
@@ -46,6 +103,27 @@ const questions = [
       </ol>
     </section>
 
+    <section class="lessons-section">
+      <div class="lessons-head"><div><span>DARSLAR MAZMUNI</span><h2>24 dars — haftalar bo'yicha</h2><p>Har hafta 4 ta amaliy dars. Nazariya qisqa, amaliyot ko'p.</p></div><span class="modules-count">24 dars</span></div>
+      {weeks.map((w) => (
+        <div class="week-block">
+          <h3 class="week-title">{w.title}</h3>
+          <div class="lesson-grid">
+            {w.lessons.map((l) => (
+              <div class="lesson-card">
+                <span class="lesson-num">{l.n}</span>
+                <h4 class="lesson-name">{l.title}</h4>
+                <p class="lesson-desc">{l.desc}</p>
+                <ul class="lesson-points">
+                  {l.points.map((p) => <li>{p}</li>)}
+                </ul>
+              </div>
+            ))}
+          </div>
+        </div>
+      ))}
+    </section>
+
     <p style="margin-top:2rem;">
       <a href={import.meta.env.BASE_URL + 'kurslar'} class="course-nav-link">← Barcha kurslar</a>
     </p>
@@ -68,5 +146,20 @@ const questions = [
     .course-modules li{counter-increment:m;display:flex;gap:.8rem;align-items:flex-start;padding:.85rem 1rem;border:1px solid var(--border);border-radius:12px;background:color-mix(in srgb,var(--accent) 6%,var(--surface));line-height:1.5}
     .course-modules li::before{content:counter(m);flex:0 0 1.6rem;height:1.6rem;display:grid;place-items:center;border-radius:50%;background:var(--accent);color:#fff;font-weight:800;font-size:.85rem}
     .course-modules li b{color:var(--text)}
+    .lessons-section{margin-top:1.6rem}
+    .lessons-head{display:flex;align-items:flex-start;justify-content:space-between;gap:1rem;margin-bottom:1rem}
+    .lessons-head>div>span{font-size:.72rem;letter-spacing:.12em;font-weight:800;color:#34d399}
+    .lessons-head h2{margin:.25rem 0 .4rem}
+    .lessons-head p{margin:0;color:var(--muted)}
+    .week-block{margin-bottom:1.4rem}
+    .week-title{margin:0 0 .8rem;font-size:1.02rem;color:var(--text);padding-left:.7rem;border-left:3px solid var(--accent)}
+    .lesson-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:.8rem}
+    .lesson-card{border:1px solid var(--border);border-radius:14px;padding:1rem 1.05rem;background:var(--surface);display:flex;flex-direction:column;gap:.45rem}
+    .lesson-num{display:inline-block;width:fit-content;padding:.2rem .55rem;border-radius:999px;background:color-mix(in srgb,var(--accent) 16%,transparent);color:var(--accent);font-weight:800;font-size:.74rem}
+    .lesson-name{margin:0;font-size:.96rem;color:var(--text);line-height:1.35}
+    .lesson-desc{margin:0;color:var(--muted);font-size:.85rem;line-height:1.5}
+    .lesson-points{margin:.2rem 0 0;padding-left:1.1rem;color:var(--muted);font-size:.82rem;line-height:1.5}
+    .lesson-points li{margin:.15rem 0}
+    @media (max-width:520px){.lesson-grid{grid-template-columns:1fr}}
   </style>
 </Base>

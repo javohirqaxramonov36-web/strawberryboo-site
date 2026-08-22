@@ -11,6 +11,63 @@ const questions = [
   { q: "Qaysi vosita ma'lumotlar bazasidan so'rov olish uchun ishlatiladi?", opts: ["Excel", "SQL", "Word", "PowerPoint"], answer: 1 },
   { q: "Python'da ma'lumototlar bilan ishlash uchun qaysi kutubxona ko'p ishlatiladi?", opts: ["pandas", "Photoshop", "Excel", "Figma"], answer: 0 }
 ];
+
+const weeks = [
+  {
+    title: "1-hafta — Excel / Google Sheets asoslari",
+    lessons: [
+      { n: "1.1", title: "Excel interfeysi va birinchi jadval", desc: "Dastur oynasini, satr/ustun va hujayra manzilini (A1) o'rganasiz. Birinchi jadvalni yaratib, asosiy formatlashni bajarasiz.", points: ["Lentadagi asosiy tugmalar va ularning vazifasi", "Hujayra manzili (A1, B2) va diapazon tushunchasi", "Matn, raqam va sana formatlarini farqlash", "Jadvalni chiroyli va o'qiladigan qilish"] },
+      { n: "1.2", title: "Formulalar va funksiyalar (SUM, AVERAGE, IF)", desc: "Hisoblashni qo'lda emas, formulalar orqali avtomatlashtirishni o'rganasiz.", points: ["= belgisi bilan formula yozish qoidasi", "SUM, AVERAGE, MIN, MAX funksiyalari", "IF sharti bilan shartli hisoblash", "Formulalarni pastga nusxalash (relative reference)"] },
+      { n: "1.3", title: "Filtr, saralash va shartli formatlash", desc: "Katta jadvaldan kerakli qatorlarni ajratib olish va ko'zga tashlanadigan qilish.", points: ["Avtofiltr orqali qatorlarni tanlash", "Katagacha saralash (A→Z, son bo'yicha)", "Shartli formatlash bilan qizil/yashil belgilash", "Takrorlanuvchi qatorlarni topish"] },
+      { n: "1.4", title: "PivotTable — xulosa jadvallari", desc: "Minglab qatorli ma'lumotdan bir necha bosishda xulosa chiqarish.", points: ["PivotTable yaratish va maydonlarni joylash", "Qator/ustun/qiymat bo'yicha guruhlash", "Filtr qo'yib kesimlarni solishtirish", "PivotChart bilan tez diagramma"] }
+    ]
+  },
+  {
+    title: "2-hafta — SQL asoslari",
+    lessons: [
+      { n: "2.1", title: "Ma'lumotlar bazasi va SELECT", desc: "Bazaning nima ekanligi va undan so'rov yozishni boshlaymiz.", points: ["Jadval, satr, ustun tushunchalari", "SELECT bilan ustunlarni tanlash", "LIMIT va DISTINCT", "Natijani o'qib tushunish"] },
+      { n: "2.2", title: "WHERE va ORDER BY", desc: "Kerakli qatorlarni shart bilan ajratib olish.", points: ["Tenglik, >, <, BETWEEN shartlari", "AND / OR bilan bir nechta shart", "LIKE bilan matn qidirish", "ORDER BY bilan tartiblash"] },
+      { n: "2.3", title: "JOIN — jadvallarni bog'lash", desc: "Bir nechta jadvaldagi ma'lumotni yagona javobga birlashtirish.", points: ["INNER JOIN asoslari", "LEFT JOIN va farqi", "Bog'lash kaliti (foreign key)", "Bir nechta jadvalni bog'lash"] },
+      { n: "2.4", title: "GROUP BY va agregatlar", desc: "Guruhlar bo'yicha umumiy ko'rsatkichlarni hisoblash.", points: ["COUNT, SUM, AVG, MAX/MIN", "GROUP BY bilan guruhlash", "HAVING bilan guruhni filtrlash", "Vaqt davomidagi yig'indilar"] }
+    ]
+  },
+  {
+    title: "3-hafta — Vizualizatsiya (Power BI / diagrammalar)",
+    lessons: [
+      { n: "3.1", title: "Diagramma turlari va tanlash", desc: "Qaysi ma'lumot uchun qaysi diagramma to'g'ri ekanini o'rganasiz.", points: ["Ustunli, chiziqli, doiraviy farqlari", "Vaqt qatorlari uchun chiziqli grafik", "Ulushlar uchun doiraviy", "Noto'g'ri diagrammadan qochish"] },
+      { n: "3.2", title: "Dashboard yaratish", desc: "Bir ekranga bir nechta ko'rsatkich joylashtirish.", points: ["Power BI yoki Sheets'da dashboard", "Bir nechta plitka va ularni joylash", "Filtr va kesim (slicer) qo'shish", "Dinamik yangilanadigan ko'rinish"] },
+      { n: "3.3", title: "DAX asoslari", desc: "O'z hisoblagichlaringizni (measure) yaratish.", points: ["DAX formulasi nima", "SUMX, CALCULATE tushunchasi", "Yig'indini foizga aylantirish", "Vaqt bo'yicha o'sish (MoM)"] },
+      { n: "3.4", title: "Hisobotni taqdim etish", desc: "Raqamlarni boshqaruv tili bilan izohlash.", points: ["Asosiy xulosa bir jumlada", "Diagrammani tushuntirish", "Tavsiya va keyingi qadam", "Noto'g'ri talqindan saqlanish"] }
+    ]
+  },
+  {
+    title: "4-hafta — Python va pandas",
+    lessons: [
+      { n: "4.1", title: "Python o'rnatish va Jupyter", desc: "Ish muhitini tayyorlab, birinchi kod satrini yozamiz.", points: ["Python va kod muhitini o'rnatish", "Jupyter Notebook / Colab", "print va o'zgaruvchi", "Birinchi hisoblash"] },
+      { n: "4.2", title: "pandas bilan fayl yuklash", desc: "CSV va Excel fayllarini DataFrame ga o'qiymiz.", points: ["pandas kutubxonasini import qilish", "read_csv / read_excel", "DataFrame nima", "Katalog va fayl yo'li"] },
+      { n: "4.3", title: "Ma'lumotlarni ko'rish va filtrlash", desc: "Jadvalni tekshirib, kerakli qatorlarni tanlaymiz.", points: ["head, tail, info, describe", "loc va iloc bilan tanlash", "Shartli filtr (df[df...])", "Ustunlarni tanlash va qo'shish"] },
+      { n: "4.4", title: "Yetishmayotgan qiymat va tozalash", desc: "Akvatli ma'lumotni tahlilga tayyorlaymiz.", points: ["dropna va fillna", "Turdagi (type) xatolarni tuzatish", "Takroriy qatorlarni olib tashlash", "Yangi ustun hosil qilish"] }
+    ]
+  },
+  {
+    title: "5-hafta — Statistika asoslari",
+    lessons: [
+      { n: "5.1", title: "O'rtacha, mediana, dispersiya", desc: "Raqamlar tarqalishini tushunish.", points: ["O'rtacha va mediana farqi", "Standart chetlanish", "Soni (count) va nima aytadi", "Grafikda tarqalishni ko'rish"] },
+      { n: "5.2", title: "Trend va vaqt seriyasi", desc: "O'sish yoki kamayishni aniqlash.", points: ["Vaqt bo'yicha chiziqli grafik", "O'sish sur'ati", "Mavsumiylik", "Bashoratga kirish"] },
+      { n: "5.3", title: "Korrelyatsiya", desc: "Ikki ko'rsatkich bog'liqligini o'lchash.", points: ["Korrelyatsiya koeffitsienti", "Musbat va manfiy bog'liqlik", "Sabab-oqibat emasligini tushunish", "Scatter plot"] },
+      { n: "5.4", title: "Xulosa va xatolar", desc: "Noto'g'ri xulosa qanday kelib chiqishini o'rganasiz.", points: ["Kichik namunadan umumlashtirish xatosi", "Tanlab olish (selection bias)", "O'zgaruvchilarni aralashtirib yuborish", "Xulosa yozish qoidalari"] }
+    ]
+  },
+  {
+    title: "6-hafta — Real case-study",
+    lessons: [
+      { n: "6.1", title: "Loyiha va ma'lumotlarni yuklash", desc: "Haqiqiy sotuv dataset'ini tanlab olamiz.", points: ["Loyiha mavzusini tanlash", "Ochiq dataset topish", "Yuklash va birinchi qarash", "Maqsadni aniqlash"] },
+      { n: "6.2", title: "Tahlil rejasi", desc: "Qanday savollarga javob izlaymiz.", points: ["Biznes savollarini shakllantirish", "Kerakli ustunlar", "Oraliq reja", "Kutilgan natija"] },
+      { n: "6.3", title: "Tahlilni bajarish", desc: "pandas va SQL bilan asosiy ko'rsatkichlarni chiqaramiz.", points: ["Tozalash", "Asosiy ko'rsatkichlar", "Guruhlar bo'yicha taqqoslash", "Topilmalarni yozib borish"] },
+      { n: "6.4", title: "Hisobot va tavsiya", desc: "Boshqaruvga tayyor natija tayyorlaysiz.", points: ["Dashboard yig'ish", "Asosiy xulosa", "Amaldagi tavsiya", "Loyihani himoya qilish"] }
+    ]
+  }
+];
 ---
 
 <Base title={title} description={description}>
@@ -46,6 +103,27 @@ const questions = [
       </ol>
     </section>
 
+    <section class="lessons-section">
+      <div class="lessons-head"><div><span>DARSLAR MAZMUNI</span><h2>24 dars — haftalar bo'yicha</h2><p>Har hafta 4 ta amaliy dars. Nazariya qisqa, amaliyot ko'p.</p></div><span class="modules-count">24 dars</span></div>
+      {weeks.map((w) => (
+        <div class="week-block">
+          <h3 class="week-title">{w.title}</h3>
+          <div class="lesson-grid">
+            {w.lessons.map((l) => (
+              <div class="lesson-card">
+                <span class="lesson-num">{l.n}</span>
+                <h4 class="lesson-name">{l.title}</h4>
+                <p class="lesson-desc">{l.desc}</p>
+                <ul class="lesson-points">
+                  {l.points.map((p) => <li>{p}</li>)}
+                </ul>
+              </div>
+            ))}
+          </div>
+        </div>
+      ))}
+    </section>
+
     <p style="margin-top:2rem;">
       <a href={import.meta.env.BASE_URL + 'kurslar'} class="course-nav-link">← Barcha kurslar</a>
     </p>
@@ -68,5 +146,20 @@ const questions = [
     .course-modules li{counter-increment:m;display:flex;gap:.8rem;align-items:flex-start;padding:.85rem 1rem;border:1px solid var(--border);border-radius:12px;background:color-mix(in srgb,var(--accent) 6%,var(--surface));line-height:1.5}
     .course-modules li::before{content:counter(m);flex:0 0 1.6rem;height:1.6rem;display:grid;place-items:center;border-radius:50%;background:var(--accent);color:#fff;font-weight:800;font-size:.85rem}
     .course-modules li b{color:var(--text)}
+    .lessons-section{margin-top:1.6rem}
+    .lessons-head{display:flex;align-items:flex-start;justify-content:space-between;gap:1rem;margin-bottom:1rem}
+    .lessons-head>div>span{font-size:.72rem;letter-spacing:.12em;font-weight:800;color:#38bdf8}
+    .lessons-head h2{margin:.25rem 0 .4rem}
+    .lessons-head p{margin:0;color:var(--muted)}
+    .week-block{margin-bottom:1.4rem}
+    .week-title{margin:0 0 .8rem;font-size:1.02rem;color:var(--text);padding-left:.7rem;border-left:3px solid var(--accent)}
+    .lesson-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:.8rem}
+    .lesson-card{border:1px solid var(--border);border-radius:14px;padding:1rem 1.05rem;background:var(--surface);display:flex;flex-direction:column;gap:.45rem}
+    .lesson-num{display:inline-block;width:fit-content;padding:.2rem .55rem;border-radius:999px;background:color-mix(in srgb,var(--accent) 16%,transparent);color:var(--accent);font-weight:800;font-size:.74rem}
+    .lesson-name{margin:0;font-size:.96rem;color:var(--text);line-height:1.35}
+    .lesson-desc{margin:0;color:var(--muted);font-size:.85rem;line-height:1.5}
+    .lesson-points{margin:.2rem 0 0;padding-left:1.1rem;color:var(--muted);font-size:.82rem;line-height:1.5}
+    .lesson-points li{margin:.15rem 0}
+    @media (max-width:520px){.lesson-grid{grid-template-columns:1fr}}
   </style>
 </Base>
