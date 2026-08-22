@@ -80,14 +80,14 @@ const weeks = [
   <article class="lesson">
     <div class="course-hero">
       <p class="hero-meta"><span class="cat-pill">IT · Dasturlash</span> · <span>Sertifikat bilan</span> · <span class="new-tag">Yangi</span></p>
-      <h1>Backend Development — Python</h1>
+      <h1 data-i18n="bp.h1">Backend Development — Python</h1>
       <div class="price">
         <span class="now">Tez orada</span>
         <span class="uzs">Narx belgilanmoqda</span>
       </div>
     </div>
 
-    <p class="lead">
+    <p class="lead" data-i18n="bp.lead">
       Python, FastAPI va PostgreSQL bilan server tomonidan ishlaydigan haqiqiy ilova qurishni o'rganasiz —
       API yaratishdan autentifikatsiyagacha. Mini-loyiha sifatida kichik CRM yoki To-Do API yasaysiz.
       Kimga mo'ljallangan: dasturlashga yangi kirgan, lekin veb-ilova orqasidagi mantiqni tushunib
@@ -95,19 +95,19 @@ const weeks = [
     </p>
 
     <section class="modules-section">
-      <div class="modules-head"><div><span>KURSLAR BO'LIMLARI</span><h2>Dastur</h2><p>Amaliy, bosqichma-bosqich — birinchi qator koddan mini-loyihagacha.</p></div><span class="modules-count">6 bo'lim</span></div>
+      <div class="modules-head"><div><span>KURSLAR BO'LIMLARI</span><h2 data-i18n="bp.modTitle">Dastur</h2><p data-i18n="bp.modSub">Amaliy, bosqichma-bosqich — birinchi qator koddan mini-loyihagacha.</p></div><span class="modules-count">6 bo'lim</span></div>
       <ol class="course-modules">
-        <li><b>Python asoslari:</b> o'zgaruvchilar, funksiyalar, kutubxonalar va kod yozish muhiti.</li>
-        <li><b>API nima va nega kerak:</b> REST tushunchasi, klient va server o'rtasidagi aloqa.</li>
-        <li><b>FastAPI bilan oddiy API:</b> endpoint yaratish, so'rov/qaytish formati.</li>
-        <li><b>PostgreSQL ulanish:</b> ma'lumotlarni saqlash, jadval yaratish va ulanish.</li>
-        <li><b>Autentifikatsiya asoslari:</b> ro'yxatdan o'tish, parol va token bilan himoya.</li>
-        <li><b>Real mini-loyiha:</b> kichik CRM yoki To-Do API — o'zingizning backend'ingiz.</li>
+        <li><b data-i18n="bp.m1">Python asoslari:</b> o'zgaruvchilar, funksiyalar, kutubxonalar va kod yozish muhiti.</li>
+        <li><b data-i18n="bp.m2">API nima va nega kerak:</b> REST tushunchasi, klient va server o'rtasidagi aloqa.</li>
+        <li><b data-i18n="bp.m3">FastAPI bilan oddiy API:</b> endpoint yaratish, so'rov/qaytish formati.</li>
+        <li><b data-i18n="bp.m4">PostgreSQL ulanish:</b> ma'lumotlarni saqlash, jadval yaratish va ulanish.</li>
+        <li><b data-i18n="bp.m5">Autentifikatsiya asoslari:</b> ro'yxatdan o'tish, parol va token bilan himoya.</li>
+        <li><b data-i18n="bp.m6">Real mini-loyiha:</b> kichik CRM yoki To-Do API — o'zingizning backend'ingiz.</li>
       </ol>
     </section>
 
     <section class="lessons-section">
-      <div class="lessons-head"><div><span>DARSLAR MAZMUNI</span><h2>24 dars — haftalar bo'yicha</h2><p>Har hafta 4 ta amaliy dars. Nazariya qisqa, amaliyot ko'p.</p></div><span class="modules-count">24 dars</span></div>
+      <div class="lessons-head"><div><span>DARSLAR MAZMUNI</span><h2 data-i18n="bp.lesTitle">24 dars — haftalar bo'yicha</h2><p data-i18n="bp.lesSub">Har hafta 4 ta amaliy dars. Nazariya qisqa, amaliyot ko'p.</p></div><span class="modules-count">24 dars</span></div>
       {weeks.map((w) => (
         <div class="week-block">
           <h3 class="week-title">{w.title}</h3>
@@ -128,7 +128,7 @@ const weeks = [
     </section>
 
     <p style="margin-top:2rem;">
-      <a href={import.meta.env.BASE_URL + 'kurslar'} class="course-nav-link">← Barcha kurslar</a>
+      <a href={import.meta.env.BASE_URL + 'kurslar'} class="course-nav-link" data-i18n="bp.allCourses">← Barcha kurslar</a>
     </p>
 
     <Quiz title="O'z bilimingizni tekshiring" questions={questions} />
