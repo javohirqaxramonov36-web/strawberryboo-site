@@ -21,7 +21,7 @@ create policy "writing_progress_select_own" on public.writing_progress
 create or replace function public.upsert_writing_progress(
   p_day smallint, p_task1 boolean, p_task2 boolean
 ) returns jsonb
-language plpgsql security definer as $$
+language plpgsql security definer set search_path = public as $$
 declare
   uid uuid := auth.uid();
   old_rec writing_progress%rowtype;
@@ -53,12 +53,16 @@ end; $$;
 
 create or replace function public.get_ielts_streak(p_user_id uuid)
 returns jsonb
-language plpgsql security definer as $$
+language plpgsql security definer set search_path = public as $$
 declare
   dates date[];
   cur int := 0; long int := 0; total int := 0;
   prev date := null; d date; last_mod text;
 begin
+  if auth.uid() is null or auth.uid() <> p_user_id then
+    raise exception 'not authorized' using errcode = '42501';
+  end if;
+
   select array_agg(d order by d) into dates from (
     select distinct date(completed_at) as d from speaking_progress
       where user_id = p_user_id and completed_at is not null
@@ -77,9 +81,14 @@ begin
     if cur > long then long := cur; end if;
     prev := d;
   end loop;
-  select case when sp.completed_at >= wp.completed_at then 'speaking' else 'writing' end into last_mod
-  from (select max(completed_at) completed_at from speaking_progress where user_id = p_user_id) sp,
-       (select max(completed_at) completed_at from writing_progress where user_id = p_user_id) wp;
+  select module into last_mod from (
+    select 'speaking'::text as module, max(completed_at) as completed_at
+      from speaking_progress where user_id = p_user_id
+    union all
+    select 'writing'::text as module, max(completed_at) as completed_at
+      from writing_progress where user_id = p_user_id
+  ) modules where completed_at is not null
+  order by completed_at desc limit 1;
   return jsonb_build_object(
     'current_streak', cur, 'longest_streak', long,
     'total_active_days', total,
