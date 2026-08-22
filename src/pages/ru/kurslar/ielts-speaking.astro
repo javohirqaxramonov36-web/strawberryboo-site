@@ -1,0 +1,19 @@
+---
+import Base from "../../../layouts/Base.astro";
+import IeltsSkillCourse from "../../../components/IeltsSkillCourse.astro";
+import LocaleSwitch from "../../../components/LocaleSwitch.astro";
+import SpeakingPractice from "../../../components/SpeakingPractice.astro";
+import { getIeltsSpeaking } from "../../../i18n/skills";
+const c = getIeltsSpeaking('ru');
+const base = import.meta.env.BASE_URL;
+const alternates = [
+  { lang: 'uz', href: base + 'kurslar/ielts-speaking/' },
+  { lang: 'ru', href: base + 'ru/kurslar/ielts-speaking/' },
+  { lang: 'en', href: base + 'en/kurslar/ielts-speaking/' }
+];
+---
+<Base title={c.pageTitle} description={c.pageDescription} lang="ru" localeAlternates={alternates}>
+  <IeltsSkillCourse lang="ru" skill={"ielts-speaking"} title={c.title} eyebrow={c.eyebrow} description={c.description} accent={"#34d399"} price={c.price} priceUzs={c.priceUzs} priceUzsNum={c.priceUzsNum} available={c.available} fillNeeded={c.fillNeeded} practiceHref={"ielts-practice/speaking/"} practiceLabel={c.practiceLabel} sourceNote={c.sourceNote} speakingApp={false} />
+  <LocaleSwitch current="ru" />
+  <section id="speaking-practice"><SpeakingPractice /></section>
+</Base>

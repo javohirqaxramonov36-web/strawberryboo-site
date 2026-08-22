@@ -1,0 +1,19 @@
+---
+import Base from "../../../layouts/Base.astro";
+import IeltsSkillCourse from "../../../components/IeltsSkillCourse.astro";
+import LocaleSwitch from "../../../components/LocaleSwitch.astro";
+import WritingPractice from "../../../components/WritingPractice.astro";
+import { getIeltsWriting } from "../../../i18n/skills";
+const c = getIeltsWriting('en');
+const base = import.meta.env.BASE_URL;
+const alternates = [
+  { lang: 'uz', href: base + 'kurslar/ielts-writing/' },
+  { lang: 'ru', href: base + 'ru/kurslar/ielts-writing/' },
+  { lang: 'en', href: base + 'en/kurslar/ielts-writing/' }
+];
+---
+<Base title={c.pageTitle} description={c.pageDescription} lang="en" localeAlternates={alternates}>
+  <IeltsSkillCourse lang="en" skill={"ielts-writing"} title={c.title} eyebrow={c.eyebrow} description={c.description} accent={"#fbbf24"} price={c.price} priceUzs={c.priceUzs} priceUzsNum={c.priceUzsNum} available={c.available} fillNeeded={c.fillNeeded} practiceHref={"ielts-practice/writing/"} practiceLabel={c.practiceLabel} sourceNote={c.sourceNote} whyUseful={c.whyUseful} contentTodo={c.contentTodo} bonusHref={c.bonusHref} bonusLabel={c.bonusLabel} />
+  <LocaleSwitch current="en" />
+  <WritingPractice />
+</Base>

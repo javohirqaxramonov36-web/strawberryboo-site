@@ -1,10 +1,18 @@
 ---
 import Base from "../../layouts/Base.astro";
 import IeltsSkillCourse from "../../components/IeltsSkillCourse.astro";
+import LocaleSwitch from "../../components/LocaleSwitch.astro";
 import SpeakingPractice from "../../components/SpeakingPractice.astro";
+const base = import.meta.env.BASE_URL;
 const props = {skill:'ielts-speaking',title:'IELTS Speaking',eyebrow:'04 — IELTS SKILL',description:'IELTS Speaking tayyorgarlik: talaffuz, shadowing va Part 1/2/3 bo‘yicha 30 kunlik amaliy kurs. Har kuni aniqroq gapirish.',accent:'#34d399',available:[{title:'30 kunlik AI modul',text:'30 xil mavzu, daily pronunciation, original shadowing va IELTS uslubidagi Speaking Set.'},{title:'Timer va feedback',text:'Part 2 uchun 1 daqiqa tayyorlanish + 2 daqiqa gapirish taymeri, transcript-asosidagi AI practice feedback.'},{title:'Progress va sertifikat',text:'Mahalliy/server progress, trend va 30 kun yakunlanganda qatnashuv sertifikati oqimi.'}],fillNeeded:['Licensed human shadowing audio.','Server-STT va acoustic pronunciation scoring.'],sourceNote:'Mavjud Tayanch IELTS Speaking 30 kunlik AI moduli va 01.IELTS prep Speaking strategiyasi.',speakingApp:false};
+const alternates = [
+  { lang: 'uz', href: base + 'kurslar/ielts-speaking/' },
+  { lang: 'ru', href: base + 'ru/kurslar/ielts-speaking/' },
+  { lang: 'en', href: base + 'en/kurslar/ielts-speaking/' }
+];
 ---
-<Base title="IELTS Speaking: 30 kunlik amaliy kurs | Tayanch" description={props.description}>
-  <IeltsSkillCourse {...props} />
+<Base title="IELTS Speaking: 30 kunlik amaliy kurs | Tayanch" description={props.description} lang="uz" localeAlternates={alternates}>
+  <IeltsSkillCourse lang="uz" {...props} />
+  <LocaleSwitch current="uz" />
   <section id="speaking-practice"><SpeakingPractice /></section>
 </Base>

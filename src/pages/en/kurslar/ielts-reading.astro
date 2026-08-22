@@ -1,0 +1,17 @@
+---
+import Base from "../../../layouts/Base.astro";
+import IeltsSkillCourse from "../../../components/IeltsSkillCourse.astro";
+import LocaleSwitch from "../../../components/LocaleSwitch.astro";
+import { getIeltsReading } from "../../../i18n/skills";
+const c = getIeltsReading('en');
+const base = import.meta.env.BASE_URL;
+const alternates = [
+  { lang: 'uz', href: base + 'kurslar/ielts-reading/' },
+  { lang: 'ru', href: base + 'ru/kurslar/ielts-reading/' },
+  { lang: 'en', href: base + 'en/kurslar/ielts-reading/' }
+];
+---
+<Base title={c.pageTitle} description={c.pageDescription} lang="en" localeAlternates={alternates}>
+  <IeltsSkillCourse lang="en" skill={"ielts-reading"} title={c.title} eyebrow={c.eyebrow} description={c.description} accent={"#38bdf8"} price={c.price} priceUzs={c.priceUzs} priceUzsNum={c.priceUzsNum} available={c.available} fillNeeded={c.fillNeeded} practiceHref={"ielts-practice/reading/"} practiceLabel={c.practiceLabel} sourceNote={c.sourceNote} mockBonus={true} />
+  <LocaleSwitch current="en" />
+</Base>

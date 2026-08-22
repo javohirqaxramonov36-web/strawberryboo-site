@@ -1,7 +1,15 @@
 ---
 import Base from "../../layouts/Base.astro";
 import IeltsSkillCourse from "../../components/IeltsSkillCourse.astro";
+import LocaleSwitch from "../../components/LocaleSwitch.astro";
+const base = import.meta.env.BASE_URL;
+const alternates = [
+  { lang: 'uz', href: base + 'kurslar/ielts-reading/' },
+  { lang: 'ru', href: base + 'ru/kurslar/ielts-reading/' },
+  { lang: 'en', href: base + 'en/kurslar/ielts-reading/' }
+];
 ---
-<Base title="IELTS Reading: savol turlari va vaqt | Tayanch" description="IELTS Reading (o‘qish) tayyorgarlik: savol turini ajratish, vaqtni boshqarish va xato patternlarini aniqlash uchun amaliy yo‘nalish.">
-  <IeltsSkillCourse skill={"ielts-reading"} title={"IELTS Reading"} eyebrow={"02 — IELTS SKILL"} description={"Reading’da savol turini ajratish, vaqtni boshqarish va xato patternlarini aniqlash uchun amaliy yo‘nalish."} accent={"#38bdf8"} available={[{"title": "Original Reading mini-practice", "text": "Mavjud original practice formatida savolni o‘qish, javobni tekshirish va xatoni qayd qilish."}, {"title": "Vaqt va xato nazorati", "text": "Error-log orqali e’tiborsizlik, word limit va vaqt boshqaruvi xatolarini qayd etish."}, {"title": "Cambridge tracker", "text": "Qonuniy egalikdagi Cambridge kitoblari natijasini shaxsiy tracker’da saqlash."}]} fillNeeded={["30 kunlik Reading darslarining to‘liq ketma-ketligi.", "Qo‘shimcha original passage va savol banki."]} practiceHref={"ielts-practice/reading/"} practiceLabel={"Original Reading mini-practice’ni ochish"} sourceNote={"Mavjud IELTS Prep Reading bo‘limi va original practice kutubxonasi."} mockBonus={true} />
+<Base title="IELTS Reading: savol turlari va vaqt | Tayanch" description="IELTS Reading (o‘qish) tayyorgarlik: savol turini ajratish, vaqtni boshqarish va xato patternlarini aniqlash uchun amaliy yo‘nalish." lang="uz" localeAlternates={alternates}>
+  <IeltsSkillCourse lang="uz" skill={"ielts-reading"} title={"IELTS Reading"} eyebrow={"02 — IELTS SKILL"} description={"Reading’da savol turini ajratish, vaqtni boshqarish va xato patternlarini aniqlash uchun amaliy yo‘nalish."} accent={"#38bdf8"} available={[{"title": "Original Reading mini-practice", "text": "Mavjud original practice formatida savolni o‘qish, javobni tekshirish va xatoni qayd qilish."}, {"title": "Vaqt va xato nazorati", "text": "Error-log orqali e’tiborsizlik, word limit va vaqt boshqaruvi xatolarini qayd etish."}, {"title": "Cambridge tracker", "text": "Qonuniy egalikdagi Cambridge kitoblari natijasini shaxsiy tracker’da saqlash."}]} fillNeeded={["30 kunlik Reading darslarining to‘liq ketma-ketligi.", "Qo‘shimcha original passage va savol banki."]} practiceHref={"ielts-practice/reading/"} practiceLabel={"Original Reading mini-practice’ni ochish"} sourceNote={"Mavjud IELTS Prep Reading bo‘limi va original practice kutubxonasi."} mockBonus={true} />
+  <LocaleSwitch current="uz" />
 </Base>
