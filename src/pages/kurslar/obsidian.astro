@@ -4,8 +4,8 @@ import PaymentInstructions from "../../components/PaymentInstructions.astro";
 import CourseProgress from "../../components/CourseProgress.astro";
 import Quiz from "../../components/Quiz.astro";
 import ObsidianScreenshotSlots from "../../components/ObsidianScreenshotSlots.astro";
-const title = "Obsidian PKM — Tayanch";
-const description = "Shaxsiy bilim bazasi qurish. Tayanch bilan avtomatik capture.";
+const title = "Obsidian: shaxsiy bilim bazasi qurish | Tayanch";
+const description = "Obsidian PKM bilan shaxsiy bilim bazasi qurish: kundalik yuritish, eslatmalarni bog'lash va o'qiganingizni esda saqlash. Bepul kurs.";
 const base = import.meta.env.BASE_URL;
 const images = {
   graphOverview: base + "screenshots/obsidian-course/graph-view-overview.png",
@@ -15,7 +15,7 @@ const images = {
 const questions = [
   { q: "PKM nima?", opts: ["O'yin", "Shaxsiy bilim bazasi (Personal Knowledge Management)", "Pochta", "Virus"], answer: 1 },
   { q: "MOC nima uchun kerak?", opts: ["Rang uchun", "Kontentni bog'lash va yo'naltirish uchun", "Saqlash uchun", "Hech nima uchun"], answer: 1 },
-  { q: "Tayanch nima qiladi?", opts: ["Rasm chizadi", "Telegram'dan Obisidian'ga avtomatik capture", "Kod yozadi", "Video montaj"], answer: 1 }
+  { q: "Tayanch nima qiladi?", opts: ["Rasm chizadi", "Telegram'dan Obsidian'ga avtomatik capture", "Kod yozadi", "Video montaj"], answer: 1 }
 ];
 const shortcuts = [
   ["navigation", "Cmd + O", "Ctrl + O", "tezkor ochuvchi (nota nomini yozib ochish)"],
@@ -51,7 +51,7 @@ const plugins = [
     <div class="hero-copy"><span class="eyebrow">PERSONAL KNOWLEDGE MANAGEMENT</span>    <h1>O'qiganingiz esda qoladigan bilim bazasi</h1><div class="price"><span class="now">$19</span><span class="old">$29</span><span class="badge badge-new">-35%</span><span class="badge badge-cert">Sertifikat</span><span class="uzs">≈ 240 000 so'm</span></div></div>
     <button class="image-card hero-image" type="button" data-lightbox-src={images.graphOverview} data-lightbox-alt="Obsidian Graph view overview"><img src={images.graphOverview} alt="Obsidian Graph view overview" loading="eager" /><span class="image-card-label">Graph view overview <span>↗ Kattalashtirish</span></span></button>
   </header>
-  <p class="lead" data-i18n="op.lead">Shaxsiy bilim bazasi qurish. Tayanch bilan Telegram'dan forward qilsangiz — AI xulosalab, Obsidian'ga saqlaydi.</p>
+  <p class="lead">Shaxsiy bilim bazasi qurish. Kimga mo'ljallangan: kundalik yuritadigan, o'qigan/o'rgangan narsalarini tartibga solmoqchi bo'lgan talaba va tadqiqotchilarga. Tayanch bilan Telegram'dan forward qilsangiz — AI xulosalab, Obsidian'ga saqlaydi.</p>
   <section><h2 data-i18n="op.modules">Kurs modullari</h2><ol class="modules"><li data-i18n="op.mod1">Nima uchun Obsidian? (Tashqi xotira)</li><li data-i18n="op.mod2">Vault tuzilmasi: MOC, papkalar, link'lar</li><li data-i18n="op.mod3">AutoConnect plugin: yangi note'larni avtomatik ulash</li><li data-i18n="op.mod4">Tayanch: Telegram → Obsidian capture</li><li data-i18n="op.mod5">Graph view: bilimlar bog'lanishi</li><li data-i18n="op.mod6">Qayerda qo'llash: o'qish, ish, tadqiqot</li></ol></section>
   <section><h2>1. Nima uchun Obsidian? (Tashqi xotira)</h2><p>Miyamiz cheksiz emas — eslab qolish uchun cheklangan. Obsidian esa <b>tashqi xotira</b>: fikrlaringizni, darslarni, manbalarni bir joyga yozib, keyin tez topib oladigan shaxsiy bilim bazasi (PKM — Personal Knowledge Management). Oddiy fayl (Markdown) sifatida saqlanadi — hech qanday "qora quti" yo'q, istalgan muharrirda ochib o'qish mumkin.</p><div class="core-idea"><b>ASOSIY G'OYA:</b> bilimni <b>saqlash</b> va <b>bog'lash</b> — shunchaki yozib qo'yish emas, balki ular orasida aloqa (link) yaratish.</div></section>
   <section><h2>Amaliy rasm joylari: vault asoslari</h2><p class="quiz-hint">Quyidagi joylarga faqat siz olgan haqiqiy Obsidian skrinshotlari yuklanadi. Tavsiya: WebP, har biri 150 KB dan kichik.</p><ObsidianScreenshotSlots section="basics" /></section>

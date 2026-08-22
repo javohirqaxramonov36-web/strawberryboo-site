@@ -1,5 +1,6 @@
 ---
 import Base from "../layouts/Base.astro";
+import { payments } from "../config/payments";
 const title = "Homiylik | Tayanch";
 const description = "Tayanch kurslarini bepul va sifatli saqlash uchun ixtiyoriy homiylik. Click, Payme, Paynet va karta orqali.";
 const base = import.meta.env.BASE_URL;
@@ -30,38 +31,24 @@ const base = import.meta.env.BASE_URL;
     <div class="donate-methods">
       <h2 data-i18n="donate.methodsTitle">To'lov usullari</h2>
       <div class="pay-grid">
-        <div class="pay-card">
-          <div class="pay-ic" aria-hidden="true">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7h18v10H3z"/><path d="M3 11h18"/></svg>
+        {payments.map((m) => (
+          <div class="pay-card">
+            <div class="pay-ic" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/></svg>
+            </div>
+            <h3>{m.label}</h3>
+            {m.enabled ? (
+              <p class="pay-value">{m.value}</p>
+            ) : (
+              <p>{m.note}</p>
+            )}
+            {m.enabled && m.url ? (
+              <a href={m.url} class="pay-link" target="_blank" rel="noopener">To'lov sahifasiga o'tish →</a>
+            ) : !m.enabled ? (
+              <span class="pay-soon" data-i18n="donate.soon">Tez orada</span>
+            ) : null}
           </div>
-          <h3 data-i18n="donate.click">Click</h3>
-          <p data-i18n="donate.clickDesc">Rasmiy Click havolasi tez orada qo'shiladi.</p>
-          <span class="pay-soon" data-i18n="donate.soon">Tez orada</span>
-        </div>
-        <div class="pay-card">
-          <div class="pay-ic" aria-hidden="true">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v18"/><path d="M3 12h18"/></svg>
-          </div>
-          <h3 data-i18n="donate.payme">Payme</h3>
-          <p data-i18n="donate.paymeDesc">Rasmiy Payme havolasi tez orada qo'shiladi.</p>
-          <span class="pay-soon" data-i18n="donate.soon">Tez orada</span>
-        </div>
-        <div class="pay-card">
-          <div class="pay-ic" aria-hidden="true">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg>
-          </div>
-          <h3 data-i18n="donate.paynet">Paynet</h3>
-          <p data-i18n="donate.paynetDesc">Rasmiy Paynet havolasi tez orada qo'shiladi.</p>
-          <span class="pay-soon" data-i18n="donate.soon">Tez orada</span>
-        </div>
-        <div class="pay-card">
-          <div class="pay-ic" aria-hidden="true">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/></svg>
-          </div>
-          <h3 data-i18n="donate.card">Karta (UZCARD / HUMO)</h3>
-          <p data-i18n="donate.cardDesc">UZCARD / HUMO karta raqami tez orada qo'shiladi.</p>
-          <span class="pay-soon" data-i18n="donate.soon">Tez orada</span>
-        </div>
+        ))}
       </div>
       <p class="donate-note" data-i18n="donate.note">
         Homiylik ixtiyoriy va qo'shimcha majburiyat keltirmaydi. Rahmat!
@@ -97,6 +84,17 @@ const base = import.meta.env.BASE_URL;
   .pay-ic svg { width: 26px; height: 26px; }
   .pay-card h3 { margin: 0 0 .5rem; font-size: 1.1rem; color: var(--text); }
   .pay-card p { color: var(--muted); font-size: .9rem; margin: 0 0 1rem; min-height: 2.6rem; }
+  .pay-value {
+    color: var(--text) !important; font-weight: 700; font-size: 1rem;
+    letter-spacing: .02em; word-break: break-all; background: var(--accent-soft);
+    border: 1px dashed var(--accent); border-radius: 10px; padding: 10px 12px;
+    min-height: auto !important;
+  }
+  .pay-link {
+    display: inline-block; margin-top: .2rem; color: var(--accent); font-weight: 700;
+    text-decoration: none; font-size: .9rem;
+  }
+  .pay-link:hover { text-decoration: underline; }
   .pay-soon {
     display: inline-block; font: 700 12px var(--font-display); letter-spacing: .04em;
     color: var(--accent); background: var(--accent-soft); padding: 6px 14px; border-radius: 999px;
