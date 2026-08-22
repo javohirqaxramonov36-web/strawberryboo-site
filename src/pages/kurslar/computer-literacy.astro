@@ -3,7 +3,6 @@ import Base from "../../layouts/Base.astro";
 import LeadMagnetCTA from "../../components/LeadMagnetCTA.astro";
 import CourseSchema from "../../components/CourseSchema.astro";
 import CourseTestimonialPlaceholder from "../../components/CourseTestimonialPlaceholder.astro";
-import LeadMagnetCTA from "../../components/LeadMagnetCTA.astro";
 const title = "Computer Literacy — Raqamli savodxonlik | Tayanch";
 const description = "Microsoft Office (Word, Excel, PowerPoint) va Google Workspace (Docs, Sheets, Slides) asoslari — zamonaviy muhandislik va ta'lim uchun amaliy raqamli ko'nikmalar.";
 ---
@@ -84,6 +83,8 @@ const description = "Microsoft Office (Word, Excel, PowerPoint) va Google Worksp
   </section>
 
   <a href={import.meta.env.BASE_URL + 'kurslar'} class="course-nav-link" style="margin-top:2rem;">← Barcha kurslar</a>
+  <CourseTestimonialPlaceholder />
+  <LeadMagnetCTA />
 </article>
 <style>.office-grid{padding:1.2rem;border:1px solid #60a5fa;border-radius:16px;background:linear-gradient(135deg,rgba(96,165,250,.1),var(--surface))}.office-grid>div{display:grid;grid-template-columns:repeat(4,1fr);gap:.6rem}.office-grid article{display:grid;gap:.3rem;padding:1rem;border:1px solid var(--border);border-radius:12px;background:var(--surface);font-size:1.4rem;color:#93c5fd}.office-grid b{font-size:.9rem;color:var(--text)}.office-grid small{font-size:.75rem;color:var(--muted)}.office-grid ol{color:var(--muted)}@media(max-width:600px){.office-grid>div{grid-template-columns:repeat(2,1fr)}}</style>
 </Base>

@@ -5,7 +5,10 @@ const title = Astro.props.title || "Tayanch";
 const description = Astro.props.description || '';
 const lang = Astro.props.lang || "uz";
 const canonical = Astro.props.canonical || Astro.url.href;
-const localeAlternates = Astro.props.localeAlternates || [];
+const localeAlternates = (Astro.props.localeAlternates || []).map((alternate) => ({
+  ...alternate,
+  href: new URL(alternate.href, Astro.url.origin).href
+}));
 const canonicalUz = (localeAlternates.find((a) => a.lang === 'uz') || {}).href || canonical;
 const base = import.meta.env.BASE_URL;
 const TG = "https://t.me/progression_go"; // Telegram kanal/guruh havolasi
@@ -33,9 +36,10 @@ const TG = "https://t.me/progression_go"; // Telegram kanal/guruh havolasi
     <title>{title}</title>
     <meta name="description" content={description} />
     <link rel="canonical" href={canonical} />
-    <link rel="alternate" hreflang="uz" href={canonicalUz} />
+    {localeAlternates.length > 0
+      ? localeAlternates.map((a) => <link rel="alternate" hreflang={a.lang} href={a.href} />)
+      : <link rel="alternate" hreflang="uz" href={canonicalUz} />}
     <link rel="alternate" hreflang="x-default" href={canonicalUz} />
-    {localeAlternates.map((a) => <link rel="alternate" hreflang={a.lang} href={a.href} />)}
     <meta name="robots" content="index, follow" />
     <meta name="theme-color" content="#0e0f15" />
     <!-- Favicon (files already live in /public) — use BASE_URL so the project-page base path is included -->
@@ -380,7 +384,6 @@ const TG = "https://t.me/progression_go"; // Telegram kanal/guruh havolasi
           "mt.all": "← Barcha kurslar",
           "mt.quizTitle": "O'z bilimingizni tekshiring",
 
-          "ap.lead": "Chet el universitetlariga hujjat topshirish — murakkab jarayon. Noto'g'ri qadam stipendiyani o'tkazib yuborishi mumkin.",
           "ap.modules": "Kurs modullari",
           "ap.mod1": "Universitet tanlash: reyting, mutaxassislik, xarajat",
           "ap.mod2": "Hujjatlar: diplom, transcript, pasport",
@@ -587,7 +590,6 @@ const TG = "https://t.me/progression_go"; // Telegram kanal/guruh havolasi
           "ac.m8": "To'liq floor-plan workflow",
           "ac.m9": "AutoLISP bilan takrorlanadigan ishni avtomatlashtirish",
           "ac.m10": "Mac workflow: shortcut, template va tezlik",
-          "ac.buy": "Kursni sotib olish →",
           "ac.allCourses": "← Barcha kurslar",
           "bp.h1": "Backend Development — Python",
           "bp.lead": "Python, FastAPI va PostgreSQL bilan server tomonidan ishlaydigan haqiqiy ilova qurishni o'rganasiz — API yaratishdan autentifikatsiyagacha. Mini-loyiha sifatida kichik CRM yoki To-Do API yasaysiz. Kimga mo'ljallangan: dasturlashga yangi kirgan, lekin veb-ilova orqasidagi mantiqni tushunib yetishni xohlovchi talaba va yangi boshlovchilarga.",
@@ -957,7 +959,6 @@ const TG = "https://t.me/progression_go"; // Telegram kanal/guruh havolasi
           "mt.all": "← Все курсы",
           "mt.quizTitle": "Проверьте свои знания",
 
-          "ap.lead": "Подача документов в зарубежные университеты — сложный процесс. Неверный шаг может стоить стипендии.",
           "ap.modules": "Модули курса",
           "ap.mod1": "Выбор университета: рейтинг, специальность, расходы",
           "ap.mod2": "Документы: диплом, transcript, паспорт",
@@ -1164,7 +1165,6 @@ const TG = "https://t.me/progression_go"; // Telegram kanal/guruh havolasi
           "ac.m8": "Полный workflow плана этажа",
           "ac.m9": "Автоматизация повторов через AutoLISP",
           "ac.m10": "Mac workflow: горячие клавиши, шаблон и скорость",
-          "ac.buy": "Купить курс →",
           "ac.allCourses": "← Все курсы",
           "bp.h1": "Backend Development — Python",
           "bp.lead": "Вы научитесь строить настоящее серверное приложение на Python, FastAPI и PostgreSQL — от создания API до аутентификации. В качестве мини-проекта сделаете небольшой CRM или To-Do API. Для кого: новички в программировании, которые хотят понять логику за веб-приложением.",
@@ -1534,7 +1534,6 @@ const TG = "https://t.me/progression_go"; // Telegram kanal/guruh havolasi
           "mt.all": "← All courses",
           "mt.quizTitle": "Check your knowledge",
 
-          "ap.lead": "Applying to foreign universities is a complex process. One wrong step can cost you the scholarship.",
           "ap.modules": "Course modules",
           "ap.mod1": "Choosing a university: ranking, major, cost",
           "ap.mod2": "Documents: diploma, transcript, passport",
@@ -1741,7 +1740,6 @@ const TG = "https://t.me/progression_go"; // Telegram kanal/guruh havolasi
           "ac.m8": "Full floor-plan workflow",
           "ac.m9": "Automating repeats with AutoLISP",
           "ac.m10": "Mac workflow: shortcuts, template and speed",
-          "ac.buy": "Buy the course →",
           "ac.allCourses": "← All courses",
           "bp.h1": "Backend Development — Python",
           "bp.lead": "Learn to build a real server-side app with Python, FastAPI and PostgreSQL — from creating an API to authentication. As a mini-project you'll build a small CRM or To-Do API. For: beginners in programming who want to understand the logic behind web apps.",
@@ -1984,6 +1982,8 @@ const TG = "https://t.me/progression_go"; // Telegram kanal/guruh havolasi
       };
 
       const LS_KEY = 'org-lam-lang';
+      const routeLang = document.documentElement.lang || 'uz';
+      const routeControlsLanguage = routeLang !== 'uz';
       function applyLang(lang) {
         if (!I18N[lang]) lang = 'uz';
         document.documentElement.lang = lang;
@@ -1997,7 +1997,8 @@ const TG = "https://t.me/progression_go"; // Telegram kanal/guruh havolasi
           b.classList.toggle('active', b.getAttribute('data-lang') === lang);
         });
       }
-      var savedLang = localStorage.getItem(LS_KEY) || 'uz';
+      var savedLang = routeControlsLanguage ? routeLang : (localStorage.getItem(LS_KEY) || routeLang);
+      if (routeControlsLanguage) localStorage.setItem(LS_KEY, routeLang);
       applyLang(savedLang);
       document.querySelectorAll('[data-lang]').forEach(function (b) {
         b.addEventListener('click', function (e) {

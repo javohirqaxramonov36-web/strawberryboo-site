@@ -1,7 +1,5 @@
 ---
 import Base from '../../layouts/Base.astro';
-import CourseTestimonialPlaceholder from "../../components/CourseTestimonialPlaceholder.astro";
-import LeadMagnetCTA from "../../components/LeadMagnetCTA.astro";
 import CourseProgress from '../../components/CourseProgress.astro';
 import VocabularyMethodCard from '../../components/VocabularyMethodCard.astro';
 const base = import.meta.env.BASE_URL;
@@ -55,8 +53,6 @@ const methods = [
     <section class="obsidian-callout"><div><p class="eyebrow">CHUQURROQ O‘RGANISH</p><h2 data-i18n="vo.ocTitle">Obsidian tizimini noldan qurmoqchimisiz?</h2><p data-i18n="vo.ocText">Obsidian PKM kursida nota, linklar va Spaced Repetition plagini bilan ishlash yo‘li batafsil ko‘rsatilgan.</p></div><a class="start-btn" href={base + 'kurslar/obsidian/'} data-i18n="vo.ocLink">Obsidian PKM kursi →</a></section>
 
     <div class="actions"><a class="course-nav-link" href={base + 'kurslar/#ielts-courses'} data-i18n="vo.allIELTS">← Barcha IELTS kurslari</a></div>
-    <CourseTestimonialPlaceholder />
-  <LeadMagnetCTA />
 </article>
 </Base>
 

@@ -11,3 +11,11 @@
 - Existing LeadMagnetCTA remained on 4 pages; the remaining 11 non-IELTS direct course pages now also use it (15 total). IeltsSkillCourse routes and the two `ielts-*` direct routes remained excluded.
 - Titles normalized only in el-yurt-umidi and financial-literacy as requested.
 - Home page now links to Mening yo'lim with a grounded excerpt based on the existing founder story; source page body was not changed.
+
+
+## i18n repair — 2026-08-22
+- IELTS skill-page `LocaleSwitch` endi `slug` prop oladi; Listening, Reading, Writing va Speaking sahifalarida UZ/RU/EN tugmalari aynan o‘sha kursning mos URLiga olib boradi.
+- RU/EN route’larda server beradigan `lang` holati client-side i18n ustidan ustuvor qilindi; localized sahifa endi birinchi yuklanishda eski localStorage qiymati sabab UZ UIga qaytmaydi.
+- `hreflang` teglarida UZ dublikati olib tashlandi va localized alternate URLlar absolute URL sifatida chiqariladi.
+- `ielts-vocabulary` non-IELTS kurs sahifalari uchun mo‘ljallangan testimonial/CTA qamrovidan chiqarildi; qolgan 7 ta regressiya qilingan standart kurs sahifasida placeholder va LeadMagnetCTA qayta tiklandi.
+- Base i18n dictionary’dagi 6 ta duplicate key warning (`ap.lead`, `ac.buy`, har 3 tilda) tozalandi.

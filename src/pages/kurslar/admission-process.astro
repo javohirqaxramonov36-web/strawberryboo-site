@@ -6,7 +6,6 @@ import PaymentInstructions from "../../components/PaymentInstructions.astro";
 import CourseSchema from "../../components/CourseSchema.astro";
 import Quiz from "../../components/Quiz.astro";
 import CourseTestimonialPlaceholder from "../../components/CourseTestimonialPlaceholder.astro";
-import LeadMagnetCTA from "../../components/LeadMagnetCTA.astro";
 const title = "Chet elga qabul: hujjatdan intervyugacha | Tayanch";
 const description = "Chet el universitetlariga qabul: ariza, essay (SOP), tavsiyat va intervyu. Magistratura va doktoranturaga hujjat topshirish bo'yicha yo'l xaritasi.";
 const base = import.meta.env.BASE_URL;
@@ -121,6 +120,8 @@ const subcourses = [
     <Quiz title="O'z bilimingizni tekshiring" questions={questions} />
     <a href={base + 'kurslar'} class="course-nav-link" data-i18n="ap.allCourses">← Barcha kurslar</a>
     <PaymentInstructions course="Admission Process" price="49 000 so'mdan" />
+  <CourseTestimonialPlaceholder />
+  <LeadMagnetCTA />
 </article>
 
   <script>

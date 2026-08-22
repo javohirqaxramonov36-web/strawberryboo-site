@@ -6,7 +6,6 @@ import CourseProgress from "../../components/CourseProgress.astro";
 import CourseSchema from "../../components/CourseSchema.astro";
 import Quiz from "../../components/Quiz.astro";
 import CourseTestimonialPlaceholder from "../../components/CourseTestimonialPlaceholder.astro";
-import LeadMagnetCTA from "../../components/LeadMagnetCTA.astro";
 const title = "AI Agent yaratish: CrewAI va LangGraph | Tayanch";
 const description = "AI agent nima va nima uchun kerak: CrewAI va LangGraph bilan o'z agent'ingizni yaratish. Vazifalarni avtomatlashtirish bo'yicha o'zbekcha kurs.";
 const questions = [
@@ -277,6 +276,8 @@ pip install langgraph</code></pre>
 
   <Quiz title="O'z bilimingizni tekshiring" titleI18n="aa.quizTitle" questions={questions} />
   <PaymentInstructions course="AI Agentlar nega kerak?" price="$39 · ≈ 490 000 so'm" />
+  <CourseTestimonialPlaceholder />
+  <LeadMagnetCTA />
 </article>
 
 <style>

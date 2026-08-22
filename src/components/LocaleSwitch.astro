@@ -1,10 +1,11 @@
 ---
-const { current } = Astro.props;
+const { current, slug } = Astro.props;
 const base = import.meta.env.BASE_URL;
+const normalizedSlug = String(slug || 'ielts-listening').replace(/^\/+|\/+$/g, '');
 const langs = [
-  { code: 'uz', label: 'UZ', path: 'kurslar/ielts-listening/' },
-  { code: 'ru', label: 'RU', path: 'ru/kurslar/ielts-listening/' },
-  { code: 'en', label: 'EN', path: 'en/kurslar/ielts-listening/' }
+  { code: 'uz', label: 'UZ', path: `kurslar/${normalizedSlug}/` },
+  { code: 'ru', label: 'RU', path: `ru/kurslar/${normalizedSlug}/` },
+  { code: 'en', label: 'EN', path: `en/kurslar/${normalizedSlug}/` }
 ];
 ---
 <nav class="locale-switch" aria-label="Til tanlash / Выбор языка / Language">
