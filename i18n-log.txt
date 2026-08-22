@@ -53,10 +53,21 @@ IELTS Listening uchun to'liq, ishlaydigan RU/EN tarjima piloti qo'shildi:
 - Bu — SINOV/pilot. To'liq sayt tarjimasi (Stage 4) alohida, bosqichma-bosqich va
   kerakli kontent tasdiqlangandan keyin kengaytiriladi.
 
-BOSQICH 4 — QOLGAN KONTENTGA KENGAYTIRISH
-------------------------------------------
-Faqat Stage 3 ko'rib chiqilgandan keyin boshlanadi. Hozircha IELTS Listening piloti +
-scaffold tayyor. Qolgan kurslar / asosiy sahifalar nav/lug'at orqali kengaytirilishi kerak.
+BOSQICH 4 — QOLGAN KONTENTGA KENGAYTIRISH (ASOSIY QISM TAYYOR)
+---------------------------------------------------------------
+Global til almashtirgich (Base.astro dagi `.lang-switch`) endi UZ/RU/EN ni ko'rsatadi va
+ishlaydi. Bosilganda `applyLang()` barcha `[data-i18n]` elementlarni mavjud `I18N` lug'ati
+(uz/ru/en) orqali tarjima qiladi, tanlov `localStorage` ('org-lam-lang') da saqlanadi va
+sahifalar o'rtasida saqlanadi.
+Avtomat tarjima qamrovi (data-i18n orqali): butun sayt chrome (nav, footer, sidebar) +
+9 ta kurs sahifasi (ai-agentlar, chet-elda-oqish, el-yurt-umidi, figma, financial-literacy,
+mac-tezlik-sirlari, obsidian, prompt-engineering, tekin-ai) + bosh sahifa. Barcha ularning
+RU/EN tarjimalari lug'atda mavjud.
+Qolgan sahifalar (masalan, vibe-coding, ielts-writing, admission-process, backend-python
+va boshqalar) hali `[data-i18n]` bilan instrumentlanmagan — ularning asosiy kontenti UZ
+bo'lib qoladi. Bu bosqichma-bosqich: har bir sahifaga `data-i18n`+qiymat qo'shish va
+lug'atni to'ldirish orqali kengaytiriladi. IELTS Listening esa to'liq server-rendered
+RU/EN routelar bilan tayyor (qarang: /ru/kurslar/ielts-listening/, /en/...).
 
 MAJBURIY TEKSHIRUV
 ------------------

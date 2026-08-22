@@ -72,6 +72,31 @@ const base = import.meta.env.BASE_URL;
       </ol>
     </section>
 
+    <!-- QOLGAN MODULLAR UCHUN HAQIQIY DARSLAR -->
+    <section class="vibe-lessons">
+      <div class="sec-head"><h2 class="sec-title">Kurs darslari — qisqa yo'riqnoma</h2></div>
+
+      <div class="vibe-lesson">
+        <h3>Modul 1 — Vibe Coding nima o'zi?</h3>
+        <p>Vibe coding — dasturchi qo'lda har qatorni yozmaydi, balki AI agentga <b>nima kerakligini</b> tushuntiradi; agent esa kodni yozadi, tahrirlaydi va testdan o'tkazadi. An'anaviy yondashuvda siz kodni o'zingiz yozasiz; vibe coding'da agent yozadi, siz esa natijani ko'rib chiqib yo'naltirasiz. Kimlar uchun: g'oyasi bor, lekin dasturlashni chuqur bilmaydigan tadbirkor, marketolog, o'qituvchi va g'oyalarni tez sinab ko'rishni istaganlar.</p>
+      </div>
+
+      <div class="vibe-lesson">
+        <h3>Modul 2 — AI kodlash agentlariga kirish</h3>
+        <p>Pullik vositalar: Cursor (editor ichida agent), GitHub Copilot (taklif), Claude Code (terminal agent) — qulay, lekin oyiga $10–$60+. Bepul/ochiq alternativalar: <b>OpenCode</b> (terminal, provayder tanlanadi), Cline va Continue (VS Code bilan), Aider. Boshlash uchun eng yaxshisi OpenCode: u Gemini, Groq, Ollama kabi bepul provayderlarni qo'llab-quvvatlaydi.</p>
+      </div>
+
+      <div class="vibe-lesson">
+        <h3>Modul 3 — OpenCode'ni o'rnatish</h3>
+        <ul class="lesson-list">
+          <li>Terminalda <code>npm install -g opencode</code> (yoki rasmiy skript).</li>
+          <li><code>opencode</code> buyug'i bilan ishga tushiring.</li>
+          <li>Provayder ulash: OpenCode Zen yoki Google AI Studio'dan bepul Gemini kaliti; yoki Groq (tezkor, bepul limit); yoki Ollama (butunlay offlayn).</li>
+          <li>Loyiha papkasida <code>opencode</code> ishga tushiring.</li>
+        </ul>
+        <p class="lesson-note">Muhim: kalitlarni <code>.env</code> faylida saqlang, hech qachon kodga to'g'ridan-to'g'ri yozmang.</p>
+      </div>
+
     <!-- NAMUNA DARS: MODUL 5 (haqiqiy, yozilgan kontent) -->
     <section class="vibe-lesson">
       <div class="sec-head"><h2 class="sec-title">Namuna dars — Modul 5: Prompt yozish san'ati</h2></div>
@@ -115,6 +140,42 @@ Format: faqat &lt;section&gt; blokini qaytar, 3-4 qator izoh bilan tushuntir.</p
         Eslatma: bu — kursning bitta namuna darsi. To'liq 10 modul (o'rnatish, xato tuzatish, MCP, real loyiha)
         alohida material sifatida, tekshirib tasdiqlangandan keyin qo'shiladi.
       </p>
+    </section>
+
+      <div class="vibe-lesson">
+        <h3>Modul 4 — Birinchi loyiha: oddiy landing page</h3>
+        <p>Maqsad: sodda, mobilga mos landing. Agentga bosqichma-bosqich bering: (a) "index.html yarating, navbar + hero", (b) "hero'ga 2 ta tugma qo'shing", (c) "Tailwind CDN ulab, ranglarni brendga moslang", (d) "mobil uchun media query qo'shing". Har bosqichdan so'ng brauzerda ko'ring — kichik qadamlar aniqroq natija beradi. Yakuniy natijani GitHub Pages'ga joylang.</p>
+      </div>
+
+      <div class="vibe-lesson">
+        <h3>Modul 5 — Prompt yozish san'ati</h3>
+        <p>Quyida alohida, to'liq namuna dars berilgan (rol/kontekst/vazifa tuzilmasi, yomon vs yaxshi prompt, tekshirish ro'yxati). O'qib chiqing.</p>
+      </div>
+
+      <div class="vibe-lesson">
+        <h3>Modul 6 — Xatolarni tuzatish va nazorat</h3>
+        <p>Agent yozgan kodni ko'rib chiqish majburiy. <code>git diff</code> orqali nima o'zgarganini o'qing. "Auto-approve" rejimini ehtiyotkorlik bilan ishlating — agent xato qilsa, u avtomatik qabul qilinadi. Mavjud testlarni ishga tushiring; xato bo'lsa agentga aniq ayting: "X sahifada tugma ishlamayapti, sababi...". Diff'ni tushunmasangiz, agentdan qisqa izoh so'rang.</p>
+      </div>
+
+      <div class="vibe-lesson">
+        <h3>Modul 7 — MCP va integratsiyalar</h3>
+        <p>MCP (Model Context Protocol) — agentga tashqi vositalarni ulash standarti. Masalan, GitHub MCP orqali agent issue yaratadi va fayl yozadi; fayl-tizimi MCP orqali loyihangizni o'qiydi. Token sarfini boshqarish: katta fayllarni to'liq yubormasdan, faqat kerakli qismini bering (.gitignore, qisqa context). Juda uzun suhbat — xarajat va sifat pasayishiga olib keladi.</p>
+      </div>
+
+      <div class="vibe-lesson">
+        <h3>Modul 8 — Real loyiha: shu sayt qanday qurilgan</h3>
+        <p>Tayanch saytining ko'p bo'limlari aynan shu usulda qurilgan. Masalan kurs sahifalari: "IELTS skill-kurs uchun card yarat, accent rang parametri bilan"; testimonial bloki: "bo'sh placeholder, lekin hech qanday soxta fikr ko'rsatma". Muvaffaqiyat kaliti — aniq, chegaralangan topshiriq va har bosqichda tekshirish. Dastlab keng topshiriqlar chalkashlik keltirdi; keyin ularni kichik qismlarga bo'ldik.</p>
+      </div>
+
+      <div class="vibe-lesson">
+        <h3>Modul 9 — Vibe coding orqali pul topish</h3>
+        <p>Frilanserlik: mijozlarga tezkor prototiplar va landing sahifalar. Portfolio: o'zingizning loyihalaringizni joylang. Narx belgilash: vaqt tejashni hisobga oling — prototype 1 kunda, an'anaviy 1 hafta. Mijozlar: kichik biznes, shaxsiy brend, tadbirkorlar. Eslatma: sifatli natija uchun agentni nazorat qilish — sizning asosiy ishingiz.</p>
+      </div>
+
+      <div class="vibe-lesson">
+        <h3>Modul 10 — Xavfsizlik va yaxshi amaliyotlar</h3>
+        <p>API kalitlarini hech qachon kodga yozmang — <code>.env</code> + <code>.gitignore</code>. Xarajat limiti o'rnating (provayderda). "Auto-approve" xavfi: agent kutilmagan faylni o'zgartirishi mumkin — muhim fayllar uchun tasdiqlash talab qiling. Maxfiy ma'lumotlarni agentga yubormang. Har kunda <code>git commit</code> qiling — xato bo'lsa, oldingi holatga qaytish oson bo'ladi.</p>
+      </div>
     </section>
 
     <p style="margin-top:2rem;">
