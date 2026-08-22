@@ -7,26 +7,26 @@ const base = import.meta.env.BASE_URL;
 
 <Base title={title} description={description}>
 <section class="hero">
-  <span class="eyebrow">Aloqa</span>
-  <h1>Bog'lanish</h1>
-  <p class="lead">Savollaringiz bormi? Kurslar, to'lov usullari yoki hamkorlik bo'yicha bizga yozing — tez orada javob beramiz.</p>
+  <span class="eyebrow" data-i18n="bl.eyebrow">Aloqa</span>
+  <h1 data-i18n="bl.h1">Bog'lanish</h1>
+  <p class="lead" data-i18n="bl.lead">Savollaringiz bormi? Kurslar, to'lov usullari yoki hamkorlik bo'yicha bizga yozing — tez orada javob beramiz.</p>
 </section>
 
 <section id="selectedAdmission" class="selected-admission" hidden aria-live="polite">
-  <p class="eyebrow">TANLANGAN ADMISSION SUB-KURSI</p>
-  <h2 id="selectedAdmissionTitle">Kursingiz tayyor</h2>
+  <p class="eyebrow" data-i18n="bl.admEyebrow">TANLANGAN ADMISSION SUB-KURSI</p>
+  <h2 id="selectedAdmissionTitle" data-i18n="bl.admTitle">Kursingiz tayyor</h2>
   <p id="selectedAdmissionText"></p>
   <div class="selected-admission-bottom"><div><span>Tanlangan narx</span><strong id="selectedAdmissionPrice"></strong></div><a id="openAdmissionCourse" class="start-btn" href={base + 'kurslar/admission-process/'}>Kurs ma'lumotlarini ko'rish →</a></div>
 </section>
 
 <section class="why-us contact-channels">
-  <div class="sec-head" style="margin-top:0"><h2 class="sec-title"><span class="sec-ic" style="background:linear-gradient(135deg,#7d7df5,#5b5bd6)"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></span>Kanallar</h2></div>
+  <div class="sec-head" style="margin-top:0"><h2 class="sec-title"><span class="sec-ic" style="background:linear-gradient(135deg,#7d7df5,#5b5bd6)"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></span><span data-i18n="bl.channels">Kanallar</span></h2></div>
   <ul class="channels-list">
     <li class="course channel"><div class="c-ic" style="--c:#3b82f6"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div><div><strong>Telegram</strong><br><a href="https://t.me/progression_go" class="enroll">@progression_go</a></div></li>
     <li class="course channel"><div class="c-ic" style="--c:#22c55e"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></svg></div><div><strong>Email</strong><br><a href="mailto:javohirqaxramonov36@gmail.com" class="enroll">javohirqaxramonov36@gmail.com</a></div></li>
     <li class="course channel"><div class="c-ic" style="--c:#f59e0b"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/></svg></div><div><strong>To'lov</strong><br><a href="https://t.me/progression_go" class="enroll">To'lov tafsilotlari uchun Telegram orqali yozing</a></div></li>
   </ul>
-  <p style="margin-top:1.5rem;"><a href={base + 'kurslar'} class="start-btn">← Barcha kurslarga qaytish</a></p>
+  <p style="margin-top:1.5rem;"><a href={base + 'kurslar'} class="start-btn" data-i18n="bl.allCourses">← Barcha kurslarga qaytish</a></p>
 </section>
 
 <script>

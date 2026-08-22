@@ -7,9 +7,9 @@ const base = import.meta.env.BASE_URL;
 
 <Base title={title} description={description}>
   <section class="hero-j">
-    <span class="eyebrow">ASOSCHI HIKOYASI</span>
-    <h1>Mening yo'lim</h1>
-    <p class="lead">Bu reklama emas. Bu men nimani boshdan kechirganim, nimani o'rganganim va nima uchun Tayanch’ni yaratayotganim haqidagi halol hikoya.</p>
+    <span class="eyebrow" data-i18n="jour.eyebrow">ASOSCHI HIKOYASI</span>
+    <h1 data-i18n="nav.journey">Mening yo'lim</h1>
+    <p class="lead" data-i18n="jour.lead">Bu reklama emas. Bu men nimani boshdan kechirganim, nimani o'rganganim va nima uchun Tayanch’ni yaratayotganim haqidagi halol hikoya.</p>
   </section>
 
   <section class="story-intro" aria-label="Qisqa tanishuv">
@@ -21,8 +21,8 @@ const base = import.meta.env.BASE_URL;
     <article class="step">
       <div class="step-no">01</div>
       <div class="step-body">
-        <p class="step-kicker">BOSHLANISH NUQTASI</p>
-        <h2>Otam bilan qurilishda</h2>
+        <p class="step-kicker" data-i18n="jour.k1">BOSHLANISH NUQTASI</p>
+        <h2 data-i18n="jour.s1">Otam bilan qurilishda</h2>
         <p>Otam bilan qurilish ishlarida yurgan paytlarimda beton quyish, devor pardozlash, kafel yotqizish va material hisoblash bilan tanishdim. Oshxonamizdagi ta'mirda o'lchovni xato olganimda, otam kesishdan oldin uni yana tekshirdi.</p>
         <p>O'shanda bitta xato faqat bitta detalni emas, keyingi ishlarni ham buzishini ko'rdim. Muhandislikka qiziqishim ham shu yerdan boshlandi: yechim topishdan oldin muammoni aniq ko'rish kerak.</p>
         <p class="lesson"><b>Saboq:</b> Asos mustahkam bo'lmasa, ustiga hech narsa turmaydi — nafaqat devorda, hayotda ham.</p>
@@ -32,8 +32,8 @@ const base = import.meta.env.BASE_URL;
     <article class="step">
       <div class="step-no">02</div>
       <div class="step-body">
-        <p class="step-kicker">QIYIN DAVR</p>
-        <h2>Pullik kurs kutmasdan o'rganish</h2>
+        <p class="step-kicker" data-i18n="jour.k2">QIYIN DAVR</p>
+        <h2 data-i18n="jour.s2">Pullik kurs kutmasdan o'rganish</h2>
         <p>Oilamizdagi moliyaviy qiyinchiliklar sabab IELTS kursini tark etib, mustaqil tayyorlandim. Menda mukammal sharoit yo'q edi: bepul Telegram materiallari, muntazam amaliy testlar va bor resursni to'g'ri ishlatish bor edi.</p>
         <p>IELTS imtihoniga ro'yxatdan o'tish to'lovini qoplash uchun hovlimizdagi daraxtlar ham sotilgan. Bu tajriba men uchun juda shaxsiy, lekin aynan u bilimning narxini boshqacha tushunishga yordam berdi.</p>
         <p>Shu yo'lda IELTS 7.0 va SAT 1420 natijalariga erishdim.</p>
@@ -44,8 +44,8 @@ const base = import.meta.env.BASE_URL;
     <article class="step">
       <div class="step-no">03</div>
       <div class="step-body">
-        <p class="step-kicker">DAVOM ETISH</p>
-        <h2>Gap year va mehnat</h2>
+        <p class="step-kicker" data-i18n="jour.k3">DAVOM ETISH</p>
+        <h2 data-i18n="jour.s3">Gap year va mehnat</h2>
         <p>2025–2026-yillardagi gap year davrida oilamni qo'llab-quvvatlash uchun yuk ortish-tushirish ishida ishladim. Ayrim kunlari tungi va kunduzgi smenalar ulanib, juda kam uxlab davom etishga to'g'ri kelgan.</p>
         <p>Bu davr oson bo'lmagan. Ammo u menga intizom motivatsiya kelishini kutish emasligini o'rgatdi: natija darhol ko'rinmasa ham, davom etish kerak.</p>
         <p class="lesson"><b>Saboq:</b> Qiyin sharoit rejangizni o'zgartirishi mumkin, lekin maqsadingizni bekor qilishi shart emas.</p>
@@ -55,8 +55,8 @@ const base = import.meta.env.BASE_URL;
     <article class="step">
       <div class="step-no">04</div>
       <div class="step-body">
-        <p class="step-kicker">BURILISH NUQTASI</p>
-        <h2>AI — vaqtni bo'shatadigan vosita</h2>
+        <p class="step-kicker" data-i18n="jour.k4">BURILISH NUQTASI</p>
+        <h2 data-i18n="jour.s4">AI — vaqtni bo'shatadigan vosita</h2>
         <p>Bo'sh vaqt topilganida BIM, Revit, AutoCAD, Digital Twin, Calculus I va prompt engineeringni mustaqil o'rgandim. AutoCAD’dagi takrorlanuvchi chizma detalini qo'lda qayta-qayta bajarish o'rniga, AI yordamida AutoLISP skripti yaratdim.</p>
         <p>Natijada avval ikki soat ketadigan ish 15 daqiqaga tushdi. Shu tajriba AI insonning fikrlashi o'rnini bosishi uchun emas, balki muhimroq tekshiruv, hisob-kitob va qarorlar uchun vaqt bo'shatishi kerakligini ko'rsatdi.</p>
         <p class="lesson"><b>Saboq:</b> Texnologiya maqsad emas. U tartib, mas'uliyat va aniq natija bilan birga ishlaydigan vosita.</p>
@@ -66,8 +66,8 @@ const base = import.meta.env.BASE_URL;
     <article class="step">
       <div class="step-no">05</div>
       <div class="step-body">
-        <p class="step-kicker">BILIMNI ULASHISH</p>
-        <h2>O'qituvchilik tajribasi</h2>
+        <p class="step-kicker" data-i18n="jour.k5">BILIMNI ULASHISH</p>
+        <h2 data-i18n="jour.s5">O'qituvchilik tajribasi</h2>
         <p>Sydney School’da 40 dan ortiq o'quvchiga ingliz tili, speaking va IELTS/CEFR tayyorgarligi bo'yicha dars berdim. Har bir o'quvchining savoli, tezligi va qiyinchiligi boshqacha edi.</p>
         <p>O'rgatish uchun avval o'zingiz tushunishingiz, keyin esa fikrni boshqaga sodda va amaliy qilib yetkazishingiz kerak. O'quvchining natijasi o'zgarganini ko'rish bilimni tizimlashtirish qanchalik katta mas'uliyat ekanini his qildirdi.</p>
         <p class="lesson"><b>Saboq:</b> Bilim uni boshqalar ham ochib, foydalana olganida kuchliroq bo'ladi.</p>
@@ -77,8 +77,8 @@ const base = import.meta.env.BASE_URL;
     <article class="step">
       <div class="step-no">06</div>
       <div class="step-body">
-        <p class="step-kicker">BUGUNGI HOLAT</p>
-        <h2>Nega Tayanch bor?</h2>
+        <p class="step-kicker" data-i18n="jour.k6">BUGUNGI HOLAT</p>
+        <h2 data-i18n="jour.s6">Nega Tayanch bor?</h2>
         <p>Admission yo'limda 18 ta tasdiqlangan qabul xati va jami $1.1M dan ortiq stipendiya takliflariga erishdim. Lekin bu yo'l menga bitta narsani ko'rsatdi: qobiliyatning o'zi kamlik qiladi. Ko'p odamga tizim, aniq yo'l va ishonch yetishmaydi.</p>
         <p>Shuning uchun Tayanch’da AI, IELTS va Admission bo'yicha kurslarni yaratmoqdaman. Ular tayyor javob berish uchun emas, o'quvchiga o'z muammosini tushunish, tizim qurish va keyingi qadamini tanlashga yordam berish uchun yaratiladi.</p>
         <p>Uzoq muddatli maqsadim — imkoniyati cheklangan, ammo iqtidorli yoshlar uchun grant asosidagi STEM ta'limini beradigan Muhandislik Akademiyasini qurish. Tayanch — shu katta maqsadning kichik, ammo real boshlanishi.</p>
@@ -88,14 +88,14 @@ const base = import.meta.env.BASE_URL;
 
   <section class="proof-section" aria-labelledby="proof-title">
     <div class="proof-heading">
-      <p class="step-kicker">YO‘LIMDAGI NATIJALAR</p>
-      <h2 id="proof-title">Hujjatlar bilan tasdiqlangan namunalar</h2>
-      <p>Bu yerda faqat zarur natija ko‘rsatkichlari qoldirilgan. Shaxsiy ma’lumotlar, identifikatorlar va moliyaviy tafsilotlar yashirilgan.</p>
+      <p class="step-kicker" data-i18n="jour.pk">YO‘LIMDAGI NATIJALAR</p>
+      <h2 id="proof-title" data-i18n="jour.ph2">Hujjatlar bilan tasdiqlangan namunalar</h2>
+      <p data-i18n="jour.pdesc">Bu yerda faqat zarur natija ko‘rsatkichlari qoldirilgan. Shaxsiy ma’lumotlar, identifikatorlar va moliyaviy tafsilotlar yashirilgan.</p>
     </div>
 
     <div class="excerpt-intro">
-      <p class="excerpt-label">TAJRIBA VA ARIZA HIKOYASI</p>
-      <p>Quyidagi kartalar original sahifalarning nusxasi emas: ular maxfiy ma’lumotlarsiz, umumlashtirilgan excerpt sifatida qayta tuzilgan.</p>
+      <p class="excerpt-label" data-i18n="jour.ek">TAJRIBA VA ARIZA HIKOYASI</p>
+      <p data-i18n="jour.edesc">Quyidagi kartalar original sahifalarning nusxasi emas: ular maxfiy ma’lumotlarsiz, umumlashtirilgan excerpt sifatida qayta tuzilgan.</p>
     </div>
     <div class="excerpt-grid" aria-label="CV va essaylardan redakt qilingan namunalar">
       <figure class="proof-card"><img class="proof-image" src={base + 'proof/mening-yolim/cv-project-leadership-preview.webp'} alt="Redacted self-reported CV project and leadership excerpt" loading="lazy" draggable="false" /><figcaption>CV excerpt · self-reported background</figcaption></figure>
@@ -109,8 +109,8 @@ const base = import.meta.env.BASE_URL;
     </div>
 
     <div class="acceptance-intro">
-      <div><span class="proof-count">18</span><span>ta tasdiqlangan qabul xati</span></div>
-      <p>Quyida turli yo‘nalish va mamlakatlardagi oltita namuna. Har birida faqat universitet, ijobiy qaror, dastur va qabul yili qoldirilgan.</p>
+      <div><span class="proof-count">18</span><span data-i18n="jour.accLabel">ta tasdiqlangan qabul xati</span></div>
+      <p data-i18n="jour.accDesc">Quyida turli yo‘nalish va mamlakatlardagi oltita namuna. Har birida faqat universitet, ijobiy qaror, dastur va qabul yili qoldirilgan.</p>
     </div>
 
     <div class="acceptance-grid" aria-label="Qabul xatlari namunalari">
@@ -123,7 +123,7 @@ const base = import.meta.env.BASE_URL;
     </div>
 
     <details class="more-acceptances">
-      <summary>Qolgan 12 ta tasdiqlangan qabul xati</summary>
+      <summary data-i18n="jour.more">Qolgan 12 ta tasdiqlangan qabul xati</summary>
       <p>ASU London · Hope College · Illinois College · Kent State University · Le Moyne College · Missouri University of Science and Technology · University of Cincinnati · University of Delaware · University of New Haven · University of Southern Mississippi · University of Oklahoma · Western New England University</p>
     </details>
 
@@ -131,10 +131,10 @@ const base = import.meta.env.BASE_URL;
   </section>
 
   <section class="story-cta" aria-labelledby="story-cta-title">
-    <p class="story-cta-kicker">KEYINGI QADAM</p>
-    <h2 id="story-cta-title">Sizning yo'lingiz ham shu yerdan boshlanishi mumkin.</h2>
-    <p>Hozir qaysi yo'nalish sizga ko'proq mosligini aniqlang va o'zingiz uchun amaliy reja tuzishni boshlang.</p>
-    <a class="start-btn" href={base + 'kurs-tanlash/'}>Kurs tanlash testini boshlash →</a>
+    <p class="story-cta-kicker" data-i18n="jour.ck">KEYINGI QADAM</p>
+    <h2 id="story-cta-title" data-i18n="jour.ch2">Sizning yo'lingiz ham shu yerdan boshlanishi mumkin.</h2>
+    <p data-i18n="jour.cdesc">Hozir qaysi yo'nalish sizga ko'proq mosligini aniqlang va o'zingiz uchun amaliy reja tuzishni boshlang.</p>
+    <a class="start-btn" href={base + 'kurs-tanlash/'} data-i18n="jour.cbtn">Kurs tanlash testini boshlash →</a>
   </section>
 
   <script>

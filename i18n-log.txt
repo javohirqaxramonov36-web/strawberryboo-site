@@ -100,3 +100,15 @@ RU/EN routelar bilan tayyor (qarang: /ru/kurslar/ielts-listening/, /en/...).
  `applyLang()` orqali `[data-i18n]` elementlarni tarjima qiladi. IELTS skill sahifalari
  esa subpath routelar (/ru, /en) orqali to'g'ridan-to'g'ri RU/EN kontent beradi (SEO+hreflang).
  Narx/kurs strukturasiga tegilmadi. Tarjimalar haqiqiy, qo'lda yozilgan.
+
+ 2026-08-22 (davomi): Asosiy kontent sahifalari scaffolding tarjimasi
+   - kurslar/index.astro          (kk.*; sarlavha, filter tugmalari, IELTS kolleksiya, bundle, upcoming)
+   - narxlar.astro                (np.*; h1, lead, paketlar, narxlar, ROI)
+   - bog-lanish.astro             (bl.*; eyebrow, h1, lead, admission sub-kurs, kanallar, orqaga)
+   - biz-haqimizda.astro          (ab.*; eyebrow, h1, lead, 2 ta kartochka, note, CTA)
+   - faq.astro                    (faq.*; h1, lead, 5 ta savol+javob, CTA)
+   - kurs-tanlash.astro           (reco.*; h1, lead, 4 savol sarlavhasi, nav tugmalari)
+   - mening-yolim.astro           (jour.*; hero, 6 bosqich sarlavhasi+kicker, proof bo'limi, CTA)
+   Qo'shimcha: Base.astro I18N lug'atiga uz/ru/en uchun kk/np/bl/ab/faq/reco/jour kalitlari qo'shildi.
+   Eslatma: ko'plab qolgan kurs sahifalari (ai-agentlar, figma, prompt-engineering, obsidian,
+   tekin-ai, ielts-* va b.) hali UZ-only; tanlov/chrome 3 tilda to'liq ishlaydi.

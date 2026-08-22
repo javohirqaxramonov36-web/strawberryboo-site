@@ -7,18 +7,18 @@ const base = import.meta.env.BASE_URL;
 
 <Base title={title} description={description}>
 
-<h1>Kurslar</h1>
+<h1 data-i18n="kk.h1">Kurslar</h1>
 
 <div class="course-filter" id="courseFilter">
-  <button class="cf-btn active" data-filter="all">Barchasi</button>
-  <button class="cf-btn" data-filter="ai">AI</button>
-  <button class="cf-btn" data-filter="ielts">IELTS</button>
-  <button class="cf-btn" data-filter="admission">Admission</button>
-  <button class="cf-btn" data-filter="dizayn">Dizayn</button>
-  <button class="cf-btn" data-filter="hayotiy">Hayotiy ko'nikma</button>
-  <button class="cf-btn" data-filter="bepul">Bepul</button>
-  <button class="cf-btn" data-filter="data">Data</button>
-  <button class="cf-btn" data-filter="dasturlash">Dasturlash</button>
+  <button class="cf-btn active" data-filter="all" data-i18n="kk.fAll">Barchasi</button>
+  <button class="cf-btn" data-filter="ai" data-i18n="kk.fAi">AI</button>
+  <button class="cf-btn" data-filter="ielts" data-i18n="kk.fIelts">IELTS</button>
+  <button class="cf-btn" data-filter="admission" data-i18n="kk.fAdm">Admission</button>
+  <button class="cf-btn" data-filter="dizayn" data-i18n="kk.fDes">Dizayn</button>
+  <button class="cf-btn" data-filter="hayotiy" data-i18n="kk.fLife">Hayotiy ko'nikka</button>
+  <button class="cf-btn" data-filter="bepul" data-i18n="kk.fFree">Bepul</button>
+  <button class="cf-btn" data-filter="data" data-i18n="kk.fData">Data</button>
+  <button class="cf-btn" data-filter="dasturlash" data-i18n="kk.fDev">Dasturlash</button>
 </div>
 
 <div class="course-list">
@@ -61,7 +61,7 @@ const base = import.meta.env.BASE_URL;
   </div>
 
   <section class="ielts-collection" id="ielts-courses" data-cat="ielts">
-    <div class="ielts-collection-head"><div><span class="badge badge-new">Yangi</span><h2>IELTS 6.5+ band: 30 kunlik reja</h2><p>Har bir skill alohida, 30 kunlik speaking rejasi bilan — kerakli band'gacha yetib olasiz. Kimga mo'ljallangan: IELTS 6.5–7.0 kerak bo'lganlarga.</p></div><span class="collection-price">Skill-kurslar: $7.50–$14.99 · ≈ 93 750–187 500 so'm</span></div>
+    <div class="ielts-collection-head"><div><span class="badge badge-new">Yangi</span><h2 data-i18n="kk.ieltsTitle">IELTS 6.5+ band: 30 kunlik reja</h2><p data-i18n="kk.ieltsDesc">Har bir skill alohida, 30 kunlik speaking rejasi bilan — kerakli band'gacha yetib olasiz. Kimga mo'ljallangan: IELTS 6.5–7.0 kerak bo'lganlarga.</p></div><span class="collection-price" data-i18n="kk.ieltsPrice">Skill-kurslar: $7.50–$14.99 · ≈ 93 750–187 500 so'm</span></div>
     <div class="ielts-course-grid">
       <a class="ielts-mini-card listening" href={base + 'kurslar/ielts-listening'}><span class="course-card-progress" data-course-progress-meter data-course-id="ielts-listening" data-total="3" aria-live="polite"></span><b>01</b><h3>Listening</h3><p>Signal, raqam, birlik-ko‘plik va distractor mashqlari.</p><span>$7.50 →</span></a>
       <a class="ielts-mini-card reading" href={base + 'kurslar/ielts-reading'}><span class="course-card-progress" data-course-progress-meter data-course-id="ielts-reading" data-total="3" aria-live="polite"></span><b>02</b><h3>Reading</h3><p>Vaqt, savol turi va xato patternlari ustida ishlang.</p><span>$7.50 →</span></a>
@@ -69,7 +69,7 @@ const base = import.meta.env.BASE_URL;
       <a class="ielts-mini-card speaking" href={base + 'kurslar/ielts-speaking'}><span class="course-card-progress" data-course-progress-meter data-course-id="ielts-speaking" data-total="30" aria-live="polite"></span><b>04</b><h3>Speaking</h3><p>AI bilan 30 kunlik talaffuz va gapirish mashqi.</p><span>$7.50 →</span></a>
       <a class="ielts-mini-card vocabulary" href={base + 'kurslar/ielts-vocabulary'}><span class="course-card-progress" data-course-progress-meter data-course-id="ielts-vocabulary" data-total="2" aria-live="polite"></span><b>05</b><h3>Vocabulary</h3><p>Flashcards va Obsidian bilan so‘zlarni tizimli yodlash.</p><span>Mini-kurs →</span></a>
     </div>
-    <div class="ielts-bundle"><div><span>IELTS FULL BUNDLE</span><h3>4 tasini birga oling — 20% tejang</h3><p><s>468 750 so'm</s> o‘rniga <b>375 000 so'm</b>. Listening + Reading + Writing + Speaking birga. To‘lov Telegram orqali qo‘lda tasdiqlanadi.</p></div><a class="start-btn" href={base + 'bog-lanish?course=ielts-full-bundle&price=375000'}>Bundle’ni olish →</a></div>
+    <div class="ielts-bundle"><div><span>IELTS FULL BUNDLE</span><h3 data-i18n="kk.bundleTitle">4 tasini birga oling — 20% tejang</h3><p><s>468 750 so'm</s> o‘rniga <b>375 000 so'm</b>. Listening + Reading + Writing + Speaking birga. To‘lov Telegram orqali qo‘lda tasdiqlanadi.</p></div><a class="start-btn" href={base + 'bog-lanish?course=ielts-full-bundle&price=375000'}>Bundle’ni olish →</a></div>
   </section>
 
   <div class="card" style="--c:#7d7df5" data-cat="ielts">
@@ -201,8 +201,8 @@ const base = import.meta.env.BASE_URL;
 <section class="upcoming-courses" aria-labelledby="upcoming-courses-title">
   <div class="upcoming-heading">
     <p class="eyebrow">KELAYOTGAN KURSLAR</p>
-    <h2 id="upcoming-courses-title">Material tayyorlanmoqda</h2>
-    <p>Bu kurslar ustida ish davom etmoqda. To‘liq material va sotuv ochilganda e’lon qilinadi.</p>
+    <h2 id="upcoming-courses-title" data-i18n="kk.upTitle">Material tayyorlanmoqda</h2>
+    <p data-i18n="kk.upDesc">Bu kurslar ustida ish davom etmoqda. To‘liq material va sotuv ochilganda e’lon qilinadi.</p>
   </div>
   <div class="upcoming-grid">
   <div class="card" style="--c:#10b981" data-cat="hayotiy">

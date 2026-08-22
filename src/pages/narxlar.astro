@@ -7,56 +7,56 @@ const description = "Kurslar narxlari: bitta kurs, barcha AI kurslari paketi va 
 <Base title={title} description={description}>
 
 <article class="lesson">
-  <h1>Narxlar</h1>
-  <p class="lead">Bitta kurs soting yoki barchasini birdaniga oling. Barcha paketlarda <b>forever access</b> — bir marta sotib, doim foydalan.</p>
+  <h1 data-i18n="np.h1">Narxlar</h1>
+  <p class="lead" data-i18n="np.lead">Bitta kurs soting yoki barchasini birdaniga oling. Barcha paketlarda <b>forever access</b> — bir marta sotib, doim foydalan.</p>
 
   <div class="pricing single">
     <!-- 1. Bitta kurs -->
     <div class="plan">
-      <span class="plan-name">Bitta kurs</span>
-      <p class="plan-desc">Tanlagan bitta kursingizga to'liq kirish.</p>
+      <span class="plan-name" data-i18n="np.singleName">Bitta kurs</span>
+      <p class="plan-desc" data-i18n="np.singleDesc">Tanlagan bitta kursingizga to'liq kirish.</p>
       <div class="plan-price">$19<span class="uzs">≈ 240 000 so'm dan</span></div>
       <ul>
-        <li>1 ta kurs (Prompt, Obsidian, IELTS va b.)</li>
-        <li>Forever access</li>
-        <li>Sertifikat</li>
-        <li>Telegram orqali savollar</li>
+        <li data-i18n="np.singleLi1">1 ta kurs (Prompt, Obsidian, IELTS va b.)</li>
+        <li data-i18n="np.forever">Forever access</li>
+        <li data-i18n="np.cert">Sertifikat</li>
+        <li data-i18n="np.telegram">Telegram orqali savollar</li>
       </ul>
-      <a href={import.meta.env.BASE_URL + 'kurslar'} class="start-btn">Kursni tanlash →</a>
+      <a href={import.meta.env.BASE_URL + 'kurslar'} class="start-btn" data-i18n="np.singleBtn">Kursni tanlash →</a>
     </div>
   </div>
 
-  <h2 class="paket-head">Paketlar</h2>
+  <h2 class="paket-head" data-i18n="np.paketHead">Paketlar</h2>
   <div class="pricing">
     <!-- 2. AI Stack (featured) -->
     <div class="plan featured">
-      <span class="badge badge-new">Eng foydali</span>
-      <span class="plan-name">AI Stack</span>
-      <p class="plan-desc">Prompt Engineering + AI Agentlar + Obsidian PKM — AI yo'nalishida hamma narsa bitta paketda.</p>
+      <span class="badge badge-new" data-i18n="np.bestValue">Eng foydali</span>
+      <span class="plan-name" data-i18n="np.aiName">AI Stack</span>
+      <p class="plan-desc" data-i18n="np.aiDesc">Prompt Engineering + AI Agentlar + Obsidian PKM — AI yo'nalishida hamma narsa bitta paketda.</p>
       <div class="plan-price">$70<span class="was">$87</span><span class="uzs">≈ 875 000 so'm</span></div>
-      <p class="save-note">Alohida sotib olishdan tejang: $17 (20%)</p>
+      <p class="save-note" data-i18n="np.aiSave">Alohida sotib olishdan tejang: $17 (20%)</p>
       <ul>
-        <li>Prompt Engineering ($29)</li>
-        <li>AI Agentlar ($39)</li>
-        <li>Obsidian PKM ($19)</li>
-        <li>Forever access + sertifikat</li>
+        <li data-i18n="np.aiLi1">Prompt Engineering ($29)</li>
+        <li data-i18n="np.aiLi2">AI Agentlar ($39)</li>
+        <li data-i18n="np.aiLi3">Obsidian PKM ($19)</li>
+        <li data-i18n="np.foreverCert">Forever access + sertifikat</li>
       </ul>
-      <a href={import.meta.env.BASE_URL + 'bog-lanish'} class="start-btn">Sotib olish →</a>
+      <a href={import.meta.env.BASE_URL + 'bog-lanish'} class="start-btn" data-i18n="np.buyBtn">Sotib olish →</a>
     </div>
 
     <!-- 3. Full access -->
     <div class="plan">
-      <span class="plan-name">Full access</span>
-      <p class="plan-desc">Barcha kurslar — AI, IELTS, Admission, Figma va bepul AI.</p>
+      <span class="plan-name" data-i18n="np.fullName">Full access</span>
+      <p class="plan-desc" data-i18n="np.fullDesc">Barcha kurslar — AI, IELTS, Admission, Figma va bepul AI.</p>
       <div class="plan-price">$99<span class="uzs">≈ 1 240 000 so'm</span></div>
       <ul>
-        <li>12 ta kursning hammasi</li>
-        <li>Forever access</li>
-        <li>Barchasiga sertifikat</li>
-        <li>Yangi kurslar bepul</li>
-        <li>aloqada $145 o'rniga $99</li>
+        <li data-i18n="np.fullLi1">12 ta kursning hammasi</li>
+        <li data-i18n="np.forever">Forever access</li>
+        <li data-i18n="np.certAll">Barchasiga sertifikat</li>
+        <li data-i18n="np.fullLi4">Yangi kurslar bepul</li>
+        <li data-i18n="np.fullLi5">aloqada $145 o'rniga $99</li>
       </ul>
-      <a href={import.meta.env.BASE_URL + 'bog-lanish'} class="start-btn">Sotib olish →</a>
+      <a href={import.meta.env.BASE_URL + 'bog-lanish'} class="start-btn" data-i18n="np.buyBtn">Sotib olish →</a>
     </div>
   </div>
 

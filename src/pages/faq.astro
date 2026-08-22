@@ -7,40 +7,39 @@ const description = "Kurslar, to'lov usullari, sertifikat va forever access bo'y
 <Base title={title} description={description}>
 
 <article class="lesson">
-  <h1>Ko'p so'raladigan savollar</h1>
+  <h1 data-i18n="faq.h1">Ko'p so'raladigan savollar</h1>
   <p class="lead">
-    Kurslarimiz, to'lov va sertifikatlar bo'yicha eng ko'p beriladigan savollarga qisqa javoblar.
-    Javobingizni topa olmadingizmi? <a href={import.meta.env.BASE_URL + 'bog-lanish'} style="color:var(--accent)">Bog'lanish</a> sahifasi orqali yozing.
+    <span data-i18n="faq.lead">Kurslarimiz, to'lov va sertifikatlar bo'yicha eng ko'p beriladigan savollarga qisqa javoblar. Javobingizni topa olmadingizmi?</span> <a href={import.meta.env.BASE_URL + 'bog-lanish'} style="color:var(--accent)" data-i18n="nav.contact">Bog'lanish</a><span data-i18n="faq.leadEnd"> sahifasi orqali yozing.</span>
   </p>
 
   <section class="faq">
     <details open>
-      <summary>Kurslar qanday formatda o'tiladi?</summary>
-      <p>Har bir kurs modullarga bo'lingan: qisqacha video darslar, amaliy mashqlar va tekshirish uchun kichik test (Quiz). Siz o'z tezligingizda o'rganasiz va bir marta sotib olganingizda <b>forever access</b> olasiz — istalgan vaqtda qayta ko'rish mumkin.</p>
+      <summary data-i18n="faq.q1">Kurslar qanday formatda o'tiladi?</summary>
+      <p data-i18n="faq.a1">Har bir kurs modullarga bo'lingan: qisqacha video darslar, amaliy mashqlar va tekshirish uchun kichik test (Quiz). Siz o'z tezligingizda o'rganasiz va bir marta sotib olganingizda forever access olasiz — istalgan vaqtda qayta ko'rish mumkin.</p>
     </details>
 
     <details>
-      <summary>To'lovni qanday amalga oshiraman?</summary>
-      <p>To'lov tafsilotlari uchun Telegram orqali yozing: <a href="https://t.me/progression_go" style="color:var(--accent)" target="_blank" rel="noopener noreferrer">@progression_go</a></p>
+      <summary data-i18n="faq.q2">To'lovni qanday amalga oshiraman?</summary>
+      <p><span data-i18n="faq.a2">To'lov tafsilotlari uchun Telegram orqali yozing:</span> <a href="https://t.me/progression_go" style="color:var(--accent)" target="_blank" rel="noopener noreferrer">@progression_go</a></p>
     </details>
 
     <details>
-      <summary>Kursni tugallagach sertifikat beriladimi?</summary>
-      <p>Ha. Barcha pullik va bepul kurslarimizda <b>sertifikat</b> mavjud. Kurs materiallarini o'zlashtirganingizdan so'ng sertifikat olish huquqiga ega bo'lasiz.</p>
+      <summary data-i18n="faq.q3">Kursni tugallagach sertifikat beriladimi?</summary>
+      <p data-i18n="faq.a3">Ha. Barcha pullik va bepul kurslarimizda sertifikat mavjud. Kurs materiallarini o'zlashtirganingizdan so'ng sertifikat olish huquqiga ega bo'lasiz.</p>
     </details>
 
     <details>
-      <summary>"Forever access" nima degani?</summary>
-      <p>Bir marta sotib olasiz — va kursga doimiy ravishda, cheksiz muddatga kira olasiz. Yangilanishlar ham shu narxga qo'shiladi, qo'shimcha to'lov talab qilinmaydi.</p>
+      <summary data-i18n="faq.q4">"Forever access" nima degani?</summary>
+      <p data-i18n="faq.a4">Bir marta sotib olasiz — va kursga doimiy ravishda, cheksiz muddatga kira olasiz. Yangilanishlar ham shu narxga qo'shiladi, qo'shimcha to'lov talab qilinmaydi.</p>
     </details>
 
     <details>
-      <summary>Bepul kurslar haqiqatan ham bepulmi?</summary>
-      <p>Ha, bir qancha kurslarimiz butunlay bepul: "Tekin AI modellar va agentlar", "Figma / Dizayn" va "Nega chet elda o'qish kerak". Ro'yxatdan o'tish yoki karta ma'lumotlari shart emas — sahifaga kiring va o'rgana boshlang.</p>
+      <summary data-i18n="faq.q5">Bepul kurslar haqiqatan ham bepulmi?</summary>
+      <p data-i18n="faq.a5">Ha, bir qancha kurslarimiz butunlay bepul: "Tekin AI modellar va agentlar", "Figma / Dizayn" va "Nega chet elda o'qish kerak". Ro'yxatdan o'tish yoki karta ma'lumotlari shart emas — sahifaga kiring va o'rgana boshlang.</p>
     </details>
   </section>
 
-  <a href={import.meta.env.BASE_URL + 'kurslar'} class="start-btn" style="margin-top:2rem;">Barcha kurslarni ko'rish →</a>
+  <a href={import.meta.env.BASE_URL + 'kurslar'} class="start-btn" style="margin-top:2rem;" data-i18n="faq.allBtn">Barcha kurslarni ko'rish →</a>
 </article>
 
 <style>

@@ -7,8 +7,8 @@ const description = "4 savolli mini-test orqali o'zingizga mos kursni toping.";
 <Base title={title} description={description}>
 
 <article class="lesson">
-  <h1>Qaysi kurs sizga kerak?</h1>
-  <p class="lead">4 ta savolga javob bering — sizga eng mos kursni tavsiya qilamiz.</p>
+  <h1 data-i18n="reco.h1">Qaysi kurs sizga kerak?</h1>
+  <p class="lead" data-i18n="reco.lead">4 ta savolga javob bering — sizga eng mos kursni tavsiya qilamiz.</p>
 
   <div class="reco-progress" aria-live="polite">
     <div class="reco-progress-track"><div class="reco-progress-bar" id="recoProgressBar"></div></div>
@@ -17,7 +17,7 @@ const description = "4 savolli mini-test orqali o'zingizga mos kursni toping.";
 
   <form id="recoForm">
     <div class="reco-q reco-step is-active" data-step>
-      <p class="q-t">1. Asosiy maqsadingiz nima?</p>
+      <p class="q-t" data-i18n="reco.q1">1. Asosiy maqsadingiz nima?</p>
       <div class="reco-opts">
         <label class="reco-opt" data-points="prompt-engineering:3,tekin-ai:1"><input type="radio" name="q1" value="prompt-engineering" /> AI bilan samarali ishlash, vaqtni tejash</label>
         <label class="reco-opt" data-points="obsidian:3,prompt-engineering:1"><input type="radio" name="q1" value="obsidian" /> Bilimlarimni tartibga solish, eslab qolish</label>
@@ -31,7 +31,7 @@ const description = "4 savolli mini-test orqali o'zingizga mos kursni toping.";
     </div>
 
     <div class="reco-q reco-step" data-step>
-      <p class="q-t">2. Texnik darajangiz?</p>
+      <p class="q-t" data-i18n="reco.q2">2. Texnik darajangiz?</p>
       <div class="reco-opts">
         <label class="reco-opt" data-points="tekin-ai:2,computer-literacy:1"><input type="radio" name="q2" value="tekin-ai" /> Yangi boshlovchi (0 dan)</label>
         <label class="reco-opt" data-points="obsidian:2,prompt-engineering:1"><input type="radio" name="q2" value="obsidian" /> O'rta (asoslar bilaman)</label>
@@ -41,7 +41,7 @@ const description = "4 savolli mini-test orqali o'zingizga mos kursni toping.";
     </div>
 
     <div class="reco-q reco-step" data-step>
-      <p class="q-t">3. Bujetingiz?</p>
+      <p class="q-t" data-i18n="reco.q3">3. Bujetingiz?</p>
       <div class="reco-opts">
         <label class="reco-opt" data-points="tekin-ai:3"><input type="radio" name="q3" value="tekin-ai" /> Bepul bo'lishi kerak</label>
         <label class="reco-opt" data-points="obsidian:2,figma:1"><input type="radio" name="q3" value="obsidian" /> $19–$29 (arzon)</label>
@@ -51,7 +51,7 @@ const description = "4 savolli mini-test orqali o'zingizga mos kursni toping.";
     </div>
 
     <div class="reco-q reco-step" data-step>
-      <p class="q-t">4. Qanday natija ko'rmoqchisiz?</p>
+      <p class="q-t" data-i18n="reco.q4">4. Qanday natija ko'rmoqchisiz?</p>
       <div class="reco-opts">
         <label class="reco-opt" data-points="prompt-engineering:3"><input type="radio" name="q4" value="prompt-engineering" /> Tez, amaliy natija (1 hafta)</label>
         <label class="reco-opt" data-points="admission-process:3,ielts-courses:1"><input type="radio" name="q4" value="admission-process" /> Stipendiya / chet elga kirish</label>
@@ -64,8 +64,8 @@ const description = "4 savolli mini-test orqali o'zingizga mos kursni toping.";
     </div>
 
     <div class="reco-nav">
-      <button type="button" class="start-btn is-ghost" id="recoPrev" hidden>← Orqaga</button>
-      <button type="button" class="start-btn" id="recoBtn">Keyingi →</button>
+      <button type="button" class="start-btn is-ghost" id="recoPrev" hidden data-i18n="reco.prev">← Orqaga</button>
+      <button type="button" class="start-btn" id="recoBtn" data-i18n="reco.next">Keyingi →</button>
     </div>
   </form>
 
