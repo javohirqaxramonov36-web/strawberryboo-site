@@ -34,6 +34,8 @@ const description = 'Ushbu brauzerda saqlangan IELTS mock natijalari va mashq pr
   </section>
 
   <script>
+    const PROF_I18N = {"uz": {"prof.profNameSuffix": "ning practice tarixi", "prof.noProfile": "Bu qurilmadagi profilingiz", "prof.latestNone": "Hali natija yo‘q", "prof.chartSummary": "%d ta natija · 0 dan 9 bandgacha", "prof.confirmMsg": "Faqat shu brauzerdagi mock natijalari o‘chiriladi. Davom etasizmi?", "prof.speakNone": "0/14 kurs boshlangan", "prof.speakSpeaking": " bo‘lim · Speaking ", "prof.speakPlain": " bo‘lim belgilangan"}, "ru": {"prof.profNameSuffix": " · история practice", "prof.noProfile": "Ваш профиль на этом устройстве", "prof.latestNone": "Результатов пока нет", "prof.chartSummary": "%d результата · от 0 до 9 баллов", "prof.confirmMsg": "Будут удалены только mock-результаты этого браузера. Продолжить?", "prof.speakNone": "0/14 курсов начато", "prof.speakSpeaking": " раздел · Speaking ", "prof.speakPlain": " разделов отмечено"}, "en": {"prof.profNameSuffix": "'s practice history", "prof.noProfile": "Your profile on this device", "prof.latestNone": "No result yet", "prof.chartSummary": "%d results · from 0 to 9 bands", "prof.confirmMsg": "Only this browser's mock results will be deleted. Continue?", "prof.speakNone": "0/14 courses started", "prof.speakSpeaking": " sections · Speaking ", "prof.speakPlain": " sections marked"}};
+    const TL = (k) => { const L = localStorage.getItem('org-lam-lang') || 'uz'; return (PROF_I18N[L] && PROF_I18N[L][k] != null) ? PROF_I18N[L][k] : (PROF_I18N.uz[k] || k); };
     const RESULTS_KEY = 'tayanch.mock.results.v1';
     const GOOGLE_USER_KEY = 'tayanch.google.user';
     const SPEAKING_PROGRESS_KEY = 'tayanch-speaking-progress-v2';
@@ -57,7 +59,7 @@ const description = 'Ushbu brauzerda saqlangan IELTS mock natijalari va mashq pr
     function renderProfileName() {
       const user = safeJson(GOOGLE_USER_KEY, null);
       const name = user && (user.name || user.email);
-      $('#profile-name').textContent = name ? `${name}ning practice tarixi` : 'Bu qurilmadagi profilingiz';
+      $('#profile-name').textContent = name ? name + TL('prof.profNameSuffix') : TL('prof.noProfile');
     }
     function renderSpeakingProgress() {
       const progress = safeJson(SPEAKING_PROGRESS_KEY, {});
@@ -74,15 +76,15 @@ const description = 'Ushbu brauzerda saqlangan IELTS mock natijalari va mashq pr
       }
       const totalCourses = coursesStarted + (speakingStarted ? 1 : 0);
       $('#speaking-progress').textContent = `${totalCourses}/14`;
-      if (!totalCourses) $('#speaking-detail').textContent = '0/14 kurs boshlangan';
-      else if (speakingStarted) $('#speaking-detail').textContent = `${checklistItemsDone} bo‘lim · Speaking ${speakingCompleted}/30`;
-      else $('#speaking-detail').textContent = `${checklistItemsDone} bo‘lim belgilangan`;
+      if (!totalCourses) $('#speaking-detail').textContent = TL('prof.speakNone');
+      else if (speakingStarted) $('#speaking-detail').textContent = checklistItemsDone + TL('prof.speakSpeaking') + speakingCompleted + '/30';
+      else $('#speaking-detail').textContent = checklistItemsDone + TL('prof.speakPlain');
     }
     function renderHistory(list) {
       $('#result-count').textContent = String(list.length);
       const latest = list.at(-1);
       $('#latest-band').textContent = latest ? Number(latest.band).toFixed(1) : '—';
-      $('#latest-detail').textContent = latest ? `${labels[latest.module] || 'Mock'} · ${dateLabel(latest.completedAt)}` : 'Hali natija yo‘q';
+      $('#latest-detail').textContent = latest ? `${labels[latest.module] || 'Mock'} · ${dateLabel(latest.completedAt)}` : TL('prof.latestNone');
       $('#history-empty').hidden = list.length > 0;
       $('#history-wrap').hidden = list.length === 0;
       $('#clear-history').hidden = list.length === 0;
@@ -113,11 +115,11 @@ const description = 'Ushbu brauzerda saqlangan IELTS mock natijalari va mashq pr
         return `<path d="${linePath(points)}" fill="none" stroke="${colors[module]}" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>${dots}`;
       }).join('');
       $('#chart-wrap').innerHTML = `<svg viewBox="0 0 ${width} ${height}" role="img" aria-labelledby="chart-svg-title chart-svg-desc"><title id="chart-svg-title">IELTS mock band trendi</title><desc id="chart-svg-desc">Bandlar 0 dan 9 gacha. Ranglar Listening, Reading, Writing va Speaking natijalarini bildiradi.</desc>${grid}<g class="date-labels">${datesHtml}</g>${series}</svg>`;
-      $('#chart-summary').textContent = `${chartRecords.length} ta natija · 0 dan 9 bandgacha`;
+      $('#chart-summary').textContent = TL('prof.chartSummary').replace('%d', chartRecords.length);
     }
     function render() { const list = records(); renderProfileName(); renderSpeakingProgress(); renderHistory(list); renderChart(list); }
     $('#clear-history').addEventListener('click', () => {
-      if (confirm('Faqat shu brauzerdagi mock natijalari o‘chiriladi. Davom etasizmi?')) { localStorage.removeItem(RESULTS_KEY); render(); }
+      if (confirm(TL('prof.confirmMsg'))) { localStorage.removeItem(RESULTS_KEY); render(); }
     });
     window.addEventListener('storage', (event) => { if ([RESULTS_KEY, GOOGLE_USER_KEY, SPEAKING_PROGRESS_KEY].includes(event.key) || String(event.key || '').startsWith('progress:')) render(); });
     render();

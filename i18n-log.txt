@@ -157,3 +157,20 @@ RU/EN routelar bilan tayyor (qarang: /ru/kurslar/ielts-listening/, /en/...).
     Asosiy sahifa (index.astro) hero "typed effect" ham JS-drive; alohida ish.
     HOLAT: Saytning deyarli barcha statik UZ matni endi 3 tilda (uz/ru/en) mavjud va
     `.lang-switch` orqali almashinadi.
+
+  2026-08-22 (davomi 4 — YAKUN): JS-tomonidan yoziladigan (dynamic) matnlar ham tarjima qilindi
+    - ielts-practice/listening.astro: o'z-o'zini ichidagi i18n runtime + PAGE_I18N(lp.*) qo'shildi;
+      theme aria, audio holati, natija soni, "Tekshirish" tugmasi JS orqali tarjima qilinadi.
+    - ielts-practice/reading.astro: xuddi shu runtime + PAGE_I18N(rp.*); javob placeholder,
+      natija soni, tekshirish tarjimasi JS orqali.
+    - ielts-practice/writing.astro: runtime + PAGE_I18N(wp.*); theme aria, word count, minimum,
+      task qoidasi, "1 of 1", nusxalash, ogohlantirishlar, AI dialog ("Yopish"/"Sozlamalar"/"Xatolik:"),
+      instructionText va summary JS orqali tarjima qilinadi.
+    - profile.astro: skript ichida PROF_I18N + TL() yordamchi; profile nomi, speaking-detail,
+      latest-detail, chart-summary, confirm() xabari tarjima qilindi.
+    - index.astro: hero "typed effect" uchun HERO_I18N (uz/ru/en) massivlari; tanlangan til
+      bo'yicha aylanish matni chiqadi.
+    Barcha o'z-o'zini ichidagi practice sahifalari Base.astro'ga bog'liq emas, shuning uchun
+    ularga alohida kichik runtime joylashtirildi. Build: 52 sahifa (muvaffaqiyatli).
+    QOLDI: yo'q — barcha ko'rinadigan UZ matn sahifalari 3 tilda (uz/ru/en) tayyor.
+    Deploy: githubga push → GitHub Actions → GitHub Pages.
