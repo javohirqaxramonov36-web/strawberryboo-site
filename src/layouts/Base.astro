@@ -83,6 +83,28 @@ const TG = "https://t.me/progression_go"; // Telegram kanal/guruh havolasi
       }
     </script>
     <link rel="stylesheet" href={base + 'assets/interactive.css'} />
+    <!-- Sayt miqyosidagi structured data (Organization + WebSite) -->
+    <script type="application/ld+json" set:html={JSON.stringify({
+      '@context': 'https://schema.org',
+      '@graph': [
+        {
+          '@type': 'Organization',
+          '@id': (Astro.site?.href ?? Astro.url.href) + '#organization',
+          name: 'Tayanch',
+          url: (Astro.site?.href ?? Astro.url.href),
+          logo: new URL('favicon.svg', Astro.site ?? Astro.url).href,
+          sameAs: ['https://t.me/progression_go']
+        },
+        {
+          '@type': 'WebSite',
+          '@id': (Astro.site?.href ?? Astro.url.href) + '#website',
+          url: (Astro.site?.href ?? Astro.url.href),
+          name: 'Tayanch',
+          inLanguage: 'uz',
+          publisher: { '@id': (Astro.site?.href ?? Astro.url.href) + '#organization' }
+        }
+      ]
+    })} />
   </head>
   <body>
     <a href="#main" class="skip-link" data-i18n="skip">Asosiyga o'tish</a>
