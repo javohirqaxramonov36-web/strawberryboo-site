@@ -110,5 +110,32 @@ RU/EN routelar bilan tayyor (qarang: /ru/kurslar/ielts-listening/, /en/...).
    - kurs-tanlash.astro           (reco.*; h1, lead, 4 savol sarlavhasi, nav tugmalari)
    - mening-yolim.astro           (jour.*; hero, 6 bosqich sarlavhasi+kicker, proof bo'limi, CTA)
    Qo'shimcha: Base.astro I18N lug'atiga uz/ru/en uchun kk/np/bl/ab/faq/reco/jour kalitlari qo'shildi.
-   Eslatma: ko'plab qolgan kurs sahifalari (ai-agentlar, figma, prompt-engineering, obsidian,
-   tekin-ai, ielts-* va b.) hali UZ-only; tanlov/chrome 3 tilda to'liq ishlaydi.
+    Eslatma: ko'plab qolgan kurs sahifalari (ai-agentlar, figma, prompt-engineering, obsidian,
+    tekin-ai, ielts-* va b.) hali UZ-only; tanlov/chrome 3 tilda to'liq ishlaydi.
+
+  2026-08-22 (davomi 2): Qolgan kurs/practice/policy sahifalari scaffolding tarjimasi — TUGATILDI
+    - kurslar/ai-agentlar.astro      (aa.h1, aa.lead — modullar avval instrumentlangan edi)
+    - kurslar/prompt-engineering.astro (pe.h1, pe.lead)
+    - kurslar/obsidian.astro         (op.eyebrow, op.h1, op.lead)
+    - kurslar/figma.astro            (fig.h1, fig.lead)
+    - kurslar/tekin-ai.astro         (ta.h1, ta.lead — modullar ta.* avval bor)
+    - kurslar/mac-tezlik-sirlari.astro (mt.h1 — lead mt.lead1/leadBold/lead2 avval bor)
+    - kurslar/chet-elda-oqish.astro  (ce.h1 — lead ce.lead1/leadBold/lead2 avval bor)
+    - kurslar/financial-literacy.astro (fl.h1 — fl.* avval bor)
+    - kurslar/el-yurt-umidi.astro    (ey.h1 — ey.* avval bor)
+    - ielts-practice/index.astro     (ipr.eyebrow, ipr.h1)
+    - ielts-mock/index.astro         (imk.eyebrow, imk.h1, imk.lead)
+    - md2pdf.astro                   (mdp.h1, mdp.lead)
+    - kurslar/ielts-writing/typing.astro (ty.eyebrow, ty.h1, ty.lead)
+    - 404.astro                      (nf.h1, nf.desc, nf.btn1, nf.btn2)
+    - foydalanish-shartlari.astro    (terms.eyebrow, terms.h1)
+    - maxfiylik-siyosati.astro       (priv.eyebrow, priv.h1)
+    Qo'shimcha: Base.astro I18N lug'atiga uz/ru/en uchun fig/ce.h1/mt.h1/ipr/mdp/imk/terms/
+    priv/nf/ty kalitlari qo'shildi. Build: 52 sahifa. Commit: 7e20152.
+    Holat: BARCHA asosiy marketing/kurs/practice/policy sahifalari endi `[data-i18n]` bilan
+    instrumentlangan va RU/EN tarjima lug'atiga ega. Qolgan UZ-only qismlar:
+      * ielts-practice/listening, /reading, /writing — to'liq o'z-o'zini ichidagi amaliy
+        test sahifalari (inglizcha passage + UZ ko'rsatmalar); passage matni tarjima qilinmaydi.
+      * ielts-mock/results — dinamik natija sahifasi.
+      * profile.astro, index.astro hero (typed effect) — JS-drive qismlar.
+    (Bu qismlar funksional vositalar; kengaytirish alohida bosqich sifatida qoldirildi.)
