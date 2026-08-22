@@ -708,7 +708,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.29/jspdf.plugin.autotable.min.js"></script>
-    <script src="../../../../tayanch-ai.js"></script>
+    <script src="../../../js/ielts-assessor.js"></script>
 </head>
 <body data-theme="light">
 <section style="margin:12px;padding:14px;border:2px solid #d97706;border-radius:10px;background:#fff8e6;font-family:system-ui;color:#1f2937" aria-label="Tayanch listening audiolari"><strong>Tayanch · MOCK 026 listening audio</strong><p style="margin:6px 0">Har qismni navbat bilan tinglang. Audio ushbu mock uchun lokal fayl sifatida biriktirilgan.</p><ol style="display:grid;gap:8px;padding-left:22px"><li><strong>Qism 1</strong><audio controls preload="metadata" src="../../audio/mock-026/section1.mp3"></audio></li><li><strong>Qism 2</strong><audio controls preload="metadata" src="../../audio/mock-026/section2.mp3"></audio></li><li><strong>Qism 3</strong><audio controls preload="metadata" src="../../audio/mock-026/section3.mp3"></audio></li><li><strong>Qism 4</strong><audio controls preload="metadata" src="../../audio/mock-026/section4.mp3"></audio></li></ol></section>
@@ -1050,15 +1050,15 @@ COMMON MISTAKES TO AVOID:
             const prompt2 = promptEl2 ? promptEl2.innerText.trim() : 'Task 2';
             const results = [];
             try {
-                await window.TayanchAI.ensureApiKey();
+                // API kalit tekshiruvi IELTSAssessor.assessWriting ichida amalga oshiriladi
                 if (part1Content.trim()) {
-                    results[1] = await window.TayanchAI.assessWriting({ taskType: 'academic_task1', prompt: prompt1, response: part1Content });
+                    results[1] = await IELTSAssessor.assessWriting({ task_type: 'academic_task1', prompt: prompt1, response: part1Content });
                 }
                 if (part2Content.trim()) {
-                    results[2] = await window.TayanchAI.assessWriting({ taskType: 'task2', prompt: prompt2, response: part2Content });
+                    results[2] = await IELTSAssessor.assessWriting({ task_type: 'task2', prompt: prompt2, response: part2Content });
                 }
             } catch (err) {
-                window.TayanchAI.showError(err);
+                window.IELTSAssessor.showSettingsDialog();
             }
             renderAiResults(results);
             downloadBothTasksPDF();
