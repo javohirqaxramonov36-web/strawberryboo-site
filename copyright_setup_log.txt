@@ -1,0 +1,50 @@
+# Copyright / Mualliflik huquqi sozlama logi
+# Sana: 2026-08-22
+# Loyiha: Tayanch (strawberryboo-site, Astro → GitHub Pages)
+
+## Bajarilgan qadamlar
+1. LICENSE.md yaratildi — ichida aniq matn:
+   "© 2026 Javohir Qaxramonov (Tayanch). Barcha huquqlar himoyalangan.
+   Ushbu saytning kodi, dizayni va kontentini muallif ruxsatisiz nusxalash,
+   o'zgartirish, qayta tarqatish yoki tijorat maqsadida ishlatish qat'iyan taqiqlanadi."
+2. src/pages/foydalanish-shartlari.astro ga 9-bo'lim ("Intellektual mulk va
+   mualliflik huquqi") qo'shildi. Mavjud 1–8 bo'limlar o'zgartirilmadi.
+3. src/layouts/Base.astro footer'idagi "© 2026 Tayanch..." matni saqlanib qoldi,
+   yoniga "Foydalanish shartlari" havolasi qo'shildi (footer.terms i18n kaliti
+   UZ/RU/EN ga qo'shildi).
+4. JS-orqali himoya (o'ng tugma bloklash, view-source bloklash va h.k.) QO'SHILMADI
+   — faqat huquqiy/matn choralari.
+5. Repo ochiq/yopiq holati tekshirildi (hisobot uchun, o'zgartirilmadi).
+6. O'zbekiston'da mualliflik huquqini ro'yxatga olish bo'yicha web-qidiruv
+   qilindi (hisobot uchun).
+
+## Repo holati (report only)
+- GitHub API orqali tekshirishga urinish: javob olilmadi (sandbox tarmog'i
+  cheklangan bo'lishi mumkin).
+- Loyiha public GitHub Pages (javohirqaxramonov36-web.github.io/strawberryboo-site)
+  sifatida chop etilayotgani uchun repo amalda ochiq hisoblanadi.
+- Tavsiya: GitHub → Settings → General → "Change repository visibility"
+  orqali yakuniy holatni tasdiqlang. O'zgartirilmadi.
+
+## O'zbekiston'da mualliflik huquqi (qisqacha hisobot)
+- Asosiy qonun: "Mualliflik huquqi va turdosh huquqlar to'g'risida" (O'RQ-42, 2006).
+- Muhim: mualliflik huquqi asar YARATILGAN paytdan boshlab avtomatik vujudga keladi.
+  Ro'yxatga olish YOKI boshqa rasmiyatchilik TALAB QILINMAYDI ("Mualliflik huquqining
+  yuzaga kelishi va amalga oshirilishi uchun asarni ro'yxatdan o'tkazish yoki biron-bir
+  boshqa rasmiyatchilikka rioya etish talab qilinmaydi").
+- Demak: sayt kontenti (kurs matnlari, dizayn, kod) allaqachon mualliflik huquqi bilan
+  himoyalangan. Qo'shimcha ro'yxatga olish IXtIYORIY va faqat dalil kuchini oshiradi.
+- Dasturiy mahsulotlar uchun: Intellektual mulk agentligi ("Dasturiy mahsulotlar
+  davlat reyestri") orqali ixtiyoriy ro'yxatga olish mumkin; davlat boji to'lanadi
+  (miqdori Vazirlar Mahkamasi belgilaydi — aniq raqam qonun matnida berilmagan,
+  odatda modest).
+- Huquqlarni boshqaga o'tkazish shartnomasini ro'yxatdan o'tkazish: ariza kelib
+  tushgan kundan boshlab 15 kun ichida ko'rib chiqiladi.
+- Agentlik: O'zbekiston Respublikasi Adliya vazirligi huzuridagi Intellektual mulk
+  agentligi (im.adliya.uz / lex.uz dagi tegishli reglamentlar).
+- Xulosa: saytda allaqachon yetarli huquqiy himoya mavjud; qo'shimcha ro'yxatga olish
+  ixtiyoriy va asosan "dalil" maqsadida qilinadi.
+
+## Eslatma
+- Narxlar va kurs kontenti o'zgartirilmadi.
+- Barcha matn o'zgarishlari faqat huquqiy/terms va yangi kurs sahifalari uchun.
