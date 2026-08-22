@@ -22,26 +22,26 @@ const pageTitle = "IELTS Writing Practice — Tayanch";
 <body>
   <header class="topbar">
     <a class="brand" href={base}><b>Tayanch</b></a>
-    <span class="label">IELTS Writing · Original practice shabloni</span>
+    <span class="label" data-i18n="wp.meta">IELTS Writing · Original practice shabloni</span>
     <div class="top-actions"><span id="timer" aria-live="polite">00:00</span><button id="theme" type="button" aria-label="Rang rejimini almashtirish">☾</button><a class="back" href={base + 'kurslar/#ielts-courses'}>Kursga qaytish</a></div>
   </header>
 
   <main>
-    <p class="notice">ⓘ Bu Tayanch uchun original, qayta ishlatiladigan Writing practice shabloni. Har yangi testda faqat mavzu, kerak bo'lsa grafik, namuna javobi va PDF savol matni yangilanadi.</p>
+    <p class="notice" data-i18n="wp.notice">ⓘ Bu Tayanch uchun original, qayta ishlatiladigan Writing practice shabloni. Har yangi testda faqat mavzu, kerak bo'lsa grafik, namuna javobi va PDF savol matni yangilanadi.</p>
     <section class="workspace">
       <article class="prompt-panel">
         <div class="task-meta"><span id="taskName">TASK 1</span><span id="taskRule">Taxminan 20 daqiqa · kamida 150 so'z</span></div>
         <div id="taskOne" class="task-content">
-          <h1>Yangi Task 1 uchun joy</h1>
-          <p>Bu sahifa reusable shablon sifatida tayyor. Yangi grafik, jadval, diagramma yoki map berilganda shu yerda original prompt va rasm paydo bo'ladi.</p>
+          <h1 data-i18n="wp.task1Title">Yangi Task 1 uchun joy</h1>
+          <p data-i18n="wp.task1Text">Bu sahifa reusable shablon sifatida tayyor. Yangi grafik, jadval, diagramma yoki map berilganda shu yerda original prompt va rasm paydo bo'ladi.</p>
           <div class="chart-placeholder" aria-label="Task 1 grafik uchun bo'sh joy"><span>CHART / DIAGRAM</span><small>Yangi testda rasm shu yerga qo'shiladi</small></div>
           <p class="instruction"><b>Vazifa:</b> Asosiy xususiyatlarni tanlab, ularni solishtirib yozing. Yangi test qo'shilganda aniq savol shu yerda bo'ladi.</p>
         </div>
         <div id="taskTwo" class="task-content hidden">
-          <h1>Yangi Task 2 uchun joy</h1>
-          <p>Yangi original essay mavzusi kelganda savol shu yerga joylanadi.</p>
+          <h1 data-i18n="wp.task2Title">Yangi Task 2 uchun joy</h1>
+          <p data-i18n="wp.task2Text">Yangi original essay mavzusi kelganda savol shu yerga joylanadi.</p>
           <p class="instruction"><b>Vazifa:</b> Pozitsiyangizni aniq bildiring, ikkita body paragraph orqali sabab va misol bilan rivojlantiring.</p>
-          <p class="strategy">Sizning Obsidian qoidangiz: introduction qisqa, body qismida 2 ta izchil paragraph bo'lsin.</p>
+          <p class="strategy" data-i18n="wp.strategy">Sizning Obsidian qoidangiz: introduction qisqa, body qismida 2 ta izchil paragraph bo'lsin.</p>
         </div>
       </article>
 
@@ -55,16 +55,16 @@ const pageTitle = "IELTS Writing Practice — Tayanch";
 
   <footer class="bottom-bar">
     <div class="task-tabs"><button class="tab active" data-task="1" type="button"><b>Part 1</b><small id="done1">0 of 1</small></button><button class="tab" data-task="2" type="button"><b>Part 2</b><small id="done2">0 of 1</small></button></div>
-    <button id="aiAssess" class="ai-button" type="button">AI Baholash</button>
-    <button id="instructions" class="muted-button" type="button">Ko'rsatmalar</button>
-    <button id="submit" class="submit" type="button">Yakunlash va PDF</button>
+    <button id="aiAssess" class="ai-button" type="button" data-i18n="wp.aiAssess">AI Baholash</button>
+    <button id="instructions" class="muted-button" type="button" data-i18n="wp.instructions">Ko'rsatmalar</button>
+    <button id="submit" class="submit" type="button" data-i18n="wp.submit">Yakunlash va PDF</button>
   </footer>
 
-  <dialog id="aiResultDialog"><div class="dialog-head"><h2>AI Writing Assessment</h2><button class="close" type="button" data-close>×</button></div><div class="dialog-body"><div id="aiResultContent"></div></div></dialog>
+  <dialog id="aiResultDialog"><div class="dialog-head"><h2 data-i18n="wp.aiTitle">AI Writing Assessment</h2><button class="close" type="button" data-close>×</button></div><div class="dialog-body"><div id="aiResultContent"></div></div></dialog>
 
-  <dialog id="instructionsDialog"><div class="dialog-head"><h2>Writing practice ko'rsatmalari</h2><button class="close" type="button" data-close>×</button></div><div class="dialog-body"><h3>Umumiy</h3><ul><li>Task 1 uchun taxminan 20 daqiqa va kamida 150 so'z.</li><li>Task 2 uchun taxminan 40 daqiqa va kamida 250 so'z.</li><li>Tasklar orasida o'tganda yozgan javobingiz qurilmada saqlanadi.</li></ul><h3>Task 1</h3><p>Asosiy trend yoki xususiyatlarni tanlang, aniq taqqoslashlar qiling va formal uslubdan foydalaning.</p><h3>Task 2</h3><p>Qisqa introduction, ikki body paragraph va aniq xulosa orqali pozitsiyani himoya qiling.</p><h3>Self-review</h3><p>Word count, savolga to'liq javob, paragraph mantiqi hamda academic so'zlarning tabiiyligini o'zingiz tekshirasiz.</p><button id="copyInstructions" class="copy" type="button">Ko'rsatmalarni nusxalash</button></div></dialog>
+  <dialog id="instructionsDialog"><div class="dialog-head"><h2 data-i18n="wp.instrTitle">Writing practice ko'rsatmalari</h2><button class="close" type="button" data-close>×</button></div><div class="dialog-body"><h3>Umumiy</h3><ul><li>Task 1 uchun taxminan 20 daqiqa va kamida 150 so'z.</li><li>Task 2 uchun taxminan 40 daqiqa va kamida 250 so'z.</li><li>Tasklar orasida o'tganda yozgan javobingiz qurilmada saqlanadi.</li></ul><h3>Task 1</h3><p>Asosiy trend yoki xususiyatlarni tanlang, aniq taqqoslashlar qiling va formal uslubdan foydalaning.</p><h3>Task 2</h3><p>Qisqa introduction, ikki body paragraph va aniq xulosa orqali pozitsiyani himoya qiling.</p><h3>Self-review</h3><p>Word count, savolga to'liq javob, paragraph mantiqi hamda academic so'zlarning tabiiyligini o'zingiz tekshirasiz.</p><button id="copyInstructions" class="copy" type="button" data-i18n="wp.copy">Ko'rsatmalarni nusxalash</button></div></dialog>
 
-  <dialog id="completeDialog"><div class="dialog-head"><h2>Practice yakunlandi</h2><button class="close" type="button" data-close>×</button></div><div class="dialog-body"><p id="summary"></p><p>PDF fayl qurilmangizga yuklanadi. Hozir bu umumiy shablon, shuning uchun namunaviy javoblar yangi test kontenti kiritilganda chiqadi.</p><button id="download" class="submit" type="button">PDF-ni yuklash</button></div></dialog>
+  <dialog id="completeDialog"><div class="dialog-head"><h2 data-i18n="wp.completeTitle">Practice yakunlandi</h2><button class="close" type="button" data-close>×</button></div><div class="dialog-body"><p id="summary"></p><p data-i18n="wp.completeText">PDF fayl qurilmangizga yuklanadi. Hozir bu umumiy shablon, shuning uchun namunaviy javoblar yangi test kontenti kiritilganda chiqadi.</p><button id="download" class="submit" type="button" data-i18n="wp.download">PDF-ni yuklash</button></div></dialog>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
   <script src={base + 'js/ielts-assessor.js'}></script>
