@@ -31,15 +31,15 @@ const methods = [
   <article class="vocabulary-course">
     <header class="course-hero">
       <p class="eyebrow">05 — IELTS MINI-KURS</p>
-      <h1>IELTS Vocabulary</h1>
-      <p class="lead">So‘z yodlashda qiynalyapsizmi? Sizga mos, muntazam ishlaydigan usulni tanlang va uni har kuni kichik qadamlar bilan davom ettiring.</p>
+      <h1 data-i18n="vo.h1">IELTS Vocabulary</h1>
+      <p class="lead" data-i18n="vo.lead">So‘z yodlashda qiynalyapsizmi? Sizga mos, muntazam ishlaydigan usulni tanlang va uni har kuni kichik qadamlar bilan davom ettiring.</p>
       <nav class="jump-links" aria-label="Vocabulary kurs bo‘limlari"><a href="#flashcards">Flashcards</a><a href="#obsidian">Obsidian</a><a href="#compare">Qaysi usul mos?</a></nav>
     </header>
 
     <section class="intro" aria-labelledby="start-title">
       <p class="eyebrow">ASOSIY TAMOYIL</p>
-      <h2 id="start-title">Yodlash emas, qayta uchrashish</h2>
-      <p>Yangi so‘zni bir marta ko‘rish yetmaydi. Uni qisqa oraliqlarda qayta eslash — <strong>spaced repetition</strong> — so‘zni uzoqroq muddat xotirada saqlashga yordam beradi. Quyidagi ikki usul shu odatni qurish uchun turli yo‘l beradi.</p>
+      <h2 id="start-title" data-i18n="vo.introTitle">Yodlash emas, qayta uchrashish</h2>
+      <p data-i18n="vo.introP">Yangi so‘zni bir marta ko‘rish yetmaydi. Uni qisqa oraliqlarda qayta eslash — <strong>spaced repetition</strong> — so‘zni uzoqroq muddat xotirada saqlashga yordam beradi. Quyidagi ikki usul shu odatni qurish uchun turli yo‘l beradi.</p>
     </section>
 
     <section id="flashcards" aria-label="Flashcards usuli"><VocabularyMethodCard {...methods[0]} /></section>
@@ -47,14 +47,14 @@ const methods = [
 
     <section class="compare" id="compare" aria-labelledby="compare-title">
       <p class="eyebrow">QAYSI USUL SENGA MOS?</p>
-      <h2 id="compare-title">Tez tanlash jadvali</h2>
+      <h2 id="compare-title" data-i18n="vo.cmpTitle">Tez tanlash jadvali</h2>
       <div class="comparison-wrap"><table><thead><tr><th>Holatingiz</th><th>Tavsiya</th><th>Nega?</th></tr></thead><tbody><tr><td>Bugunoq, sodda usul bilan boshlamoqchisiz</td><td><a href="#flashcards">Flashcards</a></td><td>Qog‘oz, ruchka va 10 daqiqa yetarli.</td></tr><tr><td>So‘z, misol va mavzularni uzoq muddat saqlamoqchisiz</td><td><a href="#obsidian">Obsidian</a></td><td>Har bir so‘zni kontekst hamda linklar bilan rivojlantirasiz.</td></tr><tr><td>Telefon/kompyuterdan tanaffus qilishni xohlaysiz</td><td><a href="#flashcards">Flashcards</a></td><td>To‘liq offline ishlaydi.</td></tr><tr><td>Allaqachon Obsidian’da nota yuritasiz</td><td><a href="#obsidian">Obsidian</a></td><td>Mavjud vaultingizni so‘z bazasiga aylantirasiz.</td></tr></tbody></table></div>
       <p class="note">Ikki usulni birga ishlatish ham mumkin: yangi so‘zlarni Obsidian’da saqlab, eng qiyinlarini alohida qog‘oz kartalarga ajrating.</p>
     </section>
 
-    <section class="obsidian-callout"><div><p class="eyebrow">CHUQURROQ O‘RGANISH</p><h2>Obsidian tizimini noldan qurmoqchimisiz?</h2><p>Obsidian PKM kursida nota, linklar va Spaced Repetition plagini bilan ishlash yo‘li batafsil ko‘rsatilgan.</p></div><a class="start-btn" href={base + 'kurslar/obsidian/'}>Obsidian PKM kursi →</a></section>
+    <section class="obsidian-callout"><div><p class="eyebrow">CHUQURROQ O‘RGANISH</p><h2 data-i18n="vo.ocTitle">Obsidian tizimini noldan qurmoqchimisiz?</h2><p data-i18n="vo.ocText">Obsidian PKM kursida nota, linklar va Spaced Repetition plagini bilan ishlash yo‘li batafsil ko‘rsatilgan.</p></div><a class="start-btn" href={base + 'kurslar/obsidian/'} data-i18n="vo.ocLink">Obsidian PKM kursi →</a></section>
 
-    <div class="actions"><a class="course-nav-link" href={base + 'kurslar/#ielts-courses'}>← Barcha IELTS kurslari</a></div>
+    <div class="actions"><a class="course-nav-link" href={base + 'kurslar/#ielts-courses'} data-i18n="vo.allIELTS">← Barcha IELTS kurslari</a></div>
     <CourseTestimonialPlaceholder />
   <LeadMagnetCTA />
 </article>
