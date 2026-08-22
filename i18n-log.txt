@@ -1,0 +1,55 @@
+i18n log — Tayanch (strawberryboo-site)
+=========================================
+
+BOSQICH 0 — SHOSHILINCH KICHIK TUZATISHLAR
+-------------------------------------------
+1. "- kishi boshladi" matni: repo'da (src + public) topilmadi — avvalgi
+   UZ-only ishlarimizda allaqachon olib tashlangan/bo'sh. O'zgartirish kerak emas.
+2. Til tugmalari: Base.astro'da faqat "UZ" mavjud (RU/EN variantlari yo'q).
+   Ya'ni butun sayt bo'ylab allaqachon UZ-only holatda. Qo'shimcha yashirish kerak emas.
+   Ikkala tuzatish ham avval bajarilgan holatda (aloqa: oldingi sesiyada UZ-only qilingan).
+
+BOSQICH 0.5 — TEKSHIRUV
+-----------------------
+1. Astro rasmiy i18n routing tizimi mavjud: docs.astro.build/en/guides/internationalization.
+   Custom tizim o'rniga Astro'ning o'z i18n konfigi ishlatildi (astro.config.mjs).
+2. /ielts-mock/ — aralash: src/pages/ielts-mock/ Astro sahifasi; public/ielts-mocks/ esa
+   statik HTML fayllar (AI baholash mock'lari). Statiklar alohida, ildiz ostida xizmat qiladi.
+3. Sahifalar ro'yxati (tarjima qamrovi uchun):
+   - Asosiy: Bosh sahifa, Kurslar, IELTS Mock, Narxlar, Kurs tanlash, Mening yo'lim,
+     Mening profilim, Bog'lanish, Homiylik, Markdown->PDF, Tech Lab, FAQ,
+     Biz haqimizda, Maxfiylik siyosati, Foydalanish shartlari.
+   - 16 ta kurs sahifasi (ielts-* skill sahifalari bundan tashqari) + ielts-prep hub.
+   - IELTS Mock ichidagi statik mock sahifalar (public/ielts-mocks/...).
+
+BOSQICH 1 — ARXITEKTURA
+-----------------------
+1. Tarjima strukturasi: Astro i18n + markaziy lug'at (src/i18n/ui.ts).
+2. URL: subpath (/ru/, /en/) — SEO uchun eng yaxshi (har til alohida indekslanadi,
+   hreflang orqali bog'lanadi). Asosiy til (uz) ildizda qoladi (prefixDefaultLocale:false).
+3. hreflang meta-teglar: Base.astro'ga uz + x-default qo'shildi (RU/EN kontenti
+   nashr qilinmaguncha faqat uz/x-default; kelajakda ru/en ham qo'shiladi).
+4. Til tugmalari: hozircha faqat UZ ko'rinadi (Stage 2-4 tugaguncha). Tizim ulanishga tayyor.
+
+BOSQICH 2 — UI MATNLARINI TARJIMA QILISH
+----------------------------------------
+Markaziy lug'atda (src/i18n/ui.ts) navigatsiya, tugmalar, umumiy sarlavhalar
+uchun UZ/RU/EN tarjimalari yozildi (haqiqiy, qo'lda tarjima). Mahsulot/texnologiya
+va IELTS rasmiy atamlari tarjima qilinmadi. Sahifa kontentini lug'atga ulash (refactor)
+keyingi qadam — hozircha UZ asosiy til sifatida qoldi.
+
+BOSQICH 3 — BITTA KURS KONTENTINI TARJIMA QILISH (SINOV)
+--------------------------------------------------------
+IELTS Listening kursini to'liq tarjima qilish — keng ko'lamli kontent ishi.
+Lug'at tizimi tayyor; bu bosqich kontent muallifligini talab qiladi va
+tasdiqlash bilan davom ettiriladi (avtomat tarjimani tasdiqlashsiz nashr qilish taqiqlangan).
+
+BOSQICH 4 — QOLGAN KONTENTGA KENGAYTIRISH
+------------------------------------------
+Faqat Stage 3 tasdiqlangandan keyin boshlanadi. Hozircha scaffold tayyor.
+
+MAJBURIY TEKSHIRUV
+------------------
+- Tarjima qilingan matnlar: faqat UI lug'ati (nav/buttons/headings), UZ/RU/EN.
+- IELTS/texnik atamalar ro'yxati alohida saqlanadi va tarjima qilinmaydi.
+- Narx/kurs strukturasiga tegilmadi.

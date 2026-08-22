@@ -1,5 +1,6 @@
 ---
 import Base from "../../layouts/Base.astro";
+import LeadMagnetCTA from "../../components/LeadMagnetCTA.astro";
 import CourseProgress from "../../components/CourseProgress.astro";
 import PaymentInstructions from "../../components/PaymentInstructions.astro";
 import CourseSchema from "../../components/CourseSchema.astro";
@@ -120,6 +121,8 @@ const subcourses = [
     <Quiz title="O'z bilimingizni tekshiring" questions={questions} />
     <a href={base + 'kurslar'} class="course-nav-link">← Barcha kurslar</a>
     <PaymentInstructions course="Admission Process" price="49 000 so'mdan" />
+  <CourseTestimonialPlaceholder />
+  <LeadMagnetCTA />
 </article>
 
   <script>

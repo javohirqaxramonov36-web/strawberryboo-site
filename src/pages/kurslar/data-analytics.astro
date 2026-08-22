@@ -1,5 +1,6 @@
 ---
 import Base from "../../layouts/Base.astro";
+import LeadMagnetCTA from "../../components/LeadMagnetCTA.astro";
 import CourseProgress from "../../components/CourseProgress.astro";
 import PaymentInstructions from "../../components/PaymentInstructions.astro";
 import CourseSchema from "../../components/CourseSchema.astro";
@@ -132,7 +133,9 @@ const weeks = [
 
     <Quiz title="O'z bilimingizni tekshiring" questions={questions} />
     <PaymentInstructions course="Data Analytics — Ma'lumotlar tahlili" price="TBD · tez orada belgilanadi" />
-  </article>
+    <CourseTestimonialPlaceholder />
+  <LeadMagnetCTA />
+</article>
 
   <style>
     .hero-meta{display:flex;flex-wrap:wrap;gap:.4rem;align-items:center;margin:0 0 .6rem;color:var(--muted);font-size:.85rem}

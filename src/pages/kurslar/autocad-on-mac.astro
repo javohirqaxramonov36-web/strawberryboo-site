@@ -1,5 +1,6 @@
 ---
 import Base from "../../layouts/Base.astro";
+import LeadMagnetCTA from "../../components/LeadMagnetCTA.astro";
 import CourseProgress from "../../components/CourseProgress.astro";
 import PaymentInstructions from "../../components/PaymentInstructions.astro";
 import CourseSchema from "../../components/CourseSchema.astro";
@@ -118,6 +119,8 @@ const questions = [
 
     <Quiz title="O'z bilimingizni tekshiring" questions={questions} />
     <PaymentInstructions course="AutoCAD on Mac" price="$29 · ≈ 360 000 so'm" />
+  <CourseTestimonialPlaceholder />
+  <LeadMagnetCTA />
 </article>
 
   <style>

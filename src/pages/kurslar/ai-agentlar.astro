@@ -1,5 +1,6 @@
 ---
 import Base from "../../layouts/Base.astro";
+import LeadMagnetCTA from "../../components/LeadMagnetCTA.astro";
 import PaymentInstructions from "../../components/PaymentInstructions.astro";
 import CourseProgress from "../../components/CourseProgress.astro";
 import CourseSchema from "../../components/CourseSchema.astro";
@@ -276,6 +277,8 @@ pip install langgraph</code></pre>
 
   <Quiz title="O'z bilimingizni tekshiring" titleI18n="aa.quizTitle" questions={questions} />
   <PaymentInstructions course="AI Agentlar nega kerak?" price="$39 · ≈ 490 000 so'm" />
+  <CourseTestimonialPlaceholder />
+  <LeadMagnetCTA />
 </article>
 
 <style>

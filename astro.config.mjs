@@ -8,4 +8,13 @@ export default defineConfig({
   markdown: {
     shikiConfig: { theme: 'github-dark' },
   },
+  // Astro'ning rasmiy i18n tizimi (docs.astro.build/en/guides/internationalization).
+  // Subpath routing tanlandi (/ru/, /en/) — SEO uchun eng yaxshi: har til alohida,
+  // indekslanadigan URLga ega bo'ladi va hreflang orqali bog'lanadi.
+  // prefixDefaultLocale: false — asosiy til (uz) ildizda qoladi, /ru/ va /en/ prefiks bilan.
+  i18n: {
+    defaultLocale: 'uz',
+    locales: ['uz', 'ru', 'en'],
+    routing: { prefixDefaultLocale: false },
+  },
 });

@@ -1,9 +1,10 @@
 ---
 import Base from "../../layouts/Base.astro";
+import LeadMagnetCTA from "../../components/LeadMagnetCTA.astro";
 import CourseSchema from "../../components/CourseSchema.astro";
 import Quiz from "../../components/Quiz.astro";
-import CourseTestimonialPlaceholder from "../../components/CourseTestimonialPlaceholder.astro";
 import LeadMagnetCTA from "../../components/LeadMagnetCTA.astro";
+import CourseTestimonialPlaceholder from "../../components/CourseTestimonialPlaceholder.astro";
 const title = "Financial Literacy — Moliyaviy savodxonlik | Tayanch";
 const description = "Pulni boshqarish, byudjet tuzish va moliyaviy qarorlar — talaba hayoti uchun asosiy ko'nikmalar. Umumiy ta'lim kursi.";
 const questions = [
@@ -172,8 +173,8 @@ const questions = [
   <a href={import.meta.env.BASE_URL + 'kurslar'} class="course-nav-link" style="margin-left:1rem;" data-i18n="fl.all">← Barcha kurslar</a>
 
   <Quiz titleI18n="fl.quizTitle" questions={questions} />
-</article>
-<style>.budget-tool{padding:1.2rem;border:1px solid #34d399;border-radius:16px;background:linear-gradient(135deg,rgba(52,211,153,.1),var(--surface))}.budget-tool input{padding:.6rem;border:1px solid var(--border);border-radius:8px;background:var(--bg);color:var(--text)}.budget-result{display:grid;grid-template-columns:repeat(3,1fr);gap:.6rem;margin-top:1rem}.budget-result span{padding:.8rem;border-radius:10px;background:var(--surface);border:1px solid var(--border)}.budget-result b{display:block;color:#34d399}</style><script>const bi=document.querySelector('#budgetIncome'),br=document.querySelector('#budgetResult');const calc=()=>{const n=Number((bi?.value||'').replace(/\D/g,''))||0;br.innerHTML=[["Kerakli xarajat",50],["Shaxsiy reja",30],["Jamg'arma",20]].map(([x,p])=>`<span>${x}<b>${Math.round(n*p/100).toLocaleString('uz-UZ')} so'm</b><small>${p}%</small></span>`).join('')};bi?.addEventListener('input',calc);calc()</script>
   <CourseTestimonialPlaceholder />
   <LeadMagnetCTA />
+</article>
+  <style>.budget-tool{padding:1.2rem;border:1px solid #34d399;border-radius:16px;background:linear-gradient(135deg,rgba(52,211,153,.1),var(--surface))}.budget-tool input{padding:.6rem;border:1px solid var(--border);border-radius:8px;background:var(--bg);color:var(--text)}.budget-result{display:grid;grid-template-columns:repeat(3,1fr);gap:.6rem;margin-top:1rem}.budget-result span{padding:.8rem;border-radius:10px;background:var(--surface);border:1px solid var(--border)}.budget-result b{display:block;color:#34d399}</style><script>const bi=document.querySelector('#budgetIncome'),br=document.querySelector('#budgetResult');const calc=()=>{const n=Number((bi?.value||'').replace(/\D/g,''))||0;br.innerHTML=[["Kerakli xarajat",50],["Shaxsiy reja",30],["Jamg'arma",20]].map(([x,p])=>`<span>${x}<b>${Math.round(n*p/100).toLocaleString('uz-UZ')} so'm</b><small>${p}%</small></span>`).join('')};bi?.addEventListener('input',calc);calc()</script>
 </Base>
