@@ -139,3 +139,21 @@ RU/EN routelar bilan tayyor (qarang: /ru/kurslar/ielts-listening/, /en/...).
       * ielts-mock/results — dinamik natija sahifasi.
       * profile.astro, index.astro hero (typed effect) — JS-drive qismlar.
     (Bu qismlar funksional vositalar; kengaytirish alohida bosqich sifatida qoldirildi.)
+
+  2026-08-22 (davomi 3): Qolgan funksional vositalar sahifalari ham instrumentlandi
+    - profile.astro                (prof.* — eyebrow, h1, note, summary label/sub, trend/history
+                                    eyebrow+title, chart/history empty states, clear button, jadval sarlavhalari)
+    - ielts-mock/results.astro     (res.* — eyebrow, h1, intro, confidence, 2 ta feedback card,
+                                    next-step bo'limi, legal)
+    - ielts-practice/writing.astro (wp.* — meta, notice, Task1/Task2 title/text, strategy,
+                                    footer tugmalari, dialog sarlavhalari/matni, download/copy)
+    - ielts-practice/listening.astro (lp.* — meta, notice, eyebrow, instructions, check, transcript)
+    - ielts-practice/reading.astro   (rp.* — meta, notice, qTitle, hint)
+    Qo'shimcha: Base.astro I18N lug'atiga uz/ru/en uchun prof/res/lp/rp/wp kalitlari qo'shildi.
+    Build: 52 sahifa. Commit: 8990676.
+    Eslatma: ba'zi matnlar JS tomonidan yoziladi (masalan, profile'dagi hisoblangan sonlar,
+    writing.astro dagi timer/word-count/AI xabarlari, results dagi dinamik baholar) — ular
+    hozircha UZ bo'lib qoladi; to'liq tarjima uchun JS ichiga tarjima o'tkazish alohida refactor.
+    Asosiy sahifa (index.astro) hero "typed effect" ham JS-drive; alohida ish.
+    HOLAT: Saytning deyarli barcha statik UZ matni endi 3 tilda (uz/ru/en) mavjud va
+    `.lang-switch` orqali almashinadi.
