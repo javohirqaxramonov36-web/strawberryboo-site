@@ -1,0 +1,282 @@
+[
+  {
+    "day": 1,
+    "type": "task1",
+    "task1_type": "academic",
+    "topic": "Bar chart — universitetga qabul",
+    "question": "The bar chart below shows the number of students enrolled in three university courses (Arts, Science and Engineering) in 2010 and 2020. Summarise the information by selecting and reporting the main features, and make comparisons where relevant.",
+    "time_limit_sec": 1200,
+    "min_words": 150,
+    "tips": "Overview bilan boshlang; har bir ustunni alohida emas, guruhlangan xususiyatlarni taqqoslab yozing."
+  },
+  {
+    "day": 2,
+    "type": "task2",
+    "topic": "Ta'lim — bepul universitet",
+    "question": "Some people believe that university education should be free for everyone. To what extent do you agree or disagree?",
+    "time_limit_sec": 2400,
+    "min_words": 250,
+    "tips": "Aniq pozitsiya oling; ikkita rivojlantirilgan body paragraph va muvozanatli xulosa yozing."
+  },
+  {
+    "day": 3,
+    "type": "task2",
+    "topic": "Texnologiya — onlayn xarid",
+    "question": "More people prefer to shop online than in physical stores. Do the advantages outweigh the disadvantages?",
+    "time_limit_sec": 2400,
+    "min_words": 250,
+    "tips": "Kamida bitta afzallik va kamida bitta kamchilikni misol bilan tushuntiring."
+  },
+  {
+    "day": 4,
+    "type": "task1",
+    "task1_type": "academic",
+    "topic": "Line graph — aholi soni",
+    "question": "The line graph below shows the population of three cities (A, B and C) between 1990 and 2020. Summarise the information by selecting and reporting the main features, and make comparisons where relevant.",
+    "time_limit_sec": 1200,
+    "min_words": 150,
+    "tips": "Asosiy trendlarni (o'sish/kamayish) va 1990 bilan 2020 orasidagi farqni ta'kidlang."
+  },
+  {
+    "day": 5,
+    "type": "task2",
+    "topic": "Sog'liq — parhez va sport",
+    "question": "A healthy diet and regular exercise are more important for a person's well-being than medical treatment. Discuss both views and give your opinion.",
+    "time_limit_sec": 2400,
+    "min_words": 250,
+    "tips": "Ikkala qarashni ham tan oling, so'ngra o'z fikringizni asoslang."
+  },
+  {
+    "day": 6,
+    "type": "task2",
+    "topic": "Ekologiya — iqlim o'zgarishi",
+    "question": "Individual actions are too small to affect climate change. To what extent do you agree or disagree?",
+    "time_limit_sec": 2400,
+    "min_words": 250,
+    "tips": "Shaxsiy va tizimli yondashuvlar farqini ko'rsating."
+  },
+  {
+    "day": 7,
+    "type": "task1",
+    "task1_type": "general",
+    "topic": "Yarim-rasmiy xat — mehmonxona",
+    "question": "You recently stayed at a hotel and left a personal item behind. Write a letter to the hotel manager asking them to find the item and explain how it can be returned to you.",
+    "time_limit_sec": 1200,
+    "min_words": 150,
+    "tips": "Sana, xona raqami va buyum tavsifini aniq yozing; rasmiy-raqamli ohangda bo'ling."
+  },
+  {
+    "day": 8,
+    "type": "task2",
+    "topic": "Jamiyat — qariyb borayotgan aholi",
+    "question": "In many countries, the population is ageing. What problems does this cause, and what solutions can you suggest?",
+    "time_limit_sec": 2400,
+    "min_words": 250,
+    "tips": "Problem–Solution tuzilmasini ishlating; har bir muammoga mos yechim bering."
+  },
+  {
+    "day": 9,
+    "type": "task2",
+    "topic": "Ish — xodimlarni kuzatish",
+    "question": "Some employers monitor their employees' emails and internet use. Is this an acceptable practice, or does it violate privacy?",
+    "time_limit_sec": 2400,
+    "min_words": 250,
+    "tips": "Xavfsizlik/xushyorlik va shaxsiy hayot huquqi o'rtasidagi muvozanatni muhokama qiling."
+  },
+  {
+    "day": 10,
+    "type": "task1",
+    "task1_type": "academic",
+    "topic": "Pie chart — energiya",
+    "question": "The pie charts below show the sources of energy used in a country in 1990 and 2020. Summarise the information by selecting and reporting the main features, and make comparisons where relevant.",
+    "time_limit_sec": 1200,
+    "min_words": 150,
+    "tips": "Eng katta ulushlarni va 1990→2020 o'zgarishlarini ta'kidlang."
+  },
+  {
+    "day": 11,
+    "type": "task2",
+    "topic": "Media — ta'sir kuchi",
+    "question": "News media has too much influence on people's lives. Discuss both views and give your opinion.",
+    "time_limit_sec": 2400,
+    "min_words": 250,
+    "tips": "Media foydasi (xabardorlik) va xavfi (mansublik) ni tarozilab ko'rsating."
+  },
+  {
+    "day": 12,
+    "type": "task2",
+    "topic": "Jinoyat — qamoq yoki ta'lim",
+    "question": "Some people think prisons are the best way to reduce crime, while others believe education is more effective. Discuss both views and give your opinion.",
+    "time_limit_sec": 2400,
+    "min_words": 250,
+    "tips": "Ikkala yondashuvning ham o'z o'rnini tan olib, tanlovingizni asoslang."
+  },
+  {
+    "day": 13,
+    "type": "task1",
+    "task1_type": "academic",
+    "topic": "Table — kun tartibi",
+    "question": "The table below compares the daily routines of two age groups (18–25 and 55–65). Summarise the information by selecting and reporting the main features, and make comparisons where relevant.",
+    "time_limit_sec": 1200,
+    "min_words": 150,
+    "tips": "Guruhlar o'rtasidagi asosiy farqlarni (uyqu, ish, dam olish) ajrating."
+  },
+  {
+    "day": 14,
+    "type": "task2",
+    "topic": "Globallashuv — o'xshashlik",
+    "question": "Globalisation is making countries more similar. Is this a positive or negative development?",
+    "time_limit_sec": 2400,
+    "min_words": 250,
+    "tips": "Madaniy bir xillik va iqtisodiy foyda/d)zavomatni birgalikda ko'rib chiqing."
+  },
+  {
+    "day": 15,
+    "type": "task2",
+    "topic": "Ta'lim — pul boshqaruvi",
+    "question": "Financial education should be taught in schools. To what extent do you agree or disagree?",
+    "time_limit_sec": 2400,
+    "min_words": 250,
+    "tips": "Maktabda hayotiy ko'nikma sifatida asoslang, lekin o'quv dasturiga bosimni ham eslang."
+  },
+  {
+    "day": 16,
+    "type": "task1",
+    "task1_type": "academic",
+    "topic": "Process — qog'oz qayta ishlash",
+    "question": "The diagram below shows how paper is recycled. Summarise the information by selecting and reporting the main features.",
+    "time_limit_sec": 1200,
+    "min_words": 150,
+    "tips": "Bosqichma-bosqich tartibni (passive voice bilan) va umumiy bosqichlar sonini yozing."
+  },
+  {
+    "day": 17,
+    "type": "task2",
+    "topic": "Texnologiya — AI o'qituvchilar",
+    "question": "Some people think artificial intelligence will replace human teachers. To what extent do you agree or disagree?",
+    "time_limit_sec": 2400,
+    "min_words": 250,
+    "tips": "AI afzalliklarini tan oling, lekin insoniy empatiya/rahbarlikni ta'kidlang."
+  },
+  {
+    "day": 18,
+    "type": "task2",
+    "topic": "Ekologiya — soliq",
+    "question": "Governments should tax polluting industries more heavily. To what extent do you agree or disagree?",
+    "time_limit_sec": 2400,
+    "min_words": 250,
+    "tips": "Iqtisodiy rag'bat va adolat (kichik biznes) jihatlarini ko'rib chiqing."
+  },
+  {
+    "day": 19,
+    "type": "task1",
+    "task1_type": "general",
+    "topic": "Rasmiy xat — shikoyat",
+    "question": "You recently bought a product that was faulty. Write a letter to the company complaining about the problem and requesting a refund or replacement.",
+    "time_limit_sec": 1200,
+    "min_words": 150,
+    "tips": "Muammoni faktlar bilan, rasmiy ohangda bayon eting va aniq talab (refund/replacement) qo'ying."
+  },
+  {
+    "day": 20,
+    "type": "task2",
+    "topic": "Jamiyat — vegetarianlik",
+    "question": "Some people believe everyone should adopt a vegetarian diet for environmental reasons. Discuss both views and give your opinion.",
+    "time_limit_sec": 2400,
+    "min_words": 250,
+    "tips": "Atrof-muhit foydasi va shaxsiy/diyetik huquqlarni tarozilab ko'rsating."
+  },
+  {
+    "day": 21,
+    "type": "task2",
+    "topic": "Ish — qoniqish va maosh",
+    "question": "Is job satisfaction more important than a high salary? Discuss both views and give your opinion.",
+    "time_limit_sec": 2400,
+    "min_words": 250,
+    "tips": "Uzoq muddatli motivatsiya va moliyaviy xavfsizlik o'rtasidagi tanlovni asoslang."
+  },
+  {
+    "day": 22,
+    "type": "task1",
+    "task1_type": "academic",
+    "topic": "Map — shahar qayta qurilishi",
+    "question": "The maps below show a town before and after redevelopment. Summarise the information by selecting and reporting the main features.",
+    "time_limit_sec": 1200,
+    "min_words": 150,
+    "tips": "Asosiy o'zgarishlarni (yo'nalishlar, binolar, yashil maydon) eski→yangi sifatida taqqoslang."
+  },
+  {
+    "day": 23,
+    "type": "task2",
+    "topic": "Sog'liq — bepul tibbiy xizmat",
+    "question": "The government should provide free healthcare for all citizens. To what extent do you agree or disagree?",
+    "time_limit_sec": 2400,
+    "min_words": 250,
+    "tips": "Teng imkoniyat va byudjet yukini birgalikda ko'rib chiqing."
+  },
+  {
+    "day": 24,
+    "type": "task2",
+    "topic": "Ta'lim — kampus ichida/yashash",
+    "question": "University students should live on campus rather than off campus. Discuss both views and give your opinion.",
+    "time_limit_sec": 2400,
+    "min_words": 250,
+    "tips": "Ijtimoiy integratsiya va mustaqillik qimmatlarini solishtiring."
+  },
+  {
+    "day": 25,
+    "type": "task1",
+    "task1_type": "academic",
+    "topic": "Bir nechta grafik — internet",
+    "question": "The chart and table below show internet usage by age group and by region. Summarise the information by selecting and reporting the main features, and make comparisons where relevant.",
+    "time_limit_sec": 1200,
+    "min_words": 150,
+    "obsidian_note": "Obsidian: 2.1 writing task 1 — multiple data sources practice."
+  },
+  {
+    "day": 26,
+    "type": "task2",
+    "topic": "Media — ijtimoiy tarmoqlar",
+    "question": "Social media companies should be regulated by the government. To what extent do you agree or disagree?",
+    "time_limit_sec": 2400,
+    "min_words": 250,
+    "tips": "Zararli kontentni cheklash va so'z erkinligi o'rtasidagi muvozanatni muhokama qiling."
+  },
+  {
+    "day": 27,
+    "type": "task2",
+    "topic": "Jinoyat — jamoaviy xizmat",
+    "question": "Community service is better than prison for young offenders. To what extent do you agree or disagree?",
+    "time_limit_sec": 2400,
+    "min_words": 250,
+    "tips": "Qayta ijtimoylashtirish va jazolash maqsadlarini taqqoslang."
+  },
+  {
+    "day": 28,
+    "type": "task1",
+    "task1_type": "general",
+    "topic": "Norasmiy xat — taklif",
+    "question": "Write a letter to a friend inviting them to visit your country and suggesting what you could do together.",
+    "time_limit_sec": 1200,
+    "min_words": 150,
+    "tips": "Issiq, norasmiy ohangda yozing; aniq takliflar (vaqt, joy) bering."
+  },
+  {
+    "day": 29,
+    "type": "task2",
+    "topic": "Jamiyat — urbanizatsiya",
+    "question": "Urbanisation leads to a loss of community spirit. What are the causes of this, and what solutions can you suggest?",
+    "time_limit_sec": 2400,
+    "min_words": 250,
+    "tips": "Sabablar (anonimlik, bandlik) va yechimlar (mahalla loyihalari) ni bog'lang."
+  },
+  {
+    "day": 30,
+    "type": "task2",
+    "topic": "Yakuniy — ekologiya",
+    "question": "When it comes to protecting the environment, which is more effective: individual lifestyle changes or government policy? Discuss both views and give your opinion.",
+    "time_limit_sec": 2400,
+    "min_words": 250,
+    "tips": "Yakuniy insho: ikkala darajani bog'lab, muvozanatli xulosa chiqaring."
+  }
+]

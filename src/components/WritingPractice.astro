@@ -1,0 +1,337 @@
+---
+const days = (await import('../data/ielts-writing-days.json')).default;
+const totalDays = days.length;
+---
+<section class="writing-practice" data-writing-app data-total={totalDays}>
+  <div class="wp-head">
+    <h2>✍️ IELTS Writing — AI Feedback</h2>
+    <p>30 kun, har kuni <b>Task 1</b> va <b>Task 2</b>. AI bepul OpenRouter kaliti bilan baholaydi — ro'yxatdan o'tmasdan ham ishlaydi. Kiribsangiz, progress va IELTS streak saqlanadi.</p>
+    <div class="wp-auth" data-auth-area></div>
+  </div>
+
+  <div class="wp-progress">
+    <div class="wp-progress-bar"><span data-progress-fill></span></div>
+    <span data-progress-label>0 / {totalDays} kun</span>
+    <span class="wp-streak" data-streak></span>
+  </div>
+
+  <div class="wp-grid">
+    <aside class="wp-days" data-days></aside>
+    <div class="wp-work">
+      <div class="wp-dayhead">
+        <h3 data-day-title></h3>
+        <span data-day-type class="wp-badge"></span>
+      </div>
+
+      <div class="wp-tabs">
+        <button type="button" data-tab="task1">Task 1</button>
+        <button type="button" data-tab="task2" class="active">Task 2</button>
+      </div>
+
+      <div class="wp-task1toggle" data-t1toggle style="display:none">
+        <label><input type="radio" name="t1type" value="academic" checked> Academic</label>
+        <label><input type="radio" name="t1type" value="general"> General</label>
+      </div>
+
+      <div class="wp-prompt" data-prompt></div>
+
+      <div class="wp-tools">
+        <button type="button" data-timer-toggle>⏱ Taymer</button>
+        <span data-timer class="wp-timer">--:--</span>
+        <span data-wordcount class="wp-wordcount">0 so'z</span>
+        <span data-minwords class="wp-minwords"></span>
+        <button type="button" data-settings>AI Sozlamalar</button>
+      </div>
+
+      <textarea data-answer placeholder="Javobingizni shu yerga yozing..."></textarea>
+
+      <div class="wp-actions">
+        <button type="button" data-submit class="submit">AI bahosini olish</button>
+        <button type="button" data-mark class="secondary">Bajardim deb belgilash</button>
+        <button type="button" data-clear class="ghost">Tozalash</button>
+      </div>
+
+      <div data-result></div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .writing-practice { background: var(--surface, #fff); border: 1px solid var(--border, #e5e7eb); border-radius: 16px; padding: 1.4rem; margin: 1.5rem 0; }
+  .wp-head h2 { margin: 0 0 .4rem; font-size: 1.4rem; }
+  .wp-head p { color: var(--muted, #6b7280); margin: 0 0 1rem; line-height: 1.5; }
+  .wp-auth { font-size: .9rem; }
+  .wp-auth input { padding: .5rem .7rem; border: 1px solid var(--border, #e5e7eb); border-radius: 8px; margin-right: .5rem; }
+  .wp-auth button { padding: .5rem .9rem; border-radius: 8px; border: 1px solid var(--accent, #2563eb); background: var(--accent, #2563eb); color: #fff; cursor: pointer; }
+  .wp-progress { display: flex; align-items: center; gap: .8rem; margin-bottom: 1rem; flex-wrap: wrap; }
+  .wp-progress-bar { flex: 1; min-width: 140px; height: 10px; background: var(--border, #e5e7eb); border-radius: 99px; overflow: hidden; }
+  .wp-progress-bar span { display: block; height: 100%; width: 0%; background: linear-gradient(90deg,#22c55e,#16a34a); transition: width .3s; }
+  .wp-streak { color: #ea580c; font-weight: 600; font-size: .9rem; }
+  .wp-grid { display: grid; grid-template-columns: 220px 1fr; gap: 1.2rem; }
+  .wp-days { display: grid; grid-template-columns: repeat(5, 1fr); gap: .4rem; max-height: 520px; overflow-y: auto; align-content: start; }
+  .wp-day-btn { aspect-ratio: 1; border: 1px solid var(--border, #e5e7eb); border-radius: 9px; background: #fff; cursor: pointer; font-weight: 600; position: relative; font-size: .8rem; }
+  .wp-day-btn.done { background: #dcfce7; border-color: #16a34a; color: #166534; }
+  .wp-day-btn.partial { background: #fef9c3; border-color: #ca8a04; }
+  .wp-day-btn.active { outline: 2px solid var(--accent, #2563eb); outline-offset: 1px; }
+  .wp-day-btn .d-dot { position: absolute; top: 3px; right: 3px; width: 7px; height: 7px; border-radius: 99px; background: #16a34a; }
+  .wp-day-btn .d-dot.half { background: #ca8a04; }
+  .wp-work { min-width: 0; }
+  .wp-dayhead { display: flex; align-items: center; gap: .6rem; margin-bottom: .6rem; }
+  .wp-dayhead h3 { margin: 0; font-size: 1.1rem; }
+  .wp-badge { font-size: .72rem; padding: .2rem .5rem; border-radius: 99px; background: #eef2ff; color: #4338ca; }
+  .wp-tabs { display: flex; gap: .5rem; margin-bottom: .7rem; }
+  .wp-tabs button { flex: 1; padding: .55rem; border: 1px solid var(--border, #e5e7eb); border-radius: 10px; background: #fff; cursor: pointer; font-weight: 600; }
+  .wp-tabs button.active { background: var(--accent, #2563eb); color: #fff; border-color: var(--accent, #2563eb); }
+  .wp-task1toggle { display: flex; gap: 1rem; margin-bottom: .6rem; font-size: .9rem; }
+  .wp-prompt { background: #f8fafc; border: 1px solid var(--border, #e5e7eb); border-radius: 10px; padding: .9rem; line-height: 1.6; margin-bottom: .7rem; }
+  .wp-prompt .wp-tip { display: block; margin-top: .5rem; font-style: italic; color: #64748b; font-size: .88rem; }
+  .wp-tools { display: flex; align-items: center; gap: .7rem; margin-bottom: .5rem; flex-wrap: wrap; font-size: .85rem; }
+  .wp-tools button { padding: .4rem .7rem; border: 1px solid var(--border, #e5e7eb); border-radius: 8px; background: #fff; cursor: pointer; }
+  .wp-timer { font-variant-numeric: tabular-nums; font-weight: 700; }
+  .wp-timer.running { color: #dc2626; }
+  .wp-wordcount { color: #64748b; }
+  .wp-minwords { color: #94a3b8; }
+  .wp-minwords.met { color: #16a34a; font-weight: 600; }
+  textarea[data-answer] { width: 100%; min-height: 220px; resize: vertical; padding: .9rem; border: 1px solid var(--border, #e5e7eb); border-radius: 12px; font: inherit; line-height: 1.6; box-sizing: border-box; }
+  .wp-actions { display: flex; gap: .6rem; margin: .8rem 0; flex-wrap: wrap; }
+  .wp-actions .submit { padding: .7rem 1.2rem; border: none; border-radius: 10px; background: var(--accent, #2563eb); color: #fff; font-weight: 600; cursor: pointer; }
+  .wp-actions .secondary { padding: .7rem 1.2rem; border: 1px solid var(--accent, #2563eb); background: transparent; color: var(--accent, #2563eb); border-radius: 10px; cursor: pointer; font-weight: 600; }
+  .wp-actions .ghost { padding: .7rem 1rem; border: none; background: transparent; color: #9ca3af; cursor: pointer; }
+  [data-result] :global(.assessment-wrap) { margin-top: 1rem; }
+  @media (max-width: 720px) { .wp-grid { grid-template-columns: 1fr; } .wp-days { grid-template-columns: repeat(6, 1fr); } }
+</style>
+
+<script>
+  import daysData from '../data/ielts-writing-days.json';
+  import { assessWriting, renderAssessmentHTML, hasApiKey, showSettingsDialog } from '../lib/ielts-assessor.js';
+  import { supabase } from '../lib/supabase';
+
+  const LS = 'tayanch-writing-progress-v2';
+  const TOTAL = daysData.length;
+  const app = document.querySelector('[data-writing-app]');
+  const elDays = app.querySelector('[data-days]');
+  const elTitle = app.querySelector('[data-day-title]');
+  const elType = app.querySelector('[data-day-type]');
+  const elPrompt = app.querySelector('[data-prompt]');
+  const elAnswer = app.querySelector('[data-answer]');
+  const elResult = app.querySelector('[data-result]');
+  const elFill = app.querySelector('[data-progress-fill]');
+  const elProgLabel = app.querySelector('[data-progress-label]');
+  const elStreak = app.querySelector('[data-streak]');
+  const elTabs = app.querySelectorAll('.wp-tabs button');
+  const elT1toggle = app.querySelector('[data-t1toggle]');
+  const elTimer = app.querySelector('[data-timer]');
+  const elWord = app.querySelector('[data-wordcount]');
+  const elMin = app.querySelector('[data-minwords]');
+  const elAuth = app.querySelector('[data-auth-area]');
+
+  let currentDay = 1;
+  let currentTab = 'task2';
+  let t1Type = 'academic';
+  let timer = null;
+  let timeLeft = 0;
+  let user = null;
+
+  const load = () => { try { return JSON.parse(localStorage.getItem(LS)) || {}; } catch (e) { return {}; } };
+  const save = (o) => localStorage.setItem(LS, JSON.stringify(o));
+  const rec = (d) => load()[d] || { task1_done: false, task2_done: false, task1_text: '', task2_text: '' };
+  const dayMeta = (d) => daysData.find((x) => x.day === d);
+
+  function countWords(t) { return (t.trim().match(/\S+/g) || []).length; }
+
+  function firstIncomplete() {
+    const p = load();
+    for (const d of daysData) { const r = p[d.day]; if (!(r && r.task1_done && r.task2_done)) return d.day; }
+    return 1;
+  }
+
+  function renderDays() {
+    const p = load();
+    elDays.innerHTML = '';
+    daysData.forEach((d) => {
+      const r = p[d.day] || {};
+      const done = r.task1_done && r.task2_done;
+      const partial = r.task1_done || r.task2_done;
+      const b = document.createElement('button');
+      b.className = 'wp-day-btn' + (done ? ' done' : partial ? ' partial' : '') + (d.day === currentDay ? ' active' : '');
+      b.innerHTML = d.day + (done ? '<span class="d-dot"></span>' : partial ? '<span class="d-dot half"></span>' : '');
+      b.addEventListener('click', () => selectDay(d.day));
+      elDays.appendChild(b);
+    });
+    const completed = daysData.filter((d) => { const r = p[d.day]; return r && r.task1_done && r.task2_done; }).length;
+    elFill.style.width = (completed / TOTAL * 100) + '%';
+    elProgLabel.textContent = `${completed} / ${TOTAL} kun`;
+  }
+
+  function selectDay(d) {
+    currentDay = d;
+    const meta = dayMeta(d);
+    currentTab = meta.type === 'task1' ? 'task1' : 'task2';
+    renderDay();
+    renderDays();
+  }
+
+  function renderDay() {
+    const meta = dayMeta(currentDay);
+    elTitle.textContent = `Kun ${meta.day} — ${meta.topic}`;
+    elType.textContent = meta.type === 'task1' ? 'Task 1' : 'Task 2';
+    elT1toggle.style.display = meta.type === 'task1' ? 'flex' : 'none';
+    elTabs.forEach((t) => t.classList.toggle('active', t.dataset.tab === currentTab));
+    renderPrompt();
+  }
+
+  function renderPrompt() {
+    const meta = dayMeta(currentDay);
+    const p = load()[currentDay] || {};
+    const r = meta.type === 'task1'
+      ? (currentTab === 'task1' ? p.task1_text || '' : p.task2_text || '')
+      : (currentTab === 'task2' ? p.task2_text || '' : p.task1_text || '');
+    const min = meta.min_words;
+    elPrompt.innerHTML = `<strong>${currentTab === 'task1' ? 'Task 1' : 'Task 2'}${meta.type === 'task1' ? ' (' + (t1Type === 'general' ? 'General' : 'Academic') + ')' : ''}:</strong><br>${meta.question}<span class="wp-tip">💡 ${meta.tips}</span>`;
+    elAnswer.value = r;
+    elMin.dataset.min = min;
+    elMin.textContent = `Min: ${min} so'z`;
+    updateWordCount();
+    stopTimer();
+    elTimer.textContent = '--:--';
+    elTimer.classList.remove('running');
+  }
+
+  function updateWordCount() {
+    const n = countWords(elAnswer.value);
+    const min = parseInt(elMin.dataset.min || '0', 10);
+    elWord.textContent = `${n} so'z`;
+    elMin.classList.toggle('met', n >= min);
+  }
+
+  function startTimer() {
+    const meta = dayMeta(currentDay);
+    timeLeft = currentTab === 'task1' ? meta.time_limit_sec : meta.time_limit_sec;
+    stopTimer();
+    elTimer.classList.add('running');
+    renderTimer();
+    timer = setInterval(() => {
+      timeLeft--;
+      renderTimer();
+      if (timeLeft <= 0) { stopTimer(); elTimer.classList.remove('running'); elTimer.textContent = 'Vaqt!'; }
+    }, 1000);
+  }
+  function stopTimer() { if (timer) { clearInterval(timer); timer = null; } }
+  function renderTimer() {
+    const m = Math.floor(timeLeft / 60), s = timeLeft % 60;
+    elTimer.textContent = `${String(m).padStart(2, '0')}:${String(s).padStart(2, '0')}`;
+  }
+
+  async function persist() {
+    const p = load();
+    const r = p[currentDay] || { task1_done: false, task2_done: false, task1_text: '', task2_text: '' };
+    if (currentTab === 'task1') r.task1_text = elAnswer.value; else r.task2_text = elAnswer.value;
+    p[currentDay] = r; save(p);
+    if (user) {
+      try {
+        await supabase.rpc('upsert_writing_progress', { p_day: currentDay, p_task1: r.task1_done, p_task2: r.task2_done });
+      } catch (e) {}
+    }
+  }
+
+  async function requestFeedback() {
+    const meta = dayMeta(currentDay);
+    const response = elAnswer.value.trim();
+    if (!response) { alert('Avval javob yozing.'); return; }
+    if (!hasApiKey()) { showSettingsDialog(); return; }
+    elResult.innerHTML = '<div style="padding:24px;text-align:center;color:#64748b">AI baholayapti...</div>';
+    const taskType = currentTab === 'task1' ? (t1Type === 'general' ? 'general_task1' : 'academic_task1') : 'task2';
+    try {
+      const res = await assessWriting({ task_type: taskType, prompt: meta.question, response });
+      elResult.innerHTML = renderAssessmentHTML(res);
+      if (!user) showRegisterCta();
+    } catch (err) {
+      elResult.innerHTML = `<div style="padding:20px;text-align:center;color:#dc2626">Xatolik: ${err.message}<br><button onclick="window.IELTSAssessor && IELTSAssessor.showSettingsDialog()" style="margin-top:10px;padding:8px 16px;border:1px solid #e5e7eb;background:#fff;border-radius:8px;cursor:pointer">AI Sozlamalar</button></div>`;
+    }
+  }
+
+  function showRegisterCta() {
+    const cta = document.createElement('div');
+    cta.style.cssText = 'margin-top:14px;padding:14px;border:1px dashed #2563eb;border-radius:12px;background:#eff6ff;text-align:center';
+    cta.innerHTML = 'Progressni yo\'qotmaslik va IELTS streak olish uchun <b>ro\'yxatdan o\'ting</b>.';
+    const btn = document.createElement('button');
+    btn.textContent = "Ro'yxatdan o'tish";
+    btn.style.cssText = 'margin-top:8px;padding:.6rem 1.1rem;border:none;border-radius:8px;background:#2563eb;color:#fff;cursor:pointer;font-weight:600';
+    btn.addEventListener('click', () => { elAuth.scrollIntoView({ behavior: 'smooth' }); renderAuth(true); });
+    cta.appendChild(btn);
+    elResult.appendChild(cta);
+  }
+
+  async function markDone() {
+    const p = load();
+    const r = p[currentDay] || { task1_done: false, task2_done: false, task1_text: '', task2_text: '' };
+    if (currentTab === 'task1') r.task1_done = true; else r.task2_done = true;
+    p[currentDay] = r; save(p);
+    if (user) { try { await supabase.rpc('upsert_writing_progress', { p_day: currentDay, p_task1: r.task1_done, p_task2: r.task2_done }); } catch (e) {} }
+    renderDays();
+    if (r.task1_done && r.task2_done) {
+      elResult.innerHTML = '<div style="margin-top:12px;padding:12px;border-radius:10px;background:#dcfce7;color:#166534;text-align:center">✅ Kun yakunlandi!</div>';
+      if (user) await refreshStreak();
+    } else {
+      elResult.innerHTML = '<div style="margin-top:12px;padding:10px;border-radius:10px;background:#fef9c3;color:#854d0e;text-align:center">✓ Belgilandi. Ikkinchi taskni ham bajaring.</div>';
+    }
+  }
+
+  async function refreshStreak() {
+    if (!user) return;
+    try {
+      const { data } = await supabase.rpc('get_ielts_streak', { p_user_id: user.id });
+      if (data) elStreak.textContent = `🔥 Streak: ${data.current_streak} (eng uzun: ${data.longest_streak}) · jami ${data.total_active_days} kun`;
+    } catch (e) {}
+  }
+
+  async function renderAuth(force) {
+    const { data: { session } } = await supabase.auth.getSession();
+    user = session?.user || null;
+    if (user) {
+      elAuth.innerHTML = `<span style="margin-right:.6rem">👤 ${user.email}</span><button data-signout style="padding:.4rem .8rem;border:1px solid #e5e7eb;border-radius:8px;background:#fff;cursor:pointer">Chiqish</button>`;
+      elAuth.querySelector('[data-signout]').addEventListener('click', async () => { await supabase.auth.signOut(); renderAuth(); });
+      await syncFromServer();
+      await refreshStreak();
+    } else {
+      elAuth.innerHTML = `<input type="email" placeholder="email@misol.uz" data-email style="padding:.5rem .7rem;border:1px solid #e5e7eb;border-radius:8px"><button data-login style="padding:.5rem .9rem;border-radius:8px;border:1px solid #2563eb;background:#2563eb;color:#fff;cursor:pointer">Kirish havolasi olish</button> <span data-authmsg style="color:#64748b"></span>`;
+      const btn = elAuth.querySelector('[data-login]');
+      btn.addEventListener('click', async () => {
+        const email = elAuth.querySelector('[data-email]').value.trim();
+        if (!email) return;
+        const { error } = await supabase.auth.signInWithOtp({ email, options: { emailRedirectTo: location.href } });
+        elAuth.querySelector('[data-authmsg]').textContent = error ? 'Xatolik: ' + error.message : '✉️ Havola emailga yuborildi. Bosing va qayting.';
+      });
+    }
+  }
+
+  async function syncFromServer() {
+    if (!user) return;
+    const { data } = await supabase.from('writing_progress').select('*').eq('user_id', user.id);
+    if (!data) return;
+    const p = load();
+    data.forEach((row) => {
+      const r = p[row.course_day] || {};
+      r.task1_done = r.task1_done || row.task1_done;
+      r.task2_done = r.task2_done || row.task2_done;
+      p[row.course_day] = r;
+    });
+    save(p);
+    renderDays();
+  }
+
+  elTabs.forEach((t) => t.addEventListener('click', () => { currentTab = t.dataset.tab; renderPrompt(); }));
+  elT1toggle.querySelectorAll('input[name="t1type"]').forEach((r) => r.addEventListener('change', () => { t1Type = r.value; renderPrompt(); }));
+  elAnswer.addEventListener('input', () => { updateWordCount(); persist(); });
+  app.querySelector('[data-timer-toggle]').addEventListener('click', startTimer);
+  app.querySelector('[data-settings]').addEventListener('click', () => showSettingsDialog());
+  app.querySelector('[data-submit]').addEventListener('click', requestFeedback);
+  app.querySelector('[data-mark]').addEventListener('click', markDone);
+  app.querySelector('[data-clear]').addEventListener('click', () => { elAnswer.value = ''; updateWordCount(); persist(); });
+
+  currentDay = firstIncomplete();
+  renderDay();
+  renderDays();
+  renderAuth();
+  if (user) refreshStreak();
+</script>

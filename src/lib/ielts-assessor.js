@@ -97,11 +97,10 @@ export const PROVIDERS = {
   openrouter_free: {
     label: 'OpenRouter (Bepul modellar)',
     endpoint: 'https://openrouter.ai/api/v1/chat/completions',
-    model: 'google/gemini-flash-1.5:free',
+    model: 'meta-llama/llama-3.3-70b-instruct:free',
     freeModels: [
-      { value: 'google/gemini-flash-1.5:free', label: 'Gemini Flash 1.5 (Free) — Tavsiya etiladi' },
+      { value: 'meta-llama/llama-3.3-70b-instruct:free', label: 'Llama 3.3 70B (Free) — Tavsiya etiladi' },
       { value: 'meta-llama/llama-3.1-8b-instruct:free', label: 'Llama 3.1 8B (Free)' },
-      { value: 'meta-llama/llama-3.3-70b-instruct:free', label: 'Llama 3.3 70B (Free) — Eng kuchli bepul' },
       { value: 'google/gemini-2.0-flash-exp:free', label: 'Gemini 2.0 Flash (Free, Experimental)' },
       { value: 'mistralai/mistral-7b-instruct:free', label: 'Mistral 7B (Free)' },
       { value: 'qwen/qwen-2.5-7b-instruct:free', label: 'Qwen 2.5 7B (Free)' },
@@ -177,6 +176,22 @@ export function setModelConfig(config) {
   try {
     localStorage.setItem('ielts_model_config', JSON.stringify(config));
   } catch (e) {}
+}
+
+export function escapeHtml(value) {
+  return String(value ?? '').replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+}
+
+export function showSettingsDialog() {
+  const current = getApiKey() || '';
+  const key = window.prompt('OpenRouter API kaliti (bepul: openrouter.ai/keys):', current);
+  if (key === null) return;
+  setApiKey(key.trim());
+  const cfg = getModelConfig();
+  const suggested = cfg.model && cfg.model.indexOf('gemini-flash-1.5') === -1 ? cfg.model : 'meta-llama/llama-3.3-70b-instruct:free';
+  const model = window.prompt('Model (masalan: meta-llama/llama-3.3-70b-instruct:free):', suggested);
+  if (model && model.trim()) setModelConfig({ ...cfg, model: model.trim() });
+  window.alert('Sozlamalar saqlandi.');
 }
 
 export function countWords(text) {
