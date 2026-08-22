@@ -4,6 +4,8 @@ import PaymentInstructions from "../../components/PaymentInstructions.astro";
 import CourseProgress from "../../components/CourseProgress.astro";
 import Quiz from "../../components/Quiz.astro";
 import ObsidianScreenshotSlots from "../../components/ObsidianScreenshotSlots.astro";
+import CourseTestimonialPlaceholder from "../../components/CourseTestimonialPlaceholder.astro";
+import LeadMagnetCTA from "../../components/LeadMagnetCTA.astro";
 const title = "Obsidian: shaxsiy bilim bazasi qurish | Tayanch";
 const description = "Obsidian PKM bilan shaxsiy bilim bazasi qurish: kundalik yuritish, eslatmalarni bog'lash va o'qiganingizni esda saqlash. Bepul kurs.";
 const base = import.meta.env.BASE_URL;
@@ -70,6 +72,8 @@ const plugins = [
   <PaymentInstructions course="Obsidian PKM" price="$19 · ≈ 240 000 so'm" />
 </article>
 <dialog class="lightbox" id="image-lightbox"><button class="lightbox-close" type="button" aria-label="Yopish">×</button><img src="" alt="" /><p></p></dialog>
+  <CourseTestimonialPlaceholder />
+  <LeadMagnetCTA />
 </Base>
 <script>
   const $ = (s) => document.querySelector(s);

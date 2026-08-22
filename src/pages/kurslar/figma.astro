@@ -2,8 +2,9 @@
 import Base from "../../layouts/Base.astro";
 import CourseProgress from "../../components/CourseProgress.astro";
 import CourseSchema from "../../components/CourseSchema.astro";
-import LeadMagnetCTA from "../../components/LeadMagnetCTA.astro";
 import Quiz from "../../components/Quiz.astro";
+import LeadMagnetCTA from "../../components/LeadMagnetCTA.astro";
+import CourseTestimonialPlaceholder from "../../components/CourseTestimonialPlaceholder.astro";
 const title = "Bepul Figma: UI/UX asoslarini 1 kunda | Tayanch";
 const description = "Bepul Figma kursi: UI/UX asoslari, komponentlar va prototip yasash. Dizaynni noldan, o'zbek tilida o'rganing.";
 const questions = [
@@ -68,4 +69,5 @@ const questions = [
 </article>
 
 <style>.figma-style-lab{padding:clamp(1.1rem,3vw,1.65rem);border:1px solid color-mix(in srgb,#f472b6 42%,var(--border));border-radius:18px;background:radial-gradient(circle at 94% 8%,color-mix(in srgb,#f472b6 17%,transparent),transparent 25%),linear-gradient(135deg,color-mix(in srgb,#7d7df5 11%,var(--surface)),var(--surface))}.figma-style-lab>div:first-child>span{font-size:.72rem;letter-spacing:.12em;font-weight:800;color:#f9a8d4}.figma-style-lab h2{margin:.25rem 0 .4rem}.figma-style-lab>div:first-child>p{color:var(--muted);margin:0}.figma-preview-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:.8rem;margin-top:1.2rem}.color-board,.type-board{padding:1rem;border:1px solid var(--border);border-radius:14px;background:color-mix(in srgb,var(--bg) 35%,var(--surface))}.color-board h3,.type-board h3{margin:0 0 .8rem;font-size:.9rem}.swatches{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:.45rem}.swatches span{display:flex;min-height:105px;flex-direction:column;justify-content:flex-end;padding:.55rem;border-radius:10px;background:linear-gradient(135deg,color-mix(in srgb,var(--swatch) 100%,white),var(--swatch));color:#111827}.swatches b{font-size:.72rem}.swatches small{margin-top:.18rem;font:600 .63rem ui-monospace,monospace;opacity:.72}.type-board p{margin:0}.type-title{font-size:1.65rem;font-weight:800;letter-spacing:-.04em}.type-body{margin-top:.55rem!important;color:var(--muted);line-height:1.55;font-size:.91rem}.type-caption{margin-top:.85rem!important;color:#f9a8d4;font-size:.66rem;letter-spacing:.12em;font-weight:800}@media(max-width:620px){.figma-preview-grid{grid-template-columns:1fr}.swatches span{min-height:82px}}</style>
+  <CourseTestimonialPlaceholder />
 </Base>

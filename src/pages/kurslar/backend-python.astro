@@ -4,6 +4,8 @@ import CourseProgress from "../../components/CourseProgress.astro";
 import PaymentInstructions from "../../components/PaymentInstructions.astro";
 import CourseSchema from "../../components/CourseSchema.astro";
 import Quiz from "../../components/Quiz.astro";
+import CourseTestimonialPlaceholder from "../../components/CourseTestimonialPlaceholder.astro";
+import LeadMagnetCTA from "../../components/LeadMagnetCTA.astro";
 const title = "Backend Python — FastAPI va PostgreSQL | Tayanch";
 const description = "Python, FastAPI va PostgreSQL bilan backend ilova qurish. API yozish, bazani ulash va real loyihani deploy qilish — o'zbekcha kurs.";
 const questions = [
@@ -162,4 +164,6 @@ const weeks = [
     .lesson-points li{margin:.15rem 0}
     @media (max-width:520px){.lesson-grid{grid-template-columns:1fr}}
   </style>
+  <CourseTestimonialPlaceholder />
+  <LeadMagnetCTA />
 </Base>

@@ -5,6 +5,8 @@ import PaymentInstructions from "../../components/PaymentInstructions.astro";
 import CourseSchema from "../../components/CourseSchema.astro";
 import Quiz from "../../components/Quiz.astro";
 
+import CourseTestimonialPlaceholder from "../../components/CourseTestimonialPlaceholder.astro";
+import LeadMagnetCTA from "../../components/LeadMagnetCTA.astro";
 const title = "Mac'da AutoCAD: bepul talaba litsenziyasi | Tayanch";
 const description = "Mac'da AutoCAD: bepul talaba litsenziyasi, o'rnatish, chizish va birinchi loyiha. Muhandislik talabalari uchun amaliy kurs.";
 const questions = [
@@ -130,4 +132,6 @@ const questions = [
     .src a { color: #8b5cf6; text-decoration: underline; }
   </style>
 <style>.quick-tool{padding:1.2rem;border:1px solid #38bdf8;border-radius:16px;background:linear-gradient(135deg,rgba(56,189,248,.1),var(--surface))}.quick-tool input{width:100%;box-sizing:border-box;margin:.7rem 0;padding:.7rem;border:1px solid var(--border);border-radius:8px;background:var(--bg);color:var(--text)}.quick-rows{width:100%;border-collapse:collapse}.quick-rows th,.quick-rows td{text-align:left;padding:.6rem;border-top:1px solid var(--border)}.quick-rows td:last-child{color:var(--muted);font-size:.9rem}</style><script>document.querySelector('#cadSearch')?.addEventListener('input',e=>document.querySelectorAll('#cadRows tbody tr').forEach(r=>r.hidden=!r.textContent.toLowerCase().includes(e.target.value.toLowerCase())))</script>
+  <CourseTestimonialPlaceholder />
+  <LeadMagnetCTA />
 </Base>

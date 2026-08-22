@@ -3,8 +3,9 @@ import Base from "../../layouts/Base.astro";
 import CourseProgress from "../../components/CourseProgress.astro";
 import PaymentInstructions from "../../components/PaymentInstructions.astro";
 import CourseSchema from "../../components/CourseSchema.astro";
-import LeadMagnetCTA from "../../components/LeadMagnetCTA.astro";
 import Quiz from "../../components/Quiz.astro";
+import LeadMagnetCTA from "../../components/LeadMagnetCTA.astro";
+import CourseTestimonialPlaceholder from "../../components/CourseTestimonialPlaceholder.astro";
 const title = "Bepul AI: pullik obuna bermasdan foydalanish | Tayanch";
 const description = "Pullik obuna bermasdan AI'dan foydalanish: bepul modellar, ochiq manbali vositalar va agentlar ro'yxati. O'zbekcha amaliy qo'llanma.";
 const questions = [
@@ -55,4 +56,5 @@ const questions = [
 <style>
 .ai-tools-section{padding:clamp(1.1rem,3vw,1.65rem);border:1px solid color-mix(in srgb,#a78bfa 43%,var(--border));border-radius:18px;background:radial-gradient(circle at 92% 8%,color-mix(in srgb,#a78bfa 16%,transparent),transparent 24%),linear-gradient(135deg,color-mix(in srgb,var(--accent) 10%,var(--surface)),var(--surface))}.ai-tools-head{display:flex;align-items:flex-start;justify-content:space-between;gap:1rem}.ai-tools-head>div>span{font-size:.72rem;letter-spacing:.12em;font-weight:800;color:#c4b5fd}.ai-tools-head h2{margin:.25rem 0 .4rem}.ai-tools-head p{margin:0;color:var(--muted)}.ai-tools-count{white-space:nowrap;padding:.45rem .65rem;border:1px solid var(--border);border-radius:999px;color:var(--muted);font-size:.78rem}.ai-tool-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:.75rem;margin-top:1.25rem}.ai-tool-card{position:relative;min-height:154px;padding:1rem;border:1px solid var(--border);border-radius:14px;background:color-mix(in srgb,var(--bg) 32%,var(--surface));overflow:hidden;transition:transform .2s,border-color .2s}.ai-tool-card:hover{transform:translateY(-4px);border-color:var(--tool)}.tool-icon{display:grid;place-items:center;width:31px;height:31px;border-radius:9px;background:color-mix(in srgb,var(--tool) 20%,transparent);color:var(--tool);font-size:1.1rem;font-weight:800}.tool-category{display:block;margin-top:.8rem;color:var(--tool);font-size:.67rem;font-weight:800;letter-spacing:.1em}.ai-tool-card h3{margin:.25rem 0 .35rem;font-size:1rem}.ai-tool-card p{margin:0;color:var(--muted);font-size:.84rem;line-height:1.45}.local{--tool:#a78bfa}.team{--tool:#38bdf8}.flow{--tool:#fbbf24}.memory{--tool:#fb7185}.capture{--tool:#34d399}.notes{--tool:#f472b6}@media(max-width:650px){.ai-tools-head{flex-direction:column}.ai-tool-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}@media(prefers-reduced-motion:reduce){.ai-tool-card{transition:none}}
 </style>
+  <CourseTestimonialPlaceholder />
 </Base>

@@ -5,3 +5,9 @@
 - Bosh sahifa va Kurslar sahifasi farqi: bosh sahifa `src/pages/index.astro`dagi hand-authored featured/upcoming kartalarni, Kurslar esa `src/pages/kurslar/index.astro`dagi katalogni render qiladi. Hozir topilgan source’da student-count metadata ikkala joyda ham yo‘q.
 - `src/layouts/Base.astro` sidebar va top-nav til switcherlarida faqat UZ ko‘rinadi. RU/EN tugmalari hozir yashirilgan; barcha Base-layout sahifalarda bir xil holat.
 - Narxlar yoki kurs strukturasi o‘zgartirilmadi.
+
+## Brand tasklist — 2026-08-22
+- 15 non-IELTS direct Base course detail pages received an explicitly empty testimonial placeholder. Two routes whose names begin with `ielts-` (`ielts-vocabulary` and `ielts-writing/typing`) were left out along with the IeltsSkillCourse routes, matching the exclusion instruction. No testimonial, count, quote, student name, or outcome was invented.
+- Existing LeadMagnetCTA remained on 4 pages; the remaining 11 non-IELTS direct course pages now also use it (15 total). IeltsSkillCourse routes and the two `ielts-*` direct routes remained excluded.
+- Titles normalized only in el-yurt-umidi and financial-literacy as requested.
+- Home page now links to Mening yo'lim with a grounded excerpt based on the existing founder story; source page body was not changed.

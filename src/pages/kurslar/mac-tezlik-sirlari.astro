@@ -3,8 +3,9 @@ import Base from "../../layouts/Base.astro";
 import PaymentInstructions from "../../components/PaymentInstructions.astro";
 import CourseProgress from "../../components/CourseProgress.astro";
 import CourseSchema from "../../components/CourseSchema.astro";
-import LeadMagnetCTA from "../../components/LeadMagnetCTA.astro";
 import Quiz from "../../components/Quiz.astro";
+import LeadMagnetCTA from "../../components/LeadMagnetCTA.astro";
+import CourseTestimonialPlaceholder from "../../components/CourseTestimonialPlaceholder.astro";
 const title = "Mac'da ishni 2 baravar tezroq bajarish | Tayanch";
 const description = "Raycast, klaviatura shortcut'lari va Mac vositalari bilan kundalik ishlarni 2 baravar tezroq bajarish. MacBook'dan samarali foydalanish kursi.";
 const questions = [
@@ -311,4 +312,5 @@ Muhim: hech qachon sudo rm -rf kabi keng qamrovli o'chirish buyruqlarini ishlatm
   performanceCopy?.addEventListener('click',async()=>{try{await navigator.clipboard.writeText(performancePrompt?.textContent||'');performanceCopy.textContent='Nusxalandi ✓';performanceCopyStatus.textContent='Prompt nusxalandi — AI yordamchingizga joylashtiring.';setTimeout(()=>performanceCopy.textContent='Nusxalash',1800)}catch{performanceCopyStatus.textContent='Nusxalash ishlamadi. Promptni qo‘lda belgilang va nusxalang.'}});
 </script>
 
+  <CourseTestimonialPlaceholder />
 </Base>
