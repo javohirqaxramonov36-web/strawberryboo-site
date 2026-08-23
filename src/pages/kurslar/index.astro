@@ -1,6 +1,7 @@
 ---
 import Base from "../../layouts/Base.astro";
 import { generalEnglishCourses } from "../../data/general-english-courses";
+import { satCourses } from "../../data/sat-courses";
 const title = "Kurslar — Tayanch";
 const description = "Pullik va bepul kurslar hamda IELTS Mock Test practice mahsuloti: Prompt Engineering, Obsidian, AI Agentlar, IELTS Prep, Admission Process va boshqalar.";
 const base = import.meta.env.BASE_URL;
@@ -16,6 +17,7 @@ const base = import.meta.env.BASE_URL;
   <button class="cf-btn" data-filter="ielts" data-i18n="kk.fIelts">IELTS</button>
   <button class="cf-btn" data-filter="general-english" data-i18n="kk.fGeneralEnglish">General English</button>
   <button class="cf-btn" data-filter="admission" data-i18n="kk.fAdm">Admission</button>
+  <button class="cf-btn" data-filter="sat" data-i18n="kk.fSat">SAT</button>
   <button class="cf-btn" data-filter="dizayn" data-i18n="kk.fDes">Dizayn</button>
   <button class="cf-btn" data-filter="hayotiy" data-i18n="kk.fLife">Hayotiy ko'nikka</button>
   <button class="cf-btn" data-filter="bepul" data-i18n="kk.fFree">Bepul</button>
@@ -201,6 +203,19 @@ const base = import.meta.env.BASE_URL;
     <div class="card general-english-card" style={`--c:${course.accent}`} data-cat="general-english">
       <span class="badge badge-new">{course.badge}</span>
       <div class="c-ic" aria-hidden="true"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5h16v14H4z"/><path d="M8 3v4M16 3v4M7 11h10M7 15h6"/></svg></div>
+      <h2>{course.title}</h2>
+      <span class="cat">{course.tags.join(' · ')}</span>
+      {course.certificate && <span class="cert-line"><svg viewBox="0 0 24 24"><circle cx="12" cy="9" r="5"/><path d="M9 13.5 7.5 21 12 18l4.5 3L15 13.5"/></svg>Sertifikat bilan</span>}
+      <p>{course.description}</p>
+      <p class="price">Tez orada <span class="uzs">{course.price}</span></p>
+      <a href={base + `kurslar/${course.slug}`} class="start-btn">Batafsil ko‘rish →</a>
+    </div>
+  ))}
+
+  {satCourses.map((course) => (
+    <div class="card sat-card" style={`--c:${course.accent}`} data-cat="sat admission">
+      <span class="badge badge-new">{course.badge}</span>
+      <div class="c-ic" aria-hidden="true"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16v16H4z"/><path d="M8 8h8M8 12h5M8 16h8"/></svg></div>
       <h2>{course.title}</h2>
       <span class="cat">{course.tags.join(' · ')}</span>
       {course.certificate && <span class="cert-line"><svg viewBox="0 0 24 24"><circle cx="12" cy="9" r="5"/><path d="M9 13.5 7.5 21 12 18l4.5 3L15 13.5"/></svg>Sertifikat bilan</span>}

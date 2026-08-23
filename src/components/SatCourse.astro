@@ -1,0 +1,65 @@
+---
+import type { SatCourse as Course } from '../data/sat-courses';
+
+interface Props {
+  course: Course;
+  relatedCourse?: Course;
+}
+
+const { course, relatedCourse } = Astro.props;
+const base = import.meta.env.BASE_URL;
+---
+
+<article class="sat-course" style={`--course-accent:${course.accent}`}>
+  <header class="course-hero">
+    <span class="badge badge-new">{course.badge}</span>
+    <p class="eyebrow">SAT · ADMISSION</p>
+    <h1>{course.title}</h1>
+    <p class="lead">{course.description}</p>
+    <div class="course-meta">
+      <span class="cat">{course.tags.join(' · ')}</span>
+      {course.certificate && <span class="certificate">Sertifikat bilan</span>}
+    </div>
+  </header>
+
+  <section class="course-section" aria-labelledby="audience-title">
+    <p class="eyebrow">KIMGA MO‘LJALLANGAN?</p>
+    <h2 id="audience-title">SAT tayyorgarligi uchun aniq yo‘l</h2>
+    <p>{course.targetAudience}</p>
+  </section>
+
+  {relatedCourse && <section class="course-section related-section" aria-labelledby="related-title">
+    <p class="eyebrow">BIRGA O‘RGANING</p>
+    <h2 id="related-title">{relatedCourse.title}</h2>
+    <p>{course.relatedCourseText}</p>
+    <a class="related-link" href={base + `kurslar/${relatedCourse.slug}`}>{relatedCourse.title} →</a>
+  </section>}
+
+  <section class="course-section status-section" aria-labelledby="status-title">
+    <p class="eyebrow">KURS HOLATI</p>
+    <h2 id="status-title">Tez orada</h2>
+    <p>To‘liq dars materiallari va jadvali tayyorlanmoqda. {course.price}.</p>
+  </section>
+
+  <p class="all-courses"><a href={base + 'kurslar'}>← Barcha SAT kurslari</a></p>
+</article>
+
+<style>
+  .sat-course { max-width: 900px; margin: 0 auto; }
+  .course-hero { padding: clamp(1.4rem, 4vw, 3rem); border: 1px solid var(--border); border-radius: 22px; background: linear-gradient(135deg, color-mix(in srgb, var(--course-accent) 13%, var(--surface)), var(--surface)); }
+  .course-hero h1 { margin: .5rem 0; font-size: clamp(2rem, 5vw, 3.6rem); line-height: 1.08; }
+  .lead { color: var(--muted); max-width: 760px; font-size: 1.08rem; line-height: 1.7; }
+  .course-meta { display: flex; flex-wrap: wrap; align-items: center; gap: .7rem; margin-top: 1.15rem; }
+  .cat, .certificate { display: inline-flex; align-items: center; border-radius: 999px; padding: .38rem .7rem; font-size: .82rem; font-weight: 800; }
+  .cat { color: var(--course-accent); background: color-mix(in srgb, var(--course-accent) 12%, var(--surface)); }
+  .certificate { border: 1px solid var(--border); color: var(--muted); }
+  .course-section { margin-top: 1rem; padding: clamp(1.2rem, 3vw, 1.8rem); border: 1px solid var(--border); border-radius: 18px; background: var(--surface); }
+  .course-section h2 { margin: .2rem 0 .5rem; }
+  .course-section p { color: var(--muted); line-height: 1.65; }
+  .course-section p:last-of-type { margin-bottom: 0; }
+  .status-section { border-left: 4px solid var(--course-accent); }
+  .related-section { border-left: 4px solid var(--course-accent); }
+  .related-link, .all-courses a { color: var(--course-accent); font-weight: 800; text-decoration: none; }
+  .related-link:hover, .all-courses a:hover { text-decoration: underline; }
+  .all-courses { margin-top: 1.25rem; }
+</style>
