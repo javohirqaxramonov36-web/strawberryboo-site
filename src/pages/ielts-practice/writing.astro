@@ -31,6 +31,8 @@ const PAGE_I18N = {"uz": {"wp.meta": "IELTS Writing · Original practice shablon
     <div class="top-actions"><span id="timer" aria-live="polite">00:00</span><button id="theme" type="button" aria-label="Rang rejimini almashtirish">☾</button><a class="back" href={base + 'kurslar/#ielts-courses'}>Kursga qaytish</a></div>
   </header>
 
+  <div id="timeBanner" class="time-banner" role="status" hidden>Vaqt tugadi</div>
+
   <main>
     <p class="notice" data-i18n="wp.notice">ⓘ Bu Tayanch uchun original, qayta ishlatiladigan Writing practice shabloni. Har yangi testda faqat mavzu, kerak bo'lsa grafik, namuna javobi va PDF savol matni yangilanadi.</p>
     <section class="workspace">
@@ -53,9 +55,11 @@ const PAGE_I18N = {"uz": {"wp.meta": "IELTS Writing · Original practice shablon
       <section class="write-panel">
         <label class="sr-only" for="answer">Javobingiz</label>
         <textarea id="answer" placeholder="Javobingizni shu yerda yozing..."></textarea>
-        <div class="writer-status"><span id="wordCount">0 so'z</span><span id="minimum">Minimum: 150</span></div>
+        <div class="writer-status"><span id="wordCount">0 so'z</span><span id="minimum">Minimum: 150</span><button id="saveAttempt" type="button" class="attempt-btn">Urinishni saqlash</button></div>
       </section>
     </section>
+
+    <section id="historyPanel" class="history-panel" aria-label="Urinishlar tarixi"></section>
   </main>
 
   <footer class="bottom-bar">
@@ -74,20 +78,45 @@ const PAGE_I18N = {"uz": {"wp.meta": "IELTS Writing · Original practice shablon
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
   <script src={base + 'js/ielts-assessor.js'}></script>
   <script>
+    // 1.3 Autosave: matn va vaqt holati localStorage-ga saqlanadi va sahifaga qaytganda tiklanadi.
+    // CHEKLOV: bu faqat bitta brauzer/qurilma uchun — serverga senkronlanmaydi (per-browser only).
     const stateKey = 'organamiz-writing-template-v1';
     const store = JSON.parse(localStorage.getItem(stateKey) || '{"task1":"","task2":"","theme":"dark"}');
-    let current = 1, seconds = 0;
+    let current = 1, timeLeft = 0, elapsed = 0, timerExpired = false;
+    const TIME_LIMIT = { 1: 20 * 60, 2: 40 * 60 };
     const answer = document.querySelector('#answer');
+    const banner = document.querySelector('#timeBanner');
     const word = (text) => text.trim() ? text.trim().split(/\s+/).length : 0;
     const paint = () => {
       const content = current === 1 ? store.task1 : store.task2;
       const count = word(content), min = current === 1 ? 150 : 250;
-      answer.value = content; document.querySelector('#wordCount').textContent = `${count} `+__i18nRuntime.t(PAGE_I18N,'wp.wordCount'); document.querySelector('#minimum').textContent = `Minimum: `+__i18nRuntime.t(PAGE_I18N,'wp.minimum')+`${min}`;
+      answer.value = content;
+      const wcEl = document.querySelector('#wordCount');
+      wcEl.textContent = `${count} `+__i18nRuntime.t(PAGE_I18N,'wp.wordCount');
+      wcEl.classList.toggle('under', count > 0 && count < min);
+      wcEl.classList.toggle('met', count >= min);
+      document.querySelector('#minimum').textContent = __i18nRuntime.t(PAGE_I18N,'wp.minimum')+`${min}`;
       document.querySelector('#taskOne').classList.toggle('hidden', current !== 1); document.querySelector('#taskTwo').classList.toggle('hidden', current !== 2);
       document.querySelector('#taskName').textContent = `TASK ${current}`; document.querySelector('#taskRule').textContent = current === 1 ? __i18nRuntime.t(PAGE_I18N,'wp.taskRule1') : __i18nRuntime.t(PAGE_I18N,'wp.taskRule2');
       document.querySelectorAll('.tab').forEach(tab => tab.classList.toggle('active', Number(tab.dataset.task) === current));
       document.querySelector('#done1').textContent = word(store.task1) >= 150 ? '1 '+__i18nRuntime.t(PAGE_I18N,'wp.done')+' 1' : '0 '+__i18nRuntime.t(PAGE_I18N,'wp.done')+' 1'; document.querySelector('#done2').textContent = word(store.task2) >= 250 ? '1 of 1' : '0 of 1';
+    };
+    const fmtH = (s) => `${Math.floor(s/60)}m ${s%60}s`;
+    const saveAttempt = (task) => {
+      const content = task === 1 ? store.task1 : store.task2;
+      if (!word(content)) return;
+      store.history = store.history || [];
+      store.history.push({ task, date: new Date().toISOString(), words: word(content), time: store['t'+task+'elapsed'] || 0 });
+      if (store.history.length > 30) store.history = store.history.slice(-30);
       localStorage.setItem(stateKey, JSON.stringify(store));
+      renderHistory();
+    };
+    const renderHistory = () => {
+      const panel = document.querySelector('#historyPanel'); if (!panel) return;
+      const h = store.history || [];
+      if (!h.length) { panel.innerHTML = '<h3>Urinishlar tarixi</h3><p class="hist-empty">Hali urinishlar saqlanmagan.</p>'; return; }
+      const rows = h.slice().reverse().map((a, idx) => `<li><b>${h.length-idx}-urinish</b> · TASK ${a.task} · ${new Date(a.date).toLocaleString()} · ${a.words} so'z · ${fmtH(a.time)}</li>`).join('');
+      panel.innerHTML = `<h3>Urinishlar tarixi</h3><ul class="hist-list">${rows}</ul>`;
     };
     const savedTheme = (function () { try { return localStorage.getItem('theme'); } catch (e) { return null; } })();
     const initialTheme = savedTheme === 'light' || savedTheme === 'dark' ? savedTheme : (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
@@ -107,15 +136,36 @@ const PAGE_I18N = {"uz": {"wp.meta": "IELTS Writing · Original practice shablon
       renderThemeButton();
       paint();
     });
+    const restoreTaskTiming = (task) => {
+      timeLeft = store['t'+task+'left'] != null ? store['t'+task+'left'] : TIME_LIMIT[task];
+      elapsed = store['t'+task+'elapsed'] || 0;
+      timerExpired = timeLeft <= 0;
+      banner.hidden = !timerExpired;
+    };
+    const renderTimer = () => {
+      const m = String(Math.floor(timeLeft/60)).padStart(2,'0'), s = String(timeLeft%60).padStart(2,'0');
+      document.querySelector('#timer').textContent = `${m}:${s}`;
+    };
     answer.addEventListener('input', () => { store[current === 1 ? 'task1' : 'task2'] = answer.value; paint(); });
-    document.querySelectorAll('.tab').forEach(tab => tab.addEventListener('click', () => { current = Number(tab.dataset.task); paint(); }));
-    setInterval(() => { seconds += 1; const m = String(Math.floor(seconds/60)).padStart(2,'0'), s = String(seconds%60).padStart(2,'0'); document.querySelector('#timer').textContent = `${m}:${s}`; }, 1000);
+    document.querySelectorAll('.tab').forEach(tab => tab.addEventListener('click', () => {
+      store['t'+current+'left'] = timeLeft; store['t'+current+'elapsed'] = elapsed;
+      current = Number(tab.dataset.task); restoreTaskTiming(current); renderTimer(); paint();
+    }));
+    document.querySelector('#saveAttempt').addEventListener('click', () => { saveAttempt(current); });
+    restoreTaskTiming(current); renderTimer();
+    setInterval(() => {
+      if (timeLeft > 0) { timeLeft--; renderTimer(); }
+      if (timeLeft === 0 && !timerExpired) { timerExpired = true; banner.hidden = false; }
+      elapsed++;
+      store['t'+current+'left'] = timeLeft; store['t'+current+'elapsed'] = elapsed;
+      localStorage.setItem(stateKey, JSON.stringify(store));
+    }, 1000);
     const instructionText = __i18nRuntime.t(PAGE_I18N,'wp.instructionText');
     const instructions = document.querySelector('#instructionsDialog'), complete = document.querySelector('#completeDialog');
     document.querySelector('#instructions').addEventListener('click', () => instructions.showModal());
     document.querySelectorAll('[data-close]').forEach(el => el.addEventListener('click', () => el.closest('dialog').close()));
     document.querySelector('#copyInstructions').addEventListener('click', async () => { await navigator.clipboard.writeText(instructionText); document.querySelector('#copyInstructions').textContent = __i18nRuntime.t(PAGE_I18N,'wp.copied'); });
-    document.querySelector('#submit').addEventListener('click', () => { const total=word(store.task1)+word(store.task2); if (!total) { alert(__i18nRuntime.t(PAGE_I18N,'wp.writeFirst')); return; } document.querySelector('#summary').textContent = `Task 1: ${word(store.task1)} `+__i18nRuntime.t(PAGE_I18N,'wp.wordCount')+` · Task 2: ${word(store.task2)} `+__i18nRuntime.t(PAGE_I18N,'wp.wordCount')+` · Jami: ${total} `+__i18nRuntime.t(PAGE_I18N,'wp.wordCount')+`.`; complete.showModal(); });
+    document.querySelector('#submit').addEventListener('click', () => { const total=word(store.task1)+word(store.task2); if (!total) { alert(__i18nRuntime.t(PAGE_I18N,'wp.writeFirst')); return; } saveAttempt(1); saveAttempt(2); document.querySelector('#summary').textContent = `Task 1: ${word(store.task1)} `+__i18nRuntime.t(PAGE_I18N,'wp.wordCount')+` · Task 2: ${word(store.task2)} `+__i18nRuntime.t(PAGE_I18N,'wp.wordCount')+` · Jami: ${total} `+__i18nRuntime.t(PAGE_I18N,'wp.wordCount')+`.`; complete.showModal(); });
     document.querySelector('#download').addEventListener('click', () => { const { jsPDF } = window.jspdf || {}; if (!jsPDF) { alert(__i18nRuntime.t(PAGE_I18N,'wp.pdfFail')); return; } const doc = new jsPDF(); const stamp = new Date().toLocaleString(); const addTask = (title, response, count, first) => { if (!first) doc.addPage(); doc.setFontSize(18); doc.text(title, 20, 22); doc.setFontSize(11); doc.text(`Sana: ${stamp}`, 20, 34); doc.text(`So‘z soni: ${count}`, 20, 42); doc.setFontSize(13); doc.text('Javob:', 20, 55); doc.setFontSize(11); const lines = doc.splitTextToSize(response || '[Javob yozilmagan]', 170); doc.text(lines, 20, 65); }; addTask('IELTS Writing Practice — Task 1', store.task1, word(store.task1), true); addTask('IELTS Writing Practice — Task 2', store.task2, word(store.task2), false); doc.save('organamiz-ielts-writing-practice.pdf'); });
     
     // --- AI ASSESSMENT ---
@@ -162,13 +212,33 @@ const PAGE_I18N = {"uz": {"wp.meta": "IELTS Writing · Original practice shablon
     style.textContent = '@keyframes spin{to{transform:rotate(360deg)}} .ai-button{background:linear-gradient(135deg,var(--accent),#6f62e8);color:#fff;border:none;padding:.6rem 1.2rem;border-radius:9px;font:inherit;font-weight:700;cursor:pointer;white-space:nowrap}.ai-button:hover{opacity:.9} .criterion-example{margin:10px 0;padding:10px 12px;background:var(--panel2);border-radius:6px;font-size:14px;border-left:3px solid #6c5ce7}.criterion-tip{margin-top:10px;padding:10px 12px;background:var(--panel2);border-radius:6px;font-size:14px;border-left:3px solid #f1c40f} .score-card{background:var(--panel2);border-radius:12px;padding:20px;margin-bottom:16px;border-left:5px solid var(--accent)} .score-card h3{margin:0 0 10px;font-size:1rem} .score-card p{font-size:.9rem;line-height:1.5;margin:0 0 8px} .results-header{text-align:center;padding:30px;background:linear-gradient(135deg,var(--accent),#6f62e8);color:#fff;border-radius:12px;margin-bottom:20px} .results-header h1{margin:0 0 10px;font-size:1.5rem} .overall-band{font-size:3rem;font-weight:800} .results-grid{display:grid;gap:16px}';
     document.head.appendChild(style);
     
-    paint();window.__i18nRuntime.apply(PAGE_I18N);
+    paint();renderHistory();window.__i18nRuntime.apply(PAGE_I18N);
   </script>
 
   <style>
     :root { --bg:#101118; --panel:#181a24; --panel2:#202332; --text:#f2f2f7; --muted:#a6a7b8; --border:#343749; --accent:#8a7cff; --good:#60cf80; }
     html[data-theme="light"] { --bg:#f6f7fb; --panel:#fff; --panel2:#f0effa; --text:#20212a; --muted:#5f6072; --border:#d9dbea; --accent:#6355db; }
     *{box-sizing:border-box} body{margin:0;background:var(--bg);color:var(--text);font:16px/1.55 Inter,system-ui,sans-serif;padding-bottom:76px}.topbar{height:82px;padding:0 2rem;display:flex;align-items:center;gap:1.5rem;border-bottom:1px solid var(--border);background:var(--panel);position:sticky;top:0;z-index:3}.brand{font-size:1.4rem;font-weight:800;text-decoration:none;color:var(--text)}.brand b{color:var(--accent)}.label{color:var(--muted);font-weight:600}.top-actions{margin-left:auto;display:flex;align-items:center;gap:.75rem}.top-actions #timer{font-variant-numeric:tabular-nums;font-weight:800}.top-actions button,.back,.muted-button{border:1px solid var(--border);border-radius:9px;background:transparent;color:var(--text);padding:.6rem .8rem;text-decoration:none;font:inherit;cursor:pointer}.notice{margin:1.25rem auto;max-width:1300px;border:1px solid color-mix(in srgb,var(--accent) 45%,var(--border));background:color-mix(in srgb,var(--accent) 10%,var(--panel));padding:1rem 1.25rem;border-radius:12px;color:var(--text)}.workspace{max-width:1300px;margin:auto;display:grid;grid-template-columns:1fr 1fr;min-height:calc(100vh - 200px);border:1px solid var(--border);border-radius:16px;overflow:hidden;background:var(--panel)}.prompt-panel,.write-panel{padding:1.5rem;overflow:auto}.prompt-panel{border-right:1px solid var(--border)}.task-meta{display:flex;gap:1rem;align-items:center;color:var(--muted);font-size:.88rem;font-weight:700;letter-spacing:.04em}.task-meta span:first-child{color:var(--accent)}h1{font-size:2rem;line-height:1.2;margin:1.2rem 0}.chart-placeholder{min-height:270px;margin:1.5rem 0;border:2px dashed var(--border);background:var(--panel2);display:grid;place-content:center;text-align:center;border-radius:12px;color:var(--accent);font-weight:800;letter-spacing:.12em}.chart-placeholder small{font-weight:500;letter-spacing:0;color:var(--muted);margin-top:.5rem}.instruction{padding:1rem;border-left:4px solid var(--accent);background:var(--panel2)}.strategy{color:var(--accent);font-weight:700}.write-panel{display:flex;flex-direction:column}.write-panel textarea{min-height:480px;flex:1;width:100%;resize:none;border:1px solid var(--border);border-radius:12px;padding:1rem;background:var(--bg);color:var(--text);font:inherit;line-height:1.7}.writer-status{display:flex;justify-content:space-between;color:var(--muted);font-size:.9rem;margin-top:.75rem}.bottom-bar{position:fixed;bottom:0;left:0;right:0;height:76px;z-index:3;display:flex;align-items:center;gap:1rem;padding:0 2rem;background:var(--panel);border-top:1px solid var(--border)}.task-tabs{display:flex;height:100%}.tab{min-width:125px;padding:0 1rem;border:0;border-right:1px solid var(--border);background:transparent;color:var(--muted);text-align:left;cursor:pointer}.tab b,.tab small{display:block}.tab.active{color:var(--text);background:var(--panel2);box-shadow:inset 0 3px var(--accent)}.submit{margin-left:auto;border:0;border-radius:9px;background:var(--good);color:#132517;font-weight:900;padding:.75rem 1rem;cursor:pointer;font:inherit}.hidden{display:none}dialog{max-width:650px;width:calc(100% - 2rem);padding:0;border:1px solid var(--border);border-radius:14px;background:var(--panel);color:var(--text)}dialog::backdrop{background:#0009}.dialog-head{display:flex;align-items:center;justify-content:space-between;padding:1rem 1.25rem;border-bottom:1px solid var(--border)}.dialog-head h2{font-size:1.1rem;margin:0}.close{font-size:1.6rem;background:none;border:0;color:var(--text);cursor:pointer}.dialog-body{padding:1.25rem}.dialog-body h3{color:var(--accent)}.copy{border:1px solid var(--accent);background:transparent;color:var(--accent);padding:.6rem .8rem;border-radius:8px;font:inherit;cursor:pointer}.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0)}@media(max-width:800px){.topbar{height:auto;min-height:70px;padding:1rem;flex-wrap:wrap;gap:.7rem}.label{display:none}.top-actions{margin-left:auto}.workspace{grid-template-columns:1fr;border-radius:0}.prompt-panel{border-right:0;border-bottom:1px solid var(--border)}.bottom-bar{padding:0 .6rem}.muted-button{display:none}.tab{min-width:90px}.submit{padding:.6rem}.notice{margin:1rem}.write-panel textarea{min-height:350px}}
+  </style>
+
+  <style>
+    /* TASK 3 new styles — design tokens: --bg #0e0f15; --surface #181a24; --text #ececf3; --muted #9a9ab2; --border #2a2c3a; --accent #7d7df5; --good #22c55e */
+    #wordCount.under { color: #f59e0b; }
+    #wordCount.met { color: #22c55e; }
+    .time-banner { position: fixed; left: 0; right: 0; top: 82px; z-index: 4; background: #ef4444; color: #fff; text-align: center; padding: .6rem 1rem; font-weight: 700; }
+    .time-banner[hidden] { display: none; }
+    .attempt-btn { border: 1px solid #2a2c3a; background: transparent; color: #ececf3; border-radius: 9px; padding: .4rem .7rem; cursor: pointer; font: inherit; margin-left: auto; }
+    .attempt-btn:hover { background: #181a24; }
+    .history-panel { max-width: 1300px; margin: 1.25rem auto; }
+    .history-panel h3 { margin: .5rem 0; font-size: 1rem; color: #ececf3; }
+    .hist-list { list-style: none; padding: 0; margin: .5rem 0; display: grid; gap: .4rem; }
+    .hist-list li { background: #181a24; border: 1px solid #2a2c3a; border-radius: 10px; padding: .6rem .8rem; font-size: .88rem; color: #ececf3; }
+    .hist-empty { color: #9a9ab2; }
+    @media (max-width: 600px) {
+      .writer-status { position: sticky; top: 0; background: var(--panel); z-index: 2; padding: .4rem 0; }
+      .time-banner { top: 64px; }
+      body { padding-bottom: calc(76px + env(safe-area-inset-bottom)); }
+    }
   </style>
 </body>
 </html>

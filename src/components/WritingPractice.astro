@@ -17,8 +17,9 @@ const totalDays = days.length;
 
   <div class="wp-grid">
     <aside class="wp-days" data-days></aside>
-    <div class="wp-work">
-      <div class="wp-dayhead">
+      <div class="wp-work">
+        <div class="wp-timebanner" data-time-banner role="status" hidden>Vaqt tugadi</div>
+        <div class="wp-dayhead">
         <h3 data-day-title></h3>
         <span data-day-type class="wp-badge"></span>
       </div>
@@ -49,7 +50,10 @@ const totalDays = days.length;
         <button type="button" data-submit class="submit">AI bahosini olish</button>
         <button type="button" data-mark class="secondary">Bajardim deb belgilash</button>
         <button type="button" data-clear class="ghost">Tozalash</button>
+        <button type="button" data-save-attempt class="ghost">Urinish saqlash</button>
       </div>
+
+      <details class="wp-history" data-history></details>
 
       <div data-result></div>
     </div>
@@ -98,7 +102,15 @@ const totalDays = days.length;
   .wp-actions .secondary { padding: .7rem 1.2rem; border: 1px solid var(--accent, #2563eb); background: transparent; color: var(--accent, #2563eb); border-radius: 10px; cursor: pointer; font-weight: 600; }
   .wp-actions .ghost { padding: .7rem 1rem; border: none; background: transparent; color: #9ca3af; cursor: pointer; }
   [data-result] :global(.assessment-wrap) { margin-top: 1rem; }
-  @media (max-width: 720px) { .wp-grid { grid-template-columns: 1fr; } .wp-days { grid-template-columns: repeat(6, 1fr); } }
+  .wp-minwords.under { color: #dc2626; font-weight: 600; }
+  .wp-timebanner { background: #ef4444; color: #fff; text-align: center; padding: .55rem .8rem; border-radius: 10px; font-weight: 700; margin-bottom: .6rem; }
+  .wp-timebanner[hidden] { display: none; }
+  .wp-history { margin-top: 1rem; background: var(--surface, #181a24); border: 1px solid var(--border, #2a2c3a); border-radius: 12px; padding: .6rem .9rem; }
+  .wp-history summary { cursor: pointer; font-weight: 600; color: var(--text, #ececf3); }
+  .wp-history .hist-list { list-style: none; padding: 0; margin: .6rem 0 0; display: grid; gap: .4rem; }
+  .wp-history .hist-list li { background: var(--surface, #181a24); border: 1px solid var(--border, #2a2c3a); border-radius: 10px; padding: .5rem .7rem; font-size: .85rem; color: var(--text, #ececf3); }
+  .wp-history .hist-empty { color: var(--muted, #9a9ab2); margin: .5rem 0 0; }
+  @media (max-width: 720px) { .wp-grid { grid-template-columns: 1fr; } .wp-days { grid-template-columns: repeat(6, 1fr); } .wp-tools { position: sticky; top: 0; z-index: 5; background: var(--surface, #fff); padding: .5rem 0; } }
 </style>
 
 <script>
@@ -131,7 +143,10 @@ const totalDays = days.length;
   let timer = null;
   let timeLeft = 0;
   let user = null;
+  let sessionStart = Date.now();
 
+  // 1.3 Autosave: javob localStorage-ga yoziladi, sahifaga qaytganda tiklanadi.
+  // CHEKLOV: faqat shu brauzer/qurilma uchun (per-browser only) — boshqa qurilmaga o'tmaydi.
   const load = () => { try { return JSON.parse(localStorage.getItem(LS)) || {}; } catch (e) { return {}; } };
   const save = (o) => localStorage.setItem(LS, JSON.stringify(o));
   const rec = (d) => load()[d] || { task1_done: false, task2_done: false, task1_text: '', task2_text: '' };
@@ -195,6 +210,8 @@ const totalDays = days.length;
     stopTimer();
     elTimer.textContent = '--:--';
     elTimer.classList.remove('running');
+    sessionStart = Date.now();
+    renderHistory();
   }
 
   function updateWordCount() {
@@ -202,6 +219,7 @@ const totalDays = days.length;
     const min = parseInt(elMin.dataset.min || '0', 10);
     elWord.textContent = `${n} so'z`;
     elMin.classList.toggle('met', n >= min);
+    elMin.classList.toggle('under', n > 0 && n < min);
   }
 
   function startTimer() {
@@ -213,13 +231,35 @@ const totalDays = days.length;
     timer = setInterval(() => {
       timeLeft--;
       renderTimer();
-      if (timeLeft <= 0) { stopTimer(); elTimer.classList.remove('running'); elTimer.textContent = 'Vaqt!'; }
+      if (timeLeft <= 0) { stopTimer(); elTimer.classList.remove('running'); elTimer.textContent = 'Vaqt!'; const b = app.querySelector('[data-time-banner]'); if (b) b.hidden = false; }
     }, 1000);
   }
   function stopTimer() { if (timer) { clearInterval(timer); timer = null; } }
   function renderTimer() {
     const m = Math.floor(timeLeft / 60), s = timeLeft % 60;
     elTimer.textContent = `${String(m).padStart(2, '0')}:${String(s).padStart(2, '0')}`;
+  }
+
+  function recordAttempt() {
+    const text = elAnswer.value;
+    const n = countWords(text);
+    if (!n) { alert('Avval javob yozing.'); return; }
+    const p = load();
+    const r = p[currentDay] || { task1_done: false, task2_done: false, task1_text: '', task2_text: '' };
+    r[currentTab + '_attempts'] = r[currentTab + '_attempts'] || [];
+    const t = Math.floor((Date.now() - sessionStart) / 1000);
+    r[currentTab + '_attempts'].push({ date: new Date().toISOString(), words: n, time: t });
+    p[currentDay] = r; save(p);
+    renderHistory();
+  }
+
+  function renderHistory() {
+    const el = app.querySelector('[data-history]'); if (!el) return;
+    const r = load()[currentDay] || {};
+    const list = r[currentTab + '_attempts'] || [];
+    if (!list.length) { el.innerHTML = '<summary>Urinishlar tarixi</summary><p class="hist-empty">Hali urinishlar saqlanmagan.</p>'; return; }
+    const rows = list.slice().reverse().map((a, i) => `<li><b>${list.length - i}-urinish</b> · ${new Date(a.date).toLocaleString()} · ${a.words} so'z · ${Math.floor(a.time/60)}m ${a.time%60}s</li>`).join('');
+    el.innerHTML = `<summary>Urinishlar tarixi (${list.length})</summary><ul class="hist-list">${rows}</ul>`;
   }
 
   async function persist() {
@@ -329,6 +369,13 @@ const totalDays = days.length;
   app.querySelector('[data-submit]').addEventListener('click', requestFeedback);
   app.querySelector('[data-mark]').addEventListener('click', markDone);
   app.querySelector('[data-clear]').addEventListener('click', () => { elAnswer.value = ''; updateWordCount(); persist(); });
+  app.querySelector('[data-save-attempt]').addEventListener('click', recordAttempt);
+
+  // --- 3.1 AI FEEDBACK PLAN (NOT implemented here) ---
+  // Existing AI works via ielts-assessor.js using a USER-PROVIDED OpenRouter key stored in localStorage
+  // (client-side). For production: route calls through a serverless function (e.g. /api/assess) so the
+  // API key is NEVER exposed in frontend code. Serverless holds the secret key, forwards to OpenRouter,
+  // returns band score + feedback. Cost: OpenRouter free tier / pay-per-token (cents per essay).
 
   currentDay = firstIncomplete();
   renderDay();
