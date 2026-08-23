@@ -13,12 +13,12 @@ const prefix = `${base}${lang}/`;
   <span class="eyebrow">{p.eyebrow}</span>
   <div class="hero-badges"><span class="hero-badge">{p.count}</span><span class="hero-badge">{p.free}</span><span class="hero-badge">{p.language}</span><span class="hero-badge">{p.access}</span></div>
   <h1 class="hero-typed"><span class="typed-static">{p.learn}</span> <span class="typed-line"><span class="typed-text">{p.typed}</span></span></h1>
-  <p class="lead">{p.lead}</p><div class="hero-actions"><a class="hero-cta primary" href={base + 'kurs-tanlash/'}>{p.quiz}</a></div>
+  <p class="lead">{p.lead}</p><div class="hero-actions"><a class="hero-cta primary" href={prefix + 'kurs-tanlash/'}>{p.quiz}</a></div>
 </section>
-<section class="founder-excerpt"><div><p class="eyebrow">{p.why}</p><h2>{p.founder}</h2></div><div><p>{p.founderText}</p><a class="course-nav-link" href={base + 'mening-yolim/'}>{p.more}</a></div></section>
-<section class="spotlight"><div><span class="badge badge-hot">{p.popular}</span><h2>{p.agent}</h2><p>{p.agentDesc}</p><div class="spot-price">$39 <span class="uzs">≈ 490 000 so'm</span></div><a href={base + 'kurslar/ai-agentlar'} class="course-nav-link">{p.more}</a></div></section>
+<section class="founder-excerpt"><div><p class="eyebrow">{p.why}</p><h2>{p.founder}</h2></div><div><p>{p.founderText}</p><a class="course-nav-link" href={prefix + (lang === 'ru' ? 'moy-put/' : 'my-journey/')}>{p.more}</a></div></section>
+<section class="spotlight"><div><span class="badge badge-hot">{p.popular}</span><h2>{p.agent}</h2><p>{p.agentDesc}</p><div class="spot-price">$39 <span class="uzs">≈ 490 000 so'm</span></div><a href={prefix + 'kurslar/ai-agentlar'} class="course-nav-link">{p.more}</a></div></section>
 <section><div class="sec-head"><h2 class="sec-title">{p.courses}</h2><a class="sec-all" href={prefix + 'kurslar/'}>{p.all} <b>{totalCourseCount}</b> →</a></div><div class="features">
-  <div class="card" style="--c:#7d7df5"><span class="badge">{p.popular}</span><h2>{p.prompt}</h2><span class="cat">AI · PKM</span><span class="cert-line">{p.cert}</span><p>{p.promptDesc}</p><p class="price">$29 <span class="uzs">≈ 360 000 so'm</span></p><a href={base + 'kurslar/prompt-engineering'} class="start-btn">{p.enroll}</a></div>
-  <div class="card" style="--c:#34d399"><h2>{p.obs}</h2><span class="cat">AI · PKM</span><span class="cert-line">{p.cert}</span><p>{p.obsDesc}</p><p class="price">$19 <span class="uzs">≈ 240 000 so'm</span></p><a href={base + 'kurslar/obsidian'} class="start-btn">{p.build}</a></div>
+  <div class="card" style="--c:#7d7df5"><span class="badge">{p.popular}</span><h2>{p.prompt}</h2><span class="cat">AI · PKM</span><span class="cert-line">{p.cert}</span><p>{p.promptDesc}</p><p class="price">$29 <span class="uzs">≈ 360 000 so'm</span></p><a href={prefix + 'kurslar/prompt-engineering'} class="start-btn">{p.enroll}</a></div>
+  <div class="card" style="--c:#34d399"><h2>{p.obs}</h2><span class="cat">AI · PKM</span><span class="cert-line">{p.cert}</span><p>{p.obsDesc}</p><p class="price">$19 <span class="uzs">≈ 240 000 so'm</span></p><a href={prefix + 'kurslar/obsidian'} class="start-btn">{p.build}</a></div>
 </div></section>
-<p class="quiz-hint">{p.footer} <a href={base + 'kurs-tanlash/'} style="color:var(--accent)">{p.footerLink}</a></p>
+<p class="quiz-hint">{p.footer} <a href={prefix + 'kurs-tanlash/'} style="color:var(--accent)">{p.footerLink}</a></p>
