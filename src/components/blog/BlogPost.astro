@@ -1,0 +1,42 @@
+---
+import type { CollectionEntry } from 'astro:content';
+
+type Locale = 'uz' | 'ru' | 'en';
+type Props = { lang: Locale; post: CollectionEntry<'blog'>; Content: any };
+const { lang, post, Content } = Astro.props as Props;
+const base = import.meta.env.BASE_URL;
+const copy = {
+  uz: { published: 'E’lon qilingan', updated: 'Yangilangan', categories: 'Mavzular', related: 'Tegishli kurslar', relatedText: 'Maqoladagi mavzuni kurs orqali chuqurroq o‘rganing.', back: '← Blogga qaytish' },
+  ru: { published: 'Опубликовано', updated: 'Обновлено', categories: 'Темы', related: 'Подходящие курсы', relatedText: 'Изучите тему статьи глубже с помощью курса.', back: '← Вернуться в блог' },
+  en: { published: 'Published', updated: 'Updated', categories: 'Categories', related: 'Related courses', relatedText: 'Explore the article topic in more depth with a course.', back: '← Back to blog' },
+} as const;
+const t = copy[lang];
+const formatDate = (date: Date) => new Intl.DateTimeFormat(lang === 'uz' ? 'uz-UZ' : lang === 'ru' ? 'ru-RU' : 'en-US', { day: 'numeric', month: 'long', year: 'numeric' }).format(date);
+const normalizedCourseHref = (href: string) => href.startsWith('http') ? href : `${base}${href.replace(/^\//, '')}`;
+const blogHref = `${base}${lang === 'uz' ? 'blog/' : `${lang}/blog/`}`;
+---
+<article class="blog-post">
+  <a class="back-link" href={blogHref}>{t.back}</a>
+  <header>
+    <div class="dates">
+      <span>{t.published}: <time datetime={post.data.publishedAt.toISOString()}>{formatDate(post.data.publishedAt)}</time></span>
+      {post.data.updatedAt && <span>{t.updated}: <time datetime={post.data.updatedAt.toISOString()}>{formatDate(post.data.updatedAt)}</time></span>}
+    </div>
+    <h1>{post.data.title}</h1>
+    <p class="lead">{post.data.description}</p>
+    <div class="category-row" aria-label={t.categories}><span>{t.categories}:</span>{post.data.categories.map((category) => <span class="category">{category}</span>)}</div>
+  </header>
+
+  <div class="article-body"><Content /></div>
+
+  <aside class="related-courses" aria-labelledby="related-courses-title">
+    <p class="related-label">{t.related}</p>
+    <h2 id="related-courses-title">{t.related}</h2>
+    <p>{t.relatedText}</p>
+    {post.data.relatedCourses.length > 0 ? <ul>{post.data.relatedCourses.map((course) => <li><a href={normalizedCourseHref(course.href)}>{course.title} →</a></li>)}</ul> : <p class="no-courses">{lang === 'uz' ? 'Tegishli kurslar tasdiqlangach qo‘shiladi.' : lang === 'ru' ? 'Подходящие курсы будут добавлены после подтверждения.' : 'Related courses will be added after approval.'}</p>}
+  </aside>
+</article>
+
+<style>
+  .blog-post{max-width:780px;margin:0 auto}.back-link{display:inline-block;color:var(--accent);font-weight:700;text-decoration:none;margin-bottom:1.5rem}.dates{display:flex;flex-wrap:wrap;gap:.5rem 1rem;font-size:.88rem;color:var(--muted)}h1{font-size:clamp(2.15rem,5vw,3.35rem);line-height:1.12;margin:.6rem 0}.lead{font-size:1.16rem;line-height:1.7;color:var(--muted);margin:0}.category-row{display:flex;align-items:center;flex-wrap:wrap;gap:.45rem;margin-top:1.35rem;font-size:.9rem;color:var(--muted)}.category{padding:.25rem .55rem;border-radius:999px;color:var(--accent);background:color-mix(in srgb,var(--accent) 12%,transparent)}.article-body{margin-top:2.5rem;color:var(--text);font-size:1.05rem;line-height:1.8}.article-body :global(h2),.article-body :global(h3){line-height:1.3;margin-top:2rem}.article-body :global(a){color:var(--accent)}.related-courses{margin-top:3rem;padding:1.35rem;border:1px solid color-mix(in srgb,var(--accent) 52%,var(--border));border-radius:16px;background:linear-gradient(135deg,color-mix(in srgb,var(--accent) 10%,var(--surface)),var(--surface))}.related-label{margin:0;color:var(--accent);font-size:.75rem;letter-spacing:.1em;font-weight:800;text-transform:uppercase}.related-courses h2{margin:.35rem 0}.related-courses p:not(.related-label){color:var(--muted);line-height:1.6}.related-courses ul{padding-left:1.15rem;margin-bottom:0}.related-courses li+li{margin-top:.5rem}.related-courses a{color:var(--accent);font-weight:700}.no-courses{font-size:.95rem}@media(max-width:600px){h1{font-size:2.2rem}}
+</style>

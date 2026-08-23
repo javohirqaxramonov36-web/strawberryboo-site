@@ -7,6 +7,8 @@ import CourseProgress from "../../components/CourseProgress.astro";
 import Quiz from "../../components/Quiz.astro";
 import ObsidianScreenshotSlots from "../../components/ObsidianScreenshotSlots.astro";
 import CourseTestimonialPlaceholder from "../../components/CourseTestimonialPlaceholder.astro";
+import CourseFaq from "../../components/CourseFaq.astro";
+import { bespokeCourseFaqFacts } from "../../data/course-faqs";
 const title = "Obsidian: shaxsiy bilim bazasi qurish | Tayanch";
 const description = "Obsidian PKM bilan shaxsiy bilim bazasi qurish: kundalik yuritish, eslatmalarni bog'lash va o'qiganingizni esda saqlash. Bepul kurs.";
 const base = import.meta.env.BASE_URL;
@@ -73,6 +75,7 @@ const plugins = [
   <a href={base + 'bog-lanish'} class="start-btn" style="margin-top:2rem;" data-i18n="op.buy">Kursni sotib olish →</a><a href={base + 'kurslar'} class="course-nav-link" style="margin-left:1rem;" data-i18n="op.all">← Barcha kurslar</a>
   <Quiz title="O'z bilimingizni tekshiring" titleI18n="op.quizTitle" questions={questions} />
   <PaymentInstructions course="Obsidian PKM" price="$19 · ≈ 240 000 so'm" />
+  <CourseFaq facts={bespokeCourseFaqFacts["obsidian"]} />
   <CourseTestimonialPlaceholder />
   <LeadMagnetCTA />
 </article>

@@ -1,6 +1,7 @@
 ---
 import type { LocalizedGeneralEnglishCourse as Course, CourseLang } from '../data/general-english-courses';
 import Testimonials from './Testimonials.astro';
+import CourseFaq from './CourseFaq.astro';
 interface Props { course: Course; previousCourse?: Course; nextCourse?: Course; lang?: CourseLang; }
 const { course, previousCourse, nextCourse, lang = 'uz' } = Astro.props;
 const base = import.meta.env.BASE_URL;
@@ -11,11 +12,17 @@ const copy = {
   en: { certificate: 'Certificate included', audience: 'WHO IS IT FOR?', path: 'A clear path to the next level', status: 'COURSE STATUS', soon: 'Tez orada', statusText: 'Full course materials and schedule are being prepared.', nav: 'General English levels', previous: 'Previous level', all: 'All General English courses', next: 'Next level' }
 }[lang];
 const courseHref = (slug: string) => base + `${prefix}kurslar/${slug}`;
+const faqCopy = {
+  uz: { status: 'Tez orada', notFor: 'Darhol natija yoki tayyor jadvalni kutayotganlar uchun emas: sahifada to‘liq materiallar va jadval tayyorlanayotgani ko‘rsatilgan.', access: 'Kurs sahifasida narx va holat ko‘rsatilgan. To‘lov hamda foydalanish tafsilotlari tayyor materiallar bilan e’lon qilinadi.' },
+  ru: { status: 'Скоро', notFor: 'Не для тех, кто ожидает немедленный результат или готовое расписание: на странице указано, что полные материалы и расписание готовятся.', access: 'На странице курса указаны цена и статус. Детали оплаты и доступа будут объявлены вместе с готовыми материалами.' },
+  en: { status: 'Coming soon', notFor: 'Not for learners expecting an immediate result or a ready schedule: the page states that full materials and the schedule are being prepared.', access: 'The course page shows the price and status. Payment and access details will be announced with the ready materials.' }
+}[lang];
 ---
 <article class="general-english-course" style={`--course-accent:${course.accent}`}>
   <header class="course-hero"><span class="badge badge-new">{course.badge}</span><p class="eyebrow">GENERAL ENGLISH · CEFR {course.cefr}</p><h1>{course.title}</h1><p class="lead">{course.description}</p><div class="course-meta"><span class="cat">{course.tags.join(' · ')}</span>{course.certificate && <span class="certificate">{copy.certificate}</span>}</div></header>
   <section class="course-section" aria-labelledby="audience-title"><p class="eyebrow">{copy.audience}</p><h2 id="audience-title">{copy.path}</h2><p>{course.targetAudience}</p></section>
   <section class="course-section status-section" aria-labelledby="status-title"><p class="eyebrow">{copy.status}</p><h2 id="status-title">{copy.soon}</h2><p>{copy.statusText} {course.price}.</p></section>
+  <CourseFaq facts={{ title: course.title, lang, overview: course.description, topics: [...course.tags], whoFor: course.targetAudience, whoNotFor: faqCopy.notFor, price: course.price, status: faqCopy.status, certificate: course.certificate, accessPayment: faqCopy.access }} />
   <Testimonials courseSlug={course.slug} lang={lang} />
   <nav class="level-navigation" aria-label={copy.nav}>{previousCourse ? <a href={courseHref(previousCourse.slug)}>← {copy.previous}: {previousCourse.cefr}</a> : <span aria-hidden="true"></span>}<a class="all-levels" href={base + `${prefix}kurslar`}>{copy.all}</a>{nextCourse ? <a href={courseHref(nextCourse.slug)}>{copy.next}: {nextCourse.cefr} →</a> : <span aria-hidden="true"></span>}</nav>
 </article>

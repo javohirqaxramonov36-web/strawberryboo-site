@@ -1,0 +1,13 @@
+---
+import Base from '../../layouts/Base.astro';
+import CertificateTrustPage from '../../components/CertificateTrustPage.astro';
+const base = import.meta.env.BASE_URL;
+const alternates = [
+  { lang: 'uz', href: base + 'sertifikat/' },
+  { lang: 'ru', href: base + 'ru/sertifikat/' },
+  { lang: 'en', href: base + 'en/sertifikat/' },
+];
+---
+<Base title="About certificates — Tayanch" description="Open information about what can and cannot yet be verified about Tayanch certificates." lang="en" localeAlternates={alternates}>
+  <CertificateTrustPage lang="en" />
+</Base>

@@ -4,6 +4,7 @@ import { join, relative, sep } from 'node:path';
 const origin = 'https://javohirqaxramonov36-web.github.io/strawberryboo-site';
 const pagesRoot = join(process.cwd(), 'src', 'pages');
 const ignored = new Set(['404.astro']);
+const isDynamicRoute = (file) => /\[[^\]]+\]/.test(file);
 async function walk(dir) {
   const entries = await readdir(dir, { withFileTypes: true });
   const nested = await Promise.all(entries.map(async (entry) => {
@@ -12,7 +13,7 @@ async function walk(dir) {
   }));
   return nested.flat();
 }
-const files = (await walk(pagesRoot)).filter((file) => file.endsWith('.astro') && !ignored.has(file.split(sep).at(-1)));
+const files = (await walk(pagesRoot)).filter((file) => file.endsWith('.astro') && !ignored.has(file.split(sep).at(-1)) && !isDynamicRoute(file));
 const urls = [...new Set(files.map((file) => {
   let path = relative(pagesRoot, file).replace(/\\/g, '/').replace(/\.astro$/, '');
   path = path.replace(/\/index$/, '');

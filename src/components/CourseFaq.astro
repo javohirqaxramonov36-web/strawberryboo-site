@@ -1,0 +1,24 @@
+---
+import { makeCourseFaqFacts, type CourseFaqFacts } from '../data/course-faqs';
+interface Props { facts: CourseFaqFacts; }
+const { facts } = Astro.props;
+const faq = makeCourseFaqFacts(facts);
+const copy = {
+  uz: { for: 'KIM UCHUN?', notFor: 'KIM UCHUN EMAS?', faq: 'KO‘P SO‘RALADIGAN SAVOLLAR', title: 'Kurs haqida qisqa javoblar' },
+  ru: { for: 'ДЛЯ КОГО?', notFor: 'КОМУ НЕ ПОДОЙДЁТ?', faq: 'ЧАСТЫЕ ВОПРОСЫ', title: 'Коротко о курсе' },
+  en: { for: 'WHO IS IT FOR?', notFor: 'WHO IS IT NOT FOR?', faq: 'FREQUENTLY ASKED QUESTIONS', title: 'Quick answers about the course' }
+}[facts.lang];
+const faqSchema = { '@context': 'https://schema.org', '@type': 'FAQPage', mainEntity: faq.items.map((item) => ({ '@type': 'Question', name: item.question, acceptedAnswer: { '@type': 'Answer', text: item.answer } })) };
+---
+<section class="course-fit" aria-label={copy.title}>
+  <div class="fit-card"><p class="eyebrow">{copy.for}</p><p>{facts.whoFor}</p></div>
+  <div class="fit-card"><p class="eyebrow">{copy.notFor}</p><p>{facts.whoNotFor}</p></div>
+</section>
+<section class="course-faq" aria-labelledby="course-faq-title">
+  <p class="eyebrow">{copy.faq}</p><h2 id="course-faq-title">{copy.title}</h2>
+  {faq.items.map((item) => <details><summary>{item.question}</summary><p>{item.answer}</p></details>)}
+</section>
+<script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+<style>
+.course-fit{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1rem;margin:1.5rem 0}.fit-card,.course-faq{padding:1.15rem;border:1px solid var(--border);border-radius:14px;background:var(--surface)}.fit-card p:last-child{margin:0;color:var(--muted);line-height:1.65}.eyebrow{margin:0 0 .45rem;color:var(--accent);font-weight:800;letter-spacing:.08em;font-size:.78rem}.course-faq{margin:1.5rem 0}.course-faq h2{margin:.15rem 0 1rem}.course-faq details{border-top:1px solid var(--border);padding:.8rem 0}.course-faq summary{cursor:pointer;font-weight:750}.course-faq details p{margin:.65rem 0 0;color:var(--muted);line-height:1.65}@media(max-width:650px){.course-fit{grid-template-columns:1fr}}
+</style>

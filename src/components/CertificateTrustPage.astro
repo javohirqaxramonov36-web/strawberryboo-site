@@ -1,0 +1,115 @@
+---
+type Lang = 'uz' | 'ru' | 'en';
+const { lang = 'uz' } = Astro.props as { lang?: Lang };
+const copy = {
+  uz: {
+    eyebrow: 'SHAFFOFLIK', title: 'Sertifikatlar haqida aniq ma’lumot',
+    intro: 'Bu sahifa Tayanch sertifikatlari haqida nimani tekshirish mumkinligi va nimani hozircha tekshirib bo‘lmasligini ochiq tushuntiradi.',
+    sample: 'NAMUNA · BERILMAGAN SERTIFIKAT', sampleTitle: 'Sertifikat ko‘rinishi uchun joy', sampleText: 'Bu faqat dizayn namunasi. U hech kimning kursni tugatgani, baholanganligi yoki sertifikat olganini tasdiqlamaydi.',
+    label: 'Hali berilmagan · Misol uchun',
+    verifiedTitle: 'Hozir tasdiqlangan narsa',
+    verified: ['Bu sahifa Tayanchdagi sertifikat ma’lumotlari uchun ochiq shaffoflik izohidir.', 'Sertifikatga oid da’volar alohida kurs sahifasida ko‘rsatilishi kerak.', 'Ushbu namuna haqiqiy sertifikat emas va hech bir o‘quvchiga tegishli emas.'],
+    notTitle: 'Hozir tasdiqlanmagan narsa',
+    notVerified: ['Hech qanday ishtirokchining shaxsi yoki kursni tugatgani.', 'Hech qanday sertifikat raqami, QR-kod, berilgan sana yoki baholash natijasi.', 'Tashqi akkreditatsiya, litsenziya yoki uchinchi tomon tasdig‘i.'],
+    nextTitle: 'Keyingi tekshirish mezoni',
+    next: 'Tayanch individual sertifikatlarni chiqarganda, tekshirish sahifasida sertifikat raqami, berilgan sana, kurs nomi va tekshirish holati aniq ko‘rsatiladi. Bu sahifa shu tizim ishga tushgunga qadar berilgan sertifikatlarni tekshirmaydi.',
+    contact: 'Savol yoki xatolik bormi? Biz bilan bog‘laning.', print: 'Sahifani chop etish', printNote: 'Chop etilgan nusxa ham faqat namuna ekanini ko‘rsatadi.'
+  },
+  ru: {
+    eyebrow: 'ПРОЗРАЧНОСТЬ', title: 'Честная информация о сертификатах',
+    intro: 'На этой странице открыто объясняется, что о сертификатах Tayanch можно проверить сейчас, а что пока нельзя.',
+    sample: 'ОБРАЗЕЦ · НЕ ВЫДАННЫЙ СЕРТИФИКАТ', sampleTitle: 'Место для внешнего вида сертификата', sampleText: 'Это только образец дизайна. Он не подтверждает, что кто-либо окончил курс, прошёл оценивание или получил сертификат.',
+    label: 'Не выдан · Только пример',
+    verifiedTitle: 'Что подтверждено сейчас',
+    verified: ['Эта страница — открытое пояснение о прозрачности сведений о сертификатах Tayanch.', 'Заявления о сертификате должны быть указаны на странице конкретного курса.', 'Этот образец не является действительным сертификатом и не относится ни к одному учащемуся.'],
+    notTitle: 'Что сейчас не подтверждено',
+    notVerified: ['Личность или завершение курса каким-либо участником.', 'Любой номер сертификата, QR-код, дата выдачи или результат оценки.', 'Внешняя аккредитация, лицензирование или подтверждение третьей стороны.'],
+    nextTitle: 'Будущий критерий проверки',
+    next: 'Когда Tayanch начнёт выдавать индивидуальные сертификаты, на странице проверки будут явно указаны номер сертификата, дата выдачи, название курса и статус проверки. До запуска этой системы данная страница не проверяет выданные сертификаты.',
+    contact: 'Есть вопрос или заметили неточность? Свяжитесь с нами.', print: 'Распечатать страницу', printNote: 'Распечатанная копия также обозначена только как образец.'
+  },
+  en: {
+    eyebrow: 'TRANSPARENCY', title: 'Clear information about certificates',
+    intro: 'This page openly explains what can be verified about Tayanch certificates today, and what cannot yet be verified.',
+    sample: 'SAMPLE · NOT AN ISSUED CERTIFICATE', sampleTitle: 'Certificate appearance placeholder', sampleText: 'This is a design sample only. It does not confirm that anyone completed a course, was assessed, or received a certificate.',
+    label: 'Not issued · Example only',
+    verifiedTitle: 'What is currently verified',
+    verified: ['This page is Tayanch’s public explanation of how certificate information is presented transparently.', 'Any certificate claim should be stated on the relevant course page.', 'This sample is not a valid certificate and belongs to no learner.'],
+    notTitle: 'What is not currently verified',
+    notVerified: ['Any participant’s identity or course completion.', 'Any certificate number, QR code, issue date, or assessment result.', 'External accreditation, licensing, or third-party endorsement.'],
+    nextTitle: 'Future verification standard',
+    next: 'When Tayanch issues individual certificates, a verification page will clearly show the certificate number, issue date, course name, and verification status. Until that system is launched, this page does not verify issued certificates.',
+    contact: 'Have a question or spotted an error? Contact us.', print: 'Print this page', printNote: 'A printed copy is also clearly marked as a sample only.'
+  }
+}[lang];
+const base = import.meta.env.BASE_URL;
+const contactHref = lang === 'uz' ? base + 'bog-lanish/' : base + `${lang}/bog-lanish/`;
+---
+
+<section class="certificate-page" aria-labelledby="certificate-title">
+  <div class="certificate-hero">
+    <p class="eyebrow">{copy.eyebrow}</p>
+    <h1 id="certificate-title">{copy.title}</h1>
+    <p class="lead">{copy.intro}</p>
+  </div>
+
+  <div class="certificate-sample" role="group" aria-labelledby="sample-heading" aria-describedby="sample-description">
+    <div class="sample-topline"><span>TAYANCH</span><span>{copy.sample}</span></div>
+    <div class="sample-seal" aria-hidden="true">✓</div>
+    <p class="sample-label">{copy.label}</p>
+    <h2 id="sample-heading">{copy.sampleTitle}</h2>
+    <p id="sample-description">{copy.sampleText}</p>
+    <div class="sample-lines" aria-hidden="true"><span></span><span></span><span></span></div>
+  </div>
+
+  <div class="facts-grid">
+    <section class="fact-card verified" aria-labelledby="verified-title">
+      <div class="card-icon" aria-hidden="true">✓</div>
+      <h2 id="verified-title">{copy.verifiedTitle}</h2>
+      <ul>{copy.verified.map((item) => <li>{item}</li>)}</ul>
+    </section>
+    <section class="fact-card unverified" aria-labelledby="unverified-title">
+      <div class="card-icon" aria-hidden="true">!</div>
+      <h2 id="unverified-title">{copy.notTitle}</h2>
+      <ul>{copy.notVerified.map((item) => <li>{item}</li>)}</ul>
+    </section>
+  </div>
+
+  <section class="next-step" aria-labelledby="next-title">
+    <h2 id="next-title">{copy.nextTitle}</h2>
+    <p>{copy.next}</p>
+  </section>
+
+  <div class="certificate-actions">
+    <a href={contactHref}>{copy.contact}</a>
+    <button type="button" onclick="window.print()">{copy.print}</button>
+  </div>
+  <p class="print-note">{copy.printNote}</p>
+</section>
+
+<style>
+  .certificate-page { max-width: 1040px; margin: 0 auto; padding: 68px 28px 88px; }
+  .certificate-hero { max-width: 740px; text-align: center; margin: 0 auto 42px; }
+  .eyebrow { color: var(--accent, #7d7df5); font-size: .78rem; font-weight: 800; letter-spacing: .12em; margin: 0 0 12px; }
+  h1 { font-size: clamp(2rem, 5vw, 3.4rem); letter-spacing: -.045em; margin: 0; color: var(--text, #f4f4f7); }
+  .lead { font-size: 1.08rem; line-height: 1.7; color: var(--muted, #a9a9b8); margin: 18px auto 0; }
+  .certificate-sample { position: relative; overflow: hidden; isolation: isolate; padding: clamp(28px, 5vw, 56px); text-align: center; border: 2px dashed color-mix(in srgb, var(--accent, #7d7df5) 64%, transparent); border-radius: 20px; background: linear-gradient(135deg, color-mix(in srgb, var(--accent, #7d7df5) 12%, var(--card, #171824)), var(--card, #171824)); }
+  .certificate-sample::after { content: 'SAMPLE'; position: absolute; z-index: -1; left: 50%; top: 51%; transform: translate(-50%, -50%) rotate(-24deg); font-size: clamp(4rem, 15vw, 11rem); font-weight: 800; letter-spacing: .12em; color: color-mix(in srgb, var(--accent, #7d7df5) 10%, transparent); pointer-events: none; }
+  .sample-topline { display:flex; justify-content:space-between; gap:16px; color:var(--muted, #a9a9b8); font-size:.72rem; font-weight:800; letter-spacing:.09em; text-align:left; }
+  .sample-seal { margin: 30px auto 14px; width: 58px; height:58px; display:grid; place-items:center; border:2px solid var(--accent,#7d7df5); border-radius:50%; color:var(--accent,#7d7df5); font-size:1.7rem; font-weight:800; }
+  .sample-label { display:inline-block; padding:6px 10px; border-radius:999px; background:color-mix(in srgb, #f59e0b 16%, transparent); color:#fbbf24; font-size:.76rem; font-weight:800; margin:0; }
+  .certificate-sample h2 { margin:20px 0 10px; font-size:clamp(1.45rem, 3vw, 2rem); color:var(--text,#f4f4f7); }
+  .certificate-sample p:not(.sample-label) { max-width:590px; margin:0 auto; line-height:1.65; color:var(--muted,#a9a9b8); }
+  .sample-lines { display:flex; justify-content:center; gap:10px; margin-top:32px; } .sample-lines span { width:26%; max-width:135px; height:2px; background:color-mix(in srgb, var(--muted,#a9a9b8) 35%, transparent); }
+  .facts-grid { display:grid; grid-template-columns:repeat(2, minmax(0, 1fr)); gap:20px; margin-top:24px; }
+  .fact-card,.next-step { border:1px solid var(--border, #2b2d3a); border-radius:16px; padding:28px; background:var(--card, #171824); }
+  .fact-card h2,.next-step h2 { color:var(--text,#f4f4f7); font-size:1.15rem; margin:0 0 16px; }
+  .card-icon { width:30px; height:30px; border-radius:50%; display:grid; place-items:center; font-weight:800; margin-bottom:15px; }
+  .verified .card-icon { background:color-mix(in srgb, #22c55e 18%, transparent); color:#4ade80; } .unverified .card-icon { background:color-mix(in srgb, #f59e0b 18%, transparent); color:#fbbf24; }
+  ul { padding-left:1.1rem; margin:0; color:var(--muted,#a9a9b8); } li { line-height:1.6; margin:0 0 10px; } li:last-child { margin-bottom:0; }
+  .next-step { margin-top:20px; } .next-step p { color:var(--muted,#a9a9b8); line-height:1.7; margin:0; }
+  .certificate-actions { display:flex; justify-content:center; align-items:center; flex-wrap:wrap; gap:14px; margin-top:34px; } .certificate-actions a,.certificate-actions button { font:inherit; font-weight:700; border-radius:10px; padding:12px 18px; cursor:pointer; } .certificate-actions a { color:var(--accent,#9c9cff); } .certificate-actions button { border:1px solid var(--border,#2b2d3a); background:transparent; color:var(--text,#f4f4f7); }
+  .print-note { text-align:center; color:var(--muted,#a9a9b8); font-size:.85rem; margin:14px 0 0; }
+  @media (max-width: 680px) { .certificate-page { padding:45px 18px 64px; } .facts-grid { grid-template-columns:1fr; } .sample-topline { flex-direction:column; text-align:center; } }
+  @media print { .certificate-page { max-width:none; padding:0; color:#111; } .certificate-hero { margin-bottom:24px; } h1,.certificate-sample h2,.fact-card h2,.next-step h2 { color:#111; } .lead,.certificate-sample p:not(.sample-label),ul,.next-step p,.print-note { color:#333; } .certificate-sample,.fact-card,.next-step { background:#fff; border-color:#777; break-inside:avoid; } .certificate-sample::after { color:rgba(60,60,60,.08); } .certificate-actions { display:none; } }
+</style>

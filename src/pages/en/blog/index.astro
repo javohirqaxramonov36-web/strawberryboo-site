@@ -1,0 +1,10 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '../../../layouts/Base.astro';
+import BlogIndex from '../../../components/blog/BlogIndex.astro';
+const lang = 'en' as const;
+const posts = (await getCollection('blog', ({ data }) => data.locale === lang && !data.draft)).sort((a, b) => b.data.publishedAt.valueOf() - a.data.publishedAt.valueOf());
+const base = import.meta.env.BASE_URL;
+const alternates = [{ lang: 'uz', href: base + 'blog/' }, { lang: 'ru', href: base + 'ru/blog/' }, { lang: 'en', href: base + 'en/blog/' }];
+---
+<Base title="Tayanch blog — guides and insights" description="Practical Tayanch resources on AI, IELTS, studying abroad, and digital skills." {lang} localeAlternates={alternates}><BlogIndex {lang} {posts} /></Base>

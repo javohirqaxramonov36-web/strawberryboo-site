@@ -38,6 +38,7 @@ const routeMap: Record<string, PathMap> = {
   'bog-lanish/': { uz: 'bog-lanish/', ru: 'bog-lanish/', en: 'bog-lanish/' },
   'homiylik/': { uz: 'homiylik/', ru: 'homiylik/', en: 'homiylik/' },
   'faq/': { uz: 'faq/', ru: 'faq/', en: 'faq/' },
+  'sertifikat/': { uz: 'sertifikat/', ru: 'sertifikat/', en: 'sertifikat/' },
   'biz-haqimizda/': { uz: 'biz-haqimizda/', ru: 'biz-haqimizda/', en: 'biz-haqimizda/' },
   'mening-yolim/': { uz: 'mening-yolim/', ru: 'moy-put/', en: 'my-journey/' },
   'maxfiylik-siyosati/': { uz: 'maxfiylik-siyosati/', ru: 'privacy-policy/', en: 'privacy-policy/' },

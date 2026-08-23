@@ -2,6 +2,7 @@
 import PaymentInstructions from './PaymentInstructions.astro';
 import CourseProgress from './CourseProgress.astro';
 import Testimonials from './Testimonials.astro';
+import CourseFaq from './CourseFaq.astro';
 const { skill, title, eyebrow, description, accent, available, fillNeeded, practiceHref, practiceLabel, sourceNote, mockBonus = false, speakingApp = false, whyUseful, contentTodo, bonusHref, bonusLabel, price = '$7.50', priceUzs = '93 750 so‘m', priceUzsNum = 93750, lang = 'uz' } = Astro.props;
 const base = import.meta.env.BASE_URL;
 const L = {
@@ -72,6 +73,11 @@ const localHref = (path) => {
 const bundleHref = localHref(`bog-lanish?course=ielts-full-bundle&price=375000`);
 const allCoursesHref = localHref('kurslar/#ielts-courses');
 const practiceTarget = skill === 'ielts-speaking' ? 'kurslar/ielts-speaking/#speaking-practice' : practiceHref;
+const faqCopy = {
+  uz: { whoFor: 'IELTSning shu ko‘nikmasi bo‘yicha mavjud materiallar va amaliyotni ishlatmoqchi bo‘lganlar uchun.', notFor: 'IELTS imtihonida aniq ball yoki rasmiy ro‘yxatdan o‘tishni kafolatlaydigan xizmat izlayotganlar uchun emas.', access: 'To‘lov mavjud jarayon bo‘yicha Telegram orqali qo‘lda tasdiqlanadi. Sahifada doimiy foydalanish ko‘rsatilgan.' },
+  ru: { whoFor: 'Для тех, кто хочет использовать доступные материалы и практику по этому навыку IELTS.', notFor: 'Не для тех, кто ищет гарантию конкретного балла IELTS или официальной регистрации на экзамен.', access: 'Оплата подтверждается вручную через Telegram по действующему процессу. На странице указан постоянный доступ.' },
+  en: { whoFor: 'Learners who want to use the available materials and practice for this IELTS skill.', notFor: 'Not for learners looking for a guaranteed IELTS score or official exam registration.', access: 'Payment is confirmed manually via Telegram following the current process. The page lists lifetime access.' }
+}[lang] || undefined;
 ---
 <article class="ielts-skill" style={`--skill-accent:${accent}`}>
   <header class="course-hero"><p class="eyebrow">{eyebrow} · {t.newSkill}</p><h1>{title}</h1><div class="price"><span class="now">{price}</span><span class="uzs">≈ {priceUzs} · {t.foreverAccess}</span></div><p class="lead">{description}</p></header>
@@ -84,6 +90,7 @@ const practiceTarget = skill === 'ielts-speaking' ? 'kurslar/ielts-speaking/#spe
   {bonusHref && <section class="bonus-callout"><div><p class="eyebrow">{t.bonusEyebrow}</p><h2>{t.bonusTitle}</h2><p>{t.bonusText}</p></div><a class="start-btn" href={localHref(bonusHref)}>{bonusLabel || t.fallbackBonus}</a></section>}
   {speakingApp && <section class="app-callout"><p class="eyebrow">{t.appEyebrow}</p><h2>{t.appTitle}</h2><p>{t.appText}</p><a class="start-btn" href={localHref('kurslar/ielts-speaking/#speaking-practice')}>{t.speakingCta}</a></section>}
   <section class="fill-needed"><p class="eyebrow">{t.fillEyebrow}</p><h2>{t.fillTitle}</h2><ul>{fillNeeded.map((item) => <li>{item}</li>)}</ul><p>{t.fillNote}</p></section>
+  <CourseFaq facts={{ title, lang, overview: description, topics: available.map((item) => item.title), whoFor: faqCopy.whoFor, whoNotFor: faqCopy.notFor, price: coursePrice, certificate: false, accessPayment: faqCopy.access }} />
   <Testimonials courseSlug={skill} lang={lang} />
   <p class="source-note">{t.source} {sourceNote}</p>
   <div class="actions"><a class="start-btn" href={localHref(`bog-lanish?course=${skill}&price=${priceUzsNum}`)}>{t.getCourse} {priceUzs} {t.som}</a><a class="course-nav-link" href={allCoursesHref}>{t.allCourses}</a></div>

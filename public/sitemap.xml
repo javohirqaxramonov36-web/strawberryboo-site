@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url><loc>https://javohirqaxramonov36-web.github.io/strawberryboo-site/biz-haqimizda</loc></url>
+  <url><loc>https://javohirqaxramonov36-web.github.io/strawberryboo-site/blog</loc></url>
   <url><loc>https://javohirqaxramonov36-web.github.io/strawberryboo-site/bog-lanish</loc></url>
   <url><loc>https://javohirqaxramonov36-web.github.io/strawberryboo-site/en</loc></url>
   <url><loc>https://javohirqaxramonov36-web.github.io/strawberryboo-site/en/biz-haqimizda</loc></url>
+  <url><loc>https://javohirqaxramonov36-web.github.io/strawberryboo-site/en/blog</loc></url>
   <url><loc>https://javohirqaxramonov36-web.github.io/strawberryboo-site/en/bog-lanish</loc></url>
   <url><loc>https://javohirqaxramonov36-web.github.io/strawberryboo-site/en/faq</loc></url>
   <url><loc>https://javohirqaxramonov36-web.github.io/strawberryboo-site/en/homiylik</loc></url>
@@ -50,6 +52,7 @@
   <url><loc>https://javohirqaxramonov36-web.github.io/strawberryboo-site/en/narxlar</loc></url>
   <url><loc>https://javohirqaxramonov36-web.github.io/strawberryboo-site/en/privacy-policy</loc></url>
   <url><loc>https://javohirqaxramonov36-web.github.io/strawberryboo-site/en/profile</loc></url>
+  <url><loc>https://javohirqaxramonov36-web.github.io/strawberryboo-site/en/sertifikat</loc></url>
   <url><loc>https://javohirqaxramonov36-web.github.io/strawberryboo-site/en/tech-lab</loc></url>
   <url><loc>https://javohirqaxramonov36-web.github.io/strawberryboo-site/en/terms-of-use</loc></url>
   <url><loc>https://javohirqaxramonov36-web.github.io/strawberryboo-site/faq</loc></url>
@@ -103,6 +106,7 @@
   <url><loc>https://javohirqaxramonov36-web.github.io/strawberryboo-site/profile</loc></url>
   <url><loc>https://javohirqaxramonov36-web.github.io/strawberryboo-site/ru</loc></url>
   <url><loc>https://javohirqaxramonov36-web.github.io/strawberryboo-site/ru/biz-haqimizda</loc></url>
+  <url><loc>https://javohirqaxramonov36-web.github.io/strawberryboo-site/ru/blog</loc></url>
   <url><loc>https://javohirqaxramonov36-web.github.io/strawberryboo-site/ru/bog-lanish</loc></url>
   <url><loc>https://javohirqaxramonov36-web.github.io/strawberryboo-site/ru/faq</loc></url>
   <url><loc>https://javohirqaxramonov36-web.github.io/strawberryboo-site/ru/homiylik</loc></url>
@@ -149,7 +153,9 @@
   <url><loc>https://javohirqaxramonov36-web.github.io/strawberryboo-site/ru/narxlar</loc></url>
   <url><loc>https://javohirqaxramonov36-web.github.io/strawberryboo-site/ru/privacy-policy</loc></url>
   <url><loc>https://javohirqaxramonov36-web.github.io/strawberryboo-site/ru/profile</loc></url>
+  <url><loc>https://javohirqaxramonov36-web.github.io/strawberryboo-site/ru/sertifikat</loc></url>
   <url><loc>https://javohirqaxramonov36-web.github.io/strawberryboo-site/ru/tech-lab</loc></url>
   <url><loc>https://javohirqaxramonov36-web.github.io/strawberryboo-site/ru/terms-of-use</loc></url>
+  <url><loc>https://javohirqaxramonov36-web.github.io/strawberryboo-site/sertifikat</loc></url>
   <url><loc>https://javohirqaxramonov36-web.github.io/strawberryboo-site/tech-lab</loc></url>
 </urlset>

@@ -1,0 +1,28 @@
+---
+import { getCollection, render } from 'astro:content';
+import Base from '../../../layouts/Base.astro';
+import BlogPost from '../../../components/blog/BlogPost.astro';
+const lang = 'ru' as const;
+export async function getStaticPaths() {
+  const posts = await getCollection('blog', ({ data }) => data.locale === lang && !data.draft);
+  return posts.map((post) => ({ params: { slug: post.slug.replace(new RegExp(`^${lang}/`), '') }, props: { post } }));
+}
+const { post } = Astro.props;
+const { Content } = await render(post);
+const allPosts = await getCollection('blog', ({ data }) => !data.draft && data.translationKey === post.data.translationKey);
+const base = import.meta.env.BASE_URL;
+const pathFor = (locale: 'uz' | 'ru' | 'en') => {
+  const translated = allPosts.find((entry) => entry.data.locale === locale);
+  if (!translated) return undefined;
+  const slug = translated.slug.replace(new RegExp(`^${locale}/`), '');
+  return base + (locale === 'uz' ? `blog/${slug}/` : `${locale}/blog/${slug}/`);
+};
+const alternates = (['uz', 'ru', 'en'] as const).flatMap((locale) => {
+  const href = pathFor(locale);
+  return href ? [{ lang: locale, href }] : [];
+});
+const canonical = pathFor(lang);
+---
+<Base title={`${post.data.title} | Tayanch`} description={post.data.description} {lang} canonical={canonical} localeAlternates={alternates}>
+  <BlogPost {lang} {post} {Content} />
+</Base>

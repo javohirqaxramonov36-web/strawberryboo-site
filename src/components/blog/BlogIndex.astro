@@ -1,0 +1,45 @@
+---
+import type { CollectionEntry } from 'astro:content';
+
+type Locale = 'uz' | 'ru' | 'en';
+type Props = { lang: Locale; posts: CollectionEntry<'blog'>[] };
+const { lang, posts } = Astro.props as Props;
+const base = import.meta.env.BASE_URL;
+const copy = {
+  uz: { eyebrow: 'TAYANCH BLOGI', title: 'Bilimlar va yo‘riqnomalar', lead: 'AI, IELTS, chet elda o‘qish va raqamli ko‘nikmalar bo‘yicha amaliy materiallar.', preparingTitle: 'Maqolalar tayyorlanmoqda', preparingText: 'Tasdiqlangan materiallar ushbu sahifada e’lon qilinadi.', read: 'O‘qish →' },
+  ru: { eyebrow: 'БЛОГ TAYANCH', title: 'Знания и руководства', lead: 'Практические материалы об AI, IELTS, учёбе за рубежом и цифровых навыках.', preparingTitle: 'Статьи готовятся', preparingText: 'Одобренные материалы будут опубликованы на этой странице.', read: 'Читать →' },
+  en: { eyebrow: 'TAYANCH BLOG', title: 'Guides and insights', lead: 'Practical resources on AI, IELTS, studying abroad, and digital skills.', preparingTitle: 'Articles are being prepared', preparingText: 'Approved resources will be published on this page.', read: 'Read →' },
+} as const;
+const t = copy[lang];
+const formatDate = (date: Date) => new Intl.DateTimeFormat(lang === 'uz' ? 'uz-UZ' : lang === 'ru' ? 'ru-RU' : 'en-US', { day: 'numeric', month: 'long', year: 'numeric' }).format(date);
+const postPath = (slug: string) => `${base}${lang === 'uz' ? 'blog/' : `${lang}/blog/`}${slug}/`;
+---
+<section class="blog-index">
+  <p class="eyebrow">{t.eyebrow}</p>
+  <h1>{t.title}</h1>
+  <p class="lead">{t.lead}</p>
+
+  {posts.length > 0 ? (
+    <div class="post-grid">
+      {posts.map((post) => {
+        const slug = post.slug.replace(new RegExp(`^${lang}/`), '');
+        return <article class="post-card">
+          <div class="meta"><time datetime={post.data.publishedAt.toISOString()}>{formatDate(post.data.publishedAt)}</time></div>
+          <h2><a href={postPath(slug)}>{post.data.title}</a></h2>
+          <p>{post.data.description}</p>
+          <div class="categories">{post.data.categories.map((category) => <span>{category}</span>)}</div>
+          <a class="read-link" href={postPath(slug)}>{t.read}</a>
+        </article>;
+      })}
+    </div>
+  ) : (
+    <section class="empty-state" aria-live="polite">
+      <h2>{t.preparingTitle}</h2>
+      <p>{t.preparingText}</p>
+    </section>
+  )}
+</section>
+
+<style>
+  .blog-index{max-width:980px;margin:0 auto}.eyebrow{color:var(--accent);font-weight:800;letter-spacing:.12em;font-size:.76rem}.blog-index h1{font-size:clamp(2.15rem,5vw,3.4rem);margin:.25rem 0 .75rem}.lead{color:var(--muted);font-size:1.12rem;line-height:1.7;max-width:700px}.post-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1rem;margin-top:2rem}.post-card,.empty-state{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:1.25rem}.post-card{display:flex;flex-direction:column}.post-card h2{font-size:1.25rem;line-height:1.35;margin:.55rem 0}.post-card h2 a{color:var(--text);text-decoration:none}.post-card h2 a:hover,.read-link{color:var(--accent)}.post-card p{color:var(--muted);line-height:1.6;margin:.2rem 0 1rem}.meta{font-size:.85rem;color:var(--muted)}.categories{display:flex;flex-wrap:wrap;gap:.4rem;margin:auto 0 1rem}.categories span{font-size:.78rem;padding:.25rem .55rem;border-radius:999px;color:var(--accent);background:color-mix(in srgb,var(--accent) 12%,transparent)}.read-link{font-weight:700;text-decoration:none}.empty-state{margin-top:2rem;max-width:640px}.empty-state h2{margin-top:0}.empty-state p{margin-bottom:0;color:var(--muted);line-height:1.6}@media(max-width:780px){.post-grid{grid-template-columns:1fr}}
+</style>

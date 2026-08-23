@@ -7,6 +7,8 @@ import CourseProgress from "../../components/CourseProgress.astro";
 import CourseSchema from "../../components/CourseSchema.astro";
 import Quiz from "../../components/Quiz.astro";
 import CourseTestimonialPlaceholder from "../../components/CourseTestimonialPlaceholder.astro";
+import CourseFaq from "../../components/CourseFaq.astro";
+import { bespokeCourseFaqFacts } from "../../data/course-faqs";
 const title = "Prompt Engineering: AI'dan sifatli javob olish | Tayanch";
 const description = "Prompt Engineering nima va nima uchun kerak: ChatGPT, Gemini kabi AI'dan aniq, sifatli javob olish usullari. O'zbek tilida amaliy kurs.";
 const questions = [
@@ -214,6 +216,7 @@ const questions = [
 
   <Quiz title="O'z bilimingizni tekshiring" titleI18n="pe.quizTitle" quizI18n="pe" questions={questions} />
   <PaymentInstructions course="Prompt Engineering" price="$29 · ≈ 360 000 so'm" />
+  <CourseFaq facts={bespokeCourseFaqFacts["prompt-engineering"]} />
   <CourseTestimonialPlaceholder />
   <LeadMagnetCTA />
 </article>
