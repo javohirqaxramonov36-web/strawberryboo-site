@@ -1,6 +1,7 @@
 ---
 import Base from "../../layouts/Base.astro";
 import LeadMagnetCTA from "../../components/LeadMagnetCTA.astro";
+import CoursePreviewSyllabus from "../../components/CoursePreviewSyllabus.astro";
 import PaymentInstructions from "../../components/PaymentInstructions.astro";
 import CourseProgress from "../../components/CourseProgress.astro";
 import CourseSchema from "../../components/CourseSchema.astro";
@@ -70,6 +71,8 @@ const questions = [
     </div>
     <p class="prompt-lab-note" aria-live="polite">Hozir: <b data-prompt-status>Yomon prompt</b> — vazifa bor, lekin AI uchun yo'nalish yetarli emas.</p>
   </section>
+
+  <CoursePreviewSyllabus slug="prompt-engineering" lang="uz" />
 
   <section>
     <h2 data-i18n="pe.modules">Kurs modullari</h2>

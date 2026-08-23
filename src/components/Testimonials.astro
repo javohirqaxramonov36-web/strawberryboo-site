@@ -1,0 +1,50 @@
+---
+import { approvedTestimonials, type TestimonialLocale } from '../data/testimonials';
+
+interface Props {
+  /** Restrict reviews to a course. Omit only for a future approved site-wide section. */
+  courseSlug?: string;
+  lang?: TestimonialLocale;
+}
+
+const { courseSlug, lang = 'uz' } = Astro.props as Props;
+const labels = {
+  uz: { eyebrow: 'TALABA FIKRLARI', title: 'Talabalar tajribasi' },
+  ru: { eyebrow: 'ОТЗЫВЫ СТУДЕНТОВ', title: 'Опыт студентов' },
+  en: { eyebrow: 'STUDENT REVIEWS', title: 'Student experiences' },
+} as const;
+
+// Defense in depth: a record is rendered only when all approval-critical fields
+// are present, even if an incomplete TODO record is accidentally added later.
+const reviews = approvedTestimonials.filter((review) =>
+  (!courseSlug || review.courseSlugs.includes(courseSlug)) &&
+  review.locale === lang &&
+  Boolean(review.quote?.trim()) &&
+  Boolean(review.authorName?.trim()) &&
+  Boolean(review.approvedAt?.trim()),
+);
+const copy = labels[lang];
+---
+
+{reviews.length > 0 && (
+  <section class="testimonials" aria-labelledby="testimonials-title">
+    <p class="testimonials__eyebrow">{copy.eyebrow}</p>
+    <h2 id="testimonials-title">{copy.title}</h2>
+    <div class="testimonials__grid">
+      {reviews.map((review) => (
+        <figure class="testimonial">
+          <blockquote>“{review.quote}”</blockquote>
+          <figcaption>
+            {review.imageUrl && <img src={review.imageUrl} alt="" loading="lazy" />}
+            <span><strong>{review.authorName}</strong>{review.authorContext && <small>{review.authorContext}</small>}</span>
+            {review.sourceUrl && <a href={review.sourceUrl} target="_blank" rel="noopener noreferrer">↗</a>}
+          </figcaption>
+        </figure>
+      ))}
+    </div>
+  </section>
+)}
+
+<style>
+  .testimonials{margin:2.2rem 0}.testimonials__eyebrow{margin:0 0 .45rem;color:var(--accent);font-size:.75rem;font-weight:800;letter-spacing:.12em}.testimonials h2{margin:0 0 1rem}.testimonials__grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:1rem}.testimonial{margin:0;padding:1.15rem;border:1px solid var(--border);border-radius:16px;background:var(--surface)}.testimonial blockquote{margin:0;color:var(--text);line-height:1.65}.testimonial figcaption{display:flex;align-items:center;gap:.65rem;margin-top:1rem;color:var(--muted)}.testimonial figcaption img{width:32px;height:32px;border-radius:50%;object-fit:cover}.testimonial figcaption span{display:grid;gap:.12rem}.testimonial figcaption strong{color:var(--text);font-size:.9rem}.testimonial figcaption small{font-size:.8rem}.testimonial figcaption a{margin-left:auto;color:var(--accent);text-decoration:none}
+</style>

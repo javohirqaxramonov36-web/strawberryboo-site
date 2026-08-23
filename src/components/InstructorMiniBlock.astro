@@ -1,0 +1,46 @@
+---
+interface Props {
+  lang?: 'uz' | 'ru' | 'en';
+  journeyHref: string;
+}
+
+const { lang = 'uz', journeyHref } = Astro.props as Props;
+const copy = {
+  uz: {
+    eyebrow: 'KURS YARATUVCHISI', title: 'Mustaqil o‘qishdan amaliy yo‘l xaritasigacha',
+    text: 'Tayanch kurslari yaratuvchisi IELTS’ga mustaqil tayyorlanib, IELTS 7.0 va SAT 1420 natijalariga erishgan. Shu tajriba kurslardagi aniq qadamlar va amaliy mashqlarga asos bo‘ladi.',
+    journey: 'Yo‘l haqida o‘qish →', avatar: 'Neytral avatar — kurs yaratuvchisi fotosurati hali qo‘shilmagan', telegram: 'Telegram', instagram: 'Instagram',
+  },
+  ru: {
+    eyebrow: 'СОЗДАТЕЛЬ КУРСОВ', title: 'От самостоятельной подготовки к практическому маршруту',
+    text: 'Создатель курсов Tayanch готовился к IELTS самостоятельно и достиг результатов IELTS 7.0 и SAT 1420. Этот опыт лежит в основе понятных шагов и практических заданий в курсах.',
+    journey: 'Прочитать об этом пути →', avatar: 'Нейтральный аватар — фотография создателя курсов ещё не добавлена', telegram: 'Telegram', instagram: 'Instagram',
+  },
+  en: {
+    eyebrow: 'COURSE CREATOR', title: 'From independent study to a practical path',
+    text: 'Tayanch’s course creator prepared for IELTS independently and reached IELTS 7.0 and SAT 1420. That experience informs the courses’ clear steps and practical exercises.',
+    journey: 'Read the journey →', avatar: 'Neutral avatar — a course creator photo has not been added yet', telegram: 'Telegram', instagram: 'Instagram',
+  },
+} as const;
+const p = copy[lang];
+---
+
+<section class="instructor-mini" aria-labelledby="instructor-mini-title">
+  <div class="instructor-mini__avatar" role="img" aria-label={p.avatar}>
+    <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="3.25"/><path d="M5.5 20c.65-3.4 3.05-5.2 6.5-5.2s5.85 1.8 6.5 5.2"/></svg>
+  </div>
+  <div class="instructor-mini__content">
+    <p class="instructor-mini__eyebrow">{p.eyebrow}</p>
+    <h2 id="instructor-mini-title">{p.title}</h2>
+    <p>{p.text}</p>
+    <div class="instructor-mini__links">
+      <a class="course-nav-link" href={journeyHref}>{p.journey}</a>
+      <a href="https://t.me/progression_go" target="_blank" rel="noopener noreferrer">{p.telegram}</a>
+      <a href="https://instagram.com/javohir_kakhramonov" target="_blank" rel="noopener noreferrer">{p.instagram}</a>
+    </div>
+  </div>
+</section>
+
+<style>
+  .instructor-mini{display:grid;grid-template-columns:auto minmax(0,1fr);gap:1rem;align-items:start;margin:2rem 0;padding:clamp(1.1rem,3vw,1.6rem);border:1px solid color-mix(in srgb,var(--accent) 36%,var(--border));border-radius:18px;background:linear-gradient(135deg,color-mix(in srgb,var(--accent) 9%,var(--surface)),var(--surface))}.instructor-mini__avatar{width:58px;height:58px;border-radius:50%;display:grid;place-items:center;background:color-mix(in srgb,var(--accent) 16%,var(--surface));color:var(--accent);border:1px solid color-mix(in srgb,var(--accent) 32%,var(--border))}.instructor-mini__avatar svg{width:32px;height:32px;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round}.instructor-mini__eyebrow{margin:0 0 .35rem;color:var(--accent);font-size:.75rem;font-weight:800;letter-spacing:.11em}.instructor-mini h2{margin:0;font-size:clamp(1.2rem,2.5vw,1.55rem)}.instructor-mini__content>p:not(.instructor-mini__eyebrow){margin:.55rem 0 0;color:var(--muted);line-height:1.65}.instructor-mini__links{display:flex;flex-wrap:wrap;gap:.7rem 1rem;align-items:center;margin-top:.9rem}.instructor-mini__links a{color:var(--accent);font-weight:750;text-decoration:none;font-size:.9rem}.instructor-mini__links a:hover{text-decoration:underline}.instructor-mini__links .course-nav-link{margin-left:0}@media(max-width:520px){.instructor-mini{grid-template-columns:1fr}.instructor-mini__avatar{width:48px;height:48px}.instructor-mini__avatar svg{width:27px;height:27px}}
+</style>

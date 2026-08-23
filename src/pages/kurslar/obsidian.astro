@@ -1,6 +1,7 @@
 ---
 import Base from "../../layouts/Base.astro";
 import LeadMagnetCTA from "../../components/LeadMagnetCTA.astro";
+import CoursePreviewSyllabus from "../../components/CoursePreviewSyllabus.astro";
 import PaymentInstructions from "../../components/PaymentInstructions.astro";
 import CourseProgress from "../../components/CourseProgress.astro";
 import Quiz from "../../components/Quiz.astro";
@@ -54,6 +55,8 @@ const plugins = [
     <button class="image-card hero-image" type="button" data-lightbox-src={images.graphOverview} data-lightbox-alt="Obsidian Graph view overview"><img src={images.graphOverview} alt="Obsidian Graph view overview" loading="eager" /><span class="image-card-label">Graph view overview <span>↗ Kattalashtirish</span></span></button>
   </header>
   <p class="lead" data-i18n="op.lead">Shaxsiy bilim bazasi qurish. Kimga mo'ljallangan: kundalik yuritadigan, o'qigan/o'rgangan narsalarini tartibga solmoqchi bo'lgan talaba va tadqiqotchilarga. Tayanch bilan Telegram'dan forward qilsangiz — AI xulosalab, Obsidian'ga saqlaydi.</p>
+  <CoursePreviewSyllabus slug="obsidian" lang="uz" />
+
   <section><h2 data-i18n="op.modules">Kurs modullari</h2><ol class="modules"><li data-i18n="op.mod1">Nima uchun Obsidian? (Tashqi xotira)</li><li data-i18n="op.mod2">Vault tuzilmasi: MOC, papkalar, link'lar</li><li data-i18n="op.mod3">AutoConnect plugin: yangi note'larni avtomatik ulash</li><li data-i18n="op.mod4">Tayanch: Telegram → Obsidian capture</li><li data-i18n="op.mod5">Graph view: bilimlar bog'lanishi</li><li data-i18n="op.mod6">Qayerda qo'llash: o'qish, ish, tadqiqot</li></ol></section>
   <section><h2>1. Nima uchun Obsidian? (Tashqi xotira)</h2><p>Miyamiz cheksiz emas — eslab qolish uchun cheklangan. Obsidian esa <b>tashqi xotira</b>: fikrlaringizni, darslarni, manbalarni bir joyga yozib, keyin tez topib oladigan shaxsiy bilim bazasi (PKM — Personal Knowledge Management). Oddiy fayl (Markdown) sifatida saqlanadi — hech qanday "qora quti" yo'q, istalgan muharrirda ochib o'qish mumkin.</p><div class="core-idea"><b>ASOSIY G'OYA:</b> bilimni <b>saqlash</b> va <b>bog'lash</b> — shunchaki yozib qo'yish emas, balki ular orasida aloqa (link) yaratish.</div></section>
   <section><h2>Amaliy rasm joylari: vault asoslari</h2><p class="quiz-hint">Quyidagi joylarga faqat siz olgan haqiqiy Obsidian skrinshotlari yuklanadi. Tavsiya: WebP, har biri 150 KB dan kichik.</p><ObsidianScreenshotSlots section="basics" /></section>

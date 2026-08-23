@@ -1,5 +1,6 @@
 ---
 import type { LocalizedGeneralEnglishCourse as Course, CourseLang } from '../data/general-english-courses';
+import Testimonials from './Testimonials.astro';
 interface Props { course: Course; previousCourse?: Course; nextCourse?: Course; lang?: CourseLang; }
 const { course, previousCourse, nextCourse, lang = 'uz' } = Astro.props;
 const base = import.meta.env.BASE_URL;
@@ -15,6 +16,7 @@ const courseHref = (slug: string) => base + `${prefix}kurslar/${slug}`;
   <header class="course-hero"><span class="badge badge-new">{course.badge}</span><p class="eyebrow">GENERAL ENGLISH · CEFR {course.cefr}</p><h1>{course.title}</h1><p class="lead">{course.description}</p><div class="course-meta"><span class="cat">{course.tags.join(' · ')}</span>{course.certificate && <span class="certificate">{copy.certificate}</span>}</div></header>
   <section class="course-section" aria-labelledby="audience-title"><p class="eyebrow">{copy.audience}</p><h2 id="audience-title">{copy.path}</h2><p>{course.targetAudience}</p></section>
   <section class="course-section status-section" aria-labelledby="status-title"><p class="eyebrow">{copy.status}</p><h2 id="status-title">{copy.soon}</h2><p>{copy.statusText} {course.price}.</p></section>
+  <Testimonials courseSlug={course.slug} lang={lang} />
   <nav class="level-navigation" aria-label={copy.nav}>{previousCourse ? <a href={courseHref(previousCourse.slug)}>← {copy.previous}: {previousCourse.cefr}</a> : <span aria-hidden="true"></span>}<a class="all-levels" href={base + `${prefix}kurslar`}>{copy.all}</a>{nextCourse ? <a href={courseHref(nextCourse.slug)}>{copy.next}: {nextCourse.cefr} →</a> : <span aria-hidden="true"></span>}</nav>
 </article>
 <style>

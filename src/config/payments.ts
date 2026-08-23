@@ -1,14 +1,19 @@
 // =============================================================
 // TO'LOV REKVIZITLARI — bitta joydan boshqariladi
 // -------------------------------------------------------------
+// Payme/Click faollashtirishdan OLDIN rasmiy public havola, merchant/account
+// ma'lumoti, account egasining tasdig'i va learner uchun ko'rsatma oling.
+// Bu faylga API kalitlari, secretlar, parollar yoki one-time kodlarni yozmang.
+// To'liq xavfsiz faollashtirish ro'yxati: docs/PAYMENT_SETUP.md.
+//
 // Har bir usul uchun:
-//   enabled: rekvizit tayyor bo'lganda true qiling (UI'da "Tez orada" o'rniga ma'lumot chiqadi)
+//   enabled: tasdiqlangan rekvizit tayyor bo'lgandagina true qiling
 //   value  : asosiy ko'rsatiladigan qiymat
 //            - card uchun: "9860 0801 1818 4466" (4 xonadan bo'sh joy bilan, o'qiladigan format)
 //            - click/payme/paynet uchun: rasmiy to'lov IDsi yoki telefon raqami
 //   copy   : nusxalash tugmasi nusxalaydigan "toza" qimat (karta uchun bo'shliqsiz raqam)
 //   owner  : faqat karta uchun — karta egasining FIO
-//   url    : ixtiyoriy — rasmiy to'lov sahifasi havolasi (bo'sh string bo'lsa ko'rsatilmaydi)
+//   url    : ixtiyoriy — faqat tasdiqlangan rasmiy to'lov sahifasi havolasi
 //   note   : enabled=false bo'lganda ko'rsatiladigan izoh
 // =============================================================
 

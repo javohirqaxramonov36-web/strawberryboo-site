@@ -1,5 +1,6 @@
 ---
 import Base from "../layouts/Base.astro";
+import PaymentJourney from "../components/PaymentJourney.astro";
 const title = "Bog'lanish — Tayanch";
 const description = "Savollar, to'lov yoki hamkorlik bo'yicha biz bilan bog'laning.";
 const base = import.meta.env.BASE_URL;
@@ -18,6 +19,8 @@ const base = import.meta.env.BASE_URL;
   <p id="selectedAdmissionText"></p>
   <div class="selected-admission-bottom"><div><span>Tanlangan narx</span><strong id="selectedAdmissionPrice"></strong></div><a id="openAdmissionCourse" class="start-btn" href={base + 'kurslar/admission-process/'}>Kurs ma'lumotlarini ko'rish →</a></div>
 </section>
+
+<PaymentJourney lang="uz" />
 
 <section class="why-us contact-channels">
   <div class="sec-head" style="margin-top:0"><h2 class="sec-title"><span class="sec-ic" style="background:linear-gradient(135deg,#7d7df5,#5b5bd6)"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></span><span data-i18n="bl.channels">Kanallar</span></h2></div>

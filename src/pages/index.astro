@@ -1,5 +1,6 @@
 ··—≈→→·—≈→·≈→·—≈→·—≈→·→→—→—→·≈→——→·→—→——→————---
 import Base from "../layouts/Base.astro";
+import InstructorMiniBlock from "../components/InstructorMiniBlock.astro";
 import { totalCourseCount } from "../config/course-catalog";
 const title = "AI, IELTS va Admission kurslari | Tayanch";
 const description = "AI, IELTS, Admission va shaxsiy bilim bazasi bo'yicha amaliy kurslar. O'zbek tilida, bepul kurs ham bor.";
@@ -52,6 +53,8 @@ const TG = "https://t.me/progression_go"; // Telegram kanal/guruh havolasi
   <div><p class="eyebrow">NEGA TAYANCH?</p><h2 id="founder-excerpt-title">Bu kurslarni nega men yaratdim</h2></div>
   <div><p>Men moliyaviy qiyinchiliklar sabab IELTS’ga mustaqil tayyorlanganman. Shu yo‘lda IELTS 7.0 va SAT 1420 natijalariga erishdim — endi Tayanch’da bilimni aniq yo‘l va amaliy qadamlar bilan ulashmoqdaman.</p><a class="course-nav-link" href={base + 'mening-yolim/'}>Batafsil o‘qish →</a></div>
 </section>
+
+<InstructorMiniBlock journeyHref={base + 'mening-yolim/'} />
 
 <!-- ENG MASHHUR SPOTLIGHT -->
 <section class="spotlight">

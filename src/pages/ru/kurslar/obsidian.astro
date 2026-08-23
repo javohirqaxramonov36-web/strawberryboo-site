@@ -1,6 +1,7 @@
 ---
 import Base from '../../../layouts/Base.astro';
 import LocalizedStandardCourse from '../../../components/LocalizedStandardCourse.astro';
+import CoursePreviewSyllabus from '../../../components/CoursePreviewSyllabus.astro';
 import { getLocalizedStandardCourse } from '../../../data/localized-standard-courses';
 const lang = 'ru' as const;
 const course = getLocalizedStandardCourse('obsidian', lang);
@@ -13,5 +14,6 @@ const alternates = [
 ];
 ---
 <Base title={course.title + ' | Tayanch'} description={course.description} lang={lang} localeAlternates={alternates}>
+ <CoursePreviewSyllabus slug="obsidian" {lang} />
  <LocalizedStandardCourse {course} slug="obsidian" {lang} />
 </Base>
