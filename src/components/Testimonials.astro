@@ -35,7 +35,7 @@ const copy = labels[lang];
         <figure class="testimonial">
           <blockquote>“{review.quote}”</blockquote>
           <figcaption>
-            {review.imageUrl && <img src={review.imageUrl} alt="" loading="lazy" />}
+            {review.imageUrl && <img src={review.imageUrl} alt="" loading="lazy" decoding="async" />}
             <span><strong>{review.authorName}</strong>{review.authorContext && <small>{review.authorContext}</small>}</span>
             {review.sourceUrl && <a href={review.sourceUrl} target="_blank" rel="noopener noreferrer">↗</a>}
           </figcaption>

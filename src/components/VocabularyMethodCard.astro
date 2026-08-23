@@ -4,7 +4,7 @@ const { number, title, tagline, description, benefits, limitations, imageSrc, im
 <article class="method-card">
   <div class="method-visual">
     {imageSrc ? (
-      <img src={imageSrc} alt={imageAlt || title} loading="lazy" />
+      <img src={imageSrc} alt={imageAlt || title} loading="lazy" decoding="async" />
     ) : (
       <div class="image-placeholder" role="img" aria-label={`${title} rasmi tez orada qo‘shiladi`}>
         <span>RASM JOYI</span>

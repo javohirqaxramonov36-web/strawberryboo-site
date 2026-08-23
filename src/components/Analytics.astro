@@ -1,0 +1,19 @@
+---
+import { analytics } from '../config/analytics';
+---
+
+{analytics.provider === 'google' && analytics.id && (
+  <>
+    <script async src={`https://www.googletagmanager.com/gtag/js?id=${analytics.id}`}></script>
+    <script is:inline define:vars={{ measurementId: analytics.id }}>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() { window.dataLayer.push(arguments); }
+      gtag('js', new Date());
+      gtag('config', measurementId);
+    </script>
+  </>
+)}
+
+{analytics.provider === 'plausible' && analytics.id && (
+  <script defer data-domain={analytics.id} src="https://plausible.io/js/script.js"></script>
+)}

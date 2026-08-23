@@ -240,7 +240,7 @@ const alternates = [{ lang: 'uz', href: base + 'tech-lab/' }, { lang: 'ru', href
     flex: 1; padding: 12px 14px; border-radius: 10px; border: 1px solid var(--border);
     background: var(--bg); color: var(--text); font-size: .95rem; font-family: ui-monospace, Menlo, Consolas, monospace;
   }
-  .tl-key-row input:focus { outline: none; border-color: var(--accent); }
+  .tl-key-row input:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; border-color: var(--accent); }
   .tl-remember { display: flex; align-items: center; gap: 8px; margin-top: 1rem; color: var(--muted); font-size: .9rem; cursor: pointer; }
   .tl-remember input { width: 16px; height: 16px; accent-color: var(--accent); }
   .tl-error { color: #ef4444; font-size: .9rem; margin: .8rem 0 0; min-height: 1.1rem; font-weight: 600; }
@@ -270,7 +270,7 @@ const alternates = [{ lang: 'uz', href: base + 'tech-lab/' }, { lang: 'ru', href
     border-radius: 12px; border: 1px solid var(--border); background: var(--bg); color: var(--text);
     font-family: system-ui, inherit; font-size: .95rem; line-height: 1.5;
   }
-  .tl-input-row textarea:focus { outline: none; border-color: var(--accent); }
+  .tl-input-row textarea:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; border-color: var(--accent); }
   .tl-input-row .start-btn { white-space: nowrap; }
   .tl-responsibilities {
     color: var(--muted); font-size: .82rem; margin-top: 1rem; text-align: center;

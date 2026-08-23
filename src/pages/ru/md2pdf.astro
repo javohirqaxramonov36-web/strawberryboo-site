@@ -168,7 +168,7 @@ const alternates = [{ lang: 'uz', href: base + 'md2pdf/' }, { lang: 'ru', href: 
     font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
     font-size: 14px; line-height: 1.6;
   }
-  #mdInput:focus { outline: none; border-color: var(--accent); }
+  #mdInput:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; border-color: var(--accent); }
 
   /* Preview content: use :global() so runtime-injected HTML gets styled */
   .md-preview {

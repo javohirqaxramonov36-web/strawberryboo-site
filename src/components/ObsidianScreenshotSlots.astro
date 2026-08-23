@@ -30,7 +30,7 @@ const shots = [
 ---
 <div class="screenshot-grid" aria-label="Haqiqiy Obsidian skrinshotlari uchun joylar">
   {shots.map(([, path, title, instruction], index) => <figure class="screenshot-placeholder">
-    <img src={base + path} alt={`Obsidian: ${title}. ${instruction}`} loading="lazy" />
+    <img src={base + path} alt={`Obsidian: ${title}. ${instruction}`} loading="lazy" decoding="async" />
     <div class="screenshot-fallback"><strong>Rasm joyi: {title}</strong><span>{instruction}</span></div>
     <figcaption><strong>Screenshot {String(index + 1).padStart(2, '0')}.</strong> {title}</figcaption>
   </figure>)}
