@@ -71,9 +71,18 @@ const {
       };
       list.hidden = true;
       renderSpeaking();
-      window.addEventListener('storage', (event) => { if (event.key === 'tayanch-speaking-progress-v2') renderSpeaking(); });
+      const status = readStatus();
+      status['ielts-speaking'] = { done: Math.min(30, completedSpeakingDays()), total: 30, percent: Math.round((Math.min(30, completedSpeakingDays()) / 30) * 100), updatedAt: new Date().toISOString() };
+      writeStatus(status);
+      window.addEventListener('storage', (event) => { if (event.key === 'tayanch-speaking-progress-v2') { renderSpeaking(); const s = readStatus(); s['ielts-speaking'] = { done: Math.min(30, completedSpeakingDays()), total: 30, percent: Math.round((Math.min(30, completedSpeakingDays()) / 30) * 100), updatedAt: new Date().toISOString() }; writeStatus(s); } });
       return;
     }
+
+    // Kurs holatini alohida reyestrga yozamiz — profilda ro'yxat ko'rsatish uchun.
+    // Ma'lumot faqat shu brauzer/qurilmada saqlanadi (backend yo'q).
+    const STATUS_KEY = 'tayanch.course.status.v1';
+    const readStatus = () => { try { return JSON.parse(localStorage.getItem(STATUS_KEY) || '{}'); } catch { return {}; } };
+    const writeStatus = (map) => { try { localStorage.setItem(STATUS_KEY, JSON.stringify(map)); } catch {} };
 
     const getTargets = () => {
       const scope = root.dataset.selector ? document.querySelector(root.dataset.selector) : document;
@@ -103,6 +112,10 @@ const {
         if (input) input.checked = Boolean(state[item.id]);
         item.target.classList.toggle('is-course-complete', Boolean(state[item.id]));
       });
+      const status = readStatus();
+      status[courseId] = { done, total, percent: pct, updatedAt: new Date().toISOString() };
+      writeStatus(status);
+      window.dispatchEvent(new StorageEvent('storage', { key: STATUS_KEY }));
     };
 
     if (!summaryOnly && items.length) {

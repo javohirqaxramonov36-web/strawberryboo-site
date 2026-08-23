@@ -1,0 +1,6 @@
+[
+  { "q": "Backend asosan nima bilan shug'ullanadi?", "opts": ["Foydalanuvchi interfeysini chizadi", "Server tomonidagi mantiq va ma'lumotlarni boshqaradi", "Rasm tahrirlaydi", "Musiqa yozadi"], "answer": 1, "explain": "Backend serverda ishlaydi: ma'lumotlarni saqlash, mantiq va API orqali klientga xizmat ko'rsatadi." },
+  { "q": "Qaysi framework Python'da API yaratish uchun ishlatiladi?", "opts": ["FastAPI", "Excel", "Photoshop", "Figma"], "answer": 0, "explain": "FastAPI — Python'da tez va zamonaviy API yozish uchun mo'ljallangan framework." },
+  { "q": "Ma'lumotlarni saqlash uchun ko'pincha nima ishlatiladi?", "opts": ["PostgreSQL", "Word", "PowerPoint", "Telegram"], "answer": 0, "explain": "PostgreSQL — relational ma'lumotlar bazasi; backend ilovalarda ma'lumotlarni ishonchli saqlash uchun keng tarqalgan." },
+  { "q": "JWT token nima uchun kerak?", "opts": ["Fayl saqlash uchun", "Foydalanuvchini sessiyasiz autentifikatsiya qilish uchun", "Rasm chizish uchun", "Musiqa uchun"], "answer": 1, "explain": "JWT token foydalanuvchi identity'sini o'zida ushlab, har so'rovda uni tekshirishga imkon beradi." }
+]

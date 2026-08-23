@@ -1,0 +1,6 @@
+[
+  { "q": "Raycast asosan nima uchun ishlatiladi?", "opts": ["Ilovalarni tez ochish, fayl qidirish va vazifalarni bajarish", "Faqat o'yin o'ynash", "Rasm chizish", "Musiqa tinglash"], "answer": 0, "explain": "Raycast — macOS launcher; bitta tugma bilan ilova, fayl va vazifalarni bajarishni tezlashtiradi." },
+  { "q": "Clipboard History nima qiladi?", "opts": ["Oldingi nusxalangan matnlarni ko'rsatadi va qayta joylashtiradi", "Faylni o'chiradi", "Internetni tezlashtiradi", "Batareyani tejaydi"], "answer": 0, "explain": "Clipboard History nusxalangan matnlar tarixini saqlaydi va kerakli paytda qayta joylashtirishga imkon beradi." },
+  { "q": "Spotlight va Raycast farqi nima?", "opts": ["Raycast kengaytiriladigan (extension'li), Spotlight asosan qidiruv", "Farqi umuman yo'q", "Raycast faqat Windows uchun", "Spotlight pullik"], "answer": 0, "explain": "Raycast extension'lar orqali ko'p vazifani bajaradi; Spotlight asosan fayl/qidiruv vositasi." },
+  { "q": "Snippets nima uchun foydali?", "opts": ["Tez-tez yoziladigan matn shablonlarini joylashtirish uchun", "Musiqa tinglash uchun", "Rasm chizish uchun", "Hech nima uchun"], "answer": 0, "explain": "Snippets kalit so'z yozib, tayyor matn (manzil, shablon) ni bir zumda joylashtirishga yordam beradi." }
+]

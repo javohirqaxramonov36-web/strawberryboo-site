@@ -1,0 +1,6 @@
+[
+  { "q": "Figma — bu nima?", "opts": ["Matn muharriri", "UI/UX dizayn vositasi", "Ma'lumotlar bazasi", "Video montaj"], "answer": 1, "explain": "Figma — brauzerda ishlaydigan UI/UX dizayn vositasi; interfeys chizish, prototip va hamkorlik uchun ishlatiladi." },
+  { "q": "Komponent nima uchun kerak?", "opts": ["Rang o'zgartirish uchun", "Takrorlanuvchi elementni bir joydan boshqarish uchun", "Fayl saqlash uchun", "Hech nima uchun"], "answer": 1, "explain": "Komponent bir marta yaratiladi va bir nechta joyda ishlatiladi; o'zgarish barcha nusxalarga avtomatik o'tadi." },
+  { "q": "Prototype nima qiladi?", "opts": ["Rasm chizadi", "Sahifalarni bog'lab, interfeysni jonli ko'rsatadi", "Kod yozadi", "PDF chiqaradi"], "answer": 1, "explain": "Prototype ekranlarni bog'lab, foydalanuvchi suvidagi oqimni (flow) jonli ko'rsatadi." },
+  { "q": "Auto-layout nima uchun kerak?", "opts": ["Interfeysni avtomatik moslashuvchan qilish uchun", "Fayl hajmini kichraytirish uchun", "Rang tanlash uchun", "Hech nima uchun"], "answer": 0, "explain": "Auto-layout elementlarni joylashuv qoidalari bilan bog'laydi, shuning uchun turli ekranlarda dizayn buzilmaydi." }
+]

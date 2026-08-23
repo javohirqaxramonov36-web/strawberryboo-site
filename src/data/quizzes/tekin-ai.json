@@ -1,0 +1,6 @@
+[
+  { "q": "Ollama nima qiladi?", "opts": ["Bulutli AI", "Kompyuteringizda mahalliy AI model ishlatadi", "Pochta", "Rasm chizadi"], "answer": 1, "explain": "Ollama kompyuteringizda (local) ochiq AI modellarni (masalan llama3.2) ishga tushirish uchun vosital." },
+  { "q": "Local (offline) AI ning afzalligi?", "opts": ["Tezroq", "Ma'lumotlar kompyuteringizda qoladi", "Bepul emas", "Hech nima"], "answer": 1, "explain": "Mahalliy AI bilan ma'lumotlar tashqi serverlarga jo'natilmaydi — bu maxfiylik uchun muhim." },
+  { "q": "CrewAI nima?", "opts": ["O'yin", "Jamoa agent'lari framework'i", "Virus", "Pochta"], "answer": 1, "explain": "CrewAI bir nechta AI agent'larini bir vazifani bajarish uchun jamoa sifatida ishlashini tashkil qiladi." },
+  { "q": "Obsidian nima uchun foydali?", "opts": ["Faqat o'yin uchun", "Bilim bazasi va vazifalarni capture qilish uchun", "Video montaj uchun", "Pochta uchun"], "answer": 1, "explain": "Obsidian'da eslatmalar, manbalar va vazifalarni bog'lab, shaxsiy bilim bazasi yaratish mumkin." }
+]

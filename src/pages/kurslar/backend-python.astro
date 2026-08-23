@@ -7,13 +7,9 @@ import CourseSchema from "../../components/CourseSchema.astro";
 import Quiz from "../../components/Quiz.astro";
 import CourseTestimonialPlaceholder from "../../components/CourseTestimonialPlaceholder.astro";
 import LeadMagnetCTA from "../../components/LeadMagnetCTA.astro";
+import backendQuiz from "../../data/quizzes/backend-python.json";
 const title = "Backend Python — FastAPI va PostgreSQL | Tayanch";
 const description = "Python, FastAPI va PostgreSQL bilan backend ilova qurish. API yozish, bazani ulash va real loyihani deploy qilish — o'zbekcha kurs.";
-const questions = [
-  { q: "Backend asosan nima bilan shug'ullanadi?", opts: ["Foydalanuvchi interfeysini chizadi", "Server tomonidagi mantiq va ma'lumotlarni boshqaradi", "Rasm tahrirlaydi", "Musiqa yozadi"], answer: 1 },
-  { q: "Qaysi framework Python'da API yaratish uchun ishlatiladi?", opts: ["FastAPI", "Excel", "Photoshop", "Figma"], answer: 0 },
-  { q: "Ma'lumotlarni saqlash uchun ko'pincha nima ishlatiladi?", opts: ["PostgreSQL", "Word", "PowerPoint", "Telegram"], answer: 0 }
-];
 
 const weeks = [
   {
@@ -131,7 +127,7 @@ const weeks = [
       <a href={import.meta.env.BASE_URL + 'kurslar'} class="course-nav-link" data-i18n="bp.allCourses">← Barcha kurslar</a>
     </p>
 
-    <Quiz title="O'z bilimingizni tekshiring" questions={questions} />
+    <Quiz title="O'z bilimingizni tekshiring" quizId="backend-python" questions={backendQuiz} />
     <PaymentInstructions course="Backend Development — Python" price="TBD · tez orada belgilanadi" />
     <CourseTestimonialPlaceholder />
   <LeadMagnetCTA />

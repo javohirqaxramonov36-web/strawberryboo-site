@@ -1,5 +1,5 @@
 ---
-const { title = "O'z bilimingizni tekshiring", questions = [], titleI18n = "", quizI18n = "" } = Astro.props;
+const { title = "O'z bilimingizni tekshiring", questions = [], titleI18n = "", quizI18n = "", quizId = "" } = Astro.props;
 ---
 
 <section class="quiz">
@@ -10,7 +10,7 @@ const { title = "O'z bilimingizni tekshiring", questions = [], titleI18n = "", q
     </h2>
   </div>
 
-  <form class="quiz-form" data-quiz>
+  <form class="quiz-form" data-quiz data-quiz-id={quizId}>
     {questions.map((item, i) => (
       <div class="q" data-q>
         {quizI18n
@@ -24,6 +24,9 @@ const { title = "O'z bilimingizni tekshiring", questions = [], titleI18n = "", q
               : o}
           </label>
         ))}
+        {item.explain
+          ? <p class="q-explain" data-explain hidden><span class="q-explain-ic">💡</span> {item.explain}</p>
+          : null}
       </div>
     ))}
     <button type="button" class="start-btn" data-check data-i18n="quiz.check">Tekshirish</button>
@@ -33,21 +36,29 @@ const { title = "O'z bilimingizni tekshiring", questions = [], titleI18n = "", q
 </section>
 
 <script>
+  // Natija faqat shu brauzer/qurilmada saqlanadi (backend yo'q).
+  const QUIZ_RESULTS_KEY = 'tayanch.quiz.results.v1';
+  const safeJson = (key, fallback) => { try { const d = JSON.parse(localStorage.getItem(key) || ''); return d == null ? fallback : d; } catch { return fallback; } };
+
   document.querySelectorAll('[data-quiz]').forEach(form => {
     const check = form.querySelector('[data-check]');
     if (!check) return;
+    const quizId = form.dataset.quizId;
     check.addEventListener('click', () => {
       const qs = form.querySelectorAll('[data-q]');
       let correct = 0, answered = 0;
       qs.forEach(q => {
         const chosen = q.querySelector('input:checked');
         const opts = q.querySelectorAll('.q-o');
+        const explainEl = q.querySelector('[data-explain]');
+        opts.forEach(o => o.classList.remove('ok', 'no'));
+        if (explainEl) explainEl.hidden = true;
         if (chosen) {
           answered++;
           const label = chosen.closest('.q-o');
-          opts.forEach(o => o.classList.remove('ok', 'no'));
           if (label.dataset.correct === 'true') { correct++; label.classList.add('ok'); }
           else { label.classList.add('no'); const right = q.querySelector('.q-o[data-correct="true"]'); if (right) right.classList.add('ok'); }
+          if (explainEl) explainEl.hidden = false;
         }
       });
       const res = form.querySelector('[data-res]');
@@ -56,6 +67,30 @@ const { title = "O'z bilimingizni tekshiring", questions = [], titleI18n = "", q
       hint.hidden = true; res.hidden = false;
       const pct = Math.round((correct / qs.length) * 100);
       res.textContent = `Natija: ${correct}/${qs.length} to'g'ri (${pct}%). ${correct === qs.length ? 'Ajoyib! Kursga tayyorsiz.' : 'Yaxshi, lekin kurs sizga foyda beradi.'}`;
+      if (quizId) {
+        const all = safeJson(QUIZ_RESULTS_KEY, {});
+        all[quizId] = { score: correct, total: qs.length, date: new Date().toISOString() };
+        try { localStorage.setItem(QUIZ_RESULTS_KEY, JSON.stringify(all)); } catch {}
+        window.dispatchEvent(new StorageEvent('storage', { key: QUIZ_RESULTS_KEY }));
+      }
     });
   });
 </script>
+
+<style>
+  .quiz-form { display: grid; gap: 1rem; }
+  .q { border: 1px solid var(--border); border-radius: 14px; padding: 1rem 1.1rem; background: var(--surface); }
+  .q-t { margin: 0 0 .7rem; font-weight: 700; line-height: 1.5; }
+  .q-num { color: var(--accent); margin-right: .35rem; }
+  .q-o { display: flex; align-items: center; gap: .6rem; padding: .55rem .7rem; margin: .4rem 0; border: 1px solid var(--border); border-radius: 10px; cursor: pointer; transition: border-color .18s, background .18s, transform .12s; }
+  .q-o:hover { border-color: var(--accent); background: color-mix(in srgb, var(--accent) 8%, transparent); }
+  .q-o:active { transform: scale(.99); }
+  .q-o input { accent-color: var(--accent); }
+  .q-o.ok { border-color: var(--good); background: color-mix(in srgb, var(--good) 14%, transparent); }
+  .q-o.no { border-color: #ef4444; background: color-mix(in srgb, #ef4444 12%, transparent); }
+  .q-explain { display: flex; gap: .5rem; margin: .7rem 0 0; padding: .65rem .8rem; border-radius: 10px; border: 1px solid color-mix(in srgb, var(--accent) 38%, var(--border)); background: color-mix(in srgb, var(--accent) 9%, var(--surface)); color: var(--muted); font-size: .9rem; line-height: 1.5; }
+  .q-explain-ic { flex: 0 0 auto; }
+  .quiz-res { font-weight: 800; font-size: 1.05rem; margin: .4rem 0 0; color: var(--text); }
+  .quiz-hint { margin: .3rem 0 0; color: var(--muted); font-size: .9rem; }
+  @media (prefers-reduced-motion: reduce) { .q-o { transition: none; } .q-o:active { transform: none; } }
+</style>

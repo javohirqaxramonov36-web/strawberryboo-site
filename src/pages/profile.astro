@@ -1,5 +1,6 @@
 ---
 import Base from '../layouts/Base.astro';
+import GeneralEnglishTest from '../components/GeneralEnglishTest.astro';
 const title = 'Mening profilim — Tayanch';
 const description = 'Ushbu brauzerda saqlangan IELTS mock natijalari va mashq progressi.';
 ---
@@ -17,7 +18,22 @@ const description = 'Ushbu brauzerda saqlangan IELTS mock natijalari va mashq pr
       <article><span data-i18n="prof.rLabel">Mock natijalari</span><strong id="result-count">0</strong><small data-i18n="prof.rSub">shu brauzerda saqlangan</small></article>
       <article><span data-i18n="prof.lLabel">Oxirgi band</span><strong id="latest-band">—</strong><small id="latest-detail">Hali natija yo‘q</small></article>
       <article><span data-i18n="prof.cLabel">Kurs progressi</span><strong id="speaking-progress">—</strong><small id="speaking-detail">Boshlanmagan</small></article>
+      <article class="streak-card"><span data-i18n="prof.streakLabel">Ketma-ket kunlar</span><strong id="streak-count">1 🔥</strong><small id="streak-detail" data-i18n="prof.streakSub">Bugun birinchi tashrif</small></article>
     </section>
+
+    <section class="panel" aria-labelledby="badges-title">
+      <div class="panel-head"><div><p class="eyebrow" data-i18n="prof.badgeEyebrow">YUTUQLAR</p><h2 id="badges-title" data-i18n="prof.badgeTitle">Medallar</h2></div></div>
+      <ul class="badges" id="badges-list" aria-label="Medallar ro'yxati"></ul>
+      <p class="empty-state" id="badges-empty"><strong data-i18n="prof.badgeEmpty">Hali medal yo‘q.</strong><span data-i18n="prof.badgeEmptySub">Kursni boshlang yoki testdan o‘ting — birinchi medalingiz paydo bo‘ladi.</span></p>
+    </section>
+
+    <section class="panel" aria-labelledby="courses-title">
+      <div class="panel-head"><div><p class="eyebrow" data-i18n="prof.coursesEyebrow">KURSLARIM</p><h2 id="courses-title" data-i18n="prof.coursesTitle">Boshlangan kurslar</h2></div></div>
+      <div class="course-cards" id="course-cards" aria-label="Kurslar progressi"></div>
+      <p class="empty-state" id="courses-empty"><strong data-i18n="prof.coursesEmpty">Hali kurs boshlanmagan.</strong><span data-i18n="prof.coursesEmptySub">Biror kurs sahifasida bo‘limni belgilang — progress shu yerda ko‘rinadi.</span></p>
+    </section>
+
+    <GeneralEnglishTest />
 
     <section class="panel chart-panel" aria-labelledby="chart-title">
       <div class="panel-head"><div><p class="eyebrow" data-i18n="prof.trendEyebrow">TREND</p><h2 id="chart-title" data-i18n="prof.trendTitle">Mock bandlari</h2></div><p id="chart-summary" class="muted">Natijalar qo‘shilganda trend shu yerda ko‘rinadi.</p></div>
@@ -34,11 +50,16 @@ const description = 'Ushbu brauzerda saqlangan IELTS mock natijalari va mashq pr
   </section>
 
   <script>
-    const PROF_I18N = {"uz": {"prof.profNameSuffix": "ning practice tarixi", "prof.noProfile": "Bu qurilmadagi profilingiz", "prof.latestNone": "Hali natija yo‘q", "prof.chartSummary": "%d ta natija · 0 dan 9 bandgacha", "prof.confirmMsg": "Faqat shu brauzerdagi mock natijalari o‘chiriladi. Davom etasizmi?", "prof.speakNone": "0/14 kurs boshlangan", "prof.speakSpeaking": " bo‘lim · Speaking ", "prof.speakPlain": " bo‘lim belgilangan"}, "ru": {"prof.profNameSuffix": " · история practice", "prof.noProfile": "Ваш профиль на этом устройстве", "prof.latestNone": "Результатов пока нет", "prof.chartSummary": "%d результата · от 0 до 9 баллов", "prof.confirmMsg": "Будут удалены только mock-результаты этого браузера. Продолжить?", "prof.speakNone": "0/14 курсов начато", "prof.speakSpeaking": " раздел · Speaking ", "prof.speakPlain": " разделов отмечено"}, "en": {"prof.profNameSuffix": "'s practice history", "prof.noProfile": "Your profile on this device", "prof.latestNone": "No result yet", "prof.chartSummary": "%d results · from 0 to 9 bands", "prof.confirmMsg": "Only this browser's mock results will be deleted. Continue?", "prof.speakNone": "0/14 courses started", "prof.speakSpeaking": " sections · Speaking ", "prof.speakPlain": " sections marked"}};
+    const PROF_I18N = {"uz": {"prof.profNameSuffix": "ning practice tarixi", "prof.noProfile": "Bu qurilmadagi profilingiz", "prof.latestNone": "Hali natija yo‘q", "prof.chartSummary": "%d ta natija · 0 dan 9 bandgacha", "prof.confirmMsg": "Faqat shu brauzerdagi mock natijalari o‘chiriladi. Davom etasizmi?", "prof.speakNone": "0/14 kurs boshlangan", "prof.speakSpeaking": " bo‘lim · Speaking ", "prof.speakPlain": " bo‘lim belgilangan", "prof.streakSub": "Bugun birinchi tashrif", "prof.streakDays": "%d kun ketma-ket"}, "ru": {"prof.profNameSuffix": " · история practice", "prof.noProfile": "Ваш профиль на этом устройстве", "prof.latestNone": "Результатов пока нет", "prof.chartSummary": "%d результата · от 0 до 9 баллов", "prof.confirmMsg": "Будут удалены только mock-результаты этого браузера. Продолжить?", "prof.speakNone": "0/14 курсов начато", "prof.speakSpeaking": " раздел · Speaking ", "prof.speakPlain": " разделов отмечено", "prof.streakSub": "Сегодня первый визит", "prof.streakDays": "%d дней подряд"}, "en": {"prof.profNameSuffix": "'s practice history", "prof.noProfile": "Your profile on this device", "prof.latestNone": "No result yet", "prof.chartSummary": "%d results · from 0 to 9 bands", "prof.confirmMsg": "Only this browser's mock results will be deleted. Continue?", "prof.speakNone": "0/14 courses started", "prof.speakSpeaking": " sections · Speaking ", "prof.speakPlain": " sections marked", "prof.streakSub": "First visit today", "prof.streakDays": "%d days in a row"}};
     const TL = (k) => { const L = document.documentElement.lang || localStorage.getItem('org-lam-lang') || 'uz'; return (PROF_I18N[L] && PROF_I18N[L][k] != null) ? PROF_I18N[L][k] : (PROF_I18N.uz[k] || k); };
     const RESULTS_KEY = 'tayanch.mock.results.v1';
     const GOOGLE_USER_KEY = 'tayanch.google.user';
     const SPEAKING_PROGRESS_KEY = 'tayanch-speaking-progress-v2';
+    // Kurs/quiz holatlari faqat shu brauzer/qurilmada saqlanadi (backend yo'q).
+    const COURSE_STATUS_KEY = 'tayanch.course.status.v1';
+    const QUIZ_RESULTS_KEY = 'tayanch.quiz.results.v1';
+    const GEN_KEY = 'tayanch.genenglish.v1';
+    const STREAK_KEY = 'tayanch.streak.v1';
     const modules = ['listening', 'reading', 'writing', 'speaking'];
     const labels = { listening: 'Listening', reading: 'Reading', writing: 'Writing', speaking: 'Speaking', mock: 'Mock' };
     const colors = { listening: '#3178c6', reading: '#1f9d73', writing: '#a35fd3', speaking: '#ed8a32', mock: '#596579' };
@@ -117,15 +138,91 @@ const description = 'Ushbu brauzerda saqlangan IELTS mock natijalari va mashq pr
       $('#chart-wrap').innerHTML = `<svg viewBox="0 0 ${width} ${height}" role="img" aria-labelledby="chart-svg-title chart-svg-desc"><title id="chart-svg-title">IELTS mock band trendi</title><desc id="chart-svg-desc">Bandlar 0 dan 9 gacha. Ranglar Listening, Reading, Writing va Speaking natijalarini bildiradi.</desc>${grid}<g class="date-labels">${datesHtml}</g>${series}</svg>`;
       $('#chart-summary').textContent = TL('prof.chartSummary').replace('%d', chartRecords.length);
     }
-    function render() { const list = records(); renderProfileName(); renderSpeakingProgress(); renderHistory(list); renderChart(list); }
+    function renderStreak() {
+      const today = new Date();
+      const dayKey = today.toISOString().slice(0, 10);
+      let streak = safeJson(STREAK_KEY, null);
+      if (!streak || typeof streak !== 'object') streak = { last: null, count: 0 };
+      if (streak.last === dayKey) {
+        // already counted today
+      } else {
+        const yesterday = new Date(today); yesterday.setDate(today.getDate() - 1);
+        const yesterdayKey = yesterday.toISOString().slice(0, 10);
+        if (streak.last === yesterdayKey) streak.count += 1;
+        else streak.count = 1;
+        streak.last = dayKey;
+        try { localStorage.setItem(STREAK_KEY, JSON.stringify(streak)); } catch {}
+      }
+      const count = Number(streak.count) || 1;
+      $('#streak-count').textContent = `${count} 🔥`;
+      $('#streak-detail').textContent = count > 1 ? TL('prof.streakDays').replace('%d', count) : TL('prof.streakSub');
+    }
+    function renderCourses() {
+      const status = safeJson(COURSE_STATUS_KEY, {});
+      const entries = Object.entries(status).filter(([, v]) => v && typeof v === 'object' && (v.total || 0) > 0);
+      const wrap = $('#course-cards');
+      const empty = $('#courses-empty');
+      empty.hidden = entries.length > 0;
+      wrap.hidden = entries.length === 0;
+      if (!entries.length) { wrap.innerHTML = ''; return; }
+      entries.sort((a, b) => new Date(b[1].updatedAt) - new Date(a[1].updatedAt));
+      wrap.innerHTML = entries.map(([id, v]) => {
+        const pct = v.percent || 0;
+        const done = v.done || 0;
+        const total = v.total || 0;
+        const completed = total > 0 && done >= total;
+        return `<article class="course-card ${completed ? 'is-done' : ''}">
+          <div class="course-card__top"><h3>${escapeHtml(id)}</h3><span class="course-card__pct">${pct}%</span></div>
+          <div class="course-card__bar"><span style="width:${pct}%"></span></div>
+          <p class="course-card__meta">${done}/${total} bo‘lim ${completed ? '· ✅ tugallangan' : '· davom etmoqda'}</p>
+        </article>`;
+      }).join('');
+    }
+    function renderBadges() {
+      const status = safeJson(COURSE_STATUS_KEY, {});
+      const courseEntries = Object.entries(status).filter(([, v]) => v && typeof v === 'object' && (v.total || 0) > 0);
+      const quizzes = safeJson(QUIZ_RESULTS_KEY, {});
+      const quizEntries = Object.entries(quizzes).filter(([, v]) => v && typeof v === 'object');
+      const badges = [];
+      if (courseEntries.length) badges.push({ icon: '🚀', name: 'Birinchi kurs boshlandi', desc: `${courseEntries.length} ta kurs belgilangan` });
+      if (quizEntries.length) badges.push({ icon: '🧠', name: 'Birinchi test yakunlandi', desc: `${quizEntries.length} ta test topshirildi` });
+      if (courseEntries.some(([, v]) => (v.total || 0) > 0 && (v.done || 0) >= v.total)) badges.push({ icon: '🏆', name: 'Kurs tugallandi', desc: '100% progressga erishdingiz' });
+      const list = $('#badges-list');
+      const empty = $('#badges-empty');
+      empty.hidden = badges.length > 0;
+      list.hidden = badges.length === 0;
+      list.innerHTML = badges.map((b) => `<li class="badge-item"><span class="badge-ic">${b.icon}</span><div><strong>${b.name}</strong><small>${b.desc}</small></div></li>`).join('');
+    }
+    function render() { const list = records(); renderProfileName(); renderStreak(); renderSpeakingProgress(); renderCourses(); renderBadges(); renderHistory(list); renderChart(list); }
     $('#clear-history').addEventListener('click', () => {
       if (confirm(TL('prof.confirmMsg'))) { localStorage.removeItem(RESULTS_KEY); render(); }
     });
-    window.addEventListener('storage', (event) => { if ([RESULTS_KEY, GOOGLE_USER_KEY, SPEAKING_PROGRESS_KEY].includes(event.key) || String(event.key || '').startsWith('progress:')) render(); });
+    window.addEventListener('storage', (event) => { if ([RESULTS_KEY, GOOGLE_USER_KEY, SPEAKING_PROGRESS_KEY, COURSE_STATUS_KEY, QUIZ_RESULTS_KEY, GEN_KEY, STREAK_KEY].includes(event.key) || String(event.key || '').startsWith('progress:')) render(); });
     render();
   </script>
 
   <style>
     .profile-page{max-width:1120px;margin:0 auto;padding:3.4rem min(5vw,56px) 4.5rem}.profile-hero{padding:clamp(1.5rem,4vw,3rem);border:1px solid color-mix(in srgb,var(--accent) 42%,var(--border));border-radius:24px;background:radial-gradient(circle at 92% 12%,color-mix(in srgb,var(--accent) 23%,transparent),transparent 30%),var(--surface)}.eyebrow{font-size:.76rem;font-weight:800;letter-spacing:.12em;color:var(--accent);margin:0 0 .55rem}.profile-hero h1{font:800 clamp(2.2rem,5vw,4.1rem)/1.02 var(--font-display);letter-spacing:-.06em;margin:0}.profile-name{font:700 1.1rem var(--font-display);margin:1rem 0 .45rem}.local-note,.muted{color:var(--muted);line-height:1.55;margin:.35rem 0 0;max-width:690px}.summary-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin:1rem 0}.summary-grid article,.panel{border:1px solid var(--border);border-radius:18px;background:var(--surface);padding:1.35rem}.summary-grid span,.summary-grid small{display:block;color:var(--muted)}.summary-grid span{font-size:.82rem;font-weight:700}.summary-grid strong{display:block;font:800 2.15rem var(--font-display);letter-spacing:-.06em;margin:.35rem 0}.panel{margin-top:1rem}.panel-head{display:flex;justify-content:space-between;gap:1.5rem;align-items:flex-start}.panel h2{font:800 1.5rem var(--font-display);margin:0}.empty-state{display:grid;gap:.35rem;padding:1.15rem 0;color:var(--muted);line-height:1.55}.empty-state strong{color:var(--text)}.chart-wrap{margin-top:1rem;overflow:auto}.chart-wrap svg{width:100%;min-width:600px;height:auto;display:block}.chart-wrap text{fill:var(--muted);font:12px var(--font-display)}.grid-line{stroke:var(--border);stroke-dasharray:4 5}.legend{display:flex;gap:.85rem;flex-wrap:wrap;padding:0;margin:1rem 0 0;list-style:none;color:var(--muted);font-size:.84rem;font-weight:700}.legend li::before{content:'';display:inline-block;width:9px;height:9px;border-radius:999px;margin-right:.35rem;background:#596579}.legend .listening::before{background:#3178c6}.legend .reading::before{background:#1f9d73}.legend .writing::before{background:#a35fd3}.legend .speaking::before{background:#ed8a32}.table-wrap{overflow:auto;margin-top:1rem}table{border-collapse:collapse;width:100%;min-width:640px}th,td{text-align:left;padding:.9rem .75rem;border-bottom:1px solid var(--border)}th{font-size:.76rem;letter-spacing:.07em;text-transform:uppercase;color:var(--muted)}.module-pill{font-weight:800;font-size:.78rem;padding:.28rem .55rem;border-radius:999px;background:#59657922;color:#596579}.module-pill.listening{color:#3178c6;background:#3178c622}.module-pill.reading{color:#1f9d73;background:#1f9d7322}.module-pill.writing{color:#a35fd3;background:#a35fd322}.module-pill.speaking{color:#ed8a32;background:#ed8a3222}.clear-button{border:1px solid var(--border);border-radius:10px;background:transparent;color:var(--muted);padding:.55rem .75rem;font:700 .82rem var(--font-display);cursor:pointer}.clear-button:hover{color:#d65b54;border-color:#d65b54}@media(max-width:720px){.profile-page{padding:2rem 20px 3.5rem}.summary-grid{grid-template-columns:1fr}.panel-head{display:block}.panel-head .muted{margin-top:.65rem}.chart-wrap svg{min-width:550px}}
+  </style>
+
+  <style>
+    .summary-grid{grid-template-columns:repeat(auto-fit,minmax(180px,1fr))}
+    .streak-card{background:radial-gradient(circle at 90% 10%,color-mix(in srgb,#fb7185 18%,transparent),transparent 28%),var(--surface);border-color:color-mix(in srgb,#fb7185 40%,var(--border))}
+    .badges{list-style:none;margin:0;padding:0;display:grid;gap:.6rem}
+    .badge-item{display:flex;align-items:center;gap:.85rem;padding:.7rem .85rem;border:1px solid var(--border);border-radius:12px;background:color-mix(in srgb,var(--accent) 7%,var(--surface));transition:transform .15s ease,border-color .15s ease}
+    .badge-item:hover{transform:translateY(-2px);border-color:var(--accent)}
+    .badge-ic{font-size:1.5rem;flex:0 0 auto}
+    .badge-item strong{display:block;color:var(--text);font-size:.95rem}
+    .badge-item small{display:block;color:var(--muted);font-size:.82rem}
+    .course-cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:.8rem;margin-top:.4rem}
+    .course-card{border:1px solid var(--border);border-radius:14px;padding:1rem 1.1rem;background:var(--bg)}
+    .course-card.is-done{border-color:color-mix(in srgb,var(--good) 55%,var(--border));background:color-mix(in srgb,var(--good) 9%,var(--surface))}
+    .course-card__top{display:flex;justify-content:space-between;align-items:baseline;gap:.6rem}
+    .course-card__top h3{margin:0;font-size:1rem;text-transform:capitalize;letter-spacing:-.01em}
+    .course-card__pct{font-weight:800;color:var(--accent);font-variant-numeric:tabular-nums}
+    .course-card__bar{height:8px;margin:.6rem 0 .5rem;border-radius:999px;background:color-mix(in srgb,var(--border) 75%,transparent);overflow:hidden}
+    .course-card__bar span{display:block;height:100%;border-radius:inherit;background:linear-gradient(90deg,var(--accent),#34d399);transition:width .32s ease}
+    .course-card__meta{margin:0;color:var(--muted);font-size:.85rem}
+    @media (prefers-reduced-motion: reduce){.badge-item,.course-card__bar span{transition:none}.badge-item:hover{transform:none}}
   </style>
 </Base>

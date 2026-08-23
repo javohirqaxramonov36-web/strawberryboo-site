@@ -1,0 +1,6 @@
+[
+  { "q": "Data Analytics asosan nima bilan shug'ullanadi?", "opts": ["Ma'lumotlarni tahlil qilish va xulosa chiqarish", "Rasm chizish", "Musiqa yozish", "Pochta jo'natish"], "answer": 0, "explain": "Data Analytics — ma'lumotlardan foydali xulosa va qaror chiqarish uchun ularni tahlil qilishdir." },
+  { "q": "Qaysi vosita ma'lumotlar bazasidan so'rov olish uchun ishlatiladi?", "opts": ["Excel", "SQL", "Word", "PowerPoint"], "answer": 1, "explain": "SQL ma'lumotlar bazasidan ma'lumot tanlash, filtrlash va bog'lash uchun mo'ljallangan tildir." },
+  { "q": "Python'da ma'lumotlar bilan ishlash uchun qaysi kutubxona ko'p ishlatiladi?", "opts": ["pandas", "Photoshop", "Excel", "Figma"], "answer": 0, "explain": "pandas katta jadvallar (DataFrame) bilan ishlash, filtrlash va statistika uchun asosiy kutubxonadir." },
+  { "q": "Vizualizatsiya nima uchun kerak?", "opts": ["Faylni saqlash uchun", "Natijani tushunarli ko'rsatish uchun", "Kod yozish uchun", "Hech nima uchun"], "answer": 1, "explain": "Diagramma va dashboard ma'lumotni boshqalarga tez va ravshan yetkazish uchun xizmat qiladi." }
+]

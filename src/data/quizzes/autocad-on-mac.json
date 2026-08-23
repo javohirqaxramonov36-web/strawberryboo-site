@@ -1,0 +1,6 @@
+[
+  { "q": "Mac uchun qaysi AutoCAD versiyasini tanlash kerak?", "opts": ["Windows .exe", "AutoCAD for Mac", "Android ilovasi", "Faqat brauzer"], "answer": 1, "explain": "Mac'da faqat 'AutoCAD for Mac' versiyasi ishlaydi; Windows .exe fayllari Mac'da ishlamaydi." },
+  { "q": "Layerlar nima uchun kerak?", "opts": ["Chizmani tartibga solish va elementlarni ajratish uchun", "Fayl hajmini oshirish uchun", "Faqat rang tanlash uchun", "PDFni bloklash uchun"], "answer": 0, "explain": "Layerlar devor, mebel, o'lcham kabi elementlarni alohida ushlab, chizmani tartibli va o'qiladigan qiladi." },
+  { "q": "Talaba Education accessidan foydalanishdan oldin nima tekshiriladi?", "opts": ["Eligibility", "Instagram akkaunti", "Bank kartasi", "Windows litsenziyasi"], "answer": 0, "explain": "Autodesk talaba/y-o'qituvchi ekanligingizni (eligibility) tasdiqlaydi — bu tijoriy litsenziya emas." },
+  { "q": "Block nima uchun foydali?", "opts": ["Takrorlanuvchi elementni bir marta chizib, qayta ishlatish uchun", "Fayl o'chirish uchun", "Rang o'zgartirish uchun", "Hech nima uchun"], "answer": 0, "explain": "Block eshik-deraza kabi takrorlanadigan elementni bir marta yaratib, plan bo'ylab qayta ishlatishga yordam beradi." }
+]

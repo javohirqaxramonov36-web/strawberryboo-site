@@ -5,13 +5,9 @@ import CourseSchema from "../../components/CourseSchema.astro";
 import Quiz from "../../components/Quiz.astro";
 import LeadMagnetCTA from "../../components/LeadMagnetCTA.astro";
 import CourseTestimonialPlaceholder from "../../components/CourseTestimonialPlaceholder.astro";
+import figmaQuiz from "../../data/quizzes/figma.json";
 const title = "Bepul Figma: UI/UX asoslarini 1 kunda | Tayanch";
 const description = "Bepul Figma kursi: UI/UX asoslari, komponentlar va prototip yasash. Dizaynni noldan, o'zbek tilida o'rganing.";
-const questions = [
-  { q: "Figma — bu nima?", opts: ["Matn muharriri", "UI/UX dizayn vositasi", "Ma'lumotlar bazasi", "Video montaj"], answer: 1 },
-  { q: "Komponent nima uchun kerak?", opts: ["Rang o'zgartirish uchun", "Takrorlanuvchi elementni bir joydan boshqarish uchun", "Fayl saqlash uchun", "Hech nima uchun"], answer: 1 },
-  { q: "Prototype nima qiladi?", opts: ["Rasm chizadi", "Sahifalarni bog'lab, interfeysni jonli ko'rsatadi", "Kod yozadi", "PDF chiqaradi"], answer: 1 }
-];
 ---
 
 <Base title={title} description={description}>
@@ -62,7 +58,7 @@ const questions = [
 
   <p class="quiz-hint" data-i18n="fg.hint">Kursni yakunlaganingizdan so'ng sertifikat olasiz.</p>
 
-  <Quiz title="O'z bilimingizni tekshiring" titleI18n="fg.quizTitle" questions={questions} />
+  <Quiz title="O'z bilimingizni tekshiring" titleI18n="fg.quizTitle" quizId="figma" questions={figmaQuiz} />
 
   <a href={import.meta.env.BASE_URL + 'kurslar'} class="course-nav-link" style="margin-left:1rem;" data-i18n="fg.all">← Barcha kurslar</a>
   <CourseTestimonialPlaceholder />

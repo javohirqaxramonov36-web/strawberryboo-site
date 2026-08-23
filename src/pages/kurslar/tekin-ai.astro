@@ -6,13 +6,9 @@ import CourseSchema from "../../components/CourseSchema.astro";
 import Quiz from "../../components/Quiz.astro";
 import LeadMagnetCTA from "../../components/LeadMagnetCTA.astro";
 import CourseTestimonialPlaceholder from "../../components/CourseTestimonialPlaceholder.astro";
+import tekinAiQuiz from "../../data/quizzes/tekin-ai.json";
 const title = "Bepul AI: pullik obuna bermasdan foydalanish | Tayanch";
 const description = "Pullik obuna bermasdan AI'dan foydalanish: bepul modellar, ochiq manbali vositalar va agentlar ro'yxati. O'zbekcha amaliy qo'llanma.";
-const questions = [
-  { q: "Ollama nima qiladi?", opts: ["Bulutli AI", "Kompyuteringizda mahalliy AI model ishlatadi", "Pochta", "Rasm chizadi"], answer: 1 },
-  { q: "Local (offline) AI ning afzalligi?", opts: ["Tezroq", "Ma'lumotlar kompyuteringizda qoladi", "Bepul emas", "Hech nima"], answer: 1 },
-  { q: "CrewAI nima?", opts: ["O'yin", "Jamoa agent'lari framework'i", "Virus", "Pochta"], answer: 1 }
-];
 ---
 
 <Base title={title} description={description}>
@@ -48,7 +44,7 @@ const questions = [
     <a href={import.meta.env.BASE_URL + 'kurslar'} class="course-nav-link" data-i18n="ta.all">← Barcha kurslar</a>
   </p>
 
-  <Quiz titleI18n="ta.quizTitle" questions={questions} />
+  <Quiz titleI18n="ta.quizTitle" quizId="tekin-ai" questions={tekinAiQuiz} />
   <PaymentInstructions course="Tekin AI modellar va agentlar" price="$19 · ≈ 240 000 so'm" />
   <CourseTestimonialPlaceholder />
   <LeadMagnetCTA />
