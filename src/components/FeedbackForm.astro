@@ -1,0 +1,133 @@
+---
+const variant = Astro.props.variant || 'page'; // 'page' | 'compact'
+const FORMSPREE = 'https://formspree.io/f/xeajwzyz';
+---
+
+<section class="feedback" data-feedback={variant}>
+  <div class="feedback-card">
+    <h2 class="feedback-title" data-i18n="fb.title">Taklif va fikringiz bormi?</h2>
+    <p class="feedback-sub" data-i18n="fb.sub">Saytni yaxshilash uchun sizning fikringiz biz uchun juda muhim — har bir taklif, xato haqida xabar yoki g'oya saytni yanada yaxshilashga yordam beradi.</p>
+    <form class="feedback-form" action={FORMSPREE} method="POST" data-feedback-form novalidate>
+      <div class="fb-field">
+        <label for="fb-name" data-i18n="fb.name">Ism (ixtiyoriy)</label>
+        <input type="text" id="fb-name" name="name" autocomplete="name" placeholder="Ismingiz" />
+      </div>
+      <div class="fb-field">
+        <label for="fb-email" data-i18n="fb.email">Email (ixtiyoriy)</label>
+        <input type="email" id="fb-email" name="email" autocomplete="email" placeholder="siz@misol.uz" />
+      </div>
+      <div class="fb-field">
+        <label for="fb-message" data-i18n="fb.message">Xabar matni</label>
+        <textarea id="fb-message" name="message" rows="5" required placeholder="Fikringiz, taklifingiz yoki xato haqida yozing..."></textarea>
+        <span class="fb-error" data-fb-error hidden></span>
+      </div>
+      <button type="submit" class="fb-submit" data-i18n="fb.submit">Yuborish</button>
+      <p class="fb-success" data-fb-success hidden data-i18n="fb.success">Rahmat! Fikringiz yuborildi.</p>
+    </form>
+  </div>
+</section>
+
+<style>
+  .feedback { margin: 1.5rem 0; }
+  .feedback-card {
+    max-width: 620px;
+    margin: 0 auto;
+    padding: clamp(1.4rem, 4vw, 2.4rem);
+    border: 1px solid var(--border, #2a2c3a);
+    border-radius: 18px;
+    background: var(--surface, #181a24);
+  }
+  .feedback[data-feedback="compact"] .feedback-card { margin: 0; }
+  .feedback-title { margin: 0 0 .5rem; font-size: clamp(1.4rem, 3vw, 1.9rem); }
+  .feedback-sub { margin: 0 0 1.3rem; color: var(--muted, #9a9ab2); line-height: 1.6; }
+  .feedback-form { display: grid; gap: 1rem; }
+  .fb-field { display: grid; gap: .4rem; }
+  .fb-field label { font-weight: 700; font-size: .9rem; }
+  .fb-field input,
+  .fb-field textarea {
+    width: 100%;
+    box-sizing: border-box;
+    padding: .8rem .9rem;
+    border: 1px solid var(--border, #2a2c3a);
+    border-radius: 12px;
+    background: var(--bg, #0e0f15);
+    color: var(--text, #ececf3);
+    font: inherit;
+    line-height: 1.5;
+    resize: vertical;
+  }
+  .fb-field input:focus,
+  .fb-field textarea:focus {
+    outline: 2px solid var(--accent, #7d7df5);
+    outline-offset: 1px;
+    border-color: var(--accent, #7d7df5);
+  }
+  .fb-error { color: #f87171; font-size: .85rem; }
+  .fb-submit {
+    justify-self: start;
+    padding: .8rem 1.6rem;
+    border: none;
+    border-radius: 12px;
+    background: var(--accent, #7d7df5);
+    color: #fff;
+    font-weight: 800;
+    font: 800 1rem var(--font-display, inherit);
+    cursor: pointer;
+    transition: transform .15s ease, box-shadow .15s ease, opacity .15s ease;
+  }
+  .fb-submit:hover { transform: translateY(-1px); box-shadow: 0 8px 24px rgba(125,125,245,.3); }
+  .fb-submit:disabled { opacity: .6; cursor: progress; transform: none; box-shadow: none; }
+  .fb-success {
+    margin: 0;
+    padding: .9rem 1rem;
+    border: 1px solid color-mix(in srgb, #22c55e 50%, var(--border, #2a2c3a));
+    border-radius: 12px;
+    background: color-mix(in srgb, #22c55e 14%, var(--surface, #181a24));
+    color: #4ade80;
+    font-weight: 700;
+    text-align: center;
+  }
+</style>
+
+<script>
+  const forms = document.querySelectorAll('[data-feedback-form]');
+  forms.forEach((form) => {
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const msg = form.querySelector('[name="message"]');
+      const errEl = form.querySelector('[data-fb-error]');
+      const successEl = form.querySelector('[data-fb-success]');
+      const btn = form.querySelector('.fb-submit');
+      if (errEl) errEl.hidden = true;
+      if (!msg.value.trim()) {
+        if (errEl) { errEl.textContent = 'Iltimos, xabar matnini yozing.'; errEl.hidden = false; }
+        msg.focus();
+        return;
+      }
+      const original = btn.textContent;
+      btn.disabled = true;
+      btn.textContent = 'Yuborilmoqda...';
+      try {
+        const res = await fetch(form.action, {
+          method: 'POST',
+          body: new FormData(form),
+          headers: { Accept: 'application/json' },
+        });
+        if (res.ok) {
+          form.reset();
+          if (successEl) successEl.hidden = false;
+        } else {
+          throw new Error('server');
+        }
+      } catch (e) {
+        if (errEl) {
+          errEl.textContent = 'Yuborishda xatolik yuz berdi. Iltimos, keyinroq qayta urinib ko‘ring yoki Telegram orqali yozing.';
+          errEl.hidden = false;
+        }
+      } finally {
+        btn.disabled = false;
+        btn.textContent = original;
+      }
+    });
+  });
+</script>

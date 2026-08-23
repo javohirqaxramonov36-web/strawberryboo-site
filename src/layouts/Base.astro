@@ -188,6 +188,7 @@ const navigationHref = (path: string) => base + localizedPath(lang, path);
             <div class="footer-social">
               <a href="https://t.me/progression_go" aria-label="Telegram" data-i18n="footer.social.tg" target="_blank" rel="noopener noreferrer">Telegram</a>
               <a href="https://instagram.com/javohir_kakhramonov" aria-label="Instagram" data-i18n="footer.social.ig" target="_blank" rel="noopener noreferrer">Instagram</a>
+              <a href={navigationHref('fikr-bildirish/')} class="footer-feedback-link" data-i18n="footer.feedback">Fikr bildirish →</a>
             </div>
           </div>
           <div class="footer-col">
@@ -256,6 +257,14 @@ const navigationHref = (path: string) => base + localizedPath(lang, path);
           "tg.footer.title": "Telegram kanalimizga qo'shiling",
           "tg.footer.text": "Yangi kurslar, bepul materiallar va hamjamiyat — bitta joyda.",
           "tg.footer.btn": "Kanalga qo'shilish →",
+          "footer.feedback": "Fikr bildirish →",
+          "fb.title": "Taklif va fikringiz bormi?",
+          "fb.sub": "Saytni yaxshilash uchun sizning fikringiz biz uchun juda muhim — har bir taklif, xato haqida xabar yoki g'oya saytni yanada yaxshilashga yordam beradi.",
+          "fb.name": "Ism (ixtiyoriy)",
+          "fb.email": "Email (ixtiyoriy)",
+          "fb.message": "Xabar matni",
+          "fb.submit": "Yuborish",
+          "fb.success": "Rahmat! Fikringiz yuborildi.",
           "tg.course.title": "Savolingiz bormi?",
           "tg.course.sub": "Telegram guruhimizda so'rang — jamoa va boshqa o'quvchilar yordam beradi.",
           "tg.course.btn": "Telegram guruhiga qo'shilish →",
@@ -840,6 +849,14 @@ const navigationHref = (path: string) => base + localizedPath(lang, path);
           "tg.footer.title": "Подпишитесь на наш Telegram-канал",
           "tg.footer.text": "Новые курсы, бесплатные материалы и сообщество — в одном месте.",
           "tg.footer.btn": "Перейти к каналу →",
+          "footer.feedback": "Оставить отзыв →",
+          "fb.title": "Есть предложение или отзыв?",
+          "fb.sub": "Ваше мнение очень важно для улучшения сайта — каждая идея, сообщение об ошибке или предложение помогают сделать сайт лучше.",
+          "fb.name": "Имя (необязательно)",
+          "fb.email": "Email (необязательно)",
+          "fb.message": "Текст сообщения",
+          "fb.submit": "Отправить",
+          "fb.success": "Спасибо! Ваш отзыв отправлен.",
           "tg.course.title": "Есть вопрос?",
           "tg.course.sub": "Спрашивайте в нашей Telegram-группе — команда и другие ученики помогут.",
           "tg.course.btn": "Присоединиться к группе →",
@@ -1424,6 +1441,14 @@ const navigationHref = (path: string) => base + localizedPath(lang, path);
           "tg.footer.title": "Join our Telegram channel",
           "tg.footer.text": "New courses, free materials and community — all in one place.",
           "tg.footer.btn": "Join channel →",
+          "footer.feedback": "Share feedback →",
+          "fb.title": "Have a suggestion or feedback?",
+          "fb.sub": "Your opinion matters a lot for improving the site — every idea, bug report or suggestion helps us make it better.",
+          "fb.name": "Name (optional)",
+          "fb.email": "Email (optional)",
+          "fb.message": "Message",
+          "fb.submit": "Send",
+          "fb.success": "Thanks! Your feedback was sent.",
           "tg.course.title": "Got a question?",
           "tg.course.sub": "Ask in our Telegram group — the team and other students will help.",
           "tg.course.btn": "Join the group →",
@@ -2365,6 +2390,20 @@ const navigationHref = (path: string) => base + localizedPath(lang, path);
       .site-footer .footer-social { display: flex; gap: 10px; }
       .site-footer .footer-social a { display: inline-flex; align-items: center; gap: 6px; padding: 7px 14px; border-radius: 10px; border: 1px solid var(--border); color: var(--text); text-decoration: none; font-weight: 600; font-size: 0.9rem; transition: border-color .15s, color .15s; }
       .site-footer .footer-social a:hover { border-color: var(--accent); color: var(--accent); }
+      .site-footer .footer-feedback-link { background: var(--accent-soft); border-color: var(--accent) !important; color: var(--accent) !important; }
+
+      /* Floating feedback button — visible on every page, sits clear of the chat widget (bottom-left). */
+      .feedback-fab {
+        position: fixed; left: 18px; bottom: 18px; z-index: 60;
+        display: inline-flex; align-items: center; gap: 8px;
+        padding: 11px 16px; border-radius: 999px;
+        background: var(--accent); color: #fff; text-decoration: none;
+        font-weight: 800; font-size: 0.9rem; box-shadow: 0 10px 30px -8px rgba(125,125,245,.6);
+        transition: transform .15s ease, box-shadow .15s ease;
+      }
+      .feedback-fab:hover { transform: translateY(-2px); box-shadow: 0 14px 34px -8px rgba(125,125,245,.7); }
+      .feedback-fab:focus-visible { outline: 3px solid #fff; outline-offset: 2px; }
+      @media (max-width: 520px) { .feedback-fab { left: 12px; bottom: 12px; padding: 10px 14px; font-size: 0.82rem; } }
       .site-footer .footer-col h4 { margin: 0 0 0.9rem; color: var(--accent); font-size: 0.82rem; text-transform: uppercase; letter-spacing: .05em; }
       .site-footer .footer-col a { display: block; color: var(--muted); text-decoration: none; padding: 5px 0; font-weight: 500; }
       .site-footer .footer-col a:hover { color: var(--accent); }
@@ -2455,6 +2494,8 @@ const navigationHref = (path: string) => base + localizedPath(lang, path);
 
   <ChatWidget />
   <SearchPanel />
+
+  <a href={navigationHref('fikr-bildirish/')} class="feedback-fab" aria-label="Fikr bildirish">💬 <span data-i18n="footer.feedback">Fikr bildirish →</span></a>
 
   <script is:inline src={base + 'tayanch-ai.js'}></script>
   <script is:inline src={base + 'assets/interactive.js'}></script>

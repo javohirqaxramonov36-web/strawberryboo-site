@@ -1,0 +1,20 @@
+---
+import Base from "../../layouts/Base.astro";
+import FeedbackForm from "../../components/FeedbackForm.astro";
+import LocaleSwitch from "../../components/LocaleSwitch.astro";
+const title = "Оставить отзыв — Tayanch";
+const description = "Отправьте предложение, сообщение об ошибке или идею для улучшения сайта — нам важно каждое мнение.";
+const base = import.meta.env.BASE_URL;
+const alternates = [
+  { lang: "uz", href: base + "fikr-bildirish/" },
+  { lang: "ru", href: base + "ru/fikr-bildirish/" },
+  { lang: "en", href: base + "en/fikr-bildirish/" },
+];
+---
+
+<Base title={title} description={description} lang="ru" localeAlternates={alternates}>
+  <section class="page-wrap">
+    <FeedbackForm />
+  </section>
+  <LocaleSwitch current="ru" slug="fikr-bildirish" />
+</Base>
