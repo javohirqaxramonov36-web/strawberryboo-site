@@ -1,0 +1,20 @@
+---
+import Base from '../../../layouts/Base.astro';
+import SatCourse from '../../../components/SatCourse.astro';
+import { getSatCourse } from '../../../data/sat-courses';
+
+const lang = 'en' as const;
+const course = getSatCourse('sat-math', lang);
+if (!course) throw new Error('Course was not found.');
+const relatedCourse = course.relatedCourseSlug ? getSatCourse(course.relatedCourseSlug, lang) : undefined;
+const base = import.meta.env.BASE_URL;
+const alternates = [
+  { lang: 'uz', href: base + 'kurslar/sat-math/' },
+  { lang: 'ru', href: base + 'ru/kurslar/sat-math/' },
+  { lang: 'en', href: base + 'en/kurslar/sat-math/' },
+];
+---
+
+<Base title={course.title + ' | Tayanch'} description={course.description} lang={lang} localeAlternates={alternates}>
+  <SatCourse {course} {relatedCourse} {lang} />
+</Base>

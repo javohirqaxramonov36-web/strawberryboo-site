@@ -1,0 +1,11 @@
+---
+import Base from '../layouts/Base.astro';
+type Lang = 'uz' | 'en' | 'ru';
+const { lang = 'uz' } = Astro.props as { lang?: Lang };
+const base = import.meta.env.BASE_URL;
+const copy = { uz: ['Sahifa topilmadi — Tayanch', 'So‘ralgan sahifa topilmadi. Tayanch kurslari va yordam sahifalariga qayting.', 'Sahifa topilmadi', 'Havola o‘zgargan yoki noto‘g‘ri yozilgan bo‘lishi mumkin.', 'Kurslarni ko‘rish →', 'Yordam olish'], en: ['Page not found — Tayanch', 'The requested page was not found. Return to Tayanch courses and support pages.', 'Page not found', 'The link may have changed or been entered incorrectly.', 'View courses →', 'Get help'], ru: ['Страница не найдена — Tayanch', 'Запрошенная страница не найдена. Вернитесь к курсам и страницам помощи Tayanch.', 'Страница не найдена', 'Ссылка могла измениться или быть введена неверно.', 'Посмотреть курсы →', 'Получить помощь'] }[lang];
+const prefix = lang === 'uz' ? '' : `${lang}/`;
+const alternates = [{lang:'uz',href:base+'404/'},{lang:'en',href:base+'en/404/'},{lang:'ru',href:base+'ru/404/'}];
+---
+<Base title={copy[0]} description={copy[1]} lang={lang} localeAlternates={alternates}><main class="not-found"><p>404</p><h1>{copy[2]}</h1><p>{copy[3]}</p><div><a class="start-btn" href={base + prefix + 'kurslar/'}>{copy[4]}</a><a class="course-nav-link" href={base + prefix + 'bog-lanish/'}>{copy[5]}</a></div></main></Base>
+<style>.not-found{max-width:700px;margin:8vh auto;padding:2.5rem 1.2rem;text-align:center}.not-found>p:first-child{font-size:5rem;font-weight:900;line-height:1;color:var(--accent);margin:0}.not-found h1{font-size:2rem}.not-found p{color:var(--muted)}.not-found div{display:flex;gap:1rem;justify-content:center;align-items:center;margin-top:1.5rem}</style>

@@ -1,0 +1,134 @@
+---
+import Base from '../../layouts/Base.astro';
+const title = 'My profile — Tayanch';
+const description = 'IELTS mock results and practice progress saved in this browser.';
+
+const base = import.meta.env.BASE_URL;
+const alternates = [{ lang: 'uz', href: base + 'profile/' }, { lang: 'ru', href: base + 'ru/profile/' }, { lang: 'en', href: base + 'en/profile/' }];
+---
+
+<Base title={title} description={description} lang="en" localeAlternates={alternates}>
+  <section class="profile-page" aria-labelledby="profile-title">
+    <div class="profile-hero">
+      <p class="eyebrow" data-i18n="prof.eyebrow">MENING PROFILIM</p>
+      <h1 id="profile-title" data-i18n="prof.h1">Sizning practice tarixingiz</h1>
+      <p id="profile-name" class="profile-name">Bu qurilmadagi profil</p>
+      <p class="local-note" data-i18n="prof.note">Natijalar faqat shu brauzer va qurilmada saqlanadi. Brauzer ma’lumotlarini tozalash ularni o‘chirishi mumkin.</p>
+    </div>
+
+    <section class="summary-grid" aria-label="Practice xulosasi">
+      <article><span data-i18n="prof.rLabel">Mock natijalari</span><strong id="result-count">0</strong><small data-i18n="prof.rSub">shu brauzerda saqlangan</small></article>
+      <article><span data-i18n="prof.lLabel">Oxirgi band</span><strong id="latest-band">—</strong><small id="latest-detail">Hali natija yo‘q</small></article>
+      <article><span data-i18n="prof.cLabel">Kurs progressi</span><strong id="speaking-progress">—</strong><small id="speaking-detail">Boshlanmagan</small></article>
+    </section>
+
+    <section class="panel chart-panel" aria-labelledby="chart-title">
+      <div class="panel-head"><div><p class="eyebrow" data-i18n="prof.trendEyebrow">TREND</p><h2 id="chart-title" data-i18n="prof.trendTitle">Mock bandlari</h2></div><p id="chart-summary" class="muted">Natijalar qo‘shilganda trend shu yerda ko‘rinadi.</p></div>
+      <div id="chart-empty" class="empty-state"><strong data-i18n="prof.chartEmpty">Chart uchun hali ma’lumot yetarli emas.</strong><span data-i18n="prof.chartEmptySub">Listening, Reading yoki Writing mockni yakunlang — natijangiz shu qurilmada saqlanadi.</span></div>
+      <div id="chart-wrap" class="chart-wrap" hidden></div>
+      <ul class="legend" aria-label="Chart belgilar"><li class="listening">Listening</li><li class="reading">Reading</li><li class="writing">Writing</li><li class="speaking">Speaking</li></ul>
+    </section>
+
+    <section class="panel" aria-labelledby="history-title">
+      <div class="panel-head"><div><p class="eyebrow" data-i18n="prof.histEyebrow">TARIX</p><h2 id="history-title" data-i18n="prof.histTitle">Mock natijalari</h2></div><button id="clear-history" class="clear-button" type="button" hidden data-i18n="prof.clear">Tarixni tozalash</button></div>
+      <div id="history-empty" class="empty-state"><strong data-i18n="prof.histEmpty">Hali mock natijasi saqlanmagan.</strong><span data-i18n="prof.histEmptySub">Natija chiqarilgandan keyin uning sana, skill va bandi shu yerda paydo bo‘ladi.</span></div>
+      <div class="table-wrap" id="history-wrap" hidden><table><thead><tr><th data-i18n="prof.thDate">Sana</th><th data-i18n="prof.thMock">Mock</th><th data-i18n="prof.thSkill">Skill</th><th data-i18n="prof.thBand">Band</th><th data-i18n="prof.thScore">Score</th></tr></thead><tbody id="history-body"></tbody></table></div>
+    </section>
+  </section>
+
+  <script>
+    const PROF_I18N = {"uz": {"prof.profNameSuffix": "ning practice tarixi", "prof.noProfile": "Bu qurilmadagi profilingiz", "prof.latestNone": "Hali natija yo‘q", "prof.chartSummary": "%d ta natija · 0 dan 9 bandgacha", "prof.confirmMsg": "Faqat shu brauzerdagi mock natijalari o‘chiriladi. Davom etasizmi?", "prof.speakNone": "0/14 kurs boshlangan", "prof.speakSpeaking": " bo‘lim · Speaking ", "prof.speakPlain": " bo‘lim belgilangan"}, "ru": {"prof.profNameSuffix": " · история practice", "prof.noProfile": "Ваш профиль на этом устройстве", "prof.latestNone": "Результатов пока нет", "prof.chartSummary": "%d результата · от 0 до 9 баллов", "prof.confirmMsg": "Будут удалены только mock-результаты этого браузера. Продолжить?", "prof.speakNone": "0/14 курсов начато", "prof.speakSpeaking": " раздел · Speaking ", "prof.speakPlain": " разделов отмечено"}, "en": {"prof.profNameSuffix": "'s practice history", "prof.noProfile": "Your profile on this device", "prof.latestNone": "No result yet", "prof.chartSummary": "%d results · from 0 to 9 bands", "prof.confirmMsg": "Only this browser's mock results will be deleted. Continue?", "prof.speakNone": "0/14 courses started", "prof.speakSpeaking": " sections · Speaking ", "prof.speakPlain": " sections marked"}};
+    const TL = (k) => { const L = document.documentElement.lang || localStorage.getItem('org-lam-lang') || 'uz'; return (PROF_I18N[L] && PROF_I18N[L][k] != null) ? PROF_I18N[L][k] : (PROF_I18N.uz[k] || k); };
+    const RESULTS_KEY = 'tayanch.mock.results.v1';
+    const GOOGLE_USER_KEY = 'tayanch.google.user';
+    const SPEAKING_PROGRESS_KEY = 'tayanch-speaking-progress-v2';
+    const modules = ['listening', 'reading', 'writing', 'speaking'];
+    const labels = { listening: 'Listening', reading: 'Reading', writing: 'Writing', speaking: 'Speaking', mock: 'Mock' };
+    const colors = { listening: '#3178c6', reading: '#1f9d73', writing: '#a35fd3', speaking: '#ed8a32', mock: '#596579' };
+    const $ = (selector) => document.querySelector(selector);
+
+    function safeJson(key, fallback) {
+      try { const data = JSON.parse(localStorage.getItem(key) || ''); return data == null ? fallback : data; } catch { return fallback; }
+    }
+    function escapeHtml(value) { return String(value ?? '').replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c]); }
+    function dateLabel(value) {
+      const date = new Date(value);
+      return Number.isNaN(date.getTime()) ? 'Sana noma’lum' : new Intl.DateTimeFormat('uz-UZ', { day: '2-digit', month: 'short', year: 'numeric' }).format(date);
+    }
+    function records() {
+      const list = safeJson(RESULTS_KEY, []);
+      return Array.isArray(list) ? list.filter((item) => item && Number.isFinite(Number(item.band)) && Number(item.band) >= 0 && Number(item.band) <= 9).sort((a, b) => new Date(a.completedAt) - new Date(b.completedAt)) : [];
+    }
+    function renderProfileName() {
+      const user = safeJson(GOOGLE_USER_KEY, null);
+      const name = user && (user.name || user.email);
+      $('#profile-name').textContent = name ? name + TL('prof.profNameSuffix') : TL('prof.noProfile');
+    }
+    function renderSpeakingProgress() {
+      const progress = safeJson(SPEAKING_PROGRESS_KEY, {});
+      const days = progress && typeof progress === 'object' ? Object.values(progress) : [];
+      const speakingCompleted = days.filter((day) => day && day.pronunciation_done && day.shadowing_done && day.speaking_done).length;
+      const speakingStarted = days.filter((day) => day && (day.pronunciation_done || day.shadowing_done || day.speaking_done)).length;
+      let coursesStarted = 0, checklistItemsDone = 0;
+      for (let index = 0; index < localStorage.length; index++) {
+        const key = localStorage.key(index);
+        if (!key || !key.startsWith('progress:')) continue;
+        const state = safeJson(key, {});
+        const done = state && typeof state === 'object' ? Object.values(state).filter(Boolean).length : 0;
+        if (done) { coursesStarted++; checklistItemsDone += done; }
+      }
+      const totalCourses = coursesStarted + (speakingStarted ? 1 : 0);
+      $('#speaking-progress').textContent = `${totalCourses}/14`;
+      if (!totalCourses) $('#speaking-detail').textContent = TL('prof.speakNone');
+      else if (speakingStarted) $('#speaking-detail').textContent = checklistItemsDone + TL('prof.speakSpeaking') + speakingCompleted + '/30';
+      else $('#speaking-detail').textContent = checklistItemsDone + TL('prof.speakPlain');
+    }
+    function renderHistory(list) {
+      $('#result-count').textContent = String(list.length);
+      const latest = list.at(-1);
+      $('#latest-band').textContent = latest ? Number(latest.band).toFixed(1) : '—';
+      $('#latest-detail').textContent = latest ? `${labels[latest.module] || 'Mock'} · ${dateLabel(latest.completedAt)}` : TL('prof.latestNone');
+      $('#history-empty').hidden = list.length > 0;
+      $('#history-wrap').hidden = list.length === 0;
+      $('#clear-history').hidden = list.length === 0;
+      $('#history-body').innerHTML = list.slice().reverse().map((item) => {
+        const raw = Number.isFinite(Number(item.rawScore)) ? `${item.rawScore}/${item.totalQuestions || 40}` : '—';
+        return `<tr><td>${escapeHtml(dateLabel(item.completedAt))}</td><td>${escapeHtml(item.mockCode || 'Mock')}</td><td><span class="module-pill ${escapeHtml(item.module || 'mock')}">${escapeHtml(labels[item.module] || 'Mock')}</span></td><td><strong>${Number(item.band).toFixed(1)}</strong></td><td>${escapeHtml(raw)}</td></tr>`;
+      }).join('');
+    }
+    function linePath(points) { return points.map((point, index) => `${index ? 'L' : 'M'}${point.x.toFixed(1)},${point.y.toFixed(1)}`).join(' '); }
+    function renderChart(list) {
+      const chartRecords = list.filter((item) => modules.includes(item.module));
+      const hasData = chartRecords.length > 0;
+      $('#chart-empty').hidden = hasData;
+      $('#chart-wrap').hidden = !hasData;
+      if (!hasData) return;
+      const width = 760, height = 300, left = 44, right = 18, top = 18, bottom = 48;
+      const innerWidth = width - left - right, innerHeight = height - top - bottom;
+      const dates = chartRecords.map((item) => new Date(item.completedAt).getTime()).filter(Number.isFinite);
+      const minDate = Math.min(...dates), maxDate = Math.max(...dates);
+      const x = (date) => maxDate === minDate ? left + innerWidth / 2 : left + ((date - minDate) / (maxDate - minDate)) * innerWidth;
+      const y = (band) => top + ((9 - band) / 9) * innerHeight;
+      const grid = [0, 3, 6, 9].map((band) => `<g><line x1="${left}" x2="${width - right}" y1="${y(band)}" y2="${y(band)}" class="grid-line"/><text x="${left - 9}" y="${y(band) + 4}" text-anchor="end">${band}</text></g>`).join('');
+      const datesHtml = [minDate, maxDate].map((date, index) => `<text x="${index ? width - right : left}" y="${height - 16}" text-anchor="${index ? 'end' : 'start'}">${escapeHtml(dateLabel(new Date(date).toISOString()))}</text>`).join('');
+      const series = modules.map((module) => {
+        const points = chartRecords.filter((item) => item.module === module).map((item) => ({ x: x(new Date(item.completedAt).getTime()), y: y(Number(item.band)), item }));
+        if (!points.length) return '';
+        const dots = points.map((point) => `<circle cx="${point.x}" cy="${point.y}" r="4.5" fill="${colors[module]}"><title>${escapeHtml(`${labels[module]}: ${Number(point.item.band).toFixed(1)} · ${dateLabel(point.item.completedAt)}`)}</title></circle>`).join('');
+        return `<path d="${linePath(points)}" fill="none" stroke="${colors[module]}" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>${dots}`;
+      }).join('');
+      $('#chart-wrap').innerHTML = `<svg viewBox="0 0 ${width} ${height}" role="img" aria-labelledby="chart-svg-title chart-svg-desc"><title id="chart-svg-title">IELTS mock band trendi</title><desc id="chart-svg-desc">Bandlar 0 dan 9 gacha. Ranglar Listening, Reading, Writing va Speaking natijalarini bildiradi.</desc>${grid}<g class="date-labels">${datesHtml}</g>${series}</svg>`;
+      $('#chart-summary').textContent = TL('prof.chartSummary').replace('%d', chartRecords.length);
+    }
+    function render() { const list = records(); renderProfileName(); renderSpeakingProgress(); renderHistory(list); renderChart(list); }
+    $('#clear-history').addEventListener('click', () => {
+      if (confirm(TL('prof.confirmMsg'))) { localStorage.removeItem(RESULTS_KEY); render(); }
+    });
+    window.addEventListener('storage', (event) => { if ([RESULTS_KEY, GOOGLE_USER_KEY, SPEAKING_PROGRESS_KEY].includes(event.key) || String(event.key || '').startsWith('progress:')) render(); });
+    render();
+  </script>
+
+  <style>
+    .profile-page{max-width:1120px;margin:0 auto;padding:3.4rem min(5vw,56px) 4.5rem}.profile-hero{padding:clamp(1.5rem,4vw,3rem);border:1px solid color-mix(in srgb,var(--accent) 42%,var(--border));border-radius:24px;background:radial-gradient(circle at 92% 12%,color-mix(in srgb,var(--accent) 23%,transparent),transparent 30%),var(--surface)}.eyebrow{font-size:.76rem;font-weight:800;letter-spacing:.12em;color:var(--accent);margin:0 0 .55rem}.profile-hero h1{font:800 clamp(2.2rem,5vw,4.1rem)/1.02 var(--font-display);letter-spacing:-.06em;margin:0}.profile-name{font:700 1.1rem var(--font-display);margin:1rem 0 .45rem}.local-note,.muted{color:var(--muted);line-height:1.55;margin:.35rem 0 0;max-width:690px}.summary-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin:1rem 0}.summary-grid article,.panel{border:1px solid var(--border);border-radius:18px;background:var(--surface);padding:1.35rem}.summary-grid span,.summary-grid small{display:block;color:var(--muted)}.summary-grid span{font-size:.82rem;font-weight:700}.summary-grid strong{display:block;font:800 2.15rem var(--font-display);letter-spacing:-.06em;margin:.35rem 0}.panel{margin-top:1rem}.panel-head{display:flex;justify-content:space-between;gap:1.5rem;align-items:flex-start}.panel h2{font:800 1.5rem var(--font-display);margin:0}.empty-state{display:grid;gap:.35rem;padding:1.15rem 0;color:var(--muted);line-height:1.55}.empty-state strong{color:var(--text)}.chart-wrap{margin-top:1rem;overflow:auto}.chart-wrap svg{width:100%;min-width:600px;height:auto;display:block}.chart-wrap text{fill:var(--muted);font:12px var(--font-display)}.grid-line{stroke:var(--border);stroke-dasharray:4 5}.legend{display:flex;gap:.85rem;flex-wrap:wrap;padding:0;margin:1rem 0 0;list-style:none;color:var(--muted);font-size:.84rem;font-weight:700}.legend li::before{content:'';display:inline-block;width:9px;height:9px;border-radius:999px;margin-right:.35rem;background:#596579}.legend .listening::before{background:#3178c6}.legend .reading::before{background:#1f9d73}.legend .writing::before{background:#a35fd3}.legend .speaking::before{background:#ed8a32}.table-wrap{overflow:auto;margin-top:1rem}table{border-collapse:collapse;width:100%;min-width:640px}th,td{text-align:left;padding:.9rem .75rem;border-bottom:1px solid var(--border)}th{font-size:.76rem;letter-spacing:.07em;text-transform:uppercase;color:var(--muted)}.module-pill{font-weight:800;font-size:.78rem;padding:.28rem .55rem;border-radius:999px;background:#59657922;color:#596579}.module-pill.listening{color:#3178c6;background:#3178c622}.module-pill.reading{color:#1f9d73;background:#1f9d7322}.module-pill.writing{color:#a35fd3;background:#a35fd322}.module-pill.speaking{color:#ed8a32;background:#ed8a3222}.clear-button{border:1px solid var(--border);border-radius:10px;background:transparent;color:var(--muted);padding:.55rem .75rem;font:700 .82rem var(--font-display);cursor:pointer}.clear-button:hover{color:#d65b54;border-color:#d65b54}@media(max-width:720px){.profile-page{padding:2rem 20px 3.5rem}.summary-grid{grid-template-columns:1fr}.panel-head{display:block}.panel-head .muted{margin-top:.65rem}.chart-wrap svg{min-width:550px}}
+  </style>
+</Base>

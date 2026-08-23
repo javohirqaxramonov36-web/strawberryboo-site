@@ -1,10 +1,4 @@
 ---
-import Base from '../layouts/Base.astro';
-const title = 'Sahifa topilmadi — Tayanch';
-const description = 'So‘ralgan sahifa topilmadi. Tayanch kurslari va yordam sahifalariga qayting.';
-const base = import.meta.env.BASE_URL;
+import NotFoundPage from '../components/NotFoundPage.astro';
 ---
-<Base title={title} description={description}>
-  <main class="not-found"><p>404</p><h1 data-i18n="nf.h1">Sahifa topilmadi</h1><p data-i18n="nf.desc">Havola o‘zgargan yoki noto‘g‘ri yozilgan bo‘lishi mumkin.</p><div><a class="start-btn" href={base + 'kurslar/'} data-i18n="nf.btn1">Kurslarni ko‘rish →</a><a class="course-nav-link" href={base + 'bog-lanish/'} data-i18n="nf.btn2">Yordam olish</a></div></main>
-  <style>.not-found{max-width:700px;margin:8vh auto;padding:2.5rem 1.2rem;text-align:center}.not-found>p:first-child{font-size:5rem;font-weight:900;line-height:1;color:var(--accent);margin:0}.not-found h1{font-size:2rem}.not-found p{color:var(--muted)}.not-found div{display:flex;gap:1rem;justify-content:center;align-items:center;margin-top:1.5rem}</style>
-</Base>
+<NotFoundPage lang="uz" />

@@ -1,68 +1,22 @@
 ---
-import type { GeneralEnglishCourse as Course } from '../data/general-english-courses';
-
-interface Props {
-  course: Course;
-  previousCourse?: Course;
-  nextCourse?: Course;
-}
-
-const { course, previousCourse, nextCourse } = Astro.props;
+import type { LocalizedGeneralEnglishCourse as Course, CourseLang } from '../data/general-english-courses';
+interface Props { course: Course; previousCourse?: Course; nextCourse?: Course; lang?: CourseLang; }
+const { course, previousCourse, nextCourse, lang = 'uz' } = Astro.props;
 const base = import.meta.env.BASE_URL;
+const prefix = lang === 'uz' ? '' : `${lang}/`;
+const copy = {
+  uz: { certificate: 'Sertifikat bilan', audience: 'KIMGA MO‘LJALLANGAN?', path: 'Keyingi darajaga aniq yo‘l', status: 'KURS HOLATI', soon: 'Tez orada', statusText: 'To‘liq dars materiallari va jadvali tayyorlanmoqda.', nav: 'General English darajalari', previous: 'Oldingi daraja', all: 'Barcha General English kurslari', next: 'Keyingi daraja' },
+  ru: { certificate: 'С сертификатом', audience: 'ДЛЯ КОГО?', path: 'Чёткий путь к следующему уровню', status: 'СТАТУС КУРСА', soon: 'Tez orada', statusText: 'Полные материалы и расписание курса готовятся.', nav: 'Уровни General English', previous: 'Предыдущий уровень', all: 'Все курсы General English', next: 'Следующий уровень' },
+  en: { certificate: 'Certificate included', audience: 'WHO IS IT FOR?', path: 'A clear path to the next level', status: 'COURSE STATUS', soon: 'Tez orada', statusText: 'Full course materials and schedule are being prepared.', nav: 'General English levels', previous: 'Previous level', all: 'All General English courses', next: 'Next level' }
+}[lang];
+const courseHref = (slug: string) => base + `${prefix}kurslar/${slug}`;
 ---
-
 <article class="general-english-course" style={`--course-accent:${course.accent}`}>
-  <header class="course-hero">
-    <span class="badge badge-new">{course.badge}</span>
-    <p class="eyebrow">GENERAL ENGLISH · CEFR {course.cefr}</p>
-    <h1>{course.title}</h1>
-    <p class="lead">{course.description}</p>
-    <div class="course-meta">
-      <span class="cat">{course.tags.join(' · ')}</span>
-      {course.certificate && <span class="certificate">Sertifikat bilan</span>}
-    </div>
-  </header>
-
-  <section class="course-section" aria-labelledby="audience-title">
-    <p class="eyebrow">KIMGA MO‘LJALLANGAN?</p>
-    <h2 id="audience-title">Keyingi darajaga aniq yo‘l</h2>
-    <p>{course.targetAudience}</p>
-  </section>
-
-  <section class="course-section status-section" aria-labelledby="status-title">
-    <p class="eyebrow">KURS HOLATI</p>
-    <h2 id="status-title">Tez orada</h2>
-    <p>To‘liq dars materiallari va jadvali tayyorlanmoqda. {course.price}.</p>
-  </section>
-
-  <nav class="level-navigation" aria-label="General English darajalari">
-    {previousCourse ? (
-      <a href={base + `kurslar/${previousCourse.slug}`}>← Oldingi daraja: {previousCourse.cefr}</a>
-    ) : <span aria-hidden="true"></span>}
-    <a class="all-levels" href={base + 'kurslar'}>Barcha General English kurslari</a>
-    {nextCourse ? (
-      <a href={base + `kurslar/${nextCourse.slug}`}>Keyingi daraja: {nextCourse.cefr} →</a>
-    ) : <span aria-hidden="true"></span>}
-  </nav>
+  <header class="course-hero"><span class="badge badge-new">{course.badge}</span><p class="eyebrow">GENERAL ENGLISH · CEFR {course.cefr}</p><h1>{course.title}</h1><p class="lead">{course.description}</p><div class="course-meta"><span class="cat">{course.tags.join(' · ')}</span>{course.certificate && <span class="certificate">{copy.certificate}</span>}</div></header>
+  <section class="course-section" aria-labelledby="audience-title"><p class="eyebrow">{copy.audience}</p><h2 id="audience-title">{copy.path}</h2><p>{course.targetAudience}</p></section>
+  <section class="course-section status-section" aria-labelledby="status-title"><p class="eyebrow">{copy.status}</p><h2 id="status-title">{copy.soon}</h2><p>{copy.statusText} {course.price}.</p></section>
+  <nav class="level-navigation" aria-label={copy.nav}>{previousCourse ? <a href={courseHref(previousCourse.slug)}>← {copy.previous}: {previousCourse.cefr}</a> : <span aria-hidden="true"></span>}<a class="all-levels" href={base + `${prefix}kurslar`}>{copy.all}</a>{nextCourse ? <a href={courseHref(nextCourse.slug)}>{copy.next}: {nextCourse.cefr} →</a> : <span aria-hidden="true"></span>}</nav>
 </article>
-
 <style>
-  .general-english-course { max-width: 900px; margin: 0 auto; }
-  .course-hero { padding: clamp(1.4rem, 4vw, 3rem); border: 1px solid var(--border); border-radius: 22px; background: linear-gradient(135deg, color-mix(in srgb, var(--course-accent) 13%, var(--surface)), var(--surface)); }
-  .course-hero h1 { margin: .5rem 0; font-size: clamp(2rem, 5vw, 3.6rem); line-height: 1.08; }
-  .lead { color: var(--muted); max-width: 760px; font-size: 1.08rem; line-height: 1.7; }
-  .course-meta { display: flex; flex-wrap: wrap; align-items: center; gap: .7rem; margin-top: 1.15rem; }
-  .cat, .certificate { display: inline-flex; align-items: center; border-radius: 999px; padding: .38rem .7rem; font-size: .82rem; font-weight: 800; }
-  .cat { color: var(--course-accent); background: color-mix(in srgb, var(--course-accent) 12%, var(--surface)); }
-  .certificate { border: 1px solid var(--border); color: var(--muted); }
-  .course-section { margin-top: 1rem; padding: clamp(1.2rem, 3vw, 1.8rem); border: 1px solid var(--border); border-radius: 18px; background: var(--surface); }
-  .course-section h2 { margin: .2rem 0 .5rem; }
-  .course-section p:last-child { margin-bottom: 0; color: var(--muted); line-height: 1.65; }
-  .status-section { border-left: 4px solid var(--course-accent); }
-  .level-navigation { display: grid; grid-template-columns: 1fr auto 1fr; gap: .8rem; align-items: center; margin: 1.25rem 0; }
-  .level-navigation a { color: var(--text); font-weight: 800; text-decoration: none; }
-  .level-navigation a:hover { color: var(--course-accent); }
-  .level-navigation > :last-child { text-align: right; }
-  .all-levels { color: var(--course-accent) !important; text-align: center; }
-  @media (max-width: 680px) { .level-navigation { grid-template-columns: 1fr; } .level-navigation > :last-child { text-align: left; } .all-levels { text-align: left; order: 3; } }
+  .general-english-course { max-width: 900px; margin: 0 auto; }.course-hero { padding: clamp(1.4rem, 4vw, 3rem); border: 1px solid var(--border); border-radius: 22px; background: linear-gradient(135deg, color-mix(in srgb, var(--course-accent) 13%, var(--surface)), var(--surface)); }.course-hero h1 { margin: .5rem 0; font-size: clamp(2rem, 5vw, 3.6rem); line-height: 1.08; }.lead { color: var(--muted); max-width: 760px; font-size: 1.08rem; line-height: 1.7; }.course-meta { display:flex; flex-wrap:wrap; align-items:center; gap:.7rem; margin-top:1.15rem; }.cat,.certificate { display:inline-flex; align-items:center; border-radius:999px; padding:.38rem .7rem; font-size:.82rem; font-weight:800; }.cat { color:var(--course-accent); background:color-mix(in srgb,var(--course-accent) 12%,var(--surface)); }.certificate { border:1px solid var(--border); color:var(--muted); }.course-section { margin-top:1rem; padding:clamp(1.2rem,3vw,1.8rem); border:1px solid var(--border); border-radius:18px; background:var(--surface); }.course-section h2 { margin:.2rem 0 .5rem; }.course-section p:last-child { margin-bottom:0; color:var(--muted); line-height:1.65; }.status-section { border-left:4px solid var(--course-accent); }.level-navigation { display:grid; grid-template-columns:1fr auto 1fr; gap:.8rem; align-items:center; margin:1.25rem 0; }.level-navigation a { color:var(--text); font-weight:800; text-decoration:none; }.level-navigation a:hover { color:var(--course-accent); }.level-navigation > :last-child { text-align:right; }.all-levels { color:var(--course-accent) !important; text-align:center; }@media (max-width:680px){.level-navigation{grid-template-columns:1fr}.level-navigation > :last-child{ text-align:left}.all-levels{ text-align:left;order:3}}
 </style>

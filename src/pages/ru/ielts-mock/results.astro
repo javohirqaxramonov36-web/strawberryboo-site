@@ -1,0 +1,33 @@
+---
+import Base from '../../../layouts/Base.astro';
+const title = 'Результат IELTS Mock — Tayanch';
+const description = 'Демо результата IELTS mock и следующие шаги для практики.';
+const base = import.meta.env.BASE_URL;
+
+const alternates = [{ lang: 'uz', href: base + 'ru/ielts-mock/results/' }, { lang: 'ru', href: base + 'ru/ielts-mock/results/' }, { lang: 'en', href: base + 'en/ielts-mock/results/' }];---
+<Base title={title} description={description} lang="ru" localeAlternates={alternates}>
+  <main class="result-page">
+    <a class="back" href={base + 'ru/ielts-mock/'}>← Mock katalogiga qaytish</a>
+    <section class="result-hero">
+      <p class="eyebrow" data-i18n="res.eyebrow">MOCK 001 · DEMO NATIJA</p>
+      <h1 data-i18n="res.h1">AI practice estimate: <span>6.5</span><small>/ 9.0</small></h1>
+      <p data-i18n="res.intro">Bu demo natija sahifasi. Production versiyada baho sizning topshirgan javoblaringiz va audioingiz asosida yaratiladi.</p>
+      <div class="confidence"><b data-i18n="res.confLabel">Confidence: Medium</b><span data-i18n="res.confNote">Natija taxminiy; real IELTS exam score farq qilishi mumkin.</span></div>
+    </section>
+    <section class="score-grid">
+      <article><span>Listening</span><strong>7.0</strong><p>28/40 to‘g‘ri javob</p></article>
+      <article><span>Reading</span><strong>6.5</strong><p>27/40 to‘g‘ri javob</p></article>
+      <article><span>Writing</span><strong>6.0</strong><p>AI rubric feedback</p></article>
+      <article><span>Speaking</span><strong>6.5</strong><p>Audio practice estimate</p></article>
+    </section>
+    <section class="feedback-layout">
+      <article class="feedback-card"><p class="eyebrow">WRITING</p><h2 data-i18n="res.fbWriteTitle">Eng katta o‘sish nuqtasi</h2><p data-i18n="res.fbWriteText">Task Response yaxshi boshlangan, lekin asosiy fikrlarni misol bilan kengaytirish kerak. Keyingi essayda har body paragraph uchun bitta aniq dalil qo‘shing.</p><ul><li>Task Response: 6.0</li><li>Coherence & Cohesion: 6.5</li><li>Lexical Resource: 6.0</li><li>Grammar: 6.0</li></ul></article>
+      <article class="feedback-card"><p class="eyebrow">SPEAKING</p><h2 data-i18n="res.fbSpeakTitle">Keyingi mashq</h2><p data-i18n="res.fbSpeakText">Javoblaringiz tushunarli, ammo uzun pauzalar tez-tez uchradi. Part 2 javobini 90 soniya davomida gapirib, keyin transkript bilan qayta ko‘ring.</p><ul><li>Fluency: 6.0</li><li>Lexical Resource: 6.5</li><li>Grammar: 6.5</li><li>Pronunciation: 6.5</li></ul></article>
+    </section>
+    <section class="next-step"><div><p class="eyebrow" data-i18n="res.nextEyebrow">KEYINGI QADAM</p><h2 data-i18n="res.nextTitle">7 kun ichida qayta mock topshiring</h2><p data-i18n="res.nextText">Avval Writing Task 2 va Speaking Part 2 mashqlarini yakunlang, keyin Progress paketidagi navbatdagi full mockdan foydalaning.</p></div><a href={base + 'ru/ielts-mock/'} data-i18n="res.nextLink">Keyingi mockni tanlash →</a></section>
+    <p class="legal" data-i18n="res.legal">Ogohlantirish: Tayanch AI practice estimate rasmiy IELTS natijasi emas. U examiner bahosi, test kuni sharoiti va rasmiy score’dan farq qilishi mumkin.</p>
+  </main>
+  <style>
+    .result-page{max-width:1050px;margin:auto;padding:3rem min(7vw,90px) 5rem}.back{color:var(--muted);text-decoration:none;font-weight:700}.back:hover{color:var(--accent)}.result-hero{margin:3.5rem 0 2rem;text-align:center;padding:3rem 1.5rem;border:1px solid var(--border);border-radius:24px;background:radial-gradient(circle at top,color-mix(in srgb,var(--accent) 25%,transparent),var(--surface) 65%)}.eyebrow{color:var(--accent);font-weight:800;letter-spacing:.11em;font-size:.76rem;margin:0 0 .7rem}.result-hero h1{font:800 clamp(2.2rem,5vw,4.5rem)/1 var(--font-display);letter-spacing:-.06em;margin:0}.result-hero h1 span{color:var(--accent)}.result-hero h1 small{font-size:.33em;color:var(--muted);letter-spacing:-.02em}.result-hero>p{max-width:600px;margin:1.1rem auto;color:var(--muted);line-height:1.6}.confidence{display:inline-flex;gap:.55rem;align-items:center;flex-wrap:wrap;justify-content:center;margin-top:1rem;padding:.55rem .8rem;border:1px solid color-mix(in srgb,#f3ad39 45%,var(--border));border-radius:999px;font-size:.78rem;background:color-mix(in srgb,#f3ad39 10%,transparent)}.confidence b{color:#e9a52f}.confidence span{color:var(--muted)}.score-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:.8rem}.score-grid article{padding:1.1rem;border:1px solid var(--border);border-radius:15px;background:var(--surface)}.score-grid span{display:block;color:var(--muted);font-size:.8rem}.score-grid strong{display:block;font:800 2rem var(--font-display);color:var(--accent);margin:.5rem 0 .2rem}.score-grid p{color:var(--muted);font-size:.78rem;margin:0}.feedback-layout{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin:2rem 0}.feedback-card{padding:1.5rem;border-radius:18px;background:var(--surface);border:1px solid var(--border)}.feedback-card h2,.next-step h2{font:800 1.45rem var(--font-display);margin:.25rem 0 .8rem}.feedback-card>p:not(.eyebrow),.next-step p{color:var(--muted);line-height:1.65}.feedback-card ul{margin:1.1rem 0 0;padding:0;list-style:none;display:grid;grid-template-columns:1fr 1fr;gap:.45rem}.feedback-card li{font-size:.84rem;padding:.5rem .65rem;background:var(--accent-soft);border-radius:8px}.next-step{display:flex;justify-content:space-between;align-items:center;gap:2rem;padding:1.7rem;border-radius:18px;background:linear-gradient(135deg,var(--accent-soft),var(--surface));border:1px solid var(--accent)}.next-step>div{max-width:620px}.next-step a{white-space:nowrap;padding:.8rem 1rem;border-radius:11px;background:var(--accent);color:#fff;text-decoration:none;font-weight:800}.legal{margin:1.5rem auto 0;max-width:720px;text-align:center;color:var(--muted);font-size:.78rem;line-height:1.55}@media(max-width:650px){.result-page{padding:2rem 20px 4rem}.score-grid{grid-template-columns:1fr 1fr}.feedback-layout{grid-template-columns:1fr}.next-step{display:block}.next-step a{display:inline-block;margin-top:.7rem}.confidence{border-radius:12px}.feedback-card ul{grid-template-columns:1fr}}
+  </style>
+</Base>

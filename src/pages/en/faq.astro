@@ -1,0 +1,13 @@
+---
+import Base from '../../layouts/Base.astro';
+import LocalizedInfoPage from '../../components/LocalizedInfoPage.astro';
+const base = import.meta.env.BASE_URL;
+const alternates = [
+  { lang: 'uz', href: base + 'faq/' },
+  { lang: 'ru', href: base + 'ru/faq/' },
+  { lang: 'en', href: base + 'en/faq/' },
+];
+---
+<Base title="Frequently asked questions — Tayanch" description="Answers to common questions about courses, payment methods, certificates and forever access." lang="en" localeAlternates={alternates}>
+  <LocalizedInfoPage lang="en" page="faq" />
+</Base>

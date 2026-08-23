@@ -1,0 +1,13 @@
+---
+import Base from '../../layouts/Base.astro';
+import LocalizedInfoPage from '../../components/LocalizedInfoPage.astro';
+const base = import.meta.env.BASE_URL;
+const alternates = [
+  { lang: 'uz', href: base + 'homiylik/' },
+  { lang: 'ru', href: base + 'ru/homiylik/' },
+  { lang: 'en', href: base + 'en/homiylik/' },
+];
+---
+<Base title="Поддержать Tayanch" description="Добровольная поддержка, которая помогает сохранять курсы Tayanch бесплатными и качественными." lang="ru" localeAlternates={alternates}>
+  <LocalizedInfoPage lang="ru" page="sponsorship" />
+</Base>

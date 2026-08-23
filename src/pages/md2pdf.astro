@@ -46,6 +46,8 @@ const base = import.meta.env.BASE_URL;
 <script is:inline src={base + 'vendor/html2pdf.bundle.min.js'}></script>
 <script is:inline>
   (function () {
+    const MDP_RUNTIME = { uz: { previewError: 'Xatolik: ', empty: 'Avval markdown yozing.', preparing: 'PDF tayyorlanmoqda...', downloaded: '✅ Yuklab olindi: ', error: 'Xatolik: ', sample: 'Namuna yuklandi.' }, ru: { previewError: 'Ошибка: ', empty: 'Сначала напишите Markdown.', preparing: 'PDF готовится...', downloaded: '✅ Скачано: ', error: 'Ошибка: ', sample: 'Пример загружен.' }, en: { previewError: 'Error: ', empty: 'Write Markdown first.', preparing: 'Preparing PDF...', downloaded: '✅ Downloaded: ', error: 'Error: ', sample: 'Sample loaded.' } };
+    const mdpText = (key) => (MDP_RUNTIME[document.documentElement.lang] || MDP_RUNTIME.uz)[key];
     var input = document.getElementById('mdInput');
     var preview = document.getElementById('preview');
     var status = document.getElementById('status');
@@ -87,7 +89,7 @@ const base = import.meta.env.BASE_URL;
       try {
         preview.innerHTML = marked.parse(src);
       } catch (e) {
-        preview.innerHTML = '<p style="color:#b00020">Xatolik: ' + e.message + '</p>';
+        preview.innerHTML = '<p style="color:#b00020">' + mdpText('previewError') + e.message + '</p>';
       }
     }
 
@@ -101,9 +103,9 @@ const base = import.meta.env.BASE_URL;
     input.addEventListener('input', render);
 
     dlBtn.addEventListener('click', function () {
-      if (!input.value.trim()) { status.textContent = 'Avval markdown yozing.'; return; }
+      if (!input.value.trim()) { status.textContent = mdpText('empty'); return; }
       var name = filenameFrom(input.value);
-      status.textContent = 'PDF tayyorlanmoqda...';
+      status.textContent = mdpText('preparing');
       html2pdf().set({
         margin: 12,
         filename: name,
@@ -112,16 +114,16 @@ const base = import.meta.env.BASE_URL;
         jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' },
         pagebreak: { mode: ['css', 'legacy'] }
       }).from(preview).save().then(function () {
-        status.textContent = '✅ Yuklab olindi: ' + name;
+        status.textContent = mdpText('downloaded') + name;
       }).catch(function (e) {
-        status.textContent = 'Xatolik: ' + (e && e.message ? e.message : e);
+        status.textContent = mdpText('error') + (e && e.message ? e.message : e);
       });
     });
 
     sampleBtn.addEventListener('click', function () {
       input.value = SAMPLE;
       render();
-      status.textContent = 'Namuna yuklandi.';
+      status.textContent = mdpText('sample');
     });
 
     clearBtn.addEventListener('click', function () {

@@ -1,0 +1,13 @@
+---
+import Base from '../../layouts/Base.astro';
+import LocalizedInfoPage from '../../components/LocalizedInfoPage.astro';
+const base = import.meta.env.BASE_URL;
+const alternates = [
+  { lang: 'uz', href: base + 'biz-haqimizda/' },
+  { lang: 'ru', href: base + 'ru/biz-haqimizda/' },
+  { lang: 'en', href: base + 'en/biz-haqimizda/' },
+];
+---
+<Base title="About Tayanch" description="About Tayanch and its creator Javohir Qaxramonov: a practical online course platform in Uzbek." lang="en" localeAlternates={alternates}>
+  <LocalizedInfoPage lang="en" page="about" />
+</Base>

@@ -70,6 +70,8 @@ const base = import.meta.env.BASE_URL;
 
 <script is:inline>
   (function () {
+    const TECH_RUNTIME = { uz: { missingKey: 'Iltimos, avval API kalitni kiriting.', empty: techText('empty'), error: 'Xatolik yuz berdi', thinking: 'Gemini o\'ylayapti...', placeholder: "Gemini'ga savolingizni yozing..." }, ru: { missingKey: 'Сначала введите API-ключ.', empty: '(Пустой ответ)', error: 'Произошла ошибка', thinking: 'Gemini думает...', placeholder: 'Напишите вопрос для Gemini...' }, en: { missingKey: 'Please enter an API key first.', empty: '(Empty response)', error: 'An error occurred', thinking: 'Gemini is thinking...', placeholder: 'Type your question for Gemini...' } };
+    const techText = (key) => (TECH_RUNTIME[document.documentElement.lang] || TECH_RUNTIME.uz)[key];
     var LS_KEY = 'techlab_api_key';
     var apiKey = '';
     var history = [];
@@ -85,6 +87,7 @@ const base = import.meta.env.BASE_URL;
     var messages = document.getElementById('tlMessages');
     var input = document.getElementById('tlInput');
     var sendBtn = document.getElementById('tlSend');
+    input.placeholder = techText('placeholder');
 
     function showError(msg) { errorEl.textContent = msg || ''; }
     function clearError() { errorEl.textContent = ''; }
@@ -105,7 +108,7 @@ const base = import.meta.env.BASE_URL;
 
     function connect() {
       var k = keyInput.value.trim();
-      if (!k) { showError('Iltimos, avval API kalitni kiriting.'); return; }
+      if (!k) { showError(techText('missingKey')); return; }
       apiKey = k;
       if (remember.checked) {
         try { localStorage.setItem(LS_KEY, apiKey); } catch (e) {}
@@ -136,7 +139,7 @@ const base = import.meta.env.BASE_URL;
         var el = document.createElement('div');
         el.className = 'tl-msg tl-model tl-thinking';
         el.id = 'tlThinking';
-        el.textContent = '🤖 ' + (window.__tlThinking || 'Gemini o\'ylayapti...');
+        el.textContent = '🤖 ' + (window.__tlThinking || techText('thinking'));
         messages.appendChild(el);
         messages.scrollTop = messages.scrollHeight;
       } else {
@@ -175,7 +178,7 @@ const base = import.meta.env.BASE_URL;
         .then(function (data) {
           setThinking(false);
           var part = data && data.candidates && data.candidates[0] && data.candidates[0].content && data.candidates[0].content.parts && data.candidates[0].content.parts[0];
-          var out = part && part.text ? part.text : '(Bo\'sh javob)';
+          var out = part && part.text ? part.text : techText('empty');
           appendMessage('model', out);
           history.push({ role: 'model', parts: [{ text: out }] });
         })
@@ -187,7 +190,7 @@ const base = import.meta.env.BASE_URL;
           } else if (err && err.message === 'RATE') {
             msg = 'So\'rovlar chegarasi (rate limit) tugadi. Biroz kutib, qayta urinib ko\'ring.';
           } else if (err && err.message && err.message.indexOf('HTTP') === 0) {
-            msg = 'Xatolik yuz berdi (' + err.message + ').';
+            msg = techText('error') + ' (' + err.message + ').';
           } else {
             msg = 'Tarmoq xatosi. Internet aloqasini tekshiring.';
           }

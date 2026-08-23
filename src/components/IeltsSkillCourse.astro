@@ -8,7 +8,8 @@ const L = {
     newSkill: 'YANGI SKILL-KURS', progress: 'progressi', why: 'nima uchun foydali?',
     bundleEyebrow: 'IELTS FULL BUNDLE', bundleTitle: '4 tasini birga oling — 20% tejang',
     bundleText: 'To‘lov mavjud jarayon bo‘yicha Telegram orqali qo‘lda tasdiqlanadi.',
-    mockBonus: 'IELTS Mock bonusi:', availableEyebrow: 'MAVJUD MATERIAL', availableTitle: 'Shu kurs ichida nima bor?',
+    bundleDetails: 'Listening + Reading + Writing + Speaking alohida:',
+    mockBonus: 'IELTS Mock bonusi:', mockBonusText: 'Listening yoki Reading kursini xarid qilganda bir marta 2 Qadam bonus beriladi.', availableEyebrow: 'MAVJUD MATERIAL', availableTitle: 'Shu kurs ichida nima bor?',
     obsidianEyebrow: 'OBSIDIAN KONTENTI', obsidianTitle: 'Struktura va lug‘at materiallari',
     bonusEyebrow: 'BONUS MINI-KURS', bonusTitle: 'Typing: tez va aniq yozish',
     bonusText: 'Har darsdan keyin qisqa quiz hamda WPM va aniqlikni hisoblaydigan amaliy typing mashqi.',
@@ -16,13 +17,15 @@ const L = {
     appText: 'Pronunciation, shadowing, Part 1/2/3, timer, progress va transcript-asosidagi AI feedback mavjud.',
     fillEyebrow: 'TO‘LDIRILISHI KERAK', fillTitle: 'Keyingi kontent bosqichi',
     fillNote: 'Bu bo‘limlar hozircha tayyor kontent deb ko‘rsatilmaydi; ular alohida material tasdiqlangandan keyin qo‘shiladi.',
-    source: 'Manba:', getCourse: 'Kursni olish ·', som: '→', soum: 'so‘m'
+    source: 'Manba:', getCourse: 'Kursni olish ·', som: '→', soum: 'so‘m', foreverAccess: 'umrbod foydalanish',
+    allCourses: '← Barcha IELTS kurslari', fallbackBonus: 'Typing bonusini ochish →', speakingCta: 'AI Speaking modulini ochish →'
   },
   ru: {
     newSkill: 'НОВЫЙ SKILL-КУРС', progress: 'прогресс', why: 'почему это полезно?',
     bundleEyebrow: 'IELTS FULL BUNDLE', bundleTitle: 'Возьмите все 4 — сэкономьте 20%',
     bundleText: 'Оплата подтверждается вручную через Telegram по действующему процессу.',
-    mockBonus: 'Бонус IELTS Mock:', availableEyebrow: 'ДОСТУПНЫЕ МАТЕРИАЛЫ', availableTitle: 'Что входит в этот курс?',
+    bundleDetails: 'Listening + Reading + Writing + Speaking по отдельности:',
+    mockBonus: 'Бонус IELTS Mock:', mockBonusText: 'При покупке курса Listening или Reading один раз предоставляется бонус 2 Qadam.', availableEyebrow: 'ДОСТУПНЫЕ МАТЕРИАЛЫ', availableTitle: 'Что входит в этот курс?',
     obsidianEyebrow: 'OBSIDIAN КОНТЕНТ', obsidianTitle: 'Структура и словарные материалы',
     bonusEyebrow: 'БОНУСНЫЙ МИНИ-КУРС', bonusTitle: 'Typing: быстрый и точный набор',
     bonusText: 'После каждого урока — короткий квиз и практическое упражнение по печати с подсчётом WPM и точности.',
@@ -30,13 +33,15 @@ const L = {
     appText: 'Pronunciation, shadowing, Part 1/2/3, таймер, прогресс и AI-фидбэк на основе транскрипта.',
     fillEyebrow: 'НУЖНО ЗАПОЛНИТЬ', fillTitle: 'Следующий этап контента',
     fillNote: 'Эти разделы пока не показываются как готовый контент; они добавляются после подтверждения отдельных материалов.',
-    source: 'Источник:', getCourse: 'Получить курс ·', som: '→', soum: 'сум'
+    source: 'Источник:', getCourse: 'Получить курс ·', som: '→', soum: 'сум', foreverAccess: 'постоянный доступ',
+    allCourses: '← Все курсы IELTS', fallbackBonus: 'Открыть бонус Typing →', speakingCta: 'Открыть AI-модуль Speaking →'
   },
   en: {
     newSkill: 'NEW SKILL-COURSE', progress: 'progress', why: 'why is this useful?',
     bundleEyebrow: 'IELTS FULL BUNDLE', bundleTitle: 'Get all 4 together — save 20%',
     bundleText: 'Payment is confirmed manually via Telegram following the current process.',
-    mockBonus: 'IELTS Mock bonus:', availableEyebrow: 'AVAILABLE MATERIAL', availableTitle: 'What is inside this course?',
+    bundleDetails: 'Listening + Reading + Writing + Speaking separately:',
+    mockBonus: 'IELTS Mock bonus:', mockBonusText: 'Buy a Listening or Reading course and receive a one-time 2 Qadam bonus.', availableEyebrow: 'AVAILABLE MATERIAL', availableTitle: 'What is inside this course?',
     obsidianEyebrow: 'OBSIDIAN CONTENT', obsidianTitle: 'Structure and vocabulary materials',
     bonusEyebrow: 'BONUS MINI-COURSE', bonusTitle: 'Typing: fast and accurate',
     bonusText: 'After each lesson, a short quiz plus a practical typing drill that tracks WPM and accuracy.',
@@ -44,26 +49,42 @@ const L = {
     appText: 'Pronunciation, shadowing, Part 1/2/3, timer, progress and transcript-based AI feedback.',
     fillEyebrow: 'TO BE FILLED', fillTitle: 'Next content stage',
     fillNote: 'These sections are not shown as ready content yet; they are added after the relevant materials are confirmed.',
-    source: 'Source:', getCourse: 'Get the course ·', som: '→', soum: 'soum'
+    source: 'Source:', getCourse: 'Get the course ·', som: '→', soum: 'soum', foreverAccess: 'lifetime access',
+    allCourses: '← All IELTS courses', fallbackBonus: 'Open the Typing bonus →', speakingCta: 'Open the AI Speaking module →'
   }
 };
 const t = L[lang] || L.uz;
 const coursePrice = `${price} · ≈ ${priceUzs}`;
-const bundleHref = base + 'bog-lanish?course=ielts-full-bundle&price=375000';
+const localePrefix = lang === 'uz' ? '' : `${lang}/`;
+// Course routes are available in all three locales. Standalone practice pages are
+// shared, so their language is carried in the query string instead of pointing to a
+// route that does not exist.
+const localHref = (path) => {
+  const normalized = String(path || '').replace(/^\/+/, '');
+  // These tools currently have a single shared route. Keep a locale marker for the
+  // practice shell instead of sending RU/EN learners to a non-existent page.
+  if (normalized.startsWith('ielts-practice/') || normalized.startsWith('kurslar/ielts-writing/typing/')) {
+    return base + normalized + (normalized.includes('?') ? '&' : '?') + `lang=${lang}`;
+  }
+  return base + localePrefix + normalized;
+};
+const bundleHref = localHref(`bog-lanish?course=ielts-full-bundle&price=375000`);
+const allCoursesHref = localHref('kurslar/#ielts-courses');
+const practiceTarget = skill === 'ielts-speaking' ? 'kurslar/ielts-speaking/#speaking-practice' : practiceHref;
 ---
 <article class="ielts-skill" style={`--skill-accent:${accent}`}>
-  <header class="course-hero"><p class="eyebrow">{eyebrow} · {t.newSkill}</p><h1>{title}</h1><div class="price"><span class="now">{price}</span><span class="uzs">≈ {priceUzs} · forever access</span></div><p class="lead">{description}</p></header>
+  <header class="course-hero"><p class="eyebrow">{eyebrow} · {t.newSkill}</p><h1>{title}</h1><div class="price"><span class="now">{price}</span><span class="uzs">≈ {priceUzs} · {t.foreverAccess}</span></div><p class="lead">{description}</p></header>
   <CourseProgress courseId={skill} title={`${title} ${t.progress}`} selector=".ielts-skill" itemSelector=".content-grid > article" labelSelector="h3" mode={skill === 'ielts-speaking' ? 'speaking' : 'checklist'} />
   {whyUseful && <aside class="why-useful"><strong>{title} {t.why}</strong><p>{whyUseful}</p></aside>}
-  <section class="bundle-callout"><div><p class="eyebrow">{t.bundleEyebrow}</p><h2>{t.bundleTitle}</h2><p>Listening + Reading + Writing + Speaking alohida: <s>468 750 {t.soum}</s>. Bundle: <strong>375 000 {t.soum}</strong>. {t.bundleText}</p></div><a class="start-btn" href={bundleHref}>Bundle: 375 000 {t.soum} →</a></section>
-  {mockBonus && <aside class="mock-bonus"><strong>{t.mockBonus}</strong> Listening yoki Reading kursini xarid qilganda bir marta 2 Qadam bonus beriladi.</aside>}
-  <section><p class="eyebrow">{t.availableEyebrow}</p><h2>{t.availableTitle}</h2><div class="content-grid">{available.map((item) => <article><h3>{item.title}</h3><p>{item.text}</p></article>)}</div>{practiceHref && <a class="practice-link" href={base + practiceHref}>{practiceLabel} →</a>}</section>
+  <section class="bundle-callout"><div><p class="eyebrow">{t.bundleEyebrow}</p><h2>{t.bundleTitle}</h2><p>{t.bundleDetails} <s>468 750 {t.soum}</s>. Bundle: <strong>375 000 {t.soum}</strong>. {t.bundleText}</p></div><a class="start-btn" href={bundleHref}>Bundle: 375 000 {t.soum} →</a></section>
+  {mockBonus && <aside class="mock-bonus"><strong>{t.mockBonus}</strong> {t.mockBonusText}</aside>}
+  <section><p class="eyebrow">{t.availableEyebrow}</p><h2>{t.availableTitle}</h2><div class="content-grid">{available.map((item) => <article><h3>{item.title}</h3><p>{item.text}</p></article>)}</div>{practiceTarget && <a class="practice-link" href={localHref(practiceTarget)}>{practiceLabel} →</a>}</section>
   {contentTodo && <section class="content-todo"><p class="eyebrow">{t.obsidianEyebrow}</p><h2>{t.obsidianTitle}</h2><p>{contentTodo}</p></section>}
-  {bonusHref && <section class="bonus-callout"><div><p class="eyebrow">{t.bonusEyebrow}</p><h2>{t.bonusTitle}</h2><p>{t.bonusText}</p></div><a class="start-btn" href={base + bonusHref}>{bonusLabel || 'Typing bonusini ochish →'}</a></section>}
-  {speakingApp && <section class="app-callout"><p class="eyebrow">{t.appEyebrow}</p><h2>{t.appTitle}</h2><p>{t.appText}</p><a class="start-btn" href={base + 'kurslar/ielts-speaking/'}>AI Speaking modulini ochish →</a></section>}
+  {bonusHref && <section class="bonus-callout"><div><p class="eyebrow">{t.bonusEyebrow}</p><h2>{t.bonusTitle}</h2><p>{t.bonusText}</p></div><a class="start-btn" href={localHref(bonusHref)}>{bonusLabel || t.fallbackBonus}</a></section>}
+  {speakingApp && <section class="app-callout"><p class="eyebrow">{t.appEyebrow}</p><h2>{t.appTitle}</h2><p>{t.appText}</p><a class="start-btn" href={localHref('kurslar/ielts-speaking/#speaking-practice')}>{t.speakingCta}</a></section>}
   <section class="fill-needed"><p class="eyebrow">{t.fillEyebrow}</p><h2>{t.fillTitle}</h2><ul>{fillNeeded.map((item) => <li>{item}</li>)}</ul><p>{t.fillNote}</p></section>
   <p class="source-note">{t.source} {sourceNote}</p>
-  <div class="actions"><a class="start-btn" href={base + `bog-lanish?course=${skill}&price=${priceUzsNum}`}>{t.getCourse} {priceUzs} {t.som}</a><a class="course-nav-link" href={base + 'kurslar/#ielts-courses'}>{t.allCourses}</a></div>
+  <div class="actions"><a class="start-btn" href={localHref(`bog-lanish?course=${skill}&price=${priceUzsNum}`)}>{t.getCourse} {priceUzs} {t.som}</a><a class="course-nav-link" href={allCoursesHref}>{t.allCourses}</a></div>
   <PaymentInstructions course={title} price={coursePrice} />
 </article>
 <style>

@@ -1,0 +1,13 @@
+---
+import Base from '../../layouts/Base.astro';
+import LocalizedInfoPage from '../../components/LocalizedInfoPage.astro';
+const base = import.meta.env.BASE_URL;
+const alternates = [
+  { lang: 'uz', href: base + 'narxlar/' },
+  { lang: 'ru', href: base + 'ru/narxlar/' },
+  { lang: 'en', href: base + 'en/narxlar/' },
+];
+---
+<Base title="Pricing — Tayanch" description="Tayanch course pricing: a single course, the AI Stack package and full access." lang="en" localeAlternates={alternates}>
+  <LocalizedInfoPage lang="en" page="pricing" />
+</Base>

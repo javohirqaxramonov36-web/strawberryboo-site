@@ -1,0 +1,174 @@
+---
+const base = import.meta.env.BASE_URL;
+const pageTitle = 'IELTS Writing practice — Tayanch';
+---
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>IELTS Writing practice — Tayanch</title>
+  <meta name="description" content="An original IELTS Writing practice template from Tayanch." />
+  <script is:inline>
+    (function () {
+      try {
+        var t = localStorage.getItem('theme');
+        if (t !== 'light' && t !== 'dark') t = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+        document.documentElement.setAttribute('data-theme', t);
+      } catch (e) {}
+    })();
+  </script>
+<script is:inline>
+window.__i18nRuntime=(function(){function lang(){return document.documentElement.lang||localStorage.getItem('org-lam-lang')||'uz';}function apply(d){var L=lang();document.querySelectorAll('[data-i18n]').forEach(function(el){var k=el.getAttribute('data-i18n');var v=(d[L]&&d[L][k]!=null)?d[L][k]:(d.uz&&d.uz[k]!=null?d.uz[k]:null);if(v!=null)el.textContent=v;});}function t(d,k){var L=lang();var v=(d[L]&&d[L][k]!=null)?d[L][k]:(d.uz&&d.uz[k]!=null?d.uz[k]:k);return v;}return{lang:lang,apply:apply,t:t};})();
+</script>
+<script is:inline>
+const PAGE_I18N = {"uz": {"wp.meta": "IELTS Writing · Original practice shabloni", "wp.notice": "ⓘ Bu Tayanch uchun original, qayta ishlatiladigan Writing practice shabloni. Har yangi testda faqat mavzu, kerak bo'lsa grafik, namuna javobi va PDF savol matni yangilanadi.", "wp.task1Title": "Yangi Task 1 uchun joy", "wp.task1Text": "Bu sahifa reusable shablon sifatida tayyor. Yangi grafik, jadval, diagramma yoki map berilganda shu yerda original prompt va rasm paydo bo'ladi.", "wp.task2Title": "Yangi Task 2 uchun joy", "wp.task2Text": "Yangi original essay mavzusi kelganda savol shu yerga joylanadi.", "wp.strategy": "Sizning Obsidian qoidangiz: introduction qisqa, body qismida 2 ta izchil paragraph bo'lsin.", "wp.aiAssess": "AI Baholash", "wp.instructions": "Ko'rsatmalar", "wp.submit": "Yakunlash va PDF", "wp.aiTitle": "AI Writing Assessment", "wp.instrTitle": "Writing practice ko'rsatmalari", "wp.completeTitle": "Practice yakunlandi", "wp.completeText": "PDF fayl qurilmangizga yuklanadi. Hozir bu umumiy shablon, shuning uchun namunaviy javoblar yangi test kontenti kiritilganda chiqadi.", "wp.download": "PDF-ni yuklash", "wp.copy": "Ko'rsatmalarni nusxalash", "wp.themeAriaLight": "Dark modega o‘tish", "wp.themeAriaDark": "Light modega o‘tish", "wp.taskRule1": "Taxminan 20 daqiqa · kamida 150 so'z", "wp.taskRule2": "Taxminan 40 daqiqa · kamida 250 so'z", "wp.wordCount": "so'z", "wp.minimum": "Minimum: ", "wp.done": "of", "wp.copied": "Nusxalandi", "wp.writeFirst": "Avval kamida bitta task uchun javob yozing.", "wp.pdfFail": "PDF moduli yuklanmadi. Internet aloqasini tekshirib, qayta urinib ko‘ring.", "wp.aiClose": "Yopish", "wp.aiError": "Xatolik: ", "wp.aiSettings": "Sozlamalar", "wp.instructionText": "IELTS Writing Practice\n\nTask 1: taxminan 20 daqiqa, kamida 150 so'z.\nTask 2: taxminan 40 daqiqa, kamida 250 so'z.\nTask 2: qisqa introduction va ikki body paragraph.\nYakunida word count, savolga javob va academic uslubni tekshiring."}, "ru": {"wp.meta": "IELTS Writing · Оригинальный шаблон практики", "wp.notice": "ⓘ Это оригинальный, переиспользуемый шаблон Writing практики Tayanch. В каждом новом тесте обновляются только тема, при необходимости график, образец ответа и текст PDF-вопроса.", "wp.task1Title": "Место для нового Task 1", "wp.task1Text": "Эта страница подготовлена как переиспользуемый шаблон. Когда даётся новый график, таблица, диаграмма или карта, здесь появляется оригинальное задание и изображение.", "wp.task2Title": "Место для нового Task 2", "wp.task2Text": "Когда появляется новая оригинальная тема эссе, вопрос размещается здесь.", "wp.strategy": "Ваше правило Obsidian: introduction короткое, в body — 2 последовательных параграфа.", "wp.aiAssess": "AI-оценка", "wp.instructions": "Инструкции", "wp.submit": "Завершить и PDF", "wp.aiTitle": "AI Writing Assessment", "wp.instrTitle": "Инструкции к Writing practice", "wp.completeTitle": "Practice завершён", "wp.completeText": "PDF-файл загрузится на ваше устройство. Сейчас это общий шаблон, поэтому образцы ответов появятся при добавлении нового тестового контента.", "wp.download": "Скачать PDF", "wp.copy": "Копировать инструкции", "wp.themeAriaLight": "Перейти в тёмную тему", "wp.themeAriaDark": "Перейти в светлую тему", "wp.taskRule1": "Около 20 минут · минимум 150 слов", "wp.taskRule2": "Около 40 минут · минимум 250 слов", "wp.wordCount": "слов", "wp.minimum": "Минимум: ", "wp.done": "из", "wp.copied": "Скопировано", "wp.writeFirst": "Сначала напишите ответ хотя бы для одного задания.", "wp.pdfFail": "PDF-модуль не загрузился. Проверьте подключение к интернету и попробуйте снова.", "wp.aiClose": "Закрыть", "wp.aiError": "Ошибка: ", "wp.aiSettings": "Настройки", "wp.instructionText": "IELTS Writing Practice\n\nTask 1: около 20 минут, минимум 150 слов.\nTask 2: около 40 минут, минимум 250 слов.\nTask 2: короткое introduction и два body paragraph.\nВ конце проверьте word count, ответ на вопрос и academic стиль."}, "en": {"wp.meta": "IELTS Writing · Original practice template", "wp.notice": "ⓘ This is an original, reusable Writing practice template for Tayanch. In each new test only the topic, optionally a chart, the sample answer and the PDF question text are updated.", "wp.task1Title": "Space for new Task 1", "wp.task1Text": "This page is prepared as a reusable template. When a new chart, table, diagram or map is given, the original prompt and image appear here.", "wp.task2Title": "Space for new Task 2", "wp.task2Text": "When a new original essay topic arrives, the question is placed here.", "wp.strategy": "Your Obsidian rule: keep the introduction short, with 2 coherent paragraphs in the body.", "wp.aiAssess": "AI Assessment", "wp.instructions": "Instructions", "wp.submit": "Finish and PDF", "wp.aiTitle": "AI Writing Assessment", "wp.instrTitle": "Writing practice instructions", "wp.completeTitle": "Practice completed", "wp.completeText": "The PDF file will download to your device. This is a general template for now, so sample answers will appear once new test content is added.", "wp.download": "Download PDF", "wp.copy": "copy instructions", "wp.themeAriaLight": "Switch to dark mode", "wp.themeAriaDark": "Switch to light mode", "wp.taskRule1": "About 20 minutes · at least 150 words", "wp.taskRule2": "About 40 minutes · at least 250 words", "wp.wordCount": "words", "wp.minimum": "Minimum: ", "wp.done": "of", "wp.copied": "Copied", "wp.writeFirst": "First write an answer for at least one task.", "wp.pdfFail": "The PDF module failed to load. Check your internet connection and try again.", "wp.aiClose": "Close", "wp.aiError": "Error: ", "wp.aiSettings": "Settings", "wp.instructionText": "IELTS Writing Practice\n\nTask 1: about 20 minutes, at least 150 words.\nTask 2: about 40 minutes, at least 250 words.\nTask 2: a short introduction and two body paragraphs.\nFinally check word count, answer to the question and academic style."}};
+</script><link rel="alternate" hreflang="uz" href={base + 'ielts-practice/writing/'} /><link rel="alternate" hreflang="ru" href={base + 'ru/ielts-practice/writing/'} /><link rel="alternate" hreflang="en" href={base + 'en/ielts-practice/writing/'} /><link rel="alternate" hreflang="x-default" href={base + 'ielts-practice/writing/'} /></head>
+<body>
+  <header class="topbar">
+    <a class="brand" href={base}><b>Tayanch</b></a>
+    <span class="label" data-i18n="wp.meta">IELTS Writing · Original practice shabloni</span>
+    <div class="top-actions"><span id="timer" aria-live="polite">00:00</span><button id="theme" type="button" aria-label="Rang rejimini almashtirish">☾</button><a class="back" href={base + 'kurslar/#ielts-courses'}>Kursga qaytish</a></div>
+  </header>
+
+  <main>
+    <p class="notice" data-i18n="wp.notice">ⓘ Bu Tayanch uchun original, qayta ishlatiladigan Writing practice shabloni. Har yangi testda faqat mavzu, kerak bo'lsa grafik, namuna javobi va PDF savol matni yangilanadi.</p>
+    <section class="workspace">
+      <article class="prompt-panel">
+        <div class="task-meta"><span id="taskName">TASK 1</span><span id="taskRule">Taxminan 20 daqiqa · kamida 150 so'z</span></div>
+        <div id="taskOne" class="task-content">
+          <h1 data-i18n="wp.task1Title">Yangi Task 1 uchun joy</h1>
+          <p data-i18n="wp.task1Text">Bu sahifa reusable shablon sifatida tayyor. Yangi grafik, jadval, diagramma yoki map berilganda shu yerda original prompt va rasm paydo bo'ladi.</p>
+          <div class="chart-placeholder" aria-label="Task 1 grafik uchun bo'sh joy"><span>CHART / DIAGRAM</span><small>Yangi testda rasm shu yerga qo'shiladi</small></div>
+          <p class="instruction"><b>Vazifa:</b> Asosiy xususiyatlarni tanlab, ularni solishtirib yozing. Yangi test qo'shilganda aniq savol shu yerda bo'ladi.</p>
+        </div>
+        <div id="taskTwo" class="task-content hidden">
+          <h1 data-i18n="wp.task2Title">Yangi Task 2 uchun joy</h1>
+          <p data-i18n="wp.task2Text">Yangi original essay mavzusi kelganda savol shu yerga joylanadi.</p>
+          <p class="instruction"><b>Vazifa:</b> Pozitsiyangizni aniq bildiring, ikkita body paragraph orqali sabab va misol bilan rivojlantiring.</p>
+          <p class="strategy" data-i18n="wp.strategy">Sizning Obsidian qoidangiz: introduction qisqa, body qismida 2 ta izchil paragraph bo'lsin.</p>
+        </div>
+      </article>
+
+      <section class="write-panel">
+        <label class="sr-only" for="answer">Javobingiz</label>
+        <textarea id="answer" placeholder="Javobingizni shu yerda yozing..."></textarea>
+        <div class="writer-status"><span id="wordCount">0 so'z</span><span id="minimum">Minimum: 150</span></div>
+      </section>
+    </section>
+  </main>
+
+  <footer class="bottom-bar">
+    <div class="task-tabs"><button class="tab active" data-task="1" type="button"><b>Part 1</b><small id="done1">0 of 1</small></button><button class="tab" data-task="2" type="button"><b>Part 2</b><small id="done2">0 of 1</small></button></div>
+    <button id="aiAssess" class="ai-button" type="button" data-i18n="wp.aiAssess">AI Baholash</button>
+    <button id="instructions" class="muted-button" type="button" data-i18n="wp.instructions">Ko'rsatmalar</button>
+    <button id="submit" class="submit" type="button" data-i18n="wp.submit">Yakunlash va PDF</button>
+  </footer>
+
+  <dialog id="aiResultDialog"><div class="dialog-head"><h2 data-i18n="wp.aiTitle">AI Writing Assessment</h2><button class="close" type="button" data-close>×</button></div><div class="dialog-body"><div id="aiResultContent"></div></div></dialog>
+
+  <dialog id="instructionsDialog"><div class="dialog-head"><h2 data-i18n="wp.instrTitle">Writing practice ko'rsatmalari</h2><button class="close" type="button" data-close>×</button></div><div class="dialog-body"><h3>Umumiy</h3><ul><li>Task 1 uchun taxminan 20 daqiqa va kamida 150 so'z.</li><li>Task 2 uchun taxminan 40 daqiqa va kamida 250 so'z.</li><li>Tasklar orasida o'tganda yozgan javobingiz qurilmada saqlanadi.</li></ul><h3>Task 1</h3><p>Asosiy trend yoki xususiyatlarni tanlang, aniq taqqoslashlar qiling va formal uslubdan foydalaning.</p><h3>Task 2</h3><p>Qisqa introduction, ikki body paragraph va aniq xulosa orqali pozitsiyani himoya qiling.</p><h3>Self-review</h3><p>Word count, savolga to'liq javob, paragraph mantiqi hamda academic so'zlarning tabiiyligini o'zingiz tekshirasiz.</p><button id="copyInstructions" class="copy" type="button" data-i18n="wp.copy">Ko'rsatmalarni nusxalash</button></div></dialog>
+
+  <dialog id="completeDialog"><div class="dialog-head"><h2 data-i18n="wp.completeTitle">Practice yakunlandi</h2><button class="close" type="button" data-close>×</button></div><div class="dialog-body"><p id="summary"></p><p data-i18n="wp.completeText">PDF fayl qurilmangizga yuklanadi. Hozir bu umumiy shablon, shuning uchun namunaviy javoblar yangi test kontenti kiritilganda chiqadi.</p><button id="download" class="submit" type="button" data-i18n="wp.download">PDF-ni yuklash</button></div></dialog>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script src={base + 'js/ielts-assessor.js'}></script>
+  <script>
+    const stateKey = 'organamiz-writing-template-v1';
+    const store = JSON.parse(localStorage.getItem(stateKey) || '{"task1":"","task2":"","theme":"dark"}');
+    let current = 1, seconds = 0;
+    const answer = document.querySelector('#answer');
+    const word = (text) => text.trim() ? text.trim().split(/\s+/).length : 0;
+    const paint = () => {
+      const content = current === 1 ? store.task1 : store.task2;
+      const count = word(content), min = current === 1 ? 150 : 250;
+      answer.value = content; document.querySelector('#wordCount').textContent = `${count} `+__i18nRuntime.t(PAGE_I18N,'wp.wordCount'); document.querySelector('#minimum').textContent = `Minimum: `+__i18nRuntime.t(PAGE_I18N,'wp.minimum')+`${min}`;
+      document.querySelector('#taskOne').classList.toggle('hidden', current !== 1); document.querySelector('#taskTwo').classList.toggle('hidden', current !== 2);
+      document.querySelector('#taskName').textContent = `TASK ${current}`; document.querySelector('#taskRule').textContent = current === 1 ? __i18nRuntime.t(PAGE_I18N,'wp.taskRule1') : __i18nRuntime.t(PAGE_I18N,'wp.taskRule2');
+      document.querySelectorAll('.tab').forEach(tab => tab.classList.toggle('active', Number(tab.dataset.task) === current));
+      document.querySelector('#done1').textContent = word(store.task1) >= 150 ? '1 '+__i18nRuntime.t(PAGE_I18N,'wp.done')+' 1' : '0 '+__i18nRuntime.t(PAGE_I18N,'wp.done')+' 1'; document.querySelector('#done2').textContent = word(store.task2) >= 250 ? '1 of 1' : '0 of 1';
+      localStorage.setItem(stateKey, JSON.stringify(store));
+    };
+    const savedTheme = (function () { try { return localStorage.getItem('theme'); } catch (e) { return null; } })();
+    const initialTheme = savedTheme === 'light' || savedTheme === 'dark' ? savedTheme : (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+    document.documentElement.dataset.theme = initialTheme;
+    const themeButton = document.querySelector('#theme');
+    const renderThemeButton = () => {
+      const light = document.documentElement.dataset.theme === 'light';
+      themeButton.textContent = light ? '☀' : '☾';
+      themeButton.setAttribute('aria-label', light ? __i18nRuntime.t(PAGE_I18N,'wp.themeAriaLight') : __i18nRuntime.t(PAGE_I18N,'wp.themeAriaDark'));
+    };
+    renderThemeButton();
+    themeButton.addEventListener('click', () => {
+      const next = document.documentElement.dataset.theme === 'light' ? 'dark' : 'light';
+      document.documentElement.dataset.theme = next;
+      store.theme = next;
+      try { localStorage.setItem('theme', next); } catch (e) {}
+      renderThemeButton();
+      paint();
+    });
+    answer.addEventListener('input', () => { store[current === 1 ? 'task1' : 'task2'] = answer.value; paint(); });
+    document.querySelectorAll('.tab').forEach(tab => tab.addEventListener('click', () => { current = Number(tab.dataset.task); paint(); }));
+    setInterval(() => { seconds += 1; const m = String(Math.floor(seconds/60)).padStart(2,'0'), s = String(seconds%60).padStart(2,'0'); document.querySelector('#timer').textContent = `${m}:${s}`; }, 1000);
+    const instructionText = __i18nRuntime.t(PAGE_I18N,'wp.instructionText');
+    const instructions = document.querySelector('#instructionsDialog'), complete = document.querySelector('#completeDialog');
+    document.querySelector('#instructions').addEventListener('click', () => instructions.showModal());
+    document.querySelectorAll('[data-close]').forEach(el => el.addEventListener('click', () => el.closest('dialog').close()));
+    document.querySelector('#copyInstructions').addEventListener('click', async () => { await navigator.clipboard.writeText(instructionText); document.querySelector('#copyInstructions').textContent = __i18nRuntime.t(PAGE_I18N,'wp.copied'); });
+    document.querySelector('#submit').addEventListener('click', () => { const total=word(store.task1)+word(store.task2); if (!total) { alert(__i18nRuntime.t(PAGE_I18N,'wp.writeFirst')); return; } document.querySelector('#summary').textContent = `Task 1: ${word(store.task1)} `+__i18nRuntime.t(PAGE_I18N,'wp.wordCount')+` · Task 2: ${word(store.task2)} `+__i18nRuntime.t(PAGE_I18N,'wp.wordCount')+` · Jami: ${total} `+__i18nRuntime.t(PAGE_I18N,'wp.wordCount')+`.`; complete.showModal(); });
+    document.querySelector('#download').addEventListener('click', () => { const { jsPDF } = window.jspdf || {}; if (!jsPDF) { alert(__i18nRuntime.t(PAGE_I18N,'wp.pdfFail')); return; } const doc = new jsPDF(); const stamp = new Date().toLocaleString(); const addTask = (title, response, count, first) => { if (!first) doc.addPage(); doc.setFontSize(18); doc.text(title, 20, 22); doc.setFontSize(11); doc.text(`Sana: ${stamp}`, 20, 34); doc.text(`So‘z soni: ${count}`, 20, 42); doc.setFontSize(13); doc.text('Javob:', 20, 55); doc.setFontSize(11); const lines = doc.splitTextToSize(response || '[Javob yozilmagan]', 170); doc.text(lines, 20, 65); }; addTask('IELTS Writing Practice — Task 1', store.task1, word(store.task1), true); addTask('IELTS Writing Practice — Task 2', store.task2, word(store.task2), false); doc.save('organamiz-ielts-writing-practice.pdf'); });
+    
+    // --- AI ASSESSMENT ---
+    const aiResultDialog = document.querySelector('#aiResultDialog');
+    const aiResultContent = document.querySelector('#aiResultContent');
+    document.querySelector('#aiAssess').addEventListener('click', async () => {
+      const currentContent = store[current === 1 ? 'task1' : 'task2'];
+      const wc = word(currentContent);
+      if (!wc) { alert('Avval javob yozing, so\'ng AI baholashni bosing.'); return; }
+      
+      if (!window.IELTSAssessor || !IELTSAssessor.hasApiKey()) {
+        aiResultContent.innerHTML = '<div style="text-align:center;padding:30px;"><p style="margin-bottom:16px;">AI baholash uchun API kalit kerak.</p><p style="margin-bottom:16px;color:var(--muted);font-size:.9rem;">Bepul kalit olish uchun <a href="https://openrouter.ai/keys" target="_blank" rel="noopener" style="color:var(--accent);">openrouter.ai/keys</a> ga kiring (kredit karta kerak emas).</p><button id="openSettings" style="padding:10px 24px;border:none;border-radius:8px;background:var(--accent);color:#fff;cursor:pointer;font-weight:600;">Sozlamalarni ochish</button></div>';
+        aiResultDialog.showModal();
+        document.querySelector('#openSettings').addEventListener('click', () => IELTSAssessor.showSettingsDialog());
+        return;
+      }
+      
+      aiResultContent.innerHTML = '<div style="text-align:center;padding:50px 20px;"><div style="display:inline-block;width:48px;height:48px;border:4px solid var(--border);border-top-color:var(--accent);border-radius:50%;animation:spin .8s linear infinite;"></div><p style="margin-top:20px;color:var(--muted);">AI javobingizni baholayapti... (30-60 soniya)</p></div>';
+      aiResultDialog.showModal();
+      
+      try {
+        const taskType = current === 1 ? 'academic_task1' : 'task2';
+        const prompt = current === 1 
+          ? 'Summarise the information by selecting and reporting the main features, and make comparisons where relevant.'
+          : 'Write an essay responding to the given topic. Discuss both views and give your own opinion.';
+        
+        const result = await IELTSAssessor.assessWriting({
+          task_type: taskType,
+          prompt: prompt,
+          response: currentContent
+        });
+        
+        aiResultContent.innerHTML = IELTSAssessor.renderAssessmentHTML(result) + 
+          '<div style="margin-top:20px;display:flex;gap:10px;justify-content:center;">' +
+          '<button class="submit" onclick="IELTSAssessor.showSettingsDialog()" style="border:1px solid var(--border);background:transparent;color:var(--text);padding:.6rem 1rem;border-radius:9px;cursor:pointer;">AI Sozlamalar</button>' +
+          '<button class="submit" onclick="document.querySelector(\'#aiResultDialog\').close()" style="background:var(--accent);color:#fff;padding:.6rem 1rem;border:none;border-radius:9px;cursor:pointer;">' + __i18nRuntime.t(PAGE_I18N,'wp.aiClose') + '</button>' +
+          '</div>';
+      } catch (err) {
+        aiResultContent.innerHTML = '<div style="padding:30px;text-align:center;"><p style="color:#ef4444;font-size:16px;margin-bottom:16px;">Xatolik: ' + __i18nRuntime.t(PAGE_I18N,'wp.aiError') + err.message + '</p><div style="display:flex;gap:10px;justify-content:center;"><button onclick="IELTSAssessor.showSettingsDialog()" style="padding:10px 20px;border:1px solid var(--border);background:transparent;color:var(--text);border-radius:8px;cursor:pointer;">' + __i18nRuntime.t(PAGE_I18N,'wp.aiSettings') + '</button><button onclick="document.querySelector(\'#aiResultDialog\').close()" style="padding:10px 20px;border:none;background:var(--accent);color:#fff;border-radius:8px;cursor:pointer;">Yopish</button></div></div>';
+      }
+    });
+    
+    const style = document.createElement('style');
+    style.textContent = '@keyframes spin{to{transform:rotate(360deg)}} .ai-button{background:linear-gradient(135deg,var(--accent),#6f62e8);color:#fff;border:none;padding:.6rem 1.2rem;border-radius:9px;font:inherit;font-weight:700;cursor:pointer;white-space:nowrap}.ai-button:hover{opacity:.9} .criterion-example{margin:10px 0;padding:10px 12px;background:var(--panel2);border-radius:6px;font-size:14px;border-left:3px solid #6c5ce7}.criterion-tip{margin-top:10px;padding:10px 12px;background:var(--panel2);border-radius:6px;font-size:14px;border-left:3px solid #f1c40f} .score-card{background:var(--panel2);border-radius:12px;padding:20px;margin-bottom:16px;border-left:5px solid var(--accent)} .score-card h3{margin:0 0 10px;font-size:1rem} .score-card p{font-size:.9rem;line-height:1.5;margin:0 0 8px} .results-header{text-align:center;padding:30px;background:linear-gradient(135deg,var(--accent),#6f62e8);color:#fff;border-radius:12px;margin-bottom:20px} .results-header h1{margin:0 0 10px;font-size:1.5rem} .overall-band{font-size:3rem;font-weight:800} .results-grid{display:grid;gap:16px}';
+    document.head.appendChild(style);
+    
+    paint();window.__i18nRuntime.apply(PAGE_I18N);
+  </script>
+
+  <style>
+    :root { --bg:#101118; --panel:#181a24; --panel2:#202332; --text:#f2f2f7; --muted:#a6a7b8; --border:#343749; --accent:#8a7cff; --good:#60cf80; }
+    html[data-theme="light"] { --bg:#f6f7fb; --panel:#fff; --panel2:#f0effa; --text:#20212a; --muted:#5f6072; --border:#d9dbea; --accent:#6355db; }
+    *{box-sizing:border-box} body{margin:0;background:var(--bg);color:var(--text);font:16px/1.55 Inter,system-ui,sans-serif;padding-bottom:76px}.topbar{height:82px;padding:0 2rem;display:flex;align-items:center;gap:1.5rem;border-bottom:1px solid var(--border);background:var(--panel);position:sticky;top:0;z-index:3}.brand{font-size:1.4rem;font-weight:800;text-decoration:none;color:var(--text)}.brand b{color:var(--accent)}.label{color:var(--muted);font-weight:600}.top-actions{margin-left:auto;display:flex;align-items:center;gap:.75rem}.top-actions #timer{font-variant-numeric:tabular-nums;font-weight:800}.top-actions button,.back,.muted-button{border:1px solid var(--border);border-radius:9px;background:transparent;color:var(--text);padding:.6rem .8rem;text-decoration:none;font:inherit;cursor:pointer}.notice{margin:1.25rem auto;max-width:1300px;border:1px solid color-mix(in srgb,var(--accent) 45%,var(--border));background:color-mix(in srgb,var(--accent) 10%,var(--panel));padding:1rem 1.25rem;border-radius:12px;color:var(--text)}.workspace{max-width:1300px;margin:auto;display:grid;grid-template-columns:1fr 1fr;min-height:calc(100vh - 200px);border:1px solid var(--border);border-radius:16px;overflow:hidden;background:var(--panel)}.prompt-panel,.write-panel{padding:1.5rem;overflow:auto}.prompt-panel{border-right:1px solid var(--border)}.task-meta{display:flex;gap:1rem;align-items:center;color:var(--muted);font-size:.88rem;font-weight:700;letter-spacing:.04em}.task-meta span:first-child{color:var(--accent)}h1{font-size:2rem;line-height:1.2;margin:1.2rem 0}.chart-placeholder{min-height:270px;margin:1.5rem 0;border:2px dashed var(--border);background:var(--panel2);display:grid;place-content:center;text-align:center;border-radius:12px;color:var(--accent);font-weight:800;letter-spacing:.12em}.chart-placeholder small{font-weight:500;letter-spacing:0;color:var(--muted);margin-top:.5rem}.instruction{padding:1rem;border-left:4px solid var(--accent);background:var(--panel2)}.strategy{color:var(--accent);font-weight:700}.write-panel{display:flex;flex-direction:column}.write-panel textarea{min-height:480px;flex:1;width:100%;resize:none;border:1px solid var(--border);border-radius:12px;padding:1rem;background:var(--bg);color:var(--text);font:inherit;line-height:1.7}.writer-status{display:flex;justify-content:space-between;color:var(--muted);font-size:.9rem;margin-top:.75rem}.bottom-bar{position:fixed;bottom:0;left:0;right:0;height:76px;z-index:3;display:flex;align-items:center;gap:1rem;padding:0 2rem;background:var(--panel);border-top:1px solid var(--border)}.task-tabs{display:flex;height:100%}.tab{min-width:125px;padding:0 1rem;border:0;border-right:1px solid var(--border);background:transparent;color:var(--muted);text-align:left;cursor:pointer}.tab b,.tab small{display:block}.tab.active{color:var(--text);background:var(--panel2);box-shadow:inset 0 3px var(--accent)}.submit{margin-left:auto;border:0;border-radius:9px;background:var(--good);color:#132517;font-weight:900;padding:.75rem 1rem;cursor:pointer;font:inherit}.hidden{display:none}dialog{max-width:650px;width:calc(100% - 2rem);padding:0;border:1px solid var(--border);border-radius:14px;background:var(--panel);color:var(--text)}dialog::backdrop{background:#0009}.dialog-head{display:flex;align-items:center;justify-content:space-between;padding:1rem 1.25rem;border-bottom:1px solid var(--border)}.dialog-head h2{font-size:1.1rem;margin:0}.close{font-size:1.6rem;background:none;border:0;color:var(--text);cursor:pointer}.dialog-body{padding:1.25rem}.dialog-body h3{color:var(--accent)}.copy{border:1px solid var(--accent);background:transparent;color:var(--accent);padding:.6rem .8rem;border-radius:8px;font:inherit;cursor:pointer}.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0)}@media(max-width:800px){.topbar{height:auto;min-height:70px;padding:1rem;flex-wrap:wrap;gap:.7rem}.label{display:none}.top-actions{margin-left:auto}.workspace{grid-template-columns:1fr;border-radius:0}.prompt-panel{border-right:0;border-bottom:1px solid var(--border)}.bottom-bar{padding:0 .6rem}.muted-button{display:none}.tab{min-width:90px}.submit{padding:.6rem}.notice{margin:1rem}.write-panel textarea{min-height:350px}}
+  </style>
+</body>
+</html>

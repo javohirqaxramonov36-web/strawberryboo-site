@@ -2,6 +2,7 @@
 import ChatWidget from "../components/ChatWidget.astro";
 import SearchPanel from "../components/SearchPanel.astro";
 import { footerNavigation, primaryNavigation } from "../config/navigation";
+import { localizedPath } from "../i18n/routes";
 const title = Astro.props.title || "Tayanch";
 const description = Astro.props.description || '';
 const lang = Astro.props.lang || "uz";
@@ -14,6 +15,7 @@ const canonicalUz = (localeAlternates.find((a) => a.lang === 'uz') || {}).href |
 const base = import.meta.env.BASE_URL;
 const TG = "https://t.me/progression_go"; // Telegram kanal/guruh havolasi
 const languageAlternates = Object.fromEntries(localeAlternates.map((alternate) => [alternate.lang, alternate.href]));
+const navigationHref = (path: string) => base + localizedPath(lang, path);
 ---
 
 <!doctype html>
@@ -111,7 +113,7 @@ const languageAlternates = Object.fromEntries(localeAlternates.map((alternate) =
           '@id': (Astro.site?.href ?? Astro.url.href) + '#website',
           url: (Astro.site?.href ?? Astro.url.href),
           name: 'Tayanch',
-          inLanguage: 'uz',
+          inLanguage: lang,
           publisher: { '@id': (Astro.site?.href ?? Astro.url.href) + '#organization' }
         }
       ]
@@ -125,7 +127,7 @@ const languageAlternates = Object.fromEntries(localeAlternates.map((alternate) =
         <span class="brand-wordmark"><span class="brand-tay">Tay</span><span class="brand-anch">anch</span></span>
       </a>
       <nav class="side-nav">
-        {primaryNavigation.map((item) => <a href={base + item.href}>{item.i18nKey ? <span data-i18n={item.i18nKey}>{item.label}</span> : item.label}</a>)}
+        {primaryNavigation.map((item) => <a href={navigationHref(item.href)}>{item.i18nKey ? <span data-i18n={item.i18nKey}>{item.label}</span> : item.label}</a>)}
         <a href={TG} class="tg-nav" aria-label="Telegram" target="_blank" rel="noopener noreferrer">
           <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 4 3 11l5 2 2 5 3-3 4 3 4-13z"/><path d="m8 13 4-4"/></svg>
           Telegram
@@ -143,7 +145,7 @@ const languageAlternates = Object.fromEntries(localeAlternates.map((alternate) =
         <button class="menu-toggle" id="menuToggle">☰</button>
         <span class="mobile-brand"><span class="brand-wordmark"><span class="brand-tay">Tay</span><span class="brand-anch">anch</span></span></span>
         <nav class="top-nav">
-          {primaryNavigation.filter((item) => item.href !== '').map((item) => <a href={base + item.href}>{item.i18nKey ? <span data-i18n={item.i18nKey}>{item.label}</span> : item.label}</a>)}
+          {primaryNavigation.filter((item) => item.href !== '').map((item) => <a href={navigationHref(item.href)}>{item.i18nKey ? <span data-i18n={item.i18nKey}>{item.label}</span> : item.label}</a>)}
           <a href={TG} class="tg-nav" aria-label="Telegram" target="_blank" rel="noopener noreferrer">
             <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 4 3 11l5 2 2 5 3-3 4 3 4-13z"/><path d="m8 13 4-4"/></svg>
             Telegram
@@ -189,10 +191,10 @@ const languageAlternates = Object.fromEntries(localeAlternates.map((alternate) =
           </div>
           <div class="footer-col">
             <h4 data-i18n="footer.pages">Sahifalar</h4>
-            {footerNavigation.map((item) => <a href={base + item.href}>{item.i18nKey ? <span data-i18n={item.i18nKey}>{item.label}</span> : item.label}</a>)}
+            {footerNavigation.map((item) => <a href={navigationHref(item.href)}>{item.i18nKey ? <span data-i18n={item.i18nKey}>{item.label}</span> : item.label}</a>)}
           </div>
         </div>
-        <p class="footer-copy"><span data-i18n="footer.copy">© 2026 Tayanch. Barcha huquqlar himoyalangan.</span> · <a href={base + 'foydalanish-shartlari/'} data-i18n="footer.terms">Foydalanish shartlari</a></p>
+        <p class="footer-copy"><span data-i18n="footer.copy">© 2026 Tayanch. Barcha huquqlar himoyalangan.</span> · <a href={navigationHref('foydalanish-shartlari/')} data-i18n="footer.terms">Foydalanish shartlari</a></p>
       </footer>
     </div>
 
@@ -234,6 +236,13 @@ const languageAlternates = Object.fromEntries(localeAlternates.map((alternate) =
           "nav.reco": "Kurs tanlash",
           "nav.journey": "Mening yo'lim",
           "nav.contact": "Bog'lanish",
+          "nav.ieltsMock": "IELTS Mock",
+          "nav.profile": "Mening profilim",
+          "nav.md2pdf": "Markdown → PDF",
+          "nav.techLab": "Tech Lab",
+          "nav.about": "Biz haqimizda",
+          "nav.privacy": "Maxfiylik siyosati",
+          "nav.terms": "Foydalanish shartlari",
           "footer.about": "Amaliy onlayn kurslar: AI, IELTS, Admission va shaxsiy bilim bazasi. O'zbek tilida, bepul kurslar ham bor.",
           "footer.social.tg": "Telegram",
           "footer.social.ig": "Instagram",
@@ -811,6 +820,13 @@ const languageAlternates = Object.fromEntries(localeAlternates.map((alternate) =
           "nav.reco": "Подобрать курс",
           "nav.journey": "Мой путь",
           "nav.contact": "Контакты",
+          "nav.ieltsMock": "IELTS Mock",
+          "nav.profile": "Мой профиль",
+          "nav.md2pdf": "Markdown → PDF",
+          "nav.techLab": "Tech Lab",
+          "nav.about": "О нас",
+          "nav.privacy": "Политика конфиденциальности",
+          "nav.terms": "Условия использования",
           "footer.about": "Практические онлайн-курсы: AI, IELTS, Admission и личная база знаний. На узбекском, есть бесплатные курсы.",
           "footer.social.tg": "Telegram",
           "footer.social.ig": "Instagram",
@@ -1388,6 +1404,13 @@ const languageAlternates = Object.fromEntries(localeAlternates.map((alternate) =
           "nav.reco": "Find your course",
           "nav.journey": "My journey",
           "nav.contact": "Contact",
+          "nav.ieltsMock": "IELTS Mock",
+          "nav.profile": "My profile",
+          "nav.md2pdf": "Markdown → PDF",
+          "nav.techLab": "Tech Lab",
+          "nav.about": "About us",
+          "nav.privacy": "Privacy policy",
+          "nav.terms": "Terms of use",
           "footer.about": "Practical online courses: AI, IELTS, Admission and personal knowledge base. In Uzbek, free courses included.",
           "footer.social.tg": "Telegram",
           "footer.social.ig": "Instagram",

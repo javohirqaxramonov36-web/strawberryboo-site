@@ -1,0 +1,7 @@
+---
+import Base from "../../../layouts/Base.astro";
+import LocalizedCatalog from "../../../components/localized/LocalizedCatalog.astro";
+const base = import.meta.env.BASE_URL;
+const alternates = [{lang:'uz',href:base+'kurslar/'},{lang:'ru',href:base+'ru/kurslar/'},{lang:'en',href:base+'en/kurslar/'}];
+---
+<Base title="Courses — Tayanch" description="Practical AI, IELTS, admission, General English and SAT courses, including free learning materials." lang="en" localeAlternates={alternates}><LocalizedCatalog lang="en" /></Base>

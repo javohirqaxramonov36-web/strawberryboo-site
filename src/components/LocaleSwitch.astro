@@ -2,13 +2,14 @@
 const { current, slug } = Astro.props;
 const base = import.meta.env.BASE_URL;
 const normalizedSlug = String(slug || 'ielts-listening').replace(/^\/+|\/+$/g, '');
+const labels = { uz: 'Til tanlash', ru: 'Выбор языка', en: 'Language selection' };
 const langs = [
   { code: 'uz', label: 'UZ', path: `kurslar/${normalizedSlug}/` },
   { code: 'ru', label: 'RU', path: `ru/kurslar/${normalizedSlug}/` },
   { code: 'en', label: 'EN', path: `en/kurslar/${normalizedSlug}/` }
 ];
 ---
-<nav class="locale-switch" aria-label="Til tanlash / Выбор языка / Language">
+<nav class="locale-switch" aria-label={labels[current] || labels.uz}>
   {langs.map((l) => <a href={base + l.path} class={l.code === current ? 'active' : ''} hreflang={l.code}>{l.label}</a>)}
 </nav>
 <style>

@@ -1,0 +1,13 @@
+---
+import Base from '../../layouts/Base.astro';
+import LocalizedInfoPage from '../../components/LocalizedInfoPage.astro';
+const base = import.meta.env.BASE_URL;
+const alternates = [
+  { lang: 'uz', href: base + 'bog-lanish/' },
+  { lang: 'ru', href: base + 'ru/bog-lanish/' },
+  { lang: 'en', href: base + 'en/bog-lanish/' },
+];
+---
+<Base title="Контакты — Tayanch" description="Свяжитесь с нами по вопросам курсов, оплаты или сотрудничества." lang="ru" localeAlternates={alternates}>
+  <LocalizedInfoPage lang="ru" page="contact" />
+</Base>

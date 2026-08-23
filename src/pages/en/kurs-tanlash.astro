@@ -1,0 +1,110 @@
+---
+import Base from "../../layouts/Base.astro";
+const title = 'Course finder — Tayanch';
+const description = 'Find a course that fits you with a 4-question mini quiz.';
+
+const base = import.meta.env.BASE_URL;
+const alternates = [{ lang: 'uz', href: base + 'kurs-tanlash/' }, { lang: 'ru', href: base + 'ru/kurs-tanlash/' }, { lang: 'en', href: base + 'en/kurs-tanlash/' }];
+---
+
+<Base title={title} description={description} lang="en" localeAlternates={alternates}>
+
+<article class="lesson">
+  <h1 data-i18n="reco.h1">Qaysi kurs sizga kerak?</h1>
+  <p class="lead" data-i18n="reco.lead">4 ta savolga javob bering — sizga eng mos kursni tavsiya qilamiz.</p>
+
+  <div class="reco-progress" aria-live="polite">
+    <div class="reco-progress-track"><div class="reco-progress-bar" id="recoProgressBar"></div></div>
+    <span class="reco-progress-label" id="recoProgressLabel">1/4</span>
+  </div>
+
+  <form id="recoForm">
+    <div class="reco-q reco-step is-active" data-step>
+      <p class="q-t" data-i18n="reco.q1">1. Asosiy maqsadingiz nima?</p>
+      <div class="reco-opts">
+        <label class="reco-opt" data-points="prompt-engineering:3,tekin-ai:1"><input type="radio" name="q1" value="prompt-engineering" /> AI bilan samarali ishlash, vaqtni tejash</label>
+        <label class="reco-opt" data-points="obsidian:3,prompt-engineering:1"><input type="radio" name="q1" value="obsidian" /> Bilimlarimni tartibga solish, eslab qolish</label>
+        <label class="reco-opt" data-points="ai-agentlar:3,prompt-engineering:1"><input type="radio" name="q1" value="ai-agentlar" /> Murakkab vazifalarni avtomatlashtirish</label>
+        <label class="reco-opt" data-points="ielts-courses:3,admission-process:1"><input type="radio" name="q1" value="ielts-courses" /> IELTS / chet elga tayyorgarlik</label>
+        <label class="reco-opt" data-points="sat-math:1,sat-english:1"><input type="radio" name="q1" value="sat-math" /> SAT topshirish va universitetga kirishga tayyorgarlik</label>
+        <label class="reco-opt" data-points="general-english-beginner:3,general-english-elementary:1"><input type="radio" name="q1" value="general-english-beginner" /> General English: kundalik va ish uchun ingliz tilini rivojlantirish</label>
+        <label class="reco-opt" data-points="tekin-ai:3"><input type="radio" name="q1" value="tekin-ai" /> Bepul boshlash, pul sarflamasdan</label>
+        <label class="reco-opt" data-points="financial-literacy:3"><input type="radio" name="q1" value="financial-literacy" /> Moliyani boshqarish, byudjet tuzish</label>
+        <label class="reco-opt" data-points="computer-literacy:3"><input type="radio" name="q1" value="computer-literacy" /> Raqamli ko'nikmalar (Office / Google)</label>
+        <label class="reco-opt" data-points="autocad-on-mac:3"><input type="radio" name="q1" value="autocad-on-mac" /> Loyiha chizish, texnik dizayn (AutoCAD)</label>
+      </div>
+    </div>
+
+    <div class="reco-q reco-step" data-step>
+      <p class="q-t" data-i18n="reco.q2">2. Texnik darajangiz?</p>
+      <div class="reco-opts">
+        <label class="reco-opt" data-points="tekin-ai:2,computer-literacy:1"><input type="radio" name="q2" value="tekin-ai" /> Yangi boshlovchi (0 dan)</label>
+        <label class="reco-opt" data-points="obsidian:2,prompt-engineering:1"><input type="radio" name="q2" value="obsidian" /> O'rta (asoslar bilaman)</label>
+        <label class="reco-opt" data-points="ai-agentlar:2,prompt-engineering:1"><input type="radio" name="q2" value="ai-agentlar" /> Advanced (kod yozaman)</label>
+        <label class="reco-opt" data-points="ielts-courses:2,admission-process:1,general-english-beginner:1"><input type="radio" name="q2" value="ielts-courses" /> Til/akademik yo'nalish</label>
+        <label class="reco-opt" data-points="sat-math:2,sat-english:2,desmos-applications:1"><input type="radio" name="q2" value="sat-math" /> SAT akademik yo'nalishi (Math va Reading & Writing)</label>
+      </div>
+    </div>
+
+    <div class="reco-q reco-step" data-step>
+      <p class="q-t" data-i18n="reco.q3">3. Bujetingiz?</p>
+      <div class="reco-opts">
+        <label class="reco-opt" data-points="tekin-ai:3"><input type="radio" name="q3" value="tekin-ai" /> Bepul bo'lishi kerak</label>
+        <label class="reco-opt" data-points="obsidian:2,figma:1"><input type="radio" name="q3" value="obsidian" /> $19–$29 (arzon)</label>
+        <label class="reco-opt" data-points="ai-agentlar:2,prompt-engineering:1"><input type="radio" name="q3" value="ai-agentlar" /> $30+ (sifatli, chuqur)</label>
+        <label class="reco-opt" data-points="figma:3,tekin-ai:1"><input type="radio" name="q3" value="figma" /> Dizayn/FOYDALI ko'nikma</label>
+      </div>
+    </div>
+
+    <div class="reco-q reco-step" data-step>
+      <p class="q-t" data-i18n="reco.q4">4. Qanday natija ko'rmoqchisiz?</p>
+      <div class="reco-opts">
+        <label class="reco-opt" data-points="prompt-engineering:3"><input type="radio" name="q4" value="prompt-engineering" /> Tez, amaliy natija (1 hafta)</label>
+        <label class="reco-opt" data-points="admission-process:3,ielts-courses:1"><input type="radio" name="q4" value="admission-process" /> Stipendiya / chet elga kirish</label>
+        <label class="reco-opt" data-points="sat-math:3,desmos-applications:2"><input type="radio" name="q4" value="sat-math" /> SAT Math va Desmos bilan tezroq yechim topish</label>
+        <label class="reco-opt" data-points="sat-english:3"><input type="radio" name="q4" value="sat-english" /> SAT Reading & Writing bo‘limida ballni oshirish</label>
+        <label class="reco-opt" data-points="general-english-intermediate:3,general-english-elementary:1"><input type="radio" name="q4" value="general-english-intermediate" /> Kundalik va ishdagi inglizcha suhbatni ishonchli olib borish</label>
+        <label class="reco-opt" data-points="figma:3"><input type="radio" name="q4" value="figma" /> Mahsulot/dizayn ko'nikmasi</label>
+        <label class="reco-opt" data-points="ai-agentlar:3"><input type="radio" name="q4" value="ai-agentlar" /> O'z agent'imni yaratish</label>
+        <label class="reco-opt" data-points="mac-tezlik-sirlari:3"><input type="radio" name="q4" value="mac-tezlik-sirlari" /> Mac'da ishni tezlashtirish</label>
+        <label class="reco-opt" data-points="chet-elda-oqish:3,admission-process:1"><input type="radio" name="q4" value="chet-elda-oqish" /> Chet elda o'qish, bepul grant</label>
+        <label class="reco-opt" data-points="el-yurt-umidi:3,admission-process:1"><input type="radio" name="q4" value="el-yurt-umidi" /> Davlat granti suhbati (El-Yurt Umidi)</label>
+      </div>
+    </div>
+
+    <div class="reco-nav">
+      <button type="button" class="start-btn is-ghost" id="recoPrev" hidden data-i18n="reco.prev">← Orqaga</button>
+      <button type="button" class="start-btn" id="recoBtn" data-i18n="reco.next">Keyingi →</button>
+    </div>
+  </form>
+
+  <div class="reco-result" id="recoResult"></div>
+</article>
+
+<script>
+  window.TAYANCH_COURSES = {
+    "prompt-engineering": { title: "Prompt Engineering", url: import.meta.env.BASE_URL + "kurslar/prompt-engineering", desc: "AI bilan to'g'ri muloqot — vaqtni 10x tejash.", color: "#7d7df5" },
+    "obsidian": { title: "Obsidian PKM", url: import.meta.env.BASE_URL + "kurslar/obsidian", desc: "Shaxsiy bilim bazasi — bilimingizni tartibga soling.", color: "#34d399" },
+    "ai-agentlar": { title: "AI Agentlar nega kerak?", url: import.meta.env.BASE_URL + "kurslar/ai-agentlar", desc: "Vazifalarni o'zi bajarib chiqadigan agent'lar.", color: "#ef4444" },
+    "ielts-courses": { title: "IELTS kurslari", url: import.meta.env.BASE_URL + "kurslar/ielts-courses", desc: "Listening, Reading, Writing va Speaking kurslarini tanlang.", color: "#22c55e" },
+    "sat-math": { title: "SAT Math", url: import.meta.env.BASE_URL + "kurslar/sat-math", desc: "SAT Math uchun algebra, geometriya va statistika kursi. Tez orada — narx belgilanmoqda.", color: "#f97316" },
+    "sat-english": { title: "SAT English (Reading & Writing)", url: import.meta.env.BASE_URL + "kurslar/sat-english", desc: "SAT Reading & Writing uchun o‘qib tushunish va grammatika strategiyalari. Tez orada — narx belgilanmoqda.", color: "#38bdf8" },
+    "desmos-applications": { title: "Desmos Applications", url: import.meta.env.BASE_URL + "kurslar/desmos-applications", desc: "SAT Math bilan birga Desmos’dan tez va samarali foydalanish amaliyoti. Tez orada — narx belgilanmoqda.", color: "#a855f7" },
+    "general-english-beginner": { title: "General English — Beginner (A1)", url: import.meta.env.BASE_URL + "kurslar/general-english-beginner", desc: "Ingliz tilini noldan boshlash uchun asosiy grammatika, lug‘at, gapirish va tinglash kursi. Narx belgilanmoqda.", color: "#22c55e" },
+    "general-english-elementary": { title: "General English — Elementary (A2)", url: import.meta.env.BASE_URL + "kurslar/general-english-elementary", desc: "Kundalik vaziyatlarda erkinroq muloqot uchun keyingi General English bosqichi. Narx belgilanmoqda.", color: "#16a34a" },
+    "general-english-pre-intermediate": { title: "General English — Pre-Intermediate (A2–B1)", url: import.meta.env.BASE_URL + "kurslar/general-english-pre-intermediate", desc: "A2 asoslaridan B1 sari o‘tish uchun General English bosqichi. Narx belgilanmoqda.", color: "#0ea5e9" },
+    "general-english-intermediate": { title: "General English — Intermediate (B1)", url: import.meta.env.BASE_URL + "kurslar/general-english-intermediate", desc: "Kundalik va ishdagi muloqotni ishonchli olib borish uchun General English kursi. Narx belgilanmoqda.", color: "#3b82f6" },
+    "general-english-upper-intermediate": { title: "General English — Upper-Intermediate (B2)", url: import.meta.env.BASE_URL + "kurslar/general-english-upper-intermediate", desc: "Murakkabroq ish va o‘qishdagi muloqot uchun General English bosqichi. Narx belgilanmoqda.", color: "#8b5cf6" },
+    "general-english-advanced": { title: "General English — Advanced (C1)", url: import.meta.env.BASE_URL + "kurslar/general-english-advanced", desc: "Professional va akademik vaziyatlar uchun yuqori General English darajasi. Narx belgilanmoqda.", color: "#a855f7" },
+    "admission-process": { title: "Admission Process", url: import.meta.env.BASE_URL + "kurslar/admission-process", desc: "Chet el universitetiga kirish va stipendiya.", color: "#8b5cf6" },
+    "tekin-ai": { title: "Tekin AI modellar va agentlar", url: import.meta.env.BASE_URL + "kurslar/tekin-ai", desc: "Pul sarflamasdan o'z MacBook'ingizda AI.", color: "#7d7df5" },
+    "figma": { title: "Figma / Dizayn", url: import.meta.env.BASE_URL + "kurslar/figma", desc: "Bepul dizayn asoslari — UI/UX ga kirish.", color: "#f59e0b" },
+    "financial-literacy": { title: "Financial Literacy — Moliyaviy savodxonlik", url: import.meta.env.BASE_URL + "kurslar/financial-literacy", desc: "Pulni boshqarish, byudjet va moliyaviy qarorlar — talaba uchun asosiy ko'nikma.", color: "#10b981" },
+    "computer-literacy": { title: "Computer Literacy — Raqamli savodxonlik", url: import.meta.env.BASE_URL + "kurslar/computer-literacy", desc: "MS Office va Google Workspace — zamonaviy raqamli ko'nikmalar.", color: "#0ea5e9" },
+    "autocad-on-mac": { title: "AutoCAD on Mac", url: import.meta.env.BASE_URL + "kurslar/autocad-on-mac", desc: "Mac'da AutoCAD: o'rnatish, interfeys va bepul litsenziya.", color: "#f97316" },
+    "mac-tezlik-sirlari": { title: "Mac'da Tezlik Sirlari", url: import.meta.env.BASE_URL + "kurslar/mac-tezlik-sirlari", desc: "Raycast va Mac vositalari bilan kundalik ishlarni tezlashtirish.", color: "#3b82f6" },
+    "chet-elda-oqish": { title: "Nega chet elda o'qish kerak", url: import.meta.env.BASE_URL + "kurslar/chet-elda-oqish", desc: "Ta'lim sifati, karyera va bepul grantlar haqida bepul kurs.", color: "#14b8a6" },
+    "el-yurt-umidi": { title: "El-Yurt Umidi'ni yutaylik", url: import.meta.env.BASE_URL + "kurslar/el-yurt-umidi", desc: "Davlat granti bo'yicha suhbatga tayyorgarlik (tez orada).", color: "#ec4899" }
+  };
+</script>
+</Base>

@@ -1,0 +1,291 @@
+---
+import Base from "../../layouts/Base.astro";
+const title = 'Tech Lab — Tayanch';
+const description = 'Try Gemini in your browser with your own Google AI Studio API key.';
+const base = import.meta.env.BASE_URL;
+
+const alternates = [{ lang: 'uz', href: base + 'tech-lab/' }, { lang: 'ru', href: base + 'ru/tech-lab/' }, { lang: 'en', href: base + 'en/tech-lab/' }];---
+<Base title={title} description={description} lang="en" localeAlternates={alternates}>
+  <section class="techlab">
+    <div class="tl-head">
+      <span class="badge badge-new">Tech Lab</span>
+      <h1 data-i18n="techlab.title">Tech Lab</h1>
+      <p class="lead" data-i18n="techlab.intro">AI vositalarini brauzeringizda bevosita sinab ko'ring.</p>
+    </div>
+
+    <!-- ONBOARDING -->
+    <div id="tlOnboard" class="tl-onboard">
+      <h2 data-i18n="techlab.onboardTitle">Xush kelibsiz — Tech Lab</h2>
+      <p class="tl-onboard-1" data-i18n="techlab.onboard1">
+        Bu yerda o'z Google AI Studio API kalitingiz bilan Gemini modelini sinab ko'rasiz — bu bepul va shaxsiy.
+      </p>
+      <p class="tl-onboard-2" data-i18n="techlab.onboard2">
+        Kalit hech qachon mening serverlarimga yuborilmaydi; u faqat sizning brauzeringizda saqlanadi.
+      </p>
+      <p class="tl-getkey">
+        <span data-i18n="techlab.getKey">Kalit olish:</span>
+        <a href="https://aistudio.google.com/app/apikey" target="_blank" rel="noopener noreferrer" data-i18n="techlab.keyLink">Google AI Studio → API kaliti</a>
+      </p>
+      <p class="tl-steps" data-i18n="techlab.steps">
+        Qadamlar: 1) Google hisobiga kiring. 2) "Create API key" tugmasini bosing. 3) Kalitni quyidagi maydonga nusxalang.
+      </p>
+
+      <label class="tl-key-label" for="tlKey" data-i18n="techlab.keyLabel">Google AI Studio API kaliti</label>
+      <div class="tl-key-row">
+        <input id="tlKey" type="password" autocomplete="off" placeholder="AIza..." />
+        <button id="tlConnect" class="start-btn" type="button" data-i18n="techlab.connect">Ulanish</button>
+      </div>
+      <label class="tl-remember">
+        <input id="tlRemember" type="checkbox" />
+        <span data-i18n="techlab.remember">Kalitni brauzerda eslab qolish (faqat shaxsiy qurilmada)</span>
+      </label>
+      <p id="tlError" class="tl-error" aria-live="polite"></p>
+    </div>
+
+    <!-- CHAT -->
+    <div id="tlChat" class="tl-chat" hidden>
+      <div class="tl-chat-bar">
+        <label class="tl-model-label">
+          <span data-i18n="techlab.model">Model</span>
+          <select id="tlModel">
+            <option value="gemini-2.5-flash">Gemini 2.5 Flash</option>
+            <option value="gemini-2.5-flash-lite">Gemini 2.5 Flash-Lite</option>
+          </select>
+        </label>
+        <button id="tlClear" class="ghost-btn" type="button" data-i18n="techlab.clear">Kalitni o'chirish</button>
+      </div>
+
+      <div id="tlMessages" class="tl-messages" aria-live="polite"></div>
+
+      <div class="tl-input-row">
+        <textarea id="tlInput" rows="2" placeholder="Gemini'ga savolingizni yozing..."></textarea>
+        <button id="tlSend" class="start-btn" type="button" data-i18n="techlab.send">Yuborish</button>
+      </div>
+
+      <p class="tl-responsibilities" data-i18n="techlab.responsibilities">
+        Kalit — sizning shaxsiy mas'uliyatingiz. U men tomondan saqlanmaydi va ko'rilmaydi. Istalgan vaqtda Google AI Studio'dan bekor qilishingiz mumkin.
+      </p>
+    </div>
+  </section>
+</Base>
+
+<script is:inline>
+  (function () {
+    const TECH_RUNTIME = { uz: { missingKey: 'Iltimos, avval API kalitni kiriting.', empty: techText('empty'), error: 'Xatolik yuz berdi', thinking: 'Gemini o\'ylayapti...', placeholder: "Gemini'ga savolingizni yozing..." }, ru: { missingKey: 'Сначала введите API-ключ.', empty: '(Пустой ответ)', error: 'Произошла ошибка', thinking: 'Gemini думает...', placeholder: 'Напишите вопрос для Gemini...' }, en: { missingKey: 'Please enter an API key first.', empty: '(Empty response)', error: 'An error occurred', thinking: 'Gemini is thinking...', placeholder: 'Type your question for Gemini...' } };
+    const techText = (key) => (TECH_RUNTIME[document.documentElement.lang] || TECH_RUNTIME.uz)[key];
+    var LS_KEY = 'techlab_api_key';
+    var apiKey = '';
+    var history = [];
+
+    var onboard = document.getElementById('tlOnboard');
+    var chat = document.getElementById('tlChat');
+    var keyInput = document.getElementById('tlKey');
+    var remember = document.getElementById('tlRemember');
+    var connectBtn = document.getElementById('tlConnect');
+    var errorEl = document.getElementById('tlError');
+    var modelSel = document.getElementById('tlModel');
+    var clearBtn = document.getElementById('tlClear');
+    var messages = document.getElementById('tlMessages');
+    var input = document.getElementById('tlInput');
+    var sendBtn = document.getElementById('tlSend');
+    input.placeholder = techText('placeholder');
+
+    function showError(msg) { errorEl.textContent = msg || ''; }
+    function clearError() { errorEl.textContent = ''; }
+
+    function escapeHtml(s) {
+      return s.replace(/[&<>"']/g, function (c) {
+        return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c];
+      });
+    }
+
+    function appendMessage(role, text) {
+      var el = document.createElement('div');
+      el.className = 'tl-msg ' + (role === 'user' ? 'tl-user' : 'tl-model');
+      el.innerHTML = (role === 'user' ? '🧑‍💻 ' : '🤖 ') + escapeHtml(text);
+      messages.appendChild(el);
+      messages.scrollTop = messages.scrollHeight;
+    }
+
+    function connect() {
+      var k = keyInput.value.trim();
+      if (!k) { showError(techText('missingKey')); return; }
+      apiKey = k;
+      if (remember.checked) {
+        try { localStorage.setItem(LS_KEY, apiKey); } catch (e) {}
+      } else {
+        try { localStorage.removeItem(LS_KEY); } catch (e) {}
+      }
+      clearError();
+      onboard.hidden = true;
+      chat.hidden = false;
+    }
+
+    function disconnect() {
+      apiKey = '';
+      history = [];
+      try { localStorage.removeItem(LS_KEY); } catch (e) {}
+      messages.innerHTML = '';
+      chat.hidden = true;
+      onboard.hidden = false;
+      keyInput.value = '';
+      remember.checked = false;
+      clearError();
+    }
+
+    function setThinking(on) {
+      sendBtn.disabled = on;
+      input.disabled = on;
+      if (on) {
+        var el = document.createElement('div');
+        el.className = 'tl-msg tl-model tl-thinking';
+        el.id = 'tlThinking';
+        el.textContent = '🤖 ' + (window.__tlThinking || techText('thinking'));
+        messages.appendChild(el);
+        messages.scrollTop = messages.scrollHeight;
+      } else {
+        var t = document.getElementById('tlThinking');
+        if (t) t.remove();
+      }
+    }
+
+    function send() {
+      var text = input.value.trim();
+      if (!text || !apiKey) return;
+      appendMessage('user', text);
+      history.push({ role: 'user', parts: [{ text: text }] });
+      input.value = '';
+      setThinking(true);
+
+      var model = modelSel.value;
+      var url = 'https://generativelanguage.googleapis.com/v1beta/models/' + encodeURIComponent(model) + ':generateContent?key=' + encodeURIComponent(apiKey);
+      fetch(url, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ contents: history })
+      })
+        .then(function (resp) {
+          if (!resp.ok) {
+            if (resp.status === 400 || resp.status === 403) {
+              throw new Error('KEY');
+            } else if (resp.status === 429) {
+              throw new Error('RATE');
+            } else {
+              throw new Error('HTTP:' + resp.status);
+            }
+          }
+          return resp.json();
+        })
+        .then(function (data) {
+          setThinking(false);
+          var part = data && data.candidates && data.candidates[0] && data.candidates[0].content && data.candidates[0].content.parts && data.candidates[0].content.parts[0];
+          var out = part && part.text ? part.text : techText('empty');
+          appendMessage('model', out);
+          history.push({ role: 'model', parts: [{ text: out }] });
+        })
+        .catch(function (err) {
+          setThinking(false);
+          var msg;
+          if (err && err.message === 'KEY') {
+            msg = 'Kalit noto\'g\'ri yoki yo\'q. Qaytadan tekshiring.';
+          } else if (err && err.message === 'RATE') {
+            msg = 'So\'rovlar chegarasi (rate limit) tugadi. Biroz kutib, qayta urinib ko\'ring.';
+          } else if (err && err.message && err.message.indexOf('HTTP') === 0) {
+            msg = techText('error') + ' (' + err.message + ').';
+          } else {
+            msg = 'Tarmoq xatosi. Internet aloqasini tekshiring.';
+          }
+          appendMessage('model', '⚠️ ' + msg);
+        });
+    }
+
+    connectBtn.addEventListener('click', connect);
+    clearBtn.addEventListener('click', disconnect);
+    sendBtn.addEventListener('click', send);
+    input.addEventListener('keydown', function (e) {
+      if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); send(); }
+    });
+
+    // Restore opt-in key from a previous session
+    try {
+      var saved = localStorage.getItem(LS_KEY);
+      if (saved) {
+        keyInput.value = saved;
+        remember.checked = true;
+        connect();
+      }
+    } catch (e) {}
+  })();
+</script>
+
+<style>
+  .techlab { max-width: 920px; margin: 0 auto; padding: 2.6rem 20px 3rem; }
+  .tl-head { text-align: center; margin-bottom: 2rem; }
+  .tl-head h1 { font-family: var(--font-display); font-size: 2.4rem; margin: .5rem 0 .5rem; letter-spacing: -.02em; }
+  .tl-head .lead { color: var(--muted); max-width: 620px; margin: 0 auto; }
+
+  .tl-onboard {
+    background: var(--surface); border: 1px solid var(--border); border-radius: 18px;
+    padding: 26px 28px; box-shadow: var(--shadow); max-width: 680px; margin: 0 auto;
+  }
+  .tl-onboard h2 { color: var(--accent); margin: 0 0 1rem; font-size: 1.4rem; }
+  .tl-onboard p { color: var(--muted); line-height: 1.65; margin: 0 0 .9rem; }
+  .tl-getkey a { color: var(--accent); font-weight: 700; text-decoration: none; }
+  .tl-getkey a:hover { text-decoration: underline; }
+  .tl-steps { font-size: .92rem; }
+
+  .tl-key-label { display: block; font: 700 12px var(--font-display); text-transform: uppercase; letter-spacing: .05em; color: var(--muted); margin-bottom: .5rem; }
+  .tl-key-row { display: flex; gap: 10px; }
+  .tl-key-row input {
+    flex: 1; padding: 12px 14px; border-radius: 10px; border: 1px solid var(--border);
+    background: var(--bg); color: var(--text); font-size: .95rem; font-family: ui-monospace, Menlo, Consolas, monospace;
+  }
+  .tl-key-row input:focus { outline: none; border-color: var(--accent); }
+  .tl-remember { display: flex; align-items: center; gap: 8px; margin-top: 1rem; color: var(--muted); font-size: .9rem; cursor: pointer; }
+  .tl-remember input { width: 16px; height: 16px; accent-color: var(--accent); }
+  .tl-error { color: #ef4444; font-size: .9rem; margin: .8rem 0 0; min-height: 1.1rem; font-weight: 600; }
+
+  .tl-chat { max-width: 820px; margin: 0 auto; }
+  .tl-chat-bar { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 1rem; flex-wrap: wrap; }
+  .tl-model-label { display: inline-flex; align-items: center; gap: 8px; color: var(--muted); font-weight: 600; font-size: .9rem; }
+  .tl-model-label select {
+    padding: 8px 12px; border-radius: 10px; border: 1px solid var(--border);
+    background: var(--surface); color: var(--text); font-weight: 600;
+  }
+  .tl-messages {
+    background: var(--surface); border: 1px solid var(--border); border-radius: 16px;
+    padding: 18px; min-height: 320px; max-height: 520px; overflow-y: auto;
+    display: flex; flex-direction: column; gap: 12px;
+  }
+  .tl-msg {
+    max-width: 88%; padding: 12px 15px; border-radius: 14px; line-height: 1.6; white-space: pre-wrap;
+    word-break: break-word; font-size: .95rem;
+  }
+  .tl-user { align-self: flex-end; background: var(--accent); color: #fff; border-bottom-right-radius: 4px; }
+  .tl-model { align-self: flex-start; background: color-mix(in srgb, var(--accent) 10%, var(--bg)); color: var(--text); border: 1px solid var(--border); border-bottom-left-radius: 4px; }
+  .tl-thinking { opacity: .7; font-style: italic; }
+  .tl-input-row { display: flex; gap: 10px; margin-top: 1rem; align-items: flex-end; }
+  .tl-input-row textarea {
+    flex: 1; resize: vertical; min-height: 52px; max-height: 160px; padding: 12px 14px;
+    border-radius: 12px; border: 1px solid var(--border); background: var(--bg); color: var(--text);
+    font-family: system-ui, inherit; font-size: .95rem; line-height: 1.5;
+  }
+  .tl-input-row textarea:focus { outline: none; border-color: var(--accent); }
+  .tl-input-row .start-btn { white-space: nowrap; }
+  .tl-responsibilities {
+    color: var(--muted); font-size: .82rem; margin-top: 1rem; text-align: center;
+    padding: 10px 14px; border: 1px dashed var(--border); border-radius: 12px;
+  }
+  .ghost-btn {
+    display: inline-flex; align-items: center; gap: 6px; padding: .65rem 1.2rem; border-radius: 10px;
+    cursor: pointer; background: var(--surface); color: var(--text); border: 1px solid var(--border);
+    font-weight: 700; font-size: .9rem; transition: border-color .15s, color .15s;
+  }
+  .ghost-btn:hover { border-color: var(--accent); color: var(--accent); }
+  .ghost-btn:disabled, .start-btn:disabled { opacity: .6; cursor: default; }
+  @media (max-width: 560px) {
+    .tl-head h1 { font-size: 1.9rem; }
+    .tl-key-row, .tl-input-row { flex-direction: column; align-items: stretch; }
+    .tl-input-row .start-btn { width: 100%; }
+  }
+</style>

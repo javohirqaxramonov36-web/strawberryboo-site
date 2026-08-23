@@ -3,11 +3,18 @@ import Base from '../../layouts/Base.astro';
 import SatCourse from '../../components/SatCourse.astro';
 import { getSatCourse } from '../../data/sat-courses';
 
-const course = getSatCourse('sat-english');
-if (!course) throw new Error('SAT course was not found.');
-const relatedCourse = course.relatedCourseSlug ? getSatCourse(course.relatedCourseSlug) : undefined;
+const lang = 'uz' as const;
+const course = getSatCourse('sat-english', lang);
+if (!course) throw new Error('Course was not found.');
+const relatedCourse = course.relatedCourseSlug ? getSatCourse(course.relatedCourseSlug, lang) : undefined;
+const base = import.meta.env.BASE_URL;
+const alternates = [
+  { lang: 'uz', href: base + 'kurslar/sat-english/' },
+  { lang: 'ru', href: base + 'ru/kurslar/sat-english/' },
+  { lang: 'en', href: base + 'en/kurslar/sat-english/' },
+];
 ---
 
-<Base title={course.title + ' | Tayanch'} description={course.description}>
-  <SatCourse {course} {relatedCourse} />
+<Base title={course.title + ' | Tayanch'} description={course.description} lang={lang} localeAlternates={alternates}>
+  <SatCourse {course} {relatedCourse} {lang} />
 </Base>
