@@ -4,8 +4,9 @@ import Base from '../../layouts/Base.astro';
 import BlogPost from '../../components/blog/BlogPost.astro';
 const lang = 'uz' as const;
 export async function getStaticPaths() {
-  const posts = await getCollection('blog', ({ data }) => data.locale === lang && !data.draft);
-  return posts.map((post) => ({ params: { slug: post.slug.replace(new RegExp(`^${lang}/`), '') }, props: { post } }));
+  const locale = 'uz' as const;
+  const posts = await getCollection('blog', ({ data }) => data.locale === locale && !data.draft);
+  return posts.map((post) => ({ params: { slug: post.slug.replace(new RegExp(`^${locale}/`), '') }, props: { post } }));
 }
 const { post } = Astro.props;
 const { Content } = await render(post);
