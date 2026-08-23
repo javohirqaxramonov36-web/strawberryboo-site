@@ -76,6 +76,7 @@ const plugins = [
   <Quiz title="O'z bilimingizni tekshiring" titleI18n="op.quizTitle" questions={questions} />
   <PaymentInstructions course="Obsidian PKM" price="$19 · ≈ 240 000 so'm" />
   <CourseFaq facts={bespokeCourseFaqFacts["obsidian"]} />
+  {/* REAL student reviews go in src/data/testimonials.ts — add only permissioned, verified reviews. This renders nothing until then. */}
   <CourseTestimonialPlaceholder />
   <LeadMagnetCTA />
 </article>
