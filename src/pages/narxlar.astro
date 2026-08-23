@@ -1,5 +1,6 @@
 ---
 import Base from "../layouts/Base.astro";
+import { availableCourseCount } from "../config/course-catalog";
 const title = "Narxlar — Tayanch";
 const description = "Kurslar narxlari: bitta kurs, barcha AI kurslari paketi va to'liq access. Forever access.";
 ---
@@ -33,8 +34,8 @@ const description = "Kurslar narxlari: bitta kurs, barcha AI kurslari paketi va 
       <span class="badge badge-new" data-i18n="np.bestValue">Eng foydali</span>
       <span class="plan-name" data-i18n="np.aiName">AI Stack</span>
       <p class="plan-desc" data-i18n="np.aiDesc">Prompt Engineering + AI Agentlar + Obsidian PKM — AI yo'nalishida hamma narsa bitta paketda.</p>
-      <div class="plan-price">$70<span class="was">$87</span><span class="uzs">≈ 875 000 so'm</span></div>
-      <p class="save-note" data-i18n="np.aiSave">Alohida sotib olishdan tejang: $17 (20%)</p>
+      <div class="plan-price"><span class="current-price">$70</span><s class="old-price" aria-label="Oldingi narx">$87</s><span class="uzs">≈ 875 000 so'm</span></div>
+      <p class="save-note">Alohida sotib olishdan $17 tejang (taxminan 20%)</p>
       <ul>
         <li data-i18n="np.aiLi1">Prompt Engineering ($29)</li>
         <li data-i18n="np.aiLi2">AI Agentlar ($39)</li>
@@ -47,14 +48,13 @@ const description = "Kurslar narxlari: bitta kurs, barcha AI kurslari paketi va 
     <!-- 3. Full access -->
     <div class="plan">
       <span class="plan-name" data-i18n="np.fullName">Full access</span>
-      <p class="plan-desc" data-i18n="np.fullDesc">Barcha kurslar — AI, IELTS, Admission, Figma va bepul AI.</p>
+      <p class="plan-desc">Hozir mavjud kurslarga umumiy access. Kelajakdagi kurslar uchun paket shartlari keyin e'lon qilinadi.</p>
       <div class="plan-price">$99<span class="uzs">≈ 1 240 000 so'm</span></div>
       <ul>
-        <li data-i18n="np.fullLi1">24 ta kursning hammasi</li>
+        <li>{availableCourseCount} ta hozir mavjud kurs</li>
         <li data-i18n="np.forever">Forever access</li>
         <li data-i18n="np.certAll">Barchasiga sertifikat</li>
-        <li data-i18n="np.fullLi4">Yangi kurslar bepul</li>
-        <li data-i18n="np.fullLi5">aloqada $145 o'rniga $99</li>
+        <li>Yangi kurslar bo'yicha shartlar tez orada e'lon qilinadi</li>
       </ul>
       <a href={import.meta.env.BASE_URL + 'bog-lanish'} class="start-btn" data-i18n="np.buyBtn">Sotib olish →</a>
     </div>
@@ -63,7 +63,10 @@ const description = "Kurslar narxlari: bitta kurs, barcha AI kurslari paketi va 
   <style>
     .pricing.single { grid-template-columns: minmax(260px, 380px); }
     .paket-head { margin: 2.5rem 0 .5rem; font: 800 22px var(--font-display); color: var(--text); letter-spacing: -.01em; }
-    .plan-price .was { text-decoration: line-through; color: var(--muted); font-size: .95rem; font-weight: 600; margin-left: 10px; }
+    .plan-price { display:flex; flex-wrap:wrap; align-items:baseline; gap:.35rem .65rem; }
+    .plan-price .current-price { font: inherit; }
+    .plan-price .old-price { color: var(--muted); font-size: .95rem; font-weight: 600; text-decoration-thickness: 2px; }
+    .plan-price .uzs { flex-basis:100%; margin-left:0; }
     .save-note { margin: .2rem 0 .9rem; color: var(--accent); font-weight: 600; font-size: .9rem; }
   </style>
 

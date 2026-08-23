@@ -1,6 +1,7 @@
 ---
 import ChatWidget from "../components/ChatWidget.astro";
 import SearchPanel from "../components/SearchPanel.astro";
+import { footerNavigation, primaryNavigation } from "../config/navigation";
 const title = Astro.props.title || "Tayanch";
 const description = Astro.props.description || '';
 const lang = Astro.props.lang || "uz";
@@ -12,6 +13,7 @@ const localeAlternates = (Astro.props.localeAlternates || []).map((alternate) =>
 const canonicalUz = (localeAlternates.find((a) => a.lang === 'uz') || {}).href || canonical;
 const base = import.meta.env.BASE_URL;
 const TG = "https://t.me/progression_go"; // Telegram kanal/guruh havolasi
+const languageAlternates = Object.fromEntries(localeAlternates.map((alternate) => [alternate.lang, alternate.href]));
 ---
 
 <!doctype html>
@@ -123,25 +125,15 @@ const TG = "https://t.me/progression_go"; // Telegram kanal/guruh havolasi
         <span class="brand-wordmark"><span class="brand-tay">Tay</span><span class="brand-anch">anch</span></span>
       </a>
       <nav class="side-nav">
-        <a href={base}><span data-i18n="nav.home">Bosh sahifa</span></a>
-        <a href={base + 'kurslar/'}><span data-i18n="nav.courses">Kurslar</span></a>
-        <a href={base + 'ielts-mock/'}>IELTS Mock</a>
-        <a href={base + 'narxlar/'}><span data-i18n="nav.prices">Narxlar</span></a>
-        <a href={base + 'kurs-tanlash/'}><span data-i18n="nav.reco">Kurs tanlash</span></a>
-        <a href={base + 'mening-yolim/'}><span data-i18n="nav.journey">Mening yo'lim</span></a>
-        <a href={base + 'profile/'}>Mening profilim</a>
-        <a href={base + 'bog-lanish/'}><span data-i18n="nav.contact">Bog'lanish</span></a>
-        <a href={base + 'homiylik/'}><span data-i18n="nav.donate">Homiylik</span></a>
-        <a href={base + 'md2pdf/'}><span>Markdown → PDF</span></a>
-        <a href={base + 'tech-lab/'}><span>Tech Lab</span></a>
+        {primaryNavigation.map((item) => <a href={base + item.href}>{item.i18nKey ? <span data-i18n={item.i18nKey}>{item.label}</span> : item.label}</a>)}
         <a href={TG} class="tg-nav" aria-label="Telegram" target="_blank" rel="noopener noreferrer">
           <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 4 3 11l5 2 2 5 3-3 4 3 4-13z"/><path d="m8 13 4-4"/></svg>
           Telegram
         </a>
-        <span class="lang-switch side">
-          <a href="#" data-lang="uz" class={lang==='uz'?'active':''}>UZ</a>
-          <a href="#" data-lang="ru" class={lang==='ru'?'active':''}>RU</a>
-          <a href="#" data-lang="en" class={lang==='en'?'active':''}>EN</a>
+        <span class="lang-switch side" aria-label="Til tanlash">
+          <a href={languageAlternates.uz || canonicalUz} class={lang === 'uz' ? 'active' : ''} hreflang="uz">UZ</a>
+          {languageAlternates.ru ? <a href={languageAlternates.ru} class={lang === 'ru' ? 'active' : ''} hreflang="ru">RU</a> : <button type="button" data-lang-coming>RU</button>}
+          {languageAlternates.en ? <a href={languageAlternates.en} class={lang === 'en' ? 'active' : ''} hreflang="en">EN</a> : <button type="button" data-lang-coming>EN</button>}
         </span>
       </nav>
     </aside>
@@ -151,24 +143,15 @@ const TG = "https://t.me/progression_go"; // Telegram kanal/guruh havolasi
         <button class="menu-toggle" id="menuToggle">☰</button>
         <span class="mobile-brand"><span class="brand-wordmark"><span class="brand-tay">Tay</span><span class="brand-anch">anch</span></span></span>
         <nav class="top-nav">
-          <a href={base + 'kurslar/'}><span data-i18n="nav.courses">Kurslar</span></a>
-          <a href={base + 'ielts-mock/'}>IELTS Mock</a>
-          <a href={base + 'narxlar/'}><span data-i18n="nav.prices">Narxlar</span></a>
-          <a href={base + 'kurs-tanlash/'}><span data-i18n="nav.reco">Kurs tanlash</span></a>
-          <a href={base + 'mening-yolim/'}><span data-i18n="nav.journey">Mening yo'lim</span></a>
-        <a href={base + 'profile/'}>Mening profilim</a>
-          <a href={base + 'bog-lanish/'}><span data-i18n="nav.contact">Bog'lanish</span></a>
-          <a href={base + 'homiylik/'}><span data-i18n="nav.donate">Homiylik</span></a>
-          <a href={base + 'md2pdf/'}><span>Markdown → PDF</span></a>
-          <a href={base + 'tech-lab/'}><span>Tech Lab</span></a>
+          {primaryNavigation.filter((item) => item.href !== '').map((item) => <a href={base + item.href}>{item.i18nKey ? <span data-i18n={item.i18nKey}>{item.label}</span> : item.label}</a>)}
           <a href={TG} class="tg-nav" aria-label="Telegram" target="_blank" rel="noopener noreferrer">
             <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 4 3 11l5 2 2 5 3-3 4 3 4-13z"/><path d="m8 13 4-4"/></svg>
             Telegram
           </a>
-          <span class="lang-switch">
-          <a href="#" data-lang="uz" class={lang==='uz'?'active':''}>UZ</a>
-          <a href="#" data-lang="ru" class={lang==='ru'?'active':''}>RU</a>
-          <a href="#" data-lang="en" class={lang==='en'?'active':''}>EN</a>
+          <span class="lang-switch" aria-label="Til tanlash">
+            <a href={languageAlternates.uz || canonicalUz} class={lang === 'uz' ? 'active' : ''} hreflang="uz">UZ</a>
+            {languageAlternates.ru ? <a href={languageAlternates.ru} class={lang === 'ru' ? 'active' : ''} hreflang="ru">RU</a> : <button type="button" data-lang-coming>RU</button>}
+            {languageAlternates.en ? <a href={languageAlternates.en} class={lang === 'en' ? 'active' : ''} hreflang="en">EN</a> : <button type="button" data-lang-coming>EN</button>}
           </span>
         </nav>
         <button id="themeToggle" class="theme-toggle" type="button" aria-label="Tema o'zgartirish" title="Tema o'zgartirish">
@@ -206,18 +189,7 @@ const TG = "https://t.me/progression_go"; // Telegram kanal/guruh havolasi
           </div>
           <div class="footer-col">
             <h4 data-i18n="footer.pages">Sahifalar</h4>
-            <a href={base + 'kurslar/'}><span data-i18n="nav.courses">Kurslar</span></a>
-            <a href={base + 'ielts-mock/'}>IELTS Mock</a>
-            <a href={base + 'narxlar/'}><span data-i18n="nav.prices">Narxlar</span></a>
-            <a href={base + 'kurs-tanlash/'}><span data-i18n="nav.reco">Kurs tanlash</span></a>
-            <a href={base + 'mening-yolim/'}><span data-i18n="nav.journey">Mening yo'lim</span></a>
-            <a href={base + 'bog-lanish/'}><span data-i18n="nav.contact">Bog'lanish</span></a>
-            <a href={base + 'homiylik/'}><span data-i18n="nav.donate">Homiylik</span></a>
-            <a href={base + 'tech-lab/'}><span>Tech Lab</span></a>
-            <a href={base + 'faq/'}>FAQ</a>
-            <a href={base + 'biz-haqimizda/'}>Biz haqimizda</a>
-            <a href={base + 'maxfiylik-siyosati/'}>Maxfiylik siyosati</a>
-            <a href={base + 'foydalanish-shartlari/'}>Foydalanish shartlari</a>
+            {footerNavigation.map((item) => <a href={base + item.href}>{item.i18nKey ? <span data-i18n={item.i18nKey}>{item.label}</span> : item.label}</a>)}
           </div>
         </div>
         <p class="footer-copy"><span data-i18n="footer.copy">© 2026 Tayanch. Barcha huquqlar himoyalangan.</span> · <a href={base + 'foydalanish-shartlari/'} data-i18n="footer.terms">Foydalanish shartlari</a></p>
@@ -1987,9 +1959,7 @@ const TG = "https://t.me/progression_go"; // Telegram kanal/guruh havolasi
          }
       };
 
-      const LS_KEY = 'org-lam-lang';
       const routeLang = document.documentElement.lang || 'uz';
-      const routeControlsLanguage = routeLang !== 'uz';
       function applyLang(lang) {
         if (!I18N[lang]) lang = 'uz';
         document.documentElement.lang = lang;
@@ -1999,23 +1969,23 @@ const TG = "https://t.me/progression_go"; // Telegram kanal/guruh havolasi
                 : (I18N.uz[key] != null ? I18N.uz[key] : el.textContent);
           el.textContent = t;
         });
-        document.querySelectorAll('[data-lang]').forEach(function (b) {
-          b.classList.toggle('active', b.getAttribute('data-lang') === lang);
-        });
       }
-      var savedLang = routeControlsLanguage ? routeLang : (localStorage.getItem(LS_KEY) || routeLang);
-      if (routeControlsLanguage) localStorage.setItem(LS_KEY, routeLang);
-      applyLang(savedLang);
-      document.querySelectorAll('[data-lang]').forEach(function (b) {
-        b.addEventListener('click', function (e) {
-          e.preventDefault();
-          var l = b.getAttribute('data-lang');
-          if (l === savedLang) return;
-          localStorage.setItem(LS_KEY, l);
-          savedLang = l;
-          document.body.classList.add('lang-switching');
-          applyLang(l);
-          setTimeout(function () { document.body.classList.remove('lang-switching'); }, 200);
+      // Content language follows the actual route. Unsupported RU/EN pages keep
+      // visible controls but explain that translations are still being prepared.
+      applyLang(routeLang);
+      document.querySelectorAll('[data-lang-coming]').forEach(function (button) {
+        button.addEventListener('click', function () {
+          var toast = document.getElementById('languageNotice');
+          if (!toast) {
+            toast = document.createElement('div');
+            toast.id = 'languageNotice';
+            toast.className = 'language-notice';
+            toast.setAttribute('role', 'status');
+            document.body.appendChild(toast);
+          }
+          toast.textContent = 'RU/EN tarjimalari hozircha faqat ayrim IELTS kurslarida mavjud. Tez orada kengaytiriladi.';
+          toast.classList.add('is-visible');
+          setTimeout(function () { toast.classList.remove('is-visible'); }, 3200);
         });
       });
 
@@ -2279,7 +2249,11 @@ const TG = "https://t.me/progression_go"; // Telegram kanal/guruh havolasi
       .lang-switch a { font: 700 11px var(--font-display); color: var(--muted); text-decoration: none; padding: 4px 8px; border-radius: 999px; transition: background .15s, color .15s; }
       .lang-switch a:hover { color: var(--text); }
       .lang-switch a.active { background: var(--accent); color: #fff; }
+      .lang-switch button { font: 700 11px var(--font-display); color: var(--muted); background: transparent; border: 0; padding: 4px 8px; border-radius: 999px; cursor: pointer; }
+      .lang-switch button:hover { color: var(--text); }
       .lang-switch.side { display: flex; margin: 10px 0 4px; }
+      .language-notice { position: fixed; z-index: 1000; left: 50%; bottom: 1.25rem; transform: translate(-50%, 1rem); max-width: min(92vw, 560px); padding: .75rem 1rem; border: 1px solid var(--border); border-radius: 12px; background: var(--surface); box-shadow: 0 12px 32px rgba(0,0,0,.18); color: var(--text); font-size: .9rem; opacity: 0; pointer-events: none; transition: .2s; }
+      .language-notice.is-visible { opacity: 1; transform: translate(-50%, 0); }
 
       /* === UZS PRICE HELPER === */
       .price .uzs, .uzs { display: block; font-size: .85rem; font-weight: 600; color: var(--muted); margin-top: 2px; }

@@ -51,14 +51,6 @@ body .tg-footer-btn:hover {
    HOZIRCHA YASHIRINGAN: haqiqiy raqamlar kiritilgach bu blokni oching.
    Ochish uchun: pastdagi display:none ni olib tashlang va .sp-starters uslubini tiklang.
    Reyting (yulduz) qismi foydalanuvchi qarori bilan butunlay olib tashlangan. */
-.social-proof {
-  display: none;
-}
-.sp-starters {
-  color: var(--muted);
-  font-size: 0.82rem;
-  font-weight: 600;
-}
 
 /* 5) Kurs tanlash — progress bar */
 .reco-progress {
