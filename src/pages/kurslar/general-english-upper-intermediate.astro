@@ -1,0 +1,14 @@
+---
+import Base from '../../layouts/Base.astro';
+import GeneralEnglishCourse from '../../components/GeneralEnglishCourse.astro';
+import { getGeneralEnglishCourse } from '../../data/general-english-courses';
+
+const course = getGeneralEnglishCourse('general-english-upper-intermediate');
+if (!course) throw new Error('General English course was not found.');
+const previousCourse = course.previousSlug ? getGeneralEnglishCourse(course.previousSlug) : undefined;
+const nextCourse = course.nextSlug ? getGeneralEnglishCourse(course.nextSlug) : undefined;
+---
+
+<Base title={course.title + ' | Tayanch'} description={course.description}>
+  <GeneralEnglishCourse {course} {previousCourse} {nextCourse} />
+</Base>
