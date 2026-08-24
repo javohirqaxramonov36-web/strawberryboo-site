@@ -4,12 +4,14 @@ import Quiz from './Quiz.astro';
 import LeadMagnetCTA from './LeadMagnetCTA.astro';
 import Testimonials from './Testimonials.astro';
 import CourseFaq from './CourseFaq.astro';
+import CourseSchema from './CourseSchema.astro';
 import type { CourseLocale } from '../data/localized-standard-courses';
 const { course, slug, lang } = Astro.props as { course: any; slug: string; lang: CourseLocale };
 const faqCopy = lang === 'ru'
  ? { whoFor: 'Тем, кому подходит тема и практические модули, перечисленные на этой странице.', notFor: 'Не для тех, кто ожидает гарантированный результат: страница описывает содержание курса и практические шаги.', access: 'На этой странице указаны текущие цена и статус. Дополнительные условия оплаты или доступа здесь не заявлены.' }
  : { whoFor: 'Learners who want to work through the topic and practical modules listed on this page.', notFor: 'Not for learners expecting a guaranteed outcome: this page describes course content and practical steps.', access: 'This page shows the current price and status. It does not state additional payment or access terms.' };
 ---
+<CourseSchema name={course.heading} description={course.description} {lang} />
 <CourseProgress courseId={slug} title={`${course.heading} — ${lang === 'ru' ? 'прогресс' : 'progress'}`} itemSelector=".course-module" labelSelector="h3" />
 <article class="course-page">
  <header class="course-hero"><p class="eyebrow">TAYANCH · COURSE</p><h1>{course.heading}</h1><p class="lead">{course.description}</p><div class="price"><span class="now">{course.price}</span>{course.oldPrice && <span class="old">{course.oldPrice}</span>}{course.status && <span class="badge">{course.status}</span>}</div></header>

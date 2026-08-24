@@ -8,6 +8,7 @@ import Quiz from "../../components/Quiz.astro";
 import ObsidianScreenshotSlots from "../../components/ObsidianScreenshotSlots.astro";
 import CourseTestimonialPlaceholder from "../../components/CourseTestimonialPlaceholder.astro";
 import CourseFaq from "../../components/CourseFaq.astro";
+import CourseSchema from "../../components/CourseSchema.astro";
 import { bespokeCourseFaqFacts } from "../../data/course-faqs";
 const title = "Obsidian: shaxsiy bilim bazasi qurish | Tayanch";
 const description = "Obsidian PKM bilan shaxsiy bilim bazasi qurish: kundalik yuritish, eslatmalarni bog'lash va o'qiganingizni esda saqlash. Bepul kurs.";
@@ -50,6 +51,7 @@ const plugins = [
 ];
 ---
 <Base title={title} description={description}>
+  <CourseSchema name="Obsidian: shaxsiy bilim bazasi qurish" description={description} lang="uz" />
   <CourseProgress courseId="obsidian" title="Obsidian PKM progressi" itemSelector=".modules > li" labelSelector="ol.modules" />
 <article class="lesson obsidian-course">
   <header class="course-hero course-hero--visual">

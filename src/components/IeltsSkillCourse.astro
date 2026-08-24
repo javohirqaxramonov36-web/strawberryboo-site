@@ -5,6 +5,7 @@ import Testimonials from './Testimonials.astro';
 import CourseFaq from './CourseFaq.astro';
 import PremiumReviewCard from './PremiumReviewCard.astro';
 import CourseCrossSell from './CourseCrossSell.astro';
+import CourseSchema from './CourseSchema.astro';
 const { skill, title, eyebrow, description, accent, available, fillNeeded, practiceHref, practiceLabel, sourceNote, mockBonus = false, speakingApp = false, whyUseful, contentTodo, bonusHref, bonusLabel, price = '$7.50', priceUzs = '93 750 so‘m', priceUzsNum = 93750, lang = 'uz' } = Astro.props;
 const base = import.meta.env.BASE_URL;
 const L = {
@@ -102,6 +103,7 @@ const faqCopy = {
   en: { whoFor: 'Learners who want to use the available materials and practice for this IELTS skill.', notFor: 'Not for learners looking for a guaranteed IELTS score or official exam registration.', access: 'Payment is confirmed manually via Telegram following the current process. The page lists lifetime access.' }
 }[lang] || undefined;
 ---
+<CourseSchema name={title} {description} {lang} />
 <article class="ielts-skill" style={`--skill-accent:${accent}`}>
   <!-- AIDA: 1) ATTENTION -->
   <header class="course-hero"><p class="eyebrow">{eyebrow} · {t.newSkill}</p><h1>{title}</h1><div class="price"><span class="now">{price}</span><span class="uzs">≈ {priceUzs} · {t.foreverAccess}</span></div><p class="lead">{description}</p></header>

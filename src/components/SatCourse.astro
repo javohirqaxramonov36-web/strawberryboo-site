@@ -1,5 +1,6 @@
 ---
 import type { LocalizedSatCourse as Course } from '../data/sat-courses';
+import CourseSchema from './CourseSchema.astro';
 import type { CourseLang } from '../data/general-english-courses';
 import Testimonials from './Testimonials.astro';
 import CourseFaq from './CourseFaq.astro';
@@ -15,6 +16,7 @@ const faqCopy = {
   en: { status: 'Coming soon', notFor: 'Not for learners looking for a guaranteed SAT result or registration: this course page is focused on preparation topics.', access: 'The course page shows the price and status. Payment and access details will be announced with the ready materials.' }
 }[lang];
 ---
+<CourseSchema name={course.title} description={course.description} {lang} />
 <article class="sat-course" style={`--course-accent:${course.accent}`}>
   <header class="course-hero"><span class="badge badge-new">{course.badge}</span><p class="eyebrow">SAT · ADMISSION</p><h1>{course.title}</h1><p class="lead">{course.description}</p><div class="course-meta"><span class="cat">{course.tags.join(' · ')}</span>{course.certificate && <span class="certificate">{copy.certificate}</span>}</div></header>
   <section class="course-section" aria-labelledby="audience-title"><p class="eyebrow">{copy.audience}</p><h2 id="audience-title">{copy.path}</h2><p>{course.targetAudience}</p></section>
