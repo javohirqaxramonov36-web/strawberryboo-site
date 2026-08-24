@@ -17,7 +17,7 @@ export const primaryNavigation: readonly NavigationItem[] = [
   { href: 'homiylik/', label: 'Homiylik', i18nKey: 'nav.donate' },
   { href: 'md2pdf/', label: 'Markdown → PDF', i18nKey: 'nav.md2pdf' },
   { href: 'tech-lab/', label: 'Tech Lab', i18nKey: 'nav.techLab' },
-  { href: 'entertainment/', label: 'Ko\'ngilochar' },
+  { href: 'entertainment/', label: 'Entertainment' },
 ];
 
 export const footerNavigation: readonly NavigationItem[] = [
