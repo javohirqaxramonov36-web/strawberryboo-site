@@ -1,0 +1,2455 @@
+[
+  {
+    "day": 1,
+    "week_focus": "Звуки TH: /θ/ и /ð/",
+    "pronunciation": [
+      [
+        "think",
+        "/θɪŋk/",
+        "кончик языка между зубами, глухой"
+      ],
+      [
+        "three",
+        "/θriː/",
+        "начальный /θ/"
+      ],
+      [
+        "through",
+        "/θruː/",
+        "сохраняйте воздушный поток"
+      ],
+      [
+        "this",
+        "/ðɪs/",
+        "звонкий th"
+      ],
+      [
+        "weather",
+        "/ˈweð.ə/",
+        "срединный /ð/"
+      ],
+      [
+        "healthy",
+        "/ˈhel.θi/",
+        "чёткий /θ/"
+      ],
+      [
+        "both",
+        "/bəʊθ/",
+        "конечный /θ/"
+      ],
+      [
+        "rather",
+        "/ˈrɑːð.ə/",
+        "мягкий /ð/"
+      ]
+    ],
+    "shadowing": {
+      "audio_text": "I think the weather in my hometown is one of the things that makes it special. Although summers can be hot, there are usually pleasant evenings when families walk together outside.",
+      "target_duration_sec": 38,
+      "source": "original-course-script",
+      "license": "Original Tayanch course script; browser TTS reference only."
+    },
+    "speaking_set": {
+      "topic": "Родной город и район",
+      "part1": [
+        "Где находится ваш родной город?",
+        "Что вам больше всего нравится в районе, где вы живёте?",
+        "Изменился ли ваш район в последние годы?"
+      ],
+      "part2": {
+        "cue_card": "Опишите место в вашем родном городе, которое вы любите посещать.",
+        "bullets": [
+          "где оно находится",
+          "когда вы туда ходите",
+          "что вы там делаете",
+          "почему вам там нравится"
+        ],
+        "prep_time_sec": 60,
+        "speak_time_sec": 120
+      },
+      "part3": [
+        "Почему некоторые люди предпочитают жить в городах?",
+        "Как общественные пространства могут улучшить район?",
+        "Должны ли города сохранять старые здания?",
+        "Как могут измениться города в будущем?"
+      ]
+    }
+  },
+  {
+    "day": 2,
+    "week_focus": "Звуки TH: точность и скорость",
+    "pronunciation": [
+      [
+        "thank",
+        "/θæŋk/",
+        "не превращайте /θ/ в /s/"
+      ],
+      [
+        "thousand",
+        "/ˈθaʊ.zənd/",
+        "первый слог"
+      ],
+      [
+        "method",
+        "/ˈmeθ.əd/",
+        "срединный /θ/"
+      ],
+      [
+        "those",
+        "/ðəʊz/",
+        "звонкое начало"
+      ],
+      [
+        "mother",
+        "/ˈmʌð.ə/",
+        "мягкий /ð/"
+      ],
+      [
+        "although",
+        "/ɔːlˈðəʊ/",
+        "как союз"
+      ],
+      [
+        "growth",
+        "/ɡrəʊθ/",
+        "в конце слова"
+      ],
+      [
+        "therefore",
+        "/ˈðeə.fɔː/",
+        "соединительный союз"
+      ]
+    ],
+    "shadowing": {
+      "audio_text": "Studying is more effective when I set a realistic goal for the day. For example, I might review a short topic, practise speaking for a few minutes, and then write down one thing I want to improve tomorrow.",
+      "target_duration_sec": 42,
+      "source": "original-course-script",
+      "license": "Original Tayanch course script; browser TTS reference only."
+    },
+    "speaking_set": {
+      "topic": "Учёба и обучение",
+      "part1": [
+        "Вам нравится учиться?",
+        "Какой предмет вам нравился в школе?",
+        "Вы предпочитаете учиться одни или с другими?"
+      ],
+      "part2": {
+        "cue_card": "Опишите что-то полезное, что вы недавно узнали.",
+        "bullets": [
+          "что вы узнали",
+          "как вы этому научились",
+          "почему это было полезно",
+          "как вы относитесь к обучению"
+        ],
+        "prep_time_sec": 60,
+        "speak_time_sec": 120
+      },
+      "part3": [
+        "Как технологии изменили способ обучения людей?",
+        "Должны ли школы учить более практическим навыкам?",
+        "Почему некоторые взрослые перестают учиться чему-то новому?",
+        "Что делает хорошего учителя?"
+      ]
+    }
+  },
+  {
+    "day": 3,
+    "week_focus": "Звуки TH: ритм предложения",
+    "pronunciation": [
+      [
+        "thing",
+        "/θɪŋ/",
+        "краткий гласный"
+      ],
+      [
+        "thought",
+        "/θɔːt/",
+        "долгий гласный"
+      ],
+      [
+        "anything",
+        "/ˈen.i.θɪŋ/",
+        "чётко произносите конец"
+      ],
+      [
+        "the",
+        "/ðə/, /ðiː/",
+        "перед гласным /ðiː/"
+      ],
+      [
+        "them",
+        "/ðem/",
+        "звонкий th"
+      ],
+      [
+        "together",
+        "/təˈɡeð.ə/",
+        "срединный /ð/"
+      ],
+      [
+        "with",
+        "/wɪð/",
+        "конечный /ð/"
+      ],
+      [
+        "either",
+        "/ˈaɪ.ðə/",
+        "естественный ритм"
+      ]
+    ],
+    "shadowing": {
+      "audio_text": "In my free time, I usually choose activities that help me relax after a busy day. Sometimes I meet friends for a walk, but I also enjoy reading because it gives me a chance to slow down and think.",
+      "target_duration_sec": 40,
+      "source": "original-course-script",
+      "license": "Original Tayanch course script; browser TTS reference only."
+    },
+    "speaking_set": {
+      "topic": "Свободное время и увлечения",
+      "part1": [
+        "Чем вы обычно занимаетесь в свободное время?",
+        "Было ли у вас хобби, когда вы были младше?",
+        "Вы любите проводить свободное время дома или на улице?"
+      ],
+      "part2": {
+        "cue_card": "Опишите хобби, которое вы хотели бы попробовать.",
+        "bullets": [
+          "что это",
+          "как вы о нём узнали",
+          "что вам нужно для этого",
+          "почему вы хотите это попробовать"
+        ],
+        "prep_time_sec": 60,
+        "speak_time_sec": 120
+      },
+      "part3": [
+        "Зачем людям нужны хобби?",
+        "Отличаются ли хобби у молодых и пожилых?",
+        "Может ли хобби стать работой?",
+        "Как социальные сети влияют на хобби?"
+      ]
+    }
+  },
+  {
+    "day": 4,
+    "week_focus": "Звуки TH: связная речь",
+    "pronunciation": [
+      [
+        "technology",
+        "/tekˈnɒl.ə.dʒi/",
+        "ударение на втором слоге"
+      ],
+      [
+        "online",
+        "/ˌɒnˈlaɪn/",
+        "конечное ударение"
+      ],
+      [
+        "throughout",
+        "/θruːˈaʊt/",
+        "в два этапа"
+      ],
+      [
+        "theory",
+        "/ˈθɪə.ri/",
+        "начальный th"
+      ],
+      [
+        "although",
+        "/ɔːlˈðəʊ/",
+        "в начале союза"
+      ],
+      [
+        "whether",
+        "/ˈweð.ə/",
+        "чёткий /ð/"
+      ],
+      [
+        "within",
+        "/wɪˈðɪn/",
+        "срединный /ð/"
+      ],
+      [
+        "without",
+        "/wɪˈðaʊt/",
+        "с ритмом"
+      ]
+    ],
+    "shadowing": {
+      "audio_text": "Technology has made communication much faster, especially for people who live far from their families. However, I believe that face-to-face conversations are still important because they allow us to notice feelings more easily.",
+      "target_duration_sec": 41,
+      "source": "original-course-script",
+      "license": "Original Tayanch course script; browser TTS reference only."
+    },
+    "speaking_set": {
+      "topic": "Технологии и общение",
+      "part1": [
+        "Какие технологии вы используете каждый день?",
+        "Часто ли вы делаете видеозвонки?",
+        "Есть ли технология, которой вам трудно пользоваться?"
+      ],
+      "part2": {
+        "cue_card": "Опишите технологию, которая вам полезна.",
+        "bullets": [
+          "что это",
+          "когда вы её используете",
+          "как она вам помогает",
+          "почему она важна для вас"
+        ],
+        "prep_time_sec": 60,
+        "speak_time_sec": 120
+      },
+      "part3": [
+        "Как технологии изменили общение?",
+        "Слишком ли люди зависят от смартфонов?",
+        "Какие технологии могут быть распространены в будущем?",
+        "Должны ли дети иметь ограничения по времени у экранов?"
+      ]
+    }
+  },
+  {
+    "day": 5,
+    "week_focus": "Звуки TH: естественные вопросы",
+    "pronunciation": [
+      [
+        "health",
+        "/helθ/",
+        "конечный /θ/"
+      ],
+      [
+        "teeth",
+        "/tiːθ/",
+        "долгий гласный"
+      ],
+      [
+        "breathe",
+        "/briːð/",
+        "звонкий конец"
+      ],
+      [
+        "breath",
+        "/breθ/",
+        "глухой конец"
+      ],
+      [
+        "rather",
+        "/ˈrɑːð.ə/",
+        "мягкий /ð/"
+      ],
+      [
+        "other",
+        "/ˈʌð.ə/",
+        "срединный /ð/"
+      ],
+      [
+        "thoughtful",
+        "/ˈθɔːt.fəl/",
+        "начало"
+      ],
+      [
+        "smoothly",
+        "/ˈsmuːð.li/",
+        "с /ð/"
+      ]
+    ],
+    "shadowing": {
+      "audio_text": "Keeping healthy does not always require a complicated routine. I try to sleep well, drink enough water, and move regularly. These small habits make it easier for me to concentrate when I need to study.",
+      "target_duration_sec": 39,
+      "source": "original-course-script",
+      "license": "Original Tayanch course script; browser TTS reference only."
+    },
+    "speaking_set": {
+      "topic": "Здоровье и повседневные привычки",
+      "part1": [
+        "Что вы делаете, чтобы оставаться здоровым?",
+        "Вы предпочитаете ходьбу или упражнения дома?",
+        "Изменилась ли ваша повседневная рутина недавно?"
+      ],
+      "part2": {
+        "cue_card": "Опишите полезную привычку, которую вы хотели бы развить.",
+        "bullets": [
+          "в чём привычка",
+          "почему вы хотите её",
+          "что может быть трудным",
+          "как она может помочь вам"
+        ],
+        "prep_time_sec": 60,
+        "speak_time_sec": 120
+      },
+      "part3": [
+        "Почему некоторым людям трудно соблюдать полезные привычки?",
+        "Кто должен учить детей здоровью?",
+        "Как города могут поощрять людей двигаться?",
+        "Стали ли люди больше заботиться о здоровье, чем раньше?"
+      ]
+    }
+  },
+  {
+    "day": 6,
+    "week_focus": "Звуки TH: повторение",
+    "pronunciation": [
+      [
+        "thankful",
+        "/ˈθæŋk.fəl/",
+        "начните с /θ/"
+      ],
+      [
+        "thirty",
+        "/ˈθɜː.ti/",
+        "различие /θ/ и /t/"
+      ],
+      [
+        "length",
+        "/leŋθ/",
+        "конечные согласные"
+      ],
+      [
+        "their",
+        "/ðeə/",
+        "звонкий th"
+      ],
+      [
+        "these",
+        "/ðiːz/",
+        "долгий гласный"
+      ],
+      [
+        "another",
+        "/əˈnʌð.ə/",
+        "ритм"
+      ],
+      [
+        "further",
+        "/ˈfɜː.ðə/",
+        "мягкий /ð/"
+      ],
+      [
+        "worthy",
+        "/ˈwɜː.ði/",
+        "конец"
+      ]
+    ],
+    "shadowing": {
+      "audio_text": "Travelling can teach us things that we do not learn in a classroom. When we visit another place, we notice different habits, foods, and ways of life. That experience can make us more open-minded.",
+      "target_duration_sec": 37,
+      "source": "original-course-script",
+      "license": "Original Tayanch course script; browser TTS reference only."
+    },
+    "speaking_set": {
+      "topic": "Путешествия и транспорт",
+      "part1": [
+        "Вам нравится путешествовать?",
+        "Как вы обычно передвигаетесь по своему городу?",
+        "Удобен ли общественный транспорт там, где вы живёте?"
+      ],
+      "part2": {
+        "cue_card": "Опишите поездку, которую вы хорошо помните.",
+        "bullets": [
+          "куда вы ездили",
+          "как вы добирались",
+          "с кем вы ездили",
+          "почему вы её помните"
+        ],
+        "prep_time_sec": 60,
+        "speak_time_sec": 120
+      },
+      "part3": [
+        "Почему людям нравится путешествовать?",
+        "Как туризм может помочь местным сообществам?",
+        "Должны ли правительства улучшать общественный транспорт?",
+        "Будут ли люди путешествовать больше в будущем?"
+      ]
+    }
+  },
+  {
+    "day": 7,
+    "week_focus": "Еженедельное повторение и естественный ритм",
+    "pronunciation": [
+      [
+        "thought",
+        "/θɔːt/",
+        "/θ/ повторение"
+      ],
+      [
+        "through",
+        "/θruː/",
+        "воздушный поток"
+      ],
+      [
+        "those",
+        "/ðəʊz/",
+        "звонкий th"
+      ],
+      [
+        "whether",
+        "/ˈweð.ə/",
+        "срединный /ð/"
+      ],
+      [
+        "healthy",
+        "/ˈhel.θi/",
+        "конечный /θ/"
+      ],
+      [
+        "together",
+        "/təˈɡeð.ə/",
+        "связная речь"
+      ],
+      [
+        "growth",
+        "/ɡrəʊθ/",
+        "конечный /θ/"
+      ],
+      [
+        "therefore",
+        "/ˈðeə.fɔː/",
+        "сигнал вывода"
+      ]
+    ],
+    "shadowing": {
+      "audio_text": "This week I focused on speaking more clearly rather than speaking very quickly. I learned that a short pause can help me organise my ideas, and that clear pronunciation makes my message easier to understand.",
+      "target_duration_sec": 36,
+      "source": "original-course-script",
+      "license": "Original Tayanch course script; browser TTS reference only."
+    },
+    "speaking_set": {
+      "topic": "Личный рост и цели",
+      "part1": [
+        "Вы часто ставите перед собой цели?",
+        "Какие цели важны для вас сейчас?",
+        "Вы предпочитаете краткосрочные или долгосрочные цели?"
+      ],
+      "part2": {
+        "cue_card": "Опишите цель, которой вы хотели бы достичь.",
+        "bullets": [
+          "в чём цель",
+          "почему она важна для вас",
+          "что вам нужно сделать",
+          "как вы будете себя чувствовать, если достигнете её"
+        ],
+        "prep_time_sec": 60,
+        "speak_time_sec": 120
+      },
+      "part3": [
+        "Зачем люди ставят цели?",
+        "Должны ли школы помогать ученикам планировать будущее?",
+        "Что может заставить людей отказаться от целей?",
+        "Как люди могут измерять прогресс?"
+      ]
+    }
+  },
+  {
+    "day": 8,
+    "week_focus": "Краткие и долгие гласные: /ɪ/ и /iː/",
+    "pronunciation": [
+      [
+        "meal",
+        "/miːl/",
+        "после долгого /iː/ чётко завершайте /l/"
+      ],
+      [
+        "fish",
+        "/fɪʃ/",
+        "краткий /ɪ/; не превращайте в /fiːʃ/"
+      ],
+      [
+        "cheese",
+        "/tʃiːz/",
+        "долгий /iː/ и конечный /z/"
+      ],
+      [
+        "dish",
+        "/dɪʃ/",
+        "краткий /ɪ/ в один слог"
+      ],
+      [
+        "kitchen",
+        "/ˈkɪtʃ.ɪn/",
+        "краткий /ɪ/ в обоих слогах"
+      ],
+      [
+        "recipe",
+        "/ˈres.ə.pi/",
+        "ударение на первом слоге"
+      ],
+      [
+        "ingredient",
+        "/ɪnˈɡriː.di.ənt/",
+        "ударный слог с долгим /iː/"
+      ],
+      [
+        "sweet",
+        "/swiːt/",
+        "не превращайте /iː/ в /ɪ/"
+      ],
+      [
+        "quickly",
+        "/ˈkwɪk.li/",
+        "краткий /ɪ/ в первом слоге"
+      ],
+      [
+        "delicious",
+        "/dɪˈlɪʃ.əs/",
+        "ударение на втором слоге, /ɪ/ краткий"
+      ]
+    ],
+    "shadowing": {
+      "audio_text": "I enjoy cooking when I have enough time to prepare one dish properly. I usually start with simple ingredients and follow a recipe only as a guide. The best part is sharing the meal afterwards, because a home-cooked dinner often gives everyone a chance to talk without rushing.",
+      "target_duration_sec": 45,
+      "source": "original-course-script",
+      "license": "Original Tayanch course script; browser TTS reference only."
+    },
+    "speaking_set": {
+      "topic": "Еда и приготовление",
+      "part1": [
+        "Какое блюдо вам больше всего нравится готовить дома?",
+        "Когда вы заняты, как вы решаете, что съесть?",
+        "Есть ли еда из детства, которую вы всё ещё любите?",
+        "Кто обычно готовит большую часть еды в вашей семье?"
+      ],
+      "part2": {
+        "cue_card": "Опишите блюдо, которое вы хотели бы научиться готовить хорошо.",
+        "bullets": [
+          "что это за блюдо",
+          "где вы его впервые попробовали или о нём узнали",
+          "какие ингредиенты или навыки нужны",
+          "почему вы хотите научиться его готовить"
+        ],
+        "prep_time_sec": 60,
+        "speak_time_sec": 120
+      },
+      "part3": [
+        "Почему некоторые традиционные блюда трудно продолжать готовить молодым?",
+        "Как приложения доставки еды изменили питание людей?",
+        "Должны ли школы учить детей готовить простые блюда?",
+        "Что могут сделать рестораны, чтобы сократить пищевые отходы?"
+      ]
+    }
+  },
+  {
+    "day": 9,
+    "week_focus": "Краткие и долгие гласные: /ʊ/ и /uː/",
+    "pronunciation": [
+      [
+        "book",
+        "/bʊk/",
+        "краткий /ʊ/; не превращайте в /buːk/"
+      ],
+      [
+        "look",
+        "/lʊk/",
+        "краткий /ʊ/ и чёткий /k/"
+      ],
+      [
+        "school",
+        "/skuːl/",
+        "долгий /uː/ после согласного"
+      ],
+      [
+        "choose",
+        "/tʃuːz/",
+        "долгий /uː/ и конечный /z/"
+      ],
+      [
+        "good",
+        "/ɡʊd/",
+        "краткий /ʊ/; не округляйте губы слишком сильно"
+      ],
+      [
+        "novel",
+        "/ˈnɒv.əl/",
+        "ударение на первом слоге"
+      ],
+      [
+        "author",
+        "/ˈɔː.θə/",
+        "долгий /ɔː/ в первом слоге"
+      ],
+      [
+        "review",
+        "/rɪˈvjuː/",
+        "долгий /uː/ в последнем слоге"
+      ],
+      [
+        "useful",
+        "/ˈjuːs.fəl/",
+        "начинается с /j/ и долгий /uː/"
+      ],
+      [
+        "chapter",
+        "/ˈtʃæp.tə/",
+        "ударение на первом слоге"
+      ]
+    ],
+    "shadowing": {
+      "audio_text": "A book becomes memorable when it gives me a new way to see an ordinary situation. I do not always finish a long novel quickly, but I like returning to it for a few pages each evening. Reading slowly helps me notice ideas that I would otherwise miss.",
+      "target_duration_sec": 45,
+      "source": "original-course-script",
+      "license": "Original Tayanch course script; browser TTS reference only."
+    },
+    "speaking_set": {
+      "topic": "Книги и чтение",
+      "part1": [
+        "Что вы читаете чаще всего сейчас?",
+        "Перечитываете ли вы когда-нибудь уже прочитанную книгу?",
+        "Где ваше любимое место для чтения?",
+        "Как вы выбираете книгу, когда вариантов много?"
+      ],
+      "part2": {
+        "cue_card": "Опишите книгу, которая изменила ваше мнение о теме.",
+        "bullets": [
+          "что это была за книга",
+          "о какой теме она заставила вас задуматься",
+          "когда вы её читали",
+          "как она изменила ваше мнение"
+        ],
+        "prep_time_sec": 60,
+        "speak_time_sec": 120
+      },
+      "part3": [
+        "Почему некоторые люди предпочитают короткие статьи в интернете книгам?",
+        "Как публичные библиотеки могут оставаться полезными в цифровую эпоху?",
+        "Влияют ли рецензии на то, что люди выбирают читать?",
+        "Так же ли ценно чтение художественной литературы, как и нехудожественной?"
+      ]
+    }
+  },
+  {
+    "day": 10,
+    "week_focus": "Ударение в слове и ритм предложения",
+    "pronunciation": [
+      [
+        "music",
+        "/ˈmjuː.zɪk/",
+        "ударение на первом слоге"
+      ],
+      [
+        "concert",
+        "/ˈkɒn.sət/",
+        "первый слог сильный, второй лёгкий"
+      ],
+      [
+        "performance",
+        "/pəˈfɔː.məns/",
+        "ударение на втором слоге"
+      ],
+      [
+        "audience",
+        "/ˈɔː.di.əns/",
+        "долгий /ɔː/ в первом слоге"
+      ],
+      [
+        "instrument",
+        "/ˈɪn.strə.mənt/",
+        "ударение на первом слоге"
+      ],
+      [
+        "cinema",
+        "/ˈsɪn.ə.mə/",
+        "не произносите три слога с одинаковой силой"
+      ],
+      [
+        "comedy",
+        "/ˈkɒm.ə.di/",
+        "ударение на первом слоге"
+      ],
+      [
+        "documentary",
+        "/ˌdɒk.jəˈmen.tər.i/",
+        "основное ударение на слоге /men/"
+      ],
+      [
+        "relaxing",
+        "/rɪˈlæk.sɪŋ/",
+        "ударение на втором слоге"
+      ],
+      [
+        "rhythm",
+        "/ˈrɪð.əm/",
+        "первый слог сильный, мягкий срединный /ð/"
+      ]
+    ],
+    "shadowing": {
+      "audio_text": "Music can change the atmosphere of a place almost immediately. When I need energy, I choose songs with a clear rhythm; when I need to relax, I prefer quieter music. A live performance feels different from listening at home because the audience shares the same moment.",
+      "target_duration_sec": 44,
+      "source": "original-course-script",
+      "license": "Original Tayanch course script; browser TTS reference only."
+    },
+    "speaking_set": {
+      "topic": "Музыка и развлечения",
+      "part1": [
+        "Какая музыка помогает вам расслабиться после тяжёлого дня?",
+        "Вы обычно слушаете музыку одни или с другими?",
+        "Были ли у вас живые выступления, которые вы чётко помните?",
+        "Какие передачи вы выбираете, когда хотите лёгкое развлечение?"
+      ],
+      "part2": {
+        "cue_card": "Опишите фильм, шоу или музыкальное выступление, которое вы бы посоветовали другу.",
+        "bullets": [
+          "что это было",
+          "когда и где вы это увидели/услышали",
+          "что вам больше всего понравилось",
+          "кому бы вы это посоветовали и почему"
+        ],
+        "prep_time_sec": 60,
+        "speak_time_sec": 120
+      },
+      "part3": [
+        "Почему людям нравится ходить на живые события, даже когда есть записанные развлечения?",
+        "Как стриминговые сервисы влияют на мелких артистов и исполнителей?",
+        "Должны ли общественные деньги поддерживать местную музыку и театр?",
+        "Могут ли развлекательные программы учить людей полезному?",
+        "Почему вкусы в развлечениях часто различаются между поколениями?"
+      ]
+    }
+  },
+  {
+    "day": 11,
+    "week_focus": "Конечные согласные: /t/, /d/, /k/ и /s/",
+    "pronunciation": [
+      [
+        "cost",
+        "/kɒst/",
+        "чётко произносите конечную последовательность /st/"
+      ],
+      [
+        "paid",
+        "/peɪd/",
+        "в этом слове -ed даёт /d/"
+      ],
+      [
+        "price",
+        "/praɪs/",
+        "не опускайте конечный /s/"
+      ],
+      [
+        "product",
+        "/ˈprɒd.ʌkt/",
+        "полностью завершите конечный /kt/"
+      ],
+      [
+        "brand",
+        "/brænd/",
+        "конечный /d/ мягко, но слышно"
+      ],
+      [
+        "discount",
+        "/ˈdɪs.kaʊnt/",
+        "чётко закройте конечный /t/"
+      ],
+      [
+        "budget",
+        "/ˈbʌdʒ.ɪt/",
+        "ударение на первом слоге, в конце /t/"
+      ],
+      [
+        "quality",
+        "/ˈkwɒl.ə.ti/",
+        "первый слог сильный"
+      ],
+      [
+        "compare",
+        "/kəmˈpeə/",
+        "ударение на втором слоге"
+      ],
+      [
+        "choice",
+        "/tʃɔɪs/",
+        "чёткий конечный /s/"
+      ]
+    ],
+    "shadowing": {
+      "audio_text": "Before buying something expensive, I compare more than the price. I check whether the product will last, whether I really need it, and whether repairs are possible. A cheaper item is not always the best choice if it has to be replaced after a short time.",
+      "target_duration_sec": 43,
+      "source": "original-course-script",
+      "license": "Original Tayanch course script; browser TTS reference only."
+    },
+    "speaking_set": {
+      "topic": "Покупки и потребительский выбор",
+      "part1": [
+        "Что вы обычно учитываете перед покупкой дорогой вещи?",
+        "Вам нравится искать скидки или вы предпочитаете покупать быстро?",
+        "Изменились ли ваши привычки в покупках за последние годы?",
+        "Какую вещь вы предпочитаете покупать лично, а не онлайн?"
+      ],
+      "part2": {
+        "cue_card": "Опишите покупку, которую вы тщательно обдумали перед совершением.",
+        "bullets": [
+          "что вы купили",
+          "почему это было нужно или хотелось",
+          "как вы сравнивали варианты",
+          "почему вы остались довольны или недовольны выбором"
+        ],
+        "prep_time_sec": 60,
+        "speak_time_sec": 120
+      },
+      "part3": [
+        "Почему реклама иногда заставляет людей покупать ненужное?",
+        "Как потребители могут судить, заслуживает ли доверия отзыв в интернете?",
+        "Должны ли компании отвечать за то, чтобы товары было легко чинить?",
+        "Как забота об окружающей среде может изменить потребительский выбор?"
+      ]
+    }
+  },
+  {
+    "day": 12,
+    "week_focus": "Связка согласных и гласных в естественной речи",
+    "pronunciation": [
+      [
+        "meet up",
+        "/ˈmiːt‿ʌp/",
+        "соедините /t/ со следующим гласным"
+      ],
+      [
+        "old friend",
+        "/ˈəʊld‿frend/",
+        "сохраняйте естественный поток после /d/"
+      ],
+      [
+        "talk about",
+        "/ˈtɔːk‿əˌbaʊt/",
+        "соедините /k/ со schwa"
+      ],
+      [
+        "keep in touch",
+        "/ˌkiːp‿ɪn‿ˈtʌtʃ/",
+        "не делайте лишних пауз между словами"
+      ],
+      [
+        "good advice",
+        "/ɡʊd‿ədˈvaɪs/",
+        "соедините /d/ со следующим гласным"
+      ],
+      [
+        "helpful",
+        "/ˈhelp.fəl/",
+        "ударение на первом слоге"
+      ],
+      [
+        "honest",
+        "/ˈɒn.ɪst/",
+        "в начале /h/ не произносится"
+      ],
+      [
+        "supportive",
+        "/səˈpɔː.tɪv/",
+        "ударение на втором слоге"
+      ],
+      [
+        "relationship",
+        "/rɪˈleɪ.ʃən.ʃɪp/",
+        "основное ударение на слоге /leɪ/"
+      ],
+      [
+        "trust",
+        "/trʌst/",
+        "чётко произносите конечный /st/"
+      ]
+    ],
+    "shadowing": {
+      "audio_text": "A strong friendship does not require constant contact, but it does require attention. Good friends listen carefully, remember important details, and offer honest advice when it is needed. Even a short conversation can be valuable when both people feel comfortable speaking openly.",
+      "target_duration_sec": 42,
+      "source": "original-course-script",
+      "license": "Original Tayanch course script; browser TTS reference only."
+    },
+    "speaking_set": {
+      "topic": "Друзья и отношения",
+      "part1": [
+        "Какие качества делают человека таким, с которым легко подружиться?",
+        "Как вы обычно поддерживаете связь с друзьями, живущими далеко?",
+        "Вы предпочитаете встречаться с одним близким другом или проводить время в большой компании?",
+        "Изменили ли социальные сети то, как вы поддерживаете дружбу?"
+      ],
+      "part2": {
+        "cue_card": "Опишите друга, который помог вам в важный момент.",
+        "bullets": [
+          "кто этот человек",
+          "в какой ситуации вы оказались",
+          "что друг сделал или сказал",
+          "почему его помощь была важна для вас"
+        ],
+        "prep_time_sec": 60,
+        "speak_time_sec": 120
+      },
+      "part3": [
+        "Почему с возрастом труднее заводить близких друзей?",
+        "Даёт ли онлайн-дружба такую же поддержку, как личная?",
+        "Должны ли родители влиять на выбор друзей детей?",
+        "Как общие занятия помогают людям строить отношения?",
+        "Что вызывает недоразумения между друзьями?"
+      ]
+    }
+  },
+  {
+    "day": 13,
+    "week_focus": "Чёткое описание места и контраст /r/–/l/",
+    "pronunciation": [
+      [
+        "local",
+        "/ˈləʊ.kəl/",
+        "ударение на первом слоге, чёткий /l/"
+      ],
+      [
+        "library",
+        "/ˈlaɪ.brər.i/",
+        "первый слог сильный; не ускоряйте середину"
+      ],
+      [
+        "park",
+        "/pɑːk/",
+        "долгий /ɑː/ затем /k/"
+      ],
+      [
+        "road",
+        "/rəʊd/",
+        "долгий дифтонг и конечный /d/"
+      ],
+      [
+        "nearby",
+        "/ˌnɪəˈbaɪ/",
+        "ударение на последнем слоге"
+      ],
+      [
+        "public",
+        "/ˈpʌb.lɪk/",
+        "ударение на первом слоге, в конце /k/"
+      ],
+      [
+        "reliable",
+        "/rɪˈlaɪ.ə.bəl/",
+        "различайте звуки /r/ и /l/"
+      ],
+      [
+        "repair",
+        "/rɪˈpeə/",
+        "чётко произносите начальный /r/"
+      ],
+      [
+        "available",
+        "/əˈveɪ.lə.bəl/",
+        "ударение на втором слоге"
+      ],
+      [
+        "convenient",
+        "/kənˈviː.ni.ənt/",
+        "ударение на втором слоге на /viː/"
+      ]
+    ],
+    "shadowing": {
+      "audio_text": "The most useful local places are not always the biggest or newest ones. A reliable repair shop, a quiet library, or a well-kept park can make daily life much easier. I value services that are nearby, affordable, and run by people who understand the needs of local residents.",
+      "target_duration_sec": 46,
+      "source": "original-course-script",
+      "license": "Original Tayanch course script; browser TTS reference only."
+    },
+    "speaking_set": {
+      "topic": "Местные места и услуги",
+      "part1": [
+        "Какой местной услугой вы пользуетесь чаще всего?",
+        "Есть ли поблизости от дома общественное место, где вы любите бывать?",
+        "Какую услугу вы хотели бы улучшить в своём районе?",
+        "Вы предпочитаете малый местный бизнес или крупную сеть, если оба доступны?"
+      ],
+      "part2": {
+        "cue_card": "Опишите местное место, которое, по вашему мнению, особенно полезно жителям.",
+        "bullets": [
+          "где находится место",
+          "какую услугу или активность оно предоставляет",
+          "кто им пользуется",
+          "почему оно ценно для района"
+        ],
+        "prep_time_sec": 60,
+        "speak_time_sec": 120
+      },
+      "part3": [
+        "Какие общественные услуги сильнее всего влияют на повседневную жизнь?",
+        "Почему некоторые малые местные бизнесы обретают лояльных клиентов?",
+        "Должны ли местные власти больше тратить на парки, библиотеки или транспорт?",
+        "Как города могут сделать информацию о местных услугах проще найти?"
+      ]
+    }
+  },
+  {
+    "day": 14,
+    "week_focus": "Повторение 2-й недели: ударение, связки и уверенные ответы",
+    "pronunciation": [
+      [
+        "career",
+        "/kəˈrɪə/",
+        "ударение на втором слоге"
+      ],
+      [
+        "future",
+        "/ˈfjuː.tʃə/",
+        "в первом слоге протяните /fjuː/"
+      ],
+      [
+        "salary",
+        "/ˈsæl.ər.i/",
+        "ударение на первом слоге"
+      ],
+      [
+        "manager",
+        "/ˈmæn.ɪ.dʒə/",
+        "первый слог сильный"
+      ],
+      [
+        "opportunity",
+        "/ˌɒp.əˈtʃuː.nə.ti/",
+        "основное ударение на слоге /tʃuː/"
+      ],
+      [
+        "responsible",
+        "/rɪˈspɒn.sə.bəl/",
+        "ударение на втором слоге"
+      ],
+      [
+        "work out",
+        "/ˈwɜːk‿aʊt/",
+        "соедините /k/ со следующим гласным"
+      ],
+      [
+        "take on",
+        "/ˈteɪk‿ɒn/",
+        "сохраняйте связь между словами"
+      ],
+      [
+        "learn from",
+        "/ˈlɜːn‿frɒm/",
+        "не прерывайте поток после /n/"
+      ],
+      [
+        "goal",
+        "/ɡəʊl/",
+        "чётко произносите дифтонг, сохраняйте конечный /l/"
+      ]
+    ],
+    "shadowing": {
+      "audio_text": "When I think about a future career, I consider more than a salary. I want work that lets me develop useful skills, solve real problems, and continue learning from experienced people. A good opportunity should challenge me, but it should also leave room for a balanced life outside work.",
+      "target_duration_sec": 47,
+      "source": "original-course-script",
+      "license": "Original Tayanch course script; browser TTS reference only."
+    },
+    "speaking_set": {
+      "topic": "Работа и будущая карьера",
+      "part1": [
+        "Какая рабочая обстановка помогает вам работать лучше всего?",
+        "Была ли профессия, которой вы восхищались в детстве?",
+        "Какой навык вы больше всего хотели бы развить для будущей карьеры?",
+        "Стоит ли людям менять карьеру, если меняются интересы?"
+      ],
+      "part2": {
+        "cue_card": "Опишите работу или карьеру, о которой вы хотели бы узнать больше.",
+        "bullets": [
+          "что это за работа",
+          "какие обязанности она включает",
+          "какие навыки или обучение нужны",
+          "почему вы хотите узнать о ней больше"
+        ],
+        "prep_time_sec": 60,
+        "speak_time_sec": 120
+      },
+      "part3": [
+        "Как технологии меняют навыки, которые ищут работодатели?",
+        "Должны ли университеты больше внимания уделять подготовке к карьере или общему образованию?",
+        "Почему некоторые ценят стабильность работы больше, чем удовлетворённость?",
+        "Как работодатели могут помочь молодым сотрудникам развиваться?",
+        "Будут ли люди в будущем чаще менять несколько карьер?"
+      ]
+    }
+  },
+  {
+    "day": 15,
+    "week_focus": "Звуки V и W: личный стиль",
+    "pronunciation": [
+      [
+        "wardrobe",
+        "/ˈwɔː.drəʊb/",
+        "для начального /w/ округлите губы"
+      ],
+      [
+        "wear",
+        "/weə/",
+        "произносите /w/ и следующий /eə/ вместе"
+      ],
+      [
+        "vivid",
+        "/ˈvɪv.ɪd/",
+        "при /v/ нижняя губа касается верхних зубов"
+      ],
+      [
+        "comfortable",
+        "/ˈkʌm.fə.tə.bəl/",
+        "в быстрой речи не проглатывайте средние слоги"
+      ],
+      [
+        "formal",
+        "/ˈfɔː.məl/",
+        "ударение на первом слоге"
+      ],
+      [
+        "casual",
+        "/ˈkæʒ.u.əl/",
+        "мягко произносите звук /ʒ/"
+      ],
+      [
+        "weatherproof",
+        "/ˈweð.ə.pruːf/",
+        "сохраняйте звонкий /ð/"
+      ],
+      [
+        "vintage",
+        "/ˈvɪn.tɪdʒ/",
+        "чёткий конечный /dʒ/"
+      ],
+      [
+        "favourite",
+        "/ˈfeɪ.vər.ɪt/",
+        "ударение на первом слоге"
+      ]
+    ],
+    "shadowing": {
+      "audio_text": "I do not choose clothes only because they look fashionable. On a busy day, I prefer simple items that are comfortable and suitable for the weather. However, I also think personal style can show something about a person’s character. For example, a colourful scarf or an unusual bag can make an ordinary outfit feel more individual. The best choice is usually practical, but still makes me feel confident.",
+      "target_duration_sec": 52,
+      "source": "original-course-script",
+      "license": "Original Tayanch course script; browser TTS reference only."
+    },
+    "speaking_set": {
+      "topic": "Одежда и личный стиль",
+      "part1": [
+        "Какую одежду вы обычно носите на неделе?",
+        "Вам нравится выбирать одежду для особых случаев?",
+        "Изменился ли ваш вкус в одежде с детства?",
+        "Следят ли люди в вашем районе за модой?"
+      ],
+      "part2": {
+        "cue_card": "Опишите предмет одежды, который вы любите носить.",
+        "bullets": [
+          "что это за вещь",
+          "когда и где вы её носите",
+          "как она к вам попала",
+          "почему вы любите её носить"
+        ],
+        "prep_time_sec": 60,
+        "speak_time_sec": 120
+      },
+      "part3": [
+        "Почему некоторые люди сильно заботятся о моде?",
+        "Как одежда влияет на первое впечатление?",
+        "Должны ли школы иметь форму?",
+        "Почему некоторая традиционная одежда до сих пор популярна?",
+        "Как онлайн-покупки изменили то, как люди покупают одежду?"
+      ]
+    }
+  },
+  {
+    "day": 16,
+    "week_focus": "Звуки V и W: описание природы",
+    "pronunciation": [
+      [
+        "wildlife",
+        "/ˈwaɪld.laɪf/",
+        "чётко соедините /w/ и /aɪ/"
+      ],
+      [
+        "valley",
+        "/ˈvæl.i/",
+        "начните с /v/"
+      ],
+      [
+        "river",
+        "/ˈrɪv.ər/",
+        "срединный /v/ звонкий"
+      ],
+      [
+        "waterfall",
+        "/ˈwɔː.tə.fɔːl/",
+        "долгие гласные в двух слогах"
+      ],
+      [
+        "environment",
+        "/ɪnˈvaɪ.rən.mənt/",
+        "ударение на втором слоге"
+      ],
+      [
+        "preserve",
+        "/prɪˈzɜːv/",
+        "конечный /v/ звонкий"
+      ],
+      [
+        "vegetation",
+        "/ˌvedʒ.əˈteɪ.ʃən/",
+        "ударение на третьем слоге"
+      ],
+      [
+        "viewpoint",
+        "/ˈvjuː.pɔɪnt/",
+        "произносите /vjuː/ единым потоком"
+      ],
+      [
+        "renewable",
+        "/rɪˈnjuː.ə.bəl/",
+        "ударение на втором слоге"
+      ]
+    ],
+    "shadowing": {
+      "audio_text": "Nature is easiest to appreciate when people can experience it responsibly. A walk beside a river or through a park can make a crowded city feel less stressful. At the same time, natural areas need protection from litter, noise, and uncontrolled building. I believe visitors should have clear paths and good information, while sensitive places should be carefully protected. This balance allows more people to enjoy nature without damaging it for the future.",
+      "target_duration_sec": 53,
+      "source": "original-course-script",
+      "license": "Original Tayanch course script; browser TTS reference only."
+    },
+    "speaking_set": {
+      "topic": "Природа и окружающая среда",
+      "part1": [
+        "Вы проводите много времени на улице?",
+        "Есть ли природное место рядом с вашим домом?",
+        "Что вы замечаете в парке в первую очередь?",
+        "Нравились ли вам природные занятия в детстве?"
+      ],
+      "part2": {
+        "cue_card": "Опишите природное место, которое вы хотели бы посетить.",
+        "bullets": [
+          "где оно находится",
+          "что вы знаете об этом месте",
+          "что бы вы там делали",
+          "почему вы хотите его посетить"
+        ],
+        "prep_time_sec": 60,
+        "speak_time_sec": 120
+      },
+      "part3": [
+        "Почему людям нужен доступ к зелёным зонам?",
+        "Какие экологические проблемы больше всего влияют на города?",
+        "Должны ли посетители платить за вход в охраняемые природные зоны?",
+        "Как школы могут приучать детей заботиться о природе?",
+        "Может ли туризм помочь защитить дикую природу?"
+      ]
+    }
+  },
+  {
+    "day": 17,
+    "week_focus": "Звуки V и W: погодная лексика и ритм",
+    "pronunciation": [
+      [
+        "weather",
+        "/ˈweð.ər/",
+        "срединный /ð/ звонкий"
+      ],
+      [
+        "warmth",
+        "/wɔːmθ/",
+        "чётко завершайте конечный /θ/"
+      ],
+      [
+        "windy",
+        "/ˈwɪn.di/",
+        "с кратким /ɪ/"
+      ],
+      [
+        "forecast",
+        "/ˈfɔː.kɑːst/",
+        "ударение на первом слоге"
+      ],
+      [
+        "varied",
+        "/ˈveə.rid/",
+        "начальный /v/ звонкий"
+      ],
+      [
+        "temperature",
+        "/ˈtem.prə.tʃər/",
+        "не торопите средний слог"
+      ],
+      [
+        "humid",
+        "/ˈhjuː.mɪd/",
+        "ударение на первом слоге"
+      ],
+      [
+        "winter",
+        "/ˈwɪn.tər/",
+        "начните с /w/"
+      ],
+      [
+        "weathering",
+        "/ˈweð.ər.ɪŋ/",
+        "сохраняйте звук /ð/"
+      ]
+    ],
+    "shadowing": {
+      "audio_text": "Weather often changes the rhythm of a normal day. When the morning is bright and cool, I am more willing to walk rather than take a car. Heavy rain, on the other hand, can make people change their plans very quickly. I enjoy the first signs of a new season because they bring different colours, foods, and activities. Even an ordinary weekend can feel memorable when the weather is pleasant.",
+      "target_duration_sec": 49,
+      "source": "original-course-script",
+      "license": "Original Tayanch course script; browser TTS reference only."
+    },
+    "speaking_set": {
+      "topic": "Погода и времена года",
+      "part1": [
+        "Какая погода вам больше всего нравится?",
+        "Влияет ли погода на то, чем вы занимаетесь в свободное время?",
+        "Какое время года обычно самое загруженное для вас?",
+        "Часто ли вы проверяете прогноз погоды?"
+      ],
+      "part2": {
+        "cue_card": "Опишите день, когда погода была особенно запоминающейся.",
+        "bullets": [
+          "когда и где это было",
+          "какой была погода",
+          "что вы делали в тот день",
+          "почему вы его помните"
+        ],
+        "prep_time_sec": 60,
+        "speak_time_sec": 120
+      },
+      "part3": [
+        "Как погода влияет на настроение людей?",
+        "Почему некоторые предпочитают жить там, где чётко выражены времена года?",
+        "Как города могут готовиться к более экстремальной погоде?",
+        "Стоит ли учить прогнозу погоды в школах?",
+        "Как изменение климата может повлиять на сезонные традиции?"
+      ]
+    }
+  },
+  {
+    "day": 18,
+    "week_focus": "Звуки V и W: выразительное повествование",
+    "pronunciation": [
+      [
+        "viewer",
+        "/ˈvjuː.ər/",
+        "начальный /vjuː/ произносите единым потоком"
+      ],
+      [
+        "voiceover",
+        "/ˈvɔɪs.əʊ.vər/",
+        "ударение на первом слоге"
+      ],
+      [
+        "visual",
+        "/ˈvɪʒ.u.əl/",
+        "чётко произносите /v/ и /ʒ/"
+      ],
+      [
+        "villain",
+        "/ˈvɪl.ən/",
+        "первый /v/ звонкий"
+      ],
+      [
+        "writer",
+        "/ˈraɪ.tər/",
+        "/aɪ/ после /r/"
+      ],
+      [
+        "wonder",
+        "/ˈwʌn.dər/",
+        "краткий /ʌ/ после /w/"
+      ],
+      [
+        "review",
+        "/rɪˈvjuː/",
+        "ударение на последнем слоге"
+      ],
+      [
+        "character",
+        "/ˈkær.ək.tər/",
+        "ударение на первом слоге"
+      ],
+      [
+        "powerful",
+        "/ˈpaʊə.fəl/",
+        "ударение на первом слоге"
+      ]
+    ],
+    "shadowing": {
+      "audio_text": "A memorable film does more than tell viewers what happened. It gives them characters whose choices feel believable, even when the story is imaginary. I usually enjoy films with a clear setting and a small number of important details rather than too many special effects. After watching a strong film, I often think about its message for several days. A good ending does not need to be perfect, but it should feel earned.",
+      "target_duration_sec": 51,
+      "source": "original-course-script",
+      "license": "Original Tayanch course script; browser TTS reference only."
+    },
+    "speaking_set": {
+      "topic": "Фильмы и повествование",
+      "part1": [
+        "Какие фильмы вы любите смотреть?",
+        "Вы предпочитаете смотреть фильмы дома или в кинотеатре?",
+        "Смотрели ли вы когда-нибудь фильм больше одного раза?",
+        "Любите ли вы фильмы по реальным событиям?"
+      ],
+      "part2": {
+        "cue_card": "Опишите фильм, который запомнился вам.",
+        "bullets": [
+          "о чём был фильм",
+          "когда вы его смотрели",
+          "какую часть помните четче всего",
+          "почему он остался в вашей памяти"
+        ],
+        "prep_time_sec": 60,
+        "speak_time_sec": 120
+      },
+      "part3": [
+        "Почему истории важны для людей во всех культурах?",
+        "Что делает персонажа фильма убедительным?",
+        "Делают ли спецэффекты фильм лучше?",
+        "Как стриминговые сервисы изменили привычки просмотра?",
+        "Должны ли исторические фильмы быть полностью точными?"
+      ]
+    }
+  },
+  {
+    "day": 19,
+    "week_focus": "Звуки V и W: события и традиции",
+    "pronunciation": [
+      [
+        "celebration",
+        "/ˌsel.ɪˈbreɪ.ʃən/",
+        "ударение на третьем слоге"
+      ],
+      [
+        "festival",
+        "/ˈfes.tɪ.vəl/",
+        "чётко произносите слоги"
+      ],
+      [
+        "ceremony",
+        "/ˈser.ə.mə.ni/",
+        "начните с /w/"
+      ],
+      [
+        "welcome",
+        "/ˈwel.kəm/",
+        "первый /v/ звонкий"
+      ],
+      [
+        "valuable",
+        "/ˈvæl.ju.ə.bəl/",
+        "ударение на втором слоге"
+      ],
+      [
+        "traditional",
+        "/trəˈdɪʃ.ən.əl/",
+        "срединный /z/ звонкий"
+      ],
+      [
+        "visitor",
+        "/ˈvɪz.ɪ.tər/",
+        "ударение на первом слоге"
+      ],
+      [
+        "wedding",
+        "/ˈwed.ɪŋ/",
+        "ударение на втором слоге"
+      ],
+      [
+        "community",
+        "/kəˈmjuː.nə.ti/",
+        "ударение на втором слоге"
+      ]
+    ],
+    "shadowing": {
+      "audio_text": "Celebrations are valuable because they bring people together around a shared memory or hope. A family event may include familiar food, music, and stories that older relatives pass on to younger people. I think traditions remain meaningful when people understand the reason behind them, not only the rules. At the same time, every generation can add a small new idea. That makes a celebration feel both respectful and alive.",
+      "target_duration_sec": 50,
+      "source": "original-course-script",
+      "license": "Original Tayanch course script; browser TTS reference only."
+    },
+    "speaking_set": {
+      "topic": "Праздники и традиции",
+      "part1": [
+        "Какие праздники важны в вашей семье?",
+        "Вы предпочитаете большие или маленькие празднования?",
+        "С какой традиционной едой связаны особые события у вас?",
+        "Участвует ли молодёжь в местных традициях?"
+      ],
+      "part2": {
+        "cue_card": "Опишите традиционное празднование, в котором вы участвовали.",
+        "bullets": [
+          "что это было за празднование",
+          "где оно проходило",
+          "что люди там делали",
+          "почему оно было важно для вас"
+        ],
+        "prep_time_sec": 60,
+        "speak_time_sec": 120
+      },
+      "part3": [
+        "Почему сообщества сохраняют традиционные праздники?",
+        "Как традиции могут меняться, не теряя смысла?",
+        "Должны ли власти поддерживать культурные фестивали?",
+        "Чему молодёжь может научиться у старших родственников на праздниках?",
+        "Могут ли социальные сети помочь сохранить местные традиции?"
+      ]
+    }
+  },
+  {
+    "day": 20,
+    "week_focus": "Звуки V и W: изучение языка",
+    "pronunciation": [
+      [
+        "vocabulary",
+        "/vəˈkæb.jə.lər.i/",
+        "ударение на втором слоге"
+      ],
+      [
+        "word",
+        "/wɜːd/",
+        "с долгим /ɜː/"
+      ],
+      [
+        "conversation",
+        "/ˌkɒn.vəˈseɪ.ʃən/",
+        "ударение на третьем слоге"
+      ],
+      [
+        "variety",
+        "/vəˈraɪ.ə.ti/",
+        "начните с /v/"
+      ],
+      [
+        "pronunciation",
+        "/prəˌnʌn.siˈeɪ.ʃən/",
+        "ударение на последнем слоге"
+      ],
+      [
+        "repeat",
+        "/rɪˈpiːt/",
+        "долгий /iː/"
+      ],
+      [
+        "worldwide",
+        "/ˌwɜːldˈwaɪd/",
+        "два звука /w/"
+      ],
+      [
+        "valuable",
+        "/ˈvæl.ju.ə.bəl/",
+        "различайте /v/ и /l/"
+      ],
+      [
+        "confidence",
+        "/ˈkɒn.fɪ.dəns/",
+        "ударение на первом слоге"
+      ]
+    ],
+    "shadowing": {
+      "audio_text": "Learning another language becomes easier when it is part of daily life. I try to notice useful words in short videos, signs, and conversations instead of memorising long lists without context. Speaking is sometimes uncomfortable because mistakes are obvious, but it is also the fastest way to find gaps. I have learned that regular practice matters more than a perfect plan. A few focused minutes every day can gradually build confidence.",
+      "target_duration_sec": 50,
+      "source": "original-course-script",
+      "license": "Original Tayanch course script; browser TTS reference only."
+    },
+    "speaking_set": {
+      "topic": "Изучение языка",
+      "part1": [
+        "Какой язык вы хотели бы улучшить больше всего?",
+        "Какая часть изучения языка даётся вам труднее всего?",
+        "Вам нравится учить новые слова по книгам или по видео?",
+        "Как часто вы используете другой язык вне занятий?"
+      ],
+      "part2": {
+        "cue_card": "Опишите полезный метод, который вы использовали для изучения языка.",
+        "bullets": [
+          "в чём метод",
+          "когда вы его использовали",
+          "как вы его применяли",
+          "почему он был полезен для вас"
+        ],
+        "prep_time_sec": 60,
+        "speak_time_sec": 120
+      },
+      "part3": [
+        "Почему некоторые учат языки легче других?",
+        "Стоит ли детям начинать учить второй язык в раннем возрасте?",
+        "Как технологии могут помочь изучающим язык?",
+        "Нужно ли понимать культуру, чтобы хорошо говорить на языке?",
+        "Снизит ли машинный перевод необходимость учить языки?"
+      ]
+    }
+  },
+  {
+    "day": 21,
+    "week_focus": "Звуки V и W: передвижение и направления",
+    "pronunciation": [
+      [
+        "vehicle",
+        "/ˈviː.ɪ.kəl/",
+        "долгий /iː/ в первом слоге"
+      ],
+      [
+        "waiting",
+        "/ˈweɪ.tɪŋ/",
+        "начните с /w/"
+      ],
+      [
+        "journey",
+        "/ˈdʒɜː.ni/",
+        "долгий /ɜː/"
+      ],
+      [
+        "route",
+        "/ruːt/",
+        "с долгим /uː/"
+      ],
+      [
+        "convenient",
+        "/kənˈviː.ni.ənt/",
+        "срединный /v/ звонкий"
+      ],
+      [
+        "crowded",
+        "/ˈkraʊ.dɪd/",
+        "/aʊ/ после /r/"
+      ],
+      [
+        "arrival",
+        "/əˈraɪ.vəl/",
+        "ударение на втором слоге"
+      ],
+      [
+        "transfer",
+        "/ˈtræns.fɜːr/",
+        "ударение на первом слоге"
+      ],
+      [
+        "weekday",
+        "/ˈwiːk.deɪ/",
+        "долгий /iː/"
+      ]
+    ],
+    "shadowing": {
+      "audio_text": "Public transport can make a city easier to live in when it is reliable, safe, and simple to understand. On a good bus or metro journey, passengers know when the vehicle will arrive and where they need to change. I also value clean stops and enough space for older people or parents with children. Although travelling with many people can be tiring, a strong public network reduces traffic and gives people more choices.",
+      "target_duration_sec": 52,
+      "source": "original-course-script",
+      "license": "Original Tayanch course script; browser TTS reference only."
+    },
+    "speaking_set": {
+      "topic": "Общественный транспорт",
+      "part1": [
+        "Как вы обычно передвигаетесь по своему городу?",
+        "Часто ли вы пользуетесь автобусами или поездами?",
+        "Чем вы занимаетесь, ожидая общественный транспорт?",
+        "Удобен ли общественный транспорт там, где вы живёте?"
+      ],
+      "part2": {
+        "cue_card": "Опишите поездку на общественном транспорте, которую вы хорошо помните.",
+        "bullets": [
+          "куда вы направлялись",
+          "какой вид транспорта использовали",
+          "что произошло во время поездки",
+          "почему вы её помните"
+        ],
+        "prep_time_sec": 60,
+        "speak_time_sec": 120
+      },
+      "part3": [
+        "Почему люди выбирают личные авто вместо общественного транспорта?",
+        "Что делает систему общественного транспорта надёжной?",
+        "Как сделать транспорт удобнее для пожилых пассажиров?",
+        "Должны ли города сделать общественный транспорт бесплатным для некоторых групп?",
+        "Как может измениться общественный транспорт в будущем?"
+      ]
+    }
+  },
+  {
+    "day": 22,
+    "week_focus": "Звук /h/ и чёткость в начале слова",
+    "pronunciation": [
+      [
+        "home",
+        "/həʊm/",
+        "произносите начальный /h/ с выдохом"
+      ],
+      [
+        "household",
+        "/ˈhaʊs.həʊld/",
+        "чётко сохраняйте два звука /h/"
+      ],
+      [
+        "hallway",
+        "/ˈhɔːl.weɪ/",
+        "ударение на первом слоге"
+      ],
+      [
+        "comfortable",
+        "/ˈkʌm.fə.tə.bəl/",
+        "естественно произносите срединные краткие /ə/"
+      ],
+      [
+        "neighbourhood",
+        "/ˈneɪ.bə.hʊd/",
+        "не опускайте /h/"
+      ],
+      [
+        "furniture",
+        "/ˈfɜː.nɪ.tʃə/",
+        "ударение на первом слоге"
+      ],
+      [
+        "kitchen",
+        "/ˈkɪtʃ.ɪn/",
+        "чётко завершайте звук /tʃ/"
+      ],
+      [
+        "spacious",
+        "/ˈspeɪ.ʃəs/",
+        "коротко произносите окончание /ʃəs/"
+      ]
+    ],
+    "shadowing": {
+      "audio_text": "The place where we live affects many small parts of daily life. A quiet home can make it easier to rest and concentrate, while a convenient location can save time every day. For me, the most important thing is having a comfortable space where family members can talk and relax.",
+      "target_duration_sec": 46,
+      "source": "original-course-script",
+      "license": "Original Tayanch course script; browser TTS reference only."
+    },
+    "speaking_set": {
+      "topic": "Дом и жильё",
+      "part1": [
+        "Что вам больше всего нравится в месте, где вы живёте?",
+        "В какой комнате дома вы проводите больше всего времени?",
+        "Вы предпочли бы жить в доме или в квартире?",
+        "Изменился ли ваш дом с детства?"
+      ],
+      "part2": {
+        "cue_card": "Опишите дом, в котором вы хотели бы жить.",
+        "bullets": [
+          "где бы он находился",
+          "какие комнаты или особенности были бы у него",
+          "с кем бы вы жили",
+          "почему этот дом подошёл бы вам"
+        ],
+        "prep_time_sec": 60,
+        "speak_time_sec": 120
+      },
+      "part3": [
+        "Почему некоторые молодые взрослые продолжают жить с родителями?",
+        "Как жильё влияет на качество жизни?",
+        "Должны ли города строить больше квартир или больше домов?",
+        "Что делает район подходящим для семей?",
+        "Как могут измениться дома в ближайшие двадцать лет?"
+      ]
+    }
+  },
+  {
+    "day": 23,
+    "week_focus": "Гласные /æ/ и /e/: учимся слышать разницу",
+    "pronunciation": [
+      [
+        "family",
+        "/ˈfæm.əl.i/",
+        "широко произносите первый гласный /æ/"
+      ],
+      [
+        "parent",
+        "/ˈpeə.rənt/",
+        "первый гласный близок к /eə/"
+      ],
+      [
+        "grandparent",
+        "/ˈɡrænˌpeə.rənt/",
+        "чётко произносите часть /ɡræn/"
+      ],
+      [
+        "generation",
+        "/ˌdʒen.əˈreɪ.ʃən/",
+        "различайте /dʒen/ и /reɪ/"
+      ],
+      [
+        "relative",
+        "/ˈrel.ə.tɪv/",
+        "ударение на первом слоге"
+      ],
+      [
+        "support",
+        "/səˈpɔːt/",
+        "долгий /ɔː/ во втором слоге"
+      ],
+      [
+        "advice",
+        "/ədˈvaɪs/",
+        "конечный /s/ глухой"
+      ],
+      [
+        "different",
+        "/ˈdɪf.ər.ənt/",
+        "коротко произносите первый слог"
+      ]
+    ],
+    "shadowing": {
+      "audio_text": "Families often bring together people of different ages and experiences. Older relatives may share practical advice, while younger members can introduce new ideas or technology. Although generations sometimes disagree, regular conversations can help family members understand each other better.",
+      "target_duration_sec": 43,
+      "source": "original-course-script",
+      "license": "Original Tayanch course script; browser TTS reference only."
+    },
+    "speaking_set": {
+      "topic": "Семья и поколения",
+      "part1": [
+        "Как часто вы проводите время с расширенной семьёй?",
+        "Кто даёт вам полезные советы в семье?",
+        "Достаточно ли у молодёжи и пожилых людей возможностей пообщаться?"
+      ],
+      "part2": {
+        "cue_card": "Опишите пожилого человека, который повлиял на вас.",
+        "bullets": [
+          "кто этот человек",
+          "как вы его знаете",
+          "чему вы у него научились",
+          "почему его влияние было важным"
+        ],
+        "prep_time_sec": 60,
+        "speak_time_sec": 120
+      },
+      "part3": [
+        "Чему молодёжь может научиться у старших поколений?",
+        "Почему некоторым семьям трудно проводить время вместе?",
+        "Должны ли взрослые дети заботиться о пожилых родителях?",
+        "Как технологии изменили общение между поколениями?",
+        "Что могут сделать сообщества, чтобы снизить одиночество пожилых людей?"
+      ]
+    }
+  },
+  {
+    "day": 24,
+    "week_focus": "Различие V и W",
+    "pronunciation": [
+      [
+        "invent",
+        "/ɪnˈvent/",
+        "для /v/ нижняя губа касается верхних зубов"
+      ],
+      [
+        "device",
+        "/dɪˈvaɪs/",
+        "чёткий /v/ во втором слоге"
+      ],
+      [
+        "wireless",
+        "/ˈwaɪə.ləs/",
+        "округлите губы для начального /w/"
+      ],
+      [
+        "voice",
+        "/vɔɪs/",
+        "чётко произносите звонкий /v/"
+      ],
+      [
+        "website",
+        "/ˈweb.saɪt/",
+        "произносите /w/ и /b/ вместе"
+      ],
+      [
+        "available",
+        "/əˈveɪ.lə.bəl/",
+        "ударение на слоге /veɪ/"
+      ],
+      [
+        "worldwide",
+        "/ˌwɜːldˈwaɪd/",
+        "различайте два звука /w/"
+      ],
+      [
+        "innovation",
+        "/ˌɪn.əˈveɪ.ʃən/",
+        "протяните слог /veɪ/"
+      ]
+    ],
+    "shadowing": {
+      "audio_text": "Useful inventions do not always need to be complicated. Sometimes a simple device saves people time, improves safety, or helps them communicate. I think the best technologies are designed around real problems, rather than being created only because they look new or impressive.",
+      "target_duration_sec": 44,
+      "source": "original-course-script",
+      "license": "Original Tayanch course script; browser TTS reference only."
+    },
+    "speaking_set": {
+      "topic": "Технологии и изобретения",
+      "part1": [
+        "Какой технологией вы пользуетесь чаще всего каждый день?",
+        "Есть ли изобретение, облегчившее вашу повседневную жизнь?",
+        "Вам нравится разбираться, как работают новые устройства?",
+        "Какую технологию вы считаете лишней?"
+      ],
+      "part2": {
+        "cue_card": "Опишите изобретение, которое, по вашему мнению, особенно полезно.",
+        "bullets": [
+          "что это за изобретение",
+          "когда вы впервые им воспользовались или узнали о нём",
+          "как оно помогает людям",
+          "почему вы считаете его полезным"
+        ],
+        "prep_time_sec": 60,
+        "speak_time_sec": 120
+      },
+      "part3": [
+        "На решении каких проблем изобретателям следует сосредоточиться сегодня?",
+        "Всегда ли новые технологии улучшают жизнь людей?",
+        "Почему некоторым пожилым людям трудно пользоваться новыми устройствами?",
+        "Должны ли правительства вкладываться в научные исследования?",
+        "Как искусственный интеллект может повлиять на будущие изобретения?"
+      ]
+    }
+  },
+  {
+    "day": 25,
+    "week_focus": "Ударение в словах: многосложные слова",
+    "pronunciation": [
+      [
+        "education",
+        "/ˌedʒ.ʊˈkeɪ.ʃən/",
+        "ударение на слоге /keɪ/"
+      ],
+      [
+        "practical",
+        "/ˈpræk.tɪ.kəl/",
+        "ударение на первом слоге"
+      ],
+      [
+        "qualification",
+        "/ˌkwɒl.ɪ.fɪˈkeɪ.ʃən/",
+        "предпоследнее ударение"
+      ],
+      [
+        "independent",
+        "/ˌɪn.dɪˈpen.dənt/",
+        "ударение на слоге /pen/"
+      ],
+      [
+        "improve",
+        "/ɪmˈpruːv/",
+        "ударение на последнем слоге"
+      ],
+      [
+        "research",
+        "/rɪˈsɜːtʃ/",
+        "протяните второй слог"
+      ],
+      [
+        "knowledge",
+        "/ˈnɒl.ɪdʒ/",
+        "завершайте звуком /dʒ/"
+      ],
+      [
+        "opportunity",
+        "/ˌɒp.əˈtʃuː.nə.ti/",
+        "ударение на слоге /tʃuː/"
+      ]
+    ],
+    "shadowing": {
+      "audio_text": "Education is not only about passing exams. It can also help people develop confidence, curiosity, and useful habits. In my view, students learn more effectively when they can connect new information with real situations and have time to practise important skills.",
+      "target_duration_sec": 42,
+      "source": "original-course-script",
+      "license": "Original Tayanch course script; browser TTS reference only."
+    },
+    "speaking_set": {
+      "topic": "Образование и навыки",
+      "part1": [
+        "Какой навык вы хотели бы сейчас улучшить?",
+        "Вам нравилось учить практические навыки в школе?",
+        "Вы предпочитаете учиться у учителя или по видео онлайн?"
+      ],
+      "part2": {
+        "cue_card": "Опишите навык, которому вы научились вне школы.",
+        "bullets": [
+          "что это за навык",
+          "как вы его освоили",
+          "сколько времени заняло, чтобы почувствовать уверенность",
+          "как вы применяете этот навык сейчас"
+        ],
+        "prep_time_sec": 60,
+        "speak_time_sec": 120
+      },
+      "part3": [
+        "Какие навыки будут важнее всего для будущих профессий?",
+        "Должны ли школы учить финансовым и коммуникативным навыкам?",
+        "Почему некоторые взрослые перестают учить новое?",
+        "Как работодатели могут помочь сотрудникам развиваться профессионально?",
+        "Является ли обучение на опыте таким же ценным, как формальное образование?"
+      ]
+    }
+  },
+  {
+    "day": 26,
+    "week_focus": "Интонация: выделение мысли и причин",
+    "pronunciation": [
+      [
+        "creative",
+        "/kriˈeɪ.tɪv/",
+        "ударение на втором слоге"
+      ],
+      [
+        "painting",
+        "/ˈpeɪn.tɪŋ/",
+        "протяните гласный /eɪ/"
+      ],
+      [
+        "audience",
+        "/ˈɔː.di.əns/",
+        "ударение на первом слоге"
+      ],
+      [
+        "performance",
+        "/pəˈfɔː.məns/",
+        "ударение на слоге /fɔː/"
+      ],
+      [
+        "exhibition",
+        "/ˌek.sɪˈbɪʃ.ən/",
+        "чёткий слог /bɪʃ/"
+      ],
+      [
+        "imagine",
+        "/ɪˈmædʒ.ɪn/",
+        "чётко произносите звук /dʒ/"
+      ],
+      [
+        "express",
+        "/ɪkˈspres/",
+        "ударение на последнем слоге"
+      ],
+      [
+        "inspiring",
+        "/ɪnˈspaɪə.rɪŋ/",
+        "различайте слог /spaɪ/"
+      ]
+    ],
+    "shadowing": {
+      "audio_text": "Creative activities can offer a different way to communicate. A painting, a song, or a photograph may express an idea without using many words. Even people who do not consider themselves artists can benefit from making something carefully and noticing small details around them.",
+      "target_duration_sec": 45,
+      "source": "original-course-script",
+      "license": "Original Tayanch course script; browser TTS reference only."
+    },
+    "speaking_set": {
+      "topic": "Искусство и творчество",
+      "part1": [
+        "Вам нравится что-то мастерить или создавать?",
+        "Какое искусство можно увидеть в вашей местности?",
+        "Были ли у вас на уроках в школе занятия искусством или музыкой?"
+      ],
+      "part2": {
+        "cue_card": "Опишите произведение искусства или творческую работу, которая вам нравится.",
+        "bullets": [
+          "что это такое",
+          "где вы его увидели или услышали",
+          "о чём оно или как выглядит",
+          "почему оно произвело на вас впечатление"
+        ],
+        "prep_time_sec": 60,
+        "speak_time_sec": 120
+      },
+      "part3": [
+        "Почему творчество ценно вне искусства?",
+        "Следует ли общественные деньги тратить на поддержку музеев и театров?",
+        "Как искусство может сделать город привлекательнее?",
+        "Меняют ли цифровые инструменты то, что значит быть художником?",
+        "Следует ли поощрять детей заниматься творчеством, даже если у них нет таланта?"
+      ]
+    }
+  },
+  {
+    "day": 27,
+    "week_focus": "Сочетания согласных: /sp/, /str/ и /ks/",
+    "pronunciation": [
+      [
+        "sport",
+        "/spɔːt/",
+        "не вставляйте гласный между /s/ и /p/"
+      ],
+      [
+        "strength",
+        "/streŋθ/",
+        "медленно тренируйте /str/ и конечный /ŋθ/"
+      ],
+      [
+        "exercise",
+        "/ˈek.sə.saɪz/",
+        "чётко произносите сочетание /ks/"
+      ],
+      [
+        "stretch",
+        "/stretʃ/",
+        "краткий /e/ после /str/"
+      ],
+      [
+        "regular",
+        "/ˈreɡ.jə.lə/",
+        "ударение на первом слоге"
+      ],
+      [
+        "healthy",
+        "/ˈhel.θi/",
+        "чётко произносите конечный /θ/"
+      ],
+      [
+        "balance",
+        "/ˈbæl.əns/",
+        "широко произносите первый гласный /æ/"
+      ],
+      [
+        "competition",
+        "/ˌkɒm.pəˈtɪʃ.ən/",
+        "ударение на слоге /tɪʃ/"
+      ]
+    ],
+    "shadowing": {
+      "audio_text": "Regular exercise can improve both physical health and mood. It does not have to involve an expensive gym or intense training. A daily walk, a team sport, or a short workout at home can be easier to continue when the activity is enjoyable and fits a person’s schedule.",
+      "target_duration_sec": 47,
+      "source": "original-course-script",
+      "license": "Original Tayanch course script; browser TTS reference only."
+    },
+    "speaking_set": {
+      "topic": "Спорт и физические упражнения",
+      "part1": [
+        "Какими упражнениями вы любите заниматься, если любите?",
+        "Играли ли вы в спортивные игры в школе?",
+        "Вы предпочитаете заниматься в одиночку или с другими?",
+        "Есть ли спорт, который вы хотели бы попробовать?"
+      ],
+      "part2": {
+        "cue_card": "Опишите упражнение или вид спорта, которым вы хотели бы заниматься чаще.",
+        "bullets": [
+          "что это такое",
+          "где бы вы им занимались",
+          "с кем бы вы это делали",
+          "как это могло бы вам помочь"
+        ],
+        "prep_time_sec": 60,
+        "speak_time_sec": 120
+      },
+      "part3": [
+        "Почему некоторым людям трудно регулярно заниматься спортом?",
+        "Что города могут сделать, чтобы облегчить физическую активность?",
+        "Должны ли школы давать ученикам больше времени на спорт?",
+        "Полезны ли соревновательные виды спорта для детей?",
+        "Как технологии изменили то, как люди тренируются?"
+      ]
+    }
+  },
+  {
+    "day": 28,
+    "week_focus": "Ритм речи: слова, несущие основной смысл",
+    "pronunciation": [
+      [
+        "news",
+        "/njuːz/",
+        "сохраняйте начальное сочетание /nj/"
+      ],
+      [
+        "source",
+        "/sɔːs/",
+        "произносите долгий гласный /ɔː/"
+      ],
+      [
+        "report",
+        "/rɪˈpɔːt/",
+        "ударение на втором слоге"
+      ],
+      [
+        "reliable",
+        "/rɪˈlaɪ.ə.bəl/",
+        "ударение на слоге /laɪ/"
+      ],
+      [
+        "article",
+        "/ˈɑː.tɪ.kəl/",
+        "ударение на первом слоге"
+      ],
+      [
+        "journalist",
+        "/ˈdʒɜː.nə.lɪst/",
+        "протяните /dʒɜː/"
+      ],
+      [
+        "headline",
+        "/ˈhed.laɪn/",
+        "разделите два слога"
+      ],
+      [
+        "information",
+        "/ˌɪn.fəˈmeɪ.ʃən/",
+        "ударение на слоге /meɪ/"
+      ]
+    ],
+    "shadowing": {
+      "audio_text": "News can help us understand events beyond our immediate lives, but it is important to choose reliable sources. I usually read a short summary first and then look for more detail when a story affects my community, my studies, or plans for the future.",
+      "target_duration_sec": 45,
+      "source": "original-course-script",
+      "license": "Original Tayanch course script; browser TTS reference only."
+    },
+    "speaking_set": {
+      "topic": "Новости и информация",
+      "part1": [
+        "Как вы обычно узнаёте о текущих событиях?",
+        "Вы предпочитаете читать новости или смотреть их?",
+        "Есть ли вид новостей, за которым вы стараетесь не следить?"
+      ],
+      "part2": {
+        "cue_card": "Опишите новостную историю, которая недавно вас заинтересовала.",
+        "bullets": [
+          "о чём была история",
+          "где вы о ней впервые узнали",
+          "почему она привлекла ваше внимание",
+          "что вы подумали, узнав больше"
+        ],
+        "prep_time_sec": 60,
+        "speak_time_sec": 120
+      },
+      "part3": [
+        "Почему люди доверяют разным источникам новостей?",
+        "Как людям проверять, точна ли информация в интернете?",
+        "Должны ли школы учить учеников распознавать вводящую в заблуждение информацию?",
+        "Влияет ли частое соприкосновение с негативными новостями на людей?",
+        "Исчезнут ли печатные газеты полностью?"
+      ]
+    }
+  },
+  {
+    "day": 29,
+    "week_focus": "Говорим о будущем: чёткость /l/ и /r/",
+    "pronunciation": [
+      [
+        "plan",
+        "/plæn/",
+        "не разделяйте сочетание /pl/"
+      ],
+      [
+        "career",
+        "/kəˈrɪə/",
+        "ударение на втором слоге"
+      ],
+      [
+        "goal",
+        "/ɡəʊl/",
+        "лёгко произносите конечный /l/"
+      ],
+      [
+        "future",
+        "/ˈfjuː.tʃə/",
+        "протяните часть /fjuː/"
+      ],
+      [
+        "ambition",
+        "/æmˈbɪʃ.ən/",
+        "ударение на втором слоге"
+      ],
+      [
+        "achieve",
+        "/əˈtʃiːv/",
+        "протяните слог /tʃiːv/"
+      ],
+      [
+        "realistic",
+        "/ˌrɪəˈlɪs.tɪk/",
+        "различайте звуки /r/ и /l/"
+      ],
+      [
+        "opportunity",
+        "/ˌɒp.əˈtʃuː.nə.ti/",
+        "ударение на слоге /tʃuː/"
+      ]
+    ],
+    "shadowing": {
+      "audio_text": "Making plans can give people direction, especially during busy periods of life. However, plans do not need to be fixed forever. I think it is sensible to set a clear goal, take small steps toward it, and remain ready to adjust when new opportunities appear.",
+      "target_duration_sec": 44,
+      "source": "original-course-script",
+      "license": "Original Tayanch course script; browser TTS reference only."
+    },
+    "speaking_set": {
+      "topic": "Планы и устремления",
+      "part1": [
+        "Вам нравится строить планы на будущее?",
+        "Какой цели вы надеетесь достичь в ближайшие годы?",
+        "Вы обычно записываете планы или держите в уме?",
+        "Меняло ли ваши планы когда-нибудь неожиданное событие?"
+      ],
+      "part2": {
+        "cue_card": "Опишите устремление, которое у вас есть на будущее.",
+        "bullets": [
+          "в чём оно состоит",
+          "почему оно важно для вас",
+          "какие шаги нужно предпринять",
+          "с какими трудностями вы можете столкнуться"
+        ],
+        "prep_time_sec": 60,
+        "speak_time_sec": 120
+      },
+      "part3": [
+        "Почему некоторым людям трудно ставить долгосрочные цели?",
+        "Должны ли школы помогать ученикам планировать карьеру?",
+        "Как социальные сети влияют на устремления людей?",
+        "Лучше ли иметь одну чёткую цель или несколько возможных планов?",
+        "Как людям сохранять мотивацию, когда прогресс медленный?"
+      ]
+    }
+  },
+  {
+    "day": 30,
+    "week_focus": "30-й день: повторение — плавность, ударение и уверенность",
+    "pronunciation": [
+      [
+        "community",
+        "/kəˈmjuː.nə.ti/",
+        "ударение на слоге /mjuː/"
+      ],
+      [
+        "volunteer",
+        "/ˌvɒl.ənˈtɪə/",
+        "предпоследнее ударение"
+      ],
+      [
+        "neighbour",
+        "/ˈneɪ.bə/",
+        "ударение на первом слоге"
+      ],
+      [
+        "support",
+        "/səˈpɔːt/",
+        "протяните слог /pɔːt/"
+      ],
+      [
+        "charity",
+        "/ˈtʃær.ə.ti/",
+        "широко произносите первый гласный /æ/"
+      ],
+      [
+        "organise",
+        "/ˈɔː.ɡən.aɪz/",
+        "долгий слог /ɔː/"
+      ],
+      [
+        "contribute",
+        "/kənˈtrɪb.juːt/",
+        "чёткий слог /trɪb/"
+      ],
+      [
+        "benefit",
+        "/ˈben.ɪ.fɪt/",
+        "ударение на первом слоге"
+      ]
+    ],
+    "shadowing": {
+      "audio_text": "Volunteering can connect people who might not otherwise meet. By giving a little time, someone can support a local event, help a neighbour, or share a useful skill. These activities can strengthen a community because they remind people that small contributions can have a real effect.",
+      "target_duration_sec": 46,
+      "source": "original-course-script",
+      "license": "Original Tayanch course script; browser TTS reference only."
+    },
+    "speaking_set": {
+      "topic": "Сообщество и волонтёрство",
+      "part1": [
+        "Знаете ли вы людей, которые волонтёрят в вашем сообществе?",
+        "Хотели бы вы помочь с местным событием?",
+        "Какие места в вашем районе объединяют людей?",
+        "Обычно ли соседи помогают друг другу там, где вы живёте?"
+      ],
+      "part2": {
+        "cue_card": "Опишите случай, когда вы помогли кому-то в своём сообществе.",
+        "bullets": [
+          "кому вы помогли",
+          "что вы сделали",
+          "почему человеку или группе была нужна помощь",
+          "как вы себя почувствовали после"
+        ],
+        "prep_time_sec": 60,
+        "speak_time_sec": 120
+      },
+      "part3": [
+        "Почему одни люди выбирают волонтёрство, а другие — нет?",
+        "Как местные власти могут поощрять волонтёрство?",
+        "Должны ли работодатели давать сотрудникам время на общественную работу?",
+        "Какую пользу молодёжь может извлечь из волонтёрства?",
+        "Могут ли онлайн-сообщества дать такую же поддержку, как местные?"
+      ]
+    }
+  }
+]

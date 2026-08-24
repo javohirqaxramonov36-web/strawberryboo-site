@@ -1,0 +1,2455 @@
+[
+  {
+    "day": 1,
+    "week_focus": "TH sounds: /θ/ and /ð/",
+    "pronunciation": [
+      [
+        "think",
+        "/θɪŋk/",
+        "tongue tip between teeth, voiceless"
+      ],
+      [
+        "three",
+        "/θriː/",
+        "initial /θ/"
+      ],
+      [
+        "through",
+        "/θruː/",
+        "keep the airflow"
+      ],
+      [
+        "this",
+        "/ðɪs/",
+        "voiced th"
+      ],
+      [
+        "weather",
+        "/ˈweð.ə/",
+        "medial /ð/"
+      ],
+      [
+        "healthy",
+        "/ˈhel.θi/",
+        "clear /θ/"
+      ],
+      [
+        "both",
+        "/bəʊθ/",
+        "final /θ/"
+      ],
+      [
+        "rather",
+        "/ˈrɑːð.ə/",
+        "soft /ð/"
+      ]
+    ],
+    "shadowing": {
+      "audio_text": "I think the weather in my hometown is one of the things that makes it special. Although summers can be hot, there are usually pleasant evenings when families walk together outside.",
+      "target_duration_sec": 38,
+      "source": "original-course-script",
+      "license": "Original Tayanch course script; browser TTS reference only."
+    },
+    "speaking_set": {
+      "topic": "Hometown and neighbourhood",
+      "part1": [
+        "Where is your hometown?",
+        "What do you like most about the area where you live?",
+        "Has your neighbourhood changed in recent years?"
+      ],
+      "part2": {
+        "cue_card": "Describe a place in your hometown that you enjoy visiting.",
+        "bullets": [
+          "where it is",
+          "when you go there",
+          "what you do there",
+          "why you enjoy it"
+        ],
+        "prep_time_sec": 60,
+        "speak_time_sec": 120
+      },
+      "part3": [
+        "Why do some people prefer living in cities?",
+        "How can public spaces improve a neighbourhood?",
+        "Should cities preserve old buildings?",
+        "How might towns change in the future?"
+      ]
+    }
+  },
+  {
+    "day": 2,
+    "week_focus": "TH sounds: accuracy and speed",
+    "pronunciation": [
+      [
+        "thank",
+        "/θæŋk/",
+        "do not turn /θ/ into /s/"
+      ],
+      [
+        "thousand",
+        "/ˈθaʊ.zənd/",
+        "first syllable"
+      ],
+      [
+        "method",
+        "/ˈmeθ.əd/",
+        "medial /θ/"
+      ],
+      [
+        "those",
+        "/ðəʊz/",
+        "voiced beginning"
+      ],
+      [
+        "mother",
+        "/ˈmʌð.ə/",
+        "soft /ð/"
+      ],
+      [
+        "although",
+        "/ɔːlˈðəʊ/",
+        "as a conjunction"
+      ],
+      [
+        "growth",
+        "/ɡrəʊθ/",
+        "word-final"
+      ],
+      [
+        "therefore",
+        "/ˈðeə.fɔː/",
+        "linking conjunction"
+      ]
+    ],
+    "shadowing": {
+      "audio_text": "Studying is more effective when I set a realistic goal for the day. For example, I might review a short topic, practise speaking for a few minutes, and then write down one thing I want to improve tomorrow.",
+      "target_duration_sec": 42,
+      "source": "original-course-script",
+      "license": "Original Tayanch course script; browser TTS reference only."
+    },
+    "speaking_set": {
+      "topic": "Study and learning",
+      "part1": [
+        "Do you enjoy studying?",
+        "What subject did you like at school?",
+        "Do you prefer studying alone or with others?"
+      ],
+      "part2": {
+        "cue_card": "Describe something useful that you learned recently.",
+        "bullets": [
+          "what you learned",
+          "how you learned it",
+          "why it was useful",
+          "how you felt about learning it"
+        ],
+        "prep_time_sec": 60,
+        "speak_time_sec": 120
+      },
+      "part3": [
+        "How has technology changed the way people learn?",
+        "Should schools teach more practical skills?",
+        "Why do some adults stop learning new things?",
+        "What makes a good teacher?"
+      ]
+    }
+  },
+  {
+    "day": 3,
+    "week_focus": "TH sounds: sentence rhythm",
+    "pronunciation": [
+      [
+        "thing",
+        "/θɪŋ/",
+        "short vowel"
+      ],
+      [
+        "thought",
+        "/θɔːt/",
+        "long vowel"
+      ],
+      [
+        "anything",
+        "/ˈen.i.θɪŋ/",
+        "pronounce the end clearly"
+      ],
+      [
+        "the",
+        "/ðə/, /ðiː/",
+        "use /ðiː/ before a vowel"
+      ],
+      [
+        "them",
+        "/ðem/",
+        "voiced th"
+      ],
+      [
+        "together",
+        "/təˈɡeð.ə/",
+        "medial /ð/"
+      ],
+      [
+        "with",
+        "/wɪð/",
+        "final /ð/"
+      ],
+      [
+        "either",
+        "/ˈaɪ.ðə/",
+        "natural rhythm"
+      ]
+    ],
+    "shadowing": {
+      "audio_text": "In my free time, I usually choose activities that help me relax after a busy day. Sometimes I meet friends for a walk, but I also enjoy reading because it gives me a chance to slow down and think.",
+      "target_duration_sec": 40,
+      "source": "original-course-script",
+      "license": "Original Tayanch course script; browser TTS reference only."
+    },
+    "speaking_set": {
+      "topic": "Free time and hobbies",
+      "part1": [
+        "What do you usually do in your free time?",
+        "Did you have a hobby when you were younger?",
+        "Do you like spending free time indoors or outdoors?"
+      ],
+      "part2": {
+        "cue_card": "Describe a hobby you would like to try.",
+        "bullets": [
+          "what it is",
+          "how you heard about it",
+          "what you would need to do it",
+          "why you want to try it"
+        ],
+        "prep_time_sec": 60,
+        "speak_time_sec": 120
+      },
+      "part3": [
+        "Why do people need hobbies?",
+        "Are hobbies different for young and older people?",
+        "Can a hobby become a job?",
+        "How do social media affect hobbies?"
+      ]
+    }
+  },
+  {
+    "day": 4,
+    "week_focus": "TH sounds: connected speech",
+    "pronunciation": [
+      [
+        "technology",
+        "/tekˈnɒl.ə.dʒi/",
+        "stress on second syllable"
+      ],
+      [
+        "online",
+        "/ˌɒnˈlaɪn/",
+        "final stress"
+      ],
+      [
+        "throughout",
+        "/θruːˈaʊt/",
+        "in two parts"
+      ],
+      [
+        "theory",
+        "/ˈθɪə.ri/",
+        "initial th"
+      ],
+      [
+        "although",
+        "/ɔːlˈðəʊ/",
+        "at start of conjunction"
+      ],
+      [
+        "whether",
+        "/ˈweð.ə/",
+        "clear /ð/"
+      ],
+      [
+        "within",
+        "/wɪˈðɪn/",
+        "medial /ð/"
+      ],
+      [
+        "without",
+        "/wɪˈðaʊt/",
+        "with rhythm"
+      ]
+    ],
+    "shadowing": {
+      "audio_text": "Technology has made communication much faster, especially for people who live far from their families. However, I believe that face-to-face conversations are still important because they allow us to notice feelings more easily.",
+      "target_duration_sec": 41,
+      "source": "original-course-script",
+      "license": "Original Tayanch course script; browser TTS reference only."
+    },
+    "speaking_set": {
+      "topic": "Technology and communication",
+      "part1": [
+        "What technology do you use every day?",
+        "Do you often make video calls?",
+        "Is there any technology you find difficult to use?"
+      ],
+      "part2": {
+        "cue_card": "Describe a piece of technology that is useful to you.",
+        "bullets": [
+          "what it is",
+          "when you use it",
+          "how it helps you",
+          "why it is important to you"
+        ],
+        "prep_time_sec": 60,
+        "speak_time_sec": 120
+      },
+      "part3": [
+        "How has technology changed communication?",
+        "Do people rely too much on smartphones?",
+        "What technology might be common in the future?",
+        "Should children have limits on screen time?"
+      ]
+    }
+  },
+  {
+    "day": 5,
+    "week_focus": "TH sounds: natural questions",
+    "pronunciation": [
+      [
+        "health",
+        "/helθ/",
+        "final /θ/"
+      ],
+      [
+        "teeth",
+        "/tiːθ/",
+        "long vowel"
+      ],
+      [
+        "breathe",
+        "/briːð/",
+        "voiced ending"
+      ],
+      [
+        "breath",
+        "/breθ/",
+        "voiceless ending"
+      ],
+      [
+        "rather",
+        "/ˈrɑːð.ə/",
+        "soft /ð/"
+      ],
+      [
+        "other",
+        "/ˈʌð.ə/",
+        "medial /ð/"
+      ],
+      [
+        "thoughtful",
+        "/ˈθɔːt.fəl/",
+        "beginning"
+      ],
+      [
+        "smoothly",
+        "/ˈsmuːð.li/",
+        "with /ð/"
+      ]
+    ],
+    "shadowing": {
+      "audio_text": "Keeping healthy does not always require a complicated routine. I try to sleep well, drink enough water, and move regularly. These small habits make it easier for me to concentrate when I need to study.",
+      "target_duration_sec": 39,
+      "source": "original-course-script",
+      "license": "Original Tayanch course script; browser TTS reference only."
+    },
+    "speaking_set": {
+      "topic": "Health and daily routines",
+      "part1": [
+        "What do you do to stay healthy?",
+        "Do you prefer walking or exercising indoors?",
+        "Has your daily routine changed recently?"
+      ],
+      "part2": {
+        "cue_card": "Describe a healthy habit that you would like to develop.",
+        "bullets": [
+          "what the habit is",
+          "why you want it",
+          "what might be difficult",
+          "how it could help you"
+        ],
+        "prep_time_sec": 60,
+        "speak_time_sec": 120
+      },
+      "part3": [
+        "Why do some people find healthy habits difficult?",
+        "Who should teach children about health?",
+        "How can cities encourage people to exercise?",
+        "Are people more health-conscious than before?"
+      ]
+    }
+  },
+  {
+    "day": 6,
+    "week_focus": "TH sounds: review",
+    "pronunciation": [
+      [
+        "thankful",
+        "/ˈθæŋk.fəl/",
+        "start with /θ/"
+      ],
+      [
+        "thirty",
+        "/ˈθɜː.ti/",
+        "difference between /θ/ and /t/"
+      ],
+      [
+        "length",
+        "/leŋθ/",
+        "final consonants"
+      ],
+      [
+        "their",
+        "/ðeə/",
+        "voiced th"
+      ],
+      [
+        "these",
+        "/ðiːz/",
+        "long vowel"
+      ],
+      [
+        "another",
+        "/əˈnʌð.ə/",
+        "rhythm"
+      ],
+      [
+        "further",
+        "/ˈfɜː.ðə/",
+        "soft /ð/"
+      ],
+      [
+        "worthy",
+        "/ˈwɜː.ði/",
+        "ending"
+      ]
+    ],
+    "shadowing": {
+      "audio_text": "Travelling can teach us things that we do not learn in a classroom. When we visit another place, we notice different habits, foods, and ways of life. That experience can make us more open-minded.",
+      "target_duration_sec": 37,
+      "source": "original-course-script",
+      "license": "Original Tayanch course script; browser TTS reference only."
+    },
+    "speaking_set": {
+      "topic": "Travel and transport",
+      "part1": [
+        "Do you enjoy travelling?",
+        "How do you usually travel around your city?",
+        "Is public transport convenient where you live?"
+      ],
+      "part2": {
+        "cue_card": "Describe a journey that you remember well.",
+        "bullets": [
+          "where you went",
+          "how you travelled",
+          "who you went with",
+          "why you remember it"
+        ],
+        "prep_time_sec": 60,
+        "speak_time_sec": 120
+      },
+      "part3": [
+        "Why do people enjoy travelling?",
+        "How can tourism help local communities?",
+        "Should governments improve public transport?",
+        "Will people travel more in the future?"
+      ]
+    }
+  },
+  {
+    "day": 7,
+    "week_focus": "Weekly review and natural rhythm",
+    "pronunciation": [
+      [
+        "thought",
+        "/θɔːt/",
+        "/θ/ review"
+      ],
+      [
+        "through",
+        "/θruː/",
+        "airflow"
+      ],
+      [
+        "those",
+        "/ðəʊz/",
+        "voiced th"
+      ],
+      [
+        "whether",
+        "/ˈweð.ə/",
+        "medial /ð/"
+      ],
+      [
+        "healthy",
+        "/ˈhel.θi/",
+        "final /θ/"
+      ],
+      [
+        "together",
+        "/təˈɡeð.ə/",
+        "connected speech"
+      ],
+      [
+        "growth",
+        "/ɡrəʊθ/",
+        "final /θ/"
+      ],
+      [
+        "therefore",
+        "/ˈðeə.fɔː/",
+        "conclusion signal"
+      ]
+    ],
+    "shadowing": {
+      "audio_text": "This week I focused on speaking more clearly rather than speaking very quickly. I learned that a short pause can help me organise my ideas, and that clear pronunciation makes my message easier to understand.",
+      "target_duration_sec": 36,
+      "source": "original-course-script",
+      "license": "Original Tayanch course script; browser TTS reference only."
+    },
+    "speaking_set": {
+      "topic": "Personal growth and goals",
+      "part1": [
+        "Do you often set goals for yourself?",
+        "What kind of goal is important to you now?",
+        "Do you prefer short-term or long-term goals?"
+      ],
+      "part2": {
+        "cue_card": "Describe a goal that you would like to achieve.",
+        "bullets": [
+          "what the goal is",
+          "why it matters to you",
+          "what you need to do",
+          "how you will feel if you achieve it"
+        ],
+        "prep_time_sec": 60,
+        "speak_time_sec": 120
+      },
+      "part3": [
+        "Why do people set goals?",
+        "Should schools help students plan for the future?",
+        "What can make people give up on goals?",
+        "How can people measure progress?"
+      ]
+    }
+  },
+  {
+    "day": 8,
+    "week_focus": "Short and long vowels: /ɪ/ and /iː/",
+    "pronunciation": [
+      [
+        "meal",
+        "/miːl/",
+        "after long /iː/ finish /l/ clearly"
+      ],
+      [
+        "fish",
+        "/fɪʃ/",
+        "short /ɪ/; do not make it /fiːʃ/"
+      ],
+      [
+        "cheese",
+        "/tʃiːz/",
+        "long /iː/ and final /z/"
+      ],
+      [
+        "dish",
+        "/dɪʃ/",
+        "short /ɪ/ in one syllable"
+      ],
+      [
+        "kitchen",
+        "/ˈkɪtʃ.ɪn/",
+        "short /ɪ/ in both syllables"
+      ],
+      [
+        "recipe",
+        "/ˈres.ə.pi/",
+        "stress on first syllable"
+      ],
+      [
+        "ingredient",
+        "/ɪnˈɡriː.di.ənt/",
+        "stressed syllable with long /iː/"
+      ],
+      [
+        "sweet",
+        "/swiːt/",
+        "do not turn /iː/ into /ɪ/"
+      ],
+      [
+        "quickly",
+        "/ˈkwɪk.li/",
+        "short /ɪ/ in first syllable"
+      ],
+      [
+        "delicious",
+        "/dɪˈlɪʃ.əs/",
+        "stress on second syllable, short /ɪ/"
+      ]
+    ],
+    "shadowing": {
+      "audio_text": "I enjoy cooking when I have enough time to prepare one dish properly. I usually start with simple ingredients and follow a recipe only as a guide. The best part is sharing the meal afterwards, because a home-cooked dinner often gives everyone a chance to talk without rushing.",
+      "target_duration_sec": 45,
+      "source": "original-course-script",
+      "license": "Original Tayanch course script; browser TTS reference only."
+    },
+    "speaking_set": {
+      "topic": "Food and cooking",
+      "part1": [
+        "What meal do you most enjoy cooking at home?",
+        "When you are busy, how do you decide what to eat?",
+        "Is there a food from your childhood that you still like?",
+        "Who usually does most of the cooking in your household?"
+      ],
+      "part2": {
+        "cue_card": "Describe a dish that you would like to learn to cook well.",
+        "bullets": [
+          "what the dish is",
+          "where you first tried or heard about it",
+          "what ingredients or skills it requires",
+          "why you want to learn to make it"
+        ],
+        "prep_time_sec": 60,
+        "speak_time_sec": 120
+      },
+      "part3": [
+        "Why are some traditional dishes difficult for younger people to continue making?",
+        "How have food-delivery apps changed the way people eat?",
+        "Should schools teach children how to prepare basic meals?",
+        "What can restaurants do to reduce food waste?"
+      ]
+    }
+  },
+  {
+    "day": 9,
+    "week_focus": "Short and long vowels: /ʊ/ and /uː/",
+    "pronunciation": [
+      [
+        "book",
+        "/bʊk/",
+        "short /ʊ/; do not make it /buːk/"
+      ],
+      [
+        "look",
+        "/lʊk/",
+        "short /ʊ/ and clear /k/"
+      ],
+      [
+        "school",
+        "/skuːl/",
+        "long /uː/ after consonant"
+      ],
+      [
+        "choose",
+        "/tʃuːz/",
+        "long /uː/ and final /z/"
+      ],
+      [
+        "good",
+        "/ɡʊd/",
+        "short /ʊ/; do not over-round lips"
+      ],
+      [
+        "novel",
+        "/ˈnɒv.əl/",
+        "stress on first syllable"
+      ],
+      [
+        "author",
+        "/ˈɔː.θə/",
+        "long /ɔː/ in first syllable"
+      ],
+      [
+        "review",
+        "/rɪˈvjuː/",
+        "long /uː/ in final syllable"
+      ],
+      [
+        "useful",
+        "/ˈjuːs.fəl/",
+        "starts with /j/ and long /uː/"
+      ],
+      [
+        "chapter",
+        "/ˈtʃæp.tə/",
+        "stress on first syllable"
+      ]
+    ],
+    "shadowing": {
+      "audio_text": "A book becomes memorable when it gives me a new way to see an ordinary situation. I do not always finish a long novel quickly, but I like returning to it for a few pages each evening. Reading slowly helps me notice ideas that I would otherwise miss.",
+      "target_duration_sec": 45,
+      "source": "original-course-script",
+      "license": "Original Tayanch course script; browser TTS reference only."
+    },
+    "speaking_set": {
+      "topic": "Books and reading",
+      "part1": [
+        "What kind of reading do you do most often at the moment?",
+        "Do you ever reread a book that you have already finished?",
+        "Where is your favourite place to read?",
+        "How do you choose a book when there are many options?"
+      ],
+      "part2": {
+        "cue_card": "Describe a book that changed your opinion about a subject.",
+        "bullets": [
+          "what the book was",
+          "what subject it made you think about",
+          "when you read it",
+          "how it changed your opinion"
+        ],
+        "prep_time_sec": 60,
+        "speak_time_sec": 120
+      },
+      "part3": [
+        "Why do some people prefer short online articles to books?",
+        "How can public libraries remain useful in a digital age?",
+        "Do book reviews influence what people choose to read?",
+        "Is reading fiction as valuable as reading non-fiction?"
+      ]
+    }
+  },
+  {
+    "day": 10,
+    "week_focus": "Word stress and sentence rhythm",
+    "pronunciation": [
+      [
+        "music",
+        "/ˈmjuː.zɪk/",
+        "stress on first syllable"
+      ],
+      [
+        "concert",
+        "/ˈkɒn.sət/",
+        "first syllable strong, second light"
+      ],
+      [
+        "performance",
+        "/pəˈfɔː.məns/",
+        "stress on second syllable"
+      ],
+      [
+        "audience",
+        "/ˈɔː.di.əns/",
+        "long /ɔː/ in first syllable"
+      ],
+      [
+        "instrument",
+        "/ˈɪn.strə.mənt/",
+        "stress on first syllable"
+      ],
+      [
+        "cinema",
+        "/ˈsɪn.ə.mə/",
+        "do not say three syllables with equal force"
+      ],
+      [
+        "comedy",
+        "/ˈkɒm.ə.di/",
+        "stress on first syllable"
+      ],
+      [
+        "documentary",
+        "/ˌdɒk.jəˈmen.tər.i/",
+        "main stress on /men/ syllable"
+      ],
+      [
+        "relaxing",
+        "/rɪˈlæk.sɪŋ/",
+        "stress on second syllable"
+      ],
+      [
+        "rhythm",
+        "/ˈrɪð.əm/",
+        "first syllable strong, soft medial /ð/"
+      ]
+    ],
+    "shadowing": {
+      "audio_text": "Music can change the atmosphere of a place almost immediately. When I need energy, I choose songs with a clear rhythm; when I need to relax, I prefer quieter music. A live performance feels different from listening at home because the audience shares the same moment.",
+      "target_duration_sec": 44,
+      "source": "original-course-script",
+      "license": "Original Tayanch course script; browser TTS reference only."
+    },
+    "speaking_set": {
+      "topic": "Music and entertainment",
+      "part1": [
+        "What type of music helps you relax after a demanding day?",
+        "Do you usually listen to music alone or with other people?",
+        "Have you ever been to a live performance that you remember clearly?",
+        "What kind of programmes do you choose when you want light entertainment?"
+      ],
+      "part2": {
+        "cue_card": "Describe a film, show, or musical performance that you would recommend to a friend.",
+        "bullets": [
+          "what it was",
+          "when and where you experienced it",
+          "what you liked most about it",
+          "who you would recommend it to and why"
+        ],
+        "prep_time_sec": 60,
+        "speak_time_sec": 120
+      },
+      "part3": [
+        "Why do people enjoy attending live events even when recorded entertainment is available?",
+        "How do streaming services affect smaller artists and performers?",
+        "Should public money support local music and theatre?",
+        "Can entertainment programmes teach people useful ideas?",
+        "Why do tastes in entertainment often differ between generations?"
+      ]
+    }
+  },
+  {
+    "day": 11,
+    "week_focus": "Final consonants: /t/, /d/, /k/ and /s/",
+    "pronunciation": [
+      [
+        "cost",
+        "/kɒst/",
+        "pronounce the final /st/ sequence clearly"
+      ],
+      [
+        "paid",
+        "/peɪd/",
+        "-ed is /d/ in this word"
+      ],
+      [
+        "price",
+        "/praɪs/",
+        "do not drop the final /s/"
+      ],
+      [
+        "product",
+        "/ˈprɒd.ʌkt/",
+        "finish the final /kt/ fully"
+      ],
+      [
+        "brand",
+        "/brænd/",
+        "final /d/ soft but audible"
+      ],
+      [
+        "discount",
+        "/ˈdɪs.kaʊnt/",
+        "close the final /t/ clearly"
+      ],
+      [
+        "budget",
+        "/ˈbʌdʒ.ɪt/",
+        "stress on first syllable, final /t/"
+      ],
+      [
+        "quality",
+        "/ˈkwɒl.ə.ti/",
+        "first syllable strong"
+      ],
+      [
+        "compare",
+        "/kəmˈpeə/",
+        "stress on second syllable"
+      ],
+      [
+        "choice",
+        "/tʃɔɪs/",
+        "clear final /s/"
+      ]
+    ],
+    "shadowing": {
+      "audio_text": "Before buying something expensive, I compare more than the price. I check whether the product will last, whether I really need it, and whether repairs are possible. A cheaper item is not always the best choice if it has to be replaced after a short time.",
+      "target_duration_sec": 43,
+      "source": "original-course-script",
+      "license": "Original Tayanch course script; browser TTS reference only."
+    },
+    "speaking_set": {
+      "topic": "Shopping and consumer choices",
+      "part1": [
+        "What do you usually consider before buying an expensive item?",
+        "Do you enjoy looking for discounts, or do you prefer to buy quickly?",
+        "Have your shopping habits changed in the last few years?",
+        "What is one item that you prefer to buy in person rather than online?"
+      ],
+      "part2": {
+        "cue_card": "Describe a purchase that you considered carefully before making.",
+        "bullets": [
+          "what you bought",
+          "why you needed or wanted it",
+          "how you compared the options",
+          "why you were satisfied or dissatisfied with the choice"
+        ],
+        "prep_time_sec": 60,
+        "speak_time_sec": 120
+      },
+      "part3": [
+        "Why do advertisements sometimes make people buy things they do not need?",
+        "How can consumers judge whether an online review is trustworthy?",
+        "Should companies be responsible for making products easy to repair?",
+        "How might concern about the environment change consumer choices?"
+      ]
+    }
+  },
+  {
+    "day": 12,
+    "week_focus": "Linking consonants and vowels in natural speech",
+    "pronunciation": [
+      [
+        "meet up",
+        "/ˈmiːt‿ʌp/",
+        "link /t/ to the next vowel"
+      ],
+      [
+        "old friend",
+        "/ˈəʊld‿frend/",
+        "keep the natural flow after /d/"
+      ],
+      [
+        "talk about",
+        "/ˈtɔːk‿əˌbaʊt/",
+        "link /k/ with schwa"
+      ],
+      [
+        "keep in touch",
+        "/ˌkiːp‿ɪn‿ˈtʌtʃ/",
+        "do not pause too much between words"
+      ],
+      [
+        "good advice",
+        "/ɡʊd‿ədˈvaɪs/",
+        "link /d/ to the next vowel"
+      ],
+      [
+        "helpful",
+        "/ˈhelp.fəl/",
+        "stress on first syllable"
+      ],
+      [
+        "honest",
+        "/ˈɒn.ɪst/",
+        "/h/ is not pronounced at the start"
+      ],
+      [
+        "supportive",
+        "/səˈpɔː.tɪv/",
+        "stress on second syllable"
+      ],
+      [
+        "relationship",
+        "/rɪˈleɪ.ʃən.ʃɪp/",
+        "main stress on /leɪ/ syllable"
+      ],
+      [
+        "trust",
+        "/trʌst/",
+        "pronounce the final /st/ clearly"
+      ]
+    ],
+    "shadowing": {
+      "audio_text": "A strong friendship does not require constant contact, but it does require attention. Good friends listen carefully, remember important details, and offer honest advice when it is needed. Even a short conversation can be valuable when both people feel comfortable speaking openly.",
+      "target_duration_sec": 42,
+      "source": "original-course-script",
+      "license": "Original Tayanch course script; browser TTS reference only."
+    },
+    "speaking_set": {
+      "topic": "Friends and relationships",
+      "part1": [
+        "What qualities make someone easy for you to become friends with?",
+        "How do you usually keep in touch with friends who live far away?",
+        "Do you prefer meeting one close friend or spending time in a large group?",
+        "Has social media changed the way you maintain friendships?"
+      ],
+      "part2": {
+        "cue_card": "Describe a friend who has helped you at an important time.",
+        "bullets": [
+          "who the person is",
+          "what situation you were facing",
+          "what the friend did or said",
+          "why their help mattered to you"
+        ],
+        "prep_time_sec": 60,
+        "speak_time_sec": 120
+      },
+      "part3": [
+        "Why can it become harder to make close friends as people get older?",
+        "Do online friendships provide the same support as face-to-face friendships?",
+        "Should parents influence their children’s choice of friends?",
+        "How do shared activities help people build relationships?",
+        "What causes misunderstandings between friends?"
+      ]
+    }
+  },
+  {
+    "day": 13,
+    "week_focus": "Clear place descriptions and /r/–/l/ contrast",
+    "pronunciation": [
+      [
+        "local",
+        "/ˈləʊ.kəl/",
+        "stress on first syllable, clear /l/"
+      ],
+      [
+        "library",
+        "/ˈlaɪ.brər.i/",
+        "first syllable strong; do not rush the middle"
+      ],
+      [
+        "park",
+        "/pɑːk/",
+        "long /ɑː/ then /k/"
+      ],
+      [
+        "road",
+        "/rəʊd/",
+        "long diphthong and final /d/"
+      ],
+      [
+        "nearby",
+        "/ˌnɪəˈbaɪ/",
+        "stress on final syllable"
+      ],
+      [
+        "public",
+        "/ˈpʌb.lɪk/",
+        "stress on first syllable, final /k/"
+      ],
+      [
+        "reliable",
+        "/rɪˈlaɪ.ə.bəl/",
+        "distinguish /r/ and /l/"
+      ],
+      [
+        "repair",
+        "/rɪˈpeə/",
+        "pronounce initial /r/ clearly"
+      ],
+      [
+        "available",
+        "/əˈveɪ.lə.bəl/",
+        "stress on second syllable"
+      ],
+      [
+        "convenient",
+        "/kənˈviː.ni.ənt/",
+        "stress on second syllable at /viː/"
+      ]
+    ],
+    "shadowing": {
+      "audio_text": "The most useful local places are not always the biggest or newest ones. A reliable repair shop, a quiet library, or a well-kept park can make daily life much easier. I value services that are nearby, affordable, and run by people who understand the needs of local residents.",
+      "target_duration_sec": 46,
+      "source": "original-course-script",
+      "license": "Original Tayanch course script; browser TTS reference only."
+    },
+    "speaking_set": {
+      "topic": "Local places and services",
+      "part1": [
+        "Which local service do you use most often in your area?",
+        "Is there a public place near your home where you like to spend time?",
+        "What service would you like to see improved in your neighbourhood?",
+        "Do you prefer using a small local business or a large chain when both are available?"
+      ],
+      "part2": {
+        "cue_card": "Describe a local place that you think is especially useful to residents.",
+        "bullets": [
+          "where the place is",
+          "what service or activity it provides",
+          "who uses it",
+          "why it is valuable for the local area"
+        ],
+        "prep_time_sec": 60,
+        "speak_time_sec": 120
+      },
+      "part3": [
+        "What public services have the greatest effect on people’s daily lives?",
+        "Why do some small local businesses develop loyal customers?",
+        "Should local governments spend more on parks, libraries, or transport?",
+        "How can towns make information about local services easier to find?"
+      ]
+    }
+  },
+  {
+    "day": 14,
+    "week_focus": "Week 2 review: stress, linking and confident answers",
+    "pronunciation": [
+      [
+        "career",
+        "/kəˈrɪə/",
+        "stress on second syllable"
+      ],
+      [
+        "future",
+        "/ˈfjuː.tʃə/",
+        "lengthen /fjuː/ in first syllable"
+      ],
+      [
+        "salary",
+        "/ˈsæl.ər.i/",
+        "stress on first syllable"
+      ],
+      [
+        "manager",
+        "/ˈmæn.ɪ.dʒə/",
+        "first syllable strong"
+      ],
+      [
+        "opportunity",
+        "/ˌɒp.əˈtʃuː.nə.ti/",
+        "main stress on /tʃuː/ syllable"
+      ],
+      [
+        "responsible",
+        "/rɪˈspɒn.sə.bəl/",
+        "stress on second syllable"
+      ],
+      [
+        "work out",
+        "/ˈwɜːk‿aʊt/",
+        "link /k/ to next vowel"
+      ],
+      [
+        "take on",
+        "/ˈteɪk‿ɒn/",
+        "keep the link between words"
+      ],
+      [
+        "learn from",
+        "/ˈlɜːn‿frɒm/",
+        "do not break the flow after /n/"
+      ],
+      [
+        "goal",
+        "/ɡəʊl/",
+        "pronounce the diphthong clearly, keep final /l/"
+      ]
+    ],
+    "shadowing": {
+      "audio_text": "When I think about a future career, I consider more than a salary. I want work that lets me develop useful skills, solve real problems, and continue learning from experienced people. A good opportunity should challenge me, but it should also leave room for a balanced life outside work.",
+      "target_duration_sec": 47,
+      "source": "original-course-script",
+      "license": "Original Tayanch course script; browser TTS reference only."
+    },
+    "speaking_set": {
+      "topic": "Work and future careers",
+      "part1": [
+        "What type of work environment helps you do your best?",
+        "Is there a profession that you admired when you were younger?",
+        "What skill would you most like to develop for your future career?",
+        "Do you think people should change careers if their interests change?"
+      ],
+      "part2": {
+        "cue_card": "Describe a job or career that you would like to learn more about.",
+        "bullets": [
+          "what the job is",
+          "what responsibilities it involves",
+          "what skills or training are needed",
+          "why you want to know more about it"
+        ],
+        "prep_time_sec": 60,
+        "speak_time_sec": 120
+      },
+      "part3": [
+        "How is technology changing the skills that employers look for?",
+        "Should universities focus more on career preparation or broad education?",
+        "Why do some people value job security more than job satisfaction?",
+        "How can employers help young workers develop professionally?",
+        "Will people in the future be more likely to have several careers during their lives?"
+      ]
+    }
+  },
+  {
+    "day": 15,
+    "week_focus": "V and W sounds: personal style",
+    "pronunciation": [
+      [
+        "wardrobe",
+        "/ˈwɔː.drəʊb/",
+        "round lips for initial /w/"
+      ],
+      [
+        "wear",
+        "/weə/",
+        "say /w/ and following /eə/ together"
+      ],
+      [
+        "vivid",
+        "/ˈvɪv.ɪd/",
+        "lower lip touches upper teeth for /v/"
+      ],
+      [
+        "comfortable",
+        "/ˈkʌm.fə.tə.bəl/",
+        "do not swallow middle syllables in fast speech"
+      ],
+      [
+        "formal",
+        "/ˈfɔː.məl/",
+        "stress on first syllable"
+      ],
+      [
+        "casual",
+        "/ˈkæʒ.u.əl/",
+        "pronounce /ʒ/ softly"
+      ],
+      [
+        "weatherproof",
+        "/ˈweð.ə.pruːf/",
+        "keep the voiced /ð/"
+      ],
+      [
+        "vintage",
+        "/ˈvɪn.tɪdʒ/",
+        "clear final /dʒ/"
+      ],
+      [
+        "favourite",
+        "/ˈfeɪ.vər.ɪt/",
+        "stress on first syllable"
+      ]
+    ],
+    "shadowing": {
+      "audio_text": "I do not choose clothes only because they look fashionable. On a busy day, I prefer simple items that are comfortable and suitable for the weather. However, I also think personal style can show something about a person’s character. For example, a colourful scarf or an unusual bag can make an ordinary outfit feel more individual. The best choice is usually practical, but still makes me feel confident.",
+      "target_duration_sec": 52,
+      "source": "original-course-script",
+      "license": "Original Tayanch course script; browser TTS reference only."
+    },
+    "speaking_set": {
+      "topic": "Clothes and personal style",
+      "part1": [
+        "What kinds of clothes do you usually wear during the week?",
+        "Do you enjoy choosing clothes for special occasions?",
+        "Has your taste in clothes changed since you were younger?",
+        "Do people in your area follow fashion trends closely?"
+      ],
+      "part2": {
+        "cue_card": "Describe an item of clothing that you like wearing.",
+        "bullets": [
+          "what the item is",
+          "when and where you wear it",
+          "how you got it",
+          "why you like wearing it"
+        ],
+        "prep_time_sec": 60,
+        "speak_time_sec": 120
+      },
+      "part3": [
+        "Why do some people care strongly about fashion?",
+        "How does clothing influence first impressions?",
+        "Should schools have a uniform policy?",
+        "Why are some traditional clothes still popular today?",
+        "How has online shopping changed the way people buy clothes?"
+      ]
+    }
+  },
+  {
+    "day": 16,
+    "week_focus": "V and W sounds: describing the natural world",
+    "pronunciation": [
+      [
+        "wildlife",
+        "/ˈwaɪld.laɪf/",
+        "link /w/ and /aɪ/ clearly"
+      ],
+      [
+        "valley",
+        "/ˈvæl.i/",
+        "start with /v/"
+      ],
+      [
+        "river",
+        "/ˈrɪv.ər/",
+        "medial /v/ is voiced"
+      ],
+      [
+        "waterfall",
+        "/ˈwɔː.tə.fɔːl/",
+        "long vowels in two syllables"
+      ],
+      [
+        "environment",
+        "/ɪnˈvaɪ.rən.mənt/",
+        "stress on second syllable"
+      ],
+      [
+        "preserve",
+        "/prɪˈzɜːv/",
+        "final /v/ is voiced"
+      ],
+      [
+        "vegetation",
+        "/ˌvedʒ.əˈteɪ.ʃən/",
+        "stress on third syllable"
+      ],
+      [
+        "viewpoint",
+        "/ˈvjuː.pɔɪnt/",
+        "say /vjuː/ in one flow"
+      ],
+      [
+        "renewable",
+        "/rɪˈnjuː.ə.bəl/",
+        "stress on second syllable"
+      ]
+    ],
+    "shadowing": {
+      "audio_text": "Nature is easiest to appreciate when people can experience it responsibly. A walk beside a river or through a park can make a crowded city feel less stressful. At the same time, natural areas need protection from litter, noise, and uncontrolled building. I believe visitors should have clear paths and good information, while sensitive places should be carefully protected. This balance allows more people to enjoy nature without damaging it for the future.",
+      "target_duration_sec": 53,
+      "source": "original-course-script",
+      "license": "Original Tayanch course script; browser TTS reference only."
+    },
+    "speaking_set": {
+      "topic": "Nature and the environment",
+      "part1": [
+        "Do you spend much time outdoors?",
+        "Is there a natural place near where you live?",
+        "What do you notice first when you visit a park?",
+        "Did you enjoy nature-related activities as a child?"
+      ],
+      "part2": {
+        "cue_card": "Describe a natural place that you would like to visit.",
+        "bullets": [
+          "where it is",
+          "what you know about the place",
+          "what you would do there",
+          "why you want to visit it"
+        ],
+        "prep_time_sec": 60,
+        "speak_time_sec": 120
+      },
+      "part3": [
+        "Why do people need access to green spaces?",
+        "What environmental problems affect cities most?",
+        "Should visitors pay to enter protected natural areas?",
+        "How can schools encourage children to care about nature?",
+        "Can tourism help to protect wildlife?"
+      ]
+    }
+  },
+  {
+    "day": 17,
+    "week_focus": "V and W sounds: weather vocabulary and rhythm",
+    "pronunciation": [
+      [
+        "weather",
+        "/ˈweð.ər/",
+        "medial /ð/ is voiced"
+      ],
+      [
+        "warmth",
+        "/wɔːmθ/",
+        "finish the final /θ/ clearly"
+      ],
+      [
+        "windy",
+        "/ˈwɪn.di/",
+        "with short /ɪ/"
+      ],
+      [
+        "forecast",
+        "/ˈfɔː.kɑːst/",
+        "stress on first syllable"
+      ],
+      [
+        "varied",
+        "/ˈveə.rid/",
+        "initial /v/ is voiced"
+      ],
+      [
+        "temperature",
+        "/ˈtem.prə.tʃər/",
+        "do not rush the middle syllable"
+      ],
+      [
+        "humid",
+        "/ˈhjuː.mɪd/",
+        "stress on first syllable"
+      ],
+      [
+        "winter",
+        "/ˈwɪn.tər/",
+        "start with /w/"
+      ],
+      [
+        "weathering",
+        "/ˈweð.ər.ɪŋ/",
+        "keep the /ð/ sound"
+      ]
+    ],
+    "shadowing": {
+      "audio_text": "Weather often changes the rhythm of a normal day. When the morning is bright and cool, I am more willing to walk rather than take a car. Heavy rain, on the other hand, can make people change their plans very quickly. I enjoy the first signs of a new season because they bring different colours, foods, and activities. Even an ordinary weekend can feel memorable when the weather is pleasant.",
+      "target_duration_sec": 49,
+      "source": "original-course-script",
+      "license": "Original Tayanch course script; browser TTS reference only."
+    },
+    "speaking_set": {
+      "topic": "Weather and seasons",
+      "part1": [
+        "What kind of weather do you enjoy most?",
+        "Does the weather affect what you do in your free time?",
+        "Which season is usually the busiest for you?",
+        "Do you check the weather forecast often?"
+      ],
+      "part2": {
+        "cue_card": "Describe a day when the weather was especially memorable.",
+        "bullets": [
+          "when and where it was",
+          "what the weather was like",
+          "what you did that day",
+          "why you remember it"
+        ],
+        "prep_time_sec": 60,
+        "speak_time_sec": 120
+      },
+      "part3": [
+        "How does weather affect people’s moods?",
+        "Why do some people prefer living in places with distinct seasons?",
+        "How can cities prepare for more extreme weather?",
+        "Should weather forecasts be taught in schools?",
+        "How might climate change affect seasonal traditions?"
+      ]
+    }
+  },
+  {
+    "day": 18,
+    "week_focus": "V and W sounds: expressive storytelling",
+    "pronunciation": [
+      [
+        "viewer",
+        "/ˈvjuː.ər/",
+        "say initial /vjuː/ in one flow"
+      ],
+      [
+        "voiceover",
+        "/ˈvɔɪs.əʊ.vər/",
+        "stress on first syllable"
+      ],
+      [
+        "visual",
+        "/ˈvɪʒ.u.əl/",
+        "pronounce /v/ and /ʒ/ clearly"
+      ],
+      [
+        "villain",
+        "/ˈvɪl.ən/",
+        "first /v/ is voiced"
+      ],
+      [
+        "writer",
+        "/ˈraɪ.tər/",
+        "/aɪ/ after /r/"
+      ],
+      [
+        "wonder",
+        "/ˈwʌn.dər/",
+        "short /ʌ/ after /w/"
+      ],
+      [
+        "review",
+        "/rɪˈvjuː/",
+        "stress on final syllable"
+      ],
+      [
+        "character",
+        "/ˈkær.ək.tər/",
+        "stress on first syllable"
+      ],
+      [
+        "powerful",
+        "/ˈpaʊə.fəl/",
+        "stress on first syllable"
+      ]
+    ],
+    "shadowing": {
+      "audio_text": "A memorable film does more than tell viewers what happened. It gives them characters whose choices feel believable, even when the story is imaginary. I usually enjoy films with a clear setting and a small number of important details rather than too many special effects. After watching a strong film, I often think about its message for several days. A good ending does not need to be perfect, but it should feel earned.",
+      "target_duration_sec": 51,
+      "source": "original-course-script",
+      "license": "Original Tayanch course script; browser TTS reference only."
+    },
+    "speaking_set": {
+      "topic": "Films and storytelling",
+      "part1": [
+        "What types of films do you enjoy watching?",
+        "Do you prefer watching films at home or at a cinema?",
+        "Have you ever watched a film more than once?",
+        "Do you like films based on real events?"
+      ],
+      "part2": {
+        "cue_card": "Describe a film that you found memorable.",
+        "bullets": [
+          "what the film was about",
+          "when you watched it",
+          "which part you remember most clearly",
+          "why it stayed in your mind"
+        ],
+        "prep_time_sec": 60,
+        "speak_time_sec": 120
+      },
+      "part3": [
+        "Why do stories matter to people in every culture?",
+        "What makes a film character believable?",
+        "Do special effects make a film better?",
+        "How have streaming services changed film-viewing habits?",
+        "Should films based on history be completely accurate?"
+      ]
+    }
+  },
+  {
+    "day": 19,
+    "week_focus": "V and W sounds: events and traditions",
+    "pronunciation": [
+      [
+        "celebration",
+        "/ˌsel.ɪˈbreɪ.ʃən/",
+        "stress on third syllable"
+      ],
+      [
+        "festival",
+        "/ˈfes.tɪ.vəl/",
+        "pronounce the syllables clearly"
+      ],
+      [
+        "ceremony",
+        "/ˈser.ə.mə.ni/",
+        "start with /w/"
+      ],
+      [
+        "welcome",
+        "/ˈwel.kəm/",
+        "first /v/ is voiced"
+      ],
+      [
+        "valuable",
+        "/ˈvæl.ju.ə.bəl/",
+        "stress on second syllable"
+      ],
+      [
+        "traditional",
+        "/trəˈdɪʃ.ən.əl/",
+        "medial /z/ is voiced"
+      ],
+      [
+        "visitor",
+        "/ˈvɪz.ɪ.tər/",
+        "stress on first syllable"
+      ],
+      [
+        "wedding",
+        "/ˈwed.ɪŋ/",
+        "stress on second syllable"
+      ],
+      [
+        "community",
+        "/kəˈmjuː.nə.ti/",
+        "stress on second syllable"
+      ]
+    ],
+    "shadowing": {
+      "audio_text": "Celebrations are valuable because they bring people together around a shared memory or hope. A family event may include familiar food, music, and stories that older relatives pass on to younger people. I think traditions remain meaningful when people understand the reason behind them, not only the rules. At the same time, every generation can add a small new idea. That makes a celebration feel both respectful and alive.",
+      "target_duration_sec": 50,
+      "source": "original-course-script",
+      "license": "Original Tayanch course script; browser TTS reference only."
+    },
+    "speaking_set": {
+      "topic": "Celebrations and traditions",
+      "part1": [
+        "What celebrations are important in your family?",
+        "Do you prefer large celebrations or small ones?",
+        "What traditional food is connected with special events where you live?",
+        "Do young people take part in local traditions?"
+      ],
+      "part2": {
+        "cue_card": "Describe a traditional celebration that you have taken part in.",
+        "bullets": [
+          "what the celebration was",
+          "where it took place",
+          "what people did there",
+          "why it was meaningful to you"
+        ],
+        "prep_time_sec": 60,
+        "speak_time_sec": 120
+      },
+      "part3": [
+        "Why do communities keep traditional celebrations?",
+        "How can traditions change without losing their meaning?",
+        "Should governments support cultural festivals?",
+        "What can young people learn from older relatives at celebrations?",
+        "Can social media help preserve local traditions?"
+      ]
+    }
+  },
+  {
+    "day": 20,
+    "week_focus": "V and W sounds: learning a language",
+    "pronunciation": [
+      [
+        "vocabulary",
+        "/vəˈkæb.jə.lər.i/",
+        "stress on second syllable"
+      ],
+      [
+        "word",
+        "/wɜːd/",
+        "with long /ɜː/"
+      ],
+      [
+        "conversation",
+        "/ˌkɒn.vəˈseɪ.ʃən/",
+        "stress on third syllable"
+      ],
+      [
+        "variety",
+        "/vəˈraɪ.ə.ti/",
+        "start with /v/"
+      ],
+      [
+        "pronunciation",
+        "/prəˌnʌn.siˈeɪ.ʃən/",
+        "stress on final syllable"
+      ],
+      [
+        "repeat",
+        "/rɪˈpiːt/",
+        "long /iː/"
+      ],
+      [
+        "worldwide",
+        "/ˌwɜːldˈwaɪd/",
+        "two /w/ sounds"
+      ],
+      [
+        "valuable",
+        "/ˈvæl.ju.ə.bəl/",
+        "distinguish /v/ and /l/"
+      ],
+      [
+        "confidence",
+        "/ˈkɒn.fɪ.dəns/",
+        "stress on first syllable"
+      ]
+    ],
+    "shadowing": {
+      "audio_text": "Learning another language becomes easier when it is part of daily life. I try to notice useful words in short videos, signs, and conversations instead of memorising long lists without context. Speaking is sometimes uncomfortable because mistakes are obvious, but it is also the fastest way to find gaps. I have learned that regular practice matters more than a perfect plan. A few focused minutes every day can gradually build confidence.",
+      "target_duration_sec": 50,
+      "source": "original-course-script",
+      "license": "Original Tayanch course script; browser TTS reference only."
+    },
+    "speaking_set": {
+      "topic": "Learning a language",
+      "part1": [
+        "What language would you like to improve most?",
+        "Which part of language learning do you find hardest?",
+        "Do you like learning new words from books or from videos?",
+        "How often do you use another language outside lessons?"
+      ],
+      "part2": {
+        "cue_card": "Describe a useful method you have used to learn a language.",
+        "bullets": [
+          "what the method is",
+          "when you used it",
+          "how you used it",
+          "why it was useful for you"
+        ],
+        "prep_time_sec": 60,
+        "speak_time_sec": 120
+      },
+      "part3": [
+        "Why do some people learn languages more easily than others?",
+        "Should children start learning a second language at an early age?",
+        "How can technology support language learners?",
+        "Is it necessary to understand a culture to speak its language well?",
+        "Will machine translation reduce the need to learn languages?"
+      ]
+    }
+  },
+  {
+    "day": 21,
+    "week_focus": "V and W sounds: movement and directions",
+    "pronunciation": [
+      [
+        "vehicle",
+        "/ˈviː.ɪ.kəl/",
+        "long /iː/ in first syllable"
+      ],
+      [
+        "waiting",
+        "/ˈweɪ.tɪŋ/",
+        "start with /w/"
+      ],
+      [
+        "journey",
+        "/ˈdʒɜː.ni/",
+        "long /ɜː/"
+      ],
+      [
+        "route",
+        "/ruːt/",
+        "with long /uː/"
+      ],
+      [
+        "convenient",
+        "/kənˈviː.ni.ənt/",
+        "medial /v/ is voiced"
+      ],
+      [
+        "crowded",
+        "/ˈkraʊ.dɪd/",
+        "/aʊ/ after /r/"
+      ],
+      [
+        "arrival",
+        "/əˈraɪ.vəl/",
+        "stress on second syllable"
+      ],
+      [
+        "transfer",
+        "/ˈtræns.fɜːr/",
+        "stress on first syllable"
+      ],
+      [
+        "weekday",
+        "/ˈwiːk.deɪ/",
+        "long /iː/"
+      ]
+    ],
+    "shadowing": {
+      "audio_text": "Public transport can make a city easier to live in when it is reliable, safe, and simple to understand. On a good bus or metro journey, passengers know when the vehicle will arrive and where they need to change. I also value clean stops and enough space for older people or parents with children. Although travelling with many people can be tiring, a strong public network reduces traffic and gives people more choices.",
+      "target_duration_sec": 52,
+      "source": "original-course-script",
+      "license": "Original Tayanch course script; browser TTS reference only."
+    },
+    "speaking_set": {
+      "topic": "Public transport",
+      "part1": [
+        "How do you usually travel around your city?",
+        "Do you use buses or trains very often?",
+        "What do you do while waiting for public transport?",
+        "Is public transport convenient where you live?"
+      ],
+      "part2": {
+        "cue_card": "Describe a public transport journey that you remember well.",
+        "bullets": [
+          "where you were going",
+          "which type of transport you used",
+          "what happened during the journey",
+          "why you remember it"
+        ],
+        "prep_time_sec": 60,
+        "speak_time_sec": 120
+      },
+      "part3": [
+        "Why do people choose private cars instead of public transport?",
+        "What makes a public transport system reliable?",
+        "How can transport be made easier for older passengers?",
+        "Should cities make public transport free for some groups?",
+        "How might public transport change in the future?"
+      ]
+    }
+  },
+  {
+    "day": 22,
+    "week_focus": "/h/ and clarity at word starts",
+    "pronunciation": [
+      [
+        "home",
+        "/həʊm/",
+        "say initial /h/ with breath"
+      ],
+      [
+        "household",
+        "/ˈhaʊs.həʊld/",
+        "keep both /h/ sounds clear"
+      ],
+      [
+        "hallway",
+        "/ˈhɔːl.weɪ/",
+        "stress on first syllable"
+      ],
+      [
+        "comfortable",
+        "/ˈkʌm.fə.tə.bəl/",
+        "say middle short /ə/ naturally"
+      ],
+      [
+        "neighbourhood",
+        "/ˈneɪ.bə.hʊd/",
+        "do not drop /h/"
+      ],
+      [
+        "furniture",
+        "/ˈfɜː.nɪ.tʃə/",
+        "stress on first syllable"
+      ],
+      [
+        "kitchen",
+        "/ˈkɪtʃ.ɪn/",
+        "finish /tʃ/ clearly"
+      ],
+      [
+        "spacious",
+        "/ˈspeɪ.ʃəs/",
+        "say final /ʃəs/ shortly"
+      ]
+    ],
+    "shadowing": {
+      "audio_text": "The place where we live affects many small parts of daily life. A quiet home can make it easier to rest and concentrate, while a convenient location can save time every day. For me, the most important thing is having a comfortable space where family members can talk and relax.",
+      "target_duration_sec": 46,
+      "source": "original-course-script",
+      "license": "Original Tayanch course script; browser TTS reference only."
+    },
+    "speaking_set": {
+      "topic": "Home and accommodation",
+      "part1": [
+        "What do you like most about the place where you live?",
+        "Which room in your home do you spend the most time in?",
+        "Would you prefer to live in a house or an apartment?",
+        "Has your home changed since you were a child?"
+      ],
+      "part2": {
+        "cue_card": "Describe a home that you would like to live in.",
+        "bullets": [
+          "where it would be located",
+          "what rooms or features it would have",
+          "who you would live with",
+          "why this home would suit you"
+        ],
+        "prep_time_sec": 60,
+        "speak_time_sec": 120
+      },
+      "part3": [
+        "Why do some young adults continue living with their parents?",
+        "How does housing affect people’s quality of life?",
+        "Should cities build more apartments or more houses?",
+        "What makes a neighbourhood suitable for families?",
+        "How might homes change in the next twenty years?"
+      ]
+    }
+  },
+  {
+    "day": 23,
+    "week_focus": "Vowels /æ/ and /e/: hearing the difference",
+    "pronunciation": [
+      [
+        "family",
+        "/ˈfæm.əl.i/",
+        "say wide first vowel /æ/"
+      ],
+      [
+        "parent",
+        "/ˈpeə.rənt/",
+        "first vowel close to /eə/"
+      ],
+      [
+        "grandparent",
+        "/ˈɡrænˌpeə.rənt/",
+        "say /ɡræn/ part clearly"
+      ],
+      [
+        "generation",
+        "/ˌdʒen.əˈreɪ.ʃən/",
+        "separate /dʒen/ and /reɪ/"
+      ],
+      [
+        "relative",
+        "/ˈrel.ə.tɪv/",
+        "stress on first syllable"
+      ],
+      [
+        "support",
+        "/səˈpɔːt/",
+        "long /ɔː/ in second syllable"
+      ],
+      [
+        "advice",
+        "/ədˈvaɪs/",
+        "final /s/ voiceless"
+      ],
+      [
+        "different",
+        "/ˈdɪf.ər.ənt/",
+        "short first syllable"
+      ]
+    ],
+    "shadowing": {
+      "audio_text": "Families often bring together people of different ages and experiences. Older relatives may share practical advice, while younger members can introduce new ideas or technology. Although generations sometimes disagree, regular conversations can help family members understand each other better.",
+      "target_duration_sec": 43,
+      "source": "original-course-script",
+      "license": "Original Tayanch course script; browser TTS reference only."
+    },
+    "speaking_set": {
+      "topic": "Family and generations",
+      "part1": [
+        "How often do you spend time with your extended family?",
+        "Who gives you useful advice in your family?",
+        "Do you think young people and older people have enough opportunities to talk?"
+      ],
+      "part2": {
+        "cue_card": "Describe an older person who has influenced you.",
+        "bullets": [
+          "who the person is",
+          "how you know this person",
+          "what you learned from them",
+          "why their influence has been important"
+        ],
+        "prep_time_sec": 60,
+        "speak_time_sec": 120
+      },
+      "part3": [
+        "What can young people learn from older generations?",
+        "Why do some families find it difficult to spend time together?",
+        "Should adult children be expected to care for elderly parents?",
+        "How has technology changed communication between generations?",
+        "What can communities do to reduce loneliness among older people?"
+      ]
+    }
+  },
+  {
+    "day": 24,
+    "week_focus": "V and W distinction",
+    "pronunciation": [
+      [
+        "invent",
+        "/ɪnˈvent/",
+        "lower lip touches upper teeth for /v/"
+      ],
+      [
+        "device",
+        "/dɪˈvaɪs/",
+        "clear /v/ in second syllable"
+      ],
+      [
+        "wireless",
+        "/ˈwaɪə.ləs/",
+        "round lips for initial /w/"
+      ],
+      [
+        "voice",
+        "/vɔɪs/",
+        "say voiced /v/ clearly"
+      ],
+      [
+        "website",
+        "/ˈweb.saɪt/",
+        "say /w/ and /b/ together"
+      ],
+      [
+        "available",
+        "/əˈveɪ.lə.bəl/",
+        "stress on /veɪ/ syllable"
+      ],
+      [
+        "worldwide",
+        "/ˌwɜːldˈwaɪd/",
+        "distinguish two /w/ sounds"
+      ],
+      [
+        "innovation",
+        "/ˌɪn.əˈveɪ.ʃən/",
+        "lengthen /veɪ/ syllable"
+      ]
+    ],
+    "shadowing": {
+      "audio_text": "Useful inventions do not always need to be complicated. Sometimes a simple device saves people time, improves safety, or helps them communicate. I think the best technologies are designed around real problems, rather than being created only because they look new or impressive.",
+      "target_duration_sec": 44,
+      "source": "original-course-script",
+      "license": "Original Tayanch course script; browser TTS reference only."
+    },
+    "speaking_set": {
+      "topic": "Technology and inventions",
+      "part1": [
+        "What piece of technology do you use most often each day?",
+        "Is there an invention that has made your daily life easier?",
+        "Do you enjoy learning how new devices work?",
+        "What technology do you find unnecessary?"
+      ],
+      "part2": {
+        "cue_card": "Describe an invention that you think has been especially useful.",
+        "bullets": [
+          "what the invention is",
+          "when you first used or learned about it",
+          "how it helps people",
+          "why you think it is useful"
+        ],
+        "prep_time_sec": 60,
+        "speak_time_sec": 120
+      },
+      "part3": [
+        "What problems should inventors focus on solving today?",
+        "Do new technologies always improve people’s lives?",
+        "Why do some older people find new devices difficult to use?",
+        "Should governments invest in scientific research?",
+        "How might artificial intelligence affect future inventions?"
+      ]
+    }
+  },
+  {
+    "day": 25,
+    "week_focus": "Word stress: multisyllabic words",
+    "pronunciation": [
+      [
+        "education",
+        "/ˌedʒ.ʊˈkeɪ.ʃən/",
+        "stress on /keɪ/ syllable"
+      ],
+      [
+        "practical",
+        "/ˈpræk.tɪ.kəl/",
+        "stress on first syllable"
+      ],
+      [
+        "qualification",
+        "/ˌkwɒl.ɪ.fɪˈkeɪ.ʃən/",
+        "second-last stress"
+      ],
+      [
+        "independent",
+        "/ˌɪn.dɪˈpen.dənt/",
+        "stress on /pen/ syllable"
+      ],
+      [
+        "improve",
+        "/ɪmˈpruːv/",
+        "stress on final syllable"
+      ],
+      [
+        "research",
+        "/rɪˈsɜːtʃ/",
+        "lengthen second syllable"
+      ],
+      [
+        "knowledge",
+        "/ˈnɒl.ɪdʒ/",
+        "end with /dʒ/ sound"
+      ],
+      [
+        "opportunity",
+        "/ˌɒp.əˈtʃuː.nə.ti/",
+        "stress on /tʃuː/ syllable"
+      ]
+    ],
+    "shadowing": {
+      "audio_text": "Education is not only about passing exams. It can also help people develop confidence, curiosity, and useful habits. In my view, students learn more effectively when they can connect new information with real situations and have time to practise important skills.",
+      "target_duration_sec": 42,
+      "source": "original-course-script",
+      "license": "Original Tayanch course script; browser TTS reference only."
+    },
+    "speaking_set": {
+      "topic": "Education and skills",
+      "part1": [
+        "What skill would you like to improve at the moment?",
+        "Did you enjoy learning practical skills at school?",
+        "Do you prefer learning from a teacher or from online videos?"
+      ],
+      "part2": {
+        "cue_card": "Describe a skill that you learned outside school.",
+        "bullets": [
+          "what the skill is",
+          "how you learned it",
+          "how long it took to become confident",
+          "how you use the skill now"
+        ],
+        "prep_time_sec": 60,
+        "speak_time_sec": 120
+      },
+      "part3": [
+        "Which skills will be most important for future jobs?",
+        "Should schools teach more financial and communication skills?",
+        "Why do some adults stop learning new things?",
+        "How can employers help staff develop professionally?",
+        "Is learning from experience as valuable as formal education?"
+      ]
+    }
+  },
+  {
+    "day": 26,
+    "week_focus": "Intonation: emphasising ideas and reasons",
+    "pronunciation": [
+      [
+        "creative",
+        "/kriˈeɪ.tɪv/",
+        "stress on second syllable"
+      ],
+      [
+        "painting",
+        "/ˈpeɪn.tɪŋ/",
+        "lengthen vowel /eɪ/"
+      ],
+      [
+        "audience",
+        "/ˈɔː.di.əns/",
+        "stress on first syllable"
+      ],
+      [
+        "performance",
+        "/pəˈfɔː.məns/",
+        "stress on /fɔː/ syllable"
+      ],
+      [
+        "exhibition",
+        "/ˌek.sɪˈbɪʃ.ən/",
+        "clear /bɪʃ/ syllable"
+      ],
+      [
+        "imagine",
+        "/ɪˈmædʒ.ɪn/",
+        "say /dʒ/ sound clearly"
+      ],
+      [
+        "express",
+        "/ɪkˈspres/",
+        "stress on final syllable"
+      ],
+      [
+        "inspiring",
+        "/ɪnˈspaɪə.rɪŋ/",
+        "separate /spaɪ/ syllable"
+      ]
+    ],
+    "shadowing": {
+      "audio_text": "Creative activities can offer a different way to communicate. A painting, a song, or a photograph may express an idea without using many words. Even people who do not consider themselves artists can benefit from making something carefully and noticing small details around them.",
+      "target_duration_sec": 45,
+      "source": "original-course-script",
+      "license": "Original Tayanch course script; browser TTS reference only."
+    },
+    "speaking_set": {
+      "topic": "Art and creativity",
+      "part1": [
+        "Do you enjoy making or creating things?",
+        "What kinds of art can people see in your local area?",
+        "Did you have any art or music lessons at school?"
+      ],
+      "part2": {
+        "cue_card": "Describe a piece of art or creative work that you like.",
+        "bullets": [
+          "what it is",
+          "where you saw or heard it",
+          "what it is about or looks like",
+          "why it made an impression on you"
+        ],
+        "prep_time_sec": 60,
+        "speak_time_sec": 120
+      },
+      "part3": [
+        "Why is creativity valuable outside the arts?",
+        "Should public money be used to support museums and theatres?",
+        "How can art make a city more attractive?",
+        "Do digital tools change what it means to be an artist?",
+        "Should children be encouraged to make art even if they are not talented?"
+      ]
+    }
+  },
+  {
+    "day": 27,
+    "week_focus": "Consonant clusters: /sp/, /str/ and /ks/",
+    "pronunciation": [
+      [
+        "sport",
+        "/spɔːt/",
+        "no vowel between /s/ and /p/"
+      ],
+      [
+        "strength",
+        "/streŋθ/",
+        "practise /str/ and final /ŋθ/ slowly"
+      ],
+      [
+        "exercise",
+        "/ˈek.sə.saɪz/",
+        "say /ks/ cluster clearly"
+      ],
+      [
+        "stretch",
+        "/stretʃ/",
+        "short /e/ after /str/"
+      ],
+      [
+        "regular",
+        "/ˈreɡ.jə.lə/",
+        "stress on first syllable"
+      ],
+      [
+        "healthy",
+        "/ˈhel.θi/",
+        "say final /θ/ clearly"
+      ],
+      [
+        "balance",
+        "/ˈbæl.əns/",
+        "say wide first vowel /æ/"
+      ],
+      [
+        "competition",
+        "/ˌkɒm.pəˈtɪʃ.ən/",
+        "stress on /tɪʃ/ syllable"
+      ]
+    ],
+    "shadowing": {
+      "audio_text": "Regular exercise can improve both physical health and mood. It does not have to involve an expensive gym or intense training. A daily walk, a team sport, or a short workout at home can be easier to continue when the activity is enjoyable and fits a person’s schedule.",
+      "target_duration_sec": 47,
+      "source": "original-course-script",
+      "license": "Original Tayanch course script; browser TTS reference only."
+    },
+    "speaking_set": {
+      "topic": "Sports and exercise",
+      "part1": [
+        "What kind of exercise do you enjoy, if any?",
+        "Did you play any sports when you were at school?",
+        "Do you prefer exercising alone or with other people?",
+        "Is there a sport you would like to try?"
+      ],
+      "part2": {
+        "cue_card": "Describe an exercise or sport that you would like to do more often.",
+        "bullets": [
+          "what it is",
+          "where you would do it",
+          "who you would do it with",
+          "how it could benefit you"
+        ],
+        "prep_time_sec": 60,
+        "speak_time_sec": 120
+      },
+      "part3": [
+        "Why do some people find it hard to exercise regularly?",
+        "What can cities do to make physical activity easier?",
+        "Should schools give students more time for sport?",
+        "Are competitive sports good for children?",
+        "How has technology changed the way people exercise?"
+      ]
+    }
+  },
+  {
+    "day": 28,
+    "week_focus": "Sentence rhythm: content words",
+    "pronunciation": [
+      [
+        "news",
+        "/njuːz/",
+        "keep initial /nj/ cluster"
+      ],
+      [
+        "source",
+        "/sɔːs/",
+        "say long vowel /ɔː/"
+      ],
+      [
+        "report",
+        "/rɪˈpɔːt/",
+        "stress on second syllable"
+      ],
+      [
+        "reliable",
+        "/rɪˈlaɪ.ə.bəl/",
+        "stress on /laɪ/ syllable"
+      ],
+      [
+        "article",
+        "/ˈɑː.tɪ.kəl/",
+        "stress on first syllable"
+      ],
+      [
+        "journalist",
+        "/ˈdʒɜː.nə.lɪst/",
+        "lengthen /dʒɜː/"
+      ],
+      [
+        "headline",
+        "/ˈhed.laɪn/",
+        "separate two syllables"
+      ],
+      [
+        "information",
+        "/ˌɪn.fəˈmeɪ.ʃən/",
+        "stress on /meɪ/ syllable"
+      ]
+    ],
+    "shadowing": {
+      "audio_text": "News can help us understand events beyond our immediate lives, but it is important to choose reliable sources. I usually read a short summary first and then look for more detail when a story affects my community, my studies, or plans for the future.",
+      "target_duration_sec": 45,
+      "source": "original-course-script",
+      "license": "Original Tayanch course script; browser TTS reference only."
+    },
+    "speaking_set": {
+      "topic": "News and information",
+      "part1": [
+        "How do you usually find out about current events?",
+        "Do you prefer reading news or watching it?",
+        "Is there a type of news that you try not to follow?"
+      ],
+      "part2": {
+        "cue_card": "Describe a news story that you found interesting recently.",
+        "bullets": [
+          "what the story was about",
+          "where you first heard about it",
+          "why it caught your attention",
+          "what you thought after learning more"
+        ],
+        "prep_time_sec": 60,
+        "speak_time_sec": 120
+      },
+      "part3": [
+        "Why do people trust different news sources?",
+        "How can people check whether online information is accurate?",
+        "Should schools teach students how to identify misleading information?",
+        "Does frequent exposure to negative news affect people?",
+        "Will printed newspapers disappear completely?"
+      ]
+    }
+  },
+  {
+    "day": 29,
+    "week_focus": "Talking about the future: /l/ and /r/ clarity",
+    "pronunciation": [
+      [
+        "plan",
+        "/plæn/",
+        "do not separate /pl/ cluster"
+      ],
+      [
+        "career",
+        "/kəˈrɪə/",
+        "stress on second syllable"
+      ],
+      [
+        "goal",
+        "/ɡəʊl/",
+        "light final /l/"
+      ],
+      [
+        "future",
+        "/ˈfjuː.tʃə/",
+        "lengthen /fjuː/ part"
+      ],
+      [
+        "ambition",
+        "/æmˈbɪʃ.ən/",
+        "stress on second syllable"
+      ],
+      [
+        "achieve",
+        "/əˈtʃiːv/",
+        "lengthen /tʃiːv/ syllable"
+      ],
+      [
+        "realistic",
+        "/ˌrɪəˈlɪs.tɪk/",
+        "distinguish /r/ and /l/ sounds"
+      ],
+      [
+        "opportunity",
+        "/ˌɒp.əˈtʃuː.nə.ti/",
+        "stress on /tʃuː/ syllable"
+      ]
+    ],
+    "shadowing": {
+      "audio_text": "Making plans can give people direction, especially during busy periods of life. However, plans do not need to be fixed forever. I think it is sensible to set a clear goal, take small steps toward it, and remain ready to adjust when new opportunities appear.",
+      "target_duration_sec": 44,
+      "source": "original-course-script",
+      "license": "Original Tayanch course script; browser TTS reference only."
+    },
+    "speaking_set": {
+      "topic": "Plans and ambitions",
+      "part1": [
+        "Do you enjoy making plans for the future?",
+        "What is one goal you hope to achieve in the next few years?",
+        "Do you usually write down your plans or keep them in your mind?",
+        "Has an unexpected event ever changed one of your plans?"
+      ],
+      "part2": {
+        "cue_card": "Describe an ambition that you have for the future.",
+        "bullets": [
+          "what the ambition is",
+          "why it matters to you",
+          "what steps you need to take",
+          "what difficulties you might face"
+        ],
+        "prep_time_sec": 60,
+        "speak_time_sec": 120
+      },
+      "part3": [
+        "Why do some people find it difficult to set long-term goals?",
+        "Should schools help students plan their careers?",
+        "How do social media influence people’s ambitions?",
+        "Is it better to have one clear ambition or several possible plans?",
+        "How can people stay motivated when progress is slow?"
+      ]
+    }
+  },
+  {
+    "day": 30,
+    "week_focus": "Day 30 review: fluency, stress and confidence",
+    "pronunciation": [
+      [
+        "community",
+        "/kəˈmjuː.nə.ti/",
+        "stress on /mjuː/ syllable"
+      ],
+      [
+        "volunteer",
+        "/ˌvɒl.ənˈtɪə/",
+        "second-last stress"
+      ],
+      [
+        "neighbour",
+        "/ˈneɪ.bə/",
+        "stress on first syllable"
+      ],
+      [
+        "support",
+        "/səˈpɔːt/",
+        "lengthen /pɔːt/ syllable"
+      ],
+      [
+        "charity",
+        "/ˈtʃær.ə.ti/",
+        "say wide first vowel /æ/"
+      ],
+      [
+        "organise",
+        "/ˈɔː.ɡən.aɪz/",
+        "long /ɔː/ syllable"
+      ],
+      [
+        "contribute",
+        "/kənˈtrɪb.juːt/",
+        "clear /trɪb/ syllable"
+      ],
+      [
+        "benefit",
+        "/ˈben.ɪ.fɪt/",
+        "stress on first syllable"
+      ]
+    ],
+    "shadowing": {
+      "audio_text": "Volunteering can connect people who might not otherwise meet. By giving a little time, someone can support a local event, help a neighbour, or share a useful skill. These activities can strengthen a community because they remind people that small contributions can have a real effect.",
+      "target_duration_sec": 46,
+      "source": "original-course-script",
+      "license": "Original Tayanch course script; browser TTS reference only."
+    },
+    "speaking_set": {
+      "topic": "Community and volunteering",
+      "part1": [
+        "Do you know people who volunteer in your community?",
+        "Would you like to help with a local event?",
+        "What places in your area bring people together?",
+        "Do neighbours usually help one another where you live?"
+      ],
+      "part2": {
+        "cue_card": "Describe a time when you helped someone in your community.",
+        "bullets": [
+          "who you helped",
+          "what you did",
+          "why the person or group needed help",
+          "how you felt afterwards"
+        ],
+        "prep_time_sec": 60,
+        "speak_time_sec": 120
+      },
+      "part3": [
+        "Why do some people choose to volunteer while others do not?",
+        "How can local governments encourage volunteering?",
+        "Should employers give staff time to do community work?",
+        "What benefits can young people gain from volunteering?",
+        "Can online communities provide the same support as local communities?"
+      ]
+    }
+  }
+]

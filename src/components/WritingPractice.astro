@@ -130,15 +130,18 @@ const { lang = 'uz' } = Astro.props;
 </style>
 
 <script>
-  import daysData from '../data/ielts-writing-days.json';
+  import daysDataUz from '../data/ielts-writing-days.json';
+  import daysDataRu from '../data/ielts-writing-days-ru.json';
+  import daysDataEn from '../data/ielts-writing-days-en.json';
   import { assessWriting, renderAssessmentHTML, hasApiKey, showSettingsDialog, escapeHtml } from '../lib/ielts-assessor.js';
   import { supabase } from '../lib/supabase';
   import { buildWritingVisual } from '../lib/writing-visuals.js';
 
   const LS = 'tayanch-writing-progress-v2';
-  const TOTAL = daysData.length;
   const app = document.querySelector('[data-writing-app]');
   const LANG = app.dataset.lang || 'uz';
+  const daysData = LANG === 'ru' ? daysDataRu : LANG === 'en' ? daysDataEn : daysDataUz;
+  const TOTAL = daysData.length;
   const elDays = app.querySelector('[data-days]');
   const elTitle = app.querySelector('[data-day-title]');
   const elType = app.querySelector('[data-day-type]');

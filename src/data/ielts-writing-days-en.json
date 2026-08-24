@@ -1,0 +1,282 @@
+[
+  {
+    "day": 1,
+    "type": "task1",
+    "task1_type": "academic",
+    "topic": "Bar chart — university admissions",
+    "question": "The bar chart below shows the number of students enrolled in three university courses (Arts, Science and Engineering) in 2010 and 2020. Summarise the information by selecting and reporting the main features, and make comparisons where relevant.",
+    "time_limit_sec": 1200,
+    "min_words": 150,
+    "tips": "Start with an overview; compare grouped features rather than describing each bar separately."
+  },
+  {
+    "day": 2,
+    "type": "task2",
+    "topic": "Education — free university",
+    "question": "Some people believe that university education should be free for everyone. To what extent do you agree or disagree?",
+    "time_limit_sec": 2400,
+    "min_words": 250,
+    "tips": "Take a clear position; write two developed body paragraphs and a balanced conclusion."
+  },
+  {
+    "day": 3,
+    "type": "task2",
+    "topic": "Technology — online shopping",
+    "question": "More people prefer to shop online than in physical stores. Do the advantages outweigh the disadvantages?",
+    "time_limit_sec": 2400,
+    "min_words": 250,
+    "tips": "Explain at least one advantage and one disadvantage with examples."
+  },
+  {
+    "day": 4,
+    "type": "task1",
+    "task1_type": "academic",
+    "topic": "Line graph — population",
+    "question": "The line graph below shows the population of three cities (A, B and C) between 1990 and 2020. Summarise the information by selecting and reporting the main features, and make comparisons where relevant.",
+    "time_limit_sec": 1200,
+    "min_words": 150,
+    "tips": "Highlight the main trends (rise/fall) and the difference between 1990 and 2020."
+  },
+  {
+    "day": 5,
+    "type": "task2",
+    "topic": "Health — diet and exercise",
+    "question": "A healthy diet and regular exercise are more important for a person's well-being than medical treatment. Discuss both views and give your opinion.",
+    "time_limit_sec": 2400,
+    "min_words": 250,
+    "tips": "Acknowledge both views, then justify your own opinion."
+  },
+  {
+    "day": 6,
+    "type": "task2",
+    "topic": "Ecology — climate change",
+    "question": "Individual actions are too small to affect climate change. To what extent do you agree or disagree?",
+    "time_limit_sec": 2400,
+    "min_words": 250,
+    "tips": "Show the difference between personal and systemic approaches."
+  },
+  {
+    "day": 7,
+    "type": "task1",
+    "task1_type": "general",
+    "topic": "Semi-formal letter — hotel",
+    "question": "You recently stayed at a hotel and left a personal item behind. Write a letter to the hotel manager asking them to find the item and explain how it can be returned to you.",
+    "time_limit_sec": 1200,
+    "min_words": 150,
+    "tips": "State the date, room number and item description clearly; keep a formal-neutral tone."
+  },
+  {
+    "day": 8,
+    "type": "task2",
+    "topic": "Society — ageing population",
+    "question": "In many countries, the population is ageing. What problems does this cause, and what solutions can you suggest?",
+    "time_limit_sec": 2400,
+    "min_words": 250,
+    "tips": "Use a Problem–Solution structure; match a solution to each problem."
+  },
+  {
+    "day": 9,
+    "type": "task2",
+    "topic": "Work — monitoring employees",
+    "question": "Some employers monitor their employees' emails and internet use. Is this an acceptable practice, or does it violate privacy?",
+    "time_limit_sec": 2400,
+    "min_words": 250,
+    "tips": "Discuss the balance between security/vigilance and the right to privacy."
+  },
+  {
+    "day": 10,
+    "type": "task1",
+    "task1_type": "academic",
+    "topic": "Pie chart — energy",
+    "question": "The pie charts below show the sources of energy used in a country in 1990 and 2020. Summarise the information by selecting and reporting the main features, and make comparisons where relevant.",
+    "time_limit_sec": 1200,
+    "min_words": 150,
+    "tips": "Emphasise the largest shares and the changes from 1990 to 2020."
+  },
+  {
+    "day": 11,
+    "type": "task2",
+    "topic": "Media — influence",
+    "question": "News media has too much influence on people's lives. Discuss both views and give your opinion.",
+    "time_limit_sec": 2400,
+    "min_words": 250,
+    "tips": "Weigh the benefit of media (awareness) against its risk (dependency)."
+  },
+  {
+    "day": 12,
+    "type": "task2",
+    "topic": "Crime — prison or education",
+    "question": "Some people think prisons are the best way to reduce crime, while others believe education is more effective. Discuss both views and give your opinion.",
+    "time_limit_sec": 2400,
+    "min_words": 250,
+    "tips": "Acknowledge the place of both approaches, then justify your choice."
+  },
+  {
+    "day": 13,
+    "type": "task1",
+    "task1_type": "academic",
+    "topic": "Table — daily routine",
+    "question": "The table below compares the daily routines of two age groups (18–25 and 55–65). Summarise the information by selecting and reporting the main features, and make comparisons where relevant.",
+    "time_limit_sec": 1200,
+    "min_words": 150,
+    "tips": "Separate the main differences between groups (sleep, work, leisure)."
+  },
+  {
+    "day": 14,
+    "type": "task2",
+    "topic": "Globalisation — similarity",
+    "question": "Globalisation is making countries more similar. Is this a positive or negative development?",
+    "time_limit_sec": 2400,
+    "min_words": 250,
+    "tips": "Consider cultural uniformity together with economic benefit/standardisation."
+  },
+  {
+    "day": 15,
+    "type": "task2",
+    "topic": "Education — financial literacy",
+    "question": "Financial education should be taught in schools. To what extent do you agree or disagree?",
+    "time_limit_sec": 2400,
+    "min_words": 250,
+    "tips": "Argue it as a life skill taught in school, but note the pressure on the curriculum."
+  },
+  {
+    "day": 16,
+    "type": "task1",
+    "task1_type": "academic",
+    "topic": "Process — paper recycling",
+    "question": "The diagram below shows how paper is recycled. Summarise the information by selecting and reporting the main features.",
+    "time_limit_sec": 1200,
+    "min_words": 150,
+    "tips": "Write the step-by-step order (with passive voice) and the total number of stages."
+  },
+  {
+    "day": 17,
+    "type": "task2",
+    "topic": "Technology — AI teachers",
+    "question": "Some people think artificial intelligence will replace human teachers. To what extent do you agree or disagree?",
+    "time_limit_sec": 2400,
+    "min_words": 250,
+    "tips": "Acknowledge AI benefits but emphasise human empathy and leadership."
+  },
+  {
+    "day": 18,
+    "type": "task2",
+    "topic": "Ecology — taxation",
+    "question": "Governments should tax polluting industries more heavily. To what extent do you agree or disagree?",
+    "time_limit_sec": 2400,
+    "min_words": 250,
+    "tips": "Consider economic incentive and fairness (small businesses)."
+  },
+  {
+    "day": 19,
+    "type": "task1",
+    "task1_type": "general",
+    "topic": "Formal letter — complaint",
+    "question": "You recently bought a product that was faulty. Write a letter to the company complaining about the problem and requesting a refund or replacement.",
+    "time_limit_sec": 1200,
+    "min_words": 150,
+    "tips": "State the problem with facts, in a formal tone, and make a clear request (refund/replacement)."
+  },
+  {
+    "day": 20,
+    "type": "task2",
+    "topic": "Society — vegetarianism",
+    "question": "Some people believe everyone should adopt a vegetarian diet for environmental reasons. Discuss both views and give your opinion.",
+    "time_limit_sec": 2400,
+    "min_words": 250,
+    "tips": "Weigh environmental benefit against personal and dietary rights."
+  },
+  {
+    "day": 21,
+    "type": "task2",
+    "topic": "Work — satisfaction vs salary",
+    "question": "Is job satisfaction more important than a high salary? Discuss both views and give your opinion.",
+    "time_limit_sec": 2400,
+    "min_words": 250,
+    "tips": "Justify the choice between long-term motivation and financial security."
+  },
+  {
+    "day": 22,
+    "type": "task1",
+    "task1_type": "academic",
+    "topic": "Map — urban redevelopment",
+    "question": "The maps below show a town before and after redevelopment. Summarise the information by selecting and reporting the main features.",
+    "time_limit_sec": 1200,
+    "min_words": 150,
+    "tips": "Compare the main changes (roads, buildings, green space) as old to new."
+  },
+  {
+    "day": 23,
+    "type": "task2",
+    "topic": "Health — free healthcare",
+    "question": "The government should provide free healthcare for all citizens. To what extent do you agree or disagree?",
+    "time_limit_sec": 2400,
+    "min_words": 250,
+    "tips": "Consider equal access together with budget burden."
+  },
+  {
+    "day": 24,
+    "type": "task2",
+    "topic": "Education — on/off campus",
+    "question": "University students should live on campus rather than off campus. Discuss both views and give your opinion.",
+    "time_limit_sec": 2400,
+    "min_words": 250,
+    "tips": "Compare the values of social integration and independence."
+  },
+  {
+    "day": 25,
+    "type": "task1",
+    "task1_type": "academic",
+    "topic": "Multiple charts — internet",
+    "question": "The chart and table below show internet usage by age group and by region. Summarise the information by selecting and reporting the main features, and make comparisons where relevant.",
+    "time_limit_sec": 1200,
+    "min_words": 150,
+    "obsidian_note": "Obsidian: 2.1 writing task 1 — multiple data sources practice."
+  },
+  {
+    "day": 26,
+    "type": "task2",
+    "topic": "Media — social networks",
+    "question": "Social media companies should be regulated by the government. To what extent do you agree or disagree?",
+    "time_limit_sec": 2400,
+    "min_words": 250,
+    "tips": "Discuss the balance between limiting harmful content and freedom of speech."
+  },
+  {
+    "day": 27,
+    "type": "task2",
+    "topic": "Crime — community service",
+    "question": "Community service is better than prison for young offenders. To what extent do you agree or disagree?",
+    "time_limit_sec": 2400,
+    "min_words": 250,
+    "tips": "Compare the purposes of rehabilitation and punishment."
+  },
+  {
+    "day": 28,
+    "type": "task1",
+    "task1_type": "general",
+    "topic": "Informal letter — invitation",
+    "question": "Write a letter to a friend inviting them to visit your country and suggesting what you could do together.",
+    "time_limit_sec": 1200,
+    "min_words": 150,
+    "tips": "Write in a warm, informal tone; give concrete suggestions (time, place)."
+  },
+  {
+    "day": 29,
+    "type": "task2",
+    "topic": "Society — urbanisation",
+    "question": "Urbanisation leads to a loss of community spirit. What are the causes of this, and what solutions can you suggest?",
+    "time_limit_sec": 2400,
+    "min_words": 250,
+    "tips": "Link causes (anonymity, busyness) and solutions (community projects)."
+  },
+  {
+    "day": 30,
+    "type": "task2",
+    "topic": "Final — ecology",
+    "question": "When it comes to protecting the environment, which is more effective: individual lifestyle changes or government policy? Discuss both views and give your opinion.",
+    "time_limit_sec": 2400,
+    "min_words": 250,
+    "tips": "Final essay: connect both levels and draw a balanced conclusion."
+  }
+]

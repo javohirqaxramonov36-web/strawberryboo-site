@@ -1,6 +1,9 @@
 ---
-import days from '../data/ielts-speaking-days.json';
+import daysUz from '../data/ielts-speaking-days.json';
+import daysRu from '../data/ielts-speaking-days-ru.json';
+import daysEn from '../data/ielts-speaking-days-en.json';
 const { lang = 'uz' } = Astro.props;
+const days = lang === 'ru' ? daysRu : lang === 'en' ? daysEn : daysUz;
 ---
 <section class="speaking-app" aria-label="IELTS Speaking 30 kunlik mashq">
   <header class="speaking-hero"><p class="eyebrow">AI BILAN 30 KUNLIK KURS</p><h1>IELTS Speaking: muntazam mashq, aniq progress</h1><p>Har kuni talaffuz, original course-script shadowing va IELTS uslubidagi Part 1, Part 2, Part 3 mashqlari.</p><div class="notice"><b>AI practice estimate:</b> rasmiy IELTS bahosi emas. Transcript asosida talaffuz bandi berilmaydi; akustik talaffuz scoring bu kursda yo‘q.</div></header>
