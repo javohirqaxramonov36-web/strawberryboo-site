@@ -122,7 +122,7 @@ const index = [
   <div class="search-box" role="dialog" aria-modal="true" aria-label="Qidiruv">
     <div class="search-input-wrap">
       <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
-      <input id="searchInput" type="text" autocomplete="off" autocorrect="off" spellcheck="false" placeholder="Kurs, modul yoki tavsif bo'yicha qidirish..." />
+      <input id="searchInput" type="text" autocomplete="off" autocorrect="off" spellcheck="false" aria-label="Qidiruv" placeholder="Kurs, modul yoki tavsif bo'yicha qidirish..." />
       <kbd class="search-esc">Esc</kbd>
     </div>
     <ul id="searchResults" class="search-results" role="listbox"></ul>
@@ -297,6 +297,11 @@ const index = [
   .search-input-wrap svg { flex: 0 0 auto; }
   #searchInput { flex: 1; border: none; outline: none; background: transparent;
     color: var(--text); font: 500 16px var(--font-display); }
+  #searchInput:focus-visible {
+    outline: 2px solid var(--accent, #6355db);
+    outline-offset: -2px;
+    border-radius: 6px;
+  }
   #searchInput::placeholder { color: var(--muted); }
   .search-esc { font: 700 11px var(--font-display); color: var(--muted);
     border: 1px solid var(--border); border-radius: 6px; padding: 2px 7px; }

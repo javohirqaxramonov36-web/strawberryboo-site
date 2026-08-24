@@ -5,6 +5,16 @@
    Mavjud global stildan keyin yuklanadi (Base.astro).
    ========================================================= */
 
+/* 0) Accessibility: visible keyboard focus indicator (Stage 1 fix).
+   Applies a clear outline on keyboard focus for any element that does
+   not already define its own :focus-visible style. Uses the page's
+   own --accent so it stays on-brand in both light and dark themes. */
+:focus-visible {
+  outline: 3px solid var(--accent, #6355db);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
 /* 1) Kurs kartalari — hover ko'tarilish + soya
    (body prefiksi: Astro global CSS bundlidan keyin yuklansada g'alaba qozonadi) */
 body .card,
