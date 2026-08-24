@@ -1,0 +1,16 @@
+---
+import Base from '../../layouts/Base.astro';
+import ScholarshipPortfolio from '../../components/ScholarshipPortfolio.astro';
+const base = import.meta.env.BASE_URL;
+const alternates = [
+  { lang: 'uz', href: base + 'tayanch-portfoliosi/' },
+  { lang: 'en', href: base + 'en/tayanch-portfolio/' },
+];
+---
+<Base title="Tayanch Project Portfolio | Scholarship Application" description="A scholarship-facing project portfolio for Tayanch, a live multilingual education platform." lang="en" localeAlternates={alternates}>
+  <ScholarshipPortfolio lang="en" />
+  <script is:inline>
+    // Base’s legacy UI dictionary does not include every English route; keep this page’s document language accurate.
+    window.addEventListener('DOMContentLoaded', () => document.documentElement.lang = 'en', { once: true });
+  </script>
+</Base>

@@ -1,0 +1,12 @@
+---
+import Base from '../layouts/Base.astro';
+import ScholarshipPortfolio from '../components/ScholarshipPortfolio.astro';
+const base = import.meta.env.BASE_URL;
+const alternates = [
+  { lang: 'uz', href: base + 'tayanch-portfoliosi/' },
+  { lang: 'en', href: base + 'en/tayanch-portfolio/' },
+];
+---
+<Base title="Tayanch loyiha portfoliosi | Stipendiya arizasi" description="Tayanch jonli ko‘p tilli ta’lim platformasi uchun stipendiya yo‘nalishidagi loyiha portfoliosi." localeAlternates={alternates}>
+  <ScholarshipPortfolio lang="uz" />
+</Base>
