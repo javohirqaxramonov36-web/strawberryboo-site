@@ -3,6 +3,8 @@ import PaymentInstructions from './PaymentInstructions.astro';
 import CourseProgress from './CourseProgress.astro';
 import Testimonials from './Testimonials.astro';
 import CourseFaq from './CourseFaq.astro';
+import PremiumReviewCard from './PremiumReviewCard.astro';
+import CourseCrossSell from './CourseCrossSell.astro';
 const { skill, title, eyebrow, description, accent, available, fillNeeded, practiceHref, practiceLabel, sourceNote, mockBonus = false, speakingApp = false, whyUseful, contentTodo, bonusHref, bonusLabel, price = '$7.50', priceUzs = '93 750 so‘m', priceUzsNum = 93750, lang = 'uz' } = Astro.props;
 const base = import.meta.env.BASE_URL;
 const L = {
@@ -163,6 +165,8 @@ const faqCopy = {
   <!-- AIDA: 4) ACTION -->
   <CourseFaq facts={{ title, lang, overview: description, topics: available.map((item) => item.title), whoFor: faqCopy.whoFor, whoNotFor: faqCopy.notFor, price: coursePrice, certificate: false, accessPayment: faqCopy.access }} />
   <Testimonials courseSlug={skill} lang={lang} />
+  <PremiumReviewCard lang={lang} />
+  {skill === 'ielts-writing' && <CourseCrossSell lang={lang} />}
   <p class="source-note">{t.source} {sourceNote}</p>
   <div class="actions">
     <!-- Point 4: unified CTA text pattern -->

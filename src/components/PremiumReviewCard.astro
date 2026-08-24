@@ -1,0 +1,13 @@
+---
+type Lang = 'uz' | 'ru' | 'en';
+const { lang = 'uz' } = Astro.props as { lang?: Lang };
+const copy = {
+  uz: { eyebrow:'PREMIUM TEKSHIRUV', title:'Inson tekshiruvi — sozlanmoqda', text:'Yozma ish yoki nutq bo‘yicha insondan fikr olish funksiyasi hozircha sotuvga ochilmagan. Narx va Telegramdagi rasmiy murojaat yo‘li tasdiqlangandan keyin shu yerda e’lon qilinadi.', status:'Hozircha mavjud emas' },
+  ru: { eyebrow:'ПРЕМИУМ-ПРОВЕРКА', title:'Проверка человеком — настраивается', text:'Функция получения обратной связи от человека по письму или речи пока не открыта для покупки. Цена и официальный Telegram-канал будут опубликованы здесь после подтверждения.', status:'Пока недоступно' },
+  en: { eyebrow:'PREMIUM REVIEW', title:'Human review — being configured', text:'A human-feedback option for writing or speaking is not open for purchase yet. The price and official Telegram request path will appear here after they are confirmed.', status:'Currently unavailable' }
+}[lang];
+---
+<aside class="premium-review" aria-label={copy.title}>
+  <p>{copy.eyebrow}</p><h2>{copy.title}</h2><span>{copy.status}</span><div>{copy.text}</div>
+</aside>
+<style>.premium-review{margin:2rem auto;padding:1.25rem;border:1px dashed var(--border);border-radius:15px;background:var(--surface);max-width:820px}.premium-review p{margin:0;color:var(--accent);font-size:.75rem;font-weight:800;letter-spacing:.1em}.premium-review h2{margin:.4rem 0;font-size:1.1rem}.premium-review span{display:inline-block;border-radius:99px;padding:.22rem .55rem;background:color-mix(in srgb,#f59e0b 16%,transparent);color:#d97706;font-size:.8rem;font-weight:700}.premium-review div{margin-top:.7rem;color:var(--muted);line-height:1.55}</style>

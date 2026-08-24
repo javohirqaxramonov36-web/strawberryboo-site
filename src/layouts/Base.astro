@@ -2499,5 +2499,19 @@ const navigationHref = (path: string) => base + localizedPath(lang, path);
 
   <script is:inline src={base + 'tayanch-ai.js'}></script>
   <script is:inline src={base + 'assets/interactive.js'}></script>
-  </body>
+    <script is:inline>
+    // Basic referral capture is local-only. It deliberately does not promise rewards or call a backend.
+    (function () {
+      var key = 'tayanch.ref.v1';
+      try {
+        var ref = new URLSearchParams(location.search).get('ref');
+        if (ref && /^[a-zA-Z0-9_-]{1,40}$/.test(ref)) localStorage.setItem(key, ref);
+        var saved = localStorage.getItem(key);
+        if (!saved || !/^[a-zA-Z0-9_-]{1,40}$/.test(saved)) return;
+        // Existing Telegram group/payment links stay untouched. Referral sharing uses its
+        // own t.me/share/url link in ReferralCard so a prefilled message never changes them.
+      } catch (e) {}
+    })();
+  </script>
+</body>
 </html>

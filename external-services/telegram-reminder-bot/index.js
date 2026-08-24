@@ -1,0 +1,11 @@
+import TelegramBot from 'node-telegram-bot-api';
+const token = process.env.TELEGRAM_BOT_TOKEN;
+if (!token) throw new Error('TELEGRAM_BOT_TOKEN is required. Copy .env.example; never commit a token.');
+const bot = new TelegramBot(token, { polling: true });
+const configured = new Set((process.env.OPTED_IN_CHAT_IDS || '').split(',').map((v) => v.trim()).filter(Boolean));
+const optedIn = new Set(configured);
+bot.onText(/^\/start(?:\s|$)/, (msg) => { optedIn.add(String(msg.chat.id)); bot.sendMessage(msg.chat.id, 'You are opted in to Tayanch reminders. Send /stop to opt out.'); });
+bot.onText(/^\/stop(?:\s|$)/, (msg) => { optedIn.delete(String(msg.chat.id)); bot.sendMessage(msg.chat.id, 'You are opted out of reminders.'); });
+const ms = 24 * 60 * 60 * 1000;
+setInterval(async () => { for (const chatId of optedIn) { try { await bot.sendMessage(chatId, process.env.REMINDER_TEXT || 'Continue your Tayanch learning today.'); } catch (error) { console.error('Reminder failed', chatId, error.message); } } }, ms);
+console.log('Bot started. This process keeps opt-ins only in memory; use consented persistent storage for production.');

@@ -1,14 +1,16 @@
 ---
-interface Props { name: string; description: string; }
+interface Props { name: string; description: string; lang?: 'uz' | 'ru' | 'en'; }
 const { name, description } = Astro.props;
+const path = Astro.url.pathname;
+const lang = Astro.props.lang ?? (path.includes('/ru/') ? 'ru' : path.includes('/en/') ? 'en' : 'uz');
 const schema = {
   '@context': 'https://schema.org',
   '@type': 'Course',
   name,
   description,
-  provider: { '@type': 'Organization', name: 'Tayanch', url: 'https://javohirqaxramonov36-web.github.io/strawberryboo-site/' },
+  provider: { '@type': 'Organization', name: 'Tayanch', url: new URL(import.meta.env.BASE_URL, Astro.site ?? Astro.url).href },
   url: Astro.url.href,
-  inLanguage: 'uz'
+  inLanguage: lang
 };
 ---
 <script type="application/ld+json" set:html={JSON.stringify(schema)} />

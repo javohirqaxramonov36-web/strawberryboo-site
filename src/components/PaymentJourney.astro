@@ -79,7 +79,7 @@ const stepDescription = (text: string) => text.replace('{course}', courseText);
     </li>)}
   </ol>
   <p class="payment-journey__note">{t.note}</p>
-  <a class="payment-journey__action" href="https://t.me/progression_go" target="_blank" rel="noopener noreferrer">{t.action}</a>
+  <a class="payment-journey__action" href="https://t.me/progression_go" data-analytics-event="telegram_cta_click" target="_blank" rel="noopener noreferrer">{t.action}</a>
 </section>
 
 <style>

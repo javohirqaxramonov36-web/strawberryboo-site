@@ -1,0 +1,10 @@
+---
+interface Props { title: string; src?: string; lang?: 'uz'|'ru'|'en'; }
+const { title, src, lang = 'uz' } = Astro.props;
+const allowed = src && /^https:\/\/(www\.youtube-nocookie\.com|www\.youtube\.com|player\.vimeo\.com)\//.test(src) ? src : null;
+const message = { uz:'Video hali qo‘shilmagan.', ru:'Видео ещё не добавлено.', en:'Video has not been added yet.' }[lang];
+---
+<section class="video-embed" aria-label={title}>
+  {allowed ? <iframe src={allowed} title={title} loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> : <div><strong>{title}</strong><p>{message}</p></div>}
+</section>
+<style>.video-embed{max-width:900px;margin:2rem auto;border:1px solid var(--border);border-radius:14px;overflow:hidden;background:var(--surface)}.video-embed iframe{display:block;width:100%;aspect-ratio:16/9;border:0}.video-embed div{padding:1.3rem}.video-embed p{color:var(--muted);margin:.4rem 0 0}</style>

@@ -1,0 +1,13 @@
+---
+type Lang = 'uz' | 'ru' | 'en';
+const { lang = 'uz', target = 'ielts-speaking' } = Astro.props as { lang?: Lang; target?: string };
+const base = import.meta.env.BASE_URL;
+const href = `${base}${lang === 'uz' ? '' : `${lang}/`}kurslar/${target}/`;
+const copy = {
+ uz:{eyebrow:'KEYINGI QADAM',title:'Writing mashqini Speaking bilan bog‘lang',text:'Yozma javobdagi fikrni og‘zaki aytish uchun 30 kunlik Speaking mashqini sinab ko‘ring.',action:'Speaking kursiga o‘tish →'},
+ ru:{eyebrow:'СЛЕДУЮЩИЙ ШАГ',title:'Свяжите Writing с Speaking',text:'Попробуйте 30-дневную практику Speaking, чтобы проговаривать идеи из письменных ответов.',action:'Перейти к Speaking →'},
+ en:{eyebrow:'NEXT STEP',title:'Connect Writing with Speaking',text:'Try the 30-day Speaking practice to say the ideas from your written answers aloud.',action:'Go to Speaking →'}
+}[lang];
+---
+<aside class="cross-sell"><p>{copy.eyebrow}</p><h2>{copy.title}</h2><div>{copy.text}</div><a href={href}>{copy.action}</a></aside>
+<style>.cross-sell{max-width:820px;margin:2rem auto;padding:1.25rem;border:1px solid color-mix(in srgb,var(--accent) 35%,var(--border));border-radius:15px;background:var(--accent-soft)}.cross-sell p{margin:0;color:var(--accent);font-size:.75rem;font-weight:800;letter-spacing:.1em}.cross-sell h2{margin:.4rem 0;font-size:1.15rem}.cross-sell div{color:var(--muted);line-height:1.55}.cross-sell a{display:inline-block;margin-top:.85rem;font-weight:700}</style>

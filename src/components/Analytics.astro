@@ -10,6 +10,9 @@ import { analytics } from '../config/analytics';
       function gtag() { window.dataLayer.push(arguments); }
       gtag('js', new Date());
       gtag('config', measurementId);
+      window.tayanchTrack = function (eventName, params) {
+        if (typeof window.gtag === 'function') window.gtag('event', eventName, params || {});
+      };
     </script>
   </>
 )}
@@ -17,3 +20,20 @@ import { analytics } from '../config/analytics';
 {analytics.provider === 'plausible' && analytics.id && (
   <script defer data-domain={analytics.id} src="https://plausible.io/js/script.js"></script>
 )}
+
+<script is:inline define:vars={{ enabled: Boolean(analytics.provider && analytics.id) }}>
+  // No events are sent unless a real analytics provider is configured at build time.
+  if (enabled) {
+    document.addEventListener('click', function (event) {
+      var target = event.target && event.target.closest && event.target.closest('a,button');
+      if (!target) return;
+      var explicit = target.getAttribute('data-analytics-event');
+      var href = target.getAttribute('href') || '';
+      var eventName = explicit || (target.hasAttribute('data-payment-open') ? 'begin_checkout' : (/t\.me\//.test(href) ? 'telegram_cta_click' : ''));
+      if (!eventName) return;
+      var label = (target.getAttribute('data-analytics-label') || target.textContent || '').replace(/\s+/g, ' ').trim().slice(0, 120);
+      if (typeof window.tayanchTrack === 'function') window.tayanchTrack(eventName, { link_text: label, page_path: location.pathname });
+      else if (window.plausible) window.plausible(eventName, { props: { link_text: label, page_path: location.pathname } });
+    });
+  }
+</script>

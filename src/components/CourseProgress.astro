@@ -32,6 +32,8 @@ const {
     <span data-progress-fill></span>
   </div>
   <p class="course-progress__hint" data-progress-hint>Bo‘limlarni tugatganingizda belgilang. Progress shu qurilmada saqlanadi.</p>
+  <p class="course-progress__next" data-progress-next aria-live="polite"></p>
+  <div class="course-progress__milestones" data-progress-milestones aria-label="Progress milestones"></div>
   <div class="course-progress__items" data-progress-items></div>
   <button class="course-progress__reset" type="button" data-progress-reset hidden>Progressni tozalash</button>
 </section>
@@ -57,6 +59,16 @@ const {
     const bar = root.querySelector('.course-progress__bar');
     const hint = root.querySelector('[data-progress-hint]');
     const reset = root.querySelector('[data-progress-reset]');
+    const next = root.querySelector('[data-progress-next]');
+    const milestones = root.querySelector('[data-progress-milestones]');
+    const lang = document.documentElement.lang || 'uz';
+    const words = { uz: { next:'Keyingi:', remaining:'30 kunlik maqsadga qoldi:', completed:'30 kunlik maqsad bajarildi!', day:'kun' }, ru: { next:'Следующее:', remaining:'До цели в 30 дней осталось:', completed:'30-дневная цель достигнута!', day:'дней' }, en: { next:'Next:', remaining:'Remaining to the 30-day goal:', completed:'30-day goal reached!', day:'days' } }[lang] || { next:'Next:', remaining:'Remaining:', completed:'Goal reached!', day:'days' };
+    const renderRetention = (done, total, nextLabel) => {
+      const scaledDone = total ? Math.round((done / total) * 30) : 0;
+      const remaining = Math.max(0, 30 - scaledDone);
+      if (next) next.textContent = nextLabel ? `${words.next} ${nextLabel}` : (done >= total && total ? words.completed : '');
+      if (milestones) milestones.innerHTML = [7,14,30].map((goal) => `<span class="${scaledDone >= goal ? 'is-done' : ''}">${goal} ${words.day}</span>`).join('') + `<small>${remaining ? `${words.remaining} ${remaining} ${words.day}` : words.completed}</small>`;
+    };
     const summaryOnly = root.dataset.summaryOnly === 'true';
 
     if (mode === 'speaking') {
@@ -68,6 +80,7 @@ const {
         bar.setAttribute('aria-valuemax', '30');
         bar.setAttribute('aria-valuenow', String(done));
         hint.textContent = 'IELTS Speaking ichidagi 30 kunlik mashq progressidan olinadi. Har kun uchun talaffuz, shadowing va speaking qismlarini yakunlang.';
+        renderRetention(done, 30, done < 30 ? `${done + 1}-kun` : '');
       };
       list.hidden = true;
       renderSpeaking();
@@ -107,6 +120,8 @@ const {
       bar.setAttribute('aria-valuenow', String(done));
       hint.textContent = total ? 'Bo‘limlarni tugatganingizda belgilang. Progress shu qurilmada saqlanadi.' : 'Bu kurs uchun belgilash mumkin bo‘lgan bo‘lim topilmadi.';
       reset.hidden = done === 0;
+      const nextItem = items.find((item) => !state[item.id]);
+      renderRetention(done, total, nextItem ? nextItem.label : '');
       items.forEach((item) => {
         const input = list.querySelector(`[data-progress-id="${item.id}"]`);
         if (input) input.checked = Boolean(state[item.id]);

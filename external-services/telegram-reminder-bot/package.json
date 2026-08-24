@@ -1,0 +1,1 @@
+{"name":"tayanch-telegram-reminder-bot","private":true,"type":"module","scripts":{"start":"node index.js"},"dependencies":{"node-telegram-bot-api":"^0.66.0"}}

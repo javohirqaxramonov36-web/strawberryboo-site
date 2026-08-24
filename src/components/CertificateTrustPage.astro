@@ -1,4 +1,5 @@
 ---
+import ReferralCard from './ReferralCard.astro';
 type Lang = 'uz' | 'ru' | 'en';
 const { lang = 'uz' } = Astro.props as { lang?: Lang };
 const copy = {
@@ -80,12 +81,50 @@ const contactHref = lang === 'uz' ? base + 'bog-lanish/' : base + `${lang}/bog-l
     <p>{copy.next}</p>
   </section>
 
+  <section class="local-certificate" data-local-certificate data-lang={lang} aria-labelledby="local-certificate-title">
+    <p class="eyebrow">{lang === 'uz' ? 'SHU QURILMADAGI PROGRESS' : lang === 'ru' ? 'ПРОГРЕСС НА ЭТОМ УСТРОЙСТВЕ' : 'PROGRESS ON THIS DEVICE'}</p>
+    <h2 id="local-certificate-title">{lang === 'uz' ? '30 kunlik Speaking yakunlash sertifikati' : lang === 'ru' ? 'Сертификат завершения 30-дневного Speaking' : '30-day Speaking completion certificate'}</h2>
+    <p>{lang === 'uz' ? '30 kunlik Speaking mashqi shu brauzerda 30/30 deb saqlangan bo‘lsa, ismingiz bilan mahalliy PDF yarating. Bu tashqi tekshiruvga ega emas, davlat yoki akkreditatsiya sertifikati emas.' : lang === 'ru' ? 'Если 30-дневная практика Speaking сохранена в этом браузере как 30/30, создайте локальный PDF со своим именем. Он не подлежит внешней проверке и не является государственным или аккредитованным сертификатом.' : 'If the 30-day Speaking practice is saved as 30/30 in this browser, create a local PDF with your name. It has no external verification and is not a state or accredited credential.'}</p>
+    <div class="local-certificate__controls"><label>{lang === 'uz' ? 'Ism-familiya' : lang === 'ru' ? 'Имя и фамилия' : 'Full name'}<input data-certificate-name maxlength="80" autocomplete="name" /></label><button type="button" data-certificate-download disabled>{lang === 'uz' ? 'PDF sertifikatni yuklab olish' : lang === 'ru' ? 'Скачать PDF-сертификат' : 'Download PDF certificate'}</button></div>
+    <p class="local-certificate__status" data-certificate-status aria-live="polite"></p>
+  </section>
+
+  <ReferralCard lang={lang} />
+
   <div class="certificate-actions">
     <a href={contactHref}>{copy.contact}</a>
     <button type="button" onclick="window.print()">{copy.print}</button>
   </div>
   <p class="print-note">{copy.printNote}</p>
 </section>
+
+<script is:inline define:vars={{ base }}>
+  document.querySelectorAll('[data-local-certificate]').forEach(function (root) {
+    var lang = root.getAttribute('data-lang') || 'uz';
+    var nameInput = root.querySelector('[data-certificate-name]');
+    var button = root.querySelector('[data-certificate-download]');
+    var status = root.querySelector('[data-certificate-status]');
+    var labels = { uz: { ready:'30/30 yakunlangan. Ismingizni kiriting.', waiting:'Hali mavjud emas: Speaking ichida 30 kunni (30/30) yakunlang.', name:'Ism-familiyangizni kiriting.', generating:'PDF tayyorlanmoqda…', local:'Mahalliy yakunlash sertifikati' }, ru: { ready:'30/30 завершено. Введите имя.', waiting:'Пока недоступно: завершите все 30 дней Speaking (30/30).', name:'Введите имя и фамилию.', generating:'PDF создаётся…', local:'Локальный сертификат завершения' }, en: { ready:'30/30 complete. Enter your name.', waiting:'Not available yet: complete all 30 Speaking days (30/30).', name:'Enter your full name.', generating:'Creating PDF…', local:'Local completion certificate' } }[lang] || {};
+    function completed() { try { var state = JSON.parse(localStorage.getItem('tayanch-speaking-progress-v2') || '{}'); return Object.keys(state).filter(function(k){ var d=state[k]; return d && d.pronunciation_done && d.shadowing_done && d.speaking_done; }).length >= 30; } catch (e) { return false; } }
+    var eligible = completed();
+    status.textContent = eligible ? labels.ready : labels.waiting;
+    button.disabled = !eligible;
+    button.addEventListener('click', function () {
+      var name = (nameInput.value || '').replace(/\s+/g, ' ').trim();
+      if (!name) { status.textContent = labels.name; nameInput.focus(); return; }
+      status.textContent = labels.generating;
+      var issueDate = new Date().toLocaleDateString(lang === 'uz' ? 'uz-UZ' : lang === 'ru' ? 'ru-RU' : 'en-US');
+      var frame = document.createElement('div');
+      frame.style.cssText = 'width:1120px;padding:90px;box-sizing:border-box;text-align:center;font-family:Arial,sans-serif;color:#171824;background:#fff;border:24px solid #7d7df5';
+      frame.innerHTML = '<div style="font-size:18px;letter-spacing:5px;color:#5b5bb5">TAYANCH</div><h1 style="font-size:46px;margin:54px 0 14px">' + labels.local + '</h1><p style="font-size:18px">This locally generated document recognizes completion recorded in this browser.</p><p style="font-size:34px;font-weight:700;margin:48px 0">' + name.replace(/[<>&]/g, '') + '</p><p style="font-size:22px">30-day IELTS Speaking practice · 30/30</p><p style="margin-top:55px;color:#555">Generated locally on ' + issueDate + '. Not externally verifiable; not a state or accredited credential.</p>';
+      document.body.appendChild(frame);
+      var script = document.createElement('script'); script.src = base + 'vendor/html2pdf.bundle.min.js';
+      script.onload = function () { window.html2pdf().set({ margin: 0, filename: 'tayanch-speaking-completion.pdf', html2canvas: { scale: 2 }, jsPDF: { unit: 'pt', format: 'a4', orientation: 'landscape' } }).from(frame).save().then(function(){ frame.remove(); status.textContent = labels.ready; }).catch(function(){ frame.remove(); status.textContent = labels.waiting; }); };
+      script.onerror = function () { frame.remove(); status.textContent = labels.waiting; };
+      document.head.appendChild(script);
+    });
+  });
+</script>
 
 <style>
   .certificate-page { max-width: 1040px; margin: 0 auto; padding: 68px 28px 88px; }
@@ -107,7 +146,8 @@ const contactHref = lang === 'uz' ? base + 'bog-lanish/' : base + `${lang}/bog-l
   .card-icon { width:30px; height:30px; border-radius:50%; display:grid; place-items:center; font-weight:800; margin-bottom:15px; }
   .verified .card-icon { background:color-mix(in srgb, #22c55e 18%, transparent); color:#4ade80; } .unverified .card-icon { background:color-mix(in srgb, #f59e0b 18%, transparent); color:#fbbf24; }
   ul { padding-left:1.1rem; margin:0; color:var(--muted,#a9a9b8); } li { line-height:1.6; margin:0 0 10px; } li:last-child { margin-bottom:0; }
-  .next-step { margin-top:20px; } .next-step p { color:var(--muted,#a9a9b8); line-height:1.7; margin:0; }
+  .next-step,.local-certificate { margin-top:20px; }
+  .local-certificate{border:1px solid var(--border,#2b2d3a);border-radius:16px;padding:28px;background:var(--card,#171824)}.local-certificate h2{margin:0 0 10px;font-size:1.15rem}.local-certificate>p:not(.eyebrow):not(.local-certificate__status){color:var(--muted);line-height:1.65}.local-certificate__controls{display:flex;gap:12px;align-items:end;flex-wrap:wrap;margin-top:18px}.local-certificate label{display:grid;gap:6px;font-size:.85rem;font-weight:700}.local-certificate input{min-width:240px;padding:10px;border:1px solid var(--border);border-radius:9px;background:var(--surface);color:var(--text);font:inherit}.local-certificate button{padding:11px 15px;border:0;border-radius:9px;background:var(--accent);color:#fff;font:700 .9rem inherit;cursor:pointer}.local-certificate button:disabled{opacity:.55;cursor:not-allowed}.local-certificate__status{color:var(--muted);font-size:.9rem} .next-step p { color:var(--muted,#a9a9b8); line-height:1.7; margin:0; }
   .certificate-actions { display:flex; justify-content:center; align-items:center; flex-wrap:wrap; gap:14px; margin-top:34px; } .certificate-actions a,.certificate-actions button { font:inherit; font-weight:700; border-radius:10px; padding:12px 18px; cursor:pointer; } .certificate-actions a { color:var(--accent,#9c9cff); } .certificate-actions button { border:1px solid var(--border,#2b2d3a); background:transparent; color:var(--text,#f4f4f7); }
   .print-note { text-align:center; color:var(--muted,#a9a9b8); font-size:.85rem; margin:14px 0 0; }
   @media (max-width: 680px) { .certificate-page { padding:45px 18px 64px; } .facts-grid { grid-template-columns:1fr; } .sample-topline { flex-direction:column; text-align:center; } }
