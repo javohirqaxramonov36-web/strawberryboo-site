@@ -23,6 +23,6 @@
 ## Ruxsat olish
 
 Boshqa har qanday foydalanish uchun muallif bilan oldindan yozma ravishda bog‘lanish shart:
-Telegram — https://t.me/progression_go
+Telegram — https://t.me/tayanch_go
 
 Huquqbuzarlik aniqlansa, qonuniy chora ko‘rilishi mumkin.

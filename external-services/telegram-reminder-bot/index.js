@@ -5,7 +5,7 @@ const bot = new TelegramBot(token, { polling: true });
 const configured = new Set((process.env.OPTED_IN_CHAT_IDS || '').split(',').map((v) => v.trim()).filter(Boolean));
 const optedIn = new Set(configured);
 const publicSite = process.env.PUBLIC_SITE_URL || 'https://tayanch.uz';
-const telegramUrl = 'https://t.me/progression_go';
+const telegramUrl = 'https://t.me/tayanch_go';
 const courseMessage = `Narxlar va kurslar doim sayt sahifalarida tekshiriladi: ${publicSite}/narxlar/\n\nKurslar: ${publicSite}/kurslar/\n\nSavol bo‘lsa, ${telegramUrl} orqali yozing.`;
 const paymentMessage = `To‘lovlar Telegram orqali qo‘lda tasdiqlanadi. Kurs nomini yuboring; amaldagi narx va rekvizitlar bevosita suhbatda tasdiqlanadi. Sayt yoki bot karta raqami, CVC yoki bank parolini so‘ramaydi.\n\nKurslar: ${publicSite}/kurslar/`;
 bot.onText(/^\/start(?:\s|$)/, (msg) => { optedIn.add(String(msg.chat.id)); bot.sendMessage(msg.chat.id, 'Tayanch eslatmalariga ulandingiz. /stop bilan to‘xtatishingiz mumkin. Narxlar: /narxlar. To‘lov: /qanday_tolov.'); });

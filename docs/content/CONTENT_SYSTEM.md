@@ -16,4 +16,4 @@
 5. Publish only reviewed articles (`draft: false`). The Astro collection and sitemap include them automatically.
 
 ## Lead magnet
-Use only the existing `https://t.me/progression_go` channel CTA. Do not claim a pinned post or collect contacts. A future bot flow is documented in `docs/operations/OPTIONAL_TELEGRAM_BOT_UPGRADE.md`.
+Use only the existing `https://t.me/tayanch_go` channel CTA. Do not claim a pinned post or collect contacts. A future bot flow is documented in `docs/operations/OPTIONAL_TELEGRAM_BOT_UPGRADE.md`.

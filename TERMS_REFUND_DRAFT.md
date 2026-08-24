@@ -37,7 +37,7 @@ Kurslar ta’limiy maqsadda beriladi. Ular ishga joylashish, imtihon natijasi, g
 
 ## 7. Aloqa
 
-To‘lov, kirish yoki refund savollari uchun Telegram: https://t.me/progression_go
+To‘lov, kirish yoki refund savollari uchun Telegram: https://t.me/tayanch_go
 
 ---
 

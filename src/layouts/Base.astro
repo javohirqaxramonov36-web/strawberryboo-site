@@ -14,7 +14,7 @@ const localeAlternates = (Astro.props.localeAlternates || []).map((alternate) =>
 }));
 const canonicalUz = (localeAlternates.find((a) => a.lang === 'uz') || {}).href || canonical;
 const base = import.meta.env.BASE_URL;
-const TG = "https://t.me/progression_go"; // Telegram kanal/guruh havolasi
+const TG = "https://t.me/tayanch_go"; // Telegram kanal/guruh havolasi
 const languageAlternates = Object.fromEntries(localeAlternates.map((alternate) => [alternate.lang, alternate.href]));
 const navigationHref = (path: string) => base + localizedPath(lang, path);
 ---
@@ -107,7 +107,7 @@ const navigationHref = (path: string) => base + localizedPath(lang, path);
           name: 'Tayanch',
           url: (Astro.site?.href ?? Astro.url.href),
           logo: new URL('favicon.svg', Astro.site ?? Astro.url).href,
-          sameAs: ['https://t.me/progression_go']
+          sameAs: ['https://t.me/tayanch_go']
         },
         {
           '@type': 'WebSite',
@@ -186,7 +186,7 @@ const navigationHref = (path: string) => base + localizedPath(lang, path);
             </a>
             <p data-i18n="footer.about">Amaliy onlayn kurslar: AI, IELTS, Admission va shaxsiy bilim bazasi. O'zbek tilida, bepul kurslar ham bor.</p>
             <div class="footer-social">
-              <a href="https://t.me/progression_go" aria-label="Telegram" data-i18n="footer.social.tg" target="_blank" rel="noopener noreferrer">Telegram</a>
+              <a href="https://t.me/tayanch_go" aria-label="Telegram" data-i18n="footer.social.tg" target="_blank" rel="noopener noreferrer">Telegram</a>
               <a href="https://instagram.com/javohir_kakhramonov" aria-label="Instagram" data-i18n="footer.social.ig" target="_blank" rel="noopener noreferrer">Instagram</a>
               <a href={navigationHref('fikr-bildirish/')} class="footer-feedback-link" data-i18n="footer.feedback">Fikr bildirish →</a>
             </div>

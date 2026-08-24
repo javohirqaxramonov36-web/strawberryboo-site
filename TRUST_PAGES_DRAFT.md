@@ -9,7 +9,7 @@ Maqsad — o‘quvchiga umumiy nazariya emas, o‘z maqsadida qo‘llay oladigan
 
 ## 2. Aloqa
 Savol, to‘lov tafsilotlari yoki kurs bo‘yicha yordam uchun:
-- Telegram: https://t.me/progression_go
+- Telegram: https://t.me/tayanch_go
 - Email: javohirqaxramonov36@gmail.com
 
 ## 3. Maxfiylik siyosati — DRAFT
