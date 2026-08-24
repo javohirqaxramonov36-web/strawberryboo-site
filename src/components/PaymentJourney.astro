@@ -24,6 +24,7 @@ const copy = {
       ['Tasdiq va kirish havolasi', 'To‘lov tekshirilgach, tasdiq hamda kursga kirish havolasi Telegramda yuboriladi.'],
     ],
     note: 'Saytga karta ma’lumotlarini kiritmang. Rekvizitlar va rasmiy to‘lov yo‘nalishi Telegramda tasdiqlanadi.',
+    stepOf: 'Qadam {n}/{total}',
     action: 'Telegramda xabar yozish →',
   },
   ru: {
@@ -38,6 +39,7 @@ const copy = {
       ['Подтверждение и ссылка на доступ', 'После проверки оплаты мы отправим подтверждение и ссылку для доступа к курсу в Telegram.'],
     ],
     note: 'Не вводите данные карты на сайте. Реквизиты и официальный способ оплаты подтверждаются в Telegram.',
+    stepOf: 'Шаг {n}/{total}',
     action: 'Написать в Telegram →',
   },
   en: {
@@ -52,6 +54,7 @@ const copy = {
       ['Confirmation and access link', 'Once payment is checked, we will send confirmation and a course access link in Telegram.'],
     ],
     note: 'Do not enter card details on this site. Payment details and the official payment route are confirmed in Telegram.',
+    stepOf: 'Step {n}/{total}',
     action: 'Message us on Telegram →',
   },
 } as const;
@@ -61,6 +64,7 @@ const courseText = course ? ` (${course})` : '';
 const stepDescription = (text: string) => text.replace('{course}', courseText);
 ---
 
+<!-- TODO: Click/Payme avtomatik checkout integratsiyasi kerak bo'lishi mumkin -->
 <section class:list={['payment-journey', { 'payment-journey--compact': compact }]} aria-label={t.title}>
   <div class="payment-journey__intro">
     <p class="payment-journey__eyebrow">{t.eyebrow}</p>
@@ -71,7 +75,7 @@ const stepDescription = (text: string) => text.replace('{course}', courseText);
   <ol class="payment-journey__steps">
     {t.steps.map(([title, description], index) => <li>
       <span aria-hidden="true">{index + 1}</span>
-      <div><strong>{title}</strong><p>{stepDescription(description)}</p></div>
+      <div><strong>{title}</strong> <span class="payment-journey__step">{t.stepOf.replace('{n}', String(index + 1)).replace('{total}', String(t.steps.length))}</span><p>{stepDescription(description)}</p></div>
     </li>)}
   </ol>
   <p class="payment-journey__note">{t.note}</p>
@@ -79,5 +83,5 @@ const stepDescription = (text: string) => text.replace('{course}', courseText);
 </section>
 
 <style>
-  .payment-journey{max-width:820px;margin:2rem auto;padding:1.5rem;border:1px solid color-mix(in srgb,var(--accent) 42%,var(--border));border-radius:18px;background:linear-gradient(135deg,color-mix(in srgb,var(--accent) 11%,var(--surface)),var(--surface))}.payment-journey__eyebrow{margin:0 0 .35rem;color:var(--accent);font-size:.76rem;font-weight:800;letter-spacing:.12em}.payment-journey h2{margin:0;font-size:1.35rem}.payment-journey__intro>p:not(.payment-journey__eyebrow):not(.payment-journey__methods){margin:.55rem 0 0;color:var(--muted);line-height:1.6}.payment-journey__methods{display:inline-block;margin:1rem 0 0;padding:.45rem .7rem;border-radius:999px;background:var(--accent-soft);color:var(--text);font-size:.88rem;font-weight:700}.payment-journey__steps{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.8rem;list-style:none;margin:1.25rem 0;padding:0}.payment-journey__steps li{display:flex;gap:.7rem;padding:.9rem;border:1px solid var(--border);border-radius:12px;background:var(--surface)}.payment-journey__steps span{display:grid;place-items:center;flex:0 0 1.75rem;height:1.75rem;border-radius:50%;background:var(--accent);color:#fff;font-size:.82rem;font-weight:800}.payment-journey__steps strong{display:block;color:var(--text);line-height:1.35}.payment-journey__steps p{margin:.25rem 0 0;color:var(--muted);font-size:.9rem;line-height:1.5}.payment-journey__note{margin:0;color:var(--muted);font-size:.88rem;line-height:1.55}.payment-journey__action{display:inline-flex;align-items:center;justify-content:center;margin-top:1.15rem;padding:.72rem 1rem;border-radius:10px;background:var(--accent);color:#fff;font-weight:700;text-decoration:none}.payment-journey__action:hover{background:var(--accent-2);color:#fff}.payment-journey--compact{margin:0;padding:0;border:0;background:transparent}.payment-journey--compact .payment-journey__steps{grid-template-columns:1fr;margin:1rem 0}.payment-journey--compact .payment-journey__steps li{padding:.75rem}.payment-journey--compact .payment-journey__intro>p:not(.payment-journey__eyebrow):not(.payment-journey__methods){font-size:.92rem}.payment-journey--compact .payment-journey__note{font-size:.84rem}@media(max-width:620px){.payment-journey{padding:1.2rem}.payment-journey__steps{grid-template-columns:1fr}}
+  .payment-journey{max-width:820px;margin:2rem auto;padding:1.5rem;border:1px solid color-mix(in srgb,var(--accent) 42%,var(--border));border-radius:18px;background:linear-gradient(135deg,color-mix(in srgb,var(--accent) 11%,var(--surface)),var(--surface))}.payment-journey__eyebrow{margin:0 0 .35rem;color:var(--accent);font-size:.76rem;font-weight:800;letter-spacing:.12em}.payment-journey h2{margin:0;font-size:1.35rem}.payment-journey__intro>p:not(.payment-journey__eyebrow):not(.payment-journey__methods){margin:.55rem 0 0;color:var(--muted);line-height:1.6}.payment-journey__methods{display:inline-block;margin:1rem 0 0;padding:.45rem .7rem;border-radius:999px;background:var(--accent-soft);color:var(--text);font-size:.88rem;font-weight:700}.payment-journey__steps{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.8rem;list-style:none;margin:1.25rem 0;padding:0}.payment-journey__steps li{display:flex;gap:.7rem;padding:.9rem;border:1px solid var(--border);border-radius:12px;background:var(--surface)}.payment-journey__steps span{display:grid;place-items:center;flex:0 0 1.75rem;height:1.75rem;border-radius:50%;background:var(--accent);color:#fff;font-size:.82rem;font-weight:800}.payment-journey__steps strong{display:block;color:var(--text);line-height:1.35}.payment-journey__step{display:inline-block;margin:.35rem 0 .1rem;font-size:.72rem;font-weight:800;color:var(--accent);background:var(--accent-soft);padding:.12rem .55rem;border-radius:999px;vertical-align:middle}.payment-journey__steps p{margin:.25rem 0 0;color:var(--muted);font-size:.9rem;line-height:1.5}.payment-journey__note{margin:0;color:var(--muted);font-size:.88rem;line-height:1.55}.payment-journey__action{display:inline-flex;align-items:center;justify-content:center;margin-top:1.15rem;padding:.72rem 1rem;border-radius:10px;background:var(--accent);color:#fff;font-weight:700;text-decoration:none}.payment-journey__action:hover{background:var(--accent-2);color:#fff}.payment-journey--compact{margin:0;padding:0;border:0;background:transparent}.payment-journey--compact .payment-journey__steps{grid-template-columns:1fr;margin:1rem 0}.payment-journey--compact .payment-journey__steps li{padding:.75rem}.payment-journey--compact .payment-journey__intro>p:not(.payment-journey__eyebrow):not(.payment-journey__methods){font-size:.92rem}.payment-journey--compact .payment-journey__note{font-size:.84rem}@media(max-width:620px){.payment-journey{padding:1.2rem}.payment-journey__steps{grid-template-columns:1fr}}
 </style>

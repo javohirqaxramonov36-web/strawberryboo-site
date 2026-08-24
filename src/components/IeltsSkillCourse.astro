@@ -20,7 +20,14 @@ const L = {
     fillEyebrow: 'TO‘LDIRILISHI KERAK', fillTitle: 'Keyingi kontent bosqichi',
     fillNote: 'Bu bo‘limlar hozircha tayyor kontent deb ko‘rsatilmaydi; ular alohida material tasdiqlangandan keyin qo‘shiladi.',
     source: 'Manba:', getCourse: 'Kursni olish ·', som: '→', soum: 'so‘m', foreverAccess: 'umrbod foydalanish',
-    allCourses: '← Barcha IELTS kurslari', fallbackBonus: 'Typing bonusini ochish →', speakingCta: 'AI Speaking modulini ochish →'
+    allCourses: '← Barcha IELTS kurslari', fallbackBonus: 'Typing bonusini ochish →', speakingCta: 'AI Speaking modulini ochish →',
+    ctaStart: 'Kursni boshlash — ',
+    heroVisualAlt: 'IELTS Writing kursi interfeysi skrinshoti (tez kunda)',
+    demoEyebrow: 'DEMO', demoTitle: 'AI baholash qanday ishlashini ko‘ring', demoText: 'AI yozma javobni 4 IELTS mezoni bo‘yicha baholaydi. Haqiqiy skrinshot tez kunda qo‘shiladi.', demoAlt: 'AI Writing baholash demo skrinshoti',
+    proofEyebrow: 'IJTIMOIY ISBOT', proofTitle: 'Talabalar natijalari', proofNote: 'Haqiqiy sharhlar va statistika tasdiqlangandan so‘ng joylashtiriladi.',
+    freemiumEyebrow: 'BEPAUL SINOV', freemiumTitle: 'Birinchi 3 kun bepul', freemiumText: 'Ro‘yxatdan o‘ting va kursning dastlabki modullarini bepul sinab ko‘ring.', freemiumCta: 'Bepul boshlash →',
+    referralEyebrow: 'REFERRAL', referralTitle: 'Do‘stingizni taklif qiling', referralText: 'Do‘stingiz kursdan foydalanganda ikkalangiz ham chegirma olasiz.', referralCta: 'Taklif havolasi →',
+    bundleMiniTitle: '4 ta IELTS kursini birga oling — 20% tejang'
   },
   ru: {
     newSkill: 'НОВЫЙ SKILL-КУРС', progress: 'прогресс', why: 'почему это полезно?',
@@ -36,7 +43,14 @@ const L = {
     fillEyebrow: 'НУЖНО ЗАПОЛНИТЬ', fillTitle: 'Следующий этап контента',
     fillNote: 'Эти разделы пока не показываются как готовый контент; они добавляются после подтверждения отдельных материалов.',
     source: 'Источник:', getCourse: 'Получить курс ·', som: '→', soum: 'сум', foreverAccess: 'постоянный доступ',
-    allCourses: '← Все курсы IELTS', fallbackBonus: 'Открыть бонус Typing →', speakingCta: 'Открыть AI-модуль Speaking →'
+    allCourses: '← Все курсы IELTS', fallbackBonus: 'Открыть бонус Typing →', speakingCta: 'Открыть AI-модуль Speaking →',
+    ctaStart: 'Начать курс — ',
+    heroVisualAlt: 'Скриншот интерфейса курса IELTS Writing (скоро)',
+    demoEyebrow: 'ДЕМО', demoTitle: 'Посмотрите, как работает ИИ-оценка', demoText: 'ИИ оценивает письменный ответ по 4 критериям IELTS. Реальный скриншот появится скоро.', demoAlt: 'Демо-скриншот оценки Writing ИИ',
+    proofEyebrow: 'СОЦИАЛЬНОЕ ДОКАЗАТЕЛЬСТВО', proofTitle: 'Результаты учеников', proofNote: 'Реальные отзывы и статистика будут размещены после подтверждения.',
+    freemiumEyebrow: 'БЕСПЛАТНЫЙ ПРОБНЫЙ', freemiumTitle: 'Первые 3 дня бесплатно', freemiumText: 'Зарегистрируйтесь и бесплатно попробуйте начальные модули курса.', freemiumCta: 'Начать бесплатно →',
+    referralEyebrow: 'РЕФЕРАЛ', referralTitle: 'Пригласите друга', referralText: 'Когда друг воспользуется курсом, вы оба получите скидку.', referralCta: 'Реферальная ссылка →',
+    bundleMiniTitle: 'Возьмите все 4 IELTS-курса вместе — сэкономьте 20%'
   },
   en: {
     newSkill: 'NEW SKILL-COURSE', progress: 'progress', why: 'why is this useful?',
@@ -52,7 +66,14 @@ const L = {
     fillEyebrow: 'TO BE FILLED', fillTitle: 'Next content stage',
     fillNote: 'These sections are not shown as ready content yet; they are added after the relevant materials are confirmed.',
     source: 'Source:', getCourse: 'Get the course ·', som: '→', soum: 'soum', foreverAccess: 'lifetime access',
-    allCourses: '← All IELTS courses', fallbackBonus: 'Open the Typing bonus →', speakingCta: 'Open the AI Speaking module →'
+    allCourses: '← All IELTS courses', fallbackBonus: 'Open the Typing bonus →', speakingCta: 'Open the AI Speaking module →',
+    ctaStart: 'Start the course — ',
+    heroVisualAlt: 'Screenshot of the IELTS Writing course interface (coming soon)',
+    demoEyebrow: 'DEMO', demoTitle: 'See how the AI assessment works', demoText: 'AI scores a written answer against the 4 IELTS criteria. A real screenshot will be added soon.', demoAlt: 'Demo screenshot of the AI Writing assessment',
+    proofEyebrow: 'SOCIAL PROOF', proofTitle: 'Student results', proofNote: 'Real reviews and statistics will be placed once verified.',
+    freemiumEyebrow: 'FREE TRIAL', freemiumTitle: 'First 3 days free', freemiumText: 'Sign up and try the first modules of the course for free.', freemiumCta: 'Start free →',
+    referralEyebrow: 'REFERRAL', referralTitle: 'Invite a friend', referralText: 'When your friend uses the course, you both get a discount.', referralCta: 'Referral link →',
+    bundleMiniTitle: 'Get all 4 IELTS courses together — save 20%'
   }
 };
 const t = L[lang] || L.uz;
@@ -80,22 +101,102 @@ const faqCopy = {
 }[lang] || undefined;
 ---
 <article class="ielts-skill" style={`--skill-accent:${accent}`}>
+  <!-- AIDA: 1) ATTENTION -->
   <header class="course-hero"><p class="eyebrow">{eyebrow} · {t.newSkill}</p><h1>{title}</h1><div class="price"><span class="now">{price}</span><span class="uzs">≈ {priceUzs} · {t.foreverAccess}</span></div><p class="lead">{description}</p></header>
+
+  <!-- Point 7: hero visual placeholder -->
+  <div class="hero-visual" role="img" aria-label={t.heroVisualAlt}>
+    <div class="hero-visual__ph">📷</div>
+    <p class="hero-visual__cap">{t.heroVisualAlt}</p>
+  </div>
+
+  <!-- Point 15: bundle reminder near hero -->
+  <a class="bundle-mini" href={bundleHref}>{t.bundleMiniTitle} →</a>
+
   <CourseProgress courseId={skill} title={`${title} ${t.progress}`} selector=".ielts-skill" itemSelector=".content-grid > article" labelSelector="h3" mode={skill === 'ielts-speaking' ? 'speaking' : 'checklist'} />
+
+  <!-- AIDA: 2) INTEREST -->
   {whyUseful && <aside class="why-useful"><strong>{title} {t.why}</strong><p>{whyUseful}</p></aside>}
+  <section class="avail"><p class="eyebrow">{t.availableEyebrow}</p><h2>{t.availableTitle}</h2><div class="content-grid">{available.map((item) => <article><h3>{item.title}</h3><p>{item.text}</p></article>)}</div>{practiceTarget && <a class="practice-link" href={localHref(practiceTarget)}>{practiceLabel} →</a>}</section>
+
+  <!-- Point 3: demo / screenshot section -->
+  <section class="demo-section">
+    <p class="eyebrow">{t.demoEyebrow}</p><h2>{t.demoTitle}</h2>
+    <!-- TODO: real AI-assessment screenshot yoki qisqa video qo'shish kerak -->
+    <div class="demo-section__media" role="img" aria-label={t.demoAlt}>🖼️</div>
+    <p class="demo-section__cap">{t.demoAlt}</p>
+    <p>{t.demoText}</p>
+  </section>
+
+  <!-- AIDA: 3) DESIRE -->
+  <!-- Point 2: social proof (placeholder until real data) -->
+  <!-- TODO: real testimonials/stats kerak -->
+  <section class="proof-section">
+    <p class="eyebrow">{t.proofEyebrow}</p><h2>{t.proofTitle}</h2>
+    <div class="proof-section__grid">
+      <div class="proof-card"><span class="proof-card__num">—</span><span class="proof-card__lbl">talaba</span></div>
+      <div class="proof-card"><span class="proof-card__num">—</span><span class="proof-card__lbl">Band +1.5</span></div>
+      <div class="proof-card"><span class="proof-card__num">—</span><span class="proof-card__lbl">kurs yakunlangan</span></div>
+    </div>
+    <p class="proof-section__note">{t.proofNote}</p>
+  </section>
+
+  <!-- Point 12: freemium trial banner -->
+  <section class="freemium">
+    <div><p class="eyebrow">{t.freemiumEyebrow}</p><h2>{t.freemiumTitle}</h2><p>{t.freemiumText}</p></div>
+    <a class="start-btn" href={localHref(`bog-lanish?course=${skill}&price=${priceUzsNum}&trial=1`)}>{t.freemiumCta}</a>
+  </section>
+
+  <!-- Point 14: referral card -->
+  <!-- TODO: real referral dasturi (kod/chegirma) kerak -->
+  <section class="referral">
+    <div><p class="eyebrow">{t.referralEyebrow}</p><h2>{t.referralTitle}</h2><p>{t.referralText}</p></div>
+    <a class="start-btn outline" href="https://t.me/progression_go" target="_blank" rel="noopener noreferrer">{t.referralCta}</a>
+  </section>
+
+  <!-- Point 13: haqiqiy chegirma mavjud bo'lsa, muddatli banner qo'shish (soxta countdown QO'YMA) -->
   <section class="bundle-callout"><div><p class="eyebrow">{t.bundleEyebrow}</p><h2>{t.bundleTitle}</h2><p>{t.bundleDetails} <s>468 750 {t.soum}</s>. Bundle: <strong>375 000 {t.soum}</strong>. {t.bundleText}</p></div><a class="start-btn" href={bundleHref}>Bundle: 375 000 {t.soum} →</a></section>
   {mockBonus && <aside class="mock-bonus"><strong>{t.mockBonus}</strong> {t.mockBonusText}</aside>}
-  <section><p class="eyebrow">{t.availableEyebrow}</p><h2>{t.availableTitle}</h2><div class="content-grid">{available.map((item) => <article><h3>{item.title}</h3><p>{item.text}</p></article>)}</div>{practiceTarget && <a class="practice-link" href={localHref(practiceTarget)}>{practiceLabel} →</a>}</section>
-  {contentTodo && <section class="content-todo"><p class="eyebrow">{t.obsidianEyebrow}</p><h2>{t.obsidianTitle}</h2><p>{contentTodo}</p></section>}
   {bonusHref && <section class="bonus-callout"><div><p class="eyebrow">{t.bonusEyebrow}</p><h2>{t.bonusTitle}</h2><p>{t.bonusText}</p></div><a class="start-btn" href={localHref(bonusHref)}>{bonusLabel || t.fallbackBonus}</a></section>}
   {speakingApp && <section class="app-callout"><p class="eyebrow">{t.appEyebrow}</p><h2>{t.appTitle}</h2><p>{t.appText}</p><a class="start-btn" href={localHref('kurslar/ielts-speaking/#speaking-practice')}>{t.speakingCta}</a></section>}
-  <section class="fill-needed"><p class="eyebrow">{t.fillEyebrow}</p><h2>{t.fillTitle}</h2><ul>{fillNeeded.map((item) => <li>{item}</li>)}</ul><p>{t.fillNote}</p></section>
+
+  <!-- AIDA: 4) ACTION -->
   <CourseFaq facts={{ title, lang, overview: description, topics: available.map((item) => item.title), whoFor: faqCopy.whoFor, whoNotFor: faqCopy.notFor, price: coursePrice, certificate: false, accessPayment: faqCopy.access }} />
   <Testimonials courseSlug={skill} lang={lang} />
   <p class="source-note">{t.source} {sourceNote}</p>
-  <div class="actions"><a class="start-btn" href={localHref(`bog-lanish?course=${skill}&price=${priceUzsNum}`)}>{t.getCourse} {priceUzs} {t.som}</a><a class="course-nav-link" href={allCoursesHref}>{t.allCourses}</a></div>
+  <div class="actions">
+    <!-- Point 4: unified CTA text pattern -->
+    <a class="start-btn cta-primary" href={localHref(`bog-lanish?course=${skill}&price=${priceUzsNum}`)}>{t.ctaStart}{priceUzs}</a>
+    <a class="course-nav-link" href={allCoursesHref}>{t.allCourses}</a>
+  </div>
   <PaymentInstructions course={title} price={coursePrice} />
 </article>
+
+<style>
+  /* New sections for the AIDA restructure (points 1–15). */
+  .hero-visual{margin:1.5rem 0;border:1px dashed color-mix(in srgb,var(--skill-accent) 50%,var(--border));border-radius:16px;padding:1.5rem;text-align:center;background:color-mix(in srgb,var(--skill-accent) 6%,var(--surface))}
+  .hero-visual__ph{font-size:3rem}
+  .hero-visual__cap{margin:.6rem 0 0;color:var(--muted);font-size:.85rem}
+  .bundle-mini{display:block;margin:1rem 0;padding:.8rem 1rem;border:1px solid color-mix(in srgb,var(--skill-accent) 45%,var(--border));border-radius:12px;background:color-mix(in srgb,var(--skill-accent) 10%,var(--surface));color:var(--text);font-weight:700;text-decoration:none}
+  .bundle-mini:hover{color:var(--skill-accent)}
+  .demo-section{margin:1.5rem 0}
+  .demo-section__media{height:220px;display:flex;align-items:center;justify-content:center;font-size:3rem;border:1px dashed var(--border);border-radius:16px;background:var(--surface);margin:.8rem 0}
+  .demo-section__cap{color:var(--muted);font-size:.82rem;margin:0 0 .5rem}
+  .proof-section{margin:1.5rem 0}
+  .proof-section__grid{display:grid;grid-template-columns:repeat(3,1fr);gap:.85rem;margin:1rem 0}
+  .proof-card{padding:1.1rem;border:1px solid var(--border);border-radius:14px;background:var(--surface);text-align:center}
+  .proof-card__num{display:block;font-size:1.6rem;font-weight:800;color:var(--skill-accent)}
+  .proof-card__lbl{display:block;color:var(--muted);font-size:.82rem}
+  .proof-section__note{color:var(--muted);font-size:.85rem}
+  .freemium{margin:1.5rem 0;padding:1.3rem;display:flex;justify-content:space-between;align-items:center;gap:1.2rem;border:1px solid #22c55e;border-radius:16px;background:linear-gradient(135deg,color-mix(in srgb,#22c55e 12%,var(--surface)),var(--surface))}
+  .freemium h2{margin:.15rem 0 .45rem}.freemium p{color:var(--muted);line-height:1.55}
+  .referral{margin:1.5rem 0;padding:1.3rem;display:flex;justify-content:space-between;align-items:center;gap:1.2rem;border:1px solid color-mix(in srgb,var(--skill-accent) 48%,var(--border));border-radius:16px;background:linear-gradient(135deg,color-mix(in srgb,var(--skill-accent) 13%,var(--surface)),var(--surface))}
+  .referral h2{margin:.15rem 0 .45rem}.referral p{color:var(--muted);line-height:1.55}
+  .start-btn.outline{background:transparent;color:var(--accent);border:1px solid var(--accent)}
+  .start-btn.outline:hover{background:var(--accent-soft);color:var(--accent)}
+  .start-btn.cta-primary{font-size:1.05rem;padding:.95rem 1.7rem}
+  @media(max-width:640px){.freemium,.referral,.bundle-callout,.app-callout,.bonus-callout{flex-direction:column;align-items:stretch}.proof-section__grid{grid-template-columns:1fr}.demo-section__media{height:160px}}
+</style>
 <style>
 .ielts-skill{max-width:980px;margin:auto}.eyebrow{color:var(--skill-accent);font-size:.78rem;font-weight:800;letter-spacing:.1em;margin:0 0 .5rem}.ielts-skill .lead{max-width:760px;color:var(--muted);line-height:1.65}.why-useful,.content-todo,.bonus-callout{margin:1.25rem 0;padding:1.1rem;border-radius:14px}.why-useful{border-left:4px solid var(--skill-accent);background:color-mix(in srgb,var(--skill-accent) 10%,var(--surface))}.why-useful strong{display:block;margin-bottom:.3rem}.why-useful p,.content-todo p,.bonus-callout p{margin:.25rem 0;color:var(--muted);line-height:1.6}.content-todo{border:1px dashed color-mix(in srgb,#fbbf24 65%,var(--border));background:color-mix(in srgb,#fbbf24 5%,var(--surface))}.content-todo h2,.bonus-callout h2{margin:.2rem 0 .5rem}.bonus-callout{display:flex;justify-content:space-between;align-items:center;gap:1.2rem;border:1px solid color-mix(in srgb,var(--skill-accent) 48%,var(--border));background:linear-gradient(135deg,color-mix(in srgb,var(--skill-accent) 13%,var(--surface)),var(--surface))}.bundle-callout,.app-callout{margin:1.5rem 0;padding:1.3rem;display:flex;justify-content:space-between;align-items:center;gap:1.2rem;border:1px solid color-mix(in srgb,var(--skill-accent) 48%,var(--border));border-radius:16px;background:linear-gradient(135deg,color-mix(in srgb,var(--skill-accent) 13%,var(--surface)),var(--surface))}.bundle-callout h2,.app-callout h2{margin:.15rem 0 .45rem}.bundle-callout p,.app-callout p,.fill-needed p{color:var(--muted);line-height:1.55}.mock-bonus{margin:1rem 0;padding:1rem;border-left:4px solid #fbbf24;background:color-mix(in srgb,#fbbf24 10%,var(--surface));border-radius:0 10px 10px 0}.content-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:.85rem;margin:1rem 0}.content-grid article{padding:1rem;border:1px solid var(--border);border-radius:13px;background:var(--surface)}.content-grid h3{margin:0 0 .45rem;font-size:1rem}.content-grid p{margin:0;color:var(--muted);line-height:1.55;font-size:.92rem}.practice-link{display:inline-block;color:var(--skill-accent);font-weight:700;margin:.25rem 0;text-decoration:none}.fill-needed{margin:2rem 0;padding:1.2rem;border:1px dashed color-mix(in srgb,#fbbf24 65%,var(--border));border-radius:14px;background:color-mix(in srgb,#fbbf24 5%,var(--surface))}.fill-needed h2{margin:.2rem 0 .6rem}.fill-needed li{margin:.45rem 0;color:var(--muted)}.source-note{font-size:.86rem;color:var(--muted);border-left:3px solid var(--skill-accent);padding:.45rem .75rem;background:color-mix(in srgb,var(--skill-accent) 6%,transparent)}.actions{display:flex;flex-wrap:wrap;align-items:center;gap:1rem;margin:1.5rem 0}.course-nav-link{color:var(--muted)}@media(max-width:700px){.why-useful,.content-todo,.bonus-callout{margin:1.25rem 0;padding:1.1rem;border-radius:14px}.why-useful{border-left:4px solid var(--skill-accent);background:color-mix(in srgb,var(--skill-accent) 10%,var(--surface))}.why-useful strong{display:block;margin-bottom:.3rem}.why-useful p,.content-todo p,.bonus-callout p{margin:.25rem 0;color:var(--muted);line-height:1.6}.content-todo{border:1px dashed color-mix(in srgb,#fbbf24 65%,var(--border));background:color-mix(in srgb,#fbbf24 5%,var(--surface))}.content-todo h2,.bonus-callout h2{margin:.2rem 0 .5rem}.bonus-callout{display:flex;justify-content:space-between;align-items:center;gap:1.2rem;border:1px solid color-mix(in srgb,var(--skill-accent) 48%,var(--border));background:linear-gradient(135deg,color-mix(in srgb,var(--skill-accent) 13%,var(--surface)),var(--surface))}.bundle-callout,.app-callout{align-items:stretch;flex-direction:column}.content-grid{grid-template-columns:1fr}.bundle-callout .start-btn,.app-callout .start-btn,.bonus-callout .start-btn{text-align:center}}
 </style>
