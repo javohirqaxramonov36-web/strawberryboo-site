@@ -23,6 +23,16 @@ const navigationHref = (path: string) => base + localizedPath(lang, path);
 <html lang={lang}>
   <head>
     <meta charset="utf-8" />
+    <!-- Security: GitHub Pages cannot send real HTTP headers, so this meta CSP is
+         intentionally limited to directives that cannot break the site's many
+         inline scripts, the copy buttons, or the Tech Lab API calls.
+         - frame-ancestors 'none' = anti-clickjack (replaces X-Frame-Options)
+         - base-uri 'self' blocks <base> tag injection
+         - object-src 'none' blocks plugins
+         - upgrade-insecure-requests hardens mixed content
+         A strict script-src restriction is deferred: it would require moving all
+         inline scripts to external files (a larger refactor). -->
+    <meta http-equiv="Content-Security-Policy" content="base-uri 'self'; object-src 'none'; frame-ancestors 'none'; upgrade-insecure-requests" />
     <script is:inline>
       (function () {
         try {
