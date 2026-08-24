@@ -1,8 +1,9 @@
 ---
 const days = (await import('../data/ielts-writing-days.json')).default;
 const totalDays = days.length;
+const { lang = 'uz' } = Astro.props;
 ---
-<section class="writing-practice" data-writing-app data-total={totalDays}>
+<section class="writing-practice" data-writing-app data-total={totalDays} data-lang={lang}>
   <div class="wp-head">
     <h2>✍️ IELTS Writing — AI Feedback</h2>
     <p>30 kun, har kuni <b>Task 1</b> va <b>Task 2</b>. AI bepul OpenRouter kaliti bilan baholaydi — ro'yxatdan o'tmasdan ham ishlaydi. Kiribsangiz, progress va IELTS streak saqlanadi.</p>
@@ -23,6 +24,8 @@ const totalDays = days.length;
         <h3 data-day-title></h3>
         <span data-day-type class="wp-badge"></span>
       </div>
+
+      <div class="wp-visual" data-visual></div>
 
       <div class="wp-tabs">
         <button type="button" data-tab="task1">Task 1</button>
@@ -110,6 +113,19 @@ const totalDays = days.length;
   .wp-history .hist-list { list-style: none; padding: 0; margin: .6rem 0 0; display: grid; gap: .4rem; }
   .wp-history .hist-list li { background: var(--surface, #181a24); border: 1px solid var(--border, #2a2c3a); border-radius: 10px; padding: .5rem .7rem; font-size: .85rem; color: var(--text, #ececf3); }
   .wp-history .hist-empty { color: var(--muted, #9a9ab2); margin: .5rem 0 0; }
+  .wp-visual{margin:.7rem 0 1rem;padding:.9rem;border:1px solid var(--border,#e5e7eb);border-radius:12px;background:color-mix(in srgb,var(--surface,#fff) 96%,var(--accent,#2563eb) 4%);text-align:center}
+  .wp-visual__cap{margin:.5rem 0 0;font-size:.8rem;color:var(--muted,#64748b)}
+  .wp-visual .wv-box{fill:var(--surface,#fff);stroke:var(--border,#e5e7eb);stroke-width:1.5}
+  .wp-visual .wv-axis{stroke:var(--muted,#94a3b8);stroke-width:1.5}
+  .wp-visual .wv-text{fill:var(--muted,#475569);font-size:12px;font-weight:600;font-family:inherit}
+  .wp-visual .wv-arrow{fill:var(--muted,#475569);font-size:16px;font-weight:700}
+  .wp-visual .wv-a{fill:var(--accent,#2563eb)}
+  .wp-visual .wv-b{fill:#f59e0b}
+  .wp-visual .wv-c{fill:#10b981}
+  .wp-visual .wv-line{fill:none;stroke-width:2.5;stroke-linejoin:round;stroke-linecap:round}
+  .wp-visual .wv-line.wv-a{stroke:var(--accent,#2563eb)}
+  .wp-visual .wv-line.wv-b{stroke:#f59e0b}
+  .wp-visual .wv-line.wv-c{stroke:#10b981}
   @media (max-width: 720px) { .wp-grid { grid-template-columns: 1fr; } .wp-days { grid-template-columns: repeat(6, 1fr); } .wp-tools { position: sticky; top: 0; z-index: 5; background: var(--surface, #fff); padding: .5rem 0; } }
 </style>
 
@@ -117,14 +133,17 @@ const totalDays = days.length;
   import daysData from '../data/ielts-writing-days.json';
   import { assessWriting, renderAssessmentHTML, hasApiKey, showSettingsDialog, escapeHtml } from '../lib/ielts-assessor.js';
   import { supabase } from '../lib/supabase';
+  import { buildWritingVisual } from '../lib/writing-visuals.js';
 
   const LS = 'tayanch-writing-progress-v2';
   const TOTAL = daysData.length;
   const app = document.querySelector('[data-writing-app]');
+  const LANG = app.dataset.lang || 'uz';
   const elDays = app.querySelector('[data-days]');
   const elTitle = app.querySelector('[data-day-title]');
   const elType = app.querySelector('[data-day-type]');
   const elPrompt = app.querySelector('[data-prompt]');
+  const elVisual = app.querySelector('[data-visual]');
   const elAnswer = app.querySelector('[data-answer]');
   const elResult = app.querySelector('[data-result]');
   const elFill = app.querySelector('[data-progress-fill]');
@@ -198,6 +217,7 @@ const totalDays = days.length;
   function renderPrompt() {
     const meta = dayMeta(currentDay);
     const p = load()[currentDay] || {};
+    elVisual.innerHTML = buildWritingVisual(meta, LANG);
     const r = meta.type === 'task1'
       ? (currentTab === 'task1' ? p.task1_text || '' : p.task2_text || '')
       : (currentTab === 'task2' ? p.task2_text || '' : p.task1_text || '');
