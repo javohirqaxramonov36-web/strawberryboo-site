@@ -2,6 +2,7 @@
 import Base from '../../../layouts/Base.astro';
 import GeneralEnglishCourse from '../../../components/GeneralEnglishCourse.astro';
 import { getGeneralEnglishCourse } from '../../../data/general-english-courses';
+import { buildGrammarTimeline } from '../../../lib/course-visuals';
 
 const lang = 'en' as const;
 const course = getGeneralEnglishCourse('general-english-beginner', lang);
@@ -14,8 +15,18 @@ const alternates = [
   { lang: 'ru', href: base + 'ru/kurslar/general-english-beginner/' },
   { lang: 'en', href: base + 'en/kurslar/general-english-beginner/' },
 ];
+const grammarTimeline = buildGrammarTimeline(lang);
 ---
 
 <Base title={course.title + ' | Tayanch'} description={course.description} lang={lang} localeAlternates={alternates}>
   <GeneralEnglishCourse {course} {previousCourse} {nextCourse} {lang} />
+  <section class="grammar-preview" aria-label="Grammar: tenses">
+    <p class="eyebrow">CORE PRINCIPLE</p>
+    <h2>Grammar: tenses</h2>
+    <div class="grammar-svg" set:html={grammarTimeline}></div>
+  </section>
 </Base>
+
+<style>
+  .grammar-preview{max-width:900px;margin:1.5rem auto;padding:clamp(1.2rem,3vw,1.8rem);border:1px solid var(--border);border-radius:18px;background:var(--surface)}.grammar-preview .eyebrow{color:#c4b5fd;font-size:.78rem;font-weight:800;letter-spacing:.1em;margin:0 0 .4rem}.grammar-preview h2{margin:.1rem 0 1rem}.grammar-svg{border:1px solid var(--border);border-radius:14px;padding:1.2rem;background:linear-gradient(135deg,rgba(167,139,250,.1),var(--surface))}
+</style>

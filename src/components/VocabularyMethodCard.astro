@@ -1,10 +1,37 @@
 ---
-const { number, title, tagline, description, benefits, limitations, imageSrc, imageAlt, placeholderFile } = Astro.props;
+const { number, title, tagline, description, benefits, limitations, imageSrc, imageAlt, placeholderFile, visual } = Astro.props;
 ---
 <article class="method-card">
   <div class="method-visual">
     {imageSrc ? (
       <img src={imageSrc} alt={imageAlt || title} loading="lazy" decoding="async" />
+    ) : visual === 'flashcard' ? (
+      <svg viewBox="0 0 320 240" width="100%" role="img" aria-label="Flashcard misoli" class="vm-svg">
+        <rect class="vm-card vm-back" x="55" y="15" width="190" height="110" rx="12" />
+        <text class="vm-lbl" x="150" y="42" text-anchor="middle">Tarjima</text>
+        <text class="vm-word" x="150" y="80" text-anchor="middle">hamma joyda uchraydigan</text>
+        <rect class="vm-card vm-front" x="35" y="55" width="190" height="110" rx="12" />
+        <text class="vm-lbl" x="130" y="82" text-anchor="middle">So‘z</text>
+        <text class="vm-word" x="130" y="120" text-anchor="middle">ubiquitous</text>
+        <text class="vm-hint" x="160" y="210" text-anchor="middle">oldingi/yangi yuzni aylantirib ko‘ring</text>
+      </svg>
+    ) : visual === 'knowledge-map' ? (
+      <svg viewBox="0 0 320 200" width="100%" role="img" aria-label="Obsidian bilim xaritasi" class="vm-svg">
+        <line class="vm-link" x1="160" y1="100" x2="70" y2="50" />
+        <line class="vm-link" x1="160" y1="100" x2="250" y2="50" />
+        <line class="vm-link" x1="160" y1="100" x2="70" y2="150" />
+        <line class="vm-link" x1="160" y1="100" x2="250" y2="150" />
+        <circle class="vm-node vm-center" cx="160" cy="100" r="34" />
+        <text class="vm-node-txt vm-c" x="160" y="104" text-anchor="middle">so‘z</text>
+        <circle class="vm-node" cx="70" cy="50" r="26" />
+        <text class="vm-node-txt" x="70" y="54" text-anchor="middle">ma‘no</text>
+        <circle class="vm-node" cx="250" cy="50" r="26" />
+        <text class="vm-node-txt" x="250" y="54" text-anchor="middle">misol</text>
+        <circle class="vm-node" cx="70" cy="150" r="26" />
+        <text class="vm-node-txt" x="70" y="154" text-anchor="middle">sinonim</text>
+        <circle class="vm-node" cx="250" cy="150" r="26" />
+        <text class="vm-node-txt" x="250" y="154" text-anchor="middle">link</text>
+      </svg>
     ) : (
       <div class="image-placeholder" role="img" aria-label={`${title} rasmi tez orada qo‘shiladi`}>
         <span>RASM JOYI</span>
@@ -26,5 +53,5 @@ const { number, title, tagline, description, benefits, limitations, imageSrc, im
 </article>
 
 <style>
-  .method-card{display:grid;grid-template-columns:minmax(260px,.86fr) minmax(0,1.14fr);gap:clamp(1rem,3vw,2rem);padding:clamp(1rem,3vw,1.5rem);border:1px solid var(--border);border-radius:18px;background:linear-gradient(135deg,rgba(167,139,250,.07),var(--surface))}.method-card+.method-card{margin-top:1rem}.method-visual{min-height:255px;border-radius:13px;overflow:hidden;border:1px solid var(--border);background:#171923}.method-visual img{width:100%;height:100%;min-height:255px;object-fit:cover;display:block}.image-placeholder{height:100%;min-height:255px;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;gap:.55rem;padding:1rem;background:linear-gradient(135deg,rgba(148,163,184,.16),rgba(30,41,59,.82));color:var(--muted)}.image-placeholder span{font-size:.72rem;font-weight:800;letter-spacing:.13em;color:#c4b5fd}.image-placeholder strong{color:var(--text);font-size:1.06rem}.image-placeholder small{font-family:monospace;font-size:.75rem;overflow-wrap:anywhere}.method-number{margin:0;color:#c4b5fd;font-size:.76rem;font-weight:800;letter-spacing:.12em}.method-copy h2{margin:.35rem 0}.tagline{font-weight:700;margin:.2rem 0 .7rem}.description{color:var(--muted);line-height:1.65}.pros-cons{display:grid;grid-template-columns:1fr 1fr;gap:.7rem;margin-top:1rem}.pros-cons section{padding:.8rem;border-radius:11px;background:rgba(15,23,42,.45)}.pros-cons h3{font-size:.9rem;margin:0 0 .35rem}.pros-cons ul{margin:0;padding-left:1.1rem;color:var(--muted);font-size:.88rem;line-height:1.55}.pros-cons li+li{margin-top:.2rem}@media(max-width:700px){.method-card{grid-template-columns:1fr}.method-visual,.method-visual img,.image-placeholder{min-height:205px}}@media(max-width:420px){.pros-cons{grid-template-columns:1fr}}
+  .method-card{display:grid;grid-template-columns:minmax(260px,.86fr) minmax(0,1.14fr);gap:clamp(1rem,3vw,2rem);padding:clamp(1rem,3vw,1.5rem);border:1px solid var(--border);border-radius:18px;background:linear-gradient(135deg,rgba(167,139,250,.07),var(--surface))}.method-card+.method-card{margin-top:1rem}.method-visual{min-height:255px;border-radius:13px;overflow:hidden;border:1px solid var(--border);background:#171923}.method-visual img{width:100%;height:100%;min-height:255px;object-fit:cover;display:block}.image-placeholder{height:100%;min-height:255px;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;gap:.55rem;padding:1rem;background:linear-gradient(135deg,rgba(148,163,184,.16),rgba(30,41,59,.82));color:var(--muted)}.image-placeholder span{font-size:.72rem;font-weight:800;letter-spacing:.13em;color:#c4b5fd}.image-placeholder strong{color:var(--text);font-size:1.06rem}.image-placeholder small{font-family:monospace;font-size:.75rem;overflow-wrap:anywhere}.method-visual:has(.vm-svg){display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,rgba(167,139,250,.12),var(--surface))}.vm-svg{width:100%;height:auto;display:block;padding:1rem}.vm-card{fill:var(--surface);stroke:var(--accent);stroke-width:2}.vm-back{fill:color-mix(in srgb,var(--accent) 10%,var(--surface))}.vm-front{fill:var(--surface)}.vm-lbl{fill:var(--muted);font:700 12px system-ui}.vm-word{fill:var(--text);font:800 16px system-ui}.vm-hint{fill:var(--muted);font:600 11px system-ui}.vm-link{stroke:var(--accent);stroke-width:2;opacity:.5}.vm-node{fill:color-mix(in srgb,var(--accent) 14%,var(--surface));stroke:var(--accent);stroke-width:2}.vm-center{fill:var(--accent)}.vm-node-txt{fill:var(--text);font:700 12px system-ui}.vm-c{fill:#fff}.method-number{margin:0;color:#c4b5fd;font-size:.76rem;font-weight:800;letter-spacing:.12em}.method-copy h2{margin:.35rem 0}.tagline{font-weight:700;margin:.2rem 0 .7rem}.description{color:var(--muted);line-height:1.65}.pros-cons{display:grid;grid-template-columns:1fr 1fr;gap:.7rem;margin-top:1rem}.pros-cons section{padding:.8rem;border-radius:11px;background:rgba(15,23,42,.45)}.pros-cons h3{font-size:.9rem;margin:0 0 .35rem}.pros-cons ul{margin:0;padding-left:1.1rem;color:var(--muted);font-size:.88rem;line-height:1.55}.pros-cons li+li{margin-top:.2rem}@media(max-width:700px){.method-card{grid-template-columns:1fr}.method-visual,.method-visual img,.image-placeholder{min-height:205px}}@media(max-width:420px){.pros-cons{grid-template-columns:1fr}}
 </style>
