@@ -1,0 +1,7 @@
+name = "ielts-grader"
+main = "src/index.js"
+compatibility_date = "2025-04-01"
+
+# GEMINI_API_KEY secret quyidagicha o‘rnating (pastga qarang):
+#   wrangler secret put GEMINI_API_KEY
+# Boshqa ochiq kalitlar shart emas.

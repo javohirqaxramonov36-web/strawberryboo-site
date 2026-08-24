@@ -1,0 +1,142 @@
+---
+import Base from '../../layouts/Base.astro';
+const title = 'IELTS Writing — AI grading | Tayanch';
+const description = 'Grade your essay 0–9 with Google Gemini using official IELTS criteria: Task Achievement, Coherence, Lexical and Grammar.';
+const base = import.meta.env.BASE_URL;
+const WORKER_URL = 'https://ielts-grader.tayanch.workers.dev';
+---
+<Base title={title} description={description}>
+  <section class="grader">
+    <p class="eyebrow">IELTS WRITING · AI GRADING</p>
+    <h1>Grade your essay in 30 seconds</h1>
+    <p class="lead">Gemini-powered grading against the official IELTS criteria (Task Achievement, Coherence &amp; Cohesion, Lexical Resource, Grammatical Range &amp; Accuracy) — 0 to 9. This is practice, not an official exam.</p>
+
+    <form id="graderForm" class="grader-form" novalidate>
+      <div class="field">
+        <label for="task">Which part?</label>
+        <select id="task" name="task">
+          <option value="1">Writing Task 1 (graph/letter based)</option>
+          <option value="2">Writing Task 2 (essay/opinion)</option>
+        </select>
+      </div>
+      <div class="field">
+        <label for="topic">Topic / task <span class="opt">(optional)</span></label>
+        <input id="topic" name="topic" type="text" placeholder="e.g. The chart shows the population of cities A and B from 2000 to 2020." />
+      </div>
+      <div class="field">
+        <label for="essay">Your essay <span class="req">*</span></label>
+        <textarea id="essay" name="essay" rows="12" placeholder="Write your essay here… (at least a few sentences)"></textarea>
+        <small id="count" class="count">0 characters</small>
+      </div>
+      <button type="submit" id="submitBtn" class="grade-btn">Grade →</button>
+      <p id="error" class="error" role="alert" hidden></p>
+    </form>
+
+    <div id="result" class="result" hidden>
+      <h2>Result</h2>
+      <div class="overall"><span id="overall">—</span><small>overall band</small></div>
+      <ul class="scores">
+        <li><span>Task Achievement</span><i id="s-ta"></i><div class="bar"><b id="b-ta"></b></div></li>
+        <li><span>Coherence &amp; Cohesion</span><i id="s-cc"></i><div class="bar"><b id="b-cc"></b></div></li>
+        <li><span>Lexical Resource</span><i id="s-lr"></i><div class="bar"><b id="b-lr"></b></div></li>
+        <li><span>Grammatical Range</span><i id="s-gr"></i><div class="bar"><b id="b-gr"></b></div></li>
+      </ul>
+      <div class="feedback"><h3>Feedback</h3><p id="feedback"></p></div>
+      <p class="saved-note">Saved to your profile on this browser (<a href={base + 'en/profile/'}>profile</a>).</p>
+    </div>
+
+    <p class="notice">AI grading is an estimate. For an official IELTS band, an examiner is used. No personal data is sent to the server.</p>
+  </section>
+
+  <style>
+    .grader{max-width:760px;margin:auto;padding:3.2rem min(7vw,40px) 4rem}
+    .eyebrow{font-size:.76rem;font-weight:800;letter-spacing:.12em;color:var(--accent);margin:0 0 .7rem}
+    .grader h1{font:800 clamp(1.9rem,4vw,2.9rem)/1.05 var(--font-display);letter-spacing:-.04em;margin:0}
+    .lead{color:var(--muted);line-height:1.7;margin:1rem 0 1.8rem}
+    .grader-form{display:grid;gap:1.1rem}
+    .field{display:grid;gap:.4rem}
+    .field label{font-weight:700;font-size:.92rem}
+    .opt{color:var(--muted);font-weight:500}
+    .req{color:#ef4444}
+    .field select,.field input,.field textarea{border:1px solid var(--border);border-radius:12px;background:var(--bg);color:var(--text);padding:.8rem .9rem;font:inherit}
+    .field textarea{resize:vertical}
+    .count{color:var(--muted);font-size:.8rem}
+    .grade-btn{border:0;font:700 1rem var(--font-display);border-radius:12px;padding:13px 18px;color:#fff;background:linear-gradient(135deg,var(--btn-bg),#6f62e8);cursor:pointer;justify-self:start;transition:transform .16s,opacity .16s}
+    .grade-btn:hover{transform:translateY(-2px)}
+    .grade-btn:disabled{opacity:.6;cursor:progress;transform:none}
+    .error{color:#fca5a5;background:rgba(239,68,68,.12);border:1px solid rgba(239,68,68,.4);border-radius:12px;padding:.8rem .9rem;margin:0}
+    .result{margin-top:2rem;border:1px solid var(--border);border-radius:18px;padding:1.5rem;background:var(--surface)}
+    .result h2{margin:.1rem 0 1rem}
+    .overall{display:flex;align-items:baseline;gap:.6rem;margin-bottom:1.2rem}
+    .overall span{font:800 3rem var(--font-display);color:var(--accent)}
+    .overall small{color:var(--muted)}
+    .scores{list-style:none;margin:0;padding:0;display:grid;gap:.9rem}
+    .scores li{display:grid;grid-template-columns:1fr auto;gap:.3rem .8rem;align-items:center}
+    .scores li span{font-weight:600;font-size:.92rem}
+    .scores li i{font-style:normal;font-weight:800;color:var(--accent)}
+    .bar{grid-column:1/-1;height:9px;border-radius:999px;background:var(--border);overflow:hidden}
+    .bar b{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--btn-bg),#6f62e8);transition:width .5s}
+    .feedback{margin-top:1.3rem;border-top:1px solid var(--border);padding-top:1rem}
+    .feedback h3{margin:0 0 .4rem;font-size:.95rem}
+    .feedback p{color:var(--muted);line-height:1.65;margin:0}
+    .saved-note{font-size:.82rem;color:var(--muted);margin:1rem 0 0}
+    .saved-note a{color:var(--accent)}
+    .notice{font-size:.82rem;color:var(--muted);margin-top:1.6rem;border-top:1px dashed var(--border);padding-top:1rem}
+  </style>
+
+  <script is:inline define:vars={{ workerUrl: WORKER_URL, baseUrl: base }}>
+    const form = document.getElementById('graderForm');
+    const essayEl = document.getElementById('essay');
+    const countEl = document.getElementById('count');
+    const btn = document.getElementById('submitBtn');
+    const errorEl = document.getElementById('error');
+    const resultEl = document.getElementById('result');
+
+    essayEl.addEventListener('input', () => { countEl.textContent = essayEl.value.length + ' characters'; });
+
+    const setBar = (idBar, idVal, value) => {
+      document.getElementById(idVal).textContent = Number(value).toFixed(1);
+      document.getElementById(idBar).style.width = (Number(value) / 9 * 100) + '%';
+    };
+
+    const saveToProfile = (task, band) => {
+      try {
+        const key = 'tayanch.mock.results.v1';
+        const list = JSON.parse(localStorage.getItem(key) || '[]');
+        if (!Array.isArray(list)) return;
+        list.push({ module: 'writing', band: Number(band), completedAt: new Date().toISOString(), mockCode: 'Writing · Task ' + task });
+        localStorage.setItem(key, JSON.stringify(list.slice(-100)));
+        window.dispatchEvent(new StorageEvent('storage', { key }));
+      } catch (e) {}
+    };
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      errorEl.hidden = true;
+      resultEl.hidden = true;
+      const essay = essayEl.value.trim();
+      if (essay.length < 20) {
+        errorEl.textContent = 'Please write at least a few sentences.';
+        errorEl.hidden = false;
+        return;
+      }
+      btn.disabled = true;
+      btn.textContent = 'Grading…';
+      try {
+        const res = await fetch(workerUrl, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ essay, task: Number(document.getElementById('task').value) }) });
+        let data = {};
+        try { data = await res.json(); } catch {}
+        if (!res.ok) { errorEl.textContent = data.error || 'Something went wrong. Please try again later.'; errorEl.hidden = false; return; }
+        setBar('b-ta','s-ta',data.taskAchievement); setBar('b-cc','s-cc',data.coherenceCohesion);
+        setBar('b-lr','s-lr',data.lexicalResource); setBar('b-gr','s-gr',data.grammaticalRange);
+        document.getElementById('overall').textContent = Number(data.overall).toFixed(1);
+        document.getElementById('feedback').textContent = data.feedback || '';
+        resultEl.hidden = false;
+        saveToProfile(document.getElementById('task').value, data.overall);
+      } catch (err) {
+        errorEl.textContent = 'Could not reach the server. Check your connection or try later.';
+        errorEl.hidden = false;
+      } finally { btn.disabled = false; btn.textContent = 'Grade →'; }
+    });
+  </script>
+</Base>
