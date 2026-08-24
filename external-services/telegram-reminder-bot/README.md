@@ -9,3 +9,10 @@ This is intentionally separate from the static Astro site. A static site cannot 
 4. For production, replace the in-memory set with secured persistent storage, record consent and opt-out status, choose an approved schedule/time zone, and publish the privacy notice.
 
 The `OPTED_IN_CHAT_IDS` environment value is only a bootstrap option for already-consented IDs. Do not add people without consent.
+
+## Public FAQ commands
+- `/narxlar` links to the public pricing and course pages. It does not hard-code prices, because public course pages are the source of truth.
+- `/qanday_tolov` explains the current manual Telegram confirmation flow and points to the course pages.
+- Unknown commands receive a short safe fallback. These replies are Uzbek-first; add reviewed translations only when the bot has a reliable language preference.
+
+Set `PUBLIC_SITE_URL` only to the real public origin when the service is deployed. The bot remains separate from the static site and must not contain payment credentials or private learner data.
