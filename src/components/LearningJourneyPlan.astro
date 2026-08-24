@@ -1,0 +1,22 @@
+---
+const { lang = 'uz' } = Astro.props as { lang?: 'uz'|'ru'|'en' };
+const copy={uz:{h:'Sizning o‘quv rejangiz',lead:'Bu brauzerdagi saqlangan progress asosida keyingi qadamni ko‘ring.',empty:'Hali saqlangan kurs progressi topilmadi. Bir kursda bo‘limlarni belgilang — reja shu yerda paydo bo‘ladi.',daily:'Bugun: keyingi belgilangan bo‘limni 20–30 daqiqada yakunlang.',weekly:'Haftalik: 3 ta kichik mashqni rejalang va haftaning oxirida qayta ko‘ring.',done:'30 kunlik kurs holati tugallanganda fikr almashish taklifi chiqadi.'},ru:{h:'Ваш учебный план',lead:'Посмотрите следующий шаг по сохранённому в этом браузере прогрессу.',empty:'Сохранённый прогресс курса пока не найден. Отмечайте разделы в курсе — план появится здесь.',daily:'Сегодня: завершите следующий отмеченный раздел за 20–30 минут.',weekly:'На неделю: запланируйте 3 небольшие практики и повторите в конце недели.',done:'Когда состояние 30-дневного курса будет завершено, появится предложение поделиться отзывом.'},en:{h:'Your learning plan',lead:'See a next step based on progress saved in this browser.',empty:'No saved course progress yet. Mark course sections as you complete them and a plan will appear here.',daily:'Today: complete the next marked section in 20–30 minutes.',weekly:'This week: schedule 3 small practices and review at week’s end.',done:'When a 30-day course state is complete, an optional feedback handoff appears.'}}[lang];
+---
+<section class="learning-plan" data-learning-plan data-empty={copy.empty} data-daily={copy.daily} data-weekly={copy.weekly} data-done={copy.done}><p class="eyebrow">LEARNING PLAN</p><h2>{copy.h}</h2><p>{copy.lead}</p><div aria-live="polite" data-plan-output></div></section>
+<script>
+const root = document.querySelector('[data-learning-plan]');
+if (root) {
+  const out = root.querySelector('[data-plan-output]');
+  const read = (key) => { try { return JSON.parse(localStorage.getItem(key) || '{}'); } catch { return {}; } };
+  const status = read('tayanch.course.status.v1');
+  const entries = Object.entries(status).filter((entry) => entry[1] && typeof entry[1] === 'object');
+  if (!entries.length) {
+    out.textContent = root.dataset.empty || '';
+  } else {
+    const entry = entries.sort((a, b) => String(b[1].updatedAt || '').localeCompare(String(a[1].updatedAt || '')))[0];
+    const id = entry[0]; const value = entry[1]; const done = Number(value.done) || 0; const total = Number(value.total) || 0;
+    out.textContent = id + ': ' + done + '/' + (total || '?') + ' · ' + (Number(value.percent) || 0) + '%\n' + (root.dataset.daily || '') + '\n' + (root.dataset.weekly || '') + (total === 30 && done >= 30 ? '\n' + (root.dataset.done || '') : '');
+  }
+}
+</script>
+<style>.learning-plan{max-width:820px;margin:1.25rem auto 2rem;padding:1.35rem;border:1px solid var(--border);border-radius:16px;background:color-mix(in srgb,var(--accent) 7%,var(--surface))}.learning-plan h2{margin:.2rem 0}.learning-plan p{color:var(--muted);line-height:1.6}.learning-plan [data-plan-output]{margin-top:1rem;padding-top:.5rem;border-top:1px solid var(--border)}.eyebrow{color:var(--accent);font-size:.75rem;font-weight:800;letter-spacing:.1em}</style>

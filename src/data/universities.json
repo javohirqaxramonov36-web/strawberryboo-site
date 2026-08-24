@@ -1,0 +1,10 @@
+{
+  "last_updated": "2026-08-24",
+  "notice": "Discovery-only list. Verify all admission criteria, availability, costs, deadlines and program details on each university's official site.",
+  "universities": [
+    {"name":"University of Toronto","region":"Canada","fields":["Engineering","Computer Science","Business"],"preferences":["research","city"]},
+    {"name":"Purdue University","region":"United States","fields":["Engineering","Computer Science"],"preferences":["research","campus"]},
+    {"name":"University of Melbourne","region":"Australia","fields":["Engineering","Business","Arts"],"preferences":["research","city"]},
+    {"name":"University of Birmingham","region":"United Kingdom","fields":["Engineering","Computer Science","Business"],"preferences":["research","city"]}
+  ]
+}

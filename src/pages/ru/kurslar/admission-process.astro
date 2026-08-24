@@ -1,6 +1,7 @@
 ---
 import Base from '../../../layouts/Base.astro';
 import LocalizedStandardCourse from '../../../components/LocalizedStandardCourse.astro';
+import AdmissionTools from '../../../components/AdmissionTools.astro';
 import { getLocalizedStandardCourse } from '../../../data/localized-standard-courses';
 const lang = 'ru' as const;
 const course = getLocalizedStandardCourse('admission-process', lang);
@@ -14,4 +15,5 @@ const alternates = [
 ---
 <Base title={course.title + ' | Tayanch'} description={course.description} lang={lang} localeAlternates={alternates}>
  <LocalizedStandardCourse {course} slug="admission-process" {lang} />
+ <AdmissionTools lang="ru" />
 </Base>

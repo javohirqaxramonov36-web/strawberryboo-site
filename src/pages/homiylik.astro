@@ -1,4 +1,5 @@
 ---
+import AcademyPartnership from "../components/AcademyPartnership.astro";
 import Base from "../layouts/Base.astro";
 import { payments } from "../config/payments";
 const title = "Homiylik | Tayanch";
@@ -27,6 +28,14 @@ const base = import.meta.env.BASE_URL;
         <li data-i18n="donate.why3">Har bir so'm yangi dars, yangi vosita va ochiq manbali loyihalarga sarflanadi.</li>
       </ul>
     </div>
+
+    <AcademyPartnership lang="uz" />
+    <section class="academy-partnership" aria-labelledby="academy-partnership-title">
+      <h2 id="academy-partnership-title">Engineering Academy hamkorligi</h2>
+      <p>Tayanch kelajakda amaliy STEM ta’limi atrofidagi Engineering Academy tashabbusi uchun ta’lim, kontent va jamoa hamkorlarini izlaydi.</p>
+      <ul><li>O‘quv materiallari yoki mentorlik imkoniyatlarini birgalikda muhokama qilish</li><li>Sinov darsi yoki ochiq resursni mas’uliyat bilan rejalash</li><li>Hamkorlik maqsadi, roli va roziliklarini yozma ravishda kelishish</li></ul>
+      <p class="donate-note">Bu sahifa moliyaviy va yuridik va’da bermaydi. Aniq hamkorlik doirasi alohida kelishiladi.</p>
+    </section>
 
     <div class="donate-methods">
       <h2 data-i18n="donate.methodsTitle">To'lov usullari</h2>
@@ -95,6 +104,7 @@ const base = import.meta.env.BASE_URL;
   .donate-head .lead { color: var(--muted); max-width: 680px; margin: 0 auto; font-size: 1.05rem; line-height: 1.65; }
   .donate-sub { color: var(--accent); font-weight: 600; margin-top: .8rem; }
   .donate-why { margin-bottom: 2.6rem; }
+  .academy-partnership{margin:0 0 2.6rem;padding:1.3rem;border:1px solid var(--border);border-radius:14px;background:var(--surface)}.academy-partnership h2{margin:0 0 .6rem;color:var(--accent);font-size:1.25rem}.academy-partnership p,.academy-partnership li{color:var(--muted);line-height:1.6}
   .donate-why h2, .donate-methods h2 { color: var(--accent); font-size: 1.4rem; margin: 0 0 1rem; }
   .pay-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.1rem; }
   .pay-card {

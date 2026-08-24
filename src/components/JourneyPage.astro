@@ -2,6 +2,7 @@
 import Base from '../layouts/Base.astro';
 type Lang = 'uz' | 'en' | 'ru';
 const { lang } = Astro.props as { lang: Lang };
+import LearningJourneyPlan from './LearningJourneyPlan.astro';
 const base = import.meta.env.BASE_URL;
 const paths = { uz: 'mening-yolim/', en: 'en/my-journey/', ru: 'ru/moy-put/' };
 const alternates = Object.entries(paths).map(([locale, path]) => ({ lang: locale, href: base + path }));
@@ -15,6 +16,7 @@ const proofImages = [
 const additional = 'ASU London · Hope College · Illinois College · Kent State University · Le Moyne College · Missouri University of Science and Technology · University of Cincinnati · University of Delaware · University of New Haven · University of Southern Mississippi · University of Oklahoma · Western New England University';
 ---
 <Base title={story.title} description={story.description} lang={lang} localeAlternates={alternates}>
+<LearningJourneyPlan lang={lang} />
 <section class="hero-j"><span class="eyebrow">{story.eyebrow}</span><h1>{story.h1}</h1><p class="lead">{story.lead}</p></section>
 <section class="story-intro" aria-label={story.aria}><p class="story-quote">{story.quote}</p><p>{story.intro}</p></section>
 <div class="journey">{story.steps.map((step, i) => <article class="step"><div class="step-no">{String(i + 1).padStart(2, '0')}</div><div class="step-body"><p class="step-kicker">{step[0]}</p><h2>{step[1]}</h2>{step.slice(2, -1).map((paragraph) => <p>{paragraph}</p>)}<p class="lesson"><b>{step[step.length - 1].split(':')[0]}:</b>{step[step.length - 1].slice(step[step.length - 1].indexOf(':') + 1)}</p></div></article>)}</div>

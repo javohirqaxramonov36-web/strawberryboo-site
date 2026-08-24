@@ -1,4 +1,5 @@
 ---
+import CourseAdvisor from "../components/CourseAdvisor.astro";
 import Base from "../layouts/Base.astro";
 const title = "Qaysi kurs sizga kerak? — Tayanch";
 const description = "4 savolli mini-test orqali o'zingizga mos kursni toping.";
@@ -77,6 +78,8 @@ const description = "4 savolli mini-test orqali o'zingizga mos kursni toping.";
 
   <div class="reco-result" id="recoResult"></div>
 </article>
+
+<CourseAdvisor lang="uz" />
 
 <script>
   window.TAYANCH_COURSES = {

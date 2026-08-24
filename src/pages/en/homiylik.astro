@@ -1,4 +1,5 @@
 ---
+import AcademyPartnership from "../../components/AcademyPartnership.astro";
 import Base from '../../layouts/Base.astro';
 import LocalizedInfoPage from '../../components/LocalizedInfoPage.astro';
 const base = import.meta.env.BASE_URL;
@@ -10,4 +11,5 @@ const alternates = [
 ---
 <Base title="Support Tayanch" description="Voluntary support that helps keep Tayanch courses free and high quality." lang="en" localeAlternates={alternates}>
   <LocalizedInfoPage lang="en" page="sponsorship" />
+  <AcademyPartnership lang="en" />
 </Base>

@@ -6,6 +6,7 @@ import PaymentInstructions from "../../components/PaymentInstructions.astro";
 import CourseSchema from "../../components/CourseSchema.astro";
 import Quiz from "../../components/Quiz.astro";
 import CourseTestimonialPlaceholder from "../../components/CourseTestimonialPlaceholder.astro";
+import AdmissionTools from "../../components/AdmissionTools.astro";
 const title = "Chet elga qabul: hujjatdan intervyugacha | Tayanch";
 const description = "Chet el universitetlariga qabul: ariza, essay (SOP), tavsiyat va intervyu. Magistratura va doktoranturaga hujjat topshirish bo'yicha yo'l xaritasi.";
 const base = import.meta.env.BASE_URL;
@@ -117,6 +118,7 @@ const subcourses = [
       <article class="lesson-card"><p class="eyebrow">DARS 3 — QABUL XATIDAN KEYIN</p><h3>Offer letter kelgach: qarorni hujjatli va xotirjam qabul qiling</h3><p class="lesson-intro">Qabul xati yakuniy nuqta emas. Shartlar, moliyaviy yordam, deposit, viza va uy-joy kabi keyingi majburiyatlarni muddatlari bilan alohida ko'rish kerak.</p><div class="lesson-grid"><div><span>1</span><h4>Taklif turini aniqlang</h4><p>Offer shartli yoki shartsizligini, bajarilishi kerak bo'lgan akademik/test talablari bor-yo'qligini rasmiy xatdan tekshiring.</p></div><div><span>2</span><h4>Moliyaviy qismini o'qing</h4><p>Scholarship, grant, xarajat va to'lov muddatlarini yozib chiqing. Tushunarsiz bo'lsa universitetning rasmiy bo'limiga savol yuboring.</p></div><div><span>3</span><h4>Deadline’ni kalendarga qo'ying</h4><p>Qaror, deposit, hujjat, turar joy va viza qadamlari uchun alohida eslatma o'rnating.</p></div><div><span>4</span><h4>Har bir xatni saqlang</h4><p>Offer letter va rasmiy yozishmalarni xavfsiz papkaga joylang; norasmiy skrinshotga tayanmang.</p></div></div></article>
       <p class="source-note">Obsidian manbasi: <code>04.Admissions/1.UniList/1.UniList-Kaplan internationbal Pathways.md</code>, <code>2.Unilist-Common App.md</code>, <code>3.UniList-Scoir Coalation.md</code>. Qo'shimcha material: user taqdim etgan Grand Slam Group videolari, original darsga aylantirildi. Platforma interfeysi va deadline’larni har mavsum rasmiy manbadan qayta tekshiring.</p></section>
 
+    <AdmissionTools lang="uz" />
     <Quiz title="O'z bilimingizni tekshiring" questions={questions} />
     <a href={base + 'kurslar'} class="course-nav-link" data-i18n="ap.allCourses">← Barcha kurslar</a>
     <PaymentInstructions course="Admission Process" price="49 000 so'mdan" />

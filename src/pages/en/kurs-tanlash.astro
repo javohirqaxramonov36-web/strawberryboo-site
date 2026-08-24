@@ -1,4 +1,5 @@
 ---
+import CourseAdvisor from "../../components/CourseAdvisor.astro";
 import Base from "../../layouts/Base.astro";
 const title = 'Course finder — Tayanch';
 const description = 'Find a course that fits you with a 4-question mini quiz.';
@@ -80,6 +81,8 @@ const alternates = [{ lang: 'uz', href: base + 'kurs-tanlash/' }, { lang: 'ru', 
 
   <div class="reco-result" id="recoResult"></div>
 </article>
+
+<CourseAdvisor lang="en" />
 
 <script>
   window.TAYANCH_COURSES = {
