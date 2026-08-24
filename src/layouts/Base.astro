@@ -2524,6 +2524,19 @@ const navigationHref = (path: string) => base + localizedPath(lang, path);
 
   <script is:inline src={base + 'tayanch-ai.js'}></script>
   <script is:inline src={base + 'assets/interactive.js'}></script>
+  <script>
+    // Gumroad: pullik kurs tugmalari (data-gumroad-product) ni checkout sahifasiga yo'naltiradi.
+    // Bitta umumiy funksiya — barcha sahifa/til uchun ishlaydi (event delegation).
+    document.addEventListener('click', (e) => {
+      const el = e.target.closest('[data-gumroad-product]');
+      if (!el) return;
+      e.preventDefault();
+      const v = el.getAttribute('data-gumroad-product') || '';
+      const url = /^https?:\/\//i.test(v) ? v : 'https://gumroad.com/l/' + encodeURIComponent(v);
+      const w = window.open(url, '_blank', 'noopener,noreferrer');
+      if (!w) { el.setAttribute('href', url); location.href = url; }
+    });
+  </script>
     <script is:inline>
     // Basic referral capture is local-only. It deliberately does not promise rewards or call a backend.
     (function () {
