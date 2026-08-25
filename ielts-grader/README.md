@@ -1,68 +1,54 @@
-# IELTS Writing — AI baholash (Cloudflare Worker + Google Gemini)
+# IELTS Writing — AI baholash
 
-`/ielts-mock/writing/` sahifasi inshongizni Google Gemini orqali IELTS rasmiy mezonlari
-bo‘yicha 0–9 ball bilan baholaydi. Frontend (GitHub Pages, static) to‘g‘ridan-to‘g‘ri
-Gemini’ga murojaat qila olmaydi (CORS cheklangan), shuning uchun oraliq sifatida
-Cloudflare Worker ishlatiladi.
-
-## Arxitektura
+Bu papka GitHub Pages’dagi statik `/ielts-mock/writing/` forma va Google Gemini orasidagi Cloudflare Worker’ni saqlaydi.
 
 ```
-Brauzer (ielts-mock/writing/)
-   │  POST { essay, task }  (CORS faqat rasmiy saytga ruxsat)
-   ▼
-Cloudflare Worker (bepul tier)
-   │  - IP bo‘yicha limit: 1 daqiqada 3 so‘rov
-   │  - Gemini generateContent (responseMimeType: application/json)
-   ▼
-Google Gemini  ──►  { taskAchievement, coherenceCohesion, lexicalResource,
-                       grammaticalRange, overall, feedback }
+Brauzer → Cloudflare Worker → Google Gemini
+         └─ API kaliti faqat Worker secretida
 ```
 
-## Deploy qilish (bir martalik)
+Worker Writing Task 1 yoki 2 inshosini IELTS practice mezonlari bo‘yicha baholaydi: Task Achievement/Response, Coherence & Cohesion, Lexical Resource, Grammatical Range & Accuracy. Natija **rasmiy IELTS bali emas**, faqat mashq uchun AI bahosi.
 
-1. Wrangler o‘rnating va tizimga kiring:
+## Xavfsizlik va limitlar
+
+- `GEMINI_API_KEY` faqat Cloudflare secretida bo‘ladi; frontend va Git reposida kalit yo‘q.
+- Worker requestning `Origin` headerini tekshiradi. Faqat `https://javohirqaxramonov36-web.github.io` qabul qilinadi; boshqa sayt Worker orqali Gemini limitini sarflay olmaydi.
+- Bir Worker instance ichida bitta IP uchun limit: 1 daqiqada 3 so‘rov. Bu bepul boshlang‘ich himoya; katta trafikda Durable Object/KV kerak bo‘ladi.
+- Maksimal insho hajmi: 20 000 belgi.
+- Gemini 429 quota xatosi foydalanuvchiga tushunarli xabar sifatida qaytariladi.
+
+## Birinchi deploy
+
+1. Cloudflare hisobiga kiring va Wrangler bilan tasdiqlang:
+
    ```bash
    npm install -g wrangler
+   cd ~/strawberryboo-site/ielts-grader
    wrangler login
    ```
-2. Gemini API kalitini secret sifatida bering
-   (https://aistudio.google.com/apikey dan olingan kalit):
+
+2. Google AI Studio’dan Gemini API key oling, so‘ng uni **faqat secret** sifatida qo‘shing. Kalitni chatga yoki kodga yozmang:
+
    ```bash
-   cd ielts-grader
    wrangler secret put GEMINI_API_KEY
-   # kalitni so‘ralganda joylang
    ```
+
 3. Workerni deploy qiling:
+
    ```bash
    wrangler deploy
    ```
-   Natijada `https://ielts-grader.<sizning-subdomain>.workers.dev` manzili beriladi.
-4. **Frontendda manzilni yangilang.** Uch tilda ham bir xil:
-   `src/pages/ielts-mock/writing.astro`, `src/pages/ru/ielts-mock/writing.astro`,
-   `src/pages/en/ielts-mock/writing.astro` fayllaridagi:
-   ```js
-   const WORKER_URL = 'https://ielts-grader.tayanch.workers.dev';
-   ```
-   ni 3-bosqichdagi haqiqiy manzilga o‘zgartiring.
-5. Saytni qayta deploy qiling (`git push` → GitHub Actions).
 
-## Muhim nuqtalar
+4. Deploy javobida berilgan Worker URL’ni `src/config/grader.ts` ichidagi `GRADER_WORKER_URL` qiymatiga yozing. Keyin sayt branchini push qiling; `main`ga merge bo‘lgach GitHub Pages avtomatik deploy qiladi.
 
-- **CORS**: Worker faqat `https://javohirqaxramonov36-web.github.io` dan kelgan
-  so‘rovlarga javob beradi. Localhost’dan test qilsangiz brauzer bloklaydi — faqat
-  saytning o‘zida ishlaydi. Boshqa domen kerak bo‘lsa, `src/index.js` dagi
-  `ALLOWED_ORIGIN` ni o‘zgartiring.
-- **Limit**: bir IP 1 da‘qiqada 3 baholash. Bepul tier uchun yetarli; bosim oshsa
-  `hits` xotirasini Cloudflare KV yoki Durable Object ga o‘tkazing.
-- **Xavfsizlik**: `GEMINI_API_KEY` secret sifatida saqlanadi, kodga yozilmaydi.
-  Frontendda kalit yo‘q.
-- **Xatolalar**: Gemini band bo‘lsa yoki javob noto‘g‘ri bo‘lsa, frontendga
-  "keyinroq urinib ko‘ring" kabi do‘stona xabar boradi — sahifa singmaydi.
-- **Bepul**: Cloudflare Workers free tier (100k so‘rov/kun) va Gemini free quota
-  yetarli. To‘lov talab qilinmaydi.
+5. Live saytda `/ielts-mock/writing/` sahifasini tekshiring. UZ, RU va EN sahifalari bitta `GRADER_WORKER_URL` konfiguratsiyasidan foydalanadi.
 
-## Sinov
+## Lokal tekshiruv
 
-Saytda `/ielts-mock/writing/` → insho yozing → "Baholash". Natija `profile/`
-sahifasidagi "Mock natijalari" jadvaliga saqlanadi (faqat shu brauzerda).
+```bash
+# loyiha ildizidan
+npm run test:ielts-grader
+npm run build
+```
+
+Local Astro sahifasi browserdan Worker’ga yuborilsa, faqat production GitHub Pages originiga ruxsat berilgani uchun CORS tomonidan bloklanadi. Bu kutilgan xavfsizlik xususiyati; Worker endpointini deploydan keyin live saytda sinang.
