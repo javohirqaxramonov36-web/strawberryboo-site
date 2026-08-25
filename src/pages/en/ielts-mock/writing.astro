@@ -2,27 +2,27 @@
 import Base from '../../../layouts/Base.astro';
 import { GRADER_WORKER_URL } from '../../../config/grader';
 const title = 'IELTS Writing — AI grading | Tayanch';
-const description = 'Grade your essay 0–9 with Google Gemini using official IELTS criteria: Task Achievement, Coherence, Lexical and Grammar.';
+const description = 'Grade your essay 0–9 against official IELTS criteria with Google Gemini: Task Achievement, Coherence, Lexical and Grammar.';
 const base = import.meta.env.BASE_URL;
-// Worker manzili: src/config/grader.ts
+// Worker URL lives only in src/config/grader.ts
 ---
 <Base title={title} description={description}>
   <section class="grader">
     <p class="eyebrow">IELTS WRITING · AI GRADING</p>
     <h1>Grade your essay in 30 seconds</h1>
-    <p class="lead">Gemini-powered grading against the official IELTS criteria (Task Achievement, Coherence &amp; Cohesion, Lexical Resource, Grammatical Range &amp; Accuracy) — 0 to 9. This is practice, not an official exam.</p>
+    <p class="lead">Google Gemini powered grading against the official IELTS criteria (Task Achievement, Coherence &amp; Cohesion, Lexical Resource, Grammatical Range &amp; Accuracy) — 0 to 9. This is not an official exam, just practice.</p>
 
     <form id="graderForm" class="grader-form" novalidate>
       <div class="field">
         <label for="task">Which part?</label>
         <select id="task" name="task">
-          <option value="1">Writing Task 1 (graph/letter based)</option>
+          <option value="1">Writing Task 1 (chart/letter based)</option>
           <option value="2">Writing Task 2 (essay/opinion)</option>
         </select>
       </div>
       <div class="field">
-        <label for="topic">Topic / task <span class="opt">(optional)</span></label>
-        <input id="topic" name="topic" type="text" placeholder="e.g. The chart shows the population of cities A and B from 2000 to 2020." />
+        <label for="topic">Topic / given task <span class="opt">(optional)</span></label>
+        <input id="topic" name="topic" type="text" placeholder="E.g. The chart shows the population of cities A and B from 2000 to 2020." />
       </div>
       <div class="field">
         <label for="essay">Your essay <span class="req">*</span></label>
@@ -42,11 +42,33 @@ const base = import.meta.env.BASE_URL;
         <li><span>Lexical Resource</span><i id="s-lr"></i><div class="bar"><b id="b-lr"></b></div></li>
         <li><span>Grammatical Range</span><i id="s-gr"></i><div class="bar"><b id="b-gr"></b></div></li>
       </ul>
-      <div class="feedback"><h3>Feedback</h3><p id="feedback"></p></div>
+      <div class="feedback"><h3>Brief summary</h3><p id="feedback"></p></div>
+      <section class="detail-block" aria-labelledby="criteria-title">
+        <h3 id="criteria-title">Feedback per criterion</h3>
+        <div class="criteria-grid">
+          <article><h4>Task Achievement</h4><p id="cf-ta"></p></article>
+          <article><h4>Coherence &amp; Cohesion</h4><p id="cf-cc"></p></article>
+          <article><h4>Lexical Resource</h4><p id="cf-lr"></p></article>
+          <article><h4>Grammatical Range</h4><p id="cf-gr"></p></article>
+        </div>
+      </section>
+      <section id="mistakesSection" class="detail-block" hidden>
+        <h3>Errors and improvements</h3>
+        <div id="mistakes" class="mistakes"></div>
+      </section>
+      <section id="stepsSection" class="detail-block" hidden>
+        <h3>3 steps to your next band</h3>
+        <ol id="improvementSteps" class="steps"></ol>
+      </section>
+      <details id="improvedSection" class="detail-block improved" hidden>
+        <summary>View an improved sample answer</summary>
+        <p class="improved-note">This is not a guarantee of an official band — a sample of how to strengthen this idea.</p>
+        <pre id="improvedEssay"></pre>
+      </details>
       <p class="saved-note">Saved to your profile on this browser (<a href={base + 'en/profile/'}>profile</a>).</p>
     </div>
 
-    <p class="notice">AI grading is an estimate. For an official IELTS band, an examiner is used. No personal data is sent to the server.</p>
+    <p class="notice">AI grading is approximate. For an official IELTS band, a human examiner is used. No personal data is sent to the server.</p>
   </section>
 
   <style>
@@ -78,8 +100,24 @@ const base = import.meta.env.BASE_URL;
     .bar{grid-column:1/-1;height:9px;border-radius:999px;background:var(--border);overflow:hidden}
     .bar b{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--btn-bg),#6f62e8);transition:width .5s}
     .feedback{margin-top:1.3rem;border-top:1px solid var(--border);padding-top:1rem}
-    .feedback h3{margin:0 0 .4rem;font-size:.95rem}
-    .feedback p{color:var(--muted);line-height:1.65;margin:0}
+    .feedback h3,.detail-block h3{margin:0 0 .4rem;font-size:.95rem}
+    .feedback p,.detail-block p{color:var(--muted);line-height:1.65;margin:0}
+    .detail-block{margin-top:1.3rem;border-top:1px solid var(--border);padding-top:1rem}
+    .criteria-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.75rem;margin-top:.75rem}
+    .criteria-grid article{border:1px solid var(--border);border-radius:12px;padding:.85rem;background:color-mix(in srgb,var(--bg) 60%,transparent)}
+    .criteria-grid h4{font-size:.86rem;margin:0 0 .35rem}
+    .criteria-grid p{font-size:.9rem}
+    .mistakes{display:grid;gap:.75rem;margin-top:.75rem}
+    .mistake{border:1px solid var(--border);border-radius:12px;padding:.9rem;background:color-mix(in srgb,var(--bg) 60%,transparent)}
+    .mistake h4{font-size:.82rem;color:var(--accent);margin:0 0 .55rem}
+    .mistake code{display:block;white-space:pre-wrap;word-break:break-word;padding:.45rem .55rem;border-radius:8px;background:rgba(239,68,68,.1);color:var(--text);font:inherit}
+    .mistake code + code{margin-top:.45rem;background:rgba(34,197,94,.1)}
+    .mistake p{font-size:.9rem;margin-top:.55rem}
+    .steps{display:grid;gap:.5rem;padding-left:1.25rem;margin:.75rem 0 0;color:var(--muted);line-height:1.55}
+    .improved summary{font-weight:700;cursor:pointer;color:var(--accent)}
+    .improved-note{margin-top:.75rem!important;font-size:.88rem}
+    .improved pre{white-space:pre-wrap;word-break:break-word;font:inherit;line-height:1.65;margin:.9rem 0 0;padding:1rem;border-radius:12px;background:var(--bg);border:1px solid var(--border)}
+    @media(max-width:560px){.criteria-grid{grid-template-columns:1fr}}
     .saved-note{font-size:.82rem;color:var(--muted);margin:1rem 0 0}
     .saved-note a{color:var(--accent)}
     .notice{font-size:.82rem;color:var(--muted);margin-top:1.6rem;border-top:1px dashed var(--border);padding-top:1rem}
@@ -98,6 +136,47 @@ const base = import.meta.env.BASE_URL;
     const setBar = (idBar, idVal, value) => {
       document.getElementById(idVal).textContent = Number(value).toFixed(1);
       document.getElementById(idBar).style.width = (Number(value) / 9 * 100) + '%';
+    };
+
+    const setText = (id, value) => { document.getElementById(id).textContent = value || '—'; };
+    const renderDetailedFeedback = (data) => {
+      const criteria = data.criteriaFeedback || {};
+      setText('cf-ta', criteria.taskAchievement);
+      setText('cf-cc', criteria.coherenceCohesion);
+      setText('cf-lr', criteria.lexicalResource);
+      setText('cf-gr', criteria.grammaticalRange);
+
+      const mistakes = Array.isArray(data.mistakes) ? data.mistakes : [];
+      const mistakesSection = document.getElementById('mistakesSection');
+      const mistakesEl = document.getElementById('mistakes');
+      mistakesEl.replaceChildren();
+      mistakesSection.hidden = !mistakes.length;
+      mistakes.forEach((mistake) => {
+        const card = document.createElement('article');
+        card.className = 'mistake';
+        const title = document.createElement('h4');
+        title.textContent = mistake.category || 'Improvement point';
+        const original = document.createElement('code');
+        original.textContent = 'Original: ' + (mistake.original || '—');
+        const corrected = document.createElement('code');
+        corrected.textContent = 'Better: ' + (mistake.corrected || '—');
+        const explanation = document.createElement('p');
+        explanation.textContent = mistake.explanation || '';
+        card.append(title, original, corrected, explanation);
+        mistakesEl.append(card);
+      });
+
+      const steps = Array.isArray(data.improvementSteps) ? data.improvementSteps : [];
+      const stepsSection = document.getElementById('stepsSection');
+      const stepsEl = document.getElementById('improvementSteps');
+      stepsEl.replaceChildren();
+      stepsSection.hidden = !steps.length;
+      steps.forEach((step) => { const item = document.createElement('li'); item.textContent = step; stepsEl.append(item); });
+
+      const improved = data.improvedEssay || '';
+      const improvedSection = document.getElementById('improvedSection');
+      improvedSection.hidden = !improved;
+      document.getElementById('improvedEssay').textContent = improved;
     };
 
     const saveToProfile = (task, band) => {
@@ -124,20 +203,34 @@ const base = import.meta.env.BASE_URL;
       btn.disabled = true;
       btn.textContent = 'Grading…';
       try {
-        const res = await fetch(workerUrl, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ essay, task: Number(document.getElementById('task').value) }) });
+        const res = await fetch(workerUrl, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ essay, topic: document.getElementById('topic').value.trim(), task: Number(document.getElementById('task').value) }),
+        });
         let data = {};
         try { data = await res.json(); } catch {}
-        if (!res.ok) { errorEl.textContent = data.error || 'Something went wrong. Please try again later.'; errorEl.hidden = false; return; }
-        setBar('b-ta','s-ta',data.taskAchievement); setBar('b-cc','s-cc',data.coherenceCohesion);
-        setBar('b-lr','s-lr',data.lexicalResource); setBar('b-gr','s-gr',data.grammaticalRange);
+        if (!res.ok) {
+          errorEl.textContent = data.error || 'An error occurred. Please try again later.';
+          errorEl.hidden = false;
+          return;
+        }
+        setBar('b-ta', 's-ta', data.taskAchievement);
+        setBar('b-cc', 's-cc', data.coherenceCohesion);
+        setBar('b-lr', 's-lr', data.lexicalResource);
+        setBar('b-gr', 's-gr', data.grammaticalRange);
         document.getElementById('overall').textContent = Number(data.overall).toFixed(1);
         document.getElementById('feedback').textContent = data.feedback || '';
+        renderDetailedFeedback(data);
         resultEl.hidden = false;
         saveToProfile(document.getElementById('task').value, data.overall);
       } catch (err) {
-        errorEl.textContent = 'Could not reach the server. Check your connection or try later.';
+        errorEl.textContent = 'Could not connect to the server. Check your connection or try again later.';
         errorEl.hidden = false;
-      } finally { btn.disabled = false; btn.textContent = 'Grade →'; }
+      } finally {
+        btn.disabled = false;
+        btn.textContent = 'Grade →';
+      }
     });
   </script>
 </Base>
