@@ -1,10 +1,10 @@
 ---
 import Base from '../../layouts/Base.astro';
+import { GRADER_WORKER_URL } from '../../config/grader';
 const title = 'IELTS Writing — AI baholash | Tayanch';
 const description = 'Inshoingizni Google Gemini yordamida IELTS rasmiy mezonlari bo‘yicha 0–9 ball bilan baholang. Task Achievement, Coherence, Lexical va Grammar.';
 const base = import.meta.env.BASE_URL;
-// <<< O‘ZGARTIRING: Cloudflare Worker manzilini shu yerga qo‘ying (wrangler deploy qilinganda beriladi)
-const WORKER_URL = 'https://ielts-grader.tayanch.workers.dev';
+// Worker manzili faqat src/config/grader.ts faylida saqlanadi.
 ---
 <Base title={title} description={description}>
   <section class="grader">
@@ -85,7 +85,7 @@ const WORKER_URL = 'https://ielts-grader.tayanch.workers.dev';
     .notice{font-size:.82rem;color:var(--muted);margin-top:1.6rem;border-top:1px dashed var(--border);padding-top:1rem}
   </style>
 
-  <script is:inline define:vars={{ workerUrl: WORKER_URL, baseUrl: base }}>
+  <script is:inline define:vars={{ workerUrl: GRADER_WORKER_URL, baseUrl: base }}>
     const form = document.getElementById('graderForm');
     const essayEl = document.getElementById('essay');
     const countEl = document.getElementById('count');
