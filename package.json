@@ -6,7 +6,8 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "prebuild": "node scripts/generate-sitemap.mjs"
+    "prebuild": "node scripts/generate-sitemap.mjs",
+    "verify:courses": "node scripts/verify-course-data.mjs"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.112.3",
