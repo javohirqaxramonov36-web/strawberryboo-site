@@ -3,6 +3,7 @@ import Base from "../layouts/Base.astro";
 import InstructorMiniBlock from "../components/InstructorMiniBlock.astro";
 import { totalCourseCount } from "../config/course-catalog";
 import CourseCard from "../components/CourseCard.astro";
+import TelegramLeadSection from "../components/TelegramLeadSection.astro";
 import coursesData from "../data/courses.json";
 const courseById = (slug: string) => (coursesData.courses as any[]).find((c) => c.slug === slug);
 const title = "AI, IELTS va Admission kurslari | Tayanch";
@@ -11,7 +12,7 @@ const base = import.meta.env.BASE_URL;
 const TG = "https://t.me/tayanch_go"; // Telegram kanal/guruh havolasi
 ---
 
-<Base title={title} description={description}>
+<Base title={title} description={description} showDiscountBanner={true}>
 <section class="hero">
   <span class="eyebrow" data-i18n="hero.eyebrow">AI · IELTS · Admission kurslari</span>
 
@@ -33,6 +34,8 @@ const TG = "https://t.me/tayanch_go"; // Telegram kanal/guruh havolasi
       Forever access
     </span>
   </div>
+
+  <p class="hero-founder-note"><span class="hf-ic" aria-hidden="true">✓</span> Kurs yaratuvchisi: IELTS 7.0 va SAT 1420 natijalariga erishgan</p>
 
   <h1 class="hero-typed">
     <span class="typed-static" data-i18n="hero.learn">O'rganing:</span>
@@ -231,6 +234,8 @@ const TG = "https://t.me/tayanch_go"; // Telegram kanal/guruh havolasi
     .ent-hero .eyebrow { display: inline-block; font-size: 13px; font-weight: 600; color: var(--accent); background: var(--accent-soft); padding: 5px 12px; border-radius: 99px; margin-bottom: 1rem; }
     .ent-hero h1 { font-family: var(--font-display); letter-spacing: -.02em; font-size: 2.4rem; margin: 0 0 .6rem; color: var(--text); }
     .ent-hero .lead { color: var(--muted); max-width: 620px; margin: 0 auto; }
+    .hero-founder-note { display: flex; align-items: center; gap: .45rem; margin: .7rem 0 0; font-size: .86rem; color: var(--muted); }
+    .hero-founder-note .hf-ic { display: inline-grid; place-items: center; width: 18px; height: 18px; border-radius: 50%; background: color-mix(in srgb, var(--accent) 22%, transparent); color: var(--accent); font-size: .7rem; font-weight: 800; flex-shrink: 0; }
 
     .ls-note { background: color-mix(in srgb, #f59e0b 14%, var(--surface)); border: 1px solid color-mix(in srgb, #f59e0b 40%, var(--border)); color: var(--text); padding: 10px 15px; border-radius: 14px; font-size: 13px; margin: 0 0 22px; }
 
@@ -787,4 +792,7 @@ const TG = "https://t.me/tayanch_go"; // Telegram kanal/guruh havolasi
 <style>
   .founder-excerpt{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:2rem;align-items:start;margin:1.5rem 0 2rem;padding:clamp(1.2rem,4vw,2rem);border:1px solid color-mix(in srgb,var(--accent) 38%,var(--border));border-radius:18px;background:linear-gradient(135deg,color-mix(in srgb,var(--accent) 10%,var(--surface)),var(--surface))}.founder-excerpt .eyebrow{margin:0 0 .5rem}.founder-excerpt h2{margin:0;font-size:clamp(1.4rem,3vw,2rem)}.founder-excerpt p{margin:0 0 1rem;color:var(--muted);line-height:1.65}.founder-excerpt .course-nav-link{font-weight:800}@media(max-width:700px){.founder-excerpt{grid-template-columns:1fr;gap:1rem}}
 </style>
+
+<TelegramLeadSection />
+
 </Base>

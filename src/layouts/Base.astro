@@ -2,6 +2,7 @@
 import Analytics from "../components/Analytics.astro";
 import ChatWidget from "../components/ChatWidget.astro";
 import SearchPanel from "../components/SearchPanel.astro";
+import DiscountBanner from "../components/DiscountBanner.astro";
 import { footerNavigation, primaryNavigation } from "../config/navigation";
 import { localizedPath } from "../i18n/routes";
 const title = Astro.props.title || "Tayanch";
@@ -28,6 +29,7 @@ const canonicalUz = (localeAlternates.find((a) => a.lang === 'uz') || {}).href |
 const TG = "https://t.me/tayanch_go"; // Telegram kanal/guruh havolasi
 const languageAlternates = Object.fromEntries(localeAlternates.map((alternate) => [alternate.lang, alternate.href]));
 const navigationHref = (path: string) => base + localizedPath(lang, path);
+const showDiscountBanner = Astro.props.showDiscountBanner || false;
 ---
 
 <!doctype html>
@@ -143,6 +145,8 @@ const navigationHref = (path: string) => base + localizedPath(lang, path);
   </head>
   <body>
     <a href="#main" class="skip-link" data-i18n="skip">Asosiyga o'tish</a>
+
+    {showDiscountBanner && <DiscountBanner />}
 
     <aside class="sidebar" id="site-navigation">
       <a href={base} class="brand">
@@ -2549,6 +2553,81 @@ const navigationHref = (path: string) => base + localizedPath(lang, path);
         // Existing Telegram group/payment links stay untouched. Referral sharing uses its
         // own t.me/share/url link in ReferralCard so a prefilled message never changes them.
       } catch (e) {}
+    })();
+  </script>
+
+  <!-- Exit-intent popup: faqat desktop, sessiyada bir marta -->
+  <div id="exit-intent" class="exit-intent" role="dialog" aria-modal="true" aria-labelledby="ei-title" hidden>
+    <div class="exit-intent-card">
+      <button class="exit-intent-close" id="exit-intent-close" aria-label="Yopish" type="button">✕</button>
+      <h2 id="ei-title">Ketishdan oldin...</h2>
+      <p>Bepul kurslarimizni ko'rib chiqdingizmi? IELTS va AI bo'yicha bepul materiallar bor.</p>
+      <div class="exit-intent-actions">
+        <a href={import.meta.env.BASE_URL + 'kurslar/'} class="exit-intent-primary">Bepul kurslarni ko'rish →</a>
+        <button class="exit-intent-secondary" id="exit-intent-no" type="button">Yo'q, rahmat</button>
+      </div>
+    </div>
+  </div>
+
+  <style>
+    .exit-intent[hidden] { display: none; }
+    .exit-intent {
+      position: fixed; inset: 0; z-index: 2000;
+      display: flex; align-items: center; justify-content: center;
+      background: rgba(8, 9, 14, .6); backdrop-filter: blur(2px);
+      padding: 20px;
+    }
+    .exit-intent-card {
+      position: relative; max-width: 440px; width: 100%;
+      background: var(--surface); border: 1px solid color-mix(in srgb, var(--accent) 45%, var(--border));
+      border-radius: 18px; padding: 26px 24px; text-align: center;
+      box-shadow: 0 24px 60px -20px rgba(0,0,0,.6);
+    }
+    .exit-intent-card h2 { margin: 0 0 .6rem; font-size: 1.3rem; color: var(--text); }
+    .exit-intent-card p { margin: 0 0 1.3rem; color: var(--muted); line-height: 1.6; }
+    .exit-intent-actions { display: flex; flex-direction: column; gap: 10px; }
+    .exit-intent-primary {
+      display: inline-flex; align-items: center; justify-content: center; gap: 6px;
+      padding: 12px 18px; border-radius: 10px; background: var(--btn-bg); color: #fff;
+      font-weight: 700; text-decoration: none; transition: background .15s, transform .15s;
+    }
+    .exit-intent-primary:hover { background: var(--accent-2); color: #fff; text-decoration: none; transform: translateY(-1px); }
+    .exit-intent-secondary {
+      padding: 10px 18px; border-radius: 10px; border: 1px solid var(--border);
+      background: transparent; color: var(--muted); font-weight: 600; cursor: pointer;
+    }
+    .exit-intent-secondary:hover { color: var(--text); }
+    .exit-intent-close {
+      position: absolute; top: 12px; right: 12px; width: 30px; height: 30px;
+      border: 0; border-radius: 8px; background: transparent; color: var(--muted);
+      font-size: 15px; cursor: pointer; line-height: 1;
+    }
+    .exit-intent-close:hover { background: color-mix(in srgb, var(--accent) 18%, transparent); color: var(--text); }
+  </style>
+
+  <script is:inline>
+    (function () {
+      try { if (sessionStorage.getItem('sb_exit_intent') === '1') return; } catch (e) {}
+      var isDesktop = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+      if (!isDesktop) return;
+      var shown = false;
+      function show() {
+        if (shown) return; shown = true;
+        var el = document.getElementById('exit-intent');
+        if (el) el.hidden = false;
+        try { sessionStorage.setItem('sb_exit_intent', '1'); } catch (e) {}
+      }
+      function dismiss() {
+        var el = document.getElementById('exit-intent');
+        if (el) el.hidden = true;
+        try { sessionStorage.setItem('sb_exit_intent', '1'); } catch (e) {}
+      }
+      document.addEventListener('mouseout', function (e) { if (e.clientY <= 0 && !shown) show(); });
+      document.documentElement.addEventListener('mouseleave', function () { if (!shown) show(); });
+      var c = document.getElementById('exit-intent-close');
+      var n = document.getElementById('exit-intent-no');
+      if (c) c.addEventListener('click', dismiss);
+      if (n) n.addEventListener('click', dismiss);
     })();
   </script>
 </body>

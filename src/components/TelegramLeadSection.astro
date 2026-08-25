@@ -1,0 +1,42 @@
+---
+// Kurs sahifalari va bosh sahifa pastki qismi uchun Telegram ro'yxat yig'ish bo'limi.
+// progression_go kanaliga yo'naltiradi.
+---
+
+<section class="tg-lead" aria-labelledby="tg-lead-title">
+  <div class="tg-lead-ic" aria-hidden="true">
+    <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 4 3 11l5 2 2 5 3-3 4 3 4-13z"/><path d="m8 13 4-4"/></svg>
+  </div>
+  <div class="tg-lead-text">
+    <h2 id="tg-lead-title">Hali qaror qabul qilmadingizmi?</h2>
+    <p>Telegram kanalimizga qo'shiling — bepul maslahatlar va chegirmalardan birinchi bo'lib xabar topasiz.</p>
+  </div>
+  <a href="https://t.me/progression_go" class="tg-lead-btn" target="_blank" rel="noopener noreferrer">Telegram kanaliga qo'shilish →</a>
+</section>
+
+<style>
+  .tg-lead {
+    display: flex; align-items: center; gap: 16px; flex-wrap: wrap;
+    margin-top: 2.5rem; padding: 20px 22px; border-radius: 16px;
+    background: linear-gradient(135deg, color-mix(in srgb, var(--accent) 14%, var(--surface)), var(--surface));
+    border: 1px solid color-mix(in srgb, var(--accent) 38%, var(--border));
+  }
+  .tg-lead-ic {
+    width: 48px; height: 48px; border-radius: 12px; flex-shrink: 0;
+    display: grid; place-items: center; background: var(--btn-bg); color: #fff;
+  }
+  .tg-lead-text { flex: 1; min-width: 220px; }
+  .tg-lead-text h2 { margin: 0 0 .3rem; font-weight: 700; font-size: 1.1rem; color: var(--text); }
+  .tg-lead-text p { margin: 0; color: var(--muted); font-size: .94rem; line-height: 1.5; }
+  .tg-lead-btn {
+    display: inline-flex; align-items: center; gap: 6px; padding: 12px 20px;
+    border-radius: 10px; background: var(--btn-bg); color: #fff; font-weight: 700;
+    text-decoration: none; font-size: .95rem; white-space: nowrap;
+    transition: background .15s, transform .15s;
+  }
+  .tg-lead-btn:hover { background: var(--accent-2); color: #fff; text-decoration: none; transform: translateY(-1px); }
+  @media (max-width: 540px) {
+    .tg-lead { flex-direction: column; text-align: center; }
+    .tg-lead-btn { width: 100%; justify-content: center; }
+  }
+</style>

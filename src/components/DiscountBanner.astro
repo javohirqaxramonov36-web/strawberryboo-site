@@ -1,0 +1,61 @@
+---
+// Sahifa yuqorisidagi chegirma banneri. progression_go ga yo'naltiradi.
+// Yopilganda sessiya davomida qayta chiqmaydi (sessionStorage) va layoutda bo'sh joy qolmaydi.
+---
+
+<div class="disc-banner" id="disc-banner">
+  <div class="disc-banner-inner">
+    <span class="disc-banner-text">Birinchi 20 kishi uchun 15% chegirma — Telegram orqali batafsil</span>
+    <a href="https://t.me/progression_go" class="disc-banner-btn" target="_blank" rel="noopener noreferrer">Batafsil →</a>
+    <button class="disc-banner-close" id="disc-banner-close" aria-label="Yopish" type="button">✕</button>
+  </div>
+</div>
+
+<script is:inline>
+  (function () {
+    try {
+      if (sessionStorage.getItem('sb_disc_banner') === '1') {
+        var b = document.getElementById('disc-banner');
+        if (b) b.remove();
+      }
+    } catch (e) {}
+    var close = document.getElementById('disc-banner-close');
+    if (close) close.addEventListener('click', function () {
+      var b = document.getElementById('disc-banner');
+      if (b) b.remove();
+      try { sessionStorage.setItem('sb_disc_banner', '1'); } catch (e) {}
+    });
+  })();
+</script>
+
+<style>
+  .disc-banner {
+    width: 100%;
+    background: linear-gradient(135deg, color-mix(in srgb, var(--accent) 22%, var(--surface)), color-mix(in srgb, var(--accent) 8%, var(--surface)));
+    border-bottom: 1px solid color-mix(in srgb, var(--accent) 40%, var(--border));
+    color: var(--text);
+  }
+  .disc-banner-inner {
+    max-width: 1320px; margin: 0 auto; padding: 8px 44px 8px 16px;
+    display: flex; align-items: center; gap: 12px; flex-wrap: wrap; justify-content: center;
+    position: relative;
+  }
+  .disc-banner-text { font-size: .9rem; font-weight: 600; color: var(--text); }
+  .disc-banner-btn {
+    display: inline-flex; align-items: center; gap: 4px; padding: 6px 14px;
+    border-radius: 8px; background: var(--btn-bg); color: #fff; font-weight: 700;
+    text-decoration: none; font-size: .85rem; white-space: nowrap;
+    transition: background .15s;
+  }
+  .disc-banner-btn:hover { background: var(--accent-2); color: #fff; text-decoration: none; }
+  .disc-banner-close {
+    position: absolute; right: 12px; top: 50%; transform: translateY(-50%);
+    width: 26px; height: 26px; border: 0; border-radius: 7px; cursor: pointer;
+    background: transparent; color: var(--muted); font-size: 14px; line-height: 1;
+  }
+  .disc-banner-close:hover { background: color-mix(in srgb, var(--accent) 18%, transparent); color: var(--text); }
+  @media (max-width: 560px) {
+    .disc-banner-inner { padding: 8px 40px 8px 12px; }
+    .disc-banner-text { font-size: .82rem; }
+  }
+</style>
