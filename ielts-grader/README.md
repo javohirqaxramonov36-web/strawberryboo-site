@@ -38,14 +38,32 @@ Google Gemini  ──►  { taskAchievement, coherenceCohesion, lexicalResource,
    wrangler deploy
    ```
    Natijada `https://ielts-grader.<sizning-subdomain>.workers.dev` manzili beriladi.
-4. **Frontendda manzilni yangilang.** Uch tilda ham bir xil:
-   `src/pages/ielts-mock/writing.astro`, `src/pages/ru/ielts-mock/writing.astro`,
-   `src/pages/en/ielts-mock/writing.astro` fayllaridagi:
-   ```js
-   const WORKER_URL = 'https://ielts-grader.tayanch.workers.dev';
+4. **Frontendda manzilni yangilang.** Barcha tillarda bitta joyda:
+   `src/config/grader.ts` dagi:
+   ```ts
+   export const GRADER_WORKER_URL = 'https://ielts-grader.<subdomain>.workers.dev';
    ```
    ni 3-bosqichdagi haqiqiy manzilga o‘zgartiring.
 5. Saytni qayta deploy qiling (`git push` → GitHub Actions).
+
+## GitHub Actions orqali avtomatik deploy (tavsiya etiladi)
+
+Qo‘lda deploy o‘rniga, worker repoga qo‘shilgan workflow orqali avtomatik deploy
+bo‘ladi. Buning uchun repo **Settings → Secrets and variables → Actions** bo‘limida
+quyidagi secretlarni qo‘shing:
+
+- `CLOUDFLARE_API_TOKEN` — Cloudflare API Token (Workers deploy huquqi bilan).
+- `CLOUDFLARE_ACCOUNT_ID` — Cloudflare Account ID (ixtiyoriy; token account-ga
+  scoped bo‘lsa shart emas).
+- `GEMINI_API_KEY` — Google Gemini API kaliti (worker secret sifatida o‘rnatiladi).
+
+Secretlar qo‘shilgandan so‘ng, `main` ga push qilinganda
+`.github/workflows/deploy-worker.yml` avtomatik ishga tushib workerni sizning
+haqiqiy Cloudflare account’ingizga deploy qiladi. Keyin `src/config/grader.ts`
+dagi `GRADER_WORKER_URL` ni yangi manzilga o‘zgartiring va saytni qayta deploy
+qiling.
+
+> Eslatma: secretlar yo‘q bo‘lsa workflow o‘tkazib yuboriladi (main buzulmaydi).
 
 ## Muhim nuqtalar
 

@@ -1,0 +1,26 @@
+name: Deploy IELTS Grader Worker
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'ielts-grader/**'
+      - '.github/workflows/deploy-worker.yml'
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    # Faqat secretlar mavjud bo'lganda ishga tushadi; aks holda o'tkazib yuboriladi.
+    if: ${{ secrets.CLOUDFLARE_API_TOKEN != '' }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Deploy to Cloudflare Workers
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          workingDirectory: 'ielts-grader'
+          command: deploy
+          secrets: |
+            GEMINI_API_KEY=${{ secrets.GEMINI_API_KEY }}
