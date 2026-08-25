@@ -2143,6 +2143,7 @@ const showDiscountBanner = Astro.props.showDiscountBanner || false;
         line-height: 1.6;
         -webkit-font-smoothing: antialiased;
       }
+      :root { --section-gap: 3rem; }
       .skip-link { position: fixed; top: -60px; left: 12px; z-index: 100; background: var(--btn-bg); color: #fff; padding: 10px 16px; border-radius: 10px; font-weight: 600; transition: top .15s; }
       .skip-link:focus { top: 12px; text-decoration: none; }
       .sidebar {
@@ -2150,7 +2151,9 @@ const showDiscountBanner = Astro.props.showDiscountBanner || false;
         background: var(--surface); border-right: 1px solid var(--border);
         display: flex; flex-direction: column; padding: 14px 16px; z-index: 60;
         transition: transform .25s ease;
+        transform: translateX(-100%);
       }
+      .sidebar.open { transform: translateX(0); }
       .sidebar .brand { display: inline-flex; align-items: center; color: var(--text); text-decoration: none; padding: 3px 8px 17px; }
       .brand-wordmark { font-size: 1.28rem; font-weight: 800; letter-spacing: -0.065em; line-height: 1; }
       .brand-tay { color: var(--text); }
@@ -2158,7 +2161,7 @@ const showDiscountBanner = Astro.props.showDiscountBanner || false;
       .side-nav { display: flex; flex-direction: column; gap: 3px; overflow-y: auto; flex: 1; }
       .side-nav a { color: var(--muted); text-decoration: none; padding: 9px 12px; border-radius: 9px; font-weight: 600; font-size: 0.92rem; transition: background .15s, color .15s; }
       .side-nav a:hover, .side-nav a.active { background: var(--accent-soft); color: var(--accent); }
-      .content { margin-left: var(--side-w); min-height: 100vh; display: flex; flex-direction: column; }
+      .content { margin-left: 0; min-height: 100vh; display: flex; flex-direction: column; }
       .site-header { display: flex; align-items: center; gap: 1rem; padding: 1rem 2rem; border-bottom: 1px solid var(--border); position: sticky; top: 0; background: var(--header-bg); backdrop-filter: blur(10px); z-index: 10; }
       .menu-toggle { display: none; background: none; border: none; color: var(--text); font-size: 1.5rem; cursor: pointer; }
       .theme-toggle { display: inline-flex; align-items: center; justify-content: center; width: 40px; height: 40px; border-radius: 10px; border: 1px solid var(--border); background: var(--surface); color: var(--text); cursor: pointer; transition: border-color .15s, color .15s, background .15s; margin-left: auto; }
@@ -2167,22 +2170,24 @@ const showDiscountBanner = Astro.props.showDiscountBanner || false;
       .theme-toggle .ic-moon { display: block; }
       [data-theme="light"] .theme-toggle .ic-sun { display: block; }
       [data-theme="light"] .theme-toggle .ic-moon { display: none; }
-      .mobile-brand { display: none; align-items: center; color: var(--text); }
+      .mobile-brand { display: inline-flex; align-items: center; color: var(--text); }
       .mobile-brand .brand-wordmark { font-size: 1.35rem; }
       .top-nav { margin-left: auto; }
       .top-nav a { color: var(--text); text-decoration: none; margin-left: 1.5rem; font-weight: 600; }
       .top-nav a:hover { color: var(--accent); }
       main { max-width: var(--maxw); width: 100%; margin: 0 auto; padding: 0 20px 3rem; flex: 1; }
-      .hero { text-align: center; padding: 64px 20px 30px; }
+      .hero { position: relative; overflow: hidden; text-align: center; padding: 64px 20px 30px; }
+      .hero::before { content: ""; position: absolute; left: 50%; top: -60px; width: min(760px, 120vw); height: 460px; transform: translateX(-50%); background: radial-gradient(58% 58% at 50% 42%, color-mix(in srgb, var(--accent) 22%, transparent), transparent 72%); pointer-events: none; z-index: 0; }
+      .hero > * { position: relative; z-index: 1; }
       .hero .eyebrow { display: inline-block; font-size: 13px; font-weight: 600; color: var(--accent); background: var(--accent-soft); padding: 5px 12px; border-radius: 99px; margin-bottom: 1rem; }
       .hero h1 { font-family: var(--font-display); letter-spacing: -.02em; font-size: 2.8rem; margin: 0 0 1rem; }
       .hero .lead { font-size: 1.15rem; color: var(--muted); max-width: 650px; margin: 0 auto; }
       .cta { display: inline-block; margin-top: 1.8rem; padding: 0.9rem 2.2rem; background: linear-gradient(135deg, var(--btn-bg), var(--accent-2)); color: #fff; border-radius: 12px; text-decoration: none; font-weight: 700; font-size: 1.05rem; transition: transform .15s, box-shadow .15s; }
       .cta:hover { transform: translateY(-2px); box-shadow: 0 10px 24px -6px var(--accent); }
-      .features { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 1.2rem; margin-top: 2.5rem; }
+      .features { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 1.2rem; margin-top: var(--section-gap); }
       .card { background: var(--surface); border: 1px solid var(--border); border-radius: 16px; padding: 24px; box-shadow: var(--shadow); position: relative; transition: transform .15s, box-shadow .15s, border-color .15s; }
       .card:hover { transform: translateY(-4px); box-shadow: 0 16px 32px -10px rgba(0,0,0,.6); border-color: var(--accent); }
-      .upcoming-courses { margin: 3rem 0; padding: 1.5rem; border: 1px dashed color-mix(in srgb, var(--accent) 45%, var(--border)); border-radius: 18px; background: color-mix(in srgb, var(--accent) 6%, var(--surface)); }
+      .upcoming-courses { margin: var(--section-gap) 0; padding: 1.5rem; border: 1px dashed color-mix(in srgb, var(--accent) 45%, var(--border)); border-radius: 18px; background: color-mix(in srgb, var(--accent) 6%, var(--surface)); }
       .upcoming-heading { max-width: 680px; margin-bottom: 1.25rem; }
       .upcoming-heading h2 { margin: .2rem 0 .45rem; font-size: 1.45rem; }
       .upcoming-heading p:last-child { margin: 0; color: var(--muted); }
@@ -2212,12 +2217,12 @@ const showDiscountBanner = Astro.props.showDiscountBanner || false;
       .start-btn:hover { background: var(--accent-2); }
       .mock-practice-link { display: block; width: fit-content; margin-top: .7rem; color: var(--accent); font-weight: 700; font-size: .9rem; text-decoration: none; }
       .mock-practice-link:hover { color: var(--accent-2); text-decoration: underline; text-underline-offset: 3px; }
-      .why-us { margin-top: 3rem; background: var(--surface); padding: 2rem; border-radius: 16px; border: 1px solid var(--border); }
+      .why-us { margin-top: var(--section-gap); background: var(--surface); padding: 2rem; border-radius: 16px; border: 1px solid var(--border); }
       .why-us h2 { color: var(--accent); margin-top: 0; }
       .why-us ul { list-style: none; padding: 0; }
       .why-us li { padding: 0.7rem 0; border-bottom: 1px solid var(--border); font-weight: 500; }
       .why-us li:before { content: "✓ "; color: var(--accent); font-weight: 800; }
-      .payment { margin-top: 3rem; text-align: center; }
+      .payment { margin-top: var(--section-gap); text-align: center; }
       .pay-methods { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; margin-top: 1.2rem; }
       .pay-methods span { background: var(--surface); padding: 0.8rem 1.5rem; border-radius: 10px; border: 1px solid var(--border); font-weight: 600; }
       .course-list { display: grid; gap: 1.2rem; margin-top: 2rem; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); }
@@ -2229,7 +2234,7 @@ const showDiscountBanner = Astro.props.showDiscountBanner || false;
       .lesson p, .lesson li, .lesson td, .lesson th, .lesson code, .lesson a { overflow-wrap: break-word; word-break: break-word; }
       .lesson h1 { color: var(--accent); font-size: 2.2rem; }
       .lesson h2 { margin-top: 2.5rem; border-bottom: 1px solid var(--border); padding-bottom: 0.5rem; }
-      .course-hero { display: flex; align-items: center; justify-content: space-between; gap: 18px; flex-wrap: wrap; margin-bottom: 2rem; }
+      .course-hero { display: flex; align-items: center; justify-content: space-between; gap: 18px; flex-wrap: wrap; margin-bottom: var(--section-gap); }
       .course-hero .price { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
       .course-hero .now { font-size: 28px; font-weight: 800; color: var(--accent); }
       .course-hero .old { font-size: 18px; font-weight: 500; color: var(--muted); text-decoration: line-through; }
@@ -2256,11 +2261,8 @@ const showDiscountBanner = Astro.props.showDiscountBanner || false;
       .music-btn { position: fixed; bottom: 1rem; right: 1rem; background: linear-gradient(135deg, var(--btn-bg), var(--accent-2)); color: #fff; border: none; padding: 0.6rem 1rem; border-radius: 10px; cursor: pointer; font-weight: 700; z-index: 100; }
       footer { text-align: center; padding: 2rem; color: var(--muted); border-top: 1px solid var(--border); margin-top: 3rem; }
       @media (max-width: 860px) {
-        .sidebar { transform: translateX(-100%); }
-        .sidebar.open { transform: translateX(0); }
-        .content { margin-left: 0; }
         .menu-toggle { display: block; }
-        .mobile-brand { display: block; }
+        .mobile-brand { display: inline-flex; }
         .top-nav { display: none; }
         .hero h1 { font-size: 2rem; }
         .features, .course-list { grid-template-columns: 1fr; }
@@ -2268,10 +2270,10 @@ const showDiscountBanner = Astro.props.showDiscountBanner || false;
       }
 
       /* === HERO TRUST BADGES (ilhom: osonstudio.uz) === */
-      .hero-badges { display: inline-flex; flex-wrap: wrap; gap: 9px; justify-content: center; margin: 0 auto 22px; }
+      .hero-badges { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; margin: 0 auto 22px; }
       .hero-badge {
-        display: inline-flex; align-items: center; gap: 8px;
-        padding: 6px 14px 6px 7px; background: var(--surface);
+        display: inline-flex; align-items: center; gap: 8px; min-height: 36px;
+        padding: 6px 14px 6px 8px; background: var(--surface);
         border: 1px solid var(--border); border-radius: 999px;
         font: 650 13px var(--font-display); color: var(--text);
         box-shadow: 0 2px 8px -4px rgba(0,0,0,.4);
@@ -2325,7 +2327,7 @@ const showDiscountBanner = Astro.props.showDiscountBanner || false;
       .badge-free { background: #7d7df5; color: #fff; }
 
       /* === POLISHED BLOCKS === */
-      .why-us, .payment { margin-top: 3.5rem; }
+      .why-us, .payment { margin-top: var(--section-gap); }
       .payment .pay-methods span { transition: transform .15s, border-color .15s, color .15s; }
       .payment .pay-methods span:hover { transform: translateY(-2px); border-color: var(--accent); color: var(--accent); }
 
@@ -2349,7 +2351,7 @@ const showDiscountBanner = Astro.props.showDiscountBanner || false;
       .card h2 + .cat { margin-top: -2px; }
 
       /* === "ENG MASHHUR" SPOTLIGHT === */
-      .spotlight { margin-top: 2.5rem; border-radius: 20px; padding: 28px; background: linear-gradient(135deg, color-mix(in srgb, var(--accent) 16%, var(--surface)), var(--surface)); border: 1px solid var(--border); display: grid; grid-template-columns: 1.4fr .8fr; gap: 22px; align-items: center; overflow: hidden; }
+      .spotlight { margin-top: var(--section-gap); border-radius: 20px; padding: 28px; background: linear-gradient(135deg, color-mix(in srgb, var(--accent) 16%, var(--surface)), var(--surface)); border: 1px solid var(--border); display: grid; grid-template-columns: 1.4fr .8fr; gap: 22px; align-items: center; overflow: hidden; }
       .spotlight .badge-hot { background: linear-gradient(135deg, #ef4444, #f59e0b); color: #fff; }
       .spotlight h2 { font-size: 1.7rem; margin: 10px 0 6px; }
       .spotlight p { color: var(--muted); }
