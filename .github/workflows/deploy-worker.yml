@@ -10,12 +10,13 @@ on:
 
 jobs:
   deploy:
-    # Faqat secretlar mavjud bo'lganda ishga tushadi; aks holda o'tkazib yuboriladi.
-    if: ${{ secrets.CLOUDFLARE_API_TOKEN != '' }}
     runs-on: ubuntu-latest
+    env:
+      DEPLOY_ENABLED: ${{ secrets.CLOUDFLARE_API_TOKEN != '' }}
     steps:
       - uses: actions/checkout@v4
       - name: Deploy to Cloudflare Workers
+        if: ${{ env.DEPLOY_ENABLED == 'true' }}
         uses: cloudflare/wrangler-action@v3
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
