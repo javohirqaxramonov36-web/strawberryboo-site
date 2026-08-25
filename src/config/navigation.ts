@@ -8,6 +8,7 @@ export type NavigationItem = {
 export const primaryNavigation: readonly NavigationItem[] = [
   { href: '', label: 'Bosh sahifa', i18nKey: 'nav.home' },
   { href: 'kurslar/', label: 'Kurslar', i18nKey: 'nav.courses' },
+  { href: 'xizmatlar/', label: 'Xizmatlar' },
   { href: 'ielts-mock/', label: 'IELTS Mock', i18nKey: 'nav.ieltsMock' },
   { href: 'narxlar/', label: 'Narxlar', i18nKey: 'nav.prices' },
   { href: 'kurs-tanlash/', label: 'Kurs tanlash', i18nKey: 'nav.reco' },
