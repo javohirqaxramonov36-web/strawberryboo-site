@@ -2149,11 +2149,11 @@ const showDiscountBanner = Astro.props.showDiscountBanner || false;
       .sidebar {
         position: fixed; top: 0; left: 0; bottom: 0; width: var(--side-w);
         background: var(--surface); border-right: 1px solid var(--border);
-        display: flex; flex-direction: column; padding: 14px 16px; z-index: 60;
+        display: none; flex-direction: column; padding: 14px 16px; z-index: 60;
         transition: transform .25s ease;
         transform: translateX(-100%);
       }
-      .sidebar.open { transform: translateX(0); }
+      .sidebar.open { display: flex; transform: translateX(0); }
       .sidebar .brand { display: inline-flex; align-items: center; color: var(--text); text-decoration: none; padding: 3px 8px 17px; }
       .brand-wordmark { font-size: 1.28rem; font-weight: 800; letter-spacing: -0.065em; line-height: 1; }
       .brand-tay { color: var(--text); }
@@ -2177,7 +2177,7 @@ const showDiscountBanner = Astro.props.showDiscountBanner || false;
       .top-nav a:hover { color: var(--accent); }
       main { max-width: var(--maxw); width: 100%; margin: 0 auto; padding: 0 20px 3rem; flex: 1; }
       .hero { position: relative; overflow: hidden; text-align: center; padding: 64px 20px 30px; }
-      .hero::before { content: ""; position: absolute; left: 50%; top: -60px; width: min(760px, 120vw); height: 460px; transform: translateX(-50%); background: radial-gradient(58% 58% at 50% 42%, color-mix(in srgb, var(--accent) 22%, transparent), transparent 72%); pointer-events: none; z-index: 0; }
+      .hero::before { content: ""; position: absolute; left: 50%; top: -120px; width: min(900px, 130vw); height: 560px; transform: translateX(-50%); background: radial-gradient(60% 60% at 50% 38%, color-mix(in srgb, var(--accent) 38%, transparent), transparent 70%), radial-gradient(42% 42% at 72% 18%, color-mix(in srgb, var(--accent-2) 24%, transparent), transparent 72%); pointer-events: none; z-index: 0; }
       .hero > * { position: relative; z-index: 1; }
       .hero .eyebrow { display: inline-block; font-size: 13px; font-weight: 600; color: var(--accent); background: var(--accent-soft); padding: 5px 12px; border-radius: 99px; margin-bottom: 1rem; }
       .hero h1 { font-family: var(--font-display); letter-spacing: -.02em; font-size: 2.8rem; margin: 0 0 1rem; }
@@ -2261,6 +2261,8 @@ const showDiscountBanner = Astro.props.showDiscountBanner || false;
       .music-btn { position: fixed; bottom: 1rem; right: 1rem; background: linear-gradient(135deg, var(--btn-bg), var(--accent-2)); color: #fff; border: none; padding: 0.6rem 1rem; border-radius: 10px; cursor: pointer; font-weight: 700; z-index: 100; }
       footer { text-align: center; padding: 2rem; color: var(--muted); border-top: 1px solid var(--border); margin-top: 3rem; }
       @media (max-width: 860px) {
+        .sidebar { display: flex; transform: translateX(-100%); }
+        .sidebar.open { transform: translateX(0); }
         .menu-toggle { display: block; }
         .mobile-brand { display: inline-flex; }
         .top-nav { display: none; }
