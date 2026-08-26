@@ -24,6 +24,8 @@ const copy = {
     recommended: 'Tavsiya etilgan kurs',
     openCourse: 'Kursni ko‘rish →',
     restart: 'Testni qayta boshlash',
+    telegram: 'Natijangizni saqlash va batafsil ma’lumot olish uchun Telegram kanalimizga qo‘shiling.',
+    telegramCta: 'Telegram kanaliga qo‘shiling →',
     note: 'Bu qisqa placement test CEFR darajangizni taxminiy ko‘rsatadi va sizga mos kursni tavsiya qiladi.',
   },
   ru: {
@@ -39,6 +41,8 @@ const copy = {
     recommended: 'Рекомендуемый курс',
     openCourse: 'Открыть курс →',
     restart: 'Начать тест заново',
+    telegram: 'Чтобы сохранить результат и получить подробности, присоединитесь к нашему Telegram-каналу.',
+    telegramCta: 'Присоединиться к Telegram →',
     note: 'Этот короткий placement-тест ориентировочно показывает уровень CEFR и рекомендует подходящий курс.',
   },
   en: {
@@ -54,6 +58,8 @@ const copy = {
     recommended: 'Recommended course',
     openCourse: 'View course →',
     restart: 'Restart test',
+    telegram: 'Join our Telegram channel to save your result and get more details.',
+    telegramCta: 'Join Telegram →',
     note: 'This short placement test gives an indicative CEFR level and recommends a suitable course.',
   },
 }[lang];
@@ -111,7 +117,7 @@ const configJson = JSON.stringify(config).replace(/</g, '\\u003c');
     <p class="placement-test__intro">{copy.intro}</p>
   </div>
 
-  <div class="placement-test__progress" data-placement-progress aria-live="polite"></div>
+  <div class="placement-test__progress" aria-live="polite"><span data-placement-progress-label></span><span class="placement-test__progress-track" aria-hidden="true"><span data-placement-progress-bar></span></span></div>
   <div class="placement-test__question" data-placement-question></div>
   <div class="placement-test__options" data-placement-options></div>
   <p class="placement-test__hint" data-placement-hint hidden></p>
@@ -127,7 +133,8 @@ const configJson = JSON.stringify(config).replace(/</g, '\\u003c');
   document.querySelectorAll('[data-placement-test]').forEach((root) => {
     const configNode = root.querySelector('[data-placement-config]');
     const config = JSON.parse(configNode?.textContent || '{}');
-    const progress = root.querySelector('[data-placement-progress]');
+    const progressLabel = root.querySelector('[data-placement-progress-label]');
+    const progressBar = root.querySelector('[data-placement-progress-bar]');
     const questionNode = root.querySelector('[data-placement-question]');
     const optionsNode = root.querySelector('[data-placement-options]');
     const hint = root.querySelector('[data-placement-hint]');
@@ -147,7 +154,10 @@ const configJson = JSON.stringify(config).replace(/</g, '\\u003c');
         finish();
         return;
       }
-      progress.textContent = `${config.copy.question} ${state.answers.length + 1}`;
+      const questionNumber = state.answers.length + 1;
+      progressLabel.textContent = `${config.copy.question} ${questionNumber}/${allQuestions.length}`;
+      progressBar.style.width = `${Math.round((questionNumber / allQuestions.length) * 100)}%`;
+      progressBar.parentElement?.setAttribute('aria-label', `${questionNumber}/${allQuestions.length}`);
       questionNode.textContent = state.current.question;
       optionsNode.replaceChildren(...state.current.options.map((option) => {
         const label = document.createElement('label');
@@ -169,7 +179,8 @@ const configJson = JSON.stringify(config).replace(/</g, '\\u003c');
     const finish = () => {
       const result = assessPlacement(state.answers);
       const recommendation = config.recommendations[result.level];
-      progress.textContent = '';
+      progressLabel.textContent = '';
+      progressBar.style.width = '0%';
       questionNode.textContent = '';
       optionsNode.replaceChildren();
       next.hidden = true;
@@ -188,6 +199,7 @@ const configJson = JSON.stringify(config).replace(/</g, '\\u003c');
       recommended.textContent = config.copy.recommended;
       const link = document.createElement('a');
       link.href = recommendation?.url || '#';
+      link.setAttribute('data-analytics-event', 'placement_recommended_course_click');
       link.textContent = recommendation?.title ? `${recommendation.title} — ${config.copy.openCourse}` : config.copy.openCourse;
       link.className = 'placement-test__course-link';
       const restart = document.createElement('button');
@@ -199,7 +211,20 @@ const configJson = JSON.stringify(config).replace(/</g, '\\u003c');
         state.current = allQuestions.find((question) => question.level === 'A1');
         renderQuestion();
       });
-      resultNode.append(title, level, score, recommended, link, restart);
+      const telegramText = document.createElement('p');
+      telegramText.className = 'placement-test__telegram';
+      telegramText.textContent = config.copy.telegram;
+      const telegramLink = document.createElement('a');
+      telegramLink.href = 'https://t.me/tayanch_go';
+      telegramLink.target = '_blank';
+      telegramLink.rel = 'noopener noreferrer';
+      telegramLink.textContent = config.copy.telegramCta;
+      telegramLink.className = 'placement-test__telegram-link';
+      telegramLink.setAttribute('data-analytics-event', 'placement_telegram_cta');
+      resultNode.append(title, level, score, recommended, link, telegramText, telegramLink, restart);
+      if (typeof window.tayanchTrack === 'function') {
+        window.tayanchTrack('placement_result', { level: result.level, recommended_course: recommendation?.title || '', correct_count: result.correctCount, total: result.total, percentage: result.percentage });
+      }
       resultNode.hidden = false;
       saveResult(result);
     };
@@ -226,7 +251,7 @@ const configJson = JSON.stringify(config).replace(/</g, '\\u003c');
   .placement-test__eyebrow{margin:0 0 .3rem;color:#34d399;font-size:.73rem;font-weight:800;letter-spacing:.12em}
   .placement-test h2{margin:0;font-size:1.45rem}
   .placement-test__intro,.placement-test__note{color:var(--muted);line-height:1.55;font-size:.92rem}
-  .placement-test__progress{margin:1.1rem 0 .65rem;color:#34d399;font-size:.8rem;font-weight:800;letter-spacing:.08em}
+  .placement-test__progress{display:grid;gap:.45rem;margin:1.1rem 0 .65rem;color:#34d399;font-size:.8rem;font-weight:800;letter-spacing:.08em}.placement-test__progress-track{display:block;width:100%;height:6px;overflow:hidden;border-radius:999px;background:var(--border)}.placement-test__progress-track [data-placement-progress-bar]{display:block;width:0;height:100%;border-radius:inherit;background:#34d399;transition:width .2s ease}
   .placement-test__question{margin:.4rem 0 .75rem;font-weight:800;line-height:1.5}
   .placement-test__options{display:grid;gap:.55rem}
   .placement-test__option{display:flex;align-items:center;gap:.6rem;padding:.75rem .85rem;border:1px solid var(--border);border-radius:11px;cursor:pointer;transition:border-color .18s,background .18s}
@@ -237,7 +262,7 @@ const configJson = JSON.stringify(config).replace(/</g, '\\u003c');
   .placement-test__result{margin-top:1rem;padding:1rem;border:1px solid color-mix(in srgb,#34d399 45%,var(--border));border-radius:13px;background:color-mix(in srgb,#34d399 9%,var(--surface))}
   .placement-test__result-label,.placement-test__recommendation-label{margin:.1rem 0 .25rem;color:var(--muted);font-size:.88rem}
   .placement-test__result-level{display:block;margin-bottom:.45rem;color:#34d399;font-size:2rem}
-  .placement-test__course-link{display:block;margin:.5rem 0;color:var(--accent);font-weight:800}
+  .placement-test__course-link{display:block;margin:.5rem 0;color:var(--accent);font-weight:800}.placement-test__telegram{margin:1rem 0 .3rem;color:var(--muted);font-size:.88rem;line-height:1.5}.placement-test__telegram-link{color:var(--accent);font-weight:800}
   .placement-test__restart{background:transparent;border:1px solid var(--border);color:var(--text)}
   @media (prefers-reduced-motion: reduce){.placement-test__option{transition:none}}
 </style>
