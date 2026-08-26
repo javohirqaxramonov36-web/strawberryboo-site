@@ -1,6 +1,20 @@
 ---
 // Kurs sahifalari va bosh sahifa pastki qismi uchun Telegram ro'yxat yig'ish bo'limi.
 // progression_go kanaliga yo'naltiradi.
+const { lang = 'uz' } = Astro.props as { lang?: 'uz' | 'ru' | 'en' };
+const t = lang === 'ru' ? {
+  title: 'Ещё не решили?',
+  text: 'Подпишитесь на наш Telegram-канал — бесплатные советы и скидки приходят первыми.',
+  btn: 'Подписаться на канал →'
+} : lang === 'en' ? {
+  title: 'Not sure yet?',
+  text: 'Join our Telegram channel — get free tips and be the first to know about discounts.',
+  btn: 'Join the channel →'
+} : {
+  title: 'Hali qaror qabul qilmadingizmi?',
+  text: 'Telegram kanalimizga qo\'shiling — bepul maslahatlar va chegirmalardan birinchi bo\'lib xabar topasiz.',
+  btn: 'Telegram kanaliga qo\'shilish →'
+};
 ---
 
 <section class="tg-lead" aria-labelledby="tg-lead-title">
@@ -8,10 +22,10 @@
     <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 4 3 11l5 2 2 5 3-3 4 3 4-13z"/><path d="m8 13 4-4"/></svg>
   </div>
   <div class="tg-lead-text">
-    <h2 id="tg-lead-title">Hali qaror qabul qilmadingizmi?</h2>
-    <p>Telegram kanalimizga qo'shiling — bepul maslahatlar va chegirmalardan birinchi bo'lib xabar topasiz.</p>
+    <h2 id="tg-lead-title">{t.title}</h2>
+    <p>{t.text}</p>
   </div>
-  <a href="https://t.me/progression_go" class="tg-lead-btn" target="_blank" rel="noopener noreferrer">Telegram kanaliga qo'shilish →</a>
+  <a href="https://t.me/progression_go" class="tg-lead-btn" target="_blank" rel="noopener noreferrer">{t.btn}</a>
 </section>
 
 <style>
