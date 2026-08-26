@@ -5,6 +5,7 @@ import CourseSchema from "../../components/CourseSchema.astro";
 import Quiz from "../../components/Quiz.astro";
 import LeadMagnetCTA from "../../components/LeadMagnetCTA.astro";
 import CourseTestimonialPlaceholder from "../../components/CourseTestimonialPlaceholder.astro";
+import CareerOutcomePanel from "../../components/CareerOutcomePanel.astro";
 import figmaQuiz from "../../data/quizzes/figma.json";
 const title = "Bepul Figma: UI/UX asoslarini 1 kunda | Tayanch";
 const description = "Bepul Figma kursi: UI/UX asoslari, komponentlar va prototip yasash. Dizaynni noldan, o'zbek tilida o'rganing.";
@@ -61,6 +62,7 @@ const description = "Bepul Figma kursi: UI/UX asoslari, komponentlar va prototip
   <Quiz title="O'z bilimingizni tekshiring" titleI18n="fg.quizTitle" quizId="figma" questions={figmaQuiz} />
 
   <a href={import.meta.env.BASE_URL + 'kurslar'} class="course-nav-link" style="margin-left:1rem;" data-i18n="fg.all">← Barcha kurslar</a>
+  <CareerOutcomePanel slug="figma" />
   <CourseTestimonialPlaceholder />
   <LeadMagnetCTA />
 </article>

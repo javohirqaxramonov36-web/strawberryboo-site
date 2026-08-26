@@ -6,7 +6,7 @@ import PaymentInstructions from "../../components/PaymentInstructions.astro";
 import CourseSchema from "../../components/CourseSchema.astro";
 import Quiz from "../../components/Quiz.astro";
 import CourseTestimonialPlaceholder from "../../components/CourseTestimonialPlaceholder.astro";
-import LeadMagnetCTA from "../../components/LeadMagnetCTA.astro";
+import CareerOutcomePanel from "../../components/CareerOutcomePanel.astro";
 import backendQuiz from "../../data/quizzes/backend-python.json";
 const title = "Backend Python — FastAPI va PostgreSQL | Tayanch";
 const description = "Python, FastAPI va PostgreSQL bilan backend ilova qurish. API yozish, bazani ulash va real loyihani deploy qilish — o'zbekcha kurs.";
@@ -129,7 +129,8 @@ const weeks = [
 
     <Quiz title="O'z bilimingizni tekshiring" quizId="backend-python" questions={backendQuiz} />
     <PaymentInstructions course="Backend Development — Python" price="TBD · tez orada belgilanadi" />
-    <CourseTestimonialPlaceholder />
+    <CareerOutcomePanel slug="backend-python" />
+  <CourseTestimonialPlaceholder />
   <LeadMagnetCTA />
 </article>
 

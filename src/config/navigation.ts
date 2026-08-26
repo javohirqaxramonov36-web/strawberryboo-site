@@ -28,4 +28,5 @@ export const footerNavigation: readonly NavigationItem[] = [
   { href: 'maxfiylik-siyosati/', label: 'Maxfiylik siyosati', i18nKey: 'nav.privacy' },
   { href: 'foydalanish-shartlari/', label: 'Foydalanish shartlari', i18nKey: 'nav.terms' },
   { href: 'qaytarish-siyosati/', label: 'Qaytarish siyosati' },
+  { href: 'tasir/', label: 'Tayanch ta’siri' },
 ];

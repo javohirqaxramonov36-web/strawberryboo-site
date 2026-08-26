@@ -1,0 +1,20 @@
+---
+const FORMSPREE = 'https://formspree.io/f/xeajwzyz';
+---
+<form class="regional-form" action={FORMSPREE} method="POST" data-regional-form>
+  <input type="hidden" name="form_type" value="tayanch-regional-support-interest" />
+  <label>Ism<input name="name" autocomplete="name" required /></label>
+  <label>Email<input name="email" type="email" autocomplete="email" required /></label>
+  <label>Viloyat / shahar<input name="region" required placeholder="Masalan: Nukus" /></label>
+  <label>Holatingiz<select name="status" required><option value="">Tanlang</option><option>Talaba</option><option>Maktab/kollej o‘quvchisi</option><option>Ish qidiryapman</option><option>O‘qituvchi yoki tashkilot</option></select></label>
+  <label class="check"><input type="checkbox" name="consent" value="yes" required /> Yangiliklar va dastur ochilishi haqida xabar olishga roziman.</label>
+  <button class="start-btn" type="submit">Qiziqish bildirish →</button>
+  <p data-regional-status aria-live="polite"></p>
+</form>
+<script>
+  document.querySelectorAll('[data-regional-form]').forEach((form) => form.addEventListener('submit', async (event) => {
+    event.preventDefault(); const status = form.querySelector('[data-regional-status]'); const button = form.querySelector('button'); button.disabled = true;
+    try { const response = await fetch(form.action, { method: 'POST', body: new FormData(form), headers: { Accept: 'application/json' } }); if (!response.ok) throw new Error('submit'); form.reset(); status.textContent = 'Rahmat! Dastur yangiliklari bo‘yicha siz bilan bog‘lanamiz.'; } catch { status.textContent = 'Xatolik yuz berdi. Telegram orqali yozing.'; } finally { button.disabled = false; }
+  }));
+</script>
+<style>.regional-form{display:grid;gap:.75rem;padding:1.2rem;border:1px solid var(--border);border-radius:16px;background:var(--surface)}.regional-form label{display:grid;gap:.3rem;font-weight:700;font-size:.86rem}.regional-form input:not([type=checkbox]),.regional-form select{padding:.68rem .75rem;border:1px solid var(--border);border-radius:9px;background:var(--bg);color:var(--text);font:inherit}.regional-form .check{display:flex;grid-template-columns:none;flex-direction:row;gap:.5rem;color:var(--muted);font-weight:500}.regional-form .check input{accent-color:var(--accent)}.regional-form p{min-height:1.2em;margin:0;color:#4ade80;font-weight:700}.regional-form button{border:0;cursor:pointer}.regional-form button:disabled{opacity:.6}</style>

@@ -25,7 +25,7 @@ const description = "El-Yurt Umidi davlat granti bo'yicha suhbatga tayyorgarlik 
     tez orada to'liq material qo'shiladi. Hozircha kursning bo'limlar
     strukturasi tayyor. To'liq darslar keyingi yangilanishda yuklanadi.
   </p>
-  <section class="coming-stage"><span>TEZ ORADA</span><h2>Material tayyorlanmoqda</h2><p>Bu sahifadagi mavjud kurs holati saqlanadi; to'liq material keyinroq qo'shiladi.</p><div><i></i><i></i><i></i></div></section>
+  <section class="coming-stage"><span>AUDIT HOLATI</span><h2>Struktura bor, darslar to‘ldirilmoqda</h2><p>Hozircha bu sahifa tayyor kurs emas. Rasmiy talablar o‘zgargani uchun har bir tanlov ochilganda ma’lumotni EYUF manbalaridan qayta tekshirish kerak.</p><a href="https://eyuf.uz/" target="_blank" rel="noopener noreferrer">Rasmiy EYUF sayti →</a> · <a href="https://el-yurt.uz/application" target="_blank" rel="noopener noreferrer">Ariza portali →</a><div><i></i><i></i><i></i></div></section>
 
   <section>
     <h2 data-i18n="ey.modules">Kurs bo'limlari (struktura tayyor)</h2>
@@ -37,29 +37,16 @@ const description = "El-Yurt Umidi davlat granti bo'yicha suhbatga tayyorgarlik 
     </ol>
   </section>
 
-  <section>
-    <h2>Suhbatga tayyorgarlik</h2>
-    <p class="quiz-hint">TO'LDIRILMAGAN — material keyinroq qo'shiladi.</p>
+  <section class="audit-grid">
+    <article><h2>Suhbatga tayyorgarlik</h2><ul><li>Motivatsiya va qaytib foyda keltirish rejasini tushuntirish</li><li>Tanlangan dastur va universitetni asoslash</li><li>Mock-interview savollari va javob mezonlari</li></ul></article>
+    <article><h2>Hujjat va deadline auditi</h2><ul><li>Tanlov ochilganda rasmiy talablar checklist’i</li><li>Til sertifikati, admission va motivatsion essay</li><li>Har bir intake uchun manba va sana qaydi</li></ul></article>
+    <article><h2>Yetishmayotgan kontent</h2><ul><li>Rasmiy talablar bo‘yicha yangilanadigan dars</li><li>Essay va intervyu uchun baholash rubrikasi</li><li>Rozilik bilan tayyorlangan haqiqiy case-study</li></ul></article>
   </section>
-
-  <section>
-    <h2>Bridge texnikasi</h2>
-    <p class="quiz-hint">TO'LDIRILMAGAN — material keyinroq qo'shiladi.</p>
-  </section>
-
-  <section>
-    <h2>Tez-tez so'raladigan savollar</h2>
-    <p class="quiz-hint">TO'LDIRILMAGAN — material keyinroq qo'shiladi.</p>
-  </section>
-
-  <section>
-    <h2>Muvaffaqiyatli case'lar</h2>
-    <p class="quiz-hint">TO'LDIRILMAGAN — material keyinroq qo'shiladi.</p>
-  </section>
+  <p class="quiz-hint">Bu kursdagi hech bir grant natijasi yoki qabul kafolatlanmaydi. Rasmiy talablarga doim EYUF manbasi orqali murojaat qiling.</p>
 
   <a href={import.meta.env.BASE_URL + 'kurslar'} class="course-nav-link" style="margin-top:2rem;" data-i18n="ey.all">← Barcha kurslar</a>
   <CourseTestimonialPlaceholder />
   <LeadMagnetCTA />
 </article>
-  <style>.coming-stage{text-align:center;padding:3rem 1.2rem;border:1px solid color-mix(in srgb,#ec4899 50%,var(--border));border-radius:18px;background:radial-gradient(circle,rgba(236,72,153,.15),transparent 55%),var(--surface)}.coming-stage>span{color:#f9a8d4;font-weight:800;letter-spacing:.16em;font-size:.75rem}.coming-stage h2{font-size:clamp(1.6rem,5vw,2.4rem);margin:.5rem}.coming-stage p{color:var(--muted)}.coming-stage i{display:inline-block;width:8px;height:8px;margin:.3rem;border-radius:50%;background:#ec4899;animation:pulse 1.4s infinite alternate}.coming-stage i:nth-child(2){animation-delay:.2s}.coming-stage i:nth-child(3){animation-delay:.4s}@keyframes pulse{to{transform:translateY(-6px);opacity:.35}}</style>
+  <style>.audit-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:.75rem}.audit-grid article{padding:1rem;border:1px solid var(--border);border-radius:14px;background:var(--surface)}.audit-grid h2{font-size:1.05rem}.audit-grid li{margin:.45rem 0;color:var(--muted);line-height:1.45}.coming-stage a{color:#f9a8d4;font-weight:800}.coming-stage{text-align:center;padding:3rem 1.2rem;border:1px solid color-mix(in srgb,#ec4899 50%,var(--border));border-radius:18px;background:radial-gradient(circle,rgba(236,72,153,.15),transparent 55%),var(--surface)}.coming-stage>span{color:#f9a8d4;font-weight:800;letter-spacing:.16em;font-size:.75rem}.coming-stage h2{font-size:clamp(1.6rem,5vw,2.4rem);margin:.5rem}.coming-stage p{color:var(--muted)}.coming-stage i{display:inline-block;width:8px;height:8px;margin:.3rem;border-radius:50%;background:#ec4899;animation:pulse 1.4s infinite alternate}.coming-stage i:nth-child(2){animation-delay:.2s}.coming-stage i:nth-child(3){animation-delay:.4s}@keyframes pulse{to{transform:translateY(-6px);opacity:.35}}</style>
 </Base>

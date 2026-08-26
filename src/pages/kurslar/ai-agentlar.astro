@@ -7,6 +7,7 @@ import CourseProgress from "../../components/CourseProgress.astro";
 import CourseSchema from "../../components/CourseSchema.astro";
 import Quiz from "../../components/Quiz.astro";
 import CourseTestimonialPlaceholder from "../../components/CourseTestimonialPlaceholder.astro";
+import CareerOutcomePanel from "../../components/CareerOutcomePanel.astro";
 import CourseFaq from "../../components/CourseFaq.astro";
 import { bespokeCourseFaqFacts } from "../../data/course-faqs";
 const title = "AI Agent yaratish: CrewAI va LangGraph | Tayanch";
@@ -283,6 +284,7 @@ pip install langgraph</code></pre>
   <PaymentInstructions course="AI Agentlar nega kerak?" price="$39 · ≈ 490 000 so'm" />
   <CourseFaq facts={bespokeCourseFaqFacts["ai-agentlar"]} />
   {/* REAL student reviews go in src/data/testimonials.ts — add only permissioned, verified reviews. This renders nothing until then. */}
+  <CareerOutcomePanel slug="ai-agentlar" />
   <CourseTestimonialPlaceholder />
   <LeadMagnetCTA />
 </article>

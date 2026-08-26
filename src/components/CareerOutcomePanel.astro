@@ -1,0 +1,28 @@
+---
+import { careerOutcomes } from '../data/social-impact';
+import LinkedInGuide from './LinkedInGuide.astro';
+interface Props { slug: string; lang?: 'uz' | 'ru' | 'en'; }
+const { slug, lang = 'uz' } = Astro.props as Props;
+const outcome = careerOutcomes[slug];
+const copy = {
+  uz: { eyebrow: 'REAL NATIJA', title: 'Kursdan keyin nimani ko‘rsata olasiz?', portfolio: 'Yakuniy portfolio loyihasi', can: 'Amalda nimalar qila olasiz', steps: 'Keyingi 3 qadam', bonus: 'Kasbiy bonus dars', note: 'Kurs bilimini ish beruvchi yoki mijoz ko‘ra oladigan natijaga aylantiring. Ish yoki daromad kafolatlanmaydi.' },
+  ru: { eyebrow: 'ПРАКТИЧЕСКИЙ РЕЗУЛЬТАТ', title: 'Что вы сможете показать после курса?', portfolio: 'Итоговый проект для портфолио', can: 'Что вы сможете делать', steps: 'Следующие 3 шага', bonus: 'Бонус для карьеры', note: 'Превратите знания курса в результат для работодателя или клиента. Работа и доход не гарантируются.' },
+  en: { eyebrow: 'REAL OUTCOME', title: 'What can you show after the course?', portfolio: 'Final portfolio project', can: 'What you can do', steps: 'Your next 3 steps', bonus: 'Career bonus lesson', note: 'Turn course knowledge into evidence an employer or client can review. Jobs and income are not guaranteed.' }
+} as const;
+---
+{outcome && <section class="career-outcome" aria-labelledby={`career-outcome-${slug}`}>
+  <p class="eyebrow">{copy[lang].eyebrow}</p>
+  <h2 id={`career-outcome-${slug}`}>{copy[lang].title}</h2>
+  <p class="career-note">{copy[lang].note}</p>
+  <div class="career-grid">
+    <article class="career-card career-card--portfolio"><span>{copy[lang].portfolio}</span><strong>{outcome.portfolio}</strong></article>
+    <article class="career-card"><span>{copy[lang].can}</span><ul>{outcome.canDo.map((item) => <li>{item}</li>)}</ul></article>
+    <article class="career-card"><span>{copy[lang].steps}</span><ol>{outcome.nextSteps.map((item) => <li>{item}</li>)}</ol></article>
+  </div>
+  <div class="career-bonus"><span>{copy[lang].bonus}</span><p>{outcome.bonus}</p></div>{outcome.earningNote && <p class="earning-note"><strong>{lang === 'ru' ? 'Доход: осторожный пример' : lang === 'en' ? 'Income: cautious example' : 'Daromad: ehtiyotkor misol'}</strong> {outcome.earningNote}</p>}
+  <LinkedInGuide lang={lang} />
+  <p class="impact-link"><a href={import.meta.env.BASE_URL + 'tasir/'}>Kursdan keyingi natijangizni anonim so‘rovnomada ulashing →</a></p>
+</section>}
+<style>
+.career-outcome{margin:2rem 0;padding:clamp(1.15rem,3vw,2rem);border:1px solid color-mix(in srgb,var(--accent) 48%,var(--border));border-radius:18px;background:linear-gradient(135deg,color-mix(in srgb,var(--accent) 9%,var(--surface)),var(--surface))}.career-outcome h2{margin:.15rem 0 .55rem}.career-note{color:var(--muted);line-height:1.6;margin:0 0 1.1rem}.career-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:.75rem}.career-card{padding:1rem;border:1px solid var(--border);border-radius:13px;background:var(--surface)}.career-card span,.career-bonus>span{display:block;font-size:.76rem;font-weight:800;letter-spacing:.08em;color:var(--accent);text-transform:uppercase}.career-card strong{display:block;margin-top:.5rem;line-height:1.5}.career-card ul,.career-card ol{margin:.6rem 0 0;padding-left:1.15rem;color:var(--muted);line-height:1.55}.career-card li+li{margin-top:.35rem}.career-bonus{margin-top:.75rem;padding:1rem;border-left:3px solid var(--accent);background:color-mix(in srgb,var(--accent) 7%,var(--surface))}.career-bonus p{margin:.35rem 0 0;color:var(--muted);line-height:1.55}.earning-note{margin:1rem 0 0;color:var(--muted);line-height:1.55;font-size:.9rem}.earning-note strong{color:var(--text)}.impact-link{margin:1rem 0 0}.impact-link a{color:var(--accent);font-weight:800}
+</style>

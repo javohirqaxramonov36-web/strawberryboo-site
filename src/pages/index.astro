@@ -4,6 +4,7 @@ import InstructorMiniBlock from "../components/InstructorMiniBlock.astro";
 import { totalCourseCount } from "../config/course-catalog";
 import CourseCard from "../components/CourseCard.astro";
 import TelegramLeadSection from "../components/TelegramLeadSection.astro";
+import SocialImpactBanner from "../components/SocialImpactBanner.astro";
 import coursesData from "../data/courses.json";
 const courseById = (slug: string) => (coursesData.courses as any[]).find((c) => c.slug === slug);
 const title = "AI, IELTS va Admission kurslari | Tayanch";
@@ -54,6 +55,8 @@ const TG = "https://t.me/tayanch_go"; // Telegram kanal/guruh havolasi
     </a>
   </div>
 </section>
+
+<SocialImpactBanner />
 
 <section class="founder-excerpt" aria-labelledby="founder-excerpt-title">
   <div><p class="eyebrow">NEGA TAYANCH?</p><h2 id="founder-excerpt-title">Bu kurslarni nega men yaratdim</h2></div>
