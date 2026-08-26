@@ -8,7 +8,7 @@ export type NavigationItem = {
 export const primaryNavigation: readonly NavigationItem[] = [
   { href: '', label: 'Bosh sahifa', i18nKey: 'nav.home' },
   { href: 'kurslar/', label: 'Kurslar', i18nKey: 'nav.courses' },
-  { href: 'xizmatlar/', label: 'Xizmatlar' },
+  { href: 'xizmatlar/', label: 'Xizmatlar', i18nKey: 'nav.services' },
   { href: 'ielts-mock/', label: 'IELTS Mock', i18nKey: 'nav.ieltsMock' },
   { href: 'narxlar/', label: 'Narxlar', i18nKey: 'nav.prices' },
   { href: 'kurs-tanlash/', label: 'Kurs tanlash', i18nKey: 'nav.reco' },
@@ -18,15 +18,15 @@ export const primaryNavigation: readonly NavigationItem[] = [
   { href: 'homiylik/', label: 'Homiylik', i18nKey: 'nav.donate' },
   { href: 'md2pdf/', label: 'Markdown → PDF', i18nKey: 'nav.md2pdf' },
   { href: 'tech-lab/', label: 'Tech Lab', i18nKey: 'nav.techLab' },
-  { href: 'entertainment/', label: 'Entertainment' },
+  { href: 'entertainment/', label: 'Entertainment', i18nKey: 'nav.entertainment' },
 ];
 
 export const footerNavigation: readonly NavigationItem[] = [
   ...primaryNavigation,
-  { href: 'faq/', label: 'FAQ' },
+  { href: 'faq/', label: 'FAQ', i18nKey: 'nav.faq' },
   { href: 'biz-haqimizda/', label: 'Biz haqimizda', i18nKey: 'nav.about' },
   { href: 'maxfiylik-siyosati/', label: 'Maxfiylik siyosati', i18nKey: 'nav.privacy' },
   { href: 'foydalanish-shartlari/', label: 'Foydalanish shartlari', i18nKey: 'nav.terms' },
-  { href: 'qaytarish-siyosati/', label: 'Qaytarish siyosati' },
-  { href: 'tasir/', label: 'Tayanch ta’siri' },
+  { href: 'qaytarish-siyosati/', label: 'Qaytarish siyosati', i18nKey: 'nav.refund' },
+  { href: 'tasir/', label: 'Tayanch ta’siri', i18nKey: 'nav.impact' },
 ];

@@ -2,6 +2,7 @@
 import {
   placementQuestions,
   type PlacementLevel,
+  PLACEMENT_LEVELS,
 } from '../data/placement-test';
 
 interface Props {
@@ -33,6 +34,9 @@ const copy = {
     combinedTitle: 'Umumiy tavsiya',
     combinedText: 'CEFR darajangiz va maqsad asosidagi tavsiyangiz bir joyda.',
     combinedFinder: 'Kurs tanlash testini ishlash →',
+    breakdownTitle: 'Darajalar bo‘yicha natija',
+    breakdownHint: 'Har darajadagi to‘g‘ri javoblar:',
+    clearResult: 'Saqlangan natijani o‘chirish',
     note: 'Bu qisqa placement test CEFR darajangizni taxminiy ko‘rsatadi va sizga mos kursni tavsiya qiladi.',
   },
   ru: {
@@ -56,6 +60,9 @@ const copy = {
     combinedTitle: 'Общая рекомендация',
     combinedText: 'Ваш уровень CEFR и рекомендация по цели собраны в одном месте.',
     combinedFinder: 'Пройти тест подбора курса →',
+    breakdownTitle: 'Результат по уровням',
+    breakdownHint: 'Правильные ответы по каждому уровню:',
+    clearResult: 'Удалить сохранённый результат',
     note: 'Этот короткий placement-тест ориентировочно показывает уровень CEFR и рекомендует подходящий курс.',
   },
   en: {
@@ -79,6 +86,9 @@ const copy = {
     combinedTitle: 'Combined recommendation',
     combinedText: 'Your CEFR level and goal-based course recommendation in one place.',
     combinedFinder: 'Take the course-finder test →',
+    breakdownTitle: 'Breakdown by level',
+    breakdownHint: 'Correct answers at each level:',
+    clearResult: 'Clear saved result',
     note: 'This short placement test gives an indicative CEFR level and recommends a suitable course.',
   },
 }[lang];
@@ -227,6 +237,20 @@ const configJson = JSON.stringify(config).replace(/</g, '\\u003c');
       level.textContent = result.level;
       const score = document.createElement('p');
       score.textContent = `${config.copy.score}: ${result.correctCount}/${result.total} (${result.percentage}%)`;
+      const breakdown = document.createElement('div');
+      breakdown.className = 'placement-test__breakdown';
+      const breakdownTitle = document.createElement('strong');
+      breakdownTitle.textContent = config.copy.breakdownTitle;
+      const breakdownHint = document.createElement('p');
+      breakdownHint.textContent = config.copy.breakdownHint;
+      const breakdownList = document.createElement('ul');
+      PLACEMENT_LEVELS.forEach((level) => {
+        const levelAnswers = state.answers.filter((answer) => answer.level === level);
+        const item = document.createElement('li');
+        item.textContent = `${level}: ${levelAnswers.filter((answer) => answer.correct).length}/${levelAnswers.length}`;
+        breakdownList.append(item);
+      });
+      breakdown.append(breakdownTitle, breakdownHint, breakdownList);
       const shareRow = document.createElement('div');
       shareRow.className = 'placement-test__share';
       const copyButton = document.createElement('button');
@@ -288,7 +312,16 @@ const configJson = JSON.stringify(config).replace(/</g, '\\u003c');
         state.answers = [];
         state.draftAnswer = null;
         state.current = allQuestions.find((question) => question.level === 'A1');
+        try { localStorage.removeItem('tayanch.placement-test.v1'); } catch {}
         renderQuestion();
+      });
+      const clearResult = document.createElement('button');
+      clearResult.type = 'button';
+      clearResult.className = 'placement-test__clear';
+      clearResult.textContent = config.copy.clearResult;
+      clearResult.addEventListener('click', () => {
+        try { localStorage.removeItem('tayanch.placement-test.v1'); } catch {}
+        clearResult.textContent = config.copy.clearResult;
       });
       const telegramText = document.createElement('p');
       telegramText.className = 'placement-test__telegram';
@@ -299,7 +332,7 @@ const configJson = JSON.stringify(config).replace(/</g, '\\u003c');
       telegramLink.rel = 'noopener noreferrer';
       telegramLink.textContent = config.copy.telegramCta;
       telegramLink.className = 'placement-test__telegram-link';
-      resultNode.append(title, level, score, shareRow, recommended, link, combined, telegramText, telegramLink, restart);
+      resultNode.append(title, level, score, breakdown, shareRow, recommended, link, combined, telegramText, telegramLink, restart, clearResult);
       resultNode.hidden = false;
       saveResult(result, recommendation);
     };
@@ -345,8 +378,9 @@ const configJson = JSON.stringify(config).replace(/</g, '\\u003c');
   .placement-test__hint{color:#fca5a5;font-size:.88rem}
   .placement-test__result{margin-top:1rem;padding:1rem;border:1px solid color-mix(in srgb,#34d399 45%,var(--border));border-radius:13px;background:color-mix(in srgb,#34d399 9%,var(--surface))}
   .placement-test__result-label,.placement-test__recommendation-label{margin:.1rem 0 .25rem;color:var(--muted);font-size:.88rem}
+  .placement-test__breakdown{margin:.8rem 0;padding:.7rem .8rem;border:1px solid var(--border);border-radius:10px}.placement-test__breakdown p{margin:.2rem 0;color:var(--muted);font-size:.84rem}.placement-test__breakdown ul{display:grid;grid-template-columns:repeat(5,1fr);gap:.35rem;margin:.55rem 0 0;padding:0;list-style:none}.placement-test__breakdown li{padding:.35rem .25rem;text-align:center;border-radius:7px;background:color-mix(in srgb,var(--accent) 8%,transparent);font-size:.78rem;font-weight:700}@media(max-width:520px){.placement-test__breakdown ul{grid-template-columns:repeat(3,1fr)}}
   .placement-test__result-level{display:block;margin-bottom:.45rem;color:#34d399;font-size:2rem}
   .placement-test__course-link{display:block;margin:.5rem 0;color:var(--accent);font-weight:800}.placement-test__combined{display:grid;gap:.35rem;margin:1rem 0;padding:.8rem;border:1px solid var(--border);border-radius:11px;background:color-mix(in srgb,var(--accent) 7%,transparent);font-size:.88rem}.placement-test__combined p{margin:0;color:var(--muted);line-height:1.45}.placement-test__combined a{color:var(--accent);font-weight:800}.placement-test__telegram{margin:1rem 0 .3rem;color:var(--muted);font-size:.88rem;line-height:1.5}.placement-test__telegram-link{color:var(--accent);font-weight:800}
-  .placement-test__restart{background:transparent;border:1px solid var(--border);color:var(--text)}
+  .placement-test__restart{background:transparent;border:1px solid var(--border);color:var(--text)}.placement-test__clear{display:block;margin-top:.65rem;border:0;background:transparent;color:var(--muted);font-size:.78rem;text-decoration:underline;cursor:pointer}
   @media (prefers-reduced-motion: reduce){.placement-test__option{transition:none}}
 </style>
