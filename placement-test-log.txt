@@ -39,16 +39,15 @@ General English kurslari uchun CEFR placement test infratuzilmasi yaratildi. Bu 
 6. Natija `localStorage`ga saqlanadi: `tayanch.placement-test.v1`.
 7. Natija sahifasida daraja, ball foizi va mos General English kursi ko‘rsatiladi.
 
-## Placeholder savollar
+## Savollar kontenti yangilanishi
 
-- A1: `I ___ to school every day.`
-- A2: `She has lived here ___ 2022.`
-- B1: `If I ___ more time, I would join the course.`
-
-Bu savollar faqat mexanizm formatini ko‘rsatish uchun mustaqil yozildi. B2 va C1 banklari savolsiz shablon sifatida qoldirildi.
+- Foydalanuvchi taqdim etgan 25 ta savol A1, A2, B1, B2 va C1 banklariga joylandi.
+- Har bir darajada 5 tadan savol bor.
+- Har bir savolda 4 ta variant va bitta `correctOption` mavjud.
+- Savollar foydalanuvchi tomonidan berilgan; qo‘shimcha tashqi manbadan savol olinmadi.
 
 ## Cheklovlar
 
-- Hozirgi testda faqat 3 ta placeholder savol bor; to‘liq test natijasi yakuniy baholash sifatida ishlatilmasligi kerak.
-- B2 va C1 savollari kiritilgach, adaptiv yo‘l avtomatik ravishda yuqori darajalarga kengayadi.
+- Testda hozir 25 ta savol bor: har bir CEFR darajasida 5 tadan.
+- Savollar banki foydalanuvchi taqdim etgan ro‘yxat bilan to‘ldirildi; keyinchalik metodik ekspertiza yoki qo‘shimcha savollar bilan takomillashtirish mumkin.
 - Backend, login va tashqi analytics qo‘shilmadi.
