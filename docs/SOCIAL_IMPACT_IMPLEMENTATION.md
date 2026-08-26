@@ -8,7 +8,7 @@ Branch: `feature/tayanch-social-impact`
 - Cautious income examples for AI workflow, analytics and prompt services; no income or employment guarantees.
 - New Uzbek remote-work guide at `/masofaviy-ish/` covering Upwork, Fiverr and Toptal onboarding, portfolio, proposals, fees, payout caveats and a Telegram/Instagram post series.
 - Homepage banner linking to remote work and regional access pages.
-- Regional access landing at `/viloyatlar/` with the proposed “Tayanch-10” pilot mechanism and a consented interest form.
+- Regional access landing at `/viloyatlar/` with the active “Tayanch-10” pilot mechanism and a consented interest form.
 - 26-institution regional outreach shortlist in `/docs/regional-outreach-shortlist.md` and a public table on the regional page. Partnership interest is not claimed; provisional/blocked official domains are labeled for recheck.
 - Free Financial Literacy mini-course launch with budget tool, six practical modules, debt/saving/online-income safety, progress tracking and no product-specific financial advice.
 - Admission funnel from the free study-abroad course to Admission Process, plus an El-Yurt Umidi audit page showing completed structure and remaining content gaps.
@@ -27,7 +27,7 @@ Branch: `feature/tayanch-social-impact`
 ## Honest boundaries
 
 - No real testimonial, student count, employment result, salary increase or grant winner case study was invented. The impact baseline stays at zero until verified, consented responses exist.
-- “Tayanch-10” is a proposed pilot mechanism, not an active scholarship promise or active discount code.
+- “Tayanch-10” is active from 2026-08-26: five monthly places provide full access to one existing course only. It provides no cash, internet/device reimbursement, or other financial aid. First review is 2026-09-30.
 - Form submissions use the existing Formspree endpoint already used by the site. The endpoint owner must review retention/privacy settings before collecting sensitive outcome information.
 - Regional outreach is a research shortlist, not a contact campaign or partnership claim.
 - The remote-work guide tells learners to verify current platform eligibility, payout availability, taxes, fees and local legal obligations.
@@ -39,7 +39,7 @@ Branch: `feature/tayanch-social-impact`
 3. Score the four-part rubric shown on `/viloyatlar/`: need (35%), goal clarity (25%), completion plan (20%), and regional impact (20%).
 4. Have a second reviewer check the short-list and conflicts before contacting applicants.
 5. Contact selected applicants and the waiting list separately. Never publish raw applications, identity documents, or private contact details.
-6. Only after a cycle is funded and approved, replace the proposed status, dates, and seat count in `src/data/tayanch10.ts`.
+6. Keep the active status, cycle dates and five-seat limit in `src/data/tayanch10.ts`; change them only through an explicit policy decision.
 
 ## Impact dashboard update routine
 

@@ -19,7 +19,7 @@ if (!home.includes('G-C8G7WRC92F')) failures.push('configured GA4 measurement ID
 if (home.includes('progression_go')) failures.push('stale Telegram URL progression_go remains');
 const socialPages = {
   'masofaviy-ish/index.html': ['Upwork', 'Fiverr', 'Daromad'],
-  'viloyatlar/index.html': ['Tayanch-10', '26 ta'],
+  'viloyatlar/index.html': ['Tayanch-10', '5 ta bepul o‘rin', 'AKTIV PILOT'],
   'tasir/index.html': ['TA’SIRNI O‘LCHAYMIZ', 'data-impact-survey'],
 };
 for (const [path, markers] of Object.entries(socialPages)) {
