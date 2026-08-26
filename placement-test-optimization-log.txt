@@ -46,3 +46,13 @@ UZ founder section: `AI, IELTS va Admission’ni amaliy yo‘l bilan o‘rganing
 Chegirma: `15% chegirma — cheklangan miqdordagi joylar` (RU/EN ham xuddi shu mazmunda). Real-time 20 kishilik hisoblagich mavjud emasligi sababli aniq son olib tashlandi.
 
 Placement: oldindan mavjud bo‘lgan kurs CTA’si saqlandi; yangi qo‘shimchalar — `Savol 1/25` progress bar, natijadan keyingi ixtiyoriy Telegram CTA va `placement_result` GA4 event’i.
+
+## Technical follow-up
+
+- `/sertifikat/` sahifasining shaffoflik matni o‘zgartirilmadi.
+- `Course` JSON-LD barcha CourseSchema ishlatiladigan kurs sahifalarida provider va mavjud katalog narxi bo‘lsa UZS Offer bilan beriladi.
+- UZ va localized RU/EN FAQ sahifalariga `FAQPage` JSON-LD qo‘shildi.
+- Bosh layoutdagi Organization graph `EducationalOrganization` turini ham qamrab oladi.
+- `public/robots.txt` mavjud va sitemap manziliga ishora qiladi; `public/sitemap.xml` build paytida 203 muhim route bilan generatsiya qilinadi.
+- Cache-busting tekshirildi: Vite asset hash’lari buildda avtomatik yangilanadi; `?v=` faqat QA/cache tekshiruvi uchun qo‘lda berilgan URL parametri, source buildga qo‘lda release qiymati tikilmaydi.
+- Kurs tanlash sahifasida “CEFR daraja testi” va “To‘liq kurs tanlash testi” ikki xil maqsad sifatida aniq ajratildi; uch tilda progress bar ko‘rinishi qo‘shildi.

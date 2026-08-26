@@ -28,7 +28,13 @@ const copy = {
 } as const;
 const t = copy[lang][page] as any;
 const card = payments.find((payment) => payment.id === 'card');
+const faqSchema = page === 'faq' ? {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: (t.questions || []).map(([question, answer]: [string, string]) => ({ '@type': 'Question', name: question, acceptedAnswer: { '@type': 'Answer', text: answer } }))
+} : null;
 ---
+{faqSchema && <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />}
 {page === 'about' && <section class="trust-page"><p class="eyebrow">{t.eyebrow}</p><h1>{t.h1}</h1><p class="lead">{t.lead}</p><div class="trust-grid"><article><h2>{t.focus}</h2><p>{t.focusText}</p></article><article><h2>{t.mission}</h2><p>{t.missionText}</p></article></div><p class="mission-note">{lang === 'en' ? 'Small, steady practice can become a real foundation.' : lang === 'ru' ? 'Небольшая регулярная практика может стать настоящей опорой.' : 'Kichik, izchil mashq haqiqiy tayanchga aylanishi mumkin.'}</p><p class="note">{t.note} <a href={href('mening-yolim')}>{t.journey}</a>.</p><a class="start-btn" href={href('bog-lanish')}>{t.button}</a></section>}
 
 {page === 'faq' && <article class="lesson"><h1>{t.h1}</h1><p class="lead">{t.lead} <a href={href('bog-lanish')} class="accent-link">{t.contact}</a>{t.leadEnd}</p><section class="faq">{t.questions.map(([question, answer]: [string, string], index: number) => <details open={index === 0}><summary>{question}</summary><p>{answer}{index === 1 && <> <a href="https://t.me/tayanch_go" class="accent-link" target="_blank" rel="noopener noreferrer">@tayanch_go</a></>}</p></details>)}</section><a href={href('kurslar')} class="start-btn faq-button">{t.button}</a></article>}
