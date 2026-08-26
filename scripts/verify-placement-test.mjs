@@ -30,4 +30,4 @@ for (const level of levels) {
   console.log(`OK ${path.relative(root, file)} — ${bank.questions.length} question(s)`);
 }
 
-console.log(`Placement schema verified — ${totalQuestions} placeholder question(s); B2/C1 remain ready for later content.`);
+console.log(`Placement schema verified — ${totalQuestions} question(s) across A1–C1 banks.`);
