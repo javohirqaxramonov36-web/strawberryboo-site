@@ -1425,7 +1425,7 @@
     },
     {
       "slug": "financial-literacy",
-      "type": "coming-soon",
+      "type": "standard",
       "cats": [
         "hayotiy"
       ],
@@ -1442,12 +1442,12 @@
         "en": "LIFE SKILLS"
       },
       "description": {
-        "uz": "Pulni boshqarish, byudjet tuzish va moliyaviy qarorlar — talaba hayoti uchun asosiy ko'nikmalar.",
-        "ru": "Управляйте деньгами и принимайте взвешенные решения.",
-        "en": "Manage money and make sound decisions."
+        "uz": "Byudjet, qarz xavfi, tejash va kundalik moliyaviy qarorlar bo‘yicha bepul amaliy mini-kurs.",
+        "ru": "Бесплатный практический мини-курс о бюджете, долгах, сбережениях и финансовых решениях.",
+        "en": "A free practical mini-course on budgeting, debt risk, saving, and everyday financial decisions."
       },
-      "free": false,
-      "comingSoon": true,
+      "free": true,
+      "comingSoon": false,
       "paid": false,
       "certificate": true,
       "gumroadSlug": null,
@@ -1459,12 +1459,17 @@
         "ru": "Тем, кто хочет упорядочить личные финансы",
         "en": "People who want to organize personal finances"
       },
-      "status": "upcoming",
+      "status": "available",
       "countInPublicTotal": true,
       "price": {
-        "uz": "Tez orada",
-        "ru": "Скоро",
-        "en": "Coming soon"
+        "uz": "Bepul",
+        "ru": "Бесплатно",
+        "en": "Free"
+      },
+      "priceUzs": {
+        "uz": "0 so‘m",
+        "ru": "0 сум",
+        "en": "0 UZS"
       }
     },
     {

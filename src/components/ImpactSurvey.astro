@@ -1,0 +1,32 @@
+---
+const FORMSPREE = 'https://formspree.io/f/xeajwzyz';
+---
+<section class="impact-survey" aria-labelledby="impact-survey-title">
+  <div><p class="eyebrow">TA’SIRNI O‘LCHAYMIZ</p><h2 id="impact-survey-title">Kursdan keyin nima o‘zgardi?</h2><p class="survey-note">So‘rovnoma 2 daqiqa oladi. Javoblar faqat rozilik berilgan taqdirda umumiy, shaxssiz statistikaga qo‘shiladi. Ish yoki daromad natijasi kafolatlanmaydi.</p></div>
+  <form action={FORMSPREE} method="POST" data-impact-survey>
+    <input type="hidden" name="form_type" value="tayanch-impact-survey" />
+    <label>Ism yoki taxallus (ixtiyoriy)<input name="name" autocomplete="name" /></label>
+    <label>Kurs<select name="course" required><option value="">Tanlang</option><option>AI Agentlar</option><option>Data Analytics</option><option>Backend Python</option><option>Figma</option><option>Financial Literacy</option><option>Boshqa</option></select></label>
+    <label>Hozirgi natijangiz<select name="outcome" required><option value="">Tanlang</option><option>Ish topdim</option><option>Freelance boshladim</option><option>Maoshim yoki vazifam oshdi</option><option>Portfolio tayyorladim</option><option>Hali natija yo‘q</option></select></label>
+    <label>Hudud (ixtiyoriy)<input name="region" placeholder="Masalan: Qashqadaryo" /></label>
+    <label class="check"><input type="checkbox" name="public_consent" value="yes" /> Javobimni shaxssiz umumiy statistikada ishlatishga roziman.</label>
+    <button class="start-btn" type="submit">So‘rovnomani yuborish →</button>
+    <p class="survey-status" data-survey-status aria-live="polite"></p>
+  </form>
+</section>
+<script>
+  document.querySelectorAll('[data-impact-survey]').forEach((form) => form.addEventListener('submit', async (event) => {
+    event.preventDefault();
+    const status = form.querySelector('[data-survey-status]');
+    const button = form.querySelector('button');
+    button.disabled = true;
+    try {
+      const response = await fetch(form.action, { method: 'POST', body: new FormData(form), headers: { Accept: 'application/json' } });
+      if (!response.ok) throw new Error('submit');
+      form.reset(); status.textContent = 'Rahmat! Javobingiz qabul qilindi.';
+    } catch { status.textContent = 'Yuborishda xatolik. Keyinroq qayta urinib ko‘ring yoki Telegram orqali yozing.'; }
+    finally { button.disabled = false; }
+  }));
+</script>
+<style>.impact-survey{display:grid;grid-template-columns:minmax(0,1fr) minmax(280px,440px);gap:1.4rem;margin:1.5rem 0;padding:clamp(1.2rem,3vw,2rem);border:1px solid color-mix(in srgb,#7d7df5 45%,var(--border));border-radius:18px;background:linear-gradient(135deg,color-mix(in srgb,#7d7df5 10%,var(--surface)),var(--surface))}.impact-survey h2{margin:.1rem 0 .5rem}.survey-note{color:var(--muted);line-height:1.6}.impact-survey form{display:grid;gap:.75rem}.impact-survey label{display:grid;gap:.3rem;font-size:.86rem;font-weight:700}.impact-survey input:not([type=checkbox]),.impact-survey select{width:100%;box-sizing:border-box;padding:.68rem .75rem;border:1px solid var(--border);border-radius:9px;background:var(--bg);color:var(--text);font:inherit}.impact-survey .check{display:flex;grid-template-columns:none;align-items:flex-start;flex-direction:row;gap:.5rem;color:var(--muted);font-weight:500}.impact-survey .check input{margin-top:.2rem;accent-color:var(--accent)}.impact-survey button{border:0;cursor:pointer}.impact-survey button:disabled{opacity:.6}.survey-status{min-height:1.3em;margin:0;color:#4ade80;font-weight:700}@media(max-width:760px){.impact-survey{grid-template-columns:1fr}}
+</style>
