@@ -1,33 +1,19 @@
+import coursesData from '../data/courses.json';
+
 export type CourseStatus = 'available' | 'upcoming';
 
-// Single source for public course totals. Keep planned courses separate from
-// courses that can currently be accessed or purchased.
-export const courseCatalog = [
-  { slug: 'prompt-engineering', status: 'available' },
-  { slug: 'obsidian', status: 'available' },
-  { slug: 'ai-agentlar', status: 'available' },
-  { slug: 'ielts-listening', status: 'available' },
-  { slug: 'ielts-reading', status: 'available' },
-  { slug: 'ielts-writing', status: 'available' },
-  { slug: 'ielts-speaking', status: 'available' },
-  { slug: 'admission-process', status: 'available' },
-  { slug: 'tekin-ai', status: 'available' },
-  { slug: 'mac-tezlik-sirlari', status: 'available' },
-  { slug: 'autocad-on-mac', status: 'available' },
-  { slug: 'financial-literacy', status: 'upcoming' },
-  { slug: 'vibe-coding', status: 'upcoming' },
-  { slug: 'data-analytics', status: 'upcoming' },
-  { slug: 'backend-python', status: 'upcoming' },
-  { slug: 'general-english-beginner', status: 'upcoming' },
-  { slug: 'general-english-elementary', status: 'upcoming' },
-  { slug: 'general-english-pre-intermediate', status: 'upcoming' },
-  { slug: 'general-english-intermediate', status: 'upcoming' },
-  { slug: 'general-english-upper-intermediate', status: 'upcoming' },
-  { slug: 'general-english-advanced', status: 'upcoming' },
-  { slug: 'sat-math', status: 'upcoming' },
-  { slug: 'sat-english', status: 'upcoming' },
-  { slug: 'desmos-applications', status: 'upcoming' },
-] as const satisfies readonly { slug: string; status: CourseStatus }[];
+type CourseRecord = {
+  slug: string;
+  status: CourseStatus;
+  countInPublicTotal: boolean;
+};
+
+// Public totals are derived from src/data/courses.json. That file is the single
+// source of truth for course metadata; set countInPublicTotal only for courses
+// that should be included in the headline total.
+export const courseCatalog = (coursesData.courses as CourseRecord[])
+  .filter((course) => course.countInPublicTotal)
+  .map(({ slug, status }) => ({ slug, status })) as readonly { slug: string; status: CourseStatus }[];
 
 export const totalCourseCount = courseCatalog.length;
 export const availableCourseCount = courseCatalog.filter((course) => course.status === 'available').length;

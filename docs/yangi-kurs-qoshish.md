@@ -1,82 +1,75 @@
 # Yangi kurs qo‘shish — qadam-baqadam yo‘riqnoma
 
-Barcha kurslar **`src/data/courses.json`** faylida bitta joyda saqlanadi. Bosh sahifa
-(`index.astro`), Kurslar sahifasi (`kurslar/index.astro`), RU/EN tarjimalar
-(`LocalizedCatalog.astro`, `LocalizedHome.astro`) va karta komponenti
-(`CourseCard.astro`) shu fayldan avtomatik generatsiyalanadi. Yangi kurs qo‘shish
-uchun kodga tegishingiz shart emas — faqat JSON ga yozasiz.
+Kurs katalogining yagona manbasi **`src/data/courses.json`**. Bosh sahifa, Kurslar katalogi, RU/EN kataloglari, kurs kartalari va sarlavhadagi kurs soni shu ma’lumotdan olinadi. Sayt Astro’da statik build qilinadi: bu tez yuklanish va SEO uchun ma’lumotni brauzerda keyin `fetch` qilishdan ko‘ra xavfsizroq. Shuning uchun yangi kurs qo‘shganda odatda faqat JSON ma’lumotini hamda kursning alohida sahifasini qo‘shasiz.
 
-## 1. courses.json ichiga yangi obyekt qo‘shing
+## 1. `courses.json` ga yozuv qo‘shing
 
-`courses.json` tuzilmasi:
+`courses` massiviga quyidagi andozani joylang. Har bir ko‘rsatilgan `uz`, `ru`, `en` qiymatni to‘ldiring.
 
 ```json
 {
-  "courses": [
-    {
-      "slug": "mening-kursim",
-      "type": "standard",
-      "title": { "uz": "Mening kursim", "ru": "Мой курс", "en": "My course" },
-      "description": { "uz": "…", "ru": "…", "en": "…" },
-      "price": "$29",
-      "icon": "sparkles",
-      "cats": ["ai"],
-      "gumroadSlug": "mening-gumroad-slug",
-      "progress": 100,
-      "badge": { "uz": "Yangi", "ru": "Новый", "en": "New" },
-      "href": "kurslar/mening-kursim",
-      "cefr": null,
-      "accent": "#7d7df5"
-    }
-  ]
+  "slug": "mening-kursim",
+  "type": "standard",
+  "status": "available",
+  "countInPublicTotal": true,
+  "cats": ["ai"],
+  "accent": "#7d7df5",
+  "icon": "sparkle",
+  "badge": { "uz": "Yangi", "ru": "Новый", "en": "New" },
+  "title": { "uz": "Mening kursim", "ru": "Мой курс", "en": "My course" },
+  "description": { "uz": "Qisqa tavsif", "ru": "Краткое описание", "en": "Short description" },
+  "audience": { "uz": "Kimga mo‘ljallangan", "ru": "Для кого", "en": "Who it is for" },
+  "price": { "uz": "$29", "ru": "$29", "en": "$29" },
+  "priceUzs": { "uz": "≈ 360 000 so‘m", "ru": "≈ 360 000 сум", "en": "≈ 360,000 UZS" },
+  "free": false,
+  "paid": true,
+  "comingSoon": false,
+  "certificate": true,
+  "gumroadSlug": null,
+  "progressCourseId": null,
+  "progressTotal": null,
+  "href": "kurslar/mening-kursim"
 }
 ```
 
-## 2. Maydonlarni to‘ldiring
+## 2. Majburiy maydonlar
 
-| Maydon | Nima uchun | Qachon |
-|--------|-----------|--------|
-| `slug` | Sahifa va JSON ichidagi noyob kalit. Boshqa kurslar bilan takrorlanmasin. | Majburiy |
-| `type` | `standard` (odatiy), `ielts-mini` (IELTS modullari), `coming-soon` (tez orada), `mock` (IELTS mock), `bundle` (paket). | Majburiy |
-| `title` / `description` | UZ/RU/EN tarjimalar. Uch tilda ham to‘ldiring. | Majburiy |
-| `price` | Karta narxi, masalan `$29` yoki `49 000 so'mdan` yoki `Tez orada`. | Majburiy |
-| `icon` | `src/components/CourseCard.astro` ichidagi `icons` lug‘atidagi kalit. Yo‘q bo‘lsa `sparkles` ishlatiladi. | Ixtiyoriy |
-| `cats` | Filtr tugmalari uchun kategoriya(lar). `ai`, `ielts`, `general-english`, `admission`, `sat`, `dizayn`, `hayotiy`, `bepul`, `data`, `dasturlash`. | Majburiy (filter uchun) |
-| `gumroadSlug` | Gumroad mahsulot slug'i. Bepul/yoki Telegram orqali bo‘lsa `null` qo‘ying. | Shartli |
-| `progress` | 0–100. 100 dan kichik bo‘lsa karta "X% tayyor" ko‘rsatadi. | Ixtiyoriy |
-| `badge` | Karta burchagidagi yorliq. Yo‘q bo‘lsa chiqmaydi. | Ixtiyoriy |
-| `href` | Kurs sahifasiga nisbiy yo‘l. `kurslar/<slug>`. | Majburiy |
-| `cefr` | Faqat General English uchun (A1–C2). Aks holda `null`. | Ixtiyoriy |
-| `accent` | Karta rangigi (hex). | Ixtiyoriy |
+| Maydon | Ma’nosi |
+|---|---|
+| `slug` | Noyob, kichik harfli URL kalit (`mening-kursim`). |
+| `type` | `standard`, `ielts-mini`, `coming-soon`, `bundle` yoki `mock`. |
+| `status` | `available` yoki `upcoming`. `comingSoon: true` bo‘lsa doim `upcoming`. |
+| `title`, `description`, `audience`, `price` | UZ/RU/EN ko‘rinishida to‘liq matnlar. |
+| `cats` | Filtr kategoriyalari: `ai`, `ielts`, `general-english`, `admission`, `sat`, `dizayn`, `hayotiy`, `bepul`, `data`, `dasturlash`. |
+| `href` | Nisbiy sahifa yo‘li: `kurslar/<slug>`. |
+| `free`, `paid`, `comingSoon` | Kurs holatini ifodalovchi boolean qiymatlar. |
+| `countInPublicTotal` | Bosh sahifadagi “X ta kurs” hisobiga kirishi kerak bo‘lsa `true`. Hozirgi public total 24 ta kursni hisoblaydi. |
 
-## 3. Qoida-lar
+## 3. To‘lov va holat qoidalari
 
-- **Bepul kurs** (`figma`, `chet-elda-oqish`, `ielts-vocabulary`): `gumroadSlug` = `null`,
-  `cats` ichida `bepul` bo‘lsin.
-- **Tez orada** (`vibe-coding`, `data-analytics`, `backend-python`, va `coming-soon` turi):
-  `gumroadSlug` = `null`, CTA "Kursni ko‘rish →" ichki sahifaga olib boradi.
-- **Admission (3 qism)**: `admission-process` kursi maxsus — CTA Telegram (`bog-lanish`)
-  sahifasiga, `gumroadSlug` = `null`.
-- **IELTS modullari**: `type: "ielts-mini"` va o‘z `gumroadSlug` (listening/reading/writing/
-  speaking). `ielts-vocabulary` bepul → `gumroadSlug: null`.
-- **Bundle**: `type: "bundle"`, `gumroadSlug: "ielts-full-bundle"`, CTA Telegramga.
+- Hozircha **inPAY saqlanadi**; Gumroad avtomatlashtirishiga o‘tilmagan. `gumroadSlug` yangi kurslarda `null` qolsin, agar keyin alohida qaror qilinmasa.
+- Bepul kurs: `free: true`, `paid: false`, `cats` ichida `bepul`.
+- Tez orada: `comingSoon: true`, `paid: false`, `status: "upcoming"`, narxga `Tez orada` / `Скоро` / `Coming soon` yozing.
+- Mavjud karta uslublari saqlanishi uchun `icon` sifatida `CourseCard.astro` ichidagi ikonkalardan foydalaning: `sparkle`, `book`, `agent`, `document`, `code`, `doccheck`, `chip`, `lightning`, `figma`, `cad`, `cap`, `chart`, `trophy`, `box`, `monitor`.
 
-## 4. Tekshirish
+## 4. Yangi kurs sahifasini yarating
 
-1. `python3 -m json.tool src/data/courses.json` — JSON xato bo‘lmasin.
-2. Loyihani build qiling: `npm run build` (GitHub Actions ham avtomatik tekshiradi).
-3. Sahifada karta chiqishini, filtr ishlashini va (pullik bo‘lsa) Gumroad havolasining
-   yangi tabda ochilishini tekshiring.
+JSON kartasi kursga olib boradi, ammo kurs sahifasini o‘zi yaratmaydi. `src/pages/kurslar/<slug>.astro` sahifasini mavjud o‘xshash kursdan nusxa olib, sarlavha, tavsif, dastur va metadata’ni moslang. RU/EN sahifalar ham rejangizga kirsa, tegishli localized template yoki route’ni qo‘shing.
 
-## 5. Yangi icon qo‘shish (ixtiyoriy)
+## 5. Tekshirish
 
-`src/components/CourseCard.astro` dagi `icons` obyektiga yangi kalit qo‘shing:
+Loyiha papkasida quyidagilarni bajaring:
 
-```ts
-const icons: Record<string, string> = {
-  sparkles: '<svg …>…</svg>',
-  // yangi: rocket: '<svg …>…</svg>'
-};
+```bash
+npm run verify:courses
+npm run build
+node scripts/verify-course-schema.mjs
 ```
 
-Keyin kursda `"icon": "rocket"` deb ko‘rsating.
+So‘ng `npm run dev -- --host 127.0.0.1` orqali bosh sahifa va `/kurslar/` sahifasini ochib, karta, filter, mobile ko‘rinish va yangi kurs sahifasini tekshiring.
+
+## Nimalar avtomatik, nimalar qo‘lda?
+
+Avtomatik: kurs kartalari, UZ/RU/EN kataloglardagi kartalar, katalog filtrlari va public kurs soni.
+
+Qo‘lda: kursning mazmunli alohida sahifasi, dars materiallari, rasmlar va kelajakda to‘lov provayderi mahsulot havolasi.
