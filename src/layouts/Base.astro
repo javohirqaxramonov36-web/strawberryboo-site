@@ -125,7 +125,7 @@ const showDiscountBanner = Astro.props.showDiscountBanner || false;
       '@context': 'https://schema.org',
       '@graph': [
         {
-          '@type': 'Organization',
+          '@type': ['Organization', 'EducationalOrganization'],
           '@id': (Astro.site?.href ?? Astro.url.href) + '#organization',
           name: 'Tayanch',
           url: (Astro.site?.href ?? Astro.url.href),

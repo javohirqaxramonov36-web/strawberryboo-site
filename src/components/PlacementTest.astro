@@ -9,6 +9,7 @@ interface Props {
 }
 
 const { lang = 'uz' } = Astro.props as Props;
+const firstQuestion = placementQuestions[0];
 const base = import.meta.env.BASE_URL;
 const copy = {
   uz: {
@@ -26,6 +27,9 @@ const copy = {
     restart: 'Testni qayta boshlash',
     telegram: 'Natijangizni saqlash va batafsil ma’lumot olish uchun Telegram kanalimizga qo‘shiling.',
     telegramCta: 'Telegram kanaliga qo‘shiling →',
+    copyResult: 'Natijani nusxalash',
+    copyDone: 'Nusxalandi ✓',
+    sendResult: 'Natijani Telegramga yuborish →',
     note: 'Bu qisqa placement test CEFR darajangizni taxminiy ko‘rsatadi va sizga mos kursni tavsiya qiladi.',
   },
   ru: {
@@ -43,6 +47,9 @@ const copy = {
     restart: 'Начать тест заново',
     telegram: 'Чтобы сохранить результат и получить подробности, присоединитесь к нашему Telegram-каналу.',
     telegramCta: 'Присоединиться к Telegram →',
+    copyResult: 'Скопировать результат',
+    copyDone: 'Скопировано ✓',
+    sendResult: 'Отправить результат в Telegram →',
     note: 'Этот короткий placement-тест ориентировочно показывает уровень CEFR и рекомендует подходящий курс.',
   },
   en: {
@@ -60,6 +67,9 @@ const copy = {
     restart: 'Restart test',
     telegram: 'Join our Telegram channel to save your result and get more details.',
     telegramCta: 'Join Telegram →',
+    copyResult: 'Copy result',
+    copyDone: 'Copied ✓',
+    sendResult: 'Send result to Telegram →',
     note: 'This short placement test gives an indicative CEFR level and recommends a suitable course.',
   },
 }[lang];
@@ -117,11 +127,11 @@ const configJson = JSON.stringify(config).replace(/</g, '\\u003c');
     <p class="placement-test__intro">{copy.intro}</p>
   </div>
 
-  <div class="placement-test__progress" aria-live="polite"><span data-placement-progress-label></span><span class="placement-test__progress-track" aria-hidden="true"><span data-placement-progress-bar></span></span></div>
-  <div class="placement-test__question" data-placement-question></div>
-  <div class="placement-test__options" data-placement-options></div>
+  <div class="placement-test__progress" aria-live="polite"><span data-placement-progress-label>{copy.question} 1/{placementQuestions.length}</span><span class="placement-test__progress-track" aria-hidden="true"><span data-placement-progress-bar style="width:4%"></span></span></div>
+  <div class="placement-test__question" data-placement-question>{firstQuestion.question}</div>
+  <div class="placement-test__options" data-placement-options>{firstQuestion.options.map((option) => <label class="placement-test__option"><input type="radio" name={`placement-${firstQuestion.id}`} value={option.id} /><span>{option.text}</span></label>)}</div>
   <p class="placement-test__hint" data-placement-hint hidden></p>
-  <button type="button" class="placement-test__next" data-placement-next>{copy.next}</button>
+  <div class="placement-test__actions"><button type="button" class="placement-test__back" data-placement-back hidden>← {lang === 'uz' ? 'Orqaga' : lang === 'ru' ? 'Назад' : 'Back'}</button><button type="button" class="placement-test__next" data-placement-next>{copy.next}</button></div>
   <div class="placement-test__result" data-placement-result hidden></div>
   <p class="placement-test__note">{copy.note}</p>
   <script type="application/json" data-placement-config set:html={configJson}></script>
@@ -140,8 +150,9 @@ const configJson = JSON.stringify(config).replace(/</g, '\\u003c');
     const hint = root.querySelector('[data-placement-hint]');
     const next = root.querySelector('[data-placement-next]');
     const resultNode = root.querySelector('[data-placement-result]');
+    const back = root.querySelector('[data-placement-back]');
     const allQuestions = config.questions || [];
-    const state = { answers: [], current: allQuestions.find((question) => question.level === 'A1') };
+    const state = { answers: [], current: allQuestions.find((question) => question.level === 'A1'), draftAnswer: null };
 
     const saveResult = (result) => {
       try {
@@ -159,6 +170,7 @@ const configJson = JSON.stringify(config).replace(/</g, '\\u003c');
       progressBar.style.width = `${Math.round((questionNumber / allQuestions.length) * 100)}%`;
       progressBar.parentElement?.setAttribute('aria-label', `${questionNumber}/${allQuestions.length}`);
       questionNode.textContent = state.current.question;
+      back.hidden = state.answers.length === 0;
       optionsNode.replaceChildren(...state.current.options.map((option) => {
         const label = document.createElement('label');
         label.className = 'placement-test__option';
@@ -166,6 +178,7 @@ const configJson = JSON.stringify(config).replace(/</g, '\\u003c');
         input.type = 'radio';
         input.name = `placement-${state.current.id}`;
         input.value = option.id;
+        if (state.draftAnswer?.id === state.current.id && state.draftAnswer.optionId === option.id) input.checked = true;
         const text = document.createElement('span');
         text.textContent = option.text;
         label.append(input, text);
@@ -184,6 +197,7 @@ const configJson = JSON.stringify(config).replace(/</g, '\\u003c');
       questionNode.textContent = '';
       optionsNode.replaceChildren();
       next.hidden = true;
+      back.hidden = true;
       hint.hidden = true;
       resultNode.replaceChildren();
       const title = document.createElement('p');
@@ -194,6 +208,25 @@ const configJson = JSON.stringify(config).replace(/</g, '\\u003c');
       level.textContent = result.level;
       const score = document.createElement('p');
       score.textContent = `${config.copy.score}: ${result.correctCount}/${result.total} (${result.percentage}%)`;
+      const shareRow = document.createElement('div');
+      shareRow.className = 'placement-test__share';
+      const copyButton = document.createElement('button');
+      copyButton.type = 'button';
+      copyButton.className = 'placement-test__copy';
+      copyButton.textContent = config.copy.copyResult;
+      const shareUrl = window.location.href.split('?')[0];
+      const shareText = `${config.copy.result}: ${result.level} — ${result.correctCount}/${result.total} (${result.percentage}%)`;
+      copyButton.addEventListener('click', async () => {
+        try { await navigator.clipboard.writeText(`${shareText} ${shareUrl}`); copyButton.textContent = config.copy.copyDone; setTimeout(() => { copyButton.textContent = config.copy.copyResult; }, 1600); } catch {}
+      });
+      const sendLink = document.createElement('a');
+      sendLink.className = 'placement-test__send';
+      sendLink.href = `https://t.me/share/url?url=${encodeURIComponent(shareUrl)}&text=${encodeURIComponent(shareText)}`;
+      sendLink.target = '_blank';
+      sendLink.rel = 'noopener noreferrer';
+      sendLink.textContent = config.copy.sendResult;
+      sendLink.setAttribute('data-analytics-event', 'placement_result_share');
+      shareRow.append(copyButton, sendLink);
       const recommended = document.createElement('p');
       recommended.className = 'placement-test__recommendation-label';
       recommended.textContent = config.copy.recommended;
@@ -208,6 +241,7 @@ const configJson = JSON.stringify(config).replace(/</g, '\\u003c');
       restart.textContent = config.copy.restart;
       restart.addEventListener('click', () => {
         state.answers = [];
+        state.draftAnswer = null;
         state.current = allQuestions.find((question) => question.level === 'A1');
         renderQuestion();
       });
@@ -221,13 +255,21 @@ const configJson = JSON.stringify(config).replace(/</g, '\\u003c');
       telegramLink.textContent = config.copy.telegramCta;
       telegramLink.className = 'placement-test__telegram-link';
       telegramLink.setAttribute('data-analytics-event', 'placement_telegram_cta');
-      resultNode.append(title, level, score, recommended, link, telegramText, telegramLink, restart);
+      resultNode.append(title, level, score, shareRow, recommended, link, telegramText, telegramLink, restart);
       if (typeof window.tayanchTrack === 'function') {
         window.tayanchTrack('placement_result', { level: result.level, recommended_course: recommendation?.title || '', correct_count: result.correctCount, total: result.total, percentage: result.percentage });
       }
       resultNode.hidden = false;
       saveResult(result);
     };
+
+    back.addEventListener('click', () => {
+      const previous = state.answers.pop();
+      if (!previous) return;
+      state.current = allQuestions.find((question) => question.id === previous.id);
+      state.draftAnswer = { id: previous.id, optionId: previous.optionId };
+      renderQuestion();
+    });
 
     next.addEventListener('click', () => {
       const selected = root.querySelector(`input[name="placement-${state.current?.id}"]:checked`);
@@ -237,7 +279,8 @@ const configJson = JSON.stringify(config).replace(/</g, '\\u003c');
         return;
       }
       const wasCorrect = selected.value === state.current.correctOption;
-      state.answers.push({ id: state.current.id, level: state.current.level, correct: wasCorrect });
+      state.answers.push({ id: state.current.id, level: state.current.level, optionId: selected.value, correct: wasCorrect });
+      state.draftAnswer = null;
       state.current = selectNextPlacementQuestion(allQuestions, state.answers, state.current.level, wasCorrect);
       renderQuestion();
     });
@@ -257,7 +300,7 @@ const configJson = JSON.stringify(config).replace(/</g, '\\u003c');
   .placement-test__option{display:flex;align-items:center;gap:.6rem;padding:.75rem .85rem;border:1px solid var(--border);border-radius:11px;cursor:pointer;transition:border-color .18s,background .18s}
   .placement-test__option:hover{border-color:#34d399;background:color-mix(in srgb,#34d399 8%,transparent)}
   .placement-test__option input{accent-color:#22c55e}
-  .placement-test__next,.placement-test__restart{margin-top:1rem;padding:.75rem 1rem;border:0;border-radius:10px;background:var(--btn-bg);color:#fff;font:700 .9rem inherit;cursor:pointer}
+  .placement-test__actions{display:flex;gap:.6rem;flex-wrap:wrap;align-items:center}.placement-test__back{margin-top:1rem;padding:.72rem 1rem;border:1px solid var(--border);border-radius:10px;background:transparent;color:var(--text);font:700 .9rem inherit;cursor:pointer}.placement-test__next,.placement-test__restart{margin-top:1rem;padding:.75rem 1rem;border:0;border-radius:10px;background:var(--btn-bg);color:#fff;font:700 .9rem inherit;cursor:pointer}
   .placement-test__hint{color:#fca5a5;font-size:.88rem}
   .placement-test__result{margin-top:1rem;padding:1rem;border:1px solid color-mix(in srgb,#34d399 45%,var(--border));border-radius:13px;background:color-mix(in srgb,#34d399 9%,var(--surface))}
   .placement-test__result-label,.placement-test__recommendation-label{margin:.1rem 0 .25rem;color:var(--muted);font-size:.88rem}

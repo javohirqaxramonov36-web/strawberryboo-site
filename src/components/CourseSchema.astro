@@ -1,8 +1,19 @@
 ---
+import coursesData from '../data/courses.json';
+
 interface Props { name: string; description: string; lang?: 'uz' | 'ru' | 'en'; }
 const { name, description } = Astro.props;
 const path = Astro.url.pathname;
 const lang = Astro.props.lang ?? (path.includes('/ru/') ? 'ru' : path.includes('/en/') ? 'en' : 'uz');
+const catalogSlug = pathSlug(path);
+const catalogCourse = (coursesData.courses as any[]).find((course) => course.slug === catalogSlug);
+const catalogLocalPrice = catalogCourse?.priceUzs?.[lang];
+const numericPrice = String(catalogLocalPrice || '').replace(/[^0-9]/g, '');
+function pathSlug(pathname: string) {
+  const parts = pathname.split('/').filter(Boolean);
+  const kurslarIndex = parts.indexOf('kurslar');
+  return kurslarIndex >= 0 ? parts[kurslarIndex + 1] : '';
+}
 const schema = {
   '@context': 'https://schema.org',
   '@type': 'Course',
@@ -10,7 +21,8 @@ const schema = {
   description,
   provider: { '@type': 'Organization', name: 'Tayanch', url: new URL(import.meta.env.BASE_URL, Astro.site ?? Astro.url).href },
   url: Astro.url.href,
-  inLanguage: lang
+  inLanguage: lang,
+  ...(numericPrice ? { offers: { '@type': 'Offer', priceCurrency: 'UZS', price: Number(numericPrice), availability: 'https://schema.org/InStock', url: Astro.url.href } } : {})
 };
 ---
 <script type="application/ld+json" set:html={JSON.stringify(schema)} />
