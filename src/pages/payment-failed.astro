@@ -1,0 +1,6 @@
+---
+import Base from '../layouts/Base.astro';
+const base = import.meta.env.BASE_URL;
+---
+<Base title="To‘lov amalga oshmadi — Tayanch" description="Tayanch to‘lov xatosi."><main class="payment-result"><p class="eyebrow">TAYANCH · TO‘LOV</p><h1>To‘lov yakunlanmadi</h1><p>To‘lov amalga oshmagan bo‘lishi mumkin. Qayta urinib ko‘ring yoki kurs nomi va xato tafsilotlari bilan Telegram orqali yozing.</p><div><a class="start-btn" href={base + 'bog-lanish/'}>Telegram orqali yozish →</a><a class="course-nav-link" href={base + 'kurslar/'}>Kurslarga qaytish</a></div></main></Base>
+<style>.payment-result{max-width:700px;margin:10vh auto;padding:2rem;border:1px solid color-mix(in srgb,#f59e0b 40%,var(--border));border-radius:20px;background:var(--surface)}.eyebrow{color:var(--accent);font-weight:800;letter-spacing:.12em}.payment-result p:not(.eyebrow){color:var(--muted);line-height:1.7}.payment-result div{display:flex;gap:1rem;flex-wrap:wrap;margin-top:1.5rem}</style>

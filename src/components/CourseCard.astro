@@ -1,5 +1,6 @@
 ---
 import courses from "../data/courses.json";
+import WaitlistForm from './WaitlistForm.astro';
 interface Props {
   course: any;
   lang?: "uz" | "ru" | "en";
@@ -50,6 +51,7 @@ const miniIndex = (slug: string) => all.filter((c) => c.type === "ielts-mini").f
     <p>{t(course.description)}</p>
     <p class="upcoming-status">{lang === "uz" ? "Narx va dastur tez orada e'lon qilinadi" : lang === "ru" ? "Цена и программа скоро" : "Price and syllabus coming soon"}</p>
     <span class="start-btn is-disabled" aria-disabled="true">{lang === "uz" ? "Tayyorlanmoqda" : lang === "ru" ? "Готовится" : "In preparation"}</span>
+    <WaitlistForm courseId={course.slug} courseName={t(course.title)} lang={lang} compact />
   </div>
 )}
 

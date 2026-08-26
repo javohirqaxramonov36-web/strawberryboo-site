@@ -1,0 +1,61 @@
+---
+import { supabase } from '../lib/supabase';
+
+type Lang = 'uz' | 'ru' | 'en';
+interface Props { lang?: Lang; }
+const { lang = 'uz' } = Astro.props as Props;
+const copy = {
+  uz: { eyebrow: 'LMS HISOBI', title: 'Sotib olingan kurslar', note: 'Email orqali kiring. Entitlement va kurs progressi hisobingizga bog‘lanadi.', email: 'Email', login: 'Kirish havolasi', logout: 'Chiqish', signed: 'Kirish havolasi emailga yuborildi.', notReady: 'LMS bazasi hali ulanmagan yoki migration qo‘llanmagan.', empty: 'Hali sotib olingan kurs topilmadi.', loading: 'Yuklanmoqda…', progress: 'progress', error: 'Kirish yoki yuklashda xatolik yuz berdi.' },
+  ru: { eyebrow: 'LMS-АККАУНТ', title: 'Купленные курсы', note: 'Войдите по email. Доступ и прогресс будут привязаны к вашему аккаунту.', email: 'Email', login: 'Получить ссылку', logout: 'Выйти', signed: 'Ссылка для входа отправлена на email.', notReady: 'База LMS ещё не подключена или migration не применена.', empty: 'Купленных курсов пока нет.', loading: 'Загрузка…', progress: 'прогресс', error: 'Ошибка входа или загрузки.' },
+  en: { eyebrow: 'LMS ACCOUNT', title: 'Purchased courses', note: 'Sign in by email. Entitlements and course progress will be linked to your account.', email: 'Email', login: 'Send sign-in link', logout: 'Sign out', signed: 'A sign-in link was sent to your email.', notReady: 'The LMS database is not connected yet or its migration is not applied.', empty: 'No purchased courses yet.', loading: 'Loading…', progress: 'progress', error: 'Sign-in or loading failed.' },
+} as const;
+const t = copy[lang];
+---
+<section class="lms-account" data-lms-account aria-labelledby="lms-title">
+  <div class="lms-head"><div><p class="eyebrow">{t.eyebrow}</p><h2 id="lms-title">{t.title}</h2><p class="lms-note">{t.note}</p></div><span class="lms-session" data-lms-session></span></div>
+  <form class="lms-login" data-lms-login><label for="lms-email">{t.email}</label><div><input id="lms-email" name="email" type="email" autocomplete="email" required placeholder="email@example.com" /><button type="submit">{t.login}</button></div></form>
+  <button class="lms-logout" data-lms-logout type="button" hidden>{t.logout}</button>
+  <p class="lms-status" data-lms-status aria-live="polite"></p>
+  <div class="lms-courses" data-lms-courses hidden></div>
+</section>
+<script>
+  const lmsRoot = document.querySelector<HTMLElement>('[data-lms-account]');
+  if (lmsRoot && !lmsRoot.dataset.bound) {
+    lmsRoot.dataset.bound = 'true';
+    const login = lmsRoot.querySelector<HTMLFormElement>('[data-lms-login]');
+    const logout = lmsRoot.querySelector<HTMLButtonElement>('[data-lms-logout]');
+    const status = lmsRoot.querySelector<HTMLElement>('[data-lms-status]');
+    const courses = lmsRoot.querySelector<HTMLElement>('[data-lms-courses]');
+    const sessionLabel = lmsRoot.querySelector<HTMLElement>('[data-lms-session]');
+    const lang = (document.documentElement.lang || 'uz') as 'uz' | 'ru' | 'en';
+    const text = {
+      uz: { signed: 'Kirish havolasi emailga yuborildi.', notReady: 'LMS bazasi hali ulanmagan yoki migration qo‘llanmagan.', empty: 'Hali sotib olingan kurs topilmadi.', loading: 'Yuklanmoqda…', progress: 'progress', error: 'Kirish yoki yuklashda xatolik yuz berdi.' },
+      ru: { signed: 'Ссылка для входа отправлена на email.', notReady: 'База LMS ещё не подключена или migration не применена.', empty: 'Купленных курсов пока нет.', loading: 'Загрузка…', progress: 'прогресс', error: 'Ошибка входа или загрузки.' },
+      en: { signed: 'A sign-in link was sent to your email.', notReady: 'The LMS database is not connected yet or its migration is not applied.', empty: 'No purchased courses yet.', loading: 'Loading…', progress: 'progress', error: 'Sign-in or loading failed.' },
+    }[lang] || undefined;
+    const setStatus = (value: string) => { if (status) status.textContent = value; };
+    const escapeHtml = (value: unknown) => String(value ?? '').replace(/[&<>"']/g, (c) => ({ '&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;', "'":'&#39;' }[c] || c));
+    const render = async (session: any) => {
+      if (!session) { login?.removeAttribute('hidden'); logout?.setAttribute('hidden', 'true'); courses?.setAttribute('hidden', 'true'); sessionLabel!.textContent = ''; return; }
+      login?.setAttribute('hidden', 'true'); logout?.removeAttribute('hidden'); sessionLabel!.textContent = session.user.email || '';
+      setStatus(text?.loading || 'Loading…');
+      const [{ data: entitlements, error: entitlementError }, { data: progress, error: progressError }] = await Promise.all([
+        supabase.from('course_entitlements').select('course_id,status,granted_at').eq('status', 'active').order('granted_at', { ascending: false }),
+        supabase.from('course_progress').select('course_id,lesson_id,completed_at').order('completed_at', { ascending: false }),
+      ]);
+      if (entitlementError || progressError) { setStatus(text?.notReady || 'LMS is not ready.'); return; }
+      const rows = entitlements || [];
+      if (!rows.length) { setStatus(text?.empty || 'No purchased courses yet.'); courses?.setAttribute('hidden', 'true'); return; }
+      const counts = (progress || []).reduce((map: Record<string, number>, item: any) => { map[item.course_id] = (map[item.course_id] || 0) + 1; return map; }, {});
+      if (courses) { courses.innerHTML = rows.map((item: any) => `<article class="lms-course"><strong>${escapeHtml(item.course_id)}</strong><span>${counts[item.course_id] || 0} ${escapeHtml(text?.progress || 'progress')}</span><small>${escapeHtml(new Date(item.granted_at).toLocaleDateString())}</small></article>`).join(''); courses.removeAttribute('hidden'); }
+      setStatus('');
+    };
+    login?.addEventListener('submit', async (event) => { event.preventDefault(); const email = (login.elements.namedItem('email') as HTMLInputElement).value.trim(); if (!email) return; const { error } = await supabase.auth.signInWithOtp({ email, options: { emailRedirectTo: window.location.href } }); setStatus(error ? (text?.error || 'Error') : (text?.signed || 'Sent.')); });
+    logout?.addEventListener('click', async () => { await supabase.auth.signOut(); });
+    supabase.auth.onAuthStateChange((_event, session) => { void render(session); });
+    supabase.auth.getSession().then(({ data: { session } }) => render(session)).catch(() => setStatus(text?.error || 'Error'));
+  }
+</script>
+<style>
+  .lms-account{margin-top:1rem;padding:1.35rem;border:1px solid color-mix(in srgb,var(--accent) 40%,var(--border));border-radius:18px;background:linear-gradient(135deg,color-mix(in srgb,var(--accent) 9%,var(--surface)),var(--surface))}.lms-head{display:flex;justify-content:space-between;gap:1rem;align-items:flex-start}.lms-account h2{margin:0}.lms-note,.lms-status{color:var(--muted);line-height:1.55}.lms-login{margin-top:1rem}.lms-login label{display:block;font-weight:700;font-size:.85rem;margin-bottom:.45rem}.lms-login>div{display:flex;gap:.55rem}.lms-login input{min-width:0;flex:1;padding:.65rem .75rem;border:1px solid var(--border);border-radius:9px;background:var(--surface);color:var(--text);font:inherit}.lms-login button,.lms-logout{border:0;border-radius:9px;padding:.65rem .85rem;background:var(--btn-bg);color:#fff;font:700 .86rem var(--font-display,inherit);cursor:pointer}.lms-logout{margin-top:1rem;background:transparent;color:var(--accent);border:1px solid var(--accent)}.lms-session{color:var(--muted);font-size:.82rem;overflow-wrap:anywhere}.lms-courses{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:.65rem;margin-top:1rem}.lms-course{display:grid;gap:.28rem;padding:.85rem;border:1px solid var(--border);border-radius:12px;background:var(--surface)}.lms-course span,.lms-course small{color:var(--muted);font-size:.82rem}@media(max-width:560px){.lms-head{display:block}.lms-session{display:block;margin-top:.45rem}.lms-login>div{flex-direction:column}.lms-login button{width:100%}}
+</style>

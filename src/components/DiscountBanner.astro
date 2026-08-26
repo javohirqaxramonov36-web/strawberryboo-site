@@ -1,5 +1,5 @@
 ---
-// Sahifa yuqorisidagi chegirma banneri. progression_go ga yo'naltiradi.
+// Sahifa yuqorisidagi chegirma banneri. tayanch_go ga yo'naltiradi.
 // Yopilganda sessiya davomida qayta chiqmaydi (sessionStorage) va layoutda bo'sh joy qolmaydi.
 const { lang = 'uz' } = Astro.props as { lang?: 'uz' | 'ru' | 'en' };
 const t = lang === 'ru' ? {
@@ -17,7 +17,7 @@ const t = lang === 'ru' ? {
 <div class="disc-banner" id="disc-banner">
   <div class="disc-banner-inner">
     <span class="disc-banner-text">{t.text}</span>
-    <a href="https://t.me/progression_go" class="disc-banner-btn" target="_blank" rel="noopener noreferrer">{t.btn}</a>
+    <a href="https://t.me/tayanch_go" class="disc-banner-btn" target="_blank" rel="noopener noreferrer">{t.btn}</a>
     <button class="disc-banner-close" id="disc-banner-close" aria-label="Yopish" type="button">✕</button>
   </div>
 </div>

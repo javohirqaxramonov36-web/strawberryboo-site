@@ -43,13 +43,20 @@ const routeMap: Record<string, PathMap> = {
   'mening-yolim/': { uz: 'mening-yolim/', ru: 'moy-put/', en: 'my-journey/' },
   'maxfiylik-siyosati/': { uz: 'maxfiylik-siyosati/', ru: 'privacy-policy/', en: 'privacy-policy/' },
   'foydalanish-shartlari/': { uz: 'foydalanish-shartlari/', ru: 'terms-of-use/', en: 'terms-of-use/' },
+  'qaytarish-siyosati/': { uz: 'qaytarish-siyosati/', ru: 'politika-vozvrata/', en: 'refund-policy/' },
+  'payment-success/': { uz: 'payment-success/', ru: 'payment-success/', en: 'payment-success/' },
+  'payment-failed/': { uz: 'payment-failed/', ru: 'payment-failed/', en: 'payment-failed/' },
 };
 
 export function localizedPath(locale: Locale, path = ''): string {
   const normalized = path.replace(/^\/+/, '');
-  const mapped = routeMap[normalized]?.[locale];
-  if (!mapped || locale === 'uz') return normalized;
-  return `${locale}/${mapped}`;
+  const mapping = routeMap[normalized];
+  // Untranslated pages intentionally stay on their verified Uzbek route instead
+  // of inventing a /ru or /en URL that would be a 404.
+  if (!mapping) return normalized;
+  const mapped = mapping[locale] ?? mapping.uz;
+  if (locale === 'uz') return mapped || normalized;
+  return `${locale}/${mapped || normalized}`;
 }
 
 export function localeAlternates(path = '') {

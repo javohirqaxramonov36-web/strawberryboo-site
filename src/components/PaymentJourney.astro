@@ -1,90 +1,55 @@
 ---
 import { PAYMENT_URL } from '../config/payment';
 type Locale = 'uz' | 'ru' | 'en';
-
-interface Props {
-  lang?: Locale;
-  course?: string;
-  compact?: boolean;
-}
-
-const { course, compact = false } = Astro.props as Props;
+interface Props { lang?: Locale; course?: string; courseId?: string; compact?: boolean; }
 const path = Astro.url.pathname;
+const { course, courseId: explicitCourseId, compact = false } = Astro.props as Props;
 const lang: Locale = Astro.props.lang ?? (path.includes('/ru/') ? 'ru' : path.includes('/en/') ? 'en' : 'uz');
-
+const inferredCourseId = path.split('/').filter(Boolean).at(-1) || 'general';
+const checkoutApiUrl = import.meta.env.PUBLIC_PAYMENT_API_URL?.trim() || '';
+const hasLegacyUrl = Boolean(PAYMENT_URL && PAYMENT_URL !== '#');
+const checkoutReady = Boolean(checkoutApiUrl || hasLegacyUrl);
+const selectedCourseId = explicitCourseId || (course ? course.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '').slice(0, 80) : inferredCourseId);
 const copy = {
-  uz: {
-    eyebrow: 'KURSNI OLISH TARTIBI',
-    title: 'To‘lovni boshlang',
-    lead: 'Kursni Telegram orqali yoki quyidagi umumiy to‘lov sahifasi orqali olasiz. Sayt inPAY aggregatori orqali ishlaydi — u yerda Payme, Click va karta bir joyda.',
-    methodsLabel: 'To‘lov usulini tanlang (barchasi bitta sahifada):',
-    methods: ['Payme', 'Click', 'Bank karta'],
-    payAction: 'To‘lov sahifasiga o‘tish →',
-    tgAlt: 'Yoki Telegramda yozish →',
-    note: 'To‘lov tasdiqlangach, kursga kirish havolasi sizga Telegram orqali yuboriladi.',
-  },
-  ru: {
-    eyebrow: 'КАК ПОЛУЧИТЬ КУРС',
-    title: 'Начните оплату',
-    lead: 'Курс можно получить через Telegram или через общую страницу оплаты ниже. Сайт работает через агрегатор inPAY — там Payme, Click и карта в одном месте.',
-    methodsLabel: 'Выберите способ оплаты (все на одной странице):',
-    methods: ['Payme', 'Click', 'Банковская карта'],
-    payAction: 'Перейти на страницу оплаты →',
-    tgAlt: 'Или написать в Telegram →',
-    note: 'После подтверждения оплаты ссылка для доступа к курсу придёт вам в Telegram.',
-  },
-  en: {
-    eyebrow: 'HOW TO GET THE COURSE',
-    title: 'Start your payment',
-    lead: 'Get the course via Telegram or through the unified payment page below. The site uses the inPAY aggregator — Payme, Click and card all in one place.',
-    methodsLabel: 'Pick a payment method (all on one page):',
-    methods: ['Payme', 'Click', 'Bank card'],
-    payAction: 'Go to the payment page →',
-    tgAlt: 'Or message us on Telegram →',
-    note: 'Once payment is confirmed, your course access link is sent to you via Telegram.',
-  },
+  uz: { eyebrow: 'KURSNI OLISH TARTIBI', title: 'To‘lovni boshlang', lead: 'Avtomatik checkout InPay serveri sozlangandan keyin ishlaydi. Hozircha to‘lov tafsilotlari Telegram orqali tasdiqlanadi.', methodsLabel: 'To‘lov usullari:', methods: ['Payme', 'Click', 'Bank karta'], payAction: 'Checkoutni ochish →', email: 'Kirish uchun email', note: 'To‘lov tasdiqlangach, kursga kirish huquqi hisobingizga biriktiriladi.', manual: 'Haqiqiy InPay checkout URL hali berilmagan. Noto‘g‘ri havola ko‘rsatmaslik uchun tugma vaqtincha yopiq.', tgAlt: 'Telegram orqali yozish →', error: 'Checkoutni yaratib bo‘lmadi. Telegram orqali yozing.' },
+  ru: { eyebrow: 'КАК ПОЛУЧИТЬ КУРС', title: 'Начните оплату', lead: 'Автоматический checkout заработает после настройки сервера InPay. Пока детали оплаты подтверждаются через Telegram.', methodsLabel: 'Способы оплаты:', methods: ['Payme', 'Click', 'Банковская карта'], payAction: 'Открыть checkout →', email: 'Email для доступа', note: 'После подтверждения оплаты доступ к курсу привязывается к вашему аккаунту.', manual: 'Настоящая ссылка InPay checkout ещё не предоставлена. Кнопка временно закрыта, чтобы не показывать неверную ссылку.', tgAlt: 'Написать в Telegram →', error: 'Checkout не создан. Напишите нам в Telegram.' },
+  en: { eyebrow: 'HOW TO GET THE COURSE', title: 'Start your payment', lead: 'Automatic checkout will work after the InPay server is configured. For now, payment details are confirmed through Telegram.', methodsLabel: 'Payment methods:', methods: ['Payme', 'Click', 'Bank card'], payAction: 'Open checkout →', email: 'Email for access', note: 'After payment is confirmed, course access is linked to your account.', manual: 'The real InPay checkout URL has not been supplied yet. The button is closed temporarily so we do not show a false link.', tgAlt: 'Message us on Telegram →', error: 'Checkout could not be created. Please message us on Telegram.' },
 } as const;
-
 const t = copy[lang];
-const courseText = course ? ` (${course})` : '';
 ---
-
-<section class:list={['payment-journey', { 'payment-journey--compact': compact }]} aria-label={t.title}>
-  <div class="payment-journey__intro">
-    <p class="payment-journey__eyebrow">{t.eyebrow}</p>
-    <h2>{t.title}</h2>
-    <p>{t.lead}</p>
-  </div>
-
-  <div class="payment-journey__pick">
-    <p class="payment-journey__methods-label">{t.methodsLabel}</p>
-    <div class="pay-methods">
-      {t.methods.map((m) => <button type="button" class="pay-method" data-method>{m}</button>)}
-    </div>
-  </div>
-
-  <a class="payment-journey__action" data-pay-cta href={PAYMENT_URL} target="_blank" rel="noopener noreferrer" aria-disabled="true">{t.payAction}</a>
-  <a class="payment-journey__tg" href="https://t.me/progression_go" target="_blank" rel="noopener noreferrer">{t.tgAlt}</a>
+<section class:list={['payment-journey', { 'payment-journey--compact': compact }]} aria-label={t.title} data-payment-course={selectedCourseId} data-payment-api={checkoutApiUrl} data-payment-ready={checkoutReady ? 'true' : 'false'}>
+  <div class="payment-journey__intro"><p class="payment-journey__eyebrow">{t.eyebrow}</p><h2>{t.title}</h2><p>{t.lead}</p></div>
+  <div class="payment-journey__pick"><p class="payment-journey__methods-label">{t.methodsLabel}</p><div class="pay-methods">{t.methods.map((m) => <button type="button" class="pay-method" data-method>{m}</button>)}</div></div>
+  {checkoutApiUrl ? <form class="payment-checkout" data-payment-form><label for={`payment-email-${selectedCourseId}`}>{t.email}</label><div><input id={`payment-email-${selectedCourseId}`} type="email" name="email" autocomplete="email" required placeholder="email@example.com" /><button type="submit" data-pay-cta disabled>{t.payAction}</button></div><p data-payment-status aria-live="polite"></p></form> : hasLegacyUrl ? <a class="payment-journey__action" data-pay-cta href={PAYMENT_URL} target="_blank" rel="noopener noreferrer">{t.payAction}</a> : <p class="payment-journey__manual">{t.manual}</p>}
+  <a class="payment-journey__tg" href="https://t.me/tayanch_go" data-analytics-event="telegram_cta_click" target="_blank" rel="noopener noreferrer">{t.tgAlt}</a>
   <p class="payment-journey__note">{t.note}</p>
 </section>
-
-<script>
-  document.querySelectorAll<HTMLElement>('.payment-journey').forEach((section) => {
-    const cta = section.querySelector<HTMLAnchorElement>('[data-pay-cta]');
+<script define:vars={{ copy, lang }}>
+  const paymentCopy = copy[lang] || copy.uz;
+  document.querySelectorAll<HTMLElement>('[data-payment-course]').forEach((section) => {
+    if (section.dataset.bound) return;
+    section.dataset.bound = 'true';
     const methods = section.querySelectorAll<HTMLButtonElement>('[data-method]');
-    methods.forEach((btn) => {
-      btn.addEventListener('click', () => {
-        methods.forEach((b) => b.classList.remove('active'));
-        btn.classList.add('active');
-        if (cta) {
-          cta.setAttribute('aria-disabled', 'false');
-          cta.classList.add('is-ready');
-        }
-      });
+    const cta = section.querySelector<HTMLButtonElement>('[data-pay-cta]');
+    methods.forEach((btn) => btn.addEventListener('click', () => { methods.forEach((item) => item.classList.remove('active')); btn.classList.add('active'); if (cta) cta.disabled = false; }));
+    const form = section.querySelector<HTMLFormElement>('[data-payment-form]');
+    form?.addEventListener('submit', async (event) => {
+      event.preventDefault();
+      if (!section.querySelector('[data-method].active')) { section.querySelector<HTMLElement>('[data-payment-status]')!.textContent = paymentCopy.manual; return; }
+      const email = (form.elements.namedItem('email') as HTMLInputElement)?.value.trim(); const status = section.querySelector<HTMLElement>('[data-payment-status]');
+      if (!email || !status) return;
+      if (cta) cta.disabled = true; status.textContent = '';
+      try {
+        const queryCourse = new URLSearchParams(window.location.search).get('course');
+        const courseId = queryCourse && /^[a-z0-9][a-z0-9-]{1,80}$/.test(queryCourse) ? queryCourse : section.dataset.paymentCourse;
+        const response = await fetch(section.dataset.paymentApi || '', { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify({ course_id: courseId, email }) });
+        const result = await response.json().catch(() => ({}));
+        if (!response.ok || !result.checkout_url) throw new Error('checkout_unavailable');
+        window.location.assign(result.checkout_url);
+      } catch { status.textContent = paymentCopy.error; if (cta) cta.disabled = false; }
     });
   });
 </script>
-
 <style>
-  .payment-journey{max-width:820px;margin:2rem auto;padding:1.5rem;border:1px solid color-mix(in srgb,var(--accent) 42%,var(--border));border-radius:18px;background:linear-gradient(135deg,color-mix(in srgb,var(--accent) 11%,var(--surface)),var(--surface))}.payment-journey__eyebrow{margin:0 0 .35rem;color:var(--accent);font-size:.76rem;font-weight:800;letter-spacing:.12em}.payment-journey h2{margin:0;font-size:1.35rem}.payment-journey__intro>p:not(.payment-journey__eyebrow):not(.payment-journey__methods-label){margin:.55rem 0 0;color:var(--muted);line-height:1.6}.payment-journey__pick{margin:1.1rem 0 0}.payment-journey__methods-label{margin:0 0 .6rem;color:var(--text);font-weight:700;font-size:.95rem}.pay-methods{display:flex;flex-wrap:wrap;gap:.6rem}.pay-method{padding:.6rem 1rem;border:1px solid var(--border);border-radius:999px;background:var(--surface);color:var(--text);font-weight:700;font-size:.9rem;cursor:pointer;transition:border-color .15s ease,background .15s ease,transform .1s ease}.pay-method:hover{border-color:var(--accent)}.pay-method:active{transform:scale(.97)}.pay-method.active{border-color:var(--accent);background:color-mix(in srgb,var(--accent) 22%,var(--surface));color:var(--text)}.payment-journey__action{display:inline-flex;align-items:center;justify-content:center;margin-top:1.15rem;padding:.72rem 1rem;border-radius:10px;background:var(--border);color:var(--muted);font-weight:700;text-decoration:none;transition:background .15s ease,color .15s ease,opacity .15s ease}.payment-journey__action[aria-disabled='true']{cursor:not-allowed;opacity:.7}.payment-journey__action.is-ready{background:var(--accent);color:#fff}.payment-journey__action.is-ready:hover{background:var(--accent-2);color:#fff}.payment-journey__tg{display:inline-flex;align-items:center;margin-top:.7rem;margin-left:.2rem;color:var(--accent);font-weight:700;text-decoration:none}.payment-journey__tg:hover{text-decoration:underline}.payment-journey__note{margin:1rem 0 0;color:var(--muted);font-size:.88rem;line-height:1.55}.payment-journey--compact{margin:0;padding:0;border:0;background:transparent}.payment-journey--compact .payment-journey__pick{margin:1rem 0 0}.payment-journey--compact .pay-methods{flex-direction:column}.payment-journey--compact .pay-method{text-align:left}
+  .payment-journey{max-width:820px;margin:2rem auto;padding:1.5rem;border:1px solid color-mix(in srgb,var(--accent) 42%,var(--border));border-radius:18px;background:linear-gradient(135deg,color-mix(in srgb,var(--accent) 11%,var(--surface)),var(--surface))}.payment-journey__eyebrow{margin:0 0 .35rem;color:var(--accent);font-size:.76rem;font-weight:800;letter-spacing:.12em}.payment-journey h2{margin:0;font-size:1.35rem}.payment-journey__intro>p:not(.payment-journey__eyebrow):not(.payment-journey__methods-label){margin:.55rem 0 0;color:var(--muted);line-height:1.6}.payment-journey__pick{margin:1.1rem 0 0}.payment-journey__methods-label{margin:0 0 .6rem;color:var(--text);font-weight:700;font-size:.95rem}.pay-methods{display:flex;flex-wrap:wrap;gap:.6rem}.pay-method{padding:.6rem 1rem;border:1px solid var(--border);border-radius:999px;background:var(--surface);color:var(--text);font-weight:700;font-size:.9rem;cursor:pointer}.pay-method:hover,.pay-method.active{border-color:var(--accent);background:color-mix(in srgb,var(--accent) 22%,var(--surface))}.payment-checkout{margin-top:1.1rem}.payment-checkout label{display:block;margin-bottom:.4rem;font-weight:700;font-size:.88rem}.payment-checkout>div{display:flex;gap:.55rem}.payment-checkout input{min-width:0;flex:1;padding:.72rem .8rem;border:1px solid var(--border);border-radius:10px;background:var(--surface);color:var(--text);font:inherit}.payment-journey__action,.payment-checkout button{display:inline-flex;align-items:center;justify-content:center;margin-top:0;padding:.72rem 1rem;border:0;border-radius:10px;background:var(--accent);color:#fff;font-weight:700;text-decoration:none;cursor:pointer}.payment-checkout button:disabled{opacity:.55;cursor:not-allowed}.payment-checkout [data-payment-status]{min-height:1.25em;margin:.55rem 0 0;color:var(--muted);font-size:.86rem}.payment-journey__manual{margin:1.1rem 0 0;padding:.8rem;border-radius:10px;background:color-mix(in srgb,#f59e0b 12%,var(--surface));color:var(--muted);line-height:1.5}.payment-journey__tg{display:inline-flex;align-items:center;margin-top:.7rem;color:var(--accent);font-weight:700;text-decoration:none}.payment-journey__note{margin:1rem 0 0;color:var(--muted);font-size:.9rem;line-height:1.5}.payment-journey--compact{margin:1.2rem 0;padding:1rem}.payment-journey--compact .payment-journey__intro h2{font-size:1.15rem}@media(max-width:600px){.payment-checkout>div{flex-direction:column}.payment-checkout button{width:100%}}
 </style>

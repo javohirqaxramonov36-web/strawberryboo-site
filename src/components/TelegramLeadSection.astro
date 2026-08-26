@@ -1,6 +1,6 @@
 ---
 // Kurs sahifalari va bosh sahifa pastki qismi uchun Telegram ro'yxat yig'ish bo'limi.
-// progression_go kanaliga yo'naltiradi.
+// tayanch_go kanaliga yo'naltiradi.
 const { lang = 'uz' } = Astro.props as { lang?: 'uz' | 'ru' | 'en' };
 const t = lang === 'ru' ? {
   title: 'Ещё не решили?',
@@ -25,7 +25,7 @@ const t = lang === 'ru' ? {
     <h2 id="tg-lead-title">{t.title}</h2>
     <p>{t.text}</p>
   </div>
-  <a href="https://t.me/progression_go" class="tg-lead-btn" target="_blank" rel="noopener noreferrer">{t.btn}</a>
+  <a href="https://t.me/tayanch_go" class="tg-lead-btn" target="_blank" rel="noopener noreferrer">{t.btn}</a>
 </section>
 
 <style>
