@@ -9,4 +9,4 @@ const all={
 } as const; const t=all[lang][kind]; const alternates=Object.entries(paths).map(([locale,href])=>({lang:locale,href:base+href}));
 ---
 <Base title={`${t[0]} — Tayanch`} description={t[1]} {lang} localeAlternates={alternates}><article class="legal"><p class="eyebrow">TAYANCH</p><h1>{t[0]}</h1><p class="updated">24 August 2026</p>{t[2].map(([h,p])=><section><h2>{h}</h2><p>{p}</p></section>)}</article></Base>
-<style>.legal{max-width:780px;margin:0 auto}.legal h1{font-size:clamp(2rem,5vw,3rem)}.legal h2{margin-top:2rem}.legal p{color:var(--muted);line-height:1.75}.eyebrow{color:var(--accent);font-weight:800;letter-spacing:.12em}.updated{font-size:.9rem}</style>
+<style>.legal{max-width:780px;margin:0 auto}.legal h1{font-size:clamp(2rem,5vw,3rem)}.legal h2{margin-top:2rem}.legal p{color:var(--muted);line-height:1.75}.eyebrow{color:var(--accent);font-weight:800;letter-spacing:.12em}.updated{font-size:.9rem}.refund-link{margin-top:2rem}.refund-link a{color:var(--accent);font-weight:800}</style>

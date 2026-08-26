@@ -1,6 +1,7 @@
 ---
 import Base from '../layouts/Base.astro';
 import GeneralEnglishTest from '../components/GeneralEnglishTest.astro';
+import LmsAccount from '../components/LmsAccount.astro';
 const title = 'Mening profilim — Tayanch';
 const description = 'Ushbu brauzerda saqlangan IELTS mock natijalari va mashq progressi.';
 ---
@@ -13,6 +14,8 @@ const description = 'Ushbu brauzerda saqlangan IELTS mock natijalari va mashq pr
       <p id="profile-name" class="profile-name">Bu qurilmadagi profil</p>
       <p class="local-note" data-i18n="prof.note">Natijalar faqat shu brauzer va qurilmada saqlanadi. Brauzer ma’lumotlarini tozalash ularni o‘chirishi mumkin.</p>
     </div>
+
+    <LmsAccount lang="uz" />
 
     <section class="summary-grid" aria-label="Practice xulosasi">
       <article><span data-i18n="prof.rLabel">Mock natijalari</span><strong id="result-count">0</strong><small data-i18n="prof.rSub">shu brauzerda saqlangan</small></article>
