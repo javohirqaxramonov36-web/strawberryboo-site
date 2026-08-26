@@ -31,3 +31,20 @@ Branch: `feature/tayanch-social-impact`
 - Form submissions use the existing Formspree endpoint already used by the site. The endpoint owner must review retention/privacy settings before collecting sensitive outcome information.
 - Regional outreach is a research shortlist, not a contact campaign or partnership claim.
 - The remote-work guide tells learners to verify current platform eligibility, payout availability, taxes, fees and local legal obligations.
+
+## Tayanch-10 admin routine
+
+1. Review Formspree submissions and remove duplicates or incomplete applications.
+2. Check age/region/course eligibility; request guardian confirmation for applicants under 18.
+3. Score the four-part rubric shown on `/viloyatlar/`: need (35%), goal clarity (25%), completion plan (20%), and regional impact (20%).
+4. Have a second reviewer check the short-list and conflicts before contacting applicants.
+5. Contact selected applicants and the waiting list separately. Never publish raw applications, identity documents, or private contact details.
+6. Only after a cycle is funded and approved, replace the proposed status, dates, and seat count in `src/data/tayanch10.ts`.
+
+## Impact dashboard update routine
+
+- Export the survey results from Formspree only for authorized admin review.
+- Verify each claimed result, remove personal data, and aggregate counts into `src/data/impact-summary.json`.
+- Keep the file to aggregate counts and month labels; do not add names, emails, phone numbers, or individual stories.
+- Run `npm run verify:impact`, the complete build, and the existing smoke/schema tests before committing an update.
+- A dashboard change is not evidence by itself: every count must have an auditable internal review note kept outside the public repository.

@@ -16,4 +16,5 @@ jobs:
       - run: npm run build
       - run: npm run verify:courses
       - run: npm run verify:startup
+      - run: npm run verify:impact
       - run: node scripts/verify-course-schema.mjs

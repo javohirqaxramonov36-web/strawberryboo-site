@@ -1,0 +1,24 @@
+{
+  "schemaVersion": 1,
+  "asOf": "2026-08-26",
+  "verifiedResponses": 0,
+  "metrics": {
+    "employmentOutcomesVerified": 0,
+    "freelanceStartersVerified": 0,
+    "portfolioCompleted": 0,
+    "salaryImprovementVerified": 0
+  },
+  "monthly": [
+    {
+      "month": "2026-08",
+      "responses": 0,
+      "employmentOutcomes": 0,
+      "freelanceStarters": 0,
+      "portfolioCompleted": 0
+    }
+  ],
+  "notes": [
+    "Faqat shaxssiz, qo‘lda tekshirilgan va public-statistics roziligi berilgan javoblar hisoblanadi.",
+    "Bu raqamlar ish, daromad yoki grant natijasiga kafolat bermaydi."
+  ]
+}

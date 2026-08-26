@@ -2,19 +2,27 @@
 const FORMSPREE = 'https://formspree.io/f/xeajwzyz';
 ---
 <form class="regional-form" action={FORMSPREE} method="POST" data-regional-form>
-  <input type="hidden" name="form_type" value="tayanch-regional-support-interest" />
+  <input type="hidden" name="form_type" value="tayanch10-application" />
+  <input type="hidden" name="program_cycle" value="pilot-2026" />
+  <p class="form-label">Tayanch-10 qiziqish arizasi</p>
   <label>Ism<input name="name" autocomplete="name" required /></label>
   <label>Email<input name="email" type="email" autocomplete="email" required /></label>
+  <label>Yosh<input name="age" type="number" min="14" max="30" required /></label>
   <label>Viloyat / shahar<input name="region" required placeholder="Masalan: Nukus" /></label>
-  <label>Holatingiz<select name="status" required><option value="">Tanlang</option><option>Talaba</option><option>Maktab/kollej o‘quvchisi</option><option>Ish qidiryapman</option><option>O‘qituvchi yoki tashkilot</option></select></label>
-  <label class="check"><input type="checkbox" name="consent" value="yes" required /> Yangiliklar va dastur ochilishi haqida xabar olishga roziman.</label>
-  <button class="start-btn" type="submit">Qiziqish bildirish →</button>
+  <label>Qaysi kurs kerak?<select name="course" required><option value="">Tanlang</option><option>AI Agentlar</option><option>Data Analytics</option><option>Backend Python</option><option>Figma</option><option>Financial Literacy</option><option>IELTS / Admission</option></select></label>
+  <label>Maqsadingiz<textarea name="goal" rows="3" maxlength="800" required placeholder="Kursni nega o‘qimoqchisiz va qanday natija tayyorlaysiz?"></textarea></label>
+  <label>Ehtiyojingiz<select name="support_need" required><option value="">Tanlang</option><option>Kursga to‘lovni qoplash</option><option>Internet yoki qurilma masalasi</option><option>Yo‘nalish tanlash bo‘yicha yordam</option><option>Boshqa</option></select></label>
+  <label class="check"><input type="checkbox" name="consent" value="yes" required /> Arizamni ko‘rib chiqish va dastur yangiliklari haqida xabar olishga roziman.</label>
+  <label class="check"><input type="checkbox" name="guardian_consent" value="yes" data-guardian /> 18 yoshdan kichik bo‘lsam, ota-ona/qonuniy vakil roziligini olishimni tasdiqlayman.</label>
+  <button class="start-btn" type="submit">Arizani yuborish →</button>
   <p data-regional-status aria-live="polite"></p>
 </form>
 <script>
   document.querySelectorAll('[data-regional-form]').forEach((form) => form.addEventListener('submit', async (event) => {
-    event.preventDefault(); const status = form.querySelector('[data-regional-status]'); const button = form.querySelector('button'); button.disabled = true;
-    try { const response = await fetch(form.action, { method: 'POST', body: new FormData(form), headers: { Accept: 'application/json' } }); if (!response.ok) throw new Error('submit'); form.reset(); status.textContent = 'Rahmat! Dastur yangiliklari bo‘yicha siz bilan bog‘lanamiz.'; } catch { status.textContent = 'Xatolik yuz berdi. Telegram orqali yozing.'; } finally { button.disabled = false; }
+    event.preventDefault(); const age = Number(form.querySelector('[name="age"]')?.value); const guardian = form.querySelector('[data-guardian]'); const status = form.querySelector('[data-regional-status]'); const button = form.querySelector('button');
+    if (age < 18 && !guardian.checked) { status.textContent = '18 yoshdan kichik arizachiga ota-ona yoki qonuniy vakil roziligi kerak.'; guardian.focus(); return; }
+    button.disabled = true;
+    try { const response = await fetch(form.action, { method: 'POST', body: new FormData(form), headers: { Accept: 'application/json' } }); if (!response.ok) throw new Error('submit'); form.reset(); status.textContent = 'Rahmat! Arizangiz qabul qilindi. Tanlov ochilishi va keyingi qadamlar email orqali yuboriladi.'; } catch { status.textContent = 'Xatolik yuz berdi. Keyinroq qayta urinib ko‘ring yoki Telegram orqali yozing.'; } finally { button.disabled = false; }
   }));
 </script>
-<style>.regional-form{display:grid;gap:.75rem;padding:1.2rem;border:1px solid var(--border);border-radius:16px;background:var(--surface)}.regional-form label{display:grid;gap:.3rem;font-weight:700;font-size:.86rem}.regional-form input:not([type=checkbox]),.regional-form select{padding:.68rem .75rem;border:1px solid var(--border);border-radius:9px;background:var(--bg);color:var(--text);font:inherit}.regional-form .check{display:flex;grid-template-columns:none;flex-direction:row;gap:.5rem;color:var(--muted);font-weight:500}.regional-form .check input{accent-color:var(--accent)}.regional-form p{min-height:1.2em;margin:0;color:#4ade80;font-weight:700}.regional-form button{border:0;cursor:pointer}.regional-form button:disabled{opacity:.6}</style>
+<style>.regional-form{display:grid;gap:.75rem;padding:1.2rem;border:1px solid var(--border);border-radius:16px;background:var(--surface)}.regional-form .form-label{margin:0;color:var(--accent);font-weight:800;font-size:1.05rem}.regional-form label{display:grid;gap:.3rem;font-weight:700;font-size:.86rem}.regional-form input:not([type=checkbox]),.regional-form select,.regional-form textarea{padding:.68rem .75rem;border:1px solid var(--border);border-radius:9px;background:var(--bg);color:var(--text);font:inherit}.regional-form textarea{resize:vertical}.regional-form .check{display:flex;grid-template-columns:none;flex-direction:row;gap:.5rem;color:var(--muted);font-weight:500}.regional-form .check input{accent-color:var(--accent);flex:0 0 auto}.regional-form p[data-regional-status]{min-height:1.2em;margin:0;color:#4ade80;font-weight:700;line-height:1.45}.regional-form button{border:0;cursor:pointer}.regional-form button:disabled{opacity:.6}</style>
