@@ -1,6 +1,5 @@
 ··—≈→→·—≈→·≈→·—≈→·—≈→·→→—→—→·≈→——→·→—→——→————---
 import Base from "../layouts/Base.astro";
-import InstructorMiniBlock from "../components/InstructorMiniBlock.astro";
 import { totalCourseCount } from "../config/course-catalog";
 import CourseCard from "../components/CourseCard.astro";
 import TelegramLeadSection from "../components/TelegramLeadSection.astro";
@@ -38,10 +37,7 @@ const TG = "https://t.me/tayanch_go"; // Telegram kanal/guruh havolasi
 
   <p class="hero-founder-note"><span class="hf-ic" aria-hidden="true">✓</span> Asoschi: IELTS 7.0 va SAT 1420 natijalariga erishgan</p>
 
-  <h1 class="hero-typed">
-    <span class="typed-static" data-i18n="hero.learn">O'rganing:</span>
-    <span class="typed-line">    <span class="typed-text">AI'dan 5 daqiqada sifatli javob</span><span class="typed-caret" aria-hidden="true"></span></span>
-  </h1>
+  <h1 class="hero-typed" data-i18n="hero.learn">AI, IELTS va Admission’ni bir joyda o‘rganing</h1>
 
   <p class="lead">
     Bugundan yangi ko'nikma egallang. Sun'iy intellekt nima uchun kerak,
@@ -59,11 +55,9 @@ const TG = "https://t.me/tayanch_go"; // Telegram kanal/guruh havolasi
 <SocialImpactBanner />
 
 <section class="founder-excerpt" aria-labelledby="founder-excerpt-title">
-  <div><p class="eyebrow">NEGA TAYANCH?</p><h2 id="founder-excerpt-title">Bu kurslarni nega men yaratdim</h2></div>
-  <div><p>Men moliyaviy qiyinchiliklar sabab IELTS’ga mustaqil tayyorlanganman. Shu yo‘lda IELTS 7.0 va SAT 1420 natijalariga erishdim — endi Tayanch’da bilimni aniq yo‘l va amaliy qadamlar bilan ulashmoqdaman.</p><a class="course-nav-link" href={base + 'mening-yolim/'}>Batafsil o‘qish →</a></div>
+  <div><p class="eyebrow">NEGA TAYANCH?</p><h2 id="founder-excerpt-title">AI, IELTS va Admission’ni amaliy yo‘l bilan o‘rganing</h2></div>
+  <div><p>Men moliyaviy qiyinchiliklar sabab mustaqil o‘rganish yo‘lidan o‘tdim. Endi Tayanch’da AI, IELTS va Admission bo‘yicha bilimni aniq yo‘l va amaliy qadamlar bilan ulashaman.</p><a class="course-nav-link" href={base + 'mening-yolim/'}>Batafsil o‘qish →</a><div class="founder-social"><a href={TG} target="_blank" rel="noopener noreferrer">Telegram</a><a href="https://instagram.com/javohir_kakhramonov" target="_blank" rel="noopener noreferrer">Instagram</a></div></div>
 </section>
-
-<InstructorMiniBlock journeyHref={base + 'mening-yolim/'} />
 
 <!-- ENG MASHHUR SPOTLIGHT -->
 <section class="spotlight">
@@ -71,7 +65,7 @@ const TG = "https://t.me/tayanch_go"; // Telegram kanal/guruh havolasi
     <span class="badge badge-hot"><span data-i18n="spot.badge">Eng mashhur</span></span>
     <h2>O'z AI yordamchingizni yaratish</h2>
     <p>Oddiy AI bitta savolga javob beradi. Agent esa vazifani o'zi rejalashtirib, qidiruv qilib, natijani yozib chiqadi. CrewAI va LangGraph bilan o'z agent'ingizni yaratasiz. Kimga mo'ljallangan: AI bilan tanishgan va uni haqiqiy ishga qo'llamoqchi bo'lganlarga.</p>
-    <div class="spot-price">$39 <span class="uzs">≈ 490 000 so'm</span></div>
+    <div class="spot-price"><span class="uzs">490 000 so'm</span><span class="usd">≈ $39</span></div>
     <a href={base + 'kurslar/ai-agentlar'} class="course-nav-link"><span data-i18n="spot.more">Batafsil →</span></a>
   </div>
   <div class="spot-ic">
@@ -98,7 +92,7 @@ const TG = "https://t.me/tayanch_go"; // Telegram kanal/guruh havolasi
       <span class="cat">Til · Admission</span>
       <span class="cert-line"><svg viewBox="0 0 24 24"><circle cx="12" cy="9" r="5"/><path d="M9 13.5 7.5 21 12 18l4.5 3L15 13.5"/></svg>Sertifikat bilan</span>
       <p>Har bir skill alohida, 30 kunlik speaking rejasi bilan — kerakli band'gacha yetib olasiz. Kimga mo'ljallangan: IELTS 6.5–7.0 kerak bo'lganlarga.</p>
-      <p class="price">$7.50 dan <span class="uzs">≈ 93 750 so'm / skill</span></p>
+      <p class="price"><span class="price-local">93 750 so'mdan</span> <span class="usd">(≈ $7.50 / skill)</span></p>
 
       <a href={base + 'kurslar/#ielts-courses'} class="start-btn">Modullarni ko'rish →</a>
       <a href={base + 'ielts-mock/'} class="mock-practice-link">Mock imtihonni sinab ko'ring →</a>
@@ -163,7 +157,7 @@ const TG = "https://t.me/tayanch_go"; // Telegram kanal/guruh havolasi
   <ul>
     <li data-i18n="why.1">Amaliy — nazariya emas, qilish o'rganasiz</li>
     <li data-i18n="why.2">O'zbek tilida — tushunarli tushuntirish</li>
-    <li data-i18n="why.3">Arzon — $19 dan boshlab</li>
+    <li data-i18n="why.3">Arzon — 240 000 so‘mdan (≈ $19)</li>
     <li data-i18n="why.4">Forever access — bir marta sotib, doim foydalan</li>
     <li data-i18n="why.5">Har kursda sertifikat</li>
   </ul>
@@ -186,37 +180,10 @@ const TG = "https://t.me/tayanch_go"; // Telegram kanal/guruh havolasi
   <div><p class="eyebrow">DAM OLISH UCHUN</p><h2 id="focus-break-title">O‘yinlar va simulyatsiyalar alohida bo‘limda</h2><p>Kurslar sahifasi asosiy o‘quv maqsadida qoladi. Barcha o‘yin natijalari faqat shu brauzerda saqlanadi.</p></div><a class="start-btn" href={base + 'entertainment/'}>Entertainment’ni ochish →</a>
 </section>
 
-<script>
-  (function () {
-    const el = document.querySelector(".typed-text");
-    if (!el) return;
-    const HERO_I18N = {"uz": ["AI'dan 5 daqiqada sifatli javob", "O'qiganingiz esda qoladigan bilim bazasi", "O'z AI yordamchingizni yaratish", "IELTS 6.5+ band: 30 kunlik reja", "Chet elga qabul: hujjatdan intervyugacha", "Pullik obuna bermasdan AI'dan foydalanish", "Bepul Figma: UI/UX asoslarini 1 kunda", "Mac'da chizma: bepul talaba litsenziyasi", "Mac'da ishni 2 baravar tezroq bajarish", "Nima uchun chet elda o'qish kerak (va bepul qanday)", "Data Analytics", "Backend Python"], "ru": ["Качественный ответ от ИИ за 5 минут", "База знаний, которая запоминается", "Создать своего ИИ-помощника", "IELTS 6.5+ баллов: план на 30 дней", "Поступление за рубеж: от документов до интервью", "Пользоваться ИИ без платной подписки", "Бесплатный Figma: основы UI/UX за 1 день", "Рисование на Mac: бесплатная студенческая лицензия", "Работа на Mac в 2 раза быстрее", "Зачем учиться за рубежом (и как бесплатно)", "Data Analytics", "Backend Python"], "en": ["Quality answer from AI in 5 minutes", "A knowledge base that actually sticks", "Build your own AI assistant", "IELTS 6.5+ band: 30-day plan", "Study abroad: from documents to interview", "Use AI without a paid subscription", "Free Figma: UI/UX basics in 1 day", "Drawing on Mac: free student license", "Get work done 2x faster on Mac", "Why study abroad (and how for free)", "Data Analytics", "Backend Python"]};
-    const _L = localStorage.getItem('org-lam-lang') || 'uz';
-    const words = (HERO_I18N[_L] || HERO_I18N.uz);
-    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    if (reduce) { el.textContent = words[0]; return; }
-    let wi = 0, ci = 0, deleting = false;
-    function tick() {
-      const word = words[wi];
-      if (!deleting) {
-        ci++;
-        el.textContent = word.slice(0, ci);
-        if (ci === word.length) { deleting = true; return setTimeout(tick, 1600); }
-        return setTimeout(tick, 70 + Math.random() * 45);
-      } else {
-        ci--;
-        el.textContent = word.slice(0, ci);
-        if (ci === 0) { deleting = false; wi = (wi + 1) % words.length; return setTimeout(tick, 420); }
-        return setTimeout(tick, 35);
-      }
-    }
-    el.textContent = "";
-    setTimeout(tick, 600);
-  })();
-</script>
+
 
 <style>
-  .founder-excerpt{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:2rem;align-items:start;margin:var(--section-gap) 0;padding:clamp(1.2rem,4vw,2rem);border:1px solid color-mix(in srgb,var(--accent) 38%,var(--border));border-radius:18px;background:linear-gradient(135deg,color-mix(in srgb,var(--accent) 10%,var(--surface)),var(--surface))}.founder-excerpt .eyebrow{margin:0 0 .5rem}.founder-excerpt h2{margin:0;font-size:clamp(1.4rem,3vw,2rem)}.founder-excerpt p{margin:0 0 1rem;color:var(--muted);line-height:1.65}.founder-excerpt .course-nav-link{font-weight:800}@media(max-width:700px){.founder-excerpt{grid-template-columns:1fr;gap:1rem}}
+  .founder-excerpt{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:2rem;align-items:start;margin:var(--section-gap) 0;padding:clamp(1.2rem,4vw,2rem);border:1px solid color-mix(in srgb,var(--accent) 38%,var(--border));border-radius:18px;background:linear-gradient(135deg,color-mix(in srgb,var(--accent) 10%,var(--surface)),var(--surface))}.founder-excerpt .eyebrow{margin:0 0 .5rem}.founder-excerpt h2{margin:0;font-size:clamp(1.4rem,3vw,2rem)}.founder-excerpt p{margin:0 0 1rem;color:var(--muted);line-height:1.65}.founder-excerpt .course-nav-link{font-weight:800}.founder-social{display:flex;gap:1rem;margin-top:1rem}.founder-social a{color:var(--accent);font-weight:800;text-decoration:none}@media(max-width:700px){.founder-excerpt{grid-template-columns:1fr;gap:1rem}}
 </style>
 
 <TelegramLeadSection />

@@ -29,6 +29,9 @@ const icons: Record<string, string> = {
 const certSvg = '<svg viewBox="0 0 24 24"><circle cx="12" cy="9" r="5"/><path d="M9 13.5 7.5 21 12 18l4.5 3L15 13.5"/></svg>';
 const all = courses.courses as any[];
 const miniIndex = (slug: string) => all.filter((c) => c.type === "ielts-mini").findIndex((c: any) => c.slug === slug) + 1;
+const localizedPrice = t(course.price);
+const localEquivalent = course.priceUzs ? String(t(course.priceUzs)).replace(/^≈\s*/, "") : null;
+const hasLocalEquivalent = typeof localizedPrice === "string" && localizedPrice.startsWith("$") && Boolean(localEquivalent);
 ---
 
 {course.type === "ielts-mini" && (
@@ -37,7 +40,7 @@ const miniIndex = (slug: string) => all.filter((c) => c.type === "ielts-mini").f
     <b>{String(miniIndex(course.slug)).padStart(2, "0")}</b>
     <h3>{t(course.title)}</h3>
     <p>{t(course.description)}</p>
-    <span>{t(course.price)} →</span>
+    <span>{hasLocalEquivalent ? <><b>{localEquivalent}</b> <small class="usd">(≈ {localizedPrice})</small></> : localizedPrice} →</span>
   </a>
 )}
 
@@ -63,7 +66,7 @@ const miniIndex = (slug: string) => all.filter((c) => c.type === "ielts-mini").f
     {course.cat && <span class="cat">{t(course.cat)}</span>}
     {course.certificate && <span class="cert-line" set:html={certSvg + (course.certLabel ? t(course.certLabel) : (lang === "uz" ? "Sertifikat bilan" : lang === "ru" ? "С сертификатом" : "With certificate"))}></span>}
     <p>{t(course.description)}</p>
-    <p class="price">{t(course.price)}{course.priceUzs ? <span class="uzs"> {t(course.priceUzs)}</span> : null}</p>
+    <p class="price">{hasLocalEquivalent ? <><span class="price-local">{localEquivalent}</span> <span class="usd">(≈ {localizedPrice})</span></> : localizedPrice}</p>
     {course.progressCourseId && <span class="course-card-progress" data-course-progress-meter data-course-id={course.progressCourseId} data-total={course.progressTotal} aria-live="polite"></span>}
     {course.free ? (
       <a href={base + course.href} class="start-btn">{lang === "uz" ? "Bepul kursni ko'rish →" : lang === "ru" ? "Смотреть бесплатный курс →" : "View free course →"}</a>
@@ -74,3 +77,5 @@ const miniIndex = (slug: string) => all.filter((c) => c.type === "ielts-mini").f
     )}
   </div>
 )}
+
+<style>.price-local{font-weight:800}.usd{font-size:.82em;color:var(--muted);font-weight:600}.ielts-mini-card .usd{font-size:.78em}</style>

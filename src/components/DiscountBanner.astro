@@ -3,13 +3,13 @@
 // Yopilganda sessiya davomida qayta chiqmaydi (sessionStorage) va layoutda bo'sh joy qolmaydi.
 const { lang = 'uz' } = Astro.props as { lang?: 'uz' | 'ru' | 'en' };
 const t = lang === 'ru' ? {
-  text: 'Скидка 15% для первых 20 человек — подробности в Telegram',
+  text: 'Скидка 15% — количество мест ограничено · подробности в Telegram',
   btn: 'Подробнее →'
 } : lang === 'en' ? {
-  text: '15% discount for the first 20 people — details on Telegram',
+  text: '15% discount — limited places available · details on Telegram',
   btn: 'Details →'
 } : {
-  text: 'Birinchi 20 kishi uchun 15% chegirma — Telegram orqali batafsil',
+  text: '15% chegirma — cheklangan miqdordagi joylar · Telegram orqali batafsil',
   btn: 'Batafsil →'
 };
 ---

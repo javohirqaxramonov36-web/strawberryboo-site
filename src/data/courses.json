@@ -194,7 +194,12 @@
         "en": "Learners targeting IELTS 6.5–7.0"
       },
       "status": "available",
-      "countInPublicTotal": true
+      "countInPublicTotal": true,
+      "priceUzs": {
+        "uz": "93 750 so'm",
+        "ru": "93 750 сум",
+        "en": "93 750 UZS"
+      }
     },
     {
       "slug": "ielts-reading",
@@ -233,7 +238,12 @@
         "en": "Learners targeting IELTS 6.5–7.0"
       },
       "status": "available",
-      "countInPublicTotal": true
+      "countInPublicTotal": true,
+      "priceUzs": {
+        "uz": "93 750 so'm",
+        "ru": "93 750 сум",
+        "en": "93 750 UZS"
+      }
     },
     {
       "slug": "ielts-writing",
@@ -272,7 +282,12 @@
         "en": "IELTS test takers who want to improve Writing systematically"
       },
       "status": "available",
-      "countInPublicTotal": true
+      "countInPublicTotal": true,
+      "priceUzs": {
+        "uz": "187 500 so'm",
+        "ru": "187 500 сум",
+        "en": "187 500 UZS"
+      }
     },
     {
       "slug": "ielts-speaking",
@@ -311,7 +326,12 @@
         "en": "Learners who want to improve Speaking with a practical plan"
       },
       "status": "available",
-      "countInPublicTotal": true
+      "countInPublicTotal": true,
+      "priceUzs": {
+        "uz": "93 750 so'm",
+        "ru": "93 750 сум",
+        "en": "93 750 UZS"
+      }
     },
     {
       "slug": "ielts-vocabulary",
