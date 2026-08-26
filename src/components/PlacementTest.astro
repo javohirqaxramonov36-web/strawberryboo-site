@@ -30,6 +30,9 @@ const copy = {
     copyResult: 'Natijani nusxalash',
     copyDone: 'Nusxalandi ✓',
     sendResult: 'Natijani Telegramga yuborish →',
+    combinedTitle: 'Umumiy tavsiya',
+    combinedText: 'CEFR darajangiz va maqsad asosidagi tavsiyangiz bir joyda.',
+    combinedFinder: 'Kurs tanlash testini ishlash →',
     note: 'Bu qisqa placement test CEFR darajangizni taxminiy ko‘rsatadi va sizga mos kursni tavsiya qiladi.',
   },
   ru: {
@@ -50,6 +53,9 @@ const copy = {
     copyResult: 'Скопировать результат',
     copyDone: 'Скопировано ✓',
     sendResult: 'Отправить результат в Telegram →',
+    combinedTitle: 'Общая рекомендация',
+    combinedText: 'Ваш уровень CEFR и рекомендация по цели собраны в одном месте.',
+    combinedFinder: 'Пройти тест подбора курса →',
     note: 'Этот короткий placement-тест ориентировочно показывает уровень CEFR и рекомендует подходящий курс.',
   },
   en: {
@@ -70,6 +76,9 @@ const copy = {
     copyResult: 'Copy result',
     copyDone: 'Copied ✓',
     sendResult: 'Send result to Telegram →',
+    combinedTitle: 'Combined recommendation',
+    combinedText: 'Your CEFR level and goal-based course recommendation in one place.',
+    combinedFinder: 'Take the course-finder test →',
     note: 'This short placement test gives an indicative CEFR level and recommends a suitable course.',
   },
 }[lang];
@@ -108,11 +117,13 @@ const courseSlug: Record<PlacementLevel, string> = {
 
 const prefix = lang === 'uz' ? '' : `${lang}/`;
 const config = {
+  base,
   questions: placementQuestions,
   copy,
   recommendations: Object.fromEntries(
     (['A1', 'A2', 'B1', 'B2', 'C1'] as PlacementLevel[]).map((level) => [level, {
       title: courseTitles[lang][level],
+      slug: courseSlug[level],
       url: `${base}${prefix}kurslar/${courseSlug[level]}/`,
     }])
   ),
@@ -154,9 +165,17 @@ const configJson = JSON.stringify(config).replace(/</g, '\\u003c');
     const allQuestions = config.questions || [];
     const state = { answers: [], current: allQuestions.find((question) => question.level === 'A1'), draftAnswer: null };
 
-    const saveResult = (result) => {
+    const saveResult = (result, recommendation) => {
       try {
-        localStorage.setItem('tayanch.placement-test.v1', JSON.stringify({ ...result, date: new Date().toISOString() }));
+        localStorage.setItem('tayanch.placement-test.v1', JSON.stringify({
+          ...result,
+          recommendedCourse: recommendation ? {
+            slug: recommendation.slug,
+            title: recommendation.title,
+            url: recommendation.url,
+          } : null,
+          date: new Date().toISOString(),
+        }));
       } catch {}
     };
 
@@ -225,16 +244,42 @@ const configJson = JSON.stringify(config).replace(/</g, '\\u003c');
       sendLink.target = '_blank';
       sendLink.rel = 'noopener noreferrer';
       sendLink.textContent = config.copy.sendResult;
-      sendLink.setAttribute('data-analytics-event', 'placement_result_share');
       shareRow.append(copyButton, sendLink);
       const recommended = document.createElement('p');
       recommended.className = 'placement-test__recommendation-label';
       recommended.textContent = config.copy.recommended;
       const link = document.createElement('a');
       link.href = recommendation?.url || '#';
-      link.setAttribute('data-analytics-event', 'placement_recommended_course_click');
       link.textContent = recommendation?.title ? `${recommendation.title} — ${config.copy.openCourse}` : config.copy.openCourse;
       link.className = 'placement-test__course-link';
+      const combined = document.createElement('div');
+      combined.className = 'placement-test__combined';
+      const combinedTitle = document.createElement('strong');
+      combinedTitle.textContent = config.copy.combinedTitle;
+      const combinedText = document.createElement('p');
+      combinedText.textContent = config.copy.combinedText;
+      combined.append(combinedTitle, combinedText);
+      try {
+        const finderResult = JSON.parse(localStorage.getItem('tayanch.course-selection.v1') || 'null');
+        if (finderResult?.title && finderResult?.url) {
+          const finderLabel = document.createElement('span');
+          finderLabel.textContent = `${finderResult.label || ''}${finderResult.label ? ': ' : ''}`;
+          const finderLink = document.createElement('a');
+          finderLink.href = finderResult.url;
+          finderLink.textContent = finderResult.title;
+          combined.append(finderLabel, finderLink);
+        } else {
+          const finderLink = document.createElement('a');
+          finderLink.href = `${config.base}kurs-tanlash/`;
+          finderLink.textContent = config.copy.combinedFinder;
+          combined.append(finderLink);
+        }
+      } catch {
+        const finderLink = document.createElement('a');
+        finderLink.href = `${config.base}kurs-tanlash/`;
+        finderLink.textContent = config.copy.combinedFinder;
+        combined.append(finderLink);
+      }
       const restart = document.createElement('button');
       restart.type = 'button';
       restart.className = 'placement-test__restart';
@@ -254,13 +299,9 @@ const configJson = JSON.stringify(config).replace(/</g, '\\u003c');
       telegramLink.rel = 'noopener noreferrer';
       telegramLink.textContent = config.copy.telegramCta;
       telegramLink.className = 'placement-test__telegram-link';
-      telegramLink.setAttribute('data-analytics-event', 'placement_telegram_cta');
-      resultNode.append(title, level, score, shareRow, recommended, link, telegramText, telegramLink, restart);
-      if (typeof window.tayanchTrack === 'function') {
-        window.tayanchTrack('placement_result', { level: result.level, recommended_course: recommendation?.title || '', correct_count: result.correctCount, total: result.total, percentage: result.percentage });
-      }
+      resultNode.append(title, level, score, shareRow, recommended, link, combined, telegramText, telegramLink, restart);
       resultNode.hidden = false;
-      saveResult(result);
+      saveResult(result, recommendation);
     };
 
     back.addEventListener('click', () => {
@@ -305,7 +346,7 @@ const configJson = JSON.stringify(config).replace(/</g, '\\u003c');
   .placement-test__result{margin-top:1rem;padding:1rem;border:1px solid color-mix(in srgb,#34d399 45%,var(--border));border-radius:13px;background:color-mix(in srgb,#34d399 9%,var(--surface))}
   .placement-test__result-label,.placement-test__recommendation-label{margin:.1rem 0 .25rem;color:var(--muted);font-size:.88rem}
   .placement-test__result-level{display:block;margin-bottom:.45rem;color:#34d399;font-size:2rem}
-  .placement-test__course-link{display:block;margin:.5rem 0;color:var(--accent);font-weight:800}.placement-test__telegram{margin:1rem 0 .3rem;color:var(--muted);font-size:.88rem;line-height:1.5}.placement-test__telegram-link{color:var(--accent);font-weight:800}
+  .placement-test__course-link{display:block;margin:.5rem 0;color:var(--accent);font-weight:800}.placement-test__combined{display:grid;gap:.35rem;margin:1rem 0;padding:.8rem;border:1px solid var(--border);border-radius:11px;background:color-mix(in srgb,var(--accent) 7%,transparent);font-size:.88rem}.placement-test__combined p{margin:0;color:var(--muted);line-height:1.45}.placement-test__combined a{color:var(--accent);font-weight:800}.placement-test__telegram{margin:1rem 0 .3rem;color:var(--muted);font-size:.88rem;line-height:1.5}.placement-test__telegram-link{color:var(--accent);font-weight:800}
   .placement-test__restart{background:transparent;border:1px solid var(--border);color:var(--text)}
   @media (prefers-reduced-motion: reduce){.placement-test__option{transition:none}}
 </style>

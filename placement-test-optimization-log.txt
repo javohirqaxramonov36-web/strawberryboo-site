@@ -45,7 +45,7 @@ UZ founder section: `AI, IELTS va Admission’ni amaliy yo‘l bilan o‘rganing
 
 Chegirma: `15% chegirma — cheklangan miqdordagi joylar` (RU/EN ham xuddi shu mazmunda). Real-time 20 kishilik hisoblagich mavjud emasligi sababli aniq son olib tashlandi.
 
-Placement: oldindan mavjud bo‘lgan kurs CTA’si saqlandi; yangi qo‘shimchalar — `Savol 1/25` progress bar, natijadan keyingi ixtiyoriy Telegram CTA va `placement_result` GA4 event’i.
+Placement: oldindan mavjud bo‘lgan kurs CTA’si saqlandi; yangi qo‘shimchalar — `Savol 1/25` progress bar va natijadan keyingi ixtiyoriy Telegram CTA. Keyingi privacy follow-up’da placement tracking o‘chirildi.
 
 ## Technical follow-up
 
@@ -56,3 +56,9 @@ Placement: oldindan mavjud bo‘lgan kurs CTA’si saqlandi; yangi qo‘shimchal
 - `public/robots.txt` mavjud va sitemap manziliga ishora qiladi; `public/sitemap.xml` build paytida 203 muhim route bilan generatsiya qilinadi.
 - Cache-busting tekshirildi: Vite asset hash’lari buildda avtomatik yangilanadi; `?v=` faqat QA/cache tekshiruvi uchun qo‘lda berilgan URL parametri, source buildga qo‘lda release qiymati tikilmaydi.
 - Kurs tanlash sahifasida “CEFR daraja testi” va “To‘liq kurs tanlash testi” ikki xil maqsad sifatida aniq ajratildi; uch tilda progress bar ko‘rinishi qo‘shildi.
+
+## Keyingi tavsiya va maxfiylik follow-up
+
+- Placement testi va kurs tanlash testi natijalari faqat shu brauzerning localStorage’ida saqlanadi va har ikkala natija birgalikda umumiy tavsiya blokida ko‘rsatiladi.
+- Placement test sahifalarida GA4/Plausible scriptlari, click event tracking va placement-specific eventlar o‘chirildi; test natijalari tashqi analytics xizmatlariga yuborilmaydi.
+- Placement natijasida mos General English kursi, kurs tanlash natijasida esa maqsadga mos asosiy kurs alohida ko‘rsatiladi; foydalanuvchi natija bo‘lmasa ikkinchi testga havola oladi.
