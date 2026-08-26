@@ -1,0 +1,39 @@
+# Tayanch — localization, UX va performance log
+
+Sana: 2026-08-26
+Branch: feature/localization-ux-performance
+
+## 1-bosqich — EN/RU lokalizatsiya va linklar
+
+- Global sidebar, header va footer navigatsiyasiga `services`, `entertainment`, `faq`, `refund` va `impact` i18n kalitlari qo‘shildi.
+- EN/RU sahifalarida noto‘g‘ri UZ fallback yorliqlari kamaytirildi.
+- IELTS Mock va IELTS Practice index/results sahifalaridagi UZ hreflang linklari noto‘g‘ri EN/RU path’ga ketmasligi uchun tuzatildi.
+- UZ/RU/EN route’lari mavjudligi build va HTTP smoke test orqali tekshirildi.
+
+## 2-bosqich — Placement natijasi
+
+- Natija sahifasiga A1–C1 bo‘yicha to‘g‘ri javoblar taqsimoti qo‘shildi.
+- Saqlangan placement natijasini o‘chirish tugmasi qo‘shildi.
+- Placement va kurs tanlash testlari orasidagi localStorage asosidagi umumiy tavsiya oqimi saqlandi.
+- Placement testda analytics tracking o‘chirilgan holat saqlandi.
+
+## 3-bosqich — Mobile/performance
+
+- Service worker cache nomi `tayanch-static-v1`dan `tayanch-static-v2`ga yangilandi. Keyingi deploy eski cache’ni o‘chirib, yangi JS/CSS/HTML’ni olishga majbur qiladi.
+- Mobil sahifalar, placement, kurs tanlash va FAQ route’lari preview/live smoke testdan o‘tkazildi.
+- Katta tashqi assetlar qayta ko‘rib chiqildi; payment flow o‘zgartirilmadi.
+
+## 4-bosqich — InPay/LMS tayyorgarligi
+
+- `docs/inpay-lms-readiness.md`da provider tasdig‘idan keyingi sandbox, webhook, idempotency, access va auth rejasi yozildi.
+- InPay hali process’da bo‘lgani uchun production checkoutga tegilmadi va secret kiritilmadi.
+
+## Verifikatsiya
+
+- `node --check public/assets/interactive.js`
+- `npm run verify:placement`
+- `npm run verify:courses`
+- `npm run verify:startup`
+- `npm run verify:impact`
+- `npm run build`
+- UZ/RU/EN route HTTP smoke testlari
