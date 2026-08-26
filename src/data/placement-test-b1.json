@@ -1,0 +1,17 @@
+{
+  "level": "B1",
+  "title": "General English B1",
+  "questions": [
+    {
+      "id": "b1-placeholder-001",
+      "question": "If I ___ more time, I would join the course.",
+      "options": [
+        { "id": "a", "text": "have" },
+        { "id": "b", "text": "had" },
+        { "id": "c", "text": "will have" },
+        { "id": "d", "text": "am having" }
+      ],
+      "correctOption": "b"
+    }
+  ]
+}

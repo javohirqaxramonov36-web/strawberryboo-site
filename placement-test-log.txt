@@ -1,0 +1,54 @@
+# Tayanch — Placement test log
+
+Sana: 2026-08-26
+Branch: feature/general-english-placement
+
+## Maqsad
+
+General English kurslari uchun CEFR placement test infratuzilmasi yaratildi. Bu bosqichda tashqi kitob, sayt, Telegram bot yoki boshqa manbadan savol ko‘chirilmagan.
+
+## O‘zgartirilgan va qo‘shilgan fayllar
+
+- `src/data/placement-test-a1.json` — A1 banki, 1 ta mustaqil placeholder savol.
+- `src/data/placement-test-a2.json` — A2 banki, 1 ta mustaqil placeholder savol.
+- `src/data/placement-test-b1.json` — B1 banki, 1 ta mustaqil placeholder savol.
+- `src/data/placement-test-b2.json` — B2 JSON shabloni, savollar keyin kiritiladi.
+- `src/data/placement-test-c1.json` — C1 JSON shabloni, savollar keyin kiritiladi.
+- `src/data/placement-test.ts` — JSON banklarni birlashtirish va placement turlari.
+- `src/lib/placement-test.ts` — adaptiv savol tanlash va natijani hisoblash funksiyalari.
+- `src/components/PlacementTest.astro` — test UI, javob tekshiruvi, natija va kurs tavsiyasi.
+- `src/components/GeneralEnglishTest.astro` — eski qattiq kodlangan savollar o‘rniga yangi placement test wrapper’i.
+- `src/pages/daraja-testi.astro` — UZ placement test route.
+- `src/pages/ru/daraja-testi.astro` — RU placement test route.
+- `src/pages/en/daraja-testi.astro` — EN placement test route.
+- `src/components/GeneralEnglishCourse.astro` — barcha General English kurs sahifalariga placement havolasi.
+- `src/pages/kurs-tanlash.astro` — UZ placement havolasi.
+- `src/pages/ru/kurs-tanlash.astro` — RU placement havolasi.
+- `src/pages/en/kurs-tanlash.astro` — EN placement havolasi.
+- `public/sitemap.xml` — uchta yangi placement test route’i sitemapga qo‘shildi.
+- `scripts/verify-placement-test.mjs` — barcha banklar va 4-variantli savol formatini tekshiruvchi validator.
+- `.github/workflows/ci.yml` va `package.json` — placement validator CI’ga qo‘shildi.
+
+## Ishlash logikasi
+
+1. Test A1 savolidan boshlanadi.
+2. To‘g‘ri javobdan keyin yuqoriroq mavjud CEFR bankiga o‘tadi.
+3. Noto‘g‘ri javobdan keyin pastroq yoki shu darajadagi keyingi savol tanlanadi.
+4. Har bir savol bir marta beriladi.
+5. Natija eng yuqori to‘g‘ri javob berilgan CEFR darajasi asosida hisoblanadi.
+6. Natija `localStorage`ga saqlanadi: `tayanch.placement-test.v1`.
+7. Natija sahifasida daraja, ball foizi va mos General English kursi ko‘rsatiladi.
+
+## Placeholder savollar
+
+- A1: `I ___ to school every day.`
+- A2: `She has lived here ___ 2022.`
+- B1: `If I ___ more time, I would join the course.`
+
+Bu savollar faqat mexanizm formatini ko‘rsatish uchun mustaqil yozildi. B2 va C1 banklari savolsiz shablon sifatida qoldirildi.
+
+## Cheklovlar
+
+- Hozirgi testda faqat 3 ta placeholder savol bor; to‘liq test natijasi yakuniy baholash sifatida ishlatilmasligi kerak.
+- B2 va C1 savollari kiritilgach, adaptiv yo‘l avtomatik ravishda yuqori darajalarga kengayadi.
+- Backend, login va tashqi analytics qo‘shilmadi.

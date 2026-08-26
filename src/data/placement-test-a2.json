@@ -1,0 +1,17 @@
+{
+  "level": "A2",
+  "title": "General English A2",
+  "questions": [
+    {
+      "id": "a2-placeholder-001",
+      "question": "She has lived here ___ 2022.",
+      "options": [
+        { "id": "a", "text": "for" },
+        { "id": "b", "text": "since" },
+        { "id": "c", "text": "from" },
+        { "id": "d", "text": "during" }
+      ],
+      "correctOption": "b"
+    }
+  ]
+}
