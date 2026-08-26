@@ -1,5 +1,121 @@
 {
   "level": "B2",
   "title": "General English B2",
-  "questions": []
+  "questions": [
+    {
+      "id": "b2-1",
+      "question": "Despite ___ hard, he failed the exam.",
+      "options": [
+        {
+          "id": "a",
+          "text": "study"
+        },
+        {
+          "id": "b",
+          "text": "studying"
+        },
+        {
+          "id": "c",
+          "text": "studied"
+        },
+        {
+          "id": "d",
+          "text": "to study"
+        }
+      ],
+      "correctOption": "b"
+    },
+    {
+      "id": "b2-2",
+      "question": "Which word is closest in meaning to 'reluctant'?",
+      "options": [
+        {
+          "id": "a",
+          "text": "eager"
+        },
+        {
+          "id": "b",
+          "text": "unwilling"
+        },
+        {
+          "id": "c",
+          "text": "happy"
+        },
+        {
+          "id": "d",
+          "text": "certain"
+        }
+      ],
+      "correctOption": "b"
+    },
+    {
+      "id": "b2-3",
+      "question": "Not only ___ late, but he also forgot the documents.",
+      "options": [
+        {
+          "id": "a",
+          "text": "he was"
+        },
+        {
+          "id": "b",
+          "text": "was he"
+        },
+        {
+          "id": "c",
+          "text": "he is"
+        },
+        {
+          "id": "d",
+          "text": "is he"
+        }
+      ],
+      "correctOption": "b"
+    },
+    {
+      "id": "b2-4",
+      "question": "The company's profits have ___ significantly this year.",
+      "options": [
+        {
+          "id": "a",
+          "text": "risen"
+        },
+        {
+          "id": "b",
+          "text": "rose"
+        },
+        {
+          "id": "c",
+          "text": "raised"
+        },
+        {
+          "id": "d",
+          "text": "rise"
+        }
+      ],
+      "correctOption": "a"
+    },
+    {
+      "id": "b2-5",
+      "question": "If I ___ known, I would have told you.",
+      "options": [
+        {
+          "id": "a",
+          "text": "had"
+        },
+        {
+          "id": "b",
+          "text": "have"
+        },
+        {
+          "id": "c",
+          "text": "would have"
+        },
+        {
+          "id": "d",
+          "text": "has"
+        }
+      ],
+      "correctOption": "a"
+    }
+  ]
 }

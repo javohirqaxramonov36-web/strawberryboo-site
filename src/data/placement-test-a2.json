@@ -3,13 +3,117 @@
   "title": "General English A2",
   "questions": [
     {
-      "id": "a2-placeholder-001",
-      "question": "She has lived here ___ 2022.",
+      "id": "a2-1",
+      "question": "I ___ to the cinema yesterday.",
       "options": [
-        { "id": "a", "text": "for" },
-        { "id": "b", "text": "since" },
-        { "id": "c", "text": "from" },
-        { "id": "d", "text": "during" }
+        {
+          "id": "a",
+          "text": "go"
+        },
+        {
+          "id": "b",
+          "text": "went"
+        },
+        {
+          "id": "c",
+          "text": "goes"
+        },
+        {
+          "id": "d",
+          "text": "gone"
+        }
+      ],
+      "correctOption": "b"
+    },
+    {
+      "id": "a2-2",
+      "question": "There ___ many people at the party.",
+      "options": [
+        {
+          "id": "a",
+          "text": "was"
+        },
+        {
+          "id": "b",
+          "text": "were"
+        },
+        {
+          "id": "c",
+          "text": "is"
+        },
+        {
+          "id": "d",
+          "text": "be"
+        }
+      ],
+      "correctOption": "b"
+    },
+    {
+      "id": "a2-3",
+      "question": "She is ___ than her sister.",
+      "options": [
+        {
+          "id": "a",
+          "text": "tall"
+        },
+        {
+          "id": "b",
+          "text": "taller"
+        },
+        {
+          "id": "c",
+          "text": "tallest"
+        },
+        {
+          "id": "d",
+          "text": "more tall"
+        }
+      ],
+      "correctOption": "b"
+    },
+    {
+      "id": "a2-4",
+      "question": "I have ___ finished my homework.",
+      "options": [
+        {
+          "id": "a",
+          "text": "already"
+        },
+        {
+          "id": "b",
+          "text": "yet"
+        },
+        {
+          "id": "c",
+          "text": "still"
+        },
+        {
+          "id": "d",
+          "text": "ever"
+        }
+      ],
+      "correctOption": "a"
+    },
+    {
+      "id": "a2-5",
+      "question": "He is interested ___ music.",
+      "options": [
+        {
+          "id": "a",
+          "text": "on"
+        },
+        {
+          "id": "b",
+          "text": "in"
+        },
+        {
+          "id": "c",
+          "text": "at"
+        },
+        {
+          "id": "d",
+          "text": "for"
+        }
       ],
       "correctOption": "b"
     }
