@@ -1,0 +1,17 @@
+{
+  "level": "A1",
+  "title": "General English A1",
+  "questions": [
+    {
+      "id": "a1-placeholder-001",
+      "question": "I ___ to school every day.",
+      "options": [
+        { "id": "a", "text": "go" },
+        { "id": "b", "text": "goes" },
+        { "id": "c", "text": "going" },
+        { "id": "d", "text": "gone" }
+      ],
+      "correctOption": "a"
+    }
+  ]
+}
