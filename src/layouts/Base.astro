@@ -146,7 +146,7 @@ const showDiscountBanner = Astro.props.showDiscountBanner || false;
   <body>
     <a href="#main" class="skip-link" data-i18n="skip">Asosiyga o'tish</a>
 
-    {showDiscountBanner && <DiscountBanner />}
+    {showDiscountBanner && <DiscountBanner lang={lang} />}
 
     <aside class="sidebar" id="site-navigation">
       <a href={base} class="brand">

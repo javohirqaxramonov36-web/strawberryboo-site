@@ -1,12 +1,23 @@
 ---
 // Sahifa yuqorisidagi chegirma banneri. progression_go ga yo'naltiradi.
 // Yopilganda sessiya davomida qayta chiqmaydi (sessionStorage) va layoutda bo'sh joy qolmaydi.
+const { lang = 'uz' } = Astro.props as { lang?: 'uz' | 'ru' | 'en' };
+const t = lang === 'ru' ? {
+  text: 'Скидка 15% для первых 20 человек — подробности в Telegram',
+  btn: 'Подробнее →'
+} : lang === 'en' ? {
+  text: '15% discount for the first 20 people — details on Telegram',
+  btn: 'Details →'
+} : {
+  text: 'Birinchi 20 kishi uchun 15% chegirma — Telegram orqali batafsil',
+  btn: 'Batafsil →'
+};
 ---
 
 <div class="disc-banner" id="disc-banner">
   <div class="disc-banner-inner">
-    <span class="disc-banner-text">Birinchi 20 kishi uchun 15% chegirma — Telegram orqali batafsil</span>
-    <a href="https://t.me/progression_go" class="disc-banner-btn" target="_blank" rel="noopener noreferrer">Batafsil →</a>
+    <span class="disc-banner-text">{t.text}</span>
+    <a href="https://t.me/progression_go" class="disc-banner-btn" target="_blank" rel="noopener noreferrer">{t.btn}</a>
     <button class="disc-banner-close" id="disc-banner-close" aria-label="Yopish" type="button">✕</button>
   </div>
 </div>
