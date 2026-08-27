@@ -1,0 +1,7 @@
+name = "tayanch-anthropic-assessment"
+main = "../examples/anthropic-assessment-worker.ts"
+compatibility_date = "2026-08-27"
+
+# ANTHROPIC_API_KEY hech qachon bu faylga yozilmaydi.
+# Uni faqat quyidagi buyruq bilan Cloudflare Worker secret sifatida qo‘shing:
+#   npx wrangler secret put ANTHROPIC_API_KEY

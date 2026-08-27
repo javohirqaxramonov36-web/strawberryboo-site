@@ -11,6 +11,7 @@ export default {
   async fetch(request: Request, env: Env): Promise<Response> {
     if (request.method === 'OPTIONS') return json({}, 204);
     if (request.method !== 'POST') return json({ error: 'Faqat POST ruxsat etiladi.' }, 405);
+    if (!env?.ANTHROPIC_API_KEY?.trim()) return json({ error: 'Baholash xizmati hozircha sozlanmoqda.' }, 503);
     const input = await request.json().catch(() => null) as { course?: string; rubric?: string; answer?: string } | null;
     if (!input?.course || !input.rubric || !input.answer || input.answer.length > 12000) return json({ error: 'course, rubric va 12 000 belgigacha answer kerak.' }, 400);
     const prompt = `Kurs: ${input.course}\nRubrika: ${input.rubric}\nTalaba javobi:\n${input.answer}`;

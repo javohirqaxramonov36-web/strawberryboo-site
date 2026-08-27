@@ -23,12 +23,12 @@ const copy = lang === 'ru'
       const text = answer?.value.trim();
       if (!text) { status.textContent = 'Avval javob yozing.'; return; }
       const endpoint = document.documentElement.dataset.practicalAssessmentEndpoint;
-      if (!endpoint) { status.textContent = 'Baholash serveri hali ulanmagan.'; return; }
+      if (!endpoint) { status.textContent = 'Baholash xizmati hozircha sozlanmoqda.'; return; }
       submit.disabled = true; status.textContent = 'Tekshirilmoqda…';
       try {
         const res = await fetch(endpoint, { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify({ course: root.dataset.course, rubric: root.dataset.rubric, answer: text }) });
-        if (!res.ok) throw new Error('Server javobi muvaffaqiyatsiz.');
-        const data = await res.json();
+        const data = await res.json().catch(() => ({}));
+        if (!res.ok) throw new Error(data.error || 'Server javobi muvaffaqiyatsiz.');
         status.textContent = data.feedback || 'Fikr-mulohaza qaytdi.';
       } catch (error) { status.textContent = error instanceof Error ? error.message : 'Xatolik yuz berdi.'; }
       finally { submit.disabled = false; }
