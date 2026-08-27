@@ -1,0 +1,67 @@
+---
+import { supabase } from '../lib/supabase';
+
+type Lang = 'uz' | 'ru' | 'en';
+interface Props { courseId: string; courseName: string; lang?: Lang; compact?: boolean; }
+const { courseId, courseName, lang = 'uz', compact = false } = Astro.props as Props;
+const copy = {
+  uz: { label: 'Tayyor bo‘lganda xabar bering', placeholder: 'email@misol.uz', consent: 'Kurs yangiliklari haqida xabar olishga roziman.', button: 'Xabardor qiling', success: 'Rahmat! Kurs tayyor bo‘lganda shu emailga xabar beramiz.', duplicate: 'Bu email allaqachon ro‘yxatda.', error: 'Hozircha saqlab bo‘lmadi. Telegram orqali yozishingiz mumkin.' },
+  ru: { label: 'Сообщить, когда курс будет готов', placeholder: 'email@example.com', consent: 'Я согласен получать новости об этом курсе.', button: 'Сообщить мне', success: 'Спасибо! Мы напишем на этот email, когда курс будет готов.', duplicate: 'Этот email уже есть в списке.', error: 'Пока не удалось сохранить. Можно написать нам в Telegram.' },
+  en: { label: 'Notify me when this course is ready', placeholder: 'email@example.com', consent: 'I agree to receive updates about this course.', button: 'Notify me', success: 'Thanks! We will email you when the course is ready.', duplicate: 'This email is already on the list.', error: 'We could not save this yet. You can message us on Telegram.' },
+} as const;
+const t = copy[lang];
+---
+<form class:list={['waitlist-form', { 'waitlist-form--compact': compact }]} data-waitlist-form data-course-id={courseId} data-course-name={courseName}>
+  <label class="waitlist-label" for={`waitlist-${courseId}`}>{t.label}</label>
+  <div class="waitlist-row">
+    <input id={`waitlist-${courseId}`} name="email" type="email" autocomplete="email" placeholder={t.placeholder} required maxlength="254" />
+    <button type="submit">{t.button}</button>
+  </div>
+  <label class="waitlist-consent"><input type="checkbox" name="consent" required /> <span>{t.consent}</span></label>
+  <input class="waitlist-honeypot" name="website" tabindex="-1" autocomplete="off" aria-hidden="true" />
+  <p class="waitlist-status" data-waitlist-status aria-live="polite"></p>
+</form>
+
+<script>
+  const waitlistCopy = {
+    uz: { success: 'Rahmat! Kurs tayyor bo‘lganda shu emailga xabar beramiz.', duplicate: 'Bu email allaqachon ro‘yxatda.', error: 'Hozircha saqlab bo‘lmadi. Telegram orqali yozishingiz mumkin.' },
+    ru: { success: 'Спасибо! Мы напишем на этот email, когда курс будет готов.', duplicate: 'Этот email уже есть в списке.', error: 'Пока не удалось сохранить. Можно написать нам в Telegram.' },
+    en: { success: 'Thanks! We will email you when the course is ready.', duplicate: 'This email is already on the list.', error: 'We could not save this yet. You can message us on Telegram.' },
+  };
+  const bindWaitlistForms = () => document.querySelectorAll<HTMLFormElement>('[data-waitlist-form]').forEach((form) => {
+    if (form.dataset.bound) return;
+    form.dataset.bound = 'true';
+    form.addEventListener('submit', async (event) => {
+      event.preventDefault();
+      const status = form.querySelector<HTMLElement>('[data-waitlist-status]');
+      const email = form.elements.namedItem('email') as HTMLInputElement;
+      const consent = form.elements.namedItem('consent') as HTMLInputElement;
+      const honeypot = form.elements.namedItem('website') as HTMLInputElement;
+      if (!email?.value || !consent?.checked || honeypot?.value) return;
+      const lang = document.documentElement.lang as 'uz' | 'ru' | 'en';
+      const copy = waitlistCopy[lang] || waitlistCopy.uz;
+      const button = form.querySelector<HTMLButtonElement>('button[type="submit"]');
+      if (button) button.disabled = true;
+      if (status) status.textContent = '';
+      const { error } = await supabase.from('waitlist_signups').insert({
+        course_id: form.dataset.courseId,
+        email: email.value.trim().toLowerCase(),
+        consent: true,
+        source: 'site',
+      });
+      if (error) {
+        if (status) status.textContent = error.code === '23505' ? copy.duplicate : copy.error;
+        if (button) button.disabled = false;
+        return;
+      }
+      if (status) status.textContent = copy.success;
+      form.reset();
+      if (button) button.disabled = false;
+    });
+  });
+  bindWaitlistForms();
+</script>
+
+<style>
+  .waitlist-form{margin-top:1rem;padding:1rem;border:1px solid color-mix(in srgb,var(--accent) 35%,var(--border));border-radius:14px;background:color-mix(in srgb,var(--accent) 6%,var(--surface))}.waitlist-label{display:block;font-weight:800;font-size:.9rem;margin-bottom:.55rem}.waitlist-row{display:flex;gap:.55rem}.waitlist-row input[type=email]{min-width:0;flex:1;padding:.65rem .75rem;border:1px solid var(--border);border-radius:9px;background:var(--surface);color:var(--text);font:inherit}.waitlist-row button{border:0;border-radius:9px;padding:.65rem .8rem;background:var(--btn-bg);color:#fff;font:700 .86rem var(--font-display,inherit);cursor:pointer}.waitlist-row button:disabled{opacity:.65;cursor:wait}.waitlist-consent{display:flex;gap:.45rem;align-items:flex-start;margin-top:.65rem;color:var(--muted);font-size:.75rem;line-height:1.4}.waitlist-consent input{margin-top:.18rem}.waitlist-status{min-height:1.3em;margin:.55rem 0 0;color:var(--muted);font-size:.8rem;line-height:1.4}.waitlist-honeypot{position:absolute;left:-10000px;width:1px;height:1px;opacity:0}.waitlist-form--compact{margin-top:.75rem;padding:.8rem}.waitlist-form--compact .waitlist-row{flex-direction:column}.waitlist-form--compact .waitlist-row button{width:100%}@media(max-width:500px){.waitlist-row{flex-direction:column}.waitlist-row button{width:100%}}
+</style>

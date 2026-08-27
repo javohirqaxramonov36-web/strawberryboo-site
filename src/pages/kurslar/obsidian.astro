@@ -55,7 +55,7 @@ const plugins = [
   <CourseProgress courseId="obsidian" title="Obsidian PKM progressi" itemSelector=".modules > li" labelSelector="ol.modules" />
 <article class="lesson obsidian-course">
   <header class="course-hero course-hero--visual">
-    <div class="hero-copy"><span class="eyebrow" data-i18n="op.eyebrow">PERSONAL KNOWLEDGE MANAGEMENT</span>    <h1 data-i18n="op.h1">O'qiganingiz esda qoladigan bilim bazasi</h1><div class="price"><span class="now">$19</span><span class="old">$29</span><span class="badge badge-new">-35%</span><span class="badge badge-cert">Sertifikat</span><span class="uzs">≈ 240 000 so'm</span></div></div>
+    <div class="hero-copy"><span class="eyebrow" data-i18n="op.eyebrow">PERSONAL KNOWLEDGE MANAGEMENT</span>    <h1 data-i18n="op.h1">O'qiganingiz esda qoladigan bilim bazasi</h1><div class="price"><span class="now">240 000 so'm</span><span class="usd">(≈ $19)</span><span class="old">$29</span><span class="badge badge-new">-35%</span><span class="badge badge-cert">Sertifikat</span></div></div>
     <button class="image-card hero-image" type="button" data-lightbox-src={images.graphOverview} data-lightbox-alt="Obsidian Graph view overview"><img src={images.graphOverview} alt="Obsidian Graph view overview" loading="eager" fetchpriority="high" decoding="async" /><span class="image-card-label">Graph view overview <span>↗ Kattalashtirish</span></span></button>
   </header>
   <p class="lead" data-i18n="op.lead">Shaxsiy bilim bazasi qurish. Kimga mo'ljallangan: kundalik yuritadigan, o'qigan/o'rgangan narsalarini tartibga solmoqchi bo'lgan talaba va tadqiqotchilarga. Tayanch bilan Telegram'dan forward qilsangiz — AI xulosalab, Obsidian'ga saqlaydi.</p>
@@ -76,7 +76,7 @@ const plugins = [
   <section class="graph-section"><div><span class="eyebrow">MODUL 5</span><h2>Graph view: bilimlar bog'lanishi</h2><p>Graph view note'lar va ular orasidagi link'larni bitta xaritada ko'rsatadi. Papkalarni kengaytirib, bilimlar qanday bog'langanini ko'ring.</p></div><ObsidianScreenshotSlots section="graph" /><button class="image-card graph-image" type="button" data-lightbox-src={images.graphFolder} data-lightbox-alt="Obsidian Graph view with expanded folder"><img src={images.graphFolder} alt="Obsidian Graph view with expanded folder" loading="lazy" decoding="async"/><span class="image-card-label">Papka kengaytirilgan Graph view <span>↗ Kattalashtirish</span></span></button></section>
   <a href={base + 'bog-lanish'} class="start-btn" style="margin-top:2rem;" data-gumroad-product="obsidian-bilim-bazasi" target="_blank" rel="noopener noreferrer" data-i18n="op.buy">Kursni sotib olish →</a><a href={base + 'kurslar'} class="course-nav-link" style="margin-left:1rem;" data-i18n="op.all">← Barcha kurslar</a>
   <Quiz title="O'z bilimingizni tekshiring" titleI18n="op.quizTitle" questions={questions} />
-  <PaymentInstructions course="Obsidian PKM" price="$19 · ≈ 240 000 so'm" />
+  <PaymentInstructions course="Obsidian PKM" price="240 000 so'm (≈ $19)" />
   <CourseFaq facts={bespokeCourseFaqFacts["obsidian"]} />
   {/* REAL student reviews go in src/data/testimonials.ts — add only permissioned, verified reviews. This renders nothing until then. */}
   <CourseTestimonialPlaceholder />

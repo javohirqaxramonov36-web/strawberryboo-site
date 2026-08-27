@@ -1,0 +1,6 @@
+---
+import Base from '../layouts/Base.astro';
+const base = import.meta.env.BASE_URL;
+---
+<Base title="To‘lov qabul qilindi — Tayanch" description="Tayanch to‘lov holati."><main class="payment-result"><p class="eyebrow">TAYANCH · TO‘LOV</p><h1>To‘lov oynasi yakunlandi</h1><p>To‘lov holati InPay serveri tomonidan tekshiriladi. Kirish huquqi hisobingizga biriktirilgach, email orqali keyingi qadamlar yuboriladi.</p><div><a class="start-btn" href={base + 'profile/'}>Profilga o‘tish →</a><a class="course-nav-link" href={base + 'bog-lanish/'}>Yordam kerakmi?</a></div></main></Base>
+<style>.payment-result{max-width:700px;margin:10vh auto;padding:2rem;border:1px solid color-mix(in srgb,var(--accent) 40%,var(--border));border-radius:20px;background:var(--surface)}.eyebrow{color:var(--accent);font-weight:800;letter-spacing:.12em}.payment-result p:not(.eyebrow){color:var(--muted);line-height:1.7}.payment-result div{display:flex;gap:1rem;flex-wrap:wrap;margin-top:1.5rem}</style>

@@ -9,6 +9,7 @@ import Quiz from "../../components/Quiz.astro";
 import CourseTestimonialPlaceholder from "../../components/CourseTestimonialPlaceholder.astro";
 import CourseEnrichment from "../../components/CourseEnrichment.astro";
 import PracticalAssessment from "../../components/PracticalAssessment.astro";
+import CareerOutcomePanel from "../../components/CareerOutcomePanel.astro";
 import CourseFaq from "../../components/CourseFaq.astro";
 import { bespokeCourseFaqFacts } from "../../data/course-faqs";
 const title = "Prompt Engineering: AI'dan sifatli javob olish | Tayanch";
@@ -28,11 +29,10 @@ const questions = [
   <div class="course-hero">
     <h1 data-i18n="pe.h1">AI'dan 5 daqiqada sifatli javob</h1>
     <div class="price">
-      <span class="now">$29</span>
+      <span class="now">360 000 so'm</span><span class="usd">(≈ $29)</span>
       <span class="old">$49</span>
       <span class="badge badge-new">-40%</span>
       <span class="badge badge-cert">Sertifikat</span>
-      <span class="uzs">≈ 360 000 so'm</span>
     </div>
   </div>
 
@@ -175,9 +175,10 @@ const questions = [
   <CourseEnrichment slug="prompt-engineering" lang="uz" />
   <PracticalAssessment courseSlug="prompt-engineering" rubric="Aniqlik; rol va kontekst; cheklovlar; kutilgan format; misol; xavfsizlik" lang="uz" />
   <Quiz title="O'z bilimingizni tekshiring" titleI18n="pe.quizTitle" quizI18n="pe" questions={questions} />
-  <PaymentInstructions course="Prompt Engineering" price="$29 · ≈ 360 000 so'm" />
+  <PaymentInstructions course="Prompt Engineering" price="360 000 so'm (≈ $29)" />
   <CourseFaq facts={bespokeCourseFaqFacts["prompt-engineering"]} />
   {/* REAL student reviews go in src/data/testimonials.ts — add only permissioned, verified reviews. This renders nothing until then. */}
+  <CareerOutcomePanel slug="prompt-engineering" />
   <CourseTestimonialPlaceholder />
   <LeadMagnetCTA />
 </article>

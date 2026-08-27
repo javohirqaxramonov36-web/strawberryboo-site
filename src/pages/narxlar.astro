@@ -6,7 +6,7 @@ const title = "Narxlar — Tayanch";
 const description = "Kurslar narxlari: bitta kurs, barcha AI kurslari paketi va to'liq access. Forever access.";
 ---
 
-<Base title={title} description={description}>
+<Base title={title} description={description} showDiscountBanner={true}>
 
 <article class="lesson">
   <h1 data-i18n="np.h1">Narxlar</h1>
@@ -17,7 +17,7 @@ const description = "Kurslar narxlari: bitta kurs, barcha AI kurslari paketi va 
     <div class="plan">
       <span class="plan-name" data-i18n="np.singleName">Bitta kurs</span>
       <p class="plan-desc" data-i18n="np.singleDesc">Tanlagan bitta kursingizga to'liq kirish.</p>
-      <div class="plan-price">$19<span class="uzs">≈ 240 000 so'm dan</span></div>
+      <div class="plan-price"><span class="price-local">240 000 so'm dan</span><span class="usd">(≈ $19)</span></div>
       <ul>
         <li data-i18n="np.singleLi1">1 ta kurs (Prompt, Obsidian, IELTS va b.)</li>
         <li data-i18n="np.forever">Forever access</li>
@@ -35,12 +35,12 @@ const description = "Kurslar narxlari: bitta kurs, barcha AI kurslari paketi va 
       <span class="badge badge-new" data-i18n="np.bestValue">Eng foydali</span>
       <span class="plan-name" data-i18n="np.aiName">AI Stack</span>
       <p class="plan-desc" data-i18n="np.aiDesc">Prompt Engineering + AI Agentlar + Obsidian PKM — AI yo'nalishida hamma narsa bitta paketda.</p>
-      <div class="plan-price"><span class="current-price">$70</span><s class="old-price" aria-label="Oldingi narx">$87</s><span class="uzs">≈ 875 000 so'm</span></div>
+      <div class="plan-price"><span class="current-price">875 000 so'm</span><span class="usd">(≈ $70)</span><s class="old-price" aria-label="Oldingi narx">1 087 500 so'm (≈ $87)</s></div>
       <p class="save-note">Alohida sotib olishdan $17 tejang (taxminan 20%)</p>
       <ul>
-        <li data-i18n="np.aiLi1">Prompt Engineering ($29)</li>
-        <li data-i18n="np.aiLi2">AI Agentlar ($39)</li>
-        <li data-i18n="np.aiLi3">Obsidian PKM ($19)</li>
+        <li data-i18n="np.aiLi1">Prompt Engineering (360 000 so'm · ≈ $29)</li>
+        <li data-i18n="np.aiLi2">AI Agentlar (490 000 so'm · ≈ $39)</li>
+        <li data-i18n="np.aiLi3">Obsidian PKM (240 000 so'm · ≈ $19)</li>
         <li data-i18n="np.foreverCert">Forever access + sertifikat</li>
       </ul>
       <a href={import.meta.env.BASE_URL + 'bog-lanish'} class="start-btn" data-gumroad-product="ai-stack" target="_blank" rel="noopener noreferrer" data-i18n="np.buyBtn">Sotib olish →</a>
@@ -50,7 +50,7 @@ const description = "Kurslar narxlari: bitta kurs, barcha AI kurslari paketi va 
     <div class="plan">
       <span class="plan-name" data-i18n="np.fullName">Full access</span>
       <p class="plan-desc">Hozir mavjud kurslarga umumiy access. Kelajakdagi kurslar uchun paket shartlari keyin e'lon qilinadi.</p>
-      <div class="plan-price">$99<span class="uzs">≈ 1 240 000 so'm</span></div>
+      <div class="plan-price"><span class="price-local">1 240 000 so'm</span><span class="usd">(≈ $99)</span></div>
       <ul>
         <li>{availableCourseCount} ta hozir mavjud kurs</li>
         <li data-i18n="np.forever">Forever access</li>

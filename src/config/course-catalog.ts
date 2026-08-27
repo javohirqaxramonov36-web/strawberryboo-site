@@ -1,25 +1,19 @@
 import coursesData from '../data/courses.json';
 
 export type CourseStatus = 'available' | 'upcoming';
-export type CatalogCourse = {
+
+type CourseRecord = {
   slug: string;
   status: CourseStatus;
-  type: string;
-  cats: readonly string[];
+  countInPublicTotal: boolean;
 };
 
-/**
- * Single source of truth for the public catalog. The homepage, /kurslar/ and
- * pricing page should never maintain a second hand-written course count.
- * Bundles and the mock are included as public products; comingSoon records are
- * kept in the same catalog but counted separately.
- */
-export const courseCatalog: readonly CatalogCourse[] = (coursesData.courses as any[]).map((course) => ({
-  slug: course.slug,
-  status: course.comingSoon || course.type === 'coming-soon' ? 'upcoming' : 'available',
-  type: course.type,
-  cats: course.cats ?? [],
-}));
+// Public totals are derived from src/data/courses.json. That file is the single
+// source of truth for course metadata; set countInPublicTotal only for courses
+// that should be included in the headline total.
+export const courseCatalog = (coursesData.courses as CourseRecord[])
+  .filter((course) => course.countInPublicTotal)
+  .map(({ slug, status }) => ({ slug, status })) as readonly { slug: string; status: CourseStatus }[];
 
 export const totalCourseCount = courseCatalog.length;
 export const availableCourseCount = courseCatalog.filter((course) => course.status === 'available').length;

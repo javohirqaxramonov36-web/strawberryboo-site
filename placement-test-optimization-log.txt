@@ -1,0 +1,64 @@
+# Tayanch — homepage and placement optimization log
+
+Sana: 2026-08-26
+Branch: feature/homepage-placement-optimization
+
+## 0-bosqich tekshiruvi
+
+- Homepage source: `src/pages/index.astro`; RU/EN homepage source: `src/components/localized/LocalizedHome.astro`.
+- Live `/daraja-testi/` brauzerda JavaScript bilan render qilindi. Test savollari JSON banklardan yuklanadi; dastlab savol, javob tugmasi va natija kurs CTA’si bor edi.
+- Dastlab progress faqat `Savol N` edi; 1/25 raqamli progress va progress bar qo‘shildi.
+- Dastlab natijada kurs CTA’si bor edi; ixtiyoriy Telegram CTA va placement result analytics event’i qo‘shildi.
+- Analytics konfiguratsiyasida GA4 provider va measurement ID mavjud: `src/config/analytics.ts`.
+- Chegirma banneri frontendda real-time xarid hisoblagichi bilan bog‘lanmagan; aniq “birinchi 20 kishi” da’vosi umumiy “cheklangan joylar” matniga almashtirildi.
+- UZ/RU/EN homepage variantlarida dublikat founder bloklari mavjud edi; bitta story blokiga birlashtirildi.
+
+## Amalga oshirilgan o‘zgarishlar
+
+- Hero H1 endi platformadagi AI, IELTS va Admission yo‘nalishlarini birgalikda ifodalaydi.
+- “NEGA TAYANCH?” va “KURS YARATUVCHISI” bloklari bitta founder story section’ga birlashtirildi. Telegram va Instagram havolalari saqlandi.
+- Hozirgi trust badge’lar o‘zgartirilmadi.
+- Narxlar local so‘mni birinchi, USD ekvivalentini qavs ichida ikkinchi ko‘rsatadigan formatga o‘tkazildi.
+- Chegirma banneri endi aniq tasdiqlanmagan 20 kishilik sonni da’vo qilmaydi.
+- `placement-test-optimization-log.txt`dagi ushbu log o‘zgarishlar ro‘yxatini hujjatlashtiradi.
+
+## O‘zgartirilgan fayllar
+
+- `src/pages/index.astro` — platforma hero H1, bitta founder story, social links va local-first narxlar.
+- `src/components/localized/LocalizedHome.astro` — RU/EN hero va bitta founder story.
+- `src/components/InstructorMiniBlock.astro` — homepage’dan olib tashlandi; takroriy section render qilinmaydi.
+- `src/layouts/Base.astro` — hero/i18n, pricing i18n va local-first affordability text.
+- `src/components/CourseCard.astro` va `src/data/courses.json` — katalog kartalarida UZS-first price display.
+- `src/components/LocalizedStandardCourse.astro` va `src/components/IeltsSkillCourse.astro` — localized kurs sahifalarida UZS-first display.
+- `src/components/LocalizedInfoPage.astro`, `src/pages/narxlar.astro`, `src/pages/kurslar/index.astro`, `src/components/localized/LocalizedCatalog.astro` — pricing va IELTS collection matnlari.
+- `src/pages/kurslar/ai-agentlar.astro`, `autocad-on-mac.astro`, `computer-literacy.astro`, `figma.astro`, `chet-elda-oqish.astro`, `mac-tezlik-sirlari.astro`, `obsidian.astro`, `prompt-engineering.astro`, `tekin-ai.astro`, `xizmatlar.astro` — direct price displays.
+- `src/data/course-faqs.ts` — FAQ’dagi price text order.
+- `src/components/DiscountBanner.astro` — unsupported “first 20” claim removed.
+- `src/components/PlacementTest.astro` — 1/25 progress, optional Telegram result CTA, placement result analytics event.
+- `placement-test-optimization-log.txt` — tekshiruv va qarorlar jurnali.
+
+## Natijaviy matn
+
+UZ hero: `AI, IELTS va Admission’ni bir joyda o‘rganing`
+
+UZ founder section: `AI, IELTS va Admission’ni amaliy yo‘l bilan o‘rganing` — mustaqil o‘rganish tajribasi, `/mening-yolim/` dagi batafsil havola, Telegram va Instagram havolalari bitta section ichida. IELTS 7.0/SAT 1420 credential hero badge’da bir marta qoldirildi.
+
+Chegirma: `15% chegirma — cheklangan miqdordagi joylar` (RU/EN ham xuddi shu mazmunda). Real-time 20 kishilik hisoblagich mavjud emasligi sababli aniq son olib tashlandi.
+
+Placement: oldindan mavjud bo‘lgan kurs CTA’si saqlandi; yangi qo‘shimchalar — `Savol 1/25` progress bar va natijadan keyingi ixtiyoriy Telegram CTA. Keyingi privacy follow-up’da placement tracking o‘chirildi.
+
+## Technical follow-up
+
+- `/sertifikat/` sahifasining shaffoflik matni o‘zgartirilmadi.
+- `Course` JSON-LD barcha CourseSchema ishlatiladigan kurs sahifalarida provider va mavjud katalog narxi bo‘lsa UZS Offer bilan beriladi.
+- UZ va localized RU/EN FAQ sahifalariga `FAQPage` JSON-LD qo‘shildi.
+- Bosh layoutdagi Organization graph `EducationalOrganization` turini ham qamrab oladi.
+- `public/robots.txt` mavjud va sitemap manziliga ishora qiladi; `public/sitemap.xml` build paytida 203 muhim route bilan generatsiya qilinadi.
+- Cache-busting tekshirildi: Vite asset hash’lari buildda avtomatik yangilanadi; `?v=` faqat QA/cache tekshiruvi uchun qo‘lda berilgan URL parametri, source buildga qo‘lda release qiymati tikilmaydi.
+- Kurs tanlash sahifasida “CEFR daraja testi” va “To‘liq kurs tanlash testi” ikki xil maqsad sifatida aniq ajratildi; uch tilda progress bar ko‘rinishi qo‘shildi.
+
+## Keyingi tavsiya va maxfiylik follow-up
+
+- Placement testi va kurs tanlash testi natijalari faqat shu brauzerning localStorage’ida saqlanadi va har ikkala natija birgalikda umumiy tavsiya blokida ko‘rsatiladi.
+- Placement test sahifalarida GA4/Plausible scriptlari, click event tracking va placement-specific eventlar o‘chirildi; test natijalari tashqi analytics xizmatlariga yuborilmaydi.
+- Placement natijasida mos General English kursi, kurs tanlash natijasida esa maqsadga mos asosiy kurs alohida ko‘rsatiladi; foydalanuvchi natija bo‘lmasa ikkinchi testga havola oladi.

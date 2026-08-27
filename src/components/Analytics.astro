@@ -1,8 +1,10 @@
 ---
 import { analytics } from '../config/analytics';
+const isPlacementTest = Astro.url.pathname.includes('/daraja-testi');
+const analyticsEnabled = Boolean(analytics.provider && analytics.id);
 ---
 
-{analytics.provider === 'google' && analytics.id && (
+{!isPlacementTest && analytics.provider === 'google' && analytics.id && (
   <>
     <script async src={`https://www.googletagmanager.com/gtag/js?id=${analytics.id}`}></script>
     <script is:inline define:vars={{ measurementId: analytics.id }}>
@@ -17,11 +19,11 @@ import { analytics } from '../config/analytics';
   </>
 )}
 
-{analytics.provider === 'plausible' && analytics.id && (
+{!isPlacementTest && analytics.provider === 'plausible' && analytics.id && (
   <script defer data-domain={analytics.id} src="https://plausible.io/js/script.js"></script>
 )}
 
-<script is:inline define:vars={{ enabled: Boolean(analytics.provider && analytics.id) }}>
+{!isPlacementTest && <script is:inline define:vars={{ enabled: analyticsEnabled }}>
   // No events are sent unless a real analytics provider is configured at build time.
   if (enabled) {
     document.addEventListener('click', function (event) {
@@ -36,4 +38,4 @@ import { analytics } from '../config/analytics';
       else if (window.plausible) window.plausible(eventName, { props: { link_text: label, page_path: location.pathname } });
     });
   }
-</script>
+</script>}

@@ -1,0 +1,12 @@
+---
+interface Props { lang?: 'uz' | 'ru' | 'en'; }
+const { lang = 'uz' } = Astro.props as Props;
+const copy = {
+ uz: { title: 'Sertifikatni LinkedIn’ga qo‘shish', steps: ['Profilingizdagi Licenses & certifications bo‘limini oching.', 'Certificate name, issuer sifatida Tayanch va berilgan sanani kiriting.', 'Credential URL sifatida sertifikat yoki portfolio havolasini qo‘shing; skills va loyiha natijasini ham yozing.'], note: 'Faqat haqiqatan tugatilgan kurs va berilgan sertifikatni kiriting.' },
+ ru: { title: 'Как добавить сертификат в LinkedIn', steps: ['Откройте раздел Licenses & certifications в профиле.', 'Укажите название, Tayanch как issuer и дату выдачи.', 'Добавьте ссылку на сертификат или портфолио, а также навыки и результат проекта.'], note: 'Добавляйте только реально завершённый курс и выданный сертификат.' },
+ en: { title: 'Add your certificate to LinkedIn', steps: ['Open Licenses & certifications on your profile.', 'Enter the certificate name, Tayanch as issuer, and issue date.', 'Add the certificate or portfolio URL, then describe the skills and project result.'], note: 'Only list a course you completed and a certificate that was actually issued.' }
+} as const;
+const t = copy[lang];
+---
+<details class="linkedin-guide"><summary>{t.title}</summary><ol>{t.steps.map((step) => <li>{step}</li>)}</ol><p>{t.note}</p></details>
+<style>.linkedin-guide{margin-top:1rem;padding:1rem;border:1px solid var(--border);border-radius:12px;background:var(--surface)}.linkedin-guide summary{cursor:pointer;font-weight:800}.linkedin-guide ol{margin:.8rem 0;padding-left:1.25rem;color:var(--muted);line-height:1.55}.linkedin-guide li+li{margin-top:.35rem}.linkedin-guide p{margin:0;color:var(--muted);font-size:.88rem}</style>

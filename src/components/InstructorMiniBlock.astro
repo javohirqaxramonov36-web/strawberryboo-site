@@ -7,19 +7,19 @@ interface Props {
 const { lang = 'uz', journeyHref } = Astro.props as Props;
 const copy = {
   uz: {
-    eyebrow: 'KURS YARATUVCHISI', title: 'Mustaqil o‘qishdan amaliy yo‘l xaritasigacha',
-    text: 'Tayanch kurslari yaratuvchisi IELTS’ga mustaqil tayyorlanib, IELTS 7.0 va SAT 1420 natijalariga erishgan. Shu tajriba kurslardagi aniq qadamlar va amaliy mashqlarga asos bo‘ladi.',
-    journey: 'Yo‘l haqida o‘qish →', avatar: 'Neytral avatar — kurs yaratuvchisi fotosurati hali qo‘shilmagan', telegram: 'Telegram', instagram: 'Instagram',
+    eyebrow: 'ASOSCHI', title: 'Mustaqil o‘qishdan amaliy yo‘l xaritasigacha',
+    text: 'Tayanch asoschisi IELTS’ga mustaqil tayyorlanib, IELTS 7.0 va SAT 1420 natijalariga erishgan. Shu tajriba kurslardagi aniq qadamlar va amaliy mashqlarga asos bo‘ladi.',
+    journey: 'Yo‘l haqida o‘qish →', avatar: 'Neytral avatar — asoschi fotosurati hali qo‘shilmagan', telegram: 'Telegram', instagram: 'Instagram',
   },
   ru: {
-    eyebrow: 'СОЗДАТЕЛЬ КУРСОВ', title: 'От самостоятельной подготовки к практическому маршруту',
-    text: 'Создатель курсов Tayanch готовился к IELTS самостоятельно и достиг результатов IELTS 7.0 и SAT 1420. Этот опыт лежит в основе понятных шагов и практических заданий в курсах.',
-    journey: 'Прочитать об этом пути →', avatar: 'Нейтральный аватар — фотография создателя курсов ещё не добавлена', telegram: 'Telegram', instagram: 'Instagram',
+    eyebrow: 'ОСНОВАТЕЛЬ', title: 'От самостоятельной подготовки к практическому маршруту',
+    text: 'Основатель Tayanch готовился к IELTS самостоятельно и достиг результатов IELTS 7.0 и SAT 1420. Этот опыт лежит в основе понятных шагов и практических заданий в курсах.',
+    journey: 'Прочитать об этом пути →', avatar: 'Нейтральный аватар — фотография основателя ещё не добавлена', telegram: 'Telegram', instagram: 'Instagram',
   },
   en: {
-    eyebrow: 'COURSE CREATOR', title: 'From independent study to a practical path',
-    text: 'Tayanch’s course creator prepared for IELTS independently and reached IELTS 7.0 and SAT 1420. That experience informs the courses’ clear steps and practical exercises.',
-    journey: 'Read the journey →', avatar: 'Neutral avatar — a course creator photo has not been added yet', telegram: 'Telegram', instagram: 'Instagram',
+    eyebrow: 'FOUNDER', title: 'From independent study to a practical path',
+    text: 'Tayanch’s founder prepared for IELTS independently and reached IELTS 7.0 and SAT 1420. That experience informs the courses’ clear steps and practical exercises.',
+    journey: 'Read the journey →', avatar: 'Neutral avatar — a founder photo has not been added yet', telegram: 'Telegram', instagram: 'Instagram',
   },
 } as const;
 const p = copy[lang];

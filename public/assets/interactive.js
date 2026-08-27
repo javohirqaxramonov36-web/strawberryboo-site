@@ -45,6 +45,72 @@ function initInteractive() {
   var nextBtn = document.getElementById('recoBtn');
   var prevBtn = document.getElementById('recoPrev');
   var COURSES = window.TAYANCH_COURSES || {};
+  var recoLang = form.getAttribute('data-reco-lang') || 'uz';
+  var combinedCopy = {
+    uz: { title: 'Umumiy tavsiya', text: 'Daraja testi va maqsad asosidagi tavsiyalar bir joyda.', cefr: 'CEFR darajangiz', finder: 'Maqsad asosidagi tavsiya', takePlacement: 'CEFR testini ishlash →', open: 'Kursni ochish →' },
+    ru: { title: 'Общая рекомендация', text: 'Результат теста уровня и рекомендация по цели собраны вместе.', cefr: 'Ваш уровень CEFR', finder: 'Рекомендация по цели', takePlacement: 'Пройти тест уровня CEFR →', open: 'Открыть курс →' },
+    en: { title: 'Combined recommendation', text: 'Your level-test result and goal-based recommendation in one place.', cefr: 'Your CEFR level', finder: 'Goal-based recommendation', takePlacement: 'Take the CEFR level test →', open: 'Open course →' }
+  }[recoLang] || null;
+
+  function readPlacementResult() {
+    try { return JSON.parse(localStorage.getItem('tayanch.placement-test.v1') || 'null'); } catch (_) { return null; }
+  }
+
+  function placementUrl() {
+    return window.location.pathname.replace(/kurs-tanlash\/?$/, 'daraja-testi/');
+  }
+
+  function saveCourseSelection(course) {
+    try {
+      localStorage.setItem('tayanch.course-selection.v1', JSON.stringify({
+        slug: course.key,
+        title: COURSES[course.key].title,
+        url: COURSES[course.key].url,
+        score: course.score,
+        label: combinedCopy.finder,
+        date: new Date().toISOString()
+      }));
+    } catch (_) {}
+  }
+
+  function appendCombinedRecommendation(container, ranked) {
+    if (!container || !combinedCopy) return;
+    var box = document.createElement('div');
+    box.className = 'reco-combined';
+    var title = document.createElement('strong');
+    title.textContent = combinedCopy.title;
+    var text = document.createElement('p');
+    text.textContent = combinedCopy.text;
+    box.append(title, text);
+
+    var placement = readPlacementResult();
+    if (placement && placement.level) {
+      var level = document.createElement('span');
+      level.textContent = combinedCopy.cefr + ': ' + placement.level;
+      box.append(level);
+      if (placement.recommendedCourse && placement.recommendedCourse.url) {
+        var placementLink = document.createElement('a');
+        placementLink.href = placement.recommendedCourse.url;
+        placementLink.textContent = placement.recommendedCourse.title + ' — ' + combinedCopy.open;
+        box.append(placementLink);
+      }
+    } else {
+      var placementLink = document.createElement('a');
+      placementLink.href = placementUrl();
+      placementLink.textContent = combinedCopy.takePlacement;
+      box.append(placementLink);
+    }
+
+    if (ranked && ranked[0] && COURSES[ranked[0].key]) {
+      var finderLabel = document.createElement('span');
+      finderLabel.textContent = combinedCopy.finder + ':';
+      var finderLink = document.createElement('a');
+      finderLink.href = COURSES[ranked[0].key].url;
+      finderLink.textContent = COURSES[ranked[0].key].title + ' — ' + combinedCopy.open;
+      box.append(finderLabel, finderLink);
+    }
+    container.appendChild(box);
+  }
 
   /* Har javob variantidagi data-points: "course:ball,other:ball" → obyekt */
   function scoreFor(opt) {
@@ -123,6 +189,8 @@ function initInteractive() {
       html += '</div>';
       result.innerHTML = html;
       result.style.borderColor = COURSES[ranked[0].key].color || '';
+      saveCourseSelection(ranked[0]);
+      appendCombinedRecommendation(result, ranked);
       result.classList.add('show');
       result.scrollIntoView({ behavior: 'smooth', block: 'center' });
     }

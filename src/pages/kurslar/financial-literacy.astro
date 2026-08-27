@@ -3,7 +3,7 @@ import Base from "../../layouts/Base.astro";
 import LeadMagnetCTA from "../../components/LeadMagnetCTA.astro";
 import CourseSchema from "../../components/CourseSchema.astro";
 import Quiz from "../../components/Quiz.astro";
-import LeadMagnetCTA from "../../components/LeadMagnetCTA.astro";
+import CourseProgress from "../../components/CourseProgress.astro";
 import CourseTestimonialPlaceholder from "../../components/CourseTestimonialPlaceholder.astro";
 const title = "Financial Literacy — Moliyaviy savodxonlik | Tayanch";
 const description = "Pulni boshqarish, byudjet tuzish va moliyaviy qarorlar — talaba hayoti uchun asosiy ko'nikmalar. Umumiy ta'lim kursi.";
@@ -15,14 +15,15 @@ const questions = [
 ---
 
 <Base title={title} description={description}>
+  <CourseProgress courseId="financial-literacy" title="Financial Literacy progressi" itemSelector=".modules > li" />
   <CourseSchema name={title} description={description} />
 
 <article class="lesson">
   <div class="course-hero">
     <h1 data-i18n="fl.h1">Financial Literacy — Moliyaviy savodxonlik</h1>
     <div class="price">
-      <span class="now">Tez orada · Narx belgilanmoqda</span>
-      <span class="badge badge-new">Yangi</span>
+      <span class="now">Bepul</span>
+      <span class="badge badge-new">6 modul</span>
       <span class="badge badge-cert">Sertifikat</span>
     </div>
   </div>
@@ -169,7 +170,7 @@ const questions = [
     </p>
   </section>
 
-  <span class="start-btn is-disabled" style="margin-top:2rem;" aria-disabled="true">Tayyorlanmoqda</span>
+  <p class="quiz-hint" style="margin-top:2rem;">Bu mini-kurs bepul. Byudjet kalkulyatori va modullar orqali o‘zingizga mos reja tuzing.</p>
   <a href={import.meta.env.BASE_URL + 'kurslar'} class="course-nav-link" style="margin-left:1rem;" data-i18n="fl.all">← Barcha kurslar</a>
 
   <Quiz titleI18n="fl.quizTitle" questions={questions} />

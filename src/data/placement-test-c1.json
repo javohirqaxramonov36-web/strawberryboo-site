@@ -1,0 +1,121 @@
+{
+  "level": "C1",
+  "title": "General English C1",
+  "questions": [
+    {
+      "id": "c1-1",
+      "question": "Her argument was so ___ that no one could disagree.",
+      "options": [
+        {
+          "id": "a",
+          "text": "compelling"
+        },
+        {
+          "id": "b",
+          "text": "boring"
+        },
+        {
+          "id": "c",
+          "text": "vague"
+        },
+        {
+          "id": "d",
+          "text": "weak"
+        }
+      ],
+      "correctOption": "a"
+    },
+    {
+      "id": "c1-2",
+      "question": "Scarcely ___ the meeting begun when the fire alarm rang.",
+      "options": [
+        {
+          "id": "a",
+          "text": "had"
+        },
+        {
+          "id": "b",
+          "text": "has"
+        },
+        {
+          "id": "c",
+          "text": "did"
+        },
+        {
+          "id": "d",
+          "text": "was"
+        }
+      ],
+      "correctOption": "a"
+    },
+    {
+      "id": "c1-3",
+      "question": "To make a difficult decision is to 'bite the ___'.",
+      "options": [
+        {
+          "id": "a",
+          "text": "dust"
+        },
+        {
+          "id": "b",
+          "text": "bullet"
+        },
+        {
+          "id": "c",
+          "text": "apple"
+        },
+        {
+          "id": "d",
+          "text": "bucket"
+        }
+      ],
+      "correctOption": "b"
+    },
+    {
+      "id": "c1-4",
+      "question": "Which is the most formal alternative to 'find out'?",
+      "options": [
+        {
+          "id": "a",
+          "text": "discover"
+        },
+        {
+          "id": "b",
+          "text": "get"
+        },
+        {
+          "id": "c",
+          "text": "look"
+        },
+        {
+          "id": "d",
+          "text": "see"
+        }
+      ],
+      "correctOption": "a"
+    },
+    {
+      "id": "c1-5",
+      "question": "The report ___ to be submitted by Friday.",
+      "options": [
+        {
+          "id": "a",
+          "text": "is supposed"
+        },
+        {
+          "id": "b",
+          "text": "supposes"
+        },
+        {
+          "id": "c",
+          "text": "supposing"
+        },
+        {
+          "id": "d",
+          "text": "supposed"
+        }
+      ],
+      "correctOption": "a"
+    }
+  ]
+}

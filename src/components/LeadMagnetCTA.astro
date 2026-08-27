@@ -1,4 +1,5 @@
 ---
+import TelegramLeadSection from "./TelegramLeadSection.astro";
 const base = import.meta.env.BASE_URL;
 ---
 <section class="lead-magnet" aria-labelledby="lead-magnet-title">
@@ -15,4 +16,6 @@ const base = import.meta.env.BASE_URL;
   .lead-magnet p:not(.lead-magnet-kicker) { margin:.55rem 0 1.1rem; max-width:62ch; color:var(--muted); }
   .lead-magnet-cta { display:inline-flex; align-items:center; padding:.72rem 1rem; border-radius:9px; background: var(--btn-bg); color:#fff; font-weight:700; text-decoration:none; }
   .lead-magnet-channel{display:inline-block;margin-left:.85rem;color:var(--accent);font-weight:700}.lead-magnet-cta:hover { background:var(--accent-2); color:#fff; text-decoration:none; }
-</style>
+  </style>
+
+<TelegramLeadSection />

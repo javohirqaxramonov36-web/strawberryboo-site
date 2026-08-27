@@ -1,0 +1,8 @@
+---
+const base = import.meta.env.BASE_URL;
+---
+<section class="impact-banner" aria-labelledby="impact-banner-title">
+  <div><p class="eyebrow">TA’LIMDAN REAL IMKONGACHA</p><h2 id="impact-banner-title">Chet elga ketmasdan, shu yerda ko‘nikma va daromad yo‘lini yarating.</h2><p>Onlayn kurslar, portfolio loyihalari va bepul moliyaviy savodxonlik resursi. Natija kafolatlanmaydi — yo‘l va amaliy qadamlar aniq ko‘rsatiladi.</p></div>
+  <div class="impact-actions"><a class="start-btn" href={base + 'masofaviy-ish/'}>Masofaviy ish qo‘llanmasi →</a><a class="course-nav-link" href={base + 'viloyatlar/'}>Viloyatlar uchun imkoniyatlar</a></div>
+</section>
+<style>.impact-banner{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:1.2rem;align-items:center;margin:1.2rem 0;padding:clamp(1.2rem,3vw,2rem);border:1px solid color-mix(in srgb,#34d399 45%,var(--border));border-radius:18px;background:linear-gradient(135deg,rgba(52,211,153,.12),var(--surface))}.impact-banner h2{margin:.1rem 0 .5rem;font-size:clamp(1.35rem,2.5vw,2rem)}.impact-banner p:not(.eyebrow){color:var(--muted);line-height:1.6;margin:0}.impact-actions{display:grid;gap:.55rem;justify-items:start}.impact-actions .course-nav-link{color:var(--accent);font-weight:700}@media(max-width:700px){.impact-banner{grid-template-columns:1fr}.impact-actions{justify-items:stretch}.impact-actions a{text-align:center}}</style>

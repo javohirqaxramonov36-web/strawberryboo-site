@@ -1,0 +1,386 @@
+---
+import {
+  placementQuestions,
+  type PlacementLevel,
+  PLACEMENT_LEVELS,
+} from '../data/placement-test';
+
+interface Props {
+  lang?: 'uz' | 'ru' | 'en';
+}
+
+const { lang = 'uz' } = Astro.props as Props;
+const firstQuestion = placementQuestions[0];
+const base = import.meta.env.BASE_URL;
+const copy = {
+  uz: {
+    eyebrow: 'GENERAL ENGLISH · CEFR',
+    title: 'Ingliz tili darajangizni aniqlang',
+    intro: 'Savollarga javob bering — natijada sizga mos CEFR darajasi va General English kursi tavsiya qilinadi.',
+    question: 'Savol',
+    choose: 'Variantlardan birini tanlang.',
+    next: 'Javobni tekshirish →',
+    missing: 'Davom etish uchun variant tanlang.',
+    result: 'Sizning darajangiz',
+    score: 'Natija',
+    recommended: 'Tavsiya etilgan kurs',
+    openCourse: 'Kursni ko‘rish →',
+    restart: 'Testni qayta boshlash',
+    telegram: 'Natijangizni saqlash va batafsil ma’lumot olish uchun Telegram kanalimizga qo‘shiling.',
+    telegramCta: 'Telegram kanaliga qo‘shiling →',
+    copyResult: 'Natijani nusxalash',
+    copyDone: 'Nusxalandi ✓',
+    sendResult: 'Natijani Telegramga yuborish →',
+    combinedTitle: 'Umumiy tavsiya',
+    combinedText: 'CEFR darajangiz va maqsad asosidagi tavsiyangiz bir joyda.',
+    combinedFinder: 'Kurs tanlash testini ishlash →',
+    breakdownTitle: 'Darajalar bo‘yicha natija',
+    breakdownHint: 'Har darajadagi to‘g‘ri javoblar:',
+    clearResult: 'Saqlangan natijani o‘chirish',
+    note: 'Bu qisqa placement test CEFR darajangizni taxminiy ko‘rsatadi va sizga mos kursni tavsiya qiladi.',
+  },
+  ru: {
+    eyebrow: 'GENERAL ENGLISH · CEFR',
+    title: 'Определите свой уровень английского',
+    intro: 'Ответьте на вопросы — мы покажем уровень CEFR и рекомендуемый курс General English.',
+    question: 'Вопрос',
+    choose: 'Выберите один вариант.',
+    next: 'Проверить ответ →',
+    missing: 'Выберите вариант, чтобы продолжить.',
+    result: 'Ваш уровень',
+    score: 'Результат',
+    recommended: 'Рекомендуемый курс',
+    openCourse: 'Открыть курс →',
+    restart: 'Начать тест заново',
+    telegram: 'Чтобы сохранить результат и получить подробности, присоединитесь к нашему Telegram-каналу.',
+    telegramCta: 'Присоединиться к Telegram →',
+    copyResult: 'Скопировать результат',
+    copyDone: 'Скопировано ✓',
+    sendResult: 'Отправить результат в Telegram →',
+    combinedTitle: 'Общая рекомендация',
+    combinedText: 'Ваш уровень CEFR и рекомендация по цели собраны в одном месте.',
+    combinedFinder: 'Пройти тест подбора курса →',
+    breakdownTitle: 'Результат по уровням',
+    breakdownHint: 'Правильные ответы по каждому уровню:',
+    clearResult: 'Удалить сохранённый результат',
+    note: 'Этот короткий placement-тест ориентировочно показывает уровень CEFR и рекомендует подходящий курс.',
+  },
+  en: {
+    eyebrow: 'GENERAL ENGLISH · CEFR',
+    title: 'Check your English level',
+    intro: 'Answer the questions to see your CEFR level and a recommended General English course.',
+    question: 'Question',
+    choose: 'Choose one option.',
+    next: 'Check answer →',
+    missing: 'Choose an option to continue.',
+    result: 'Your level',
+    score: 'Result',
+    recommended: 'Recommended course',
+    openCourse: 'View course →',
+    restart: 'Restart test',
+    telegram: 'Join our Telegram channel to save your result and get more details.',
+    telegramCta: 'Join Telegram →',
+    copyResult: 'Copy result',
+    copyDone: 'Copied ✓',
+    sendResult: 'Send result to Telegram →',
+    combinedTitle: 'Combined recommendation',
+    combinedText: 'Your CEFR level and goal-based course recommendation in one place.',
+    combinedFinder: 'Take the course-finder test →',
+    breakdownTitle: 'Breakdown by level',
+    breakdownHint: 'Correct answers at each level:',
+    clearResult: 'Clear saved result',
+    note: 'This short placement test gives an indicative CEFR level and recommends a suitable course.',
+  },
+}[lang];
+
+const courseTitles: Record<'uz' | 'ru' | 'en', Record<PlacementLevel, string>> = {
+  uz: {
+    A1: 'General English — Beginner (A1)',
+    A2: 'General English — Elementary (A2)',
+    B1: 'General English — Intermediate (B1)',
+    B2: 'General English — Upper-Intermediate (B2)',
+    C1: 'General English — Advanced (C1)',
+  },
+  ru: {
+    A1: 'General English — Beginner (A1)',
+    A2: 'General English — Elementary (A2)',
+    B1: 'General English — Intermediate (B1)',
+    B2: 'General English — Upper-Intermediate (B2)',
+    C1: 'General English — Advanced (C1)',
+  },
+  en: {
+    A1: 'General English — Beginner (A1)',
+    A2: 'General English — Elementary (A2)',
+    B1: 'General English — Intermediate (B1)',
+    B2: 'General English — Upper-Intermediate (B2)',
+    C1: 'General English — Advanced (C1)',
+  },
+};
+
+const courseSlug: Record<PlacementLevel, string> = {
+  A1: 'general-english-beginner',
+  A2: 'general-english-elementary',
+  B1: 'general-english-intermediate',
+  B2: 'general-english-upper-intermediate',
+  C1: 'general-english-advanced',
+};
+
+const prefix = lang === 'uz' ? '' : `${lang}/`;
+const config = {
+  base,
+  questions: placementQuestions,
+  copy,
+  recommendations: Object.fromEntries(
+    (['A1', 'A2', 'B1', 'B2', 'C1'] as PlacementLevel[]).map((level) => [level, {
+      title: courseTitles[lang][level],
+      slug: courseSlug[level],
+      url: `${base}${prefix}kurslar/${courseSlug[level]}/`,
+    }])
+  ),
+};
+const configJson = JSON.stringify(config).replace(/</g, '\\u003c');
+---
+
+<section class="placement-test" data-placement-test>
+  <div class="placement-test__head">
+    <p class="placement-test__eyebrow">{copy.eyebrow}</p>
+    <h2>{copy.title}</h2>
+    <p class="placement-test__intro">{copy.intro}</p>
+  </div>
+
+  <div class="placement-test__progress" aria-live="polite"><span data-placement-progress-label>{copy.question} 1/{placementQuestions.length}</span><span class="placement-test__progress-track" aria-hidden="true"><span data-placement-progress-bar style="width:4%"></span></span></div>
+  <div class="placement-test__question" data-placement-question>{firstQuestion.question}</div>
+  <div class="placement-test__options" data-placement-options>{firstQuestion.options.map((option) => <label class="placement-test__option"><input type="radio" name={`placement-${firstQuestion.id}`} value={option.id} /><span>{option.text}</span></label>)}</div>
+  <p class="placement-test__hint" data-placement-hint hidden></p>
+  <div class="placement-test__actions"><button type="button" class="placement-test__back" data-placement-back hidden>← {lang === 'uz' ? 'Orqaga' : lang === 'ru' ? 'Назад' : 'Back'}</button><button type="button" class="placement-test__next" data-placement-next>{copy.next}</button></div>
+  <div class="placement-test__result" data-placement-result hidden></div>
+  <p class="placement-test__note">{copy.note}</p>
+  <script type="application/json" data-placement-config set:html={configJson}></script>
+</section>
+
+<script>
+  import { assessPlacement, selectNextPlacementQuestion } from '../lib/placement-test';
+
+  document.querySelectorAll('[data-placement-test]').forEach((root) => {
+    const configNode = root.querySelector('[data-placement-config]');
+    const config = JSON.parse(configNode?.textContent || '{}');
+    const progressLabel = root.querySelector('[data-placement-progress-label]');
+    const progressBar = root.querySelector('[data-placement-progress-bar]');
+    const questionNode = root.querySelector('[data-placement-question]');
+    const optionsNode = root.querySelector('[data-placement-options]');
+    const hint = root.querySelector('[data-placement-hint]');
+    const next = root.querySelector('[data-placement-next]');
+    const resultNode = root.querySelector('[data-placement-result]');
+    const back = root.querySelector('[data-placement-back]');
+    const allQuestions = config.questions || [];
+    const state = { answers: [], current: allQuestions.find((question) => question.level === 'A1'), draftAnswer: null };
+
+    const saveResult = (result, recommendation) => {
+      try {
+        localStorage.setItem('tayanch.placement-test.v1', JSON.stringify({
+          ...result,
+          recommendedCourse: recommendation ? {
+            slug: recommendation.slug,
+            title: recommendation.title,
+            url: recommendation.url,
+          } : null,
+          date: new Date().toISOString(),
+        }));
+      } catch {}
+    };
+
+    const renderQuestion = () => {
+      if (!state.current) {
+        finish();
+        return;
+      }
+      const questionNumber = state.answers.length + 1;
+      progressLabel.textContent = `${config.copy.question} ${questionNumber}/${allQuestions.length}`;
+      progressBar.style.width = `${Math.round((questionNumber / allQuestions.length) * 100)}%`;
+      progressBar.parentElement?.setAttribute('aria-label', `${questionNumber}/${allQuestions.length}`);
+      questionNode.textContent = state.current.question;
+      back.hidden = state.answers.length === 0;
+      optionsNode.replaceChildren(...state.current.options.map((option) => {
+        const label = document.createElement('label');
+        label.className = 'placement-test__option';
+        const input = document.createElement('input');
+        input.type = 'radio';
+        input.name = `placement-${state.current.id}`;
+        input.value = option.id;
+        if (state.draftAnswer?.id === state.current.id && state.draftAnswer.optionId === option.id) input.checked = true;
+        const text = document.createElement('span');
+        text.textContent = option.text;
+        label.append(input, text);
+        return label;
+      }));
+      hint.hidden = true;
+      next.hidden = false;
+      resultNode.hidden = true;
+    };
+
+    const finish = () => {
+      const result = assessPlacement(state.answers);
+      const recommendation = config.recommendations[result.level];
+      progressLabel.textContent = '';
+      progressBar.style.width = '0%';
+      questionNode.textContent = '';
+      optionsNode.replaceChildren();
+      next.hidden = true;
+      back.hidden = true;
+      hint.hidden = true;
+      resultNode.replaceChildren();
+      const title = document.createElement('p');
+      title.className = 'placement-test__result-label';
+      title.textContent = config.copy.result;
+      const level = document.createElement('strong');
+      level.className = 'placement-test__result-level';
+      level.textContent = result.level;
+      const score = document.createElement('p');
+      score.textContent = `${config.copy.score}: ${result.correctCount}/${result.total} (${result.percentage}%)`;
+      const breakdown = document.createElement('div');
+      breakdown.className = 'placement-test__breakdown';
+      const breakdownTitle = document.createElement('strong');
+      breakdownTitle.textContent = config.copy.breakdownTitle;
+      const breakdownHint = document.createElement('p');
+      breakdownHint.textContent = config.copy.breakdownHint;
+      const breakdownList = document.createElement('ul');
+      PLACEMENT_LEVELS.forEach((level) => {
+        const levelAnswers = state.answers.filter((answer) => answer.level === level);
+        const item = document.createElement('li');
+        item.textContent = `${level}: ${levelAnswers.filter((answer) => answer.correct).length}/${levelAnswers.length}`;
+        breakdownList.append(item);
+      });
+      breakdown.append(breakdownTitle, breakdownHint, breakdownList);
+      const shareRow = document.createElement('div');
+      shareRow.className = 'placement-test__share';
+      const copyButton = document.createElement('button');
+      copyButton.type = 'button';
+      copyButton.className = 'placement-test__copy';
+      copyButton.textContent = config.copy.copyResult;
+      const shareUrl = window.location.href.split('?')[0];
+      const shareText = `${config.copy.result}: ${result.level} — ${result.correctCount}/${result.total} (${result.percentage}%)`;
+      copyButton.addEventListener('click', async () => {
+        try { await navigator.clipboard.writeText(`${shareText} ${shareUrl}`); copyButton.textContent = config.copy.copyDone; setTimeout(() => { copyButton.textContent = config.copy.copyResult; }, 1600); } catch {}
+      });
+      const sendLink = document.createElement('a');
+      sendLink.className = 'placement-test__send';
+      sendLink.href = `https://t.me/share/url?url=${encodeURIComponent(shareUrl)}&text=${encodeURIComponent(shareText)}`;
+      sendLink.target = '_blank';
+      sendLink.rel = 'noopener noreferrer';
+      sendLink.textContent = config.copy.sendResult;
+      shareRow.append(copyButton, sendLink);
+      const recommended = document.createElement('p');
+      recommended.className = 'placement-test__recommendation-label';
+      recommended.textContent = config.copy.recommended;
+      const link = document.createElement('a');
+      link.href = recommendation?.url || '#';
+      link.textContent = recommendation?.title ? `${recommendation.title} — ${config.copy.openCourse}` : config.copy.openCourse;
+      link.className = 'placement-test__course-link';
+      const combined = document.createElement('div');
+      combined.className = 'placement-test__combined';
+      const combinedTitle = document.createElement('strong');
+      combinedTitle.textContent = config.copy.combinedTitle;
+      const combinedText = document.createElement('p');
+      combinedText.textContent = config.copy.combinedText;
+      combined.append(combinedTitle, combinedText);
+      try {
+        const finderResult = JSON.parse(localStorage.getItem('tayanch.course-selection.v1') || 'null');
+        if (finderResult?.title && finderResult?.url) {
+          const finderLabel = document.createElement('span');
+          finderLabel.textContent = `${finderResult.label || ''}${finderResult.label ? ': ' : ''}`;
+          const finderLink = document.createElement('a');
+          finderLink.href = finderResult.url;
+          finderLink.textContent = finderResult.title;
+          combined.append(finderLabel, finderLink);
+        } else {
+          const finderLink = document.createElement('a');
+          finderLink.href = `${config.base}kurs-tanlash/`;
+          finderLink.textContent = config.copy.combinedFinder;
+          combined.append(finderLink);
+        }
+      } catch {
+        const finderLink = document.createElement('a');
+        finderLink.href = `${config.base}kurs-tanlash/`;
+        finderLink.textContent = config.copy.combinedFinder;
+        combined.append(finderLink);
+      }
+      const restart = document.createElement('button');
+      restart.type = 'button';
+      restart.className = 'placement-test__restart';
+      restart.textContent = config.copy.restart;
+      restart.addEventListener('click', () => {
+        state.answers = [];
+        state.draftAnswer = null;
+        state.current = allQuestions.find((question) => question.level === 'A1');
+        try { localStorage.removeItem('tayanch.placement-test.v1'); } catch {}
+        renderQuestion();
+      });
+      const clearResult = document.createElement('button');
+      clearResult.type = 'button';
+      clearResult.className = 'placement-test__clear';
+      clearResult.textContent = config.copy.clearResult;
+      clearResult.addEventListener('click', () => {
+        try { localStorage.removeItem('tayanch.placement-test.v1'); } catch {}
+        clearResult.textContent = config.copy.clearResult;
+      });
+      const telegramText = document.createElement('p');
+      telegramText.className = 'placement-test__telegram';
+      telegramText.textContent = config.copy.telegram;
+      const telegramLink = document.createElement('a');
+      telegramLink.href = 'https://t.me/tayanch_go';
+      telegramLink.target = '_blank';
+      telegramLink.rel = 'noopener noreferrer';
+      telegramLink.textContent = config.copy.telegramCta;
+      telegramLink.className = 'placement-test__telegram-link';
+      resultNode.append(title, level, score, breakdown, shareRow, recommended, link, combined, telegramText, telegramLink, restart, clearResult);
+      resultNode.hidden = false;
+      saveResult(result, recommendation);
+    };
+
+    back.addEventListener('click', () => {
+      const previous = state.answers.pop();
+      if (!previous) return;
+      state.current = allQuestions.find((question) => question.id === previous.id);
+      state.draftAnswer = { id: previous.id, optionId: previous.optionId };
+      renderQuestion();
+    });
+
+    next.addEventListener('click', () => {
+      const selected = root.querySelector(`input[name="placement-${state.current?.id}"]:checked`);
+      if (!selected) {
+        hint.textContent = config.copy.missing;
+        hint.hidden = false;
+        return;
+      }
+      const wasCorrect = selected.value === state.current.correctOption;
+      state.answers.push({ id: state.current.id, level: state.current.level, optionId: selected.value, correct: wasCorrect });
+      state.draftAnswer = null;
+      state.current = selectNextPlacementQuestion(allQuestions, state.answers, state.current.level, wasCorrect);
+      renderQuestion();
+    });
+
+    renderQuestion();
+  });
+</script>
+
+<style>
+  .placement-test{max-width:900px;margin:1.5rem auto;padding:clamp(1.2rem,3vw,1.8rem);border:1px solid color-mix(in srgb,#22c55e 42%,var(--border));border-radius:18px;background:radial-gradient(circle at 92% 8%,color-mix(in srgb,#22c55e 14%,transparent),transparent 25%),var(--surface)}
+  .placement-test__eyebrow{margin:0 0 .3rem;color:#34d399;font-size:.73rem;font-weight:800;letter-spacing:.12em}
+  .placement-test h2{margin:0;font-size:1.45rem}
+  .placement-test__intro,.placement-test__note{color:var(--muted);line-height:1.55;font-size:.92rem}
+  .placement-test__progress{display:grid;gap:.45rem;margin:1.1rem 0 .65rem;color:#34d399;font-size:.8rem;font-weight:800;letter-spacing:.08em}.placement-test__progress-track{display:block;width:100%;height:6px;overflow:hidden;border-radius:999px;background:var(--border)}.placement-test__progress-track [data-placement-progress-bar]{display:block;width:0;height:100%;border-radius:inherit;background:#34d399;transition:width .2s ease}
+  .placement-test__question{margin:.4rem 0 .75rem;font-weight:800;line-height:1.5}
+  .placement-test__options{display:grid;gap:.55rem}
+  .placement-test__option{display:flex;align-items:center;gap:.6rem;padding:.75rem .85rem;border:1px solid var(--border);border-radius:11px;cursor:pointer;transition:border-color .18s,background .18s}
+  .placement-test__option:hover{border-color:#34d399;background:color-mix(in srgb,#34d399 8%,transparent)}
+  .placement-test__option input{accent-color:#22c55e}
+  .placement-test__actions{display:flex;gap:.6rem;flex-wrap:wrap;align-items:center}.placement-test__back{margin-top:1rem;padding:.72rem 1rem;border:1px solid var(--border);border-radius:10px;background:transparent;color:var(--text);font:700 .9rem inherit;cursor:pointer}.placement-test__next,.placement-test__restart{margin-top:1rem;padding:.75rem 1rem;border:0;border-radius:10px;background:var(--btn-bg);color:#fff;font:700 .9rem inherit;cursor:pointer}
+  .placement-test__hint{color:#fca5a5;font-size:.88rem}
+  .placement-test__result{margin-top:1rem;padding:1rem;border:1px solid color-mix(in srgb,#34d399 45%,var(--border));border-radius:13px;background:color-mix(in srgb,#34d399 9%,var(--surface))}
+  .placement-test__result-label,.placement-test__recommendation-label{margin:.1rem 0 .25rem;color:var(--muted);font-size:.88rem}
+  .placement-test__breakdown{margin:.8rem 0;padding:.7rem .8rem;border:1px solid var(--border);border-radius:10px}.placement-test__breakdown p{margin:.2rem 0;color:var(--muted);font-size:.84rem}.placement-test__breakdown ul{display:grid;grid-template-columns:repeat(5,1fr);gap:.35rem;margin:.55rem 0 0;padding:0;list-style:none}.placement-test__breakdown li{padding:.35rem .25rem;text-align:center;border-radius:7px;background:color-mix(in srgb,var(--accent) 8%,transparent);font-size:.78rem;font-weight:700}@media(max-width:520px){.placement-test__breakdown ul{grid-template-columns:repeat(3,1fr)}}
+  .placement-test__result-level{display:block;margin-bottom:.45rem;color:#34d399;font-size:2rem}
+  .placement-test__course-link{display:block;margin:.5rem 0;color:var(--accent);font-weight:800}.placement-test__combined{display:grid;gap:.35rem;margin:1rem 0;padding:.8rem;border:1px solid var(--border);border-radius:11px;background:color-mix(in srgb,var(--accent) 7%,transparent);font-size:.88rem}.placement-test__combined p{margin:0;color:var(--muted);line-height:1.45}.placement-test__combined a{color:var(--accent);font-weight:800}.placement-test__telegram{margin:1rem 0 .3rem;color:var(--muted);font-size:.88rem;line-height:1.5}.placement-test__telegram-link{color:var(--accent);font-weight:800}
+  .placement-test__restart{background:transparent;border:1px solid var(--border);color:var(--text)}.placement-test__clear{display:block;margin-top:.65rem;border:0;background:transparent;color:var(--muted);font-size:.78rem;text-decoration:underline;cursor:pointer}
+  @media (prefers-reduced-motion: reduce){.placement-test__option{transition:none}}
+</style>

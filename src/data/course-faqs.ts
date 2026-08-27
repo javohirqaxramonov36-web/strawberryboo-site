@@ -39,7 +39,7 @@ export const bespokeCourseFaqFacts: Record<'prompt-engineering' | 'ai-agentlar' 
     topics: ['prompt tuzilmasi', 'few-shot misollar', 'murakkab vazifani bosqichlarga ajratish', 'yozish, kod, tadqiqot va biznesdagi qo‘llash'],
     whoFor: 'ChatGPT, Gemini yoki boshqa AI vositalaridan aniqroq natija olishni istaydiganlar uchun.',
     whoNotFor: 'Tayyor natija yoki AI javoblarining xatosizligi kafolatini izlaydiganlar uchun emas; kurs ko‘rsatma tuzish amaliyotiga qaratilgan.',
-    price: '$29 · ≈ 360 000 so‘m', certificate: true,
+    price: '360 000 so‘m (≈ $29)', certificate: true,
     accessPayment: 'Sahifada kurs narxi va sotib olish yo‘li ko‘rsatilgan. To‘lov bo‘yicha amaldagi ko‘rsatmalar kurs sahifasidagi Payment Instructions bo‘limida beriladi.'
   },
   'ai-agentlar': {
@@ -48,7 +48,7 @@ export const bespokeCourseFaqFacts: Record<'prompt-engineering' | 'ai-agentlar' 
     topics: ['CrewAI agent jamoalari', 'LangGraph oqimlari', 'agent xotirasi', 'MacBook’da amaliy agent yaratish'],
     whoFor: 'AI bilan tanish bo‘lib, uni tadqiqot, hisobot yoki avtomatlashtirish kabi haqiqiy ishlarga qo‘llamoqchi bo‘lganlar uchun.',
     whoNotFor: 'Kod yoki sozlashsiz darhol tayyor biznes natijasini kafolatlaydigan yechim izlaydiganlar uchun emas; kurs agent workflowlarini tushunish va sinashga qaratilgan.',
-    price: '$39 · ≈ 490 000 so‘m', certificate: true,
+    price: '490 000 so‘m (≈ $39)', certificate: true,
     accessPayment: 'Sahifada kurs narxi va sotib olish yo‘li ko‘rsatilgan. To‘lov bo‘yicha amaldagi ko‘rsatmalar kurs sahifasidagi Payment Instructions bo‘limida beriladi.'
   },
   obsidian: {
@@ -57,7 +57,7 @@ export const bespokeCourseFaqFacts: Record<'prompt-engineering' | 'ai-agentlar' 
     topics: ['vault tuzilmasi', 'Markdown', 'ichki havolalar', 'Graph view', 'pluginlar va xavfsiz ishlash'],
     whoFor: 'Kundalik yuritadigan, o‘qigan yoki o‘rgangan narsalarini tartibga solmoqchi bo‘lgan talabalar va tadqiqotchilar uchun.',
     whoNotFor: 'Parol yoki maxfiy ma’lumotlarni oddiy note’larda saqlashni rejalashtiradiganlar uchun emas; kurs bunday ma’lumotlarni shifrlanmagan note’da saqlamaslikni tavsiya qiladi.',
-    price: '$19 · ≈ 240 000 so‘m', certificate: true,
+    price: '240 000 so‘m (≈ $19)', certificate: true,
     accessPayment: 'Sahifada kurs narxi va sotib olish yo‘li ko‘rsatilgan. To‘lov bo‘yicha amaldagi ko‘rsatmalar kurs sahifasidagi Payment Instructions bo‘limida beriladi.'
   }
 };

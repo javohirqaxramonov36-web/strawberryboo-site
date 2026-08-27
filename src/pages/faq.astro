@@ -2,9 +2,21 @@
 import Base from "../layouts/Base.astro";
 const title = "Ko'p so'raladigan savollar (FAQ) — Tayanch";
 const description = "Kurslar, to'lov usullari, sertifikat va forever access bo'yicha eng ko'p beriladigan savollarga javoblar.";
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: [
+    ['Kurslar qanday formatda o‘tadi?', 'Har bir kurs modullarga bo‘lingan: qisqacha video darslar, amaliy mashqlar va kichik Quiz.'],
+    ['To‘lovni qanday amalga oshiraman?', 'To‘lov tafsilotlari uchun Telegram orqali yozing.'],
+    ['Kursni tugatgach sertifikat beriladimi?', 'Barcha pullik va bepul kurslarda sertifikat mavjud.'],
+    ['Forever access nima degani?', 'Bir marta sotib olib, kursga doimiy va cheksiz muddatga kirish mumkin.'],
+    ['Bepul kurslar haqiqatan ham bepulmi?', 'Ha, ayrim kurslarimiz ro‘yxatdan o‘tish yoki karta ma’lumotlarisiz bepul ochiladi.']
+  ].map(([question, answer]) => ({ '@type': 'Question', name: question, acceptedAnswer: { '@type': 'Answer', text: answer } }))
+};
 ---
 
 <Base title={title} description={description}>
+<script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
 
 <article class="lesson">
   <h1 data-i18n="faq.h1">Ko'p so'raladigan savollar</h1>

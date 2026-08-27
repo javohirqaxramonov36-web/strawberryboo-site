@@ -1,0 +1,11 @@
+name = "tayanch-payment-worker"
+main = "src/index.ts"
+compatibility_date = "2026-08-26"
+
+[vars]
+# Fill these only in the Worker environment after InPay confirms the exact API contract.
+# Secrets belong in `wrangler secret put`, never in this file or Git.
+INPAY_CREATE_PAYMENT_PATH = "payments"
+INPAY_API_KEY_HEADER = "authorization"
+INPAY_API_KEY_PREFIX = "Bearer "
+INPAY_SIGNATURE_HEADER = "x-inpay-signature"

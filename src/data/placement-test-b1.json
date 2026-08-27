@@ -1,0 +1,121 @@
+{
+  "level": "B1",
+  "title": "General English B1",
+  "questions": [
+    {
+      "id": "b1-1",
+      "question": "If it rains tomorrow, I ___ stay home.",
+      "options": [
+        {
+          "id": "a",
+          "text": "will"
+        },
+        {
+          "id": "b",
+          "text": "would"
+        },
+        {
+          "id": "c",
+          "text": "had"
+        },
+        {
+          "id": "d",
+          "text": "am"
+        }
+      ],
+      "correctOption": "a"
+    },
+    {
+      "id": "b1-2",
+      "question": "By the time she arrived, the meeting ___.",
+      "options": [
+        {
+          "id": "a",
+          "text": "had already started"
+        },
+        {
+          "id": "b",
+          "text": "has already started"
+        },
+        {
+          "id": "c",
+          "text": "already started"
+        },
+        {
+          "id": "d",
+          "text": "starts"
+        }
+      ],
+      "correctOption": "a"
+    },
+    {
+      "id": "b1-3",
+      "question": "Which word is closest in meaning to 'enormous'?",
+      "options": [
+        {
+          "id": "a",
+          "text": "tiny"
+        },
+        {
+          "id": "b",
+          "text": "huge"
+        },
+        {
+          "id": "c",
+          "text": "quiet"
+        },
+        {
+          "id": "d",
+          "text": "cheap"
+        }
+      ],
+      "correctOption": "b"
+    },
+    {
+      "id": "b1-4",
+      "question": "He suggested ___ to the beach.",
+      "options": [
+        {
+          "id": "a",
+          "text": "go"
+        },
+        {
+          "id": "b",
+          "text": "going"
+        },
+        {
+          "id": "c",
+          "text": "went"
+        },
+        {
+          "id": "d",
+          "text": "to go"
+        }
+      ],
+      "correctOption": "b"
+    },
+    {
+      "id": "b1-5",
+      "question": "The letter ___ yesterday.",
+      "options": [
+        {
+          "id": "a",
+          "text": "was sent"
+        },
+        {
+          "id": "b",
+          "text": "sent"
+        },
+        {
+          "id": "c",
+          "text": "is sent"
+        },
+        {
+          "id": "d",
+          "text": "has sent"
+        }
+      ],
+      "correctOption": "a"
+    }
+  ]
+}

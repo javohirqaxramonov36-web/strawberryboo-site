@@ -7,7 +7,11 @@
     "build": "astro build",
     "preview": "astro preview",
     "prebuild": "node scripts/generate-sitemap.mjs",
-    "test:ielts-grader": "node --test ielts-grader/test/worker.test.mjs"
+    "test:ielts-grader": "node --test ielts-grader/test/worker.test.mjs",
+    "verify:courses": "node scripts/verify-course-data.mjs",
+    "verify:startup": "node scripts/verify-startup.mjs",
+    "verify:impact": "node scripts/verify-impact-summary.mjs",
+    "verify:placement": "node scripts/verify-placement-test.mjs"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.112.3",

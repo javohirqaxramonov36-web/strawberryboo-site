@@ -3,32 +3,63 @@
     {
       "slug": "prompt-engineering",
       "type": "standard",
-      "cats": ["ai"],
+      "cats": [
+        "ai"
+      ],
       "accent": "#7d7df5",
       "icon": "sparkle",
-      "badge": { "uz": "Mashhur", "ru": "Популярный", "en": "Popular" },
+      "badge": {
+        "uz": "Mashhur",
+        "ru": "Популярный",
+        "en": "Popular"
+      },
       "title": {
         "uz": "AI'dan 5 daqiqada sifatli javob",
         "ru": "Качественные ответы от AI за 5 минут",
         "en": "Get a quality AI answer in 5 minutes"
       },
-      "cat": { "uz": "AI · PKM", "ru": "AI · PKM", "en": "AI · PKM" },
+      "cat": {
+        "uz": "AI · PKM",
+        "ru": "AI · PKM",
+        "en": "AI · PKM"
+      },
       "description": {
         "uz": "ChatGPT'dan aniq, tuzilgan va ishga yaroqli natija olishni o'rganasiz — bir soatlik ishni 5 daqiqaga tushirasiz. Kimga mo'ljallangan: yozuvchi, talaba, marketolog va AI'dan tezroq foydalanishni istagan har kimga.",
         "ru": "Научитесь получать от ChatGPT точные, структурированные и применимые результаты — сократите час работы до пяти минут.",
         "en": "Learn to get precise, structured and usable results from ChatGPT — turn an hour of work into five minutes."
       },
-      "price": { "uz": "$29", "ru": "$29", "en": "$29" },
-      "priceUzs": { "uz": "≈ 360 000 so'm", "ru": "≈ 360 000 so'm", "en": "≈ 360 000 so'm" },
-      "free": false, "comingSoon": false, "paid": true, "certificate": true,
+      "price": {
+        "uz": "$29",
+        "ru": "$29",
+        "en": "$29"
+      },
+      "priceUzs": {
+        "uz": "≈ 360 000 so'm",
+        "ru": "≈ 360 000 so'm",
+        "en": "≈ 360 000 so'm"
+      },
+      "free": false,
+      "comingSoon": false,
+      "paid": true,
+      "certificate": true,
       "gumroadSlug": "ai-sifatli-javob",
-      "progressCourseId": "prompt-engineering", "progressTotal": 7,
-      "href": "kurslar/prompt-engineering"
+      "progressCourseId": "prompt-engineering",
+      "progressTotal": 7,
+      "href": "kurslar/prompt-engineering",
+      "audience": {
+        "uz": "Yozuvchi, talaba, marketolog va AI bilan tezroq ishlamoqchi bo‘lganlar",
+        "ru": "Писатели, студенты, маркетологи и все, кто хочет быстрее работать с AI",
+        "en": "Writers, students, marketers and anyone who wants to work faster with AI"
+      },
+      "status": "available",
+      "countInPublicTotal": true
     },
     {
       "slug": "obsidian",
       "type": "standard",
-      "cats": ["ai"],
+      "cats": [
+        "ai"
+      ],
       "accent": "#34d399",
       "icon": "book",
       "title": {
@@ -36,140 +67,318 @@
         "ru": "База знаний, в которой прочитанное остаётся с вами",
         "en": "A knowledge base that helps you remember what you learn"
       },
-      "cat": { "uz": "AI · PKM", "ru": "AI · PKM", "en": "AI · PKM" },
+      "cat": {
+        "uz": "AI · PKM",
+        "ru": "AI · PKM",
+        "en": "AI · PKM"
+      },
       "description": {
         "uz": "Kundalik fikr, maqola va darslarni avtomatik tartibga solib, kerak paytda topadigan tizim quraysiz. Kimga mo'ljallangan: ko'p o'qiydigan, lekin esida saqlay olmaydigan talaba va mutaxassislarga.",
         "ru": "Создайте систему, которая автоматически упорядочивает мысли, статьи и уроки и находит их, когда нужно.",
         "en": "Build a system that automatically organizes daily thoughts, articles and lessons and finds them when needed."
       },
-      "price": { "uz": "$19", "ru": "$19", "en": "$19" },
-      "priceUzs": { "uz": "≈ 240 000 so'm", "ru": "≈ 240 000 so'm", "en": "≈ 240 000 so'm" },
-      "free": false, "comingSoon": false, "paid": true, "certificate": true,
+      "price": {
+        "uz": "$19",
+        "ru": "$19",
+        "en": "$19"
+      },
+      "priceUzs": {
+        "uz": "≈ 240 000 so'm",
+        "ru": "≈ 240 000 so'm",
+        "en": "≈ 240 000 so'm"
+      },
+      "free": false,
+      "comingSoon": false,
+      "paid": true,
+      "certificate": true,
       "gumroadSlug": "obsidian-bilim-bazasi",
-      "progressCourseId": "obsidian", "progressTotal": 6,
-      "href": "kurslar/obsidian"
+      "progressCourseId": "obsidian",
+      "progressTotal": 6,
+      "href": "kurslar/obsidian",
+      "audience": {
+        "uz": "Ko‘p o‘qiydigan talabalar va bilimini tartibga solmoqchi bo‘lgan mutaxassislar",
+        "ru": "Студенты и специалисты, которые много читают и хотят систематизировать знания",
+        "en": "Students and professionals who read a lot and want to organize their knowledge"
+      },
+      "status": "available",
+      "countInPublicTotal": true
     },
     {
       "slug": "ai-agentlar",
       "type": "standard",
-      "cats": ["ai"],
+      "cats": [
+        "ai"
+      ],
       "accent": "#ef4444",
       "icon": "agent",
-      "badge": { "uz": "Eng mashhur", "ru": "Самый популярный", "en": "Most popular" },
+      "badge": {
+        "uz": "Eng mashhur",
+        "ru": "Самый популярный",
+        "en": "Most popular"
+      },
       "title": {
         "uz": "O'z AI yordamchingizni yaratish",
         "ru": "Создайте собственного AI-помощника",
         "en": "Build your own AI assistant"
       },
-      "cat": { "uz": "AI · PKM", "ru": "AI · PKM", "en": "AI · PKM" },
+      "cat": {
+        "uz": "AI · PKM",
+        "ru": "AI · PKM",
+        "en": "AI · PKM"
+      },
       "description": {
         "uz": "CrewAI va LangGraph bilan vazifalarni o'zi bajarib chiqadigan agent tuzasiz — tadqiqot, kontent, avtomatlashtirish. Kimga mo'ljallangan: AI bilan tanishgan va uni haqiqiy ishga qo'llamoqchi bo'lganlarga.",
         "ru": "С CrewAI и LangGraph создайте агента для исследований, контента и автоматизации.",
         "en": "Build your own agent with CrewAI and LangGraph for research, content and automation."
       },
-      "price": { "uz": "$39", "ru": "$39", "en": "$39" },
-      "priceUzs": { "uz": "≈ 490 000 so'm", "ru": "≈ 490 000 so'm", "en": "≈ 490 000 so'm" },
-      "free": false, "comingSoon": false, "paid": true, "certificate": true,
+      "price": {
+        "uz": "$39",
+        "ru": "$39",
+        "en": "$39"
+      },
+      "priceUzs": {
+        "uz": "≈ 490 000 so'm",
+        "ru": "≈ 490 000 so'm",
+        "en": "≈ 490 000 so'm"
+      },
+      "free": false,
+      "comingSoon": false,
+      "paid": true,
+      "certificate": true,
       "gumroadSlug": "ai-agentlar-kursi",
-      "progressCourseId": "ai-agentlar", "progressTotal": 7,
-      "href": "kurslar/ai-agentlar"
+      "progressCourseId": "ai-agentlar",
+      "progressTotal": 7,
+      "href": "kurslar/ai-agentlar",
+      "audience": {
+        "uz": "AI asoslarini bilib, uni haqiqiy ish jarayoniga qo‘llamoqchi bo‘lganlar",
+        "ru": "Тем, кто знаком с основами AI и хочет применять его в реальных рабочих процессах",
+        "en": "People who know AI basics and want to apply it in real workflows"
+      },
+      "status": "available",
+      "countInPublicTotal": true
     },
     {
       "slug": "ielts-listening",
       "type": "ielts-mini",
-      "cats": ["ielts"],
+      "cats": [
+        "ielts"
+      ],
       "accent": "#22d3ee",
       "icon": "document",
       "title": {
-        "uz": "Listening", "ru": "Listening", "en": "Listening"
+        "uz": "Listening",
+        "ru": "Listening",
+        "en": "Listening"
       },
       "description": {
         "uz": "Signal, raqam, birlik-ko‘plik va distractor mashqlari.",
         "ru": "Сигналы, числа, ед./мн. и упражнения с distractors.",
         "en": "Signals, numbers, singular/plural and distractor exercises."
       },
-      "price": { "uz": "$7.50", "ru": "$7.50", "en": "$7.50" },
-      "free": false, "comingSoon": false, "paid": true, "certificate": false,
+      "price": {
+        "uz": "$7.50",
+        "ru": "$7.50",
+        "en": "$7.50"
+      },
+      "free": false,
+      "comingSoon": false,
+      "paid": true,
+      "certificate": false,
       "gumroadSlug": "ielts-listening",
-      "progressCourseId": "ielts-listening", "progressTotal": 3,
-      "href": "kurslar/ielts-listening"
+      "progressCourseId": "ielts-listening",
+      "progressTotal": 3,
+      "href": "kurslar/ielts-listening",
+      "audience": {
+        "uz": "IELTS 6.5–7.0 maqsad qilgan o‘quvchilar",
+        "ru": "Учащиеся, стремящиеся к IELTS 6.5–7.0",
+        "en": "Learners targeting IELTS 6.5–7.0"
+      },
+      "status": "available",
+      "countInPublicTotal": true,
+      "priceUzs": {
+        "uz": "93 750 so'm",
+        "ru": "93 750 сум",
+        "en": "93 750 UZS"
+      }
     },
     {
       "slug": "ielts-reading",
       "type": "ielts-mini",
-      "cats": ["ielts"],
+      "cats": [
+        "ielts"
+      ],
       "accent": "#22d3ee",
       "icon": "document",
-      "title": { "uz": "Reading", "ru": "Reading", "en": "Reading" },
+      "title": {
+        "uz": "Reading",
+        "ru": "Reading",
+        "en": "Reading"
+      },
       "description": {
         "uz": "Vaqt, savol turi va xato patternlari ustida ishlang.",
         "ru": "Работайте со временем, типами вопросов и паттернами ошибок.",
         "en": "Work on time, question types and error patterns."
       },
-      "price": { "uz": "$7.50", "ru": "$7.50", "en": "$7.50" },
-      "free": false, "comingSoon": false, "paid": true, "certificate": false,
+      "price": {
+        "uz": "$7.50",
+        "ru": "$7.50",
+        "en": "$7.50"
+      },
+      "free": false,
+      "comingSoon": false,
+      "paid": true,
+      "certificate": false,
       "gumroadSlug": "ielts-reading",
-      "progressCourseId": "ielts-reading", "progressTotal": 3,
-      "href": "kurslar/ielts-reading"
+      "progressCourseId": "ielts-reading",
+      "progressTotal": 3,
+      "href": "kurslar/ielts-reading",
+      "audience": {
+        "uz": "IELTS 6.5–7.0 maqsad qilgan o‘quvchilar",
+        "ru": "Учащиеся, стремящиеся к IELTS 6.5–7.0",
+        "en": "Learners targeting IELTS 6.5–7.0"
+      },
+      "status": "available",
+      "countInPublicTotal": true,
+      "priceUzs": {
+        "uz": "93 750 so'm",
+        "ru": "93 750 сум",
+        "en": "93 750 UZS"
+      }
     },
     {
       "slug": "ielts-writing",
       "type": "ielts-mini",
-      "cats": ["ielts"],
+      "cats": [
+        "ielts"
+      ],
       "accent": "#22d3ee",
       "icon": "document",
-      "title": { "uz": "Writing", "ru": "Writing", "en": "Writing" },
+      "title": {
+        "uz": "Writing",
+        "ru": "Writing",
+        "en": "Writing"
+      },
       "description": {
         "uz": "AI bilan 30 kunlik Task 1/2 yozma baholash.",
         "ru": "30 дней оценки Task 1/2 с AI.",
         "en": "30-day Task 1/2 writing assessment with AI."
       },
-      "price": { "uz": "$14.99", "ru": "$14.99", "en": "$14.99" },
-      "free": false, "comingSoon": false, "paid": true, "certificate": false,
+      "price": {
+        "uz": "$14.99",
+        "ru": "$14.99",
+        "en": "$14.99"
+      },
+      "free": false,
+      "comingSoon": false,
+      "paid": true,
+      "certificate": false,
       "gumroadSlug": "ielts-writing",
-      "progressCourseId": "ielts-writing", "progressTotal": 30,
-      "href": "kurslar/ielts-writing"
+      "progressCourseId": "ielts-writing",
+      "progressTotal": 30,
+      "href": "kurslar/ielts-writing",
+      "audience": {
+        "uz": "Writing bandini tizimli yaxshilamoqchi bo‘lgan IELTS topshiruvchilar",
+        "ru": "Сдающие IELTS, которые хотят системно улучшить Writing",
+        "en": "IELTS test takers who want to improve Writing systematically"
+      },
+      "status": "available",
+      "countInPublicTotal": true,
+      "priceUzs": {
+        "uz": "187 500 so'm",
+        "ru": "187 500 сум",
+        "en": "187 500 UZS"
+      }
     },
     {
       "slug": "ielts-speaking",
       "type": "ielts-mini",
-      "cats": ["ielts"],
+      "cats": [
+        "ielts"
+      ],
       "accent": "#22d3ee",
       "icon": "document",
-      "title": { "uz": "Speaking", "ru": "Speaking", "en": "Speaking" },
+      "title": {
+        "uz": "Speaking",
+        "ru": "Speaking",
+        "en": "Speaking"
+      },
       "description": {
         "uz": "AI bilan 30 kunlik talaffuz va gapirish mashqi.",
         "ru": "30 дней практики произношения и speaking с AI.",
         "en": "30-day pronunciation and speaking practice with AI."
       },
-      "price": { "uz": "$7.50", "ru": "$7.50", "en": "$7.50" },
-      "free": false, "comingSoon": false, "paid": true, "certificate": false,
+      "price": {
+        "uz": "$7.50",
+        "ru": "$7.50",
+        "en": "$7.50"
+      },
+      "free": false,
+      "comingSoon": false,
+      "paid": true,
+      "certificate": false,
       "gumroadSlug": "ielts-speaking",
-      "progressCourseId": "ielts-speaking", "progressTotal": 30,
-      "href": "kurslar/ielts-speaking"
+      "progressCourseId": "ielts-speaking",
+      "progressTotal": 30,
+      "href": "kurslar/ielts-speaking",
+      "audience": {
+        "uz": "Speaking bandini amaliy reja bilan oshirmoqchi bo‘lganlar",
+        "ru": "Тем, кто хочет повысить Speaking с практическим планом",
+        "en": "Learners who want to improve Speaking with a practical plan"
+      },
+      "status": "available",
+      "countInPublicTotal": true,
+      "priceUzs": {
+        "uz": "93 750 so'm",
+        "ru": "93 750 сум",
+        "en": "93 750 UZS"
+      }
     },
     {
       "slug": "ielts-vocabulary",
       "type": "ielts-mini",
-      "cats": ["ielts", "bepul"],
+      "cats": [
+        "ielts",
+        "bepul"
+      ],
       "accent": "#22d3ee",
       "icon": "book",
-      "title": { "uz": "Vocabulary", "ru": "Vocabulary", "en": "Vocabulary" },
+      "title": {
+        "uz": "Vocabulary",
+        "ru": "Vocabulary",
+        "en": "Vocabulary"
+      },
       "description": {
         "uz": "Flashcards va Obsidian bilan so‘zlarni tizimli yodlash.",
         "ru": "Системное запоминание слов с flashcards и Obsidian.",
         "en": "Systematic vocabulary learning with flashcards and Obsidian."
       },
-      "price": { "uz": "Mini-kurs", "ru": "Mini-kurs", "en": "Mini-course" },
-      "free": true, "comingSoon": false, "paid": false, "certificate": false,
+      "price": {
+        "uz": "Mini-kurs",
+        "ru": "Mini-kurs",
+        "en": "Mini-course"
+      },
+      "free": true,
+      "comingSoon": false,
+      "paid": false,
+      "certificate": false,
       "gumroadSlug": null,
-      "progressCourseId": null, "progressTotal": null,
-      "href": "kurslar/ielts-vocabulary"
+      "progressCourseId": null,
+      "progressTotal": null,
+      "href": "kurslar/ielts-vocabulary",
+      "audience": {
+        "uz": "IELTS uchun so‘z boyligini kengaytirmoqchi bo‘lganlar",
+        "ru": "Тем, кто хочет расширить словарный запас для IELTS",
+        "en": "Learners who want to expand IELTS vocabulary"
+      },
+      "status": "available",
+      "countInPublicTotal": false
     },
     {
       "slug": "ielts-full-bundle",
       "type": "bundle",
-      "cats": ["ielts"],
+      "cats": [
+        "ielts"
+      ],
       "accent": "#22d3ee",
       "icon": "trophy",
       "title": {
@@ -182,93 +391,205 @@
         "ru": "Возьмите 4 курса вместе — сэкономьте 20%.",
         "en": "Get all 4 together — save 20%."
       },
-      "price": { "uz": "375 000 so'm", "ru": "375 000 so'm", "en": "375 000 so'm" },
-      "priceUzs": { "uz": "≈ 20% tejang", "ru": "≈ 20% скидка", "en": "≈ 20% off" },
-      "free": false, "comingSoon": false, "paid": true, "certificate": false,
+      "price": {
+        "uz": "375 000 so'm",
+        "ru": "375 000 so'm",
+        "en": "375 000 so'm"
+      },
+      "priceUzs": {
+        "uz": "≈ 20% tejang",
+        "ru": "≈ 20% скидка",
+        "en": "≈ 20% off"
+      },
+      "free": false,
+      "comingSoon": false,
+      "paid": true,
+      "certificate": false,
       "gumroadSlug": "ielts-full-bundle",
-      "progressCourseId": null, "progressTotal": null,
-      "href": "bog-lanish?course=ielts-full-bundle&price=375000"
+      "progressCourseId": null,
+      "progressTotal": null,
+      "href": "bog-lanish?course=ielts-full-bundle&price=375000",
+      "audience": {
+        "uz": "IELTSning barcha asosiy skilllarini birga o‘rganmoqchi bo‘lganlar",
+        "ru": "Тем, кто хочет изучать все основные навыки IELTS вместе",
+        "en": "Learners who want all core IELTS skills together"
+      },
+      "status": "available",
+      "countInPublicTotal": false
     },
     {
       "slug": "ielts-mock",
       "type": "mock",
-      "cats": ["ielts"],
+      "cats": [
+        "ielts"
+      ],
       "accent": "#22d3ee",
       "icon": "document",
-      "badge": { "uz": "Yangi", "ru": "Новый", "en": "New" },
+      "badge": {
+        "uz": "Yangi",
+        "ru": "Новый",
+        "en": "New"
+      },
       "title": {
         "uz": "IELTS imtihonini uyida sinab ko'rish",
         "ru": "Попробуйте IELTS дома",
         "en": "Try the IELTS exam at home"
       },
-      "cat": { "uz": "IELTS · Practice", "ru": "IELTS · Practice", "en": "IELTS · Practice" },
+      "cat": {
+        "uz": "IELTS · Practice",
+        "ru": "IELTS · Practice",
+        "en": "IELTS · Practice"
+      },
       "description": {
         "uz": "Listening, Reading, Writing va Speaking'ni alohida yoki to'liq mock sifatida mashq qilib, haqiqiy imtihon stressiz o'tasiz.",
         "ru": "Практикуйте Listening, Reading, Writing и Speaking по отдельности или полным моком без стресса.",
         "en": "Practice Listening, Reading, Writing and Speaking separately or as a full mock, stress-free."
       },
-      "price": { "uz": "1 Qadamdan", "ru": "от 1 шага", "en": "from 1 Step" },
-      "priceUzs": { "uz": "≈ 32 000 so'm / modul", "ru": "≈ 32 000 so'm / модуль", "en": "≈ 32 000 so'm / module" },
-      "free": false, "comingSoon": false, "paid": true, "certificate": false,
-      "certLabel": { "uz": "Tayanch Qadam bilan", "ru": "С Tayanch Qadam", "en": "With Tayanch Step" },
+      "price": {
+        "uz": "1 Qadamdan",
+        "ru": "от 1 шага",
+        "en": "from 1 Step"
+      },
+      "priceUzs": {
+        "uz": "≈ 32 000 so'm / modul",
+        "ru": "≈ 32 000 so'm / модуль",
+        "en": "≈ 32 000 so'm / module"
+      },
+      "free": false,
+      "comingSoon": false,
+      "paid": true,
+      "certificate": false,
+      "certLabel": {
+        "uz": "Tayanch Qadam bilan",
+        "ru": "С Tayanch Qadam",
+        "en": "With Tayanch Step"
+      },
       "gumroadSlug": null,
-      "progressCourseId": null, "progressTotal": null,
-      "href": "ielts-mock/"
+      "progressCourseId": null,
+      "progressTotal": null,
+      "href": "ielts-mock/",
+      "audience": {
+        "uz": "Haqiqiy imtihon oldidan o‘z darajasini sinamoqchi bo‘lganlar",
+        "ru": "Тем, кто хочет проверить свой уровень перед реальным экзаменом",
+        "en": "Learners who want to check their level before the real exam"
+      },
+      "status": "available",
+      "countInPublicTotal": false
     },
     {
       "slug": "vibe-coding",
-      "type": "coming-soon",
-      "cats": ["ai"],
+      "type": "standard",
+      "cats": [
+        "ai"
+      ],
       "accent": "#22d3ee",
       "icon": "code",
-      "badge": { "uz": "Yangi", "ru": "Новый", "en": "New" },
+      "badge": {
+        "uz": "Yangi",
+        "ru": "Новый",
+        "en": "New"
+      },
       "title": {
         "uz": "G'oyadan 2 haftada saytgacha",
         "ru": "От идеи до сайта за 2 недели",
         "en": "From idea to site in 2 weeks"
       },
-      "cat": { "uz": "AI · PKM", "ru": "AI · PKM", "en": "AI · PKM" },
+      "cat": {
+        "uz": "AI · PKM",
+        "ru": "AI · PKM",
+        "en": "AI · PKM"
+      },
       "description": {
         "uz": "AI agentlari yordamida bepul/arzon vositalar bilan haqiqiy sayt yoki loyiha quraysiz — dasturlash tajribasisiz.",
         "ru": "С помощью AI-агентов создавайте реальный сайт или проект бесплатными/дешёвыми инструментами без опыта кода.",
         "en": "Build a real site or project with AI agents and free/cheap tools — no coding experience needed."
       },
-      "price": { "uz": "Tez orada", "ru": "Скоро", "en": "Coming soon" },
-      "priceUzs": { "uz": "Bepul / arzon AI", "ru": "Бесплатный / дешёвый AI", "en": "Free / cheap AI" },
-      "free": false, "comingSoon": true, "paid": false, "certificate": true,
+      "price": {
+        "uz": "Tez orada",
+        "ru": "Скоро",
+        "en": "Coming soon"
+      },
+      "priceUzs": {
+        "uz": "Bepul / arzon AI",
+        "ru": "Бесплатный / дешёвый AI",
+        "en": "Free / cheap AI"
+      },
+      "free": false,
+      "comingSoon": true,
+      "paid": false,
+      "certificate": true,
       "gumroadSlug": null,
-      "progressCourseId": null, "progressTotal": null,
-      "href": "kurslar/vibe-coding"
+      "progressCourseId": null,
+      "progressTotal": null,
+      "href": "kurslar/vibe-coding",
+      "audience": {
+        "uz": "Kod yozishni AI yordamida boshlamoqchi bo‘lganlar",
+        "ru": "Тем, кто хочет начать программировать с помощью AI",
+        "en": "People who want to start coding with AI"
+      },
+      "status": "upcoming",
+      "countInPublicTotal": true
     },
     {
       "slug": "admission-process",
       "type": "standard",
-      "cats": ["admission"],
+      "cats": [
+        "admission"
+      ],
       "accent": "#8b5cf6",
       "icon": "doccheck",
-      "badge": { "uz": "Yangi", "ru": "Новый", "en": "New" },
+      "badge": {
+        "uz": "Yangi",
+        "ru": "Новый",
+        "en": "New"
+      },
       "title": {
         "uz": "Chet elga qabul: hujjatdan intervyugacha",
         "ru": "Поступление за рубеж: от документов до интервью",
         "en": "Study abroad admissions: from documents to interview"
       },
-      "cat": { "uz": "Til · Admission", "ru": "Язык · Поступление", "en": "Language · Admission" },
+      "cat": {
+        "uz": "Til · Admission",
+        "ru": "Язык · Поступление",
+        "en": "Language · Admission"
+      },
       "description": {
         "uz": "Arizadan essay va suhbatgacha bo'lgan yo'lni bosqichma-bosqich o'tasiz.",
         "ru": "Пройдите путь от заявки до эссе и интервью шаг за шагом.",
         "en": "Follow the path from application to essay and interview step by step."
       },
-      "price": { "uz": "49 000 so'mdan", "ru": "от 49 000 сум", "en": "from 49,000 UZS" },
-      "priceUzs": { "uz": "3 qism alohida tanlanadi", "ru": "3 части выбираются отдельно", "en": "3 parts chosen separately" },
-      "free": false, "comingSoon": false, "paid": true, "certificate": true,
+      "price": {
+        "uz": "49 000 so'mdan",
+        "ru": "от 49 000 сум",
+        "en": "from 49,000 UZS"
+      },
+      "priceUzs": {
+        "uz": "3 qism alohida tanlanadi",
+        "ru": "3 части выбираются отдельно",
+        "en": "3 parts chosen separately"
+      },
+      "free": false,
+      "comingSoon": false,
+      "paid": true,
+      "certificate": true,
       "gumroadSlug": null,
-      "progressCourseId": "admission-process", "progressTotal": 12,
-      "href": "kurslar/admission-process"
+      "progressCourseId": "admission-process",
+      "progressTotal": 12,
+      "href": "kurslar/admission-process",
+      "audience": {
+        "uz": "Chet el universitetlariga hujjat topshirmoqchi bo‘lgan o‘quvchilar",
+        "ru": "Учащиеся, планирующие поступление в зарубежные университеты",
+        "en": "Students planning to apply to universities abroad"
+      },
+      "status": "available",
+      "countInPublicTotal": true
     },
     {
       "slug": "tekin-ai",
       "type": "standard",
-      "cats": ["ai"],
+      "cats": [
+        "ai"
+      ],
       "accent": "#7d7df5",
       "icon": "chip",
       "title": {
@@ -276,23 +597,48 @@
         "ru": "Используйте AI без платной подписки",
         "en": "Use AI without a paid subscription"
       },
-      "cat": { "uz": "AI", "ru": "AI", "en": "AI" },
+      "cat": {
+        "uz": "AI",
+        "ru": "AI",
+        "en": "AI"
+      },
       "description": {
         "uz": "Kompyuteringizda ishlaydigan bepul AI vositalari va agentlar ro'yxatini o'rganasiz.",
         "ru": "Изучите бесплатные AI-инструменты и агентов, работающих на вашем компьютере.",
         "en": "Explore free AI tools and agents that run on your computer."
       },
-      "price": { "uz": "$19", "ru": "$19", "en": "$19" },
-      "priceUzs": { "uz": "≈ 240 000 so'm", "ru": "≈ 240 000 so'm", "en": "≈ 240 000 so'm" },
-      "free": false, "comingSoon": false, "paid": true, "certificate": true,
+      "price": {
+        "uz": "$19",
+        "ru": "$19",
+        "en": "$19"
+      },
+      "priceUzs": {
+        "uz": "≈ 240 000 so'm",
+        "ru": "≈ 240 000 so'm",
+        "en": "≈ 240 000 so'm"
+      },
+      "free": false,
+      "comingSoon": false,
+      "paid": true,
+      "certificate": true,
       "gumroadSlug": "tekin-ai",
-      "progressCourseId": "tekin-ai", "progressTotal": 6,
-      "href": "kurslar/tekin-ai"
+      "progressCourseId": "tekin-ai",
+      "progressTotal": 6,
+      "href": "kurslar/tekin-ai",
+      "audience": {
+        "uz": "Bepul AI vositalaridan ish va o‘qishda foydalanmoqchi bo‘lganlar",
+        "ru": "Тем, кто хочет использовать бесплатные AI-инструменты в работе и учёбе",
+        "en": "People who want to use free AI tools for work and study"
+      },
+      "status": "available",
+      "countInPublicTotal": true
     },
     {
       "slug": "mac-tezlik-sirlari",
       "type": "standard",
-      "cats": ["hayotiy"],
+      "cats": [
+        "hayotiy"
+      ],
       "accent": "#3b82f6",
       "icon": "lightning",
       "title": {
@@ -300,373 +646,809 @@
         "ru": "Работайте на Mac в два раза быстрее",
         "en": "Work twice as fast on a Mac"
       },
-      "cat": { "uz": "HAYOTIY KO'NIKMA", "ru": "ЖИЗНЕННЫЕ НАВЫКИ", "en": "LIFE SKILLS" },
+      "cat": {
+        "uz": "HAYOTIY KO'NIKMA",
+        "ru": "ЖИЗНЕННЫЕ НАВЫКИ",
+        "en": "LIFE SKILLS"
+      },
       "description": {
         "uz": "Raycast va shortcut'lar bilan bir soatlik ishni yarim soatga tushirasiz.",
         "ru": "С Raycast и сочетаниями клавиш сократите час работы до получаса.",
         "en": "Use Raycast and shortcuts to turn an hour of work into half an hour."
       },
-      "price": { "uz": "$15", "ru": "$15", "en": "$15" },
-      "priceUzs": { "uz": "≈ 190 000 so'm", "ru": "≈ 190 000 so'm", "en": "≈ 190 000 so'm" },
-      "free": false, "comingSoon": false, "paid": true, "certificate": true,
+      "price": {
+        "uz": "$15",
+        "ru": "$15",
+        "en": "$15"
+      },
+      "priceUzs": {
+        "uz": "≈ 190 000 so'm",
+        "ru": "≈ 190 000 so'm",
+        "en": "≈ 190 000 so'm"
+      },
+      "free": false,
+      "comingSoon": false,
+      "paid": true,
+      "certificate": true,
       "gumroadSlug": "mac-tezlik-sirlari",
-      "progressCourseId": "mac-tezlik-sirlari", "progressTotal": 8,
-      "href": "kurslar/mac-tezlik-sirlari"
+      "progressCourseId": "mac-tezlik-sirlari",
+      "progressTotal": 8,
+      "href": "kurslar/mac-tezlik-sirlari",
+      "audience": {
+        "uz": "MacBookidan tezroq va unumli foydalanmoqchi bo‘lganlar",
+        "ru": "Пользователи, которые хотят ускорить и эффективнее использовать MacBook",
+        "en": "Users who want a faster, more effective MacBook"
+      },
+      "status": "available",
+      "countInPublicTotal": true
     },
     {
       "slug": "figma",
       "type": "standard",
-      "cats": ["bepul", "dizayn"],
+      "cats": [
+        "bepul",
+        "dizayn"
+      ],
       "accent": "#f59e0b",
       "icon": "figma",
-      "badge": { "uz": "Yangi", "ru": "Новый", "en": "New" },
+      "badge": {
+        "uz": "Yangi",
+        "ru": "Новый",
+        "en": "New"
+      },
       "title": {
         "uz": "Bepul Figma: UI/UX asoslarini 1 kunda",
         "ru": "Бесплатная Figma: основы UI/UX за 1 день",
         "en": "Free Figma: UI/UX foundations in one day"
       },
-      "cat": { "uz": "Dizayn", "ru": "Дизайн", "en": "Design" },
+      "cat": {
+        "uz": "Dizayn",
+        "ru": "Дизайн",
+        "en": "Design"
+      },
       "description": {
         "uz": "Interfeys chizish, komponent va prototip yasashni bepul o'rganasiz.",
         "ru": "Бесплатно изучите интерфейсы, компоненты и прототипы.",
         "en": "Learn interface design, components and prototypes for free."
       },
-      "price": { "uz": "$0", "ru": "$0", "en": "$0" },
-      "priceUzs": { "uz": "Bepul", "ru": "Бесплатно", "en": "Free" },
-      "free": true, "comingSoon": false, "paid": false, "certificate": true,
+      "price": {
+        "uz": "$0",
+        "ru": "$0",
+        "en": "$0"
+      },
+      "priceUzs": {
+        "uz": "Bepul",
+        "ru": "Бесплатно",
+        "en": "Free"
+      },
+      "free": true,
+      "comingSoon": false,
+      "paid": false,
+      "certificate": true,
       "gumroadSlug": null,
-      "progressCourseId": "figma", "progressTotal": 7,
-      "href": "kurslar/figma"
+      "progressCourseId": "figma",
+      "progressTotal": 7,
+      "href": "kurslar/figma",
+      "audience": {
+        "uz": "Figma orqali dizayn asoslarini o‘rganmoqchi bo‘lgan boshlovchilar",
+        "ru": "Начинающие, которые хотят освоить основы дизайна в Figma",
+        "en": "Beginners who want to learn design fundamentals in Figma"
+      },
+      "status": "available",
+      "countInPublicTotal": false
     },
     {
       "slug": "autocad-on-mac",
       "type": "standard",
-      "cats": ["dizayn"],
+      "cats": [
+        "dizayn"
+      ],
       "accent": "#f97316",
       "icon": "cad",
-      "badge": { "uz": "Yangi", "ru": "Новый", "en": "New" },
+      "badge": {
+        "uz": "Yangi",
+        "ru": "Новый",
+        "en": "New"
+      },
       "title": {
         "uz": "Mac'da chizma: bepul talaba litsenziyasi",
         "ru": "Чертежи на Mac: бесплатная студенческая лицензия",
         "en": "Drafting on a Mac: a free student licence"
       },
-      "cat": { "uz": "Dizayn · Muhandislik", "ru": "Дизайн · Инженерия", "en": "Design · Engineering" },
+      "cat": {
+        "uz": "Dizayn · Muhandislik",
+        "ru": "Дизайн · Инженерия",
+        "en": "Design · Engineering"
+      },
       "description": {
         "uz": "AutoCAD o'rnatish, chizish va birinchi chizmani tayyorlashni o'rganasiz.",
         "ru": "Научитесь устанавливать AutoCAD, чертить и готовить первый чертёж.",
         "en": "Learn to install AutoCAD, draw and prepare your first technical drawing."
       },
-      "price": { "uz": "$29", "ru": "$29", "en": "$29" },
-      "priceUzs": { "uz": "≈ 360 000 so'm", "ru": "≈ 360 000 so'm", "en": "≈ 360 000 so'm" },
-      "free": false, "comingSoon": false, "paid": true, "certificate": true,
+      "price": {
+        "uz": "$29",
+        "ru": "$29",
+        "en": "$29"
+      },
+      "priceUzs": {
+        "uz": "≈ 360 000 so'm",
+        "ru": "≈ 360 000 so'm",
+        "en": "≈ 360 000 so'm"
+      },
+      "free": false,
+      "comingSoon": false,
+      "paid": true,
+      "certificate": true,
       "gumroadSlug": "autocad-on-mac",
-      "progressCourseId": "autocad-on-mac", "progressTotal": 10,
-      "href": "kurslar/autocad-on-mac"
+      "progressCourseId": "autocad-on-mac",
+      "progressTotal": 10,
+      "href": "kurslar/autocad-on-mac",
+      "audience": {
+        "uz": "Mac’da AutoCAD bilan ishlamoqchi bo‘lgan talabalar va mutaxassislar",
+        "ru": "Студенты и специалисты, которые хотят работать с AutoCAD на Mac",
+        "en": "Students and professionals who want to use AutoCAD on Mac"
+      },
+      "status": "available",
+      "countInPublicTotal": true
     },
     {
       "slug": "chet-elda-oqish",
       "type": "standard",
-      "cats": ["bepul", "admission"],
+      "cats": [
+        "bepul",
+        "admission"
+      ],
       "accent": "#14b8a6",
       "icon": "cap",
-      "badge": { "uz": "Bepul", "ru": "Бесплатно", "en": "Free" },
+      "badge": {
+        "uz": "Bepul",
+        "ru": "Бесплатно",
+        "en": "Free"
+      },
       "title": {
         "uz": "Nima uchun chet elda o'qish kerak (va bepul qanday)",
         "ru": "Зачем учиться за рубежом (и как сделать это бесплатно)",
         "en": "Why study abroad (and how to do it for free)"
       },
-      "cat": { "uz": "Bepul · Admission", "ru": "Бесплатно · Поступление", "en": "Free · Admission" },
+      "cat": {
+        "uz": "Bepul · Admission",
+        "ru": "Бесплатно · Поступление",
+        "en": "Free · Admission"
+      },
       "description": {
         "uz": "Xorijda o'qishning 5 asosiy foydasini va bepul grant topish yo'llarini bilib olasiz.",
         "ru": "Узнайте 5 преимуществ учёбы за рубежом и пути к бесплатным грантам.",
         "en": "Learn five benefits of studying abroad and routes to free grants."
       },
-      "price": { "uz": "$0", "ru": "$0", "en": "$0" },
-      "priceUzs": { "uz": "Bepul", "ru": "Бесплатно", "en": "Free" },
-      "free": true, "comingSoon": false, "paid": false, "certificate": true,
+      "price": {
+        "uz": "$0",
+        "ru": "$0",
+        "en": "$0"
+      },
+      "priceUzs": {
+        "uz": "Bepul",
+        "ru": "Бесплатно",
+        "en": "Free"
+      },
+      "free": true,
+      "comingSoon": false,
+      "paid": false,
+      "certificate": true,
       "gumroadSlug": null,
-      "progressCourseId": "chet-elda-oqish", "progressTotal": 5,
-      "href": "kurslar/chet-elda-oqish"
+      "progressCourseId": "chet-elda-oqish",
+      "progressTotal": 5,
+      "href": "kurslar/chet-elda-oqish",
+      "audience": {
+        "uz": "Chet elda o‘qish imkoniyatlarini o‘rganayotganlar",
+        "ru": "Тем, кто изучает возможности учёбы за рубежом",
+        "en": "People exploring study-abroad opportunities"
+      },
+      "status": "available",
+      "countInPublicTotal": false
     },
     {
       "slug": "data-analytics",
       "type": "standard",
-      "cats": ["data"],
+      "cats": [
+        "data"
+      ],
       "accent": "#0ea5e9",
       "icon": "chart",
-      "badge": { "uz": "Yangi", "ru": "Новый", "en": "New" },
+      "badge": {
+        "uz": "Yangi",
+        "ru": "Новый",
+        "en": "New"
+      },
       "title": {
         "uz": "Data Analytics — Ma'lumotlar tahlili",
         "ru": "Data Analytics — анализ данных",
         "en": "Data Analytics — data analysis"
       },
-      "cat": { "uz": "AI · Data", "ru": "AI · Data", "en": "AI · Data" },
+      "cat": {
+        "uz": "AI · Data",
+        "ru": "AI · Data",
+        "en": "AI · Data"
+      },
       "description": {
         "uz": "Excel'dan SQL va Python'gacha — ma'lumotlar bilan ishlash va qaror qabul qilish.",
         "ru": "От Excel до SQL и Python: работа с данными и принятие решений.",
         "en": "From Excel to SQL and Python: work with data and make decisions."
       },
-      "price": { "uz": "Tez orada", "ru": "Скоро", "en": "Coming soon" },
-      "priceUzs": { "uz": "Narx belgilanmoqda", "ru": "Цена уточняется", "en": "Price to be announced" },
-      "free": false, "comingSoon": true, "paid": false, "certificate": true,
+      "price": {
+        "uz": "Tez orada",
+        "ru": "Скоро",
+        "en": "Coming soon"
+      },
+      "priceUzs": {
+        "uz": "Narx belgilanmoqda",
+        "ru": "Цена уточняется",
+        "en": "Price to be announced"
+      },
+      "free": false,
+      "comingSoon": true,
+      "paid": false,
+      "certificate": true,
       "gumroadSlug": null,
-      "progressCourseId": null, "progressTotal": null,
-      "href": "kurslar/data-analytics"
+      "progressCourseId": null,
+      "progressTotal": null,
+      "href": "kurslar/data-analytics",
+      "audience": {
+        "uz": "Ma’lumotlarni tahlil qilishni boshlamoqchi bo‘lganlar",
+        "ru": "Тем, кто хочет начать анализировать данные",
+        "en": "People who want to start analyzing data"
+      },
+      "status": "upcoming",
+      "countInPublicTotal": true
     },
     {
       "slug": "backend-python",
       "type": "standard",
-      "cats": ["dasturlash"],
+      "cats": [
+        "dasturlash"
+      ],
       "accent": "#10b981",
       "icon": "code",
-      "badge": { "uz": "Yangi", "ru": "Новый", "en": "New" },
+      "badge": {
+        "uz": "Yangi",
+        "ru": "Новый",
+        "en": "New"
+      },
       "title": {
         "uz": "Backend Development — Python",
         "ru": "Backend-разработка: Python",
         "en": "Backend development: Python"
       },
-      "cat": { "uz": "IT · Dasturlash", "ru": "IT · Разработка", "en": "IT · Development" },
+      "cat": {
+        "uz": "IT · Dasturlash",
+        "ru": "IT · Разработка",
+        "en": "IT · Development"
+      },
       "description": {
         "uz": "Python, FastAPI va ma'lumotlar bazasi bilan server tomonidan ishlaydigan ilova qurish.",
         "ru": "Практический курс по созданию backend-приложений на Python, FastAPI и PostgreSQL.",
         "en": "Build backend applications with Python, FastAPI and PostgreSQL."
       },
-      "price": { "uz": "Tez orada", "ru": "Скоро", "en": "Coming soon" },
-      "priceUzs": { "uz": "Narx belgilanmoqda", "ru": "Цена уточняется", "en": "Price to be announced" },
-      "free": false, "comingSoon": true, "paid": false, "certificate": true,
+      "price": {
+        "uz": "Tez orada",
+        "ru": "Скоро",
+        "en": "Coming soon"
+      },
+      "priceUzs": {
+        "uz": "Narx belgilanmoqda",
+        "ru": "Цена уточняется",
+        "en": "Price to be announced"
+      },
+      "free": false,
+      "comingSoon": true,
+      "paid": false,
+      "certificate": true,
       "gumroadSlug": null,
-      "progressCourseId": null, "progressTotal": null,
-      "href": "kurslar/backend-python"
+      "progressCourseId": null,
+      "progressTotal": null,
+      "href": "kurslar/backend-python",
+      "audience": {
+        "uz": "Python backend dasturlashini o‘rganmoqchi bo‘lganlar",
+        "ru": "Тем, кто хочет изучить backend-разработку на Python",
+        "en": "People who want to learn Python backend development"
+      },
+      "status": "upcoming",
+      "countInPublicTotal": true
     },
     {
       "slug": "general-english-beginner",
       "type": "standard",
-      "cats": ["general-english"],
+      "cats": [
+        "general-english"
+      ],
       "accent": "#22c55e",
       "icon": "book",
-      "badge": { "uz": "Yangi", "ru": "Новый", "en": "New" },
+      "badge": {
+        "uz": "Yangi",
+        "ru": "Новый",
+        "en": "New"
+      },
       "title": {
         "uz": "General English — Beginner (A1)",
         "ru": "General English — Beginner (A1)",
         "en": "General English — Beginner (A1)"
       },
-      "cat": { "uz": "Til · General English", "ru": "Язык · Общий английский", "en": "Language · General English" },
+      "cat": {
+        "uz": "Til · General English",
+        "ru": "Язык · Общий английский",
+        "en": "Language · General English"
+      },
       "description": {
         "uz": "Ingliz tilini noldan boshlang: asosiy grammatika, kundalik lug‘at, sodda gapirish va tinglash mashqlari bilan mustahkam poydevor yarating.",
         "ru": "Начните английский с нуля: заложите прочную основу с базовой грамматикой, повседневной лексикой, простыми упражнениями на говорение и аудирование.",
         "en": "Start English from zero and build a strong foundation through core grammar, everyday vocabulary, simple speaking and listening practice."
       },
-      "price": { "uz": "Narx belgilanmoqda", "ru": "Narx belgilanmoqda", "en": "Price to be announced" },
-      "priceUzs": { "uz": "Tez orada", "ru": "Скоро", "en": "Coming soon" },
-      "free": false, "comingSoon": true, "paid": false, "certificate": true,
+      "price": {
+        "uz": "Narx belgilanmoqda",
+        "ru": "Narx belgilanmoqda",
+        "en": "Price to be announced"
+      },
+      "priceUzs": {
+        "uz": "Tez orada",
+        "ru": "Скоро",
+        "en": "Coming soon"
+      },
+      "free": false,
+      "comingSoon": true,
+      "paid": false,
+      "certificate": true,
       "gumroadSlug": null,
-      "progressCourseId": null, "progressTotal": null,
-      "href": "kurslar/general-english-beginner"
+      "progressCourseId": null,
+      "progressTotal": null,
+      "href": "kurslar/general-english-beginner",
+      "audience": {
+        "uz": "Ingliz tilini noldan boshlayotganlar",
+        "ru": "Начинающие изучать английский с нуля",
+        "en": "Complete beginners learning English"
+      },
+      "status": "upcoming",
+      "countInPublicTotal": true
     },
     {
       "slug": "general-english-elementary",
       "type": "standard",
-      "cats": ["general-english"],
+      "cats": [
+        "general-english"
+      ],
       "accent": "#16a34a",
       "icon": "book",
-      "badge": { "uz": "Yangi", "ru": "Новый", "en": "New" },
+      "badge": {
+        "uz": "Yangi",
+        "ru": "Новый",
+        "en": "New"
+      },
       "title": {
         "uz": "General English — Elementary (A2)",
         "ru": "General English — Elementary (A2)",
         "en": "General English — Elementary (A2)"
       },
-      "cat": { "uz": "Til · General English", "ru": "Язык · Общий английский", "en": "Language · General English" },
+      "cat": {
+        "uz": "Til · General English",
+        "ru": "Язык · Общий английский",
+        "en": "Language · General English"
+      },
       "description": {
         "uz": "Kundalik vaziyatlarda erkinroq muloqot qilish uchun asosiy zamonlar, ko‘p ishlatiladigan lug‘at, gapirish va tinglash ko‘nikmalarini rivojlantiring.",
         "ru": "Развивайте базовые времена, частотную лексику, навыки говорения и аудирования для уверенного общения.",
         "en": "Build core tenses, common vocabulary, speaking and listening skills to communicate more confidently."
       },
-      "price": { "uz": "Narx belgilanmoqda", "ru": "Narx belgilanmoqda", "en": "Price to be announced" },
-      "priceUzs": { "uz": "Tez orada", "ru": "Скоро", "en": "Coming soon" },
-      "free": false, "comingSoon": true, "paid": false, "certificate": true,
+      "price": {
+        "uz": "Narx belgilanmoqda",
+        "ru": "Narx belgilanmoqda",
+        "en": "Price to be announced"
+      },
+      "priceUzs": {
+        "uz": "Tez orada",
+        "ru": "Скоро",
+        "en": "Coming soon"
+      },
+      "free": false,
+      "comingSoon": true,
+      "paid": false,
+      "certificate": true,
       "gumroadSlug": null,
-      "progressCourseId": null, "progressTotal": null,
-      "href": "kurslar/general-english-elementary"
+      "progressCourseId": null,
+      "progressTotal": null,
+      "href": "kurslar/general-english-elementary",
+      "audience": {
+        "uz": "Boshlang‘ich bilimini mustahkamlamoqchi bo‘lganlar",
+        "ru": "Тем, кто хочет укрепить базовые знания английского",
+        "en": "Learners strengthening basic English"
+      },
+      "status": "upcoming",
+      "countInPublicTotal": true
     },
     {
       "slug": "general-english-pre-intermediate",
       "type": "standard",
-      "cats": ["general-english"],
+      "cats": [
+        "general-english"
+      ],
       "accent": "#0ea5e9",
       "icon": "book",
-      "badge": { "uz": "Yangi", "ru": "Новый", "en": "New" },
+      "badge": {
+        "uz": "Yangi",
+        "ru": "Новый",
+        "en": "New"
+      },
       "title": {
         "uz": "General English — Pre-Intermediate (A2–B1)",
         "ru": "General English — Pre-Intermediate (A2–B1)",
         "en": "General English — Pre-Intermediate (A2–B1)"
       },
-      "cat": { "uz": "Til · General English", "ru": "Язык · Общий английский", "en": "Language · General English" },
+      "cat": {
+        "uz": "Til · General English",
+        "ru": "Язык · Общий английский",
+        "en": "Language · General English"
+      },
       "description": {
         "uz": "Gaplarni bog‘lash, zamonlar va modal fe’llarni to‘g‘ri ishlatish, kengroq lug‘at hamda uzunroq tinglash materiallari bilan keyingi bosqichga o‘ting.",
         "ru": "Переходите на следующий уровень: связывайте предложения, точнее используйте времена и модальные глаголы.",
         "en": "Move to the next level by linking ideas, using tenses and modal verbs accurately."
       },
-      "price": { "uz": "Narx belgilanmoqda", "ru": "Narx belgilanmoqda", "en": "Price to be announced" },
-      "priceUzs": { "uz": "Tez orada", "ru": "Скоро", "en": "Coming soon" },
-      "free": false, "comingSoon": true, "paid": false, "certificate": true,
+      "price": {
+        "uz": "Narx belgilanmoqda",
+        "ru": "Narx belgilanmoqda",
+        "en": "Price to be announced"
+      },
+      "priceUzs": {
+        "uz": "Tez orada",
+        "ru": "Скоро",
+        "en": "Coming soon"
+      },
+      "free": false,
+      "comingSoon": true,
+      "paid": false,
+      "certificate": true,
       "gumroadSlug": null,
-      "progressCourseId": null, "progressTotal": null,
-      "href": "kurslar/general-english-pre-intermediate"
+      "progressCourseId": null,
+      "progressTotal": null,
+      "href": "kurslar/general-english-pre-intermediate",
+      "audience": {
+        "uz": "Keyingi darajaga chiqishga tayyor o‘quvchilar",
+        "ru": "Учащиеся, готовые перейти на следующий уровень",
+        "en": "Learners ready to move to the next level"
+      },
+      "status": "upcoming",
+      "countInPublicTotal": true
     },
     {
       "slug": "general-english-intermediate",
       "type": "standard",
-      "cats": ["general-english"],
+      "cats": [
+        "general-english"
+      ],
       "accent": "#3b82f6",
       "icon": "book",
-      "badge": { "uz": "Yangi", "ru": "Новый", "en": "New" },
+      "badge": {
+        "uz": "Yangi",
+        "ru": "Новый",
+        "en": "New"
+      },
       "title": {
         "uz": "General English — Intermediate (B1)",
         "ru": "General English — Intermediate (B1)",
         "en": "General English — Intermediate (B1)"
       },
-      "cat": { "uz": "Til · General English", "ru": "Язык · Общий английский", "en": "Language · General English" },
+      "cat": {
+        "uz": "Til · General English",
+        "ru": "Язык · Общий английский",
+        "en": "Language · General English"
+      },
       "description": {
         "uz": "Kundalik va o‘qishdagi mavzularda aniqroq fikr bildiring: grammatika aniqligi, faol lug‘at, suhbat va haqiqiy audio materiallar ustida ishlang.",
         "ru": "Точнее выражайте мысли в повседневных и учебных темах: грамматическая точность, активная лексика.",
         "en": "Express yourself more clearly in everyday and study topics through grammar accuracy and active vocabulary."
       },
-      "price": { "uz": "Narx belgilanmoqda", "ru": "Narx belgilanmoqda", "en": "Price to be announced" },
-      "priceUzs": { "uz": "Tez orada", "ru": "Скоро", "en": "Coming soon" },
-      "free": false, "comingSoon": true, "paid": false, "certificate": true,
+      "price": {
+        "uz": "Narx belgilanmoqda",
+        "ru": "Narx belgilanmoqda",
+        "en": "Price to be announced"
+      },
+      "priceUzs": {
+        "uz": "Tez orada",
+        "ru": "Скоро",
+        "en": "Coming soon"
+      },
+      "free": false,
+      "comingSoon": true,
+      "paid": false,
+      "certificate": true,
       "gumroadSlug": null,
-      "progressCourseId": null, "progressTotal": null,
-      "href": "kurslar/general-english-intermediate"
+      "progressCourseId": null,
+      "progressTotal": null,
+      "href": "kurslar/general-english-intermediate",
+      "audience": {
+        "uz": "O‘rta darajadagi ingliz tilini rivojlantirmoqchi bo‘lganlar",
+        "ru": "Тем, кто хочет развивать английский на среднем уровне",
+        "en": "Learners improving intermediate English"
+      },
+      "status": "upcoming",
+      "countInPublicTotal": true
     },
     {
       "slug": "general-english-upper-intermediate",
       "type": "standard",
-      "cats": ["general-english"],
+      "cats": [
+        "general-english"
+      ],
       "accent": "#8b5cf6",
       "icon": "book",
-      "badge": { "uz": "Yangi", "ru": "Новый", "en": "New" },
+      "badge": {
+        "uz": "Yangi",
+        "ru": "Новый",
+        "en": "New"
+      },
       "title": {
         "uz": "General English — Upper-Intermediate (B2)",
         "ru": "General English — Upper-Intermediate (B2)",
         "en": "General English — Upper-Intermediate (B2)"
       },
-      "cat": { "uz": "Til · General English", "ru": "Язык · Общий английский", "en": "Language · General English" },
+      "cat": {
+        "uz": "Til · General English",
+        "ru": "Язык · Общий английский",
+        "en": "Language · General English"
+      },
       "description": {
         "uz": "Murakkab grammatika, argumentlarni tuzish, ish va o‘qishdagi muloqot, kengroq lug‘at hamda ilg‘or tinglash mashqlari bilan nutqingizni kuchaytiring.",
         "ru": "Усильте речь с помощью сложной грамматики, построения аргументов, общения для работы и учёбы.",
         "en": "Strengthen your English with complex grammar, argument building and communication for work and study."
       },
-      "price": { "uz": "Narx belgilanmoqda", "ru": "Narx belgilanmoqda", "en": "Price to be announced" },
-      "priceUzs": { "uz": "Tez orada", "ru": "Скоро", "en": "Coming soon" },
-      "free": false, "comingSoon": true, "paid": false, "certificate": true,
+      "price": {
+        "uz": "Narx belgilanmoqda",
+        "ru": "Narx belgilanmoqda",
+        "en": "Price to be announced"
+      },
+      "priceUzs": {
+        "uz": "Tez orada",
+        "ru": "Скоро",
+        "en": "Coming soon"
+      },
+      "free": false,
+      "comingSoon": true,
+      "paid": false,
+      "certificate": true,
       "gumroadSlug": null,
-      "progressCourseId": null, "progressTotal": null,
-      "href": "kurslar/general-english-upper-intermediate"
+      "progressCourseId": null,
+      "progressTotal": null,
+      "href": "kurslar/general-english-upper-intermediate",
+      "audience": {
+        "uz": "Murakkabroq ingliz tiliga o‘tmoqchi bo‘lganlar",
+        "ru": "Тем, кто хочет перейти к более продвинутому английскому",
+        "en": "Learners moving to advanced English"
+      },
+      "status": "upcoming",
+      "countInPublicTotal": true
     },
     {
       "slug": "general-english-advanced",
       "type": "standard",
-      "cats": ["general-english"],
+      "cats": [
+        "general-english"
+      ],
       "accent": "#a855f7",
       "icon": "book",
-      "badge": { "uz": "Yangi", "ru": "Новый", "en": "New" },
+      "badge": {
+        "uz": "Yangi",
+        "ru": "Новый",
+        "en": "New"
+      },
       "title": {
         "uz": "General English — Advanced (C1)",
         "ru": "General English — Advanced (C1)",
         "en": "General English — Advanced (C1)"
       },
-      "cat": { "uz": "Til · General English", "ru": "Язык · Общий английский", "en": "Language · General English" },
+      "cat": {
+        "uz": "Til · General English",
+        "ru": "Язык · Общий английский",
+        "en": "Language · General English"
+      },
       "description": {
         "uz": "Professional va akademik vaziyatlarda nozik ma’nolarni yetkazing: murakkab nutq, taqdimot, ilg‘or lug‘at va yuqori darajadagi tinglash ustida ishlang.",
         "ru": "Передавайте тонкие смыслы в профессиональных и академических ситуациях: сложная речь, презентации.",
         "en": "Convey nuance in professional and academic settings through complex speaking and presentations."
       },
-      "price": { "uz": "Narx belgilanmoqda", "ru": "Narx belgilanmoqda", "en": "Price to be announced" },
-      "priceUzs": { "uz": "Tez orada", "ru": "Скоро", "en": "Coming soon" },
-      "free": false, "comingSoon": true, "paid": false, "certificate": true,
+      "price": {
+        "uz": "Narx belgilanmoqda",
+        "ru": "Narx belgilanmoqda",
+        "en": "Price to be announced"
+      },
+      "priceUzs": {
+        "uz": "Tez orada",
+        "ru": "Скоро",
+        "en": "Coming soon"
+      },
+      "free": false,
+      "comingSoon": true,
+      "paid": false,
+      "certificate": true,
       "gumroadSlug": null,
-      "progressCourseId": null, "progressTotal": null,
-      "href": "kurslar/general-english-advanced"
+      "progressCourseId": null,
+      "progressTotal": null,
+      "href": "kurslar/general-english-advanced",
+      "audience": {
+        "uz": "Ingliz tilini yuqori darajada ishlatmoqchi bo‘lganlar",
+        "ru": "Тем, кто хочет уверенно использовать английский на высоком уровне",
+        "en": "Learners who want confident advanced English"
+      },
+      "status": "upcoming",
+      "countInPublicTotal": true
     },
     {
       "slug": "sat-math",
       "type": "standard",
-      "cats": ["sat", "admission"],
+      "cats": [
+        "sat",
+        "admission"
+      ],
       "accent": "#f97316",
       "icon": "document",
-      "badge": { "uz": "Yangi", "ru": "Новый", "en": "New" },
+      "badge": {
+        "uz": "Yangi",
+        "ru": "Новый",
+        "en": "New"
+      },
       "title": {
         "uz": "SAT Math",
         "ru": "SAT Math",
         "en": "SAT Math"
       },
-      "cat": { "uz": "SAT · Admission", "ru": "SAT · Поступление", "en": "SAT · Admissions" },
+      "cat": {
+        "uz": "SAT · Admission",
+        "ru": "SAT · Поступление",
+        "en": "SAT · Admissions"
+      },
       "description": {
         "uz": "SAT Math uchun algebra, geometriya va statistika bo‘yicha kerakli ko‘nikmalarni tizimli o‘rganing.",
         "ru": "Системно изучайте алгебру, геометрию и статистику для SAT Math.",
         "en": "Study the algebra, geometry, and statistics needed for SAT Math in a structured way."
       },
-      "price": { "uz": "Narx belgilanmoqda", "ru": "Narx belgilanmoqda", "en": "Price to be announced" },
-      "priceUzs": { "uz": "Tez orada", "ru": "Скоро", "en": "Coming soon" },
-      "free": false, "comingSoon": true, "paid": false, "certificate": true,
+      "price": {
+        "uz": "Narx belgilanmoqda",
+        "ru": "Narx belgilanmoqda",
+        "en": "Price to be announced"
+      },
+      "priceUzs": {
+        "uz": "Tez orada",
+        "ru": "Скоро",
+        "en": "Coming soon"
+      },
+      "free": false,
+      "comingSoon": true,
+      "paid": false,
+      "certificate": true,
       "gumroadSlug": null,
-      "progressCourseId": null, "progressTotal": null,
-      "href": "kurslar/sat-math"
+      "progressCourseId": null,
+      "progressTotal": null,
+      "href": "kurslar/sat-math",
+      "audience": {
+        "uz": "SAT Math ballini oshirmoqchi bo‘lgan abituriyentlar",
+        "ru": "Абитуриенты, которые хотят повысить балл SAT Math",
+        "en": "Applicants who want to improve their SAT Math score"
+      },
+      "status": "upcoming",
+      "countInPublicTotal": true
     },
     {
       "slug": "sat-english",
       "type": "standard",
-      "cats": ["sat", "admission"],
+      "cats": [
+        "sat",
+        "admission"
+      ],
       "accent": "#38bdf8",
       "icon": "document",
-      "badge": { "uz": "Yangi", "ru": "Новый", "en": "New" },
+      "badge": {
+        "uz": "Yangi",
+        "ru": "Новый",
+        "en": "New"
+      },
       "title": {
         "uz": "SAT English (Reading & Writing)",
         "ru": "SAT English (Reading & Writing)",
         "en": "SAT English (Reading & Writing)"
       },
-      "cat": { "uz": "SAT · Admission", "ru": "SAT · Поступление", "en": "SAT · Admissions" },
+      "cat": {
+        "uz": "SAT · Admission",
+        "ru": "SAT · Поступление",
+        "en": "SAT · Admissions"
+      },
       "description": {
         "uz": "SAT Reading & Writing uchun o‘qib tushunish, grammatika va yozma javob strategiyalarini o‘rganing.",
         "ru": "Изучайте стратегии чтения, грамматики и письменных ответов для SAT Reading & Writing.",
         "en": "Learn reading comprehension, grammar, and written-response strategies for SAT Reading & Writing."
       },
-      "price": { "uz": "Narx belgilanmoqda", "ru": "Narx belgilanmoqda", "en": "Price to be announced" },
-      "priceUzs": { "uz": "Tez orada", "ru": "Скоро", "en": "Coming soon" },
-      "free": false, "comingSoon": true, "paid": false, "certificate": true,
+      "price": {
+        "uz": "Narx belgilanmoqda",
+        "ru": "Narx belgilanmoqda",
+        "en": "Price to be announced"
+      },
+      "priceUzs": {
+        "uz": "Tez orada",
+        "ru": "Скоро",
+        "en": "Coming soon"
+      },
+      "free": false,
+      "comingSoon": true,
+      "paid": false,
+      "certificate": true,
       "gumroadSlug": null,
-      "progressCourseId": null, "progressTotal": null,
-      "href": "kurslar/sat-english"
+      "progressCourseId": null,
+      "progressTotal": null,
+      "href": "kurslar/sat-english",
+      "audience": {
+        "uz": "SAT Reading va Writingga tayyorlanayotgan abituriyentlar",
+        "ru": "Абитуриенты, готовящиеся к SAT Reading и Writing",
+        "en": "Applicants preparing for SAT Reading and Writing"
+      },
+      "status": "upcoming",
+      "countInPublicTotal": true
     },
     {
       "slug": "desmos-applications",
       "type": "standard",
-      "cats": ["sat", "admission"],
+      "cats": [
+        "sat",
+        "admission"
+      ],
       "accent": "#a855f7",
       "icon": "document",
-      "badge": { "uz": "Yangi", "ru": "Новый", "en": "New" },
+      "badge": {
+        "uz": "Yangi",
+        "ru": "Новый",
+        "en": "New"
+      },
       "title": {
         "uz": "Desmos Applications",
         "ru": "Desmos Applications",
         "en": "Desmos Applications"
       },
-      "cat": { "uz": "SAT · Admission", "ru": "SAT · Поступление", "en": "SAT · Admissions" },
+      "cat": {
+        "uz": "SAT · Admission",
+        "ru": "SAT · Поступление",
+        "en": "SAT · Admissions"
+      },
       "description": {
         "uz": "SAT imtihonida ruxsat etilgan Desmos grafik kalkulyatoridan funksiyalar, grafiklar va tezkor yechimlar uchun samarali foydalanishni o‘rganing.",
         "ru": "Научитесь эффективно использовать разрешённый на SAT калькулятор Desmos для функций и графиков.",
         "en": "Learn to use the Desmos graphing calculator allowed on the SAT effectively for functions and graphs."
       },
-      "price": { "uz": "Narx belgilanmoqda", "ru": "Narx belgilanmoqda", "en": "Price to be announced" },
-      "priceUzs": { "uz": "Tez orada", "ru": "Скоро", "en": "Coming soon" },
-      "free": false, "comingSoon": true, "paid": false, "certificate": true,
+      "price": {
+        "uz": "Narx belgilanmoqda",
+        "ru": "Narx belgilanmoqda",
+        "en": "Price to be announced"
+      },
+      "priceUzs": {
+        "uz": "Tez orada",
+        "ru": "Скоро",
+        "en": "Coming soon"
+      },
+      "free": false,
+      "comingSoon": true,
+      "paid": false,
+      "certificate": true,
       "gumroadSlug": null,
-      "progressCourseId": null, "progressTotal": null,
-      "href": "kurslar/desmos-applications"
+      "progressCourseId": null,
+      "progressTotal": null,
+      "href": "kurslar/desmos-applications",
+      "audience": {
+        "uz": "SAT Math’da Desmos’dan foydalanishni o‘rganmoqchi bo‘lganlar",
+        "ru": "Тем, кто хочет научиться использовать Desmos в SAT Math",
+        "en": "Learners who want to use Desmos for SAT Math"
+      },
+      "status": "upcoming",
+      "countInPublicTotal": true
     },
     {
       "slug": "financial-literacy",
-      "type": "coming-soon",
-      "cats": ["hayotiy"],
+      "type": "standard",
+      "cats": [
+        "hayotiy"
+      ],
       "accent": "#10b981",
       "icon": "box",
       "title": {
@@ -674,21 +1456,48 @@
         "ru": "Финансовая грамотность",
         "en": "Financial Literacy"
       },
-      "cat": { "uz": "HAYOTIY KO'NIKMA", "ru": "ЖИЗНЕННЫЕ НАВЫКИ", "en": "LIFE SKILLS" },
-      "description": {
-        "uz": "Pulni boshqarish, byudjet tuzish va moliyaviy qarorlar — talaba hayoti uchun asosiy ko'nikmalar.",
-        "ru": "Управляйте деньгами и принимайте взвешенные решения.",
-        "en": "Manage money and make sound decisions."
+      "cat": {
+        "uz": "HAYOTIY KO'NIKMA",
+        "ru": "ЖИЗНЕННЫЕ НАВЫКИ",
+        "en": "LIFE SKILLS"
       },
-      "free": false, "comingSoon": true, "paid": false, "certificate": true,
+      "description": {
+        "uz": "Byudjet, qarz xavfi, tejash va kundalik moliyaviy qarorlar bo‘yicha bepul amaliy mini-kurs.",
+        "ru": "Бесплатный практический мини-курс о бюджете, долгах, сбережениях и финансовых решениях.",
+        "en": "A free practical mini-course on budgeting, debt risk, saving, and everyday financial decisions."
+      },
+      "free": true,
+      "comingSoon": false,
+      "paid": false,
+      "certificate": true,
       "gumroadSlug": null,
-      "progressCourseId": null, "progressTotal": null,
-      "href": "kurslar/financial-literacy"
+      "progressCourseId": null,
+      "progressTotal": null,
+      "href": "kurslar/financial-literacy",
+      "audience": {
+        "uz": "Shaxsiy moliyasini tartibga solmoqchi bo‘lganlar",
+        "ru": "Тем, кто хочет упорядочить личные финансы",
+        "en": "People who want to organize personal finances"
+      },
+      "status": "available",
+      "countInPublicTotal": true,
+      "price": {
+        "uz": "Bepul",
+        "ru": "Бесплатно",
+        "en": "Free"
+      },
+      "priceUzs": {
+        "uz": "0 so‘m",
+        "ru": "0 сум",
+        "en": "0 UZS"
+      }
     },
     {
       "slug": "el-yurt-umidi",
       "type": "coming-soon",
-      "cats": ["admission"],
+      "cats": [
+        "admission"
+      ],
       "accent": "#ec4899",
       "icon": "cap",
       "title": {
@@ -696,21 +1505,43 @@
         "ru": "Выиграем El-Yurt Umidi",
         "en": "Winning El-Yurt Umidi"
       },
-      "cat": { "uz": "Admission", "ru": "Поступление", "en": "Admission" },
+      "cat": {
+        "uz": "Admission",
+        "ru": "Поступление",
+        "en": "Admission"
+      },
       "description": {
         "uz": "Davlat granti bo'yicha suhbatga tayyorgarlik — to'liq material tez orada qo'shiladi.",
         "ru": "Подготовка к собеседованию по государственному гранту.",
         "en": "Preparation for the state-grant interview."
       },
-      "free": false, "comingSoon": true, "paid": false, "certificate": true,
+      "free": false,
+      "comingSoon": true,
+      "paid": false,
+      "certificate": true,
       "gumroadSlug": null,
-      "progressCourseId": null, "progressTotal": null,
-      "href": "kurslar/el-yurt-umidi"
+      "progressCourseId": null,
+      "progressTotal": null,
+      "href": "kurslar/el-yurt-umidi",
+      "audience": {
+        "uz": "El-yurt umidi va xalqaro stipendiyalarga tayyorlanayotganlar",
+        "ru": "Тем, кто готовится к El-yurt umidi и международным стипендиям",
+        "en": "Applicants preparing for El-yurt umidi and international scholarships"
+      },
+      "status": "upcoming",
+      "countInPublicTotal": false,
+      "price": {
+        "uz": "Tez orada",
+        "ru": "Скоро",
+        "en": "Coming soon"
+      }
     },
     {
       "slug": "computer-literacy",
       "type": "coming-soon",
-      "cats": ["hayotiy"],
+      "cats": [
+        "hayotiy"
+      ],
       "accent": "#0ea5e9",
       "icon": "monitor",
       "title": {
@@ -718,16 +1549,36 @@
         "ru": "Компьютерная грамотность",
         "en": "Computer Literacy"
       },
-      "cat": { "uz": "HAYOTIY KO'NIKMA", "ru": "ЖИЗНЕННЫЕ НАВЫКИ", "en": "LIFE SKILLS" },
+      "cat": {
+        "uz": "HAYOTIY KO'NIKMA",
+        "ru": "ЖИЗНЕННЫЕ НАВЫКИ",
+        "en": "LIFE SKILLS"
+      },
       "description": {
         "uz": "Microsoft Office va Google Workspace — zamonaviy muhandislik va ta'lim uchun asosiy raqamli ko'nikmalar.",
         "ru": "Microsoft Office и Google Workspace — цифровая грамотность для учёбы и работы.",
         "en": "Microsoft Office and Google Workspace — digital literacy for study and work."
       },
-      "free": false, "comingSoon": true, "paid": false, "certificate": true,
+      "free": false,
+      "comingSoon": true,
+      "paid": false,
+      "certificate": true,
       "gumroadSlug": null,
-      "progressCourseId": null, "progressTotal": null,
-      "href": "kurslar/computer-literacy"
+      "progressCourseId": null,
+      "progressTotal": null,
+      "href": "kurslar/computer-literacy",
+      "audience": {
+        "uz": "Kompyuterdan ishonchli foydalanishni o‘rganmoqchi bo‘lganlar",
+        "ru": "Тем, кто хочет уверенно пользоваться компьютером",
+        "en": "People who want confident computer skills"
+      },
+      "status": "upcoming",
+      "countInPublicTotal": false,
+      "price": {
+        "uz": "Tez orada",
+        "ru": "Скоро",
+        "en": "Coming soon"
+      }
     }
   ]
 }

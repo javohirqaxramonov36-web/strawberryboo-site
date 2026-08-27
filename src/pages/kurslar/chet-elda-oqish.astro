@@ -22,7 +22,7 @@ const questions = [
   <div class="course-hero">
     <h1 data-i18n="ce.h1">Nima uchun chet elda o'qish kerak (va bepul qanday)</h1>
     <div class="price">
-      <span class="now">$0</span>
+      <span class="now">Bepul</span>
       <span class="badge badge-free">Bepul</span>
       <span class="badge badge-cert">Sertifikat</span>
       <span class="uzs">Bepul</span>
@@ -208,6 +208,13 @@ const questions = [
     </p>
   </section>
 
+  <section class="admission-funnel" aria-labelledby="admission-funnel-title">
+    <p class="eyebrow">KEYINGI QADAM</p>
+    <h2 id="admission-funnel-title">Bepul yo‘nalishdan amaliy tayyorgarlikkacha</h2>
+    <p>Bepul kursda motiv, grant manbalari va birinchi talablar ro‘yxatini tuzing. Keyin Admission Process kursida hujjat, deadline, essay va intervyu bo‘yicha batafsil reja bilan davom eting.</p>
+    <a class="start-btn" href={import.meta.env.BASE_URL + 'kurslar/admission-process/'}>Admission Process kursini ko‘rish →</a>
+  </section>
+
   <a href={import.meta.env.BASE_URL + 'kurslar'} class="course-nav-link" style="margin-left:1rem;" data-i18n="ce.all">← Barcha kurslar</a>
 
   <Quiz titleI18n="ce.quizTitle" questions={questions} />
@@ -215,5 +222,5 @@ const questions = [
   {/* REAL student reviews go in src/data/testimonials.ts — add only permissioned, verified reviews. This renders nothing until then. */}
   <CourseTestimonialPlaceholder />
 </article>
-<style>.grant-compare{padding:1.2rem;border:1px solid #fbbf24;border-radius:16px;background:linear-gradient(135deg,rgba(251,191,36,.1),var(--surface))}.grant-compare button{margin:.2rem;padding:.55rem .7rem;border:1px solid var(--border);border-radius:8px;background:var(--surface);color:var(--text);cursor:pointer}.grant-compare p{padding:.8rem;border-left:3px solid #fbbf24;background:var(--surface)}</style><script>const gi=document.querySelector('#grantInfo'),gm={ey:"<b>El-Yurt Umidi</b> — kursdagi grantlar bo'limida ko'rib chiqiladigan imkoniyatlardan biri.",ch:"<b>Chevening</b> — kursdagi grantlar bo'limida ko'rib chiqiladigan imkoniyatlardan biri.",da:"<b>DAAD</b> — kursdagi grantlar bo'limida ko'rib chiqiladigan imkoniyatlardan biri."};document.querySelectorAll('[data-grant]').forEach(b=>b.onclick=()=>gi.innerHTML=gm[b.dataset.grant])</script>
+<style>.admission-funnel{margin:1.5rem 0;padding:1.2rem;border:1px solid color-mix(in srgb,#34d399 45%,var(--border));border-radius:16px;background:linear-gradient(135deg,rgba(52,211,153,.1),var(--surface))}.admission-funnel p:not(.eyebrow){color:var(--muted);line-height:1.6}.admission-funnel .start-btn{display:inline-block;margin-top:.5rem}.grant-compare{padding:1.2rem;border:1px solid #fbbf24;border-radius:16px;background:linear-gradient(135deg,rgba(251,191,36,.1),var(--surface))}.grant-compare button{margin:.2rem;padding:.55rem .7rem;border:1px solid var(--border);border-radius:8px;background:var(--surface);color:var(--text);cursor:pointer}.grant-compare p{padding:.8rem;border-left:3px solid #fbbf24;background:var(--surface)}</style><script>const gi=document.querySelector('#grantInfo'),gm={ey:"<b>El-Yurt Umidi</b> — kursdagi grantlar bo'limida ko'rib chiqiladigan imkoniyatlardan biri.",ch:"<b>Chevening</b> — kursdagi grantlar bo'limida ko'rib chiqiladigan imkoniyatlardan biri.",da:"<b>DAAD</b> — kursdagi grantlar bo'limida ko'rib chiqiladigan imkoniyatlardan biri."};document.querySelectorAll('[data-grant]').forEach(b=>b.onclick=()=>gi.innerHTML=gm[b.dataset.grant])</script>
 </Base>

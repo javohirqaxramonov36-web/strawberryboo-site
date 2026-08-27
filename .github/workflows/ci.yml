@@ -14,3 +14,8 @@ jobs:
           node-version: 20
       - run: npm install
       - run: npm run build
+      - run: npm run verify:courses
+      - run: npm run verify:startup
+      - run: npm run verify:impact
+      - run: npm run verify:placement
+      - run: node scripts/verify-course-schema.mjs

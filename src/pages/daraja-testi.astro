@@ -1,0 +1,13 @@
+---
+import Base from '../layouts/Base.astro';
+import PlacementTest from '../components/PlacementTest.astro';
+const base = import.meta.env.BASE_URL;
+const alternates = [
+  { lang: 'uz', href: base + 'daraja-testi/' },
+  { lang: 'ru', href: base + 'ru/daraja-testi/' },
+  { lang: 'en', href: base + 'en/daraja-testi/' },
+];
+---
+<Base title="Ingliz tili daraja testi | Tayanch" description="General English uchun CEFR darajangizni aniqlang." lang="uz" localeAlternates={alternates}>
+  <PlacementTest lang="uz" />
+</Base>

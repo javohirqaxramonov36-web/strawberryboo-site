@@ -81,7 +81,7 @@ const L = {
   }
 };
 const t = L[lang] || L.uz;
-const coursePrice = `${price} · ≈ ${priceUzs}`;
+const coursePrice = price.startsWith('$') ? `${priceUzs} (≈ ${price})` : price;
 const localePrefix = lang === 'uz' ? '' : `${lang}/`;
 // Course routes are available in all three locales. Standalone practice pages are
 // shared, so their language is carried in the query string instead of pointing to a
@@ -107,7 +107,7 @@ const faqCopy = {
 <CourseSchema name={title} {description} {lang} />
 <article class="ielts-skill" style={`--skill-accent:${accent}`}>
   <!-- AIDA: 1) ATTENTION -->
-  <header class="course-hero"><p class="eyebrow">{eyebrow} · {t.newSkill}</p><h1>{title}</h1><div class="price"><span class="now">{price}</span><span class="uzs">≈ {priceUzs} · {t.foreverAccess}</span></div><p class="lead">{description}</p></header>
+  <header class="course-hero"><p class="eyebrow">{eyebrow} · {t.newSkill}</p><h1>{title}</h1><div class="price"><span class="now">{price.startsWith('$') ? priceUzs : price}</span>{price.startsWith('$') && <span class="usd">(≈ {price})</span>}<span class="uzs">{t.foreverAccess}</span></div><p class="lead">{description}</p></header>
 
   <!-- Point 7: hero visual placeholder -->
   <div class="hero-visual" role="img" aria-label={t.heroVisualAlt}>

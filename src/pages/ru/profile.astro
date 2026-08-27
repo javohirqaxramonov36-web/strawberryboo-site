@@ -1,5 +1,6 @@
 ---
 import Base from '../../layouts/Base.astro';
+import LmsAccount from '../../components/LmsAccount.astro';
 const title = 'Мой профиль — Tayanch';
 const description = 'Результаты IELTS mock и прогресс практики, сохранённые в этом браузере.';
 
@@ -15,6 +16,8 @@ const alternates = [{ lang: 'uz', href: base + 'profile/' }, { lang: 'ru', href:
       <p id="profile-name" class="profile-name">Bu qurilmadagi profil</p>
       <p class="local-note" data-i18n="prof.note">Natijalar faqat shu brauzer va qurilmada saqlanadi. Brauzer ma’lumotlarini tozalash ularni o‘chirishi mumkin.</p>
     </div>
+
+    <LmsAccount lang="ru" />
 
     <section class="summary-grid" aria-label="Practice xulosasi">
       <article><span data-i18n="prof.rLabel">Mock natijalari</span><strong id="result-count">0</strong><small data-i18n="prof.rSub">shu brauzerda saqlangan</small></article>

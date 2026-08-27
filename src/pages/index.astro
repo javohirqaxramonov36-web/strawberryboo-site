@@ -1,8 +1,9 @@
 ··—≈→→·—≈→·≈→·—≈→·—≈→·→→—→—→·≈→——→·→—→——→————---
 import Base from "../layouts/Base.astro";
-import InstructorMiniBlock from "../components/InstructorMiniBlock.astro";
 import { totalCourseCount } from "../config/course-catalog";
 import CourseCard from "../components/CourseCard.astro";
+import TelegramLeadSection from "../components/TelegramLeadSection.astro";
+import SocialImpactBanner from "../components/SocialImpactBanner.astro";
 import coursesData from "../data/courses.json";
 const courseById = (slug: string) => (coursesData.courses as any[]).find((c) => c.slug === slug);
 const title = "AI, IELTS va Admission kurslari | Tayanch";
@@ -11,7 +12,7 @@ const base = import.meta.env.BASE_URL;
 const TG = "https://t.me/tayanch_go"; // Telegram kanal/guruh havolasi
 ---
 
-<Base title={title} description={description}>
+<Base title={title} description={description} showDiscountBanner={true}>
 <section class="hero">
   <span class="eyebrow" data-i18n="hero.eyebrow">AI · IELTS · Admission kurslari</span>
 
@@ -34,10 +35,9 @@ const TG = "https://t.me/tayanch_go"; // Telegram kanal/guruh havolasi
     </span>
   </div>
 
-  <h1 class="hero-typed">
-    <span class="typed-static" data-i18n="hero.learn">O'rganing:</span>
-    <span class="typed-line">    <span class="typed-text">AI'dan 5 daqiqada sifatli javob</span><span class="typed-caret" aria-hidden="true"></span></span>
-  </h1>
+  <p class="hero-founder-note"><span class="hf-ic" aria-hidden="true">✓</span> Asoschi: IELTS 7.0 va SAT 1420 natijalariga erishgan</p>
+
+  <h1 class="hero-typed" data-i18n="hero.learn">AI, IELTS va Admission’ni bir joyda o‘rganing</h1>
 
   <p class="lead">
     Bugundan yangi ko'nikma egallang. Sun'iy intellekt nima uchun kerak,
@@ -52,12 +52,12 @@ const TG = "https://t.me/tayanch_go"; // Telegram kanal/guruh havolasi
   </div>
 </section>
 
-<section class="founder-excerpt" aria-labelledby="founder-excerpt-title">
-  <div><p class="eyebrow">NEGA TAYANCH?</p><h2 id="founder-excerpt-title">Bu kurslarni nega men yaratdim</h2></div>
-  <div><p>Men moliyaviy qiyinchiliklar sabab IELTS’ga mustaqil tayyorlanganman. Shu yo‘lda IELTS 7.0 va SAT 1420 natijalariga erishdim — endi Tayanch’da bilimni aniq yo‘l va amaliy qadamlar bilan ulashmoqdaman.</p><a class="course-nav-link" href={base + 'mening-yolim/'}>Batafsil o‘qish →</a></div>
-</section>
+<SocialImpactBanner />
 
-<InstructorMiniBlock journeyHref={base + 'mening-yolim/'} />
+<section class="founder-excerpt" aria-labelledby="founder-excerpt-title">
+  <div><p class="eyebrow">NEGA TAYANCH?</p><h2 id="founder-excerpt-title">AI, IELTS va Admission’ni amaliy yo‘l bilan o‘rganing</h2></div>
+  <div><p>Men moliyaviy qiyinchiliklar sabab mustaqil o‘rganish yo‘lidan o‘tdim. Endi Tayanch’da AI, IELTS va Admission bo‘yicha bilimni aniq yo‘l va amaliy qadamlar bilan ulashaman.</p><a class="course-nav-link" href={base + 'mening-yolim/'}>Batafsil o‘qish →</a><div class="founder-social"><a href={TG} target="_blank" rel="noopener noreferrer">Telegram</a><a href="https://instagram.com/javohir_kakhramonov" target="_blank" rel="noopener noreferrer">Instagram</a></div></div>
+</section>
 
 <!-- ENG MASHHUR SPOTLIGHT -->
 <section class="spotlight">
@@ -65,7 +65,7 @@ const TG = "https://t.me/tayanch_go"; // Telegram kanal/guruh havolasi
     <span class="badge badge-hot"><span data-i18n="spot.badge">Eng mashhur</span></span>
     <h2>O'z AI yordamchingizni yaratish</h2>
     <p>Oddiy AI bitta savolga javob beradi. Agent esa vazifani o'zi rejalashtirib, qidiruv qilib, natijani yozib chiqadi. CrewAI va LangGraph bilan o'z agent'ingizni yaratasiz. Kimga mo'ljallangan: AI bilan tanishgan va uni haqiqiy ishga qo'llamoqchi bo'lganlarga.</p>
-    <div class="spot-price">$39 <span class="uzs">≈ 490 000 so'm</span></div>
+    <div class="spot-price"><span class="uzs">490 000 so'm</span><span class="usd">≈ $39</span></div>
     <a href={base + 'kurslar/ai-agentlar'} class="course-nav-link"><span data-i18n="spot.more">Batafsil →</span></a>
   </div>
   <div class="spot-ic">
@@ -92,7 +92,7 @@ const TG = "https://t.me/tayanch_go"; // Telegram kanal/guruh havolasi
       <span class="cat">Til · Admission</span>
       <span class="cert-line"><svg viewBox="0 0 24 24"><circle cx="12" cy="9" r="5"/><path d="M9 13.5 7.5 21 12 18l4.5 3L15 13.5"/></svg>Sertifikat bilan</span>
       <p>Har bir skill alohida, 30 kunlik speaking rejasi bilan — kerakli band'gacha yetib olasiz. Kimga mo'ljallangan: IELTS 6.5–7.0 kerak bo'lganlarga.</p>
-      <p class="price">$7.50 dan <span class="uzs">≈ 93 750 so'm / skill</span></p>
+      <p class="price"><span class="price-local">93 750 so'mdan</span> <span class="usd">(≈ $7.50 / skill)</span></p>
 
       <a href={base + 'kurslar/#ielts-courses'} class="start-btn">Modullarni ko'rish →</a>
       <a href={base + 'ielts-mock/'} class="mock-practice-link">Mock imtihonni sinab ko'ring →</a>
@@ -104,14 +104,6 @@ const TG = "https://t.me/tayanch_go"; // Telegram kanal/guruh havolasi
   </div>
 </section>
 
-
-<section class="catalog-extensions" aria-labelledby="catalog-extensions-title">
-  <div class="sec-head" style="margin-top:0"><h2 id="catalog-extensions-title" class="sec-title">Yo‘nalishlar</h2><a class="sec-all" href={base + 'kurslar/'}>Barcha 31 kurs →</a></div>
-  <div class="extension-grid">
-    <a href={base + 'kurslar/general-english-beginner/'}><span>GENERAL ENGLISH</span><b>A1 → C1 yo‘nalishi</b><small>6 ta bosqich · narxlar keyin belgilanadi</small></a>
-    <a href={base + 'kurslar/sat-math/'}><span>SAT · ADMISSION</span><b>Math + English + Desmos</b><small>3 ta komponent · narxlar keyin belgilanadi</small></a>
-  </div>
-</section>
 
 <section class="upcoming-courses" aria-labelledby="upcoming-courses-title">
   <div class="upcoming-heading">
@@ -165,7 +157,7 @@ const TG = "https://t.me/tayanch_go"; // Telegram kanal/guruh havolasi
   <ul>
     <li data-i18n="why.1">Amaliy — nazariya emas, qilish o'rganasiz</li>
     <li data-i18n="why.2">O'zbek tilida — tushunarli tushuntirish</li>
-    <li data-i18n="why.3">Arzon — $19 dan boshlab</li>
+    <li data-i18n="why.3">Arzon — 240 000 so‘mdan (≈ $19)</li>
     <li data-i18n="why.4">Forever access — bir marta sotib, doim foydalan</li>
     <li data-i18n="why.5">Har kursda sertifikat</li>
   </ul>
@@ -184,616 +176,22 @@ const TG = "https://t.me/tayanch_go"; // Telegram kanal/guruh havolasi
 </section>
 
 
-<!-- ===== ENTERTAINMENT SECTION (directly on homepage) ===== -->
-  <section class="ent-hero">
-    <span class="eyebrow">ENTERTAINMENT</span>
-    <h1>Entertainment</h1>
-    <p class="lead">Kurslar orasida dam oling — o'yinlar va simulyatsiyalar. Barcha natijalar faqat shu brauzerda saqlanadi.</p>
-  </section>
+<section class="focus-break" aria-labelledby="focus-break-title">
+  <div><p class="eyebrow">DAM OLISH UCHUN</p><h2 id="focus-break-title">O‘yinlar va simulyatsiyalar alohida bo‘limda</h2><p>Kurslar sahifasi asosiy o‘quv maqsadida qoladi. Barcha o‘yin natijalari faqat shu brauzerda saqlanadi.</p></div><a class="start-btn" href={base + 'entertainment/'}>Entertainment’ni ochish →</a>
+</section>
 
-  <div class="ls-note">⚠️ Barcha natijalar, holat va reytinglar faqat <b>localStorage</b>'da saqlanadi. Server yoki backend yo'q.</div>
 
-  <section class="static-banner">
-    <div class="static-card" id="static-word"></div>
-    <div class="static-card" id="static-quote"></div>
-    <div class="static-card" id="static-history"></div>
-    <div class="static-card" id="static-pomodoro">
-      <h4>⏱️ Pomodoro</h4>
-      <div class="pomo-time" id="pomo-time">05:00</div>
-      <div class="pomo-controls">
-        <button id="pomo-start" class="mini-btn">Boshlash</button>
-        <button id="pomo-reset" class="mini-btn">Qayta</button>
-      </div>
-    </div>
-  </section>
-
-  <section class="filters-mobile">
-    <div class="filter-group">
-      <button class="filter-btn active" data-filter="all">Barchasi</button>
-      <button class="filter-btn" data-filter="mashq">Mashq</button>
-      <button class="filter-btn" data-filter="bilim">Bilim</button>
-      <button class="filter-btn" data-filter="simulyatsiya">Simulyatsiya</button>
-      <button class="filter-btn" data-filter="ijod">Ijod</button>
-    </div>
-  </section>
-
-  <section class="games-grid">
-    <div id="games-container" class="games-container"></div>
-  </section>
-
-  <div id="game-modal" class="game-modal hidden">
-    <div class="game-modal-content">
-      <button class="game-modal-close" id="game-modal-close">✕</button>
-      <h3 id="game-modal-title">O'yin</h3>
-      <div id="game-modal-body"></div>
-      <div id="game-result" class="game-result hidden"></div>
-      <div id="game-share" class="game-share hidden">
-        <button id="share-copy" class="mini-btn">📋 Nusxa olish</button>
-        <a id="share-telegram" class="mini-btn" target="_blank">📨 Telegram</a>
-      </div>
-    </div>
-  </div>
-
-  <style is:global>
-    .ent-hero { text-align: center; padding: 8px 0 18px; }
-    .ent-hero .eyebrow { display: inline-block; font-size: 13px; font-weight: 600; color: var(--accent); background: var(--accent-soft); padding: 5px 12px; border-radius: 99px; margin-bottom: 1rem; }
-    .ent-hero h1 { font-family: var(--font-display); letter-spacing: -.02em; font-size: 2.4rem; margin: 0 0 .6rem; color: var(--text); }
-    .ent-hero .lead { color: var(--muted); max-width: 620px; margin: 0 auto; }
-
-    .ls-note { background: color-mix(in srgb, #f59e0b 14%, var(--surface)); border: 1px solid color-mix(in srgb, #f59e0b 40%, var(--border)); color: var(--text); padding: 10px 15px; border-radius: 14px; font-size: 13px; margin: 0 0 22px; }
-
-    .static-banner { margin-bottom: 26px; }
-    .static-grid, .static-banner { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
-    .static-card { background: var(--surface); border: 1px solid var(--border); border-radius: 16px; padding: 15px; font-size: 13px; color: var(--text); }
-    .static-card h4 { font-size: 13px; margin-bottom: 8px; color: var(--accent); }
-    .pomo-time { font-size: 28px; font-weight: 700; text-align: center; color: var(--accent); margin: 8px 0; }
-    .pomo-controls { display: flex; gap: 8px; justify-content: center; }
-
-    .mini-btn { padding: 8px 16px; background: var(--btn-bg); color: #fff; border: none; border-radius: 20px; font-size: 13px; font-weight: 600; cursor: pointer; transition: background .15s; text-decoration: none; display: inline-block; }
-    .mini-btn:hover { background: var(--accent-2); }
-
-    .filters-mobile { margin-bottom: 20px; }
-    .filter-group { display: flex; flex-wrap: wrap; gap: 10px; }
-    .filter-btn { padding: 9px 18px; border: 1px solid var(--border); background: var(--surface); color: var(--muted); border-radius: 20px; font-size: 13px; font-weight: 600; cursor: pointer; transition: all .2s; white-space: nowrap; }
-    .filter-btn:hover { border-color: var(--accent); color: var(--accent); }
-    .filter-btn.active { background: var(--btn-bg); border-color: var(--accent); color: #fff; }
-
-    .games-container { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 18px; }
-    .game-card { background: var(--surface); border: 1px solid var(--border); border-radius: 16px; padding: 20px; display: flex; flex-direction: column; transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease; }
-    .game-card:hover { transform: translateY(-5px); box-shadow: 0 16px 32px -10px rgba(0,0,0,.5); border-color: var(--accent); }
-    .game-emoji { font-size: 44px; }
-    .game-title { font-size: 16px; font-weight: 700; margin: 10px 0 6px; color: var(--text); }
-    .game-desc { font-size: 13px; color: var(--muted); flex: 1; }
-    .best-score { font-size: 11px; color: var(--accent); margin-top: 10px; display: block; }
-    .best-score.muted { color: var(--muted); opacity: .7; }
-    .play-btn { margin-top: 14px; padding: 10px 18px; background: var(--btn-bg); color: #fff; border: none; border-radius: 20px; font-size: 13px; font-weight: 600; cursor: pointer; text-align: center; transition: background .15s; }
-    .play-btn:hover { background: var(--accent-2); }
-    .no-games { padding: 40px; text-align: center; color: var(--muted); font-style: italic; }
-
-    .game-modal { position: fixed; inset: 0; background: rgba(0,0,0,.6); display: flex; align-items: center; justify-content: center; z-index: 1000; padding: 20px; }
-    .game-modal.hidden { display: none; }
-    .game-modal-content { background: var(--surface); border: 1px solid var(--border); border-radius: 20px; padding: 25px; max-width: 520px; width: 100%; max-height: 90vh; overflow-y: auto; position: relative; }
-    .game-modal-close { position: absolute; top: 15px; right: 15px; background: var(--bg); border: 1px solid var(--border); border-radius: 50%; width: 32px; height: 32px; cursor: pointer; font-size: 16px; color: var(--text); }
-    .game-modal-content h3 { margin-bottom: 15px; color: var(--text); padding-right: 30px; }
-    .game-result { margin-top: 15px; padding: 15px; background: color-mix(in srgb, #22c55e 12%, var(--surface)); border: 1px solid color-mix(in srgb, #22c55e 40%, var(--border)); border-radius: 16px; font-size: 14px; color: var(--text); }
-    .game-result.hidden { display: none; }
-    .game-result .new-record { color: #22c55e; font-weight: 700; }
-    .game-share { margin-top: 15px; display: flex; gap: 10px; }
-    .game-share.hidden { display: none; }
-
-    .g-inst { font-size: 13px; color: var(--muted); margin-bottom: 10px; }
-    .g-sample { background: var(--bg); border: 1px solid var(--border); border-radius: 12px; padding: 12px; font-size: 14px; margin-bottom: 12px; color: var(--text); }
-    .g-sample.big { font-size: 20px; text-align: center; }
-    .g-hint { font-size: 12px; color: var(--muted); margin-bottom: 10px; }
-    .g-actions { display: flex; gap: 10px; flex-wrap: wrap; }
-    .game-modal-content textarea, .game-modal-content input { width: 100%; padding: 10px; border: 1px solid var(--border); border-radius: 12px; font-size: 14px; margin-bottom: 10px; font-family: inherit; background: var(--bg); color: var(--text); }
-
-    .reaction-box { height: 150px; display: flex; align-items: center; justify-content: center; border-radius: 16px; font-size: 18px; font-weight: 700; cursor: pointer; margin-bottom: 12px; }
-    .reaction-box.wait { background: color-mix(in srgb, #ef4444 18%, var(--surface)); color: #ef4444; }
-    .reaction-box.go { background: color-mix(in srgb, #22c55e 18%, var(--surface)); color: #22c55e; }
-    .reaction-box.early { background: color-mix(in srgb, #f59e0b 18%, var(--surface)); color: #f59e0b; }
-    .reaction-box.done { background: color-mix(in srgb, #3b82f6 18%, var(--surface)); color: #3b82f6; }
-
-    .wordle-row { display: flex; gap: 6px; justify-content: center; margin-bottom: 6px; }
-    .wordle-cell { width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; border: 2px solid var(--border); border-radius: 8px; font-size: 18px; font-weight: 700; text-transform: uppercase; color: var(--text); }
-    .wordle-cell.green { background: #16a34a; color: #fff; border-color: #16a34a; }
-    .wordle-cell.yellow { background: #eab308; color: #fff; border-color: #eab308; }
-    .wordle-cell.gray { background: var(--muted); color: #fff; border-color: var(--muted); }
-
-    .memory-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; margin-bottom: 12px; }
-    .memory-cell { aspect-ratio: 1; border: none; border-radius: 12px; background: var(--btn-bg); color: #fff; font-size: 11px; font-weight: 600; cursor: pointer; padding: 4px; }
-
-    .tez-timer { font-size: 32px; font-weight: 700; text-align: center; color: #ef4444; margin-bottom: 12px; }
-
-    .opt-btn { display: block; width: 100%; margin-bottom: 8px; padding: 10px; border: 1px solid var(--border); border-radius: 12px; background: var(--bg); cursor: pointer; font-size: 14px; text-align: left; color: var(--text); }
-    .opt-btn:hover { border-color: var(--accent); color: var(--accent); }
-
-    .band9-col { margin-bottom: 12px; }
-    .band9-row { display: flex; align-items: center; gap: 8px; margin-bottom: 6px; font-size: 13px; color: var(--text); }
-    .band9-sel { margin-left: auto; padding: 4px; border-radius: 8px; border: 1px solid var(--border); background: var(--bg); color: var(--text); }
-
-    .fc-card { height: 120px; display: flex; align-items: center; justify-content: center; background: var(--bg); border: 1px solid var(--border); border-radius: 16px; font-size: 24px; font-weight: 700; color: var(--text); margin-bottom: 12px; }
-    .hidden { display: none !important; }
-
-    .optical-item { padding: 12px; border: 1px solid var(--border); border-radius: 12px; margin-bottom: 8px; font-size: 14px; cursor: pointer; color: var(--text); }
-    .optical-item.selected { background: color-mix(in srgb, var(--accent) 14%, var(--surface)); }
-
-    .budget-row { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; font-size: 13px; color: var(--text); }
-    .budget-row label { width: 90px; }
-    .budget-slider { flex: 1; accent-color: var(--accent); }
-    .budget-val { width: 50px; text-align: right; }
-    #budget-total { font-weight: 600; margin: 10px 0; }
-
-    .mood-btn { font-size: 32px; background: var(--bg); border: 1px solid var(--border); border-radius: 12px; padding: 10px; cursor: pointer; margin: 4px; }
-    .mood-btn:hover { border-color: var(--accent); }
-    #mood-msg { margin-top: 10px; font-size: 14px; color: var(--text); }
-
-    .avatar-wrap { text-align: center; margin-bottom: 12px; }
-
-    @media (max-width: 640px) {
-      .static-grid, .static-banner { grid-template-columns: repeat(2, 1fr); }
-      .games-container { grid-template-columns: 1fr; }
-      .ent-hero h1 { font-size: 1.9rem; }
-      .wordle-cell { width: 34px; height: 34px; font-size: 15px; }
-      .memory-grid { grid-template-columns: repeat(3, 1fr); }
-    }
-  .catalog-extensions{margin:2rem 0}.extension-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1rem}.extension-grid a{display:block;padding:1.1rem;border:1px solid var(--border);border-radius:15px;background:var(--surface);text-decoration:none;color:var(--text)}.extension-grid a:hover{border-color:var(--accent);transform:translateY(-2px)}.extension-grid span{display:block;color:var(--accent);font-size:.75rem;font-weight:800;letter-spacing:.1em}.extension-grid b{display:block;margin:.35rem 0;font-size:1.15rem}.extension-grid small{color:var(--muted)}@media(max-width:620px){.extension-grid{grid-template-columns:1fr}}
-</style>
-
-  <script is:inline>
-    const allGames = [
-      { id:1, title:"Typing Speed Test", description:"Matn beriladi, yozasiz. WPM va aniqlik hisoblanadi.", emoji:"⌨️", category:"mashq", type:"typing" },
-      { id:2, title:"Reaction Time Test", description:"Yashil bo'lganda bosing. Vaqt ms da.", emoji:"⚡", category:"mashq", type:"reaction" },
-      { id:3, title:"Word Guess (Wordle)", description:"5 harfli so'zni 6 urinishda toping.", emoji:"🔤", category:"mashq", type:"wordle" },
-      { id:4, title:"Memory Match", description:"Kartalarni juftlang.", emoji:"🃏", category:"mashq", type:"memory" },
-      { id:5, title:"Anagram Solver", description:"Aralash harflardan so'z toping.", emoji:"🔡", category:"mashq", type:"anagram" },
-      { id:6, title:"Xato Topish", description:"Gapdagi grammatik xatoni toping.", emoji:"🔍", category:"bilim", type:"xato" },
-      { id:7, title:"Tez fikrla (60s)", description:"60 soniyada qancha so'z yozasiz?", emoji:"💡", category:"mashq", type:"tez" },
-      { id:8, title:"Emoji Puzzle", description:"Emojidan ibora toping.", emoji:"😀", category:"bilim", type:"emoji" },
-      { id:9, title:"Optical Illusion", description:"Vizual jumboqlar galereyasi.", emoji:"👁️", category:"bilim", type:"optical" },
-      { id:10, title:"Trivia (15 savol)", description:"15 ta bilim savoli.", emoji:"🧠", category:"bilim", type:"trivia" },
-      { id:11, title:"AI yoki Inson?", description:"Matn AI tomonidanmi yozilgan?", emoji:"🤖", category:"bilim", type:"aihuman" },
-      { id:12, title:"Band 9 yozuvchimisiz?", description:"5 ta juftlikni to'g'ri joylashtiring.", emoji:"📝", category:"bilim", type:"band9" },
-      { id:13, title:"Flashcard Speed", description:"60 soniyada 8 karta.", emoji:"🗂️", category:"bilim", type:"flashcard" },
-      { id:14, title:"AI Detective", description:"Qaysi xabar soxta?", emoji:"🕵️", category:"bilim", type:"detective" },
-      { id:15, title:"20 ta savol", description:"Qaror daraxti bo'yicha 20 savol.", emoji:"🌳", category:"simulyatsiya", type:"twenty" },
-      { id:16, title:"Startup Idea Generator", description:"Tasodifiy startup g'oyasi.", emoji:"🚀", category:"ijod", type:"startup" },
-      { id:17, title:"Byudjet simulyatori", description:"$1000 ni taqsimlang.", emoji:"💰", category:"simulyatsiya", type:"budget" },
-      { id:18, title:"Bugungi kayfiyat", description:"Kayfiyatingizni tanlang.", emoji:"😊", category:"ijod", type:"mood" },
-      { id:19, title:"Mini avatar", description:"SVG avatar generatsiyasi.", emoji:"🎨", category:"ijod", type:"avatar" },
-      { id:20, title:"Prompt Engineering", description:"Prompt tuzing, ball oling.", emoji:"💬", category:"ijod", type:"prompt" }
-    ];
-
-    const SCORE_KEY = "strawberry_scores";
-    function getScores(){ try { return JSON.parse(localStorage.getItem(SCORE_KEY)) || {}; } catch(e){ return {}; } }
-    function getBest(id){ const s = getScores(); return s[id] ? s[id].best : null; }
-    function setBest(id, value, label){
-      const s = getScores();
-      if(!s[id] || value > s[id].best){ s[id] = { best: value, label, ts: Date.now() }; localStorage.setItem(SCORE_KEY, JSON.stringify(s)); return true; }
-      return false;
-    }
-
-    function renderGames(filter){
-      const container = document.getElementById("games-container");
-      const list = filter === "all" ? allGames : allGames.filter(g => g.category === filter);
-      document.querySelectorAll(".filter-btn").forEach(b => b.classList.toggle("active", b.dataset.filter === filter));
-      if(!list.length){ container.innerHTML = `<p class="no-games">O'yin topilmadi.</p>`; return; }
-      container.innerHTML = list.map(g => {
-        const best = getBest(g.id);
-        const bestHtml = best !== null ? `<span class="best-score">🏆 ${best.label}: ${best.best}</span>` : `<span class="best-score muted">🏆 hali yo'q</span>`;
-        return `<div class="game-card" data-id="${g.id}">
-          <div class="game-emoji">${g.emoji}</div>
-          <div class="game-title">${g.title}</div>
-          <div class="game-desc">${g.description}</div>
-          ${bestHtml}
-          <button class="play-btn" data-id="${g.id}">O'ynash →</button>
-        </div>`;
-      }).join("");
-      document.querySelectorAll(".play-btn").forEach(btn => {
-        btn.addEventListener("click", () => openGame(parseInt(btn.dataset.id)));
-      });
-    }
-
-    let activeGame = null;
-    let lastResultText = "";
-    function openGame(id){
-      const game = allGames.find(g => g.id === id);
-      if(!game) return;
-      activeGame = game;
-      document.getElementById("game-modal-title").textContent = game.emoji + " " + game.title;
-      document.getElementById("game-modal-body").innerHTML = "";
-      document.getElementById("game-result").classList.add("hidden");
-      document.getElementById("game-result").innerHTML = "";
-      document.getElementById("game-share").classList.add("hidden");
-      document.getElementById("game-modal").classList.remove("hidden");
-      window["init_" + game.type](document.getElementById("game-modal-body"));
-    }
-    function closeGame(){
-      document.getElementById("game-modal").classList.add("hidden");
-      activeGame = null;
-    }
-    function showResult(html, scoreValue, scoreLabel){
-      const r = document.getElementById("game-result");
-      r.innerHTML = html;
-      r.classList.remove("hidden");
-      if(scoreValue !== undefined && scoreLabel){
-        const improved = setBest(activeGame.id, scoreValue, scoreLabel);
-        if(improved) r.innerHTML += `<p class="new-record">🎉 Yangi rekord!</p>`;
-        lastResultText = `${activeGame.emoji} ${activeGame.title} — ${scoreLabel}: ${scoreValue} (Tayanch Ko'ngilochar)`;
-        document.getElementById("game-share").classList.remove("hidden");
-      }
-      renderGames(document.querySelector(".filter-btn.active").dataset.filter);
-    }
-    document.getElementById("game-modal-close").addEventListener("click", closeGame);
-    document.getElementById("game-modal").addEventListener("click", e => { if(e.target.id === "game-modal") closeGame(); });
-    document.getElementById("share-copy").addEventListener("click", () => {
-      navigator.clipboard.writeText(lastResultText).then(() => alert("Nusxa olindi!")).catch(() => alert("Nusxa olish qo'llab-quvvatlanmaydi."));
-    });
-    document.getElementById("share-telegram").addEventListener("click", e => {
-      e.preventDefault();
-      window.open("https://t.me/share/url?url=" + encodeURIComponent(location.origin + location.pathname) + "&text=" + encodeURIComponent(lastResultText), "_blank");
-    });
-
-    function initStatic(){
-      const words = ["Resilient","Curious","Eloquent","Diligent","Empathy","Innovate","Grit","Clarity","Momentum","Synergy"];
-      const quotes = ["Muvaffaqiyat — bu kichik sa'y-larning uyg'unligi.","Har kuni 1% yaxshilash yil davomida 37x natija beradi.","Qo'rquv chegarangiz, lekin qiziqish chegarasiz.","Eng yaxshi vaqt — hozir.","Xato qilish — o'rganishning narxi."];
-      const history = ["1888: Kodak kompaniyasi tashkil topdi.","1969: Internetning asosi (ARPANET) yaratildi.","1991: WWW ommaga taqdim etildi.","2007: Birinchi iPhone taqdimoti.","2020: Masofaviy ta'lim globallashdi."];
-      const d = new Date();
-      const idx = d.getDate() % words.length;
-      document.getElementById("static-word").innerHTML = `<h4>📌 So'z kuni</h4><p><b>${words[idx]}</b></p>`;
-      document.getElementById("static-quote").innerHTML = `<h4>💬 Hikmat</h4><p>${quotes[d.getMonth() % quotes.length]}</p>`;
-      document.getElementById("static-history").innerHTML = `<h4>📅 Bugun tarixda</h4><p>${history[d.getDate() % history.length]}</p>`;
-      let pomo = 300, timer = null;
-      const timeEl = document.getElementById("pomo-time");
-      document.getElementById("pomo-start").addEventListener("click", () => {
-        if(timer){ clearInterval(timer); timer = null; return; }
-        timer = setInterval(() => {
-          if(pomo <= 0){ clearInterval(timer); timer = null; return; }
-          pomo--;
-          const m = String(Math.floor(pomo/60)).padStart(2,"0");
-          const s = String(pomo%60).padStart(2,"0");
-          timeEl.textContent = `${m}:${s}`;
-        }, 1000);
-      });
-      document.getElementById("pomo-reset").addEventListener("click", () => { clearInterval(timer); timer = null; pomo = 300; timeEl.textContent = "05:00"; });
-    }
-
-    const TYPING_TEXT = "The quick brown fox jumps over the lazy dog while the sun sets behind the hills.";
-    function init_typing(root){
-      root.innerHTML = `<p class="g-inst">Quyidagi matnni tez va to'g'ri yozing:</p><div class="g-sample">${TYPING_TEXT}</div><textarea id="typing-input" rows="3" placeholder="Bu yerga yozing..."></textarea><div class="g-actions"><button id="typing-done" class="mini-btn">Yakunlash</button></div>`;
-      document.getElementById("typing-done").addEventListener("click", () => {
-        const input = document.getElementById("typing-input").value.trim();
-        const words = input.split(/\s+/).filter(Boolean).length;
-        const correct = input.split("").filter((c,i) => c === TYPING_TEXT[i]).length;
-        const acc = Math.round((correct / TYPING_TEXT.length) * 100);
-        const wpm = Math.max(0, Math.round(words / 1));
-        showResult(`<p>WPM: <b>${wpm}</b></p><p>Aniqlik: <b>${acc}%</b></p>`, wpm, "WPM");
-      });
-    }
-
-    function init_reaction(root){
-      root.innerHTML = `<div id="reaction-box" class="reaction-box">Kuting...</div>`;
-      const box = document.getElementById("reaction-box");
-      let start = 0, active = false;
-      function wait(){ box.textContent = "Kuting..."; box.className = "reaction-box wait"; active = false; setTimeout(() => { box.textContent = "ENDI BOSING!"; box.className = "reaction-box go"; start = performance.now(); active = true; }, 1000 + Math.random()*3000); }
-      box.addEventListener("click", () => {
-        if(!active){ box.textContent = "Juda erta! Qayta urinib ko'ring."; box.className = "reaction-box early"; setTimeout(wait, 1000); return; }
-        const ms = Math.round(performance.now() - start);
-        box.className = "reaction-box done"; box.textContent = ms + " ms";
-        showResult(`<p>Reaksiya vaqti: <b>${ms} ms</b></p>`, ms, "ms");
-      });
-      wait();
-    }
-
-    const WORDLE_WORDS = ["APPLE","BRAIN","CLOUD","DREAM","HEART","LIGHT","MOUSE","PLANT","RIVER","STONE","TRAIN","VOICE","WATCH","YOUTH","BREAD"];
-    function init_wordle(root){
-      const answer = WORDLE_WORDS[Math.floor(Math.random()*WORDLE_WORDS.length)];
-      let row = 0; const grid = [];
-      root.innerHTML = `<p class="g-inst">6 urinish. Har qatorda 5 harf.</p><div id="wordle-grid"></div><input id="wordle-input" maxlength="5" placeholder="so'z"><div class="g-actions"><button id="wordle-guess" class="mini-btn">Tahmin</button></div><p class="g-hint">Namuna: ${WORDLE_WORDS[0]}</p>`;
-      const gridEl = document.getElementById("wordle-grid");
-      for(let i=0;i<6;i++){ const r=document.createElement("div"); r.className="wordle-row"; for(let j=0;j<5;j++){ const c=document.createElement("span"); c.className="wordle-cell"; r.appendChild(c); } gridEl.appendChild(r); grid.push(r); }
-      document.getElementById("wordle-guess").addEventListener("click", () => {
-        const val = document.getElementById("wordle-input").value.toUpperCase();
-        if(val.length!==5) return;
-        const cells = grid[row].children; const used = {};
-        for(let i=0;i<5;i++){ if(val[i]===answer[i]){ cells[i].className="wordle-cell green"; used[answer[i]]=(used[answer[i]]||0)+1; } }
-        for(let i=0;i<5;i++){ if(cells[i].className==="wordle-cell"){ if(answer.includes(val[i]) && (used[val[i]]||0) < answer.split("").filter(x=>x===val[i]).length){ cells[i].className="wordle-cell yellow"; used[val[i]]=(used[val[i]]||0)+1; } else cells[i].className="wordle-cell gray"; } cells[i].textContent=val[i]; }
-        if(val===answer){ showResult(`<p>Topdingiz! 🎉 Javob: <b>${answer}</b></p>`, 6-row, "qadam"); return; }
-        row++;
-        if(row>=6){ showResult(`<p>Afsuski. Javob: <b>${answer}</b></p>`, 0, "qadam"); return; }
-        document.getElementById("wordle-input").value="";
-      });
-    }
-
-    function init_memory(root){
-      const pairs = [["AI","Sun'iy intellekt"],["IELTS","Ingliz tili imtihoni"],["HTML","Vebsahifa tili"],["CSS","Dizayn tili"],["JS","Dasturlash"],["API","Ma'lumot ko'prigi"]];
-      let deck = []; pairs.forEach((p,i)=>{ deck.push({t:p[0],id:i}); deck.push({t:p[1],id:i}); });
-      deck.sort(()=>Math.random()-0.5);
-      root.innerHTML = `<div id="memory-grid" class="memory-grid"></div><p id="memory-msg"></p>`;
-      const g = document.getElementById("memory-grid"); let first=null, lock=false, matched=0;
-      deck.forEach((c,idx)=>{ const el=document.createElement("button"); el.className="memory-cell"; el.textContent="?"; el.dataset.pid=c.id; el.addEventListener("click",()=>{ if(lock||el.textContent!=="?")return; el.textContent=c.t; if(!first){ first=el; } else { if(first.dataset.pid===el.dataset.pid){ matched++; first=null; if(matched===pairs.length){ document.getElementById("memory-msg").textContent="Barchasi juftlandi! 🎉"; showResult(`<p>Juftlar: <b>${pairs.length}</b></p>`, pairs.length, "juft"); } } else { lock=true; setTimeout(()=>{ first.textContent="?"; el.textContent="?"; first=null; lock=false; },800); } } }); g.appendChild(el); });
-    }
-
-    const ANAGRAMS = [["LISTEN","SILENT"],["EARTH","HEART"],["STUDY","DUSTY"],["BRAIN","NABIR"],["LEARN","RENAL"]];
-    function init_anagram(root){
-      const item = ANAGRAMS[Math.floor(Math.random()*ANAGRAMS.length)];
-      const scrambled = item[0].split("").sort(()=>Math.random()-0.5).join("");
-      root.innerHTML = `<p class="g-inst">Harflardan so'z tuzing: <b>${scrambled}</b></p><input id="anagram-input" placeholder="javob"><div class="g-actions"><button id="anagram-check" class="mini-btn">Tekshirish</button></div>`;
-      document.getElementById("anagram-check").addEventListener("click", () => {
-        const v = document.getElementById("anagram-input").value.toUpperCase();
-        if(v===item[0]||v===item[1]) showResult(`<p>To'g'ri! 🎉 <b>${item[0]}</b></p>`, 1, "to'g'ri");
-        else showResult(`<p>Noto'g'ri. Javob: <b>${item[0]}</b> / <b>${item[1]}</b></p>`, 0, "to'g'ri");
-      });
-    }
-
-    const XATO = [
-      { text:"She go to school every day.", correct:"go → goes" },
-      { text:"I has two brothers.", correct:"has → have" },
-      { text:"He don't like coffee.", correct:"don't → doesn't" },
-      { text:"They was happy.", correct:"was → were" },
-      { text:"We is students.", correct:"is → are" }
-    ];
-    function init_xato(root){
-      const item = XATO[Math.floor(Math.random()*XATO.length)];
-      root.innerHTML = `<p class="g-inst">Xatoni toping:</p><div class="g-sample">${item.text}</div><input id="xato-input" placeholder="tuzatish (masalan: go → goes)"><div class="g-actions"><button id="xato-check" class="mini-btn">Tekshirish</button></div>`;
-      document.getElementById("xato-check").addEventListener("click", () => {
-        const v = document.getElementById("xato-input").value.trim().toLowerCase();
-        if(v.includes(item.correct.split("→")[0].trim().toLowerCase()) && v.includes(item.correct.split("→")[1].trim().toLowerCase()))
-          showResult(`<p>To'g'ri! 🎉</p>`, 1, "to'g'ri");
-        else showResult(`<p>Noto'g'ri. To'g'ri tuzatish: <b>${item.correct}</b></p>`, 0, "to'g'ri");
-      });
-    }
-
-    function init_tez(root){
-      root.innerHTML = `<p class="g-inst">60 soniyada qancha so'z yozasiz? Har bir so'zni enter bilan ajrating.</p><div id="tez-timer" class="tez-timer">60</div><textarea id="tez-input" rows="4" placeholder="So'zlarni yozing..."></textarea>`;
-      let t = 60; const timerEl = document.getElementById("tez-timer"); const input = document.getElementById("tez-input");
-      const iv = setInterval(() => { t--; timerEl.textContent = t; if(t<=0){ clearInterval(iv); const n = input.value.trim().split(/\s+/).filter(Boolean).length; showResult(`<p>Yozilgan so'zlar: <b>${n}</b></p>`, n, "so'z"); } }, 1000);
-    }
-
-    const EMOJI = [["🌧️👓","Rainbow"],["🐝🍎","Be happy"],["👁️🎀","I cry"],["🔥🐱","Cool cat"],["🌟⭐","Star"]];
-    function init_emoji(root){
-      const item = EMOJI[Math.floor(Math.random()*EMOJI.length)];
-      root.innerHTML = `<p class="g-inst">Emojidan ibora toping:</p><div class="g-sample big">${item[0]}</div><input id="emoji-input" placeholder="javob"><div class="g-actions"><button id="emoji-check" class="mini-btn">Tekshirish</button></div>`;
-      document.getElementById("emoji-check").addEventListener("click", () => {
-        const v = document.getElementById("emoji-input").value.trim().toLowerCase();
-        if(v===item[1].toLowerCase()) showResult(`<p>To'g'ri! 🎉 <b>${item[1]}</b></p>`, 1, "to'g'ri");
-        else showResult(`<p>Noto'g'ri. Javob: <b>${item[1]}</b></p>`, 0, "to'g'ri");
-      });
-    }
-
-    const OPTICAL = ["👁️👁️👁️ — qaysi biri kattaroq? (bir xil)","🟦🟦🟦 — qaysi kub oldinda? (optik)","➰➰➰ — aylanalar harakat qilyaptimi? (yo'q)","🔲🔳 — qaysi to'rtburchak qora? (bir xil)"];
-    function init_optical(root){
-      root.innerHTML = `<div id="optical-list">${OPTICAL.map((o,i)=>`<div class="optical-item" data-i="${i}">${o}</div>`).join("")}</div><p class="g-inst">Galereyani ko'zingiz bilan baholang.</p>`;
-      document.querySelectorAll(".optical-item").forEach(el => el.addEventListener("click", () => {
-        el.classList.toggle("selected");
-      }));
-      showResult(`<p>Vizual jumboqlar ko'rilmoqda. Diqqat — miya sizni aldashga uringan bo'lishi mumkin!</p>`);
-    }
-
-    const TRIVIA = [
-      { q:"HTML nima?", a:["Vebsahifa tili","Dasturlash tili","Ma'lumot bazasi"], c:0 },
-      { q:"CPU nima qiladi?", a:["Hisoblaydi","Chizadi","Suvlaydi"], c:0 },
-      { q:"WWW qachon paydo bo'ldi?", a:["1991","1980","2005"], c:0 },
-      { q:"CSS nima uchun?", a:["Dizayn","Hisoblash","Tarmoq"], c:0 },
-      { q:"1 KB necha bayt?", a:["1024","1000","100"], c:0 },
-      { q:"Python dasturlash tili?", a:["Ha","Yo'q"], c:0 },
-      { q:"Google qachon tashkil topdi?", a:["1998","2001","1990"], c:0 },
-      { q:"RAM nima?", a:["Vaqtinchalik xotira","Doimiy xotira","Protsessor"], c:0 },
-      { q:"IP manzil nima?", a:["Tarmoq identifikatori","Fayl","Dastur"], c:0 },
-      { q:"JavaScript nima?", a:["Brauzer tili","Rasm","Musiqa"], c:0 },
-      { q:"USB nima?", a:["Ulanish porti","Protsessor","Ekran"], c:0 },
-      { q:"AI qisqartma?", a:["Artificial Intelligence","Auto Internet","Active Info"], c:0 },
-      { q:"Bitcoin nima?", a:["Kriptovalyuta","Bank","O'yin"], c:0 },
-      { q:"HTTP nima?", a:["Protokol","Til","Qurilma"], c:0 },
-      { q:"JSON nima?", a:["Ma'lumot formati","Dastur","Tarmoq"], c:0 }
-    ];
-    function init_trivia(root){
-      let i=0, score=0;
-      function render(){
-        if(i>=TRIVIA.length){ showResult(`<p>Natija: <b>${score}/15</b></p>`, score, "to'g'ri"); return; }
-        const t = TRIVIA[i];
-        root.innerHTML = `<p class="g-inst">Savol ${i+1}/15</p><div class="g-sample">${t.q}</div><div id="trivia-opts">${t.a.map((opt,oi)=>`<button class="opt-btn" data-oi="${oi}">${opt}</button>`).join("")}</div>`;
-        document.querySelectorAll(".opt-btn").forEach(b => b.addEventListener("click", () => {
-          if(parseInt(b.dataset.oi)===t.c) score++; i++; render();
-        }));
-      }
-      render();
-    }
-
-    const AIHUMAN = [
-      { text:"The sun dipped below the horizon, painting the sky in shades of orange and quiet nostalgia.", ai:false },
-      { text:"Based on the dataset analysis, the model achieved 94.2% accuracy after hyperparameter tuning.", ai:true },
-      { text:"I walked to the bakery and bought a warm loaf, still thinking about yesterday's argument.", ai:false },
-      { text:"To optimize your workflow, implement automated pipelines and reduce manual intervention by 40%.", ai:true },
-      { text:"We laughed until our sides hurt, remembering the stupid jokes from college.", ai:false },
-      { text:"The quarterly report indicates a 12% growth in user engagement across all regions.", ai:true },
-      { text:"He held her hand at the station, unsure if the train would bring him back.", ai:false },
-      { text:"Leveraging neural architectures enables scalable solutions for natural language understanding.", ai:true },
-      { text:"My cat sat on the windowsill watching rain, and for a moment nothing else mattered.", ai:false },
-      { text:"Deploy the containerized microservice to the cloud cluster for improved latency.", ai:true }
-    ];
-    function init_aihuman(root){
-      const item = AIHUMAN[Math.floor(Math.random()*AIHUMAN.length)];
-      root.innerHTML = `<p class="g-inst">Bu matn AI tomonidanmi yozilgan?</p><div class="g-sample">${item.text}</div><div class="g-actions"><button id="ai-yes" class="mini-btn">AI</button><button id="ai-no" class="mini-btn">Inson</button></div>`;
-      function check(guess){ const ok = (guess==="ai")===item.ai; showResult(`<p>${ok?"To'g'ri! 🎉":"Noto'g'ri."} Bu matn <b>${item.ai?"AI":"Inson"}</b> tomonidan.</p>`, ok?1:0, "to'g'ri"); }
-      document.getElementById("ai-yes").addEventListener("click", () => check("ai"));
-      document.getElementById("ai-no").addEventListener("click", () => check("human"));
-    }
-
-    const BAND9 = [
-      { left:"Furthermore,", right:"the evidence strongly supports this claim." },
-      { left:"In contrast,", right:"rural areas face different challenges." },
-      { left:"It is widely argued that", right:"education shapes society." },
-      { left:"Nevertheless,", right:"some critics remain unconvinced." },
-      { left:"To illustrate,", right:"consider the following example." }
-    ];
-    function init_band9(root){
-      let lefts = BAND9.map(b=>b.left).sort(()=>Math.random()-0.5);
-      let rights = BAND9.map(b=>b.right).sort(()=>Math.random()-0.5);
-      root.innerHTML = `<p class="g-inst">Chap va o'ng qismlarni moslang (tartib raqami bilan).</p><div id="band9-area"></div><div class="g-actions"><button id="band9-check" class="mini-btn">Tekshirish</button></div>`;
-      const area = document.getElementById("band9-area");
-      area.innerHTML = `<div class="band9-col">${lefts.map((l,i)=>`<div class="band9-row"><span>${i+1}.</span> ${l} <select data-i="${i}" class="band9-sel">${rights.map((r,ri)=>`<option value="${ri}">${ri+1}</option>`).join("")}</select></div>`).join("")}</div><div class="band9-col">${rights.map((r,i)=>`<div class="band9-row"><span>${i+1}.</span> ${r}</div>`).join("")}</div>`;
-      document.getElementById("band9-check").addEventListener("click", () => {
-        let ok = 0;
-        document.querySelectorAll(".band9-sel").forEach(sel => {
-          const li = lefts[parseInt(sel.dataset.i)];
-          const ri = parseInt(sel.value);
-          if(BAND9.find(b=>b.left===li).right === rights[ri]) ok++;
-        });
-        showResult(`<p>To'g'ri juftlar: <b>${ok}/5</b></p>`, ok, "to'g'ri");
-      });
-    }
-
-    const FLASHCARDS = ["Resilient","Eloquent","Diligent","Empathy","Innovate","Momentum","Synergy","Clarity"];
-    function init_flashcard(root){
-      let i=0;
-      root.innerHTML = `<p id="fc-timer" class="tez-timer">60</p><div id="fc-card" class="fc-card"></div><div id="fc-input-area" class="hidden"><input id="fc-input" placeholder="so'z"><button id="fc-next" class="mini-btn">Keyingi</button></div>`;
-      const card = document.getElementById("fc-card"); const timerEl = document.getElementById("fc-timer"); const inputArea = document.getElementById("fc-input-area");
-      let t=60, score=0;
-      const iv = setInterval(()=>{ t--; timerEl.textContent=t; if(t<=0){ clearInterval(iv); showResult(`<p>Topildi: <b>${score}/8</b></p>`, score, "to'g'ri"); } },1000);
-      function showCard(){ if(i>=FLASHCARDS.length){ clearInterval(iv); showResult(`<p>Topildi: <b>${score}/8</b></p>`, score, "to'g'ri"); return; } card.textContent = FLASHCARDS[i]; setTimeout(()=>{ card.textContent="?"; inputArea.classList.remove("hidden"); }, 2000); }
-      document.getElementById("fc-next").addEventListener("click", () => {
-        const v = document.getElementById("fc-input").value.trim().toLowerCase();
-        if(v === FLASHCARDS[i].toLowerCase()) score++;
-        i++; document.getElementById("fc-input").value=""; inputArea.classList.add("hidden"); showCard();
-      });
-      showCard();
-    }
-
-    const DETECTIVE = [
-      { text:"Ob-havo taxminlari 100% aniq bo'ladi, chunki kompyuter xato qilmaydi.", fake:true },
-      { text:"Sayyoralar Quyosh atrofida aylanadi, bu fizika qonuniga asoslangan.", fake:false },
-      { text:"Bir kechada tilni mukammal o'rganish mumkin, pillocha yordamida.", fake:true },
-      { text:"Suv 100°C da dengiz sathida qaynaydi.", fake:false },
-      { text:"Pullarni bosish orqali davlat boyligi cheksiz oshirilishi mumkin.", fake:true },
-      { text:"Hujayralar DNK orqali irsiy ma'lumotni uzatadi.", fake:false },
-      { text:"Internet orqali bepul cheksiz energiya olish mumkin.", fake:true },
-      { text:"Yurak qonni butun tanaga haydash uchun nasos vazifasini bajaradi.", fake:false }
-    ];
-    function init_detective(root){
-      const item = DETECTIVE[Math.floor(Math.random()*DETECTIVE.length)];
-      root.innerHTML = `<p class="g-inst">Bu xabar haqiqiymi yoki soxtami?</p><div class="g-sample">${item.text}</div><div class="g-actions"><button id="det-real" class="mini-btn">Haqiqiy</button><button id="det-fake" class="mini-btn">Soxta</button></div>`;
-      function check(g){ const ok = (g==="fake")===item.fake; showResult(`<p>${ok?"To'g'ri! 🎉":"Noto'g'ri."} Bu xabar <b>${item.fake?"SOXTA":"Haqiqiy"}</b>.</p>`, ok?1:0, "to'g'ri"); }
-      document.getElementById("det-real").addEventListener("click", () => check("real"));
-      document.getElementById("det-fake").addEventListener("click", () => check("fake"));
-    }
-
-    const TWENTY = [
-      { q:"Maqsadingiz daromadmi yoki o'rganishmi?", yes:"biznes", no:"hobby" },
-      { q:"Vaxtingiz cheklanganimi?", yes:"tez", no:"slow" },
-      { q:"Jamoa kerakmi?", yes:"team", no:"solo" },
-      { q:"Mablag' kerakmi?", yes:"invest", no:"free" },
-      { q:"Internet kerakmi?", yes:"online", no:"offline" }
-    ];
-    function init_twenty(root){
-      let i=0, path=[];
-      function render(){
-        if(i>=TWENTY.length){ showResult(`<p>Sizning yo'nalishingiz: <b>${path.join(" → ")}</b></p><p>(Qaror daraxti — bu haqiqiy AI emas, tayyor mantq.)</p>`, path.length, "qadam"); return; }
-        const t = TWENTY[i];
-        root.innerHTML = `<p class="g-inst">Savol ${i+1}/${TWENTY.length}</p><div class="g-sample">${t.q}</div><div class="g-actions"><button id="tw-yes" class="mini-btn">Ha</button><button id="tw-no" class="mini-btn">Yo'q</button></div>`;
-        document.getElementById("tw-yes").addEventListener("click", () => { path.push(t.yes); i++; render(); });
-        document.getElementById("tw-no").addEventListener("click", () => { path.push(t.no); i++; render(); });
-      }
-      render();
-    }
-
-    const STARTUP_A = ["AI","Eco","Smart","Neuro","Bio","Quantum","Social","Micro"];
-    const STARTUP_B = ["Farm","Tutor","Wallet","Health","Market","Lab","Studio","Trip"];
-    const STARTUP_C = ["for students","for seniors","for pets","for remote workers","for farmers","for artists"];
-    function init_startup(root){
-      const idea = STARTUP_A[Math.floor(Math.random()*STARTUP_A.length)] + STARTUP_B[Math.floor(Math.random()*STARTUP_B.length)] + " " + STARTUP_C[Math.floor(Math.random()*STARTUP_C.length)];
-      root.innerHTML = `<div class="g-sample big">💡 ${idea}</div><p class="g-inst">Tasodifiy yaratilgan g'oya. (Bu haqiqiy AI emas, tayyor ro'yxatdan.)</p><div class="g-actions"><button id="startup-again" class="mini-btn">Yana</button></div>`;
-      document.getElementById("startup-again").addEventListener("click", () => init_startup(root));
-    }
-
-    function init_budget(root){
-      const cats = ["Taom","Uy-joy","Transport","Ko'ngilochar","Tejash"];
-      root.innerHTML = `<p class="g-inst">$1000 ni taqsimlang (jami 1000 bo'lishi kerak):</p><div id="budget-area"></div><div id="budget-total">Jami: $1000</div><div class="g-actions"><button id="budget-check" class="mini-btn">Tekshirish</button></div>`;
-      const area = document.getElementById("budget-area");
-      area.innerHTML = cats.map(c => `<div class="budget-row"><label>${c}</label><input type="range" min="0" max="1000" value="200" data-cat="${c}" class="budget-slider"><span class="budget-val">$200</span></div>`).join("");
-      function update(){ let sum=0; document.querySelectorAll(".budget-slider").forEach(s=>{ const v=parseInt(s.value); sum+=v; s.nextElementSibling.textContent="$"+v; }); document.getElementById("budget-total").textContent="Jami: $"+sum; }
-      document.querySelectorAll(".budget-slider").forEach(s => s.addEventListener("input", update));
-      document.getElementById("budget-check").addEventListener("click", () => {
-        let sum=0; document.querySelectorAll(".budget-slider").forEach(s=>sum+=parseInt(s.value));
-        if(sum===1000) showResult(`<p>Ajoyib! Byudjet to'g'ri taqsimlandi. 🎉</p>`, 1000, "$");
-        else showResult(`<p>Jami $${sum}. 1000 bo'lishi kerak. Qayta urinib ko'ring.</p>`, sum, "$");
-      });
-    }
-
-    const MOODS = [["😄","Ajoyib"],["🙂","Yaxshi"],["😐","Normal"],["😟","Xafa"],["😡","G'azablangan"]];
-    function init_mood(root){
-      root.innerHTML = `<p class="g-inst">Bugun o'zingizni qanday his qilyapsiz?</p><div id="mood-area">${MOODS.map((m,i)=>`<button class="mood-btn" data-i="${i}">${m[0]}</button>`).join("")}</div><p id="mood-msg"></p>`;
-      document.querySelectorAll(".mood-btn").forEach(b => b.addEventListener("click", () => {
-        const m = MOODS[parseInt(b.dataset.i)];
-        document.getElementById("mood-msg").textContent = `Siz: ${m[0]} ${m[1]}`;
-        localStorage.setItem("strawberry_mood", m[1]);
-        showResult(`<p>Bugungi kayfiyat: <b>${m[0]} ${m[1]}</b></p>`, parseInt(b.dataset.i)+1, "ball");
-      }));
-    }
-
-    function init_avatar(root){
-      const colors = ["#fee2e2","#dbeafe","#dcfce7","#fef9c3","#f3e8ff"];
-      function gen(){ const c = colors[Math.floor(Math.random()*colors.length)]; const eye = 6+Math.floor(Math.random()*6); const smile = Math.random()>0.5;
-        root.innerHTML = `<div class="avatar-wrap"><svg width="160" height="160" viewBox="0 0 100 100"><circle cx="50" cy="50" r="45" fill="${c}"/><circle cx="35" cy="45" r="6" fill="#333"/><circle cx="65" cy="45" r="6" fill="#333"/>${smile?`<path d="M35 65 Q50 78 65 65" stroke="#333" stroke-width="3" fill="none"/>`:`<path d="M35 70 Q50 58 65 70" stroke="#333" stroke-width="3" fill="none"/>`}</svg></div><div class="g-actions"><button id="avatar-again" class="mini-btn">Yana</button></div>`;
-        document.getElementById("avatar-again").addEventListener("click", gen);
-      }
-      gen();
-    }
-
-    const PROMPTS = [
-      { task:"AI dan 5 ta IELTS Writing Task 2 mavzusi chiqarishini so'rang.", hint:"Aniq, kontest berish yaxshiroq." },
-      { task:"AI ga tarjima qildirib, notchalik tabiiy ekanini baholang.", hint:"Instruction'da maqsad audienceni ayting." },
-      { task:"AI dan rezyume uchun 3 ta xulosani yozishni so'rang.", hint:"Rol (role) bering: 'Sen HR mutaxassisisan'." }
-    ];
-    function init_prompt(root){
-      const item = PROMPTS[Math.floor(Math.random()*PROMPTS.length)];
-      root.innerHTML = `<p class="g-inst">Vazifa: ${item.task}</p><p class="g-hint">Maslahat: ${item.hint}</p><textarea id="prompt-input" rows="3" placeholder="O'z promptingizni yozing..."></textarea><div class="g-actions"><button id="prompt-score" class="mini-btn">Baholash</button></div>`;
-      document.getElementById("prompt-score").addEventListener("click", () => {
-        const v = document.getElementById("prompt-input").value.trim();
-        const len = v.length; const score = Math.min(100, Math.round(len/2));
-        showResult(`<p>Prompt bahosi: <b>${score}/100</b> (uzunlik asosida, oddiy baho).</p>`, score, "ball");
-      });
-    }
-
-    document.addEventListener("DOMContentLoaded", () => {
-      initStatic();
-      renderGames("all");
-      document.querySelectorAll(".filter-btn").forEach(btn => {
-        btn.addEventListener("click", () => renderGames(btn.dataset.filter));
-      });
-    });
-  </script>
-
-<script>
-  (function () {
-    const el = document.querySelector(".typed-text");
-    if (!el) return;
-    const HERO_I18N = {"uz": ["AI'dan 5 daqiqada sifatli javob", "O'qiganingiz esda qoladigan bilim bazasi", "O'z AI yordamchingizni yaratish", "IELTS 6.5+ band: 30 kunlik reja", "Chet elga qabul: hujjatdan intervyugacha", "Pullik obuna bermasdan AI'dan foydalanish", "Bepul Figma: UI/UX asoslarini 1 kunda", "Mac'da chizma: bepul talaba litsenziyasi", "Mac'da ishni 2 baravar tezroq bajarish", "Nima uchun chet elda o'qish kerak (va bepul qanday)", "Data Analytics", "Backend Python"], "ru": ["Качественный ответ от ИИ за 5 минут", "База знаний, которая запоминается", "Создать своего ИИ-помощника", "IELTS 6.5+ баллов: план на 30 дней", "Поступление за рубеж: от документов до интервью", "Пользоваться ИИ без платной подписки", "Бесплатный Figma: основы UI/UX за 1 день", "Рисование на Mac: бесплатная студенческая лицензия", "Работа на Mac в 2 раза быстрее", "Зачем учиться за рубежом (и как бесплатно)", "Data Analytics", "Backend Python"], "en": ["Quality answer from AI in 5 minutes", "A knowledge base that actually sticks", "Build your own AI assistant", "IELTS 6.5+ band: 30-day plan", "Study abroad: from documents to interview", "Use AI without a paid subscription", "Free Figma: UI/UX basics in 1 day", "Drawing on Mac: free student license", "Get work done 2x faster on Mac", "Why study abroad (and how for free)", "Data Analytics", "Backend Python"]};
-    const _L = localStorage.getItem('org-lam-lang') || 'uz';
-    const words = (HERO_I18N[_L] || HERO_I18N.uz);
-    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    if (reduce) { el.textContent = words[0]; return; }
-    let wi = 0, ci = 0, deleting = false;
-    function tick() {
-      const word = words[wi];
-      if (!deleting) {
-        ci++;
-        el.textContent = word.slice(0, ci);
-        if (ci === word.length) { deleting = true; return setTimeout(tick, 1600); }
-        return setTimeout(tick, 70 + Math.random() * 45);
-      } else {
-        ci--;
-        el.textContent = word.slice(0, ci);
-        if (ci === 0) { deleting = false; wi = (wi + 1) % words.length; return setTimeout(tick, 420); }
-        return setTimeout(tick, 35);
-      }
-    }
-    el.textContent = "";
-    setTimeout(tick, 600);
-  })();
-</script>
 
 <style>
-  .founder-excerpt{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:2rem;align-items:start;margin:1.5rem 0 2rem;padding:clamp(1.2rem,4vw,2rem);border:1px solid color-mix(in srgb,var(--accent) 38%,var(--border));border-radius:18px;background:linear-gradient(135deg,color-mix(in srgb,var(--accent) 10%,var(--surface)),var(--surface))}.founder-excerpt .eyebrow{margin:0 0 .5rem}.founder-excerpt h2{margin:0;font-size:clamp(1.4rem,3vw,2rem)}.founder-excerpt p{margin:0 0 1rem;color:var(--muted);line-height:1.65}.founder-excerpt .course-nav-link{font-weight:800}@media(max-width:700px){.founder-excerpt{grid-template-columns:1fr;gap:1rem}}
+  .founder-excerpt{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:2rem;align-items:start;margin:var(--section-gap) 0;padding:clamp(1.2rem,4vw,2rem);border:1px solid color-mix(in srgb,var(--accent) 38%,var(--border));border-radius:18px;background:linear-gradient(135deg,color-mix(in srgb,var(--accent) 10%,var(--surface)),var(--surface))}.founder-excerpt .eyebrow{margin:0 0 .5rem}.founder-excerpt h2{margin:0;font-size:clamp(1.4rem,3vw,2rem)}.founder-excerpt p{margin:0 0 1rem;color:var(--muted);line-height:1.65}.founder-excerpt .course-nav-link{font-weight:800}.founder-social{display:flex;gap:1rem;margin-top:1rem}.founder-social a{color:var(--accent);font-weight:800;text-decoration:none}@media(max-width:700px){.founder-excerpt{grid-template-columns:1fr;gap:1rem}}
 </style>
+
+<TelegramLeadSection />
+
+<style>
+  .focus-break{display:flex;justify-content:space-between;align-items:center;gap:1.25rem;margin:var(--section-gap) 0;padding:1.25rem 1.4rem;border:1px solid var(--border);border-radius:18px;background:var(--surface)}
+  .focus-break h2{margin:.2rem 0 .45rem;font-size:1.2rem}.focus-break p:not(.eyebrow){margin:0;color:var(--muted);line-height:1.55}.focus-break .eyebrow{margin:0;color:var(--accent);font-size:.74rem;font-weight:800;letter-spacing:.12em}
+  @media(max-width:650px){.focus-break{align-items:flex-start;flex-direction:column}.focus-break .start-btn{width:100%;text-align:center}}
+</style>
+
 </Base>

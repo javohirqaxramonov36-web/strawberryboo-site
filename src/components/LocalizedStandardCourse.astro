@@ -6,8 +6,13 @@ import Testimonials from './Testimonials.astro';
 import CourseFaq from './CourseFaq.astro';
 import CourseSchema from './CourseSchema.astro';
 import CourseEnrichment from './CourseEnrichment.astro';
+import CareerOutcomePanel from './CareerOutcomePanel.astro';
 import type { CourseLocale } from '../data/localized-standard-courses';
+import coursesData from '../data/courses.json';
 const { course, slug, lang } = Astro.props as { course: any; slug: string; lang: CourseLocale };
+const catalogCourse = (coursesData.courses as any[]).find((item) => item.slug === slug);
+const localPrice = catalogCourse?.priceUzs?.[lang] ? String(catalogCourse.priceUzs[lang]).replace(/^≈\s*/, "") : null;
+const displayPrice = course.price?.startsWith('$') && localPrice ? `${localPrice} (≈ ${course.price})` : course.price;
 const faqCopy = lang === 'ru'
  ? { whoFor: 'Тем, кому подходит тема и практические модули, перечисленные на этой странице.', notFor: 'Не для тех, кто ожидает гарантированный результат: страница описывает содержание курса и практические шаги.', access: 'На этой странице указаны текущие цена и статус. Дополнительные условия оплаты или доступа здесь не заявлены.' }
  : { whoFor: 'Learners who want to work through the topic and practical modules listed on this page.', notFor: 'Not for learners expecting a guaranteed outcome: this page describes course content and practical steps.', access: 'This page shows the current price and status. It does not state additional payment or access terms.' };
@@ -15,13 +20,14 @@ const faqCopy = lang === 'ru'
 <CourseSchema name={course.heading} description={course.description} {lang} />
 <CourseProgress courseId={slug} title={`${course.heading} — ${lang === 'ru' ? 'прогресс' : 'progress'}`} itemSelector=".course-module" labelSelector="h3" />
 <article class="course-page">
- <header class="course-hero"><p class="eyebrow">TAYANCH · COURSE</p><h1>{course.heading}</h1><p class="lead">{course.description}</p><div class="price"><span class="now">{course.price}</span>{course.oldPrice && <span class="old">{course.oldPrice}</span>}{course.status && <span class="badge">{course.status}</span>}</div></header>
+ <header class="course-hero"><p class="eyebrow">TAYANCH · COURSE</p><h1>{course.heading}</h1><p class="lead">{course.description}</p><div class="price"><span class="now">{displayPrice}</span>{course.oldPrice && <span class="old">{course.oldPrice}</span>}{course.status && <span class="badge">{course.status}</span>}</div></header>
  <section><h2>{lang === 'ru' ? 'Что вы изучите' : 'What you will learn'}</h2><div class="modules">{course.modules.map((module: string, i: number) => <article class="course-module"><p>{String(i + 1).padStart(2, '0')}</p><h3>{module}</h3></article>)}</div></section>
+ <CareerOutcomePanel slug={slug} lang={lang} />
  <section class="outcomes"><h2>{lang === 'ru' ? 'Практический результат' : 'Practical outcome'}</h2><ul>{course.outcome.map((item: string) => <li>{item}</li>)}</ul></section>
  <CourseEnrichment slug={slug} lang={lang} />
  <Quiz title={lang === 'ru' ? 'Быстрый quiz' : 'Quick quiz'} questions={[course.quiz]} />
  <LeadMagnetCTA />
- <CourseFaq facts={{ title: course.heading, lang, overview: course.description, topics: course.modules, whoFor: faqCopy.whoFor, whoNotFor: faqCopy.notFor, price: course.price, status: course.status, certificate: false, accessPayment: faqCopy.access }} />
+ <CourseFaq facts={{ title: course.heading, lang, overview: course.description, topics: course.modules, whoFor: faqCopy.whoFor, whoNotFor: faqCopy.notFor, price: displayPrice, status: course.status, certificate: false, accessPayment: faqCopy.access }} />
  <Testimonials courseSlug={slug} lang={lang} />
 </article>
 <style>.course-page{max-width:960px;margin:auto}.course-hero{padding:clamp(1.2rem,4vw,3rem) 0}.eyebrow,.course-module p{color:var(--accent);font-weight:800;letter-spacing:.08em}.lead{max-width:760px;color:var(--muted);line-height:1.7;font-size:1.08rem}.price{display:flex;gap:.8rem;align-items:center;margin-top:1rem}.now{font-size:1.45rem;font-weight:900}.old{text-decoration:line-through;color:var(--muted)}.badge{padding:.25rem .6rem;border-radius:999px;background: var(--btn-bg);color:#fff;font-weight:800}.modules{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1rem}.course-module,.outcomes{padding:1.15rem;border:1px solid var(--border);border-radius:14px;background:var(--surface)}.course-module p{margin:0}.course-module h3{margin:.35rem 0 0}.outcomes{margin:1.5rem 0}.outcomes li{margin:.55rem 0;color:var(--muted)}</style>

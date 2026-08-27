@@ -4,4 +4,4 @@ import LocalizedHome from "../../components/localized/LocalizedHome.astro";
 const base = import.meta.env.BASE_URL;
 const alternates = [{lang:'uz',href:base},{lang:'ru',href:base+'ru/'},{lang:'en',href:base+'en/'}];
 ---
-<Base title="Курсы AI, IELTS и поступления | Tayanch" description="Практические курсы по AI, IELTS, поступлению и личной базе знаний. Есть бесплатные курсы." lang="ru" localeAlternates={alternates}><LocalizedHome lang="ru" /></Base>
+<Base title="Курсы AI, IELTS и поступления | Tayanch" description="Практические курсы по AI, IELTS, поступлению и личной базе знаний. Есть бесплатные курсы." lang="ru" localeAlternates={alternates} showDiscountBanner={true}><LocalizedHome lang="ru" /></Base>

@@ -10,13 +10,15 @@ const description = "4 savolli mini-test orqali o'zingizga mos kursni toping.";
 <article class="lesson">
   <h1 data-i18n="reco.h1">Qaysi kurs sizga kerak?</h1>
   <p class="lead" data-i18n="reco.lead">4 ta savolga javob bering — sizga eng mos kursni tavsiya qilamiz.</p>
+  <section class="tool-choice"><p class="tool-choice__eyebrow">GENERAL ENGLISH UCHUN</p><p class="tool-choice__title">Darajangizni tekshirmoqchimisiz?</p><p class="tool-choice__text">25 savolli CEFR testi darajani aniqlaydi. Quyidagi to‘liq test esa maqsadingizga mos kursni tanlaydi.</p><a href={import.meta.env.BASE_URL + 'daraja-testi/'}>CEFR daraja testini boshlash →</a></section>
+  <p class="tool-label">TO‘LIQ KURS TANLASH TESTI · 4 SAVOL</p>
 
   <div class="reco-progress" aria-live="polite">
     <div class="reco-progress-track"><div class="reco-progress-bar" id="recoProgressBar"></div></div>
     <span class="reco-progress-label" id="recoProgressLabel">1/4</span>
   </div>
 
-  <form id="recoForm">
+  <form id="recoForm" data-reco-lang="uz">
     <div class="reco-q reco-step is-active" data-step>
       <p class="q-t" data-i18n="reco.q1">1. Asosiy maqsadingiz nima?</p>
       <div class="reco-opts">
@@ -107,4 +109,6 @@ const description = "4 savolli mini-test orqali o'zingizga mos kursni toping.";
     "el-yurt-umidi": { title: "El-Yurt Umidi'ni yutaylik", url: import.meta.env.BASE_URL + "kurslar/el-yurt-umidi", desc: "Davlat granti bo'yicha suhbatga tayyorgarlik (tez orada).", color: "#ec4899" }
   };
 </script>
+<style>
+  .reco-progress{display:flex;align-items:center;gap:.75rem;margin:1.25rem 0}.reco-progress-track{flex:1;height:7px;overflow:hidden;border-radius:999px;background:var(--border)}.reco-progress-bar{width:25%;height:100%;border-radius:inherit;background:var(--accent);transition:width .2s ease}.reco-progress-label{color:var(--accent);font-size:.82rem;font-weight:800;white-space:nowrap}.reco-nav{display:flex;gap:.65rem;justify-content:space-between;align-items:center;margin-top:1rem}.reco-nav .is-ghost{background:transparent;color:var(--accent);border:1px solid var(--border)}</style>
 </Base>
