@@ -1,6 +1,6 @@
 # General English va SAT — narxlash bo‘yicha tavsiya
 
-**Holat:** Bu hujjat faqat qaror qabul qilish uchun tavsiya. Hech bir narx sayt kodiga, `courses.json` fayliga yoki checkout’ga kiritilmagan.
+**Holat:** Sayt egasi muvozanatli variantni tasdiqladi va 2026-08-27 kuni kurs katalogiga qo‘llandi. InPay/checkout o‘zgartirilmadi.
 
 **Tayyorlangan sana:** 2026-08-27
 
@@ -27,7 +27,7 @@ Hisob-kitob uchun taxminiy konversiya: **$1 ≈ 12 500 so‘m**. Bu faqat yumalo
 
 ### General English bo‘yicha tavsiya
 
-Boshlang‘ich ishga tushirish uchun har bir darajani **$12–15** diapazonida sinash ma’qul. Bu narx IELTS skill kurslaridan balandroq, lekin Obsidian/Tekin AI kabi $19 kurslardan pastroq yoki unga yaqin bo‘ladi. A1–C1 path uchun 10–15% chegirma yetarli; katta chegirma alohida kurslarning qiymatini pasaytirib ko‘rsatishi mumkin.
+Boshlang‘ich ishga tushirish uchun har bir darajani **$15** qilib belgilash ma’qul. Bu narx IELTS skill kurslaridan balandroq, lekin Obsidian/Tekin AI kabi $19 kurslardan pastroq bo‘ladi. A1–C1 path uchun tasdiqlangan narx **$81**, ya’ni 10% atrofidagi chegirma bilan beriladi; katta chegirma alohida kurslarning qiymatini pasaytirib ko‘rsatishi mumkin.
 
 Narxni faqat quyidagilar tayyor bo‘lganda e’lon qilish kerak:
 
@@ -48,7 +48,7 @@ SAT Math, SAT English va Desmos Applications alohida mahsulot sifatida ko‘rila
 
 ### SAT bo‘yicha tavsiya
 
-Boshlang‘ich narxlash uchun har bir yo‘nalishni **$25–30** diapazonida rejalashtirish mumkin. SAT Bundle uchun 10–15% chegirma yetarli. Desmos Applications mustaqil to‘liq kurs emas, SAT Math’ni to‘ldiruvchi vosita sifatida qolsa, uning narxi SAT Math’dan pastroq yoki bundle ichida kichikroq ulushda bo‘lishi mumkin.
+Boshlang‘ich narxlash uchun SAT Math va SAT English’ni **$30**dan, Desmos Applications’ni **$19** qilib belgilash ma’qul. Uchlik SAT Bundle narxi **$67**, ya’ni alohida narxlardan taxminan 15% past bo‘ladi. Desmos Applications mustaqil to‘liq kurs emas, SAT Math’ni to‘ldiruvchi vosita sifatida qoladi.
 
 ## Tavsiya etiladigan sinov modeli
 
@@ -60,6 +60,6 @@ Boshlang‘ich narxlash uchun har bir yo‘nalishni **$25–30** diapazonida rej
 
 ## Qisqa yakuniy tavsiya
 
-- **General English:** har bir daraja uchun `$12–15`; 6 darajalik path uchun taxminan `$65–81`.
-- **SAT:** har bir yo‘nalish uchun `$25–30`; uchlik bundle uchun taxminan `$64–77`.
-- Bu raqamlar faqat tavsiya. Yakuniy narx kontent hajmi, practice, feedback va support darajasiga qarab egasi tomonidan belgilanadi.
+- **General English:** har bir daraja uchun `$15`; 6 darajalik path uchun `$81`.
+- **SAT:** SAT Math va SAT English `$30`dan, Desmos `$19`; uchlik bundle `$67`.
+- Ushbu variant sayt egasi tomonidan tasdiqlandi va katalog hamda bundle ma’lumotlariga qo‘llandi. InPay/checkout o‘zgartirilmadi.

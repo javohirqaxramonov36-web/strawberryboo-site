@@ -73,7 +73,7 @@ export const allDownloads = [...downloads, ...genericDownloads];
 export const bundles: Bundle[] = [
   { slug: 'ai-starter', title: 'AI Starter Bundle', description: 'Prompt Engineering + AI Agentlar + Tekin AI. Boshlash uchun uchta alohida, amaliy yo‘l.', courses: ['prompt-engineering','ai-agentlar','tekin-ai'], price: '$70', saving: 'Alohida narxlardan $17 tejash · taxminan 20%' },
   { slug: 'admission-writing', title: 'Admission + IELTS Writing', description: 'Essay va ariza jarayonini IELTS Writing mashqi bilan bog‘lang.', courses: ['admission-process','ielts-writing'], price: 'Narx belgilanmoqda', saving: 'Paket narxi keyin belgilanadi', priceStatus: 'placeholder' },
-  { slug: 'sat-bundle', title: 'SAT Bundle', description: 'SAT Math + SAT English + Desmos Applications. Komponentlar tayyor, narx egasi tomonidan kiritiladi.', courses: ['sat-math','sat-english','desmos-applications'], price: 'Narx belgilanmoqda', saving: 'Narx egasi tomonidan kiritiladi', priceStatus: 'placeholder' },
+  { slug: 'sat-bundle', title: 'SAT Bundle', description: 'SAT Math + SAT English + Desmos Applications. Uchta yo‘nalish uchun tasdiqlangan muvozanatli bundle narxi.', courses: ['sat-math','sat-english','desmos-applications'], price: '$67', saving: 'Alohida narxlardan $12 tejash · taxminan 15%' },
 ];
 
 export const generalEnglishPath = ['general-english-beginner','general-english-elementary','general-english-pre-intermediate','general-english-intermediate','general-english-upper-intermediate','general-english-advanced'];
