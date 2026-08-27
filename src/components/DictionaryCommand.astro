@@ -1,0 +1,176 @@
+---
+type Lang = 'uz' | 'ru' | 'en';
+interface Props {
+  lessonId?: string;
+  lang?: Lang;
+}
+const { lessonId = '', lang = 'uz' } = Astro.props;
+const scope = lessonId || 'global';
+const dialogId = `dictionary-${scope.replace(/[^a-z0-9]+/gi, '-')}`;
+const copy = {
+  uz: {
+    trigger: lessonId ? '⌘K lug‘ati' : '⌘K lug‘at',
+    title: lessonId ? 'Ushbu dars lug‘ati' : 'Saqlangan so‘zlar',
+    description: lessonId ? 'So‘zni qidiring yoki tarjimasi bilan yangi so‘z qo‘shing. Bu so‘z shu darsga ulanadi.' : 'Bu yerda darsga bog‘lanmagan so‘zlarni ham saqlashingiz mumkin.',
+    search: 'So‘zni qidiring',
+    searchPlaceholder: 'Masalan: argument',
+    results: 'Natijalar',
+    noResults: 'Natija topilmadi. Yangi so‘zni pastdagi maydon orqali saqlang.',
+    saveNew: 'Yangi so‘zni saqlash',
+    en: 'English so‘z',
+    uz: 'O‘zbekcha tarjima',
+    ru: 'Ruscha tarjima (ixtiyoriy)',
+    save: 'Saqlash',
+    close: 'Yopish',
+    saved: 'So‘z saqlandi.',
+    required: 'English so‘zni kiriting.',
+    local: 'Faqat shu brauzerda saqlanadi',
+  },
+  ru: {
+    trigger: lessonId ? '⌘K словарь' : '⌘K словарь',
+    title: lessonId ? 'Словарь этого урока' : 'Сохранённые слова',
+    description: lessonId ? 'Найдите слово или добавьте его с переводом. Оно будет связано с этим уроком.' : 'Здесь можно сохранять слова без привязки к уроку.',
+    search: 'Поиск слова',
+    searchPlaceholder: 'Например: argument',
+    results: 'Результаты',
+    noResults: 'Ничего не найдено. Добавьте новое слово ниже.',
+    saveNew: 'Сохранить новое слово',
+    en: 'Слово на английском',
+    uz: 'Перевод на узбекский',
+    ru: 'Перевод на русский (необязательно)',
+    save: 'Сохранить',
+    close: 'Закрыть',
+    saved: 'Слово сохранено.',
+    required: 'Введите английское слово.',
+    local: 'Сохраняется только в этом браузере',
+  },
+  en: {
+    trigger: lessonId ? '⌘K dictionary' : '⌘K dictionary',
+    title: lessonId ? 'Dictionary for this lesson' : 'Saved words',
+    description: lessonId ? 'Search for a word or add one with a translation. It will be linked to this lesson.' : 'You can save words here without linking them to a lesson.',
+    search: 'Search the dictionary',
+    searchPlaceholder: 'For example: argument',
+    results: 'Results',
+    noResults: 'No result. Save a new word using the form below.',
+    saveNew: 'Save a new word',
+    en: 'English word',
+    uz: 'Uzbek translation',
+    ru: 'Russian translation (optional)',
+    save: 'Save',
+    close: 'Close',
+    saved: 'Word saved.',
+    required: 'Enter an English word.',
+    local: 'Stored only in this browser',
+  },
+}[lang];
+---
+<div class="dictionary-command" data-dictionary-command data-dictionary-lesson={lessonId} data-dictionary-dialog={dialogId} data-dictionary-no-results={copy.noResults} data-dictionary-saved={copy.saved} data-dictionary-required={copy.required}>
+  <button class="dictionary-trigger" type="button" data-dictionary-open aria-controls={dialogId}>{copy.trigger}</button>
+  <dialog class="dictionary-dialog" id={dialogId} data-dictionary-dialog-element>
+    <div class="dictionary-head">
+      <div><p class="eyebrow">LOCAL DICTIONARY</p><h2>{copy.title}</h2></div>
+      <button class="dictionary-close" type="button" data-dictionary-close aria-label={copy.close}>×</button>
+    </div>
+    <p class="dictionary-description">{copy.description}</p>
+    <label class="dictionary-search"><span>{copy.search}</span><input type="search" data-dictionary-search placeholder={copy.searchPlaceholder} autocomplete="off" /></label>
+    <div class="dictionary-results" data-dictionary-results aria-live="polite"><p class="dictionary-muted">{copy.noResults}</p></div>
+    <form class="dictionary-form" data-dictionary-form>
+      <p class="dictionary-form-title">{copy.saveNew}</p>
+      <label><span>{copy.en}</span><input name="en" data-dictionary-en required /></label>
+      <label><span>{copy.uz}</span><input name="uz" data-dictionary-uz /></label>
+      <label><span>{copy.ru}</span><input name="ru" data-dictionary-ru /></label>
+      <button class="dictionary-save" type="submit">{copy.save}</button>
+      <p class="dictionary-status" data-dictionary-status aria-live="polite"></p>
+    </form>
+    <p class="dictionary-local-note">{copy.local}</p>
+  </dialog>
+</div>
+
+<script>
+  (() => {
+    const savedKey = 'tayanch.dictionary.saved.v1';
+    const readSaved = () => {
+      try {
+        const value = JSON.parse(localStorage.getItem(savedKey) || '[]');
+        return Array.isArray(value) ? value : [];
+      } catch { return []; }
+    };
+    const writeSaved = (value) => {
+      try { localStorage.setItem(savedKey, JSON.stringify(value.slice(-500))); return true; } catch { return false; }
+    };
+    const escapeHtml = (value) => String(value || '').replace(/[&<>"']/g, (char) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[char]));
+    const corpusElement = document.querySelector('[data-dictionary-corpus]');
+    let corpus = [];
+    try { corpus = JSON.parse(corpusElement?.textContent || '[]'); } catch { corpus = []; }
+    let lastLessonId = '';
+    const instances = [...document.querySelectorAll('[data-dictionary-command]')];
+
+    const fillForm = (root, item) => {
+      root.querySelector('[data-dictionary-en]').value = item.en || '';
+      root.querySelector('[data-dictionary-uz]').value = item.uz || '';
+      root.querySelector('[data-dictionary-ru]').value = item.ru || '';
+    };
+    const renderResults = (root) => {
+      const query = root.querySelector('[data-dictionary-search]').value.trim().toLowerCase();
+      const lesson = root.dataset.dictionaryLesson || '';
+      const saved = readSaved();
+      const matches = [...corpus, ...saved]
+        .filter((item, index, all) => all.findIndex((candidate) => candidate.en === item.en && (candidate.lesson_id || '') === (item.lesson_id || '')) === index)
+        .filter((item) => !query || [item.en, item.uz, item.ru].some((value) => String(value || '').toLowerCase().includes(query)))
+        .filter((item) => !lesson || item.lesson_id === lesson)
+        .slice(0, 12);
+      const results = root.querySelector('[data-dictionary-results]');
+      if (!matches.length) { results.innerHTML = '<p class="dictionary-muted">'+(root.dataset.dictionaryNoResults || 'No result.')+'</p>'; return; }
+      results.innerHTML = matches.map((item) => `<button type="button" class="dictionary-result" data-dictionary-result data-en="${escapeHtml(item.en)}" data-uz="${escapeHtml(item.uz)}" data-ru="${escapeHtml(item.ru)}"><strong>${escapeHtml(item.en)}</strong><span>${escapeHtml(item.uz || item.ru || '')}</span><small>${item.source === 'saved' ? 'Saqlangan so‘z' : 'Dars lug‘ati'}</small></button>`).join('');
+      results.querySelectorAll('[data-dictionary-result]').forEach((button) => button.addEventListener('click', () => fillForm(root, { en: button.dataset.en, uz: button.dataset.uz, ru: button.dataset.ru })));
+    };
+    const open = (root) => {
+      const dialog = root.querySelector('[data-dictionary-dialog-element]');
+      if (!dialog) return;
+      if (!dialog.open) dialog.showModal();
+      renderResults(root);
+      root.querySelector('[data-dictionary-search]').focus();
+    };
+    instances.forEach((root) => {
+      const lesson = root.dataset.dictionaryLesson || '';
+      root.dataset.dictionaryNoResults = {
+        uz: 'Natija topilmadi. Yangi so‘zni pastdagi maydon orqali saqlang.',
+        ru: 'Ничего не найдено. Добавьте новое слово ниже.',
+        en: 'No result. Save a new word using the form below.',
+      }[document.documentElement.lang] || 'No result.';
+      if (lesson) {
+        root.closest('[data-lesson-context]')?.addEventListener('pointerenter', () => { lastLessonId = lesson; });
+        root.closest('[data-lesson-context]')?.addEventListener('focusin', () => { lastLessonId = lesson; });
+      }
+      root.querySelector('[data-dictionary-open]')?.addEventListener('click', () => { if (lesson) lastLessonId = lesson; open(root); });
+      root.querySelector('[data-dictionary-close]')?.addEventListener('click', () => root.querySelector('[data-dictionary-dialog-element]')?.close());
+      root.querySelector('[data-dictionary-search]')?.addEventListener('input', () => renderResults(root));
+      root.querySelector('[data-dictionary-form]')?.addEventListener('submit', (event) => {
+        event.preventDefault();
+        const en = root.querySelector('[data-dictionary-en]').value.trim();
+        const uz = root.querySelector('[data-dictionary-uz]').value.trim();
+        const ru = root.querySelector('[data-dictionary-ru]').value.trim();
+        const status = root.querySelector('[data-dictionary-status]');
+        if (!en) { status.textContent = root.dataset.dictionaryRequired || 'Enter an English word.'; return; }
+        const item = { en, uz, ru, part_of_speech: 'unknown', example_en: '', example_uz: '', source: 'saved' };
+        if (lesson) item.lesson_id = lesson;
+        const saved = readSaved().filter((candidate) => !(candidate.en.toLowerCase() === en.toLowerCase() && (candidate.lesson_id || '') === (lesson || '')));
+        if (!writeSaved([...saved, item])) { status.textContent = 'Saqlash imkoni bo‘lmadi.'; return; }
+        document.dispatchEvent(new CustomEvent('tayanch:dictionary-saved', { detail: item }));
+        status.textContent = root.dataset.dictionarySaved || 'Word saved.';
+        renderResults(root);
+      });
+    });
+    document.addEventListener('keydown', (event) => {
+      if (!(event.metaKey || event.ctrlKey) || event.key.toLowerCase() !== 'k') return;
+      event.preventDefault();
+      const targetLesson = document.activeElement?.closest('[data-lesson-context]')?.dataset.lessonId || lastLessonId;
+      const root = targetLesson ? instances.find((item) => item.dataset.dictionaryLesson === targetLesson) : instances.find((item) => !item.dataset.dictionaryLesson);
+      if (root) open(root);
+    });
+  })();
+</script>
+
+<style>
+  .dictionary-command{display:inline-flex}.dictionary-trigger{border:1px solid var(--border);border-radius:9px;background:transparent;color:var(--muted);font:700 .76rem var(--font-display);padding:.45rem .62rem;cursor:pointer;white-space:nowrap}.dictionary-trigger:hover,.dictionary-trigger:focus-visible{border-color:var(--accent);color:var(--accent);outline:none}.dictionary-dialog{width:min(480px,calc(100% - 28px));max-height:min(760px,calc(100vh - 36px));overflow:auto;border:1px solid var(--border);border-radius:18px;background:var(--surface);color:var(--text);padding:1.35rem;box-shadow:0 24px 80px rgba(0,0,0,.55)}.dictionary-dialog::backdrop{background:rgba(0,0,0,.68);backdrop-filter:blur(4px)}.dictionary-head{display:flex;justify-content:space-between;gap:1rem;align-items:flex-start}.dictionary-head h2{margin:.2rem 0 0;font:800 1.45rem var(--font-display)}.dictionary-head .eyebrow{margin:0;color:var(--accent);font-size:.68rem}.dictionary-close{border:1px solid var(--border);border-radius:8px;background:transparent;color:var(--muted);font-size:1.35rem;width:32px;height:32px;cursor:pointer}.dictionary-description,.dictionary-muted,.dictionary-local-note{color:var(--muted);font-size:.82rem;line-height:1.5}.dictionary-search,.dictionary-form label{display:grid;gap:.28rem;margin-top:.9rem}.dictionary-search span,.dictionary-form label span{font-size:.76rem;color:var(--muted)}.dictionary-search input,.dictionary-form input{width:100%;box-sizing:border-box;padding:.65rem .7rem;border:1px solid var(--border);border-radius:9px;background:var(--bg);color:var(--text);font:inherit}.dictionary-results{display:grid;gap:.45rem;margin-top:.85rem;max-height:210px;overflow:auto}.dictionary-result{display:grid;grid-template-columns:1fr auto;gap:.18rem .7rem;padding:.65rem .7rem;border:1px solid var(--border);border-radius:10px;background:var(--bg);color:var(--text);text-align:left;cursor:pointer}.dictionary-result:hover,.dictionary-result:focus-visible{border-color:var(--accent);outline:none}.dictionary-result strong{color:var(--accent)}.dictionary-result span{font-size:.8rem}.dictionary-result small{grid-column:1/-1;color:var(--muted);font-size:.68rem}.dictionary-form{margin-top:1.1rem;padding-top:1rem;border-top:1px solid var(--border)}.dictionary-form-title{margin:0;color:var(--text);font-weight:800;font-size:.9rem}.dictionary-save{width:100%;margin-top:.9rem;padding:.7rem;border:0;border-radius:9px;background:var(--btn-bg);color:#fff;font:700 .85rem var(--font-display);cursor:pointer}.dictionary-status{min-height:1.1rem;color:var(--accent);font-size:.78rem}.dictionary-local-note{margin:.9rem 0 0;font-size:.72rem}
+</style>
