@@ -1,0 +1,194 @@
+---
+import vocabulary from '../data/dictionary/lesson-vocabulary.json';
+
+type Lang = 'uz' | 'ru' | 'en';
+interface Props {
+  lessonId: string;
+  lessonTitle: string;
+  lang?: Lang;
+}
+const { lessonId, lessonTitle, lang = 'uz' } = Astro.props;
+const cards = vocabulary.filter((item) => item.lesson_id === lessonId);
+const copy = {
+  uz: {
+    label: 'DARS SO‘ZLARI',
+    title: 'Ushbu darsning so‘zlari',
+    hint: 'Kartochkani bosing: old tomonda inglizcha so‘z, orqa tomonda tarjima va misol ko‘rinadi.',
+    flip: 'Kartochkani aylantirish',
+    know: 'Bilaman',
+    review: 'Qayta ko‘raman',
+    empty: 'Bu dars uchun tasdiqlangan so‘zlar hali qo‘shilmadi.',
+    source: 'Dars matnidan ajratilgan',
+    status: 'Holatni belgilang',
+  },
+  ru: {
+    label: 'СЛОВА УРОКА',
+    title: 'Слова этого урока',
+    hint: 'Нажмите на карточку: спереди английское слово, сзади перевод и пример.',
+    flip: 'Перевернуть карточку',
+    know: 'Знаю',
+    review: 'Повторить',
+    empty: 'Подтверждённые слова для этого урока ещё не добавлены.',
+    source: 'Выделено из текста урока',
+    status: 'Отметьте состояние',
+  },
+  en: {
+    label: 'LESSON WORDS',
+    title: 'Words from this lesson',
+    hint: 'Select a card: the front shows the English word, and the back shows the translation and example.',
+    flip: 'Flip card',
+    know: 'I know it',
+    review: 'Review again',
+    empty: 'Confirmed words for this lesson have not been added yet.',
+    source: 'Extracted from lesson text',
+    status: 'Mark your status',
+  },
+}[lang];
+---
+<section class="lesson-flashcards" data-lesson-flashcards data-lesson-id={lessonId} data-flip-label={copy.flip} data-status-label={copy.status} data-know-label={copy.know} data-review-label={copy.review} data-saved-source-label={lang === 'uz' ? 'Saqlangan so‘z' : lang === 'ru' ? 'Сохранённое слово' : 'Saved word'} data-flashcard-hint={copy.hint}>
+  <div class="flashcards-heading">
+    <div>
+      <p class="eyebrow">{copy.label}</p>
+      <h4>{copy.title}: {lessonTitle}</h4>
+    </div>
+    {cards.length > 0 && <span class="count-badge">{cards.length} ta</span>}
+  </div>
+  {cards.length > 0 ? (
+    <>
+      <p class="flashcards-hint">{copy.hint}</p>
+      <div class="flashcard-grid" data-flashcard-grid>
+        {cards.map((card) => {
+          const cardKey = `${lessonId}:${card.en}`;
+          return (
+            <article class="flashcard-item" data-flashcard-item data-card-key={cardKey}>
+              <button class="flashcard" type="button" data-flip aria-expanded="false" aria-label={copy.flip}>
+                <span class="flashcard-face front" data-front>{card.en}</span>
+                <span class="flashcard-face back" data-back hidden>
+                  <strong>{card.uz}</strong>
+                  <small>{card.example_en}</small>
+                  <small>{card.example_uz}</small>
+                </span>
+              </button>
+              <div class="status-label">{copy.status}</div>
+              <div class="status-actions" role="group" aria-label={`${card.en}: ${copy.status}`}>
+                <button type="button" data-status="know" aria-pressed="false">{copy.know}</button>
+                <button type="button" data-status="review" aria-pressed="false">{copy.review}</button>
+              </div>
+              <small class="source-label">{copy.source}</small>
+            </article>
+          );
+        })}
+      </div>
+    </>
+  ) : (
+    <p class="empty-state">{copy.empty}</p>
+  )}
+</section>
+
+<script>
+  (() => {
+    const storageKey = 'tayanch.flashcards.v1';
+    const readProgress = () => {
+      try {
+        const value = JSON.parse(localStorage.getItem(storageKey) || '{}');
+        return value && typeof value === 'object' ? value : {};
+      } catch { return {}; }
+    };
+    const writeProgress = (value) => {
+      try { localStorage.setItem(storageKey, JSON.stringify(value)); } catch {}
+    };
+    const readSaved = () => {
+      try {
+        const value = JSON.parse(localStorage.getItem('tayanch.dictionary.saved.v1') || '[]');
+        return Array.isArray(value) ? value : [];
+      } catch { return []; }
+    };
+    const writeLabel = (root, key, fallback) => root.dataset[key] || fallback;
+    const findCard = (root, key) => [...root.querySelectorAll('[data-flashcard-item]')].find((item) => item.getAttribute('data-card-key') === key);
+
+    const bindCard = (root, item) => {
+      const key = item.getAttribute('data-card-key');
+      const flip = item.querySelector('[data-flip]');
+      const front = item.querySelector('[data-front]');
+      const back = item.querySelector('[data-back]');
+      const statusButtons = item.querySelectorAll('[data-status]');
+      if (!key || !flip || !front || !back || item.dataset.bound === 'true') return;
+      item.dataset.bound = 'true';
+      const progress = readProgress();
+      const applyStatus = (status) => {
+        statusButtons.forEach((button) => {
+          const active = button.getAttribute('data-status') === status;
+          button.setAttribute('aria-pressed', String(active));
+          button.classList.toggle('active', active);
+        });
+      };
+      if (typeof progress[key] === 'boolean') applyStatus(progress[key] ? 'know' : 'review');
+      flip.addEventListener('click', () => {
+        const showingBack = flip.getAttribute('aria-expanded') === 'true';
+        flip.setAttribute('aria-expanded', String(!showingBack));
+        front.hidden = !showingBack;
+        back.hidden = showingBack;
+      });
+      statusButtons.forEach((button) => button.addEventListener('click', () => {
+        const status = button.getAttribute('data-status');
+        if (status !== 'know' && status !== 'review') return;
+        progress[key] = status === 'know';
+        writeProgress(progress);
+        applyStatus(status);
+      }));
+    };
+
+    const appendSavedCard = (root, item) => {
+      const lessonId = root.getAttribute('data-lesson-id') || '';
+      if (!item?.en || item.lesson_id !== lessonId) return;
+      const key = `${lessonId}:${item.en}`;
+      if (findCard(root, key)) return;
+      let grid = root.querySelector('[data-flashcard-grid]');
+      if (!grid) {
+        root.querySelector('.empty-state')?.remove();
+        const hint = document.createElement('p');
+        hint.className = 'flashcards-hint';
+        hint.textContent = writeLabel(root, 'flashcardHint', 'Kartochkani bosing: tarjima va misolni ko‘ring.');
+        grid = document.createElement('div');
+        grid.className = 'flashcard-grid';
+        grid.setAttribute('data-flashcard-grid', '');
+        root.querySelector('.flashcards-heading')?.after(hint, grid);
+      }
+      const card = document.createElement('article');
+      card.className = 'flashcard-item';
+      card.setAttribute('data-flashcard-item', '');
+      card.setAttribute('data-card-key', key);
+      const flip = document.createElement('button');
+      flip.className = 'flashcard'; flip.type = 'button'; flip.setAttribute('data-flip', '');
+      flip.setAttribute('aria-expanded', 'false');
+      flip.setAttribute('aria-label', writeLabel(root, 'flipLabel', 'Kartochkani aylantirish'));
+      const front = document.createElement('span'); front.className = 'flashcard-face front'; front.setAttribute('data-front', ''); front.textContent = item.en;
+      const back = document.createElement('span'); back.className = 'flashcard-face back'; back.setAttribute('data-back', ''); back.hidden = true;
+      const meaning = document.createElement('strong'); meaning.textContent = item.uz || item.ru || 'Tarjima keyinroq qo‘shiladi';
+      const exampleEn = document.createElement('small'); exampleEn.textContent = item.example_en || '';
+      const exampleUz = document.createElement('small'); exampleUz.textContent = item.example_uz || '';
+      back.append(meaning, exampleEn, exampleUz); flip.append(front, back);
+      const label = document.createElement('div'); label.className = 'status-label'; label.textContent = writeLabel(root, 'statusLabel', 'Holatni belgilang');
+      const actions = document.createElement('div'); actions.className = 'status-actions'; actions.setAttribute('role', 'group'); actions.setAttribute('aria-label', `${item.en}: ${label.textContent}`);
+      for (const [status, text] of [['know', writeLabel(root, 'knowLabel', 'Bilaman')], ['review', writeLabel(root, 'reviewLabel', 'Qayta ko‘raman')]]) {
+        const button = document.createElement('button'); button.type = 'button'; button.setAttribute('data-status', status); button.setAttribute('aria-pressed', 'false'); button.textContent = text; actions.append(button);
+      }
+      const source = document.createElement('small'); source.className = 'source-label'; source.textContent = writeLabel(root, 'savedSourceLabel', 'Saqlangan so‘z');
+      card.append(flip, label, actions, source); grid.append(card); bindCard(root, card);
+    };
+
+    document.querySelectorAll('[data-lesson-flashcards]').forEach((root) => {
+      root.querySelectorAll('[data-flashcard-item]').forEach((item) => bindCard(root, item));
+      readSaved().forEach((item) => appendSavedCard(root, item));
+    });
+    document.addEventListener('tayanch:dictionary-saved', (event) => {
+      const item = event.detail;
+      if (!item?.lesson_id) return;
+      document.querySelectorAll('[data-lesson-flashcards]').forEach((root) => appendSavedCard(root, item));
+    });
+  })();
+</script>
+
+<style>
+  .lesson-flashcards{margin-top:1rem;padding:1rem;border:1px solid color-mix(in srgb,var(--course-accent, var(--accent)) 35%,var(--border));border-radius:14px;background:color-mix(in srgb,var(--course-accent, var(--accent)) 5%,var(--bg))}.flashcards-heading{display:flex;justify-content:space-between;gap:1rem;align-items:flex-start}.flashcards-heading h4{margin:.15rem 0 0;font-size:1rem}.flashcards-heading .eyebrow{margin:0;color:var(--course-accent,var(--accent));font-size:.68rem}.count-badge{padding:.25rem .5rem;border:1px solid var(--border);border-radius:999px;color:var(--muted);font-size:.75rem;white-space:nowrap}.flashcards-hint,.empty-state{color:var(--muted);font-size:.82rem;line-height:1.5;margin:.65rem 0 0}.flashcard-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:.65rem;margin-top:.8rem}.flashcard-item{display:flex;flex-direction:column;min-width:0}.flashcard{min-height:112px;width:100%;padding:.9rem;border:1px solid var(--border);border-radius:12px;background:var(--surface);color:var(--text);cursor:pointer;text-align:left;transition:border-color .18s,transform .18s}.flashcard:hover,.flashcard:focus-visible{border-color:var(--course-accent,var(--accent));transform:translateY(-1px);outline:none}.flashcard-face{display:flex;flex-direction:column;justify-content:center;gap:.45rem;min-height:78px}.flashcard-face[hidden]{display:none}.flashcard-face.front{font-size:1.15rem;font-weight:800;color:var(--course-accent,var(--accent))}.flashcard-face.back strong{font-size:1rem}.flashcard-face.back small{color:var(--muted);font-size:.78rem;line-height:1.4}.status-label{margin-top:.55rem;color:var(--muted);font-size:.7rem}.status-actions{display:flex;gap:.35rem;margin-top:.3rem}.status-actions button{flex:1;padding:.38rem .4rem;border:1px solid var(--border);border-radius:8px;background:transparent;color:var(--muted);font:inherit;font-size:.72rem;cursor:pointer}.status-actions button:hover,.status-actions button:focus-visible,.status-actions button.active{border-color:var(--course-accent,var(--accent));color:var(--course-accent,var(--accent));outline:none}.status-actions button.active{background:color-mix(in srgb,var(--course-accent,var(--accent)) 12%,transparent)}.source-label{margin-top:.35rem;color:var(--muted);font-size:.65rem;opacity:.8}@media(max-width:460px){.flashcard-grid{grid-template-columns:1fr}.flashcards-heading{align-items:stretch;flex-direction:column}.count-badge{align-self:flex-start}}
+</style>

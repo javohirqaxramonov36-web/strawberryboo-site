@@ -1,8 +1,12 @@
 ---
 import { getCourseFocus, getDownload, studentOutcomes } from '../data/course-enrichment';
 import outcomesData from '../data/student-outcomes.json';
+import LessonFlashcards from './LessonFlashcards.astro';
+import DictionaryCommand from './DictionaryCommand.astro';
 const { slug, lang = 'uz' } = Astro.props as { slug: string; lang?: 'uz' | 'ru' | 'en' };
 const focus = getCourseFocus(slug);
+const isGeneralEnglish = slug.startsWith('general-english-');
+const lessonId = (index: number) => `${slug}/${String(index + 1).padStart(2, '0')}`;
 const download = getDownload(slug);
 const base = import.meta.env.BASE_URL;
 const copy = lang === 'ru'
@@ -19,7 +23,16 @@ const outcome = verifiedOutcome ?? studentOutcomes.find((item) => item.courseSlu
       <p class="eyebrow">{copy.focus}</p>
       <h2 id={`enrichment-${slug}`}>{focus.focus}</h2>
       <p>{copy.focusText}</p>
-      <ol>{focus.modules.slice(0, 6).map((module) => <li>{module}</li>)}</ol>
+      {isGeneralEnglish ? (
+        <div class="lesson-list">
+          {focus.modules.map((module, index) => (
+            <article class="lesson-item" data-lesson-context data-lesson-id={lessonId(index)}>
+              <div class="lesson-title"><span>{String(index + 1).padStart(2, '0')}</span><h3>{module}</h3><DictionaryCommand lessonId={lessonId(index)} lang={lang} /></div>
+              <LessonFlashcards lessonId={lessonId(index)} lessonTitle={module} lang={lang} />
+            </article>
+          ))}
+        </div>
+      ) : <ol>{focus.modules.slice(0, 6).map((module) => <li>{module}</li>)}</ol>}
     </article>
     <article class="enrichment-card download-card">
       <p class="eyebrow">{copy.video}</p>
@@ -36,5 +49,5 @@ const outcome = verifiedOutcome ?? studentOutcomes.find((item) => item.courseSlu
   </article>
 </section>
 <style>
-  .course-enrichment{margin:2rem 0;display:grid;gap:1rem}.enrichment-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1rem}.enrichment-card,.outcomes-card{padding:1.15rem;border:1px solid var(--border);border-radius:15px;background:var(--surface)}.enrichment-card h2,.outcomes-card h2{margin:.25rem 0 .55rem;font-size:1.15rem}.enrichment-card p,.outcomes-card p,.outcomes-card small{color:var(--muted);line-height:1.55}.enrichment-card ol{margin:.8rem 0 0;padding-left:1.25rem;color:var(--muted)}.enrichment-card li{margin:.35rem 0}.download-card{background:linear-gradient(145deg,var(--surface),var(--accent-soft))}.enrichment-link{display:inline-block;margin-top:.8rem;color:var(--accent);font-weight:800}.outcomes-card{border-style:dashed}.outcomes-card small{display:block;margin-top:.7rem;font-size:.8rem}@media(max-width:680px){.enrichment-grid{grid-template-columns:1fr}}
+  .course-enrichment{margin:2rem 0;display:grid;gap:1rem}.enrichment-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1rem}.enrichment-card,.outcomes-card{padding:1.15rem;border:1px solid var(--border);border-radius:15px;background:var(--surface)}.enrichment-card h2,.outcomes-card h2{margin:.25rem 0 .55rem;font-size:1.15rem}.enrichment-card p,.outcomes-card p,.outcomes-card small{color:var(--muted);line-height:1.55}.enrichment-card ol{margin:.8rem 0 0;padding-left:1.25rem;color:var(--muted)}.enrichment-card li{margin:.35rem 0}.lesson-list{display:grid;gap:.8rem;margin-top:1rem}.lesson-item{padding-top:.8rem;border-top:1px solid var(--border)}.lesson-item:first-child{padding-top:0;border-top:0}.lesson-title{display:flex;align-items:center;gap:.6rem}.lesson-title span{color:var(--accent);font-size:.72rem;font-weight:800;letter-spacing:.08em}.lesson-title h3{margin:0;font-size:.95rem}.download-card{background:linear-gradient(145deg,var(--surface),var(--accent-soft))}.enrichment-link{display:inline-block;margin-top:.8rem;color:var(--accent);font-weight:800}.outcomes-card{border-style:dashed}.outcomes-card small{display:block;margin-top:.7rem;font-size:.8rem}@media(max-width:680px){.enrichment-grid{grid-template-columns:1fr}}
 </style>
