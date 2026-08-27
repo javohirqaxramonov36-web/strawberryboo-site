@@ -1,0 +1,40 @@
+---
+import { getCourseFocus, getDownload, studentOutcomes } from '../data/course-enrichment';
+import outcomesData from '../data/student-outcomes.json';
+const { slug, lang = 'uz' } = Astro.props as { slug: string; lang?: 'uz' | 'ru' | 'en' };
+const focus = getCourseFocus(slug);
+const download = getDownload(slug);
+const base = import.meta.env.BASE_URL;
+const copy = lang === 'ru'
+  ? { focus: 'Как работать с курсом', focusText: 'Каждый модуль заканчивается маленьким действием, которое можно проверить самостоятельно.', download: 'Скачать материал', outcomes: 'Результаты студентов', empty: 'Раздел будет заполнен только после получения разрешения и проверки реальных результатов.', video: 'Видео-сценарии', videoText: 'Для каждого модуля подготовлен сценарий screen-recording на узбекском языке.' }
+  : lang === 'en'
+    ? { focus: 'How to use this course', focusText: 'Each module ends with a small action you can check yourself.', download: 'Download material', outcomes: 'Student outcomes', empty: 'This section will be filled only with permissioned and verified real outcomes.', video: 'Video scripts', videoText: 'A screen-recording script is prepared for every module in Uzbek.' }
+    : { focus: 'Kursdan qanday foydalanasiz', focusText: 'Har bir modul kichik, tekshiriladigan amaliy qadam bilan tugaydi.', download: 'Materialni yuklab olish', outcomes: 'Talaba natijalari', empty: 'Bu bo‘lim faqat ruxsat berilgan va tekshirilgan haqiqiy natijalar bilan to‘ldiriladi.', video: 'Video-skriptlar', videoText: 'Har bir modul uchun o‘zbek tilida screen-recording skripti tayyorlangan.' };
+const verifiedOutcome = (outcomesData.outcomes as Array<{ courseSlug: string; name: string; outcome: string }>).find((item) => item.courseSlug === slug);
+const outcome = verifiedOutcome ?? studentOutcomes.find((item) => item.courseSlug === slug);
+---
+<section class="course-enrichment" aria-labelledby={`enrichment-${slug}`}>
+  <div class="enrichment-grid">
+    <article class="enrichment-card">
+      <p class="eyebrow">{copy.focus}</p>
+      <h2 id={`enrichment-${slug}`}>{focus.focus}</h2>
+      <p>{copy.focusText}</p>
+      <ol>{focus.modules.slice(0, 6).map((module) => <li>{module}</li>)}</ol>
+    </article>
+    <article class="enrichment-card download-card">
+      <p class="eyebrow">{copy.video}</p>
+      <h2>{focus.modules.length} ta modul uchun yo‘l xaritasi</h2>
+      <p>{copy.videoText}</p>
+      {download && <a class="enrichment-link" href={base + download.path} download>{copy.download}: {download.label} →</a>}
+    </article>
+  </div>
+  <article class="outcomes-card">
+    <p class="eyebrow">{copy.outcomes}</p>
+    <h2>{outcome?.name ?? 'Keyinroq qo‘shiladi'}</h2>
+    <p>{outcome?.outcome ?? copy.empty}</p>
+    <small>Ism, natija va izoh faqat talabaning aniq roziligi bilan kiritiladi.</small>
+  </article>
+</section>
+<style>
+  .course-enrichment{margin:2rem 0;display:grid;gap:1rem}.enrichment-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1rem}.enrichment-card,.outcomes-card{padding:1.15rem;border:1px solid var(--border);border-radius:15px;background:var(--surface)}.enrichment-card h2,.outcomes-card h2{margin:.25rem 0 .55rem;font-size:1.15rem}.enrichment-card p,.outcomes-card p,.outcomes-card small{color:var(--muted);line-height:1.55}.enrichment-card ol{margin:.8rem 0 0;padding-left:1.25rem;color:var(--muted)}.enrichment-card li{margin:.35rem 0}.download-card{background:linear-gradient(145deg,var(--surface),var(--accent-soft))}.enrichment-link{display:inline-block;margin-top:.8rem;color:var(--accent);font-weight:800}.outcomes-card{border-style:dashed}.outcomes-card small{display:block;margin-top:.7rem;font-size:.8rem}@media(max-width:680px){.enrichment-grid{grid-template-columns:1fr}}
+</style>

@@ -17,3 +17,4 @@ export const courseCatalog = (coursesData.courses as CourseRecord[])
 
 export const totalCourseCount = courseCatalog.length;
 export const availableCourseCount = courseCatalog.filter((course) => course.status === 'available').length;
+export const upcomingCourseCount = courseCatalog.filter((course) => course.status === 'upcoming').length;

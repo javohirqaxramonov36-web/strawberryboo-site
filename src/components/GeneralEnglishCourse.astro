@@ -3,6 +3,7 @@ import type { LocalizedGeneralEnglishCourse as Course, CourseLang } from '../dat
 import Testimonials from './Testimonials.astro';
 import CourseFaq from './CourseFaq.astro';
 import CourseSchema from './CourseSchema.astro';
+import CourseEnrichment from './CourseEnrichment.astro';
 interface Props { course: Course; previousCourse?: Course; nextCourse?: Course; lang?: CourseLang; }
 const { course, previousCourse, nextCourse, lang = 'uz' } = Astro.props;
 const base = import.meta.env.BASE_URL;
@@ -24,6 +25,7 @@ const faqCopy = {
   <header class="course-hero"><span class="badge badge-new">{course.badge}</span><p class="eyebrow">GENERAL ENGLISH · CEFR {course.cefr}</p><h1>{course.title}</h1><p class="lead">{course.description}</p><div class="course-meta"><span class="cat">{course.tags.join(' · ')}</span>{course.certificate && <span class="certificate">{copy.certificate}</span>}</div></header>
   <section class="course-section" aria-labelledby="audience-title"><p class="eyebrow">{copy.audience}</p><h2 id="audience-title">{copy.path}</h2><p>{course.targetAudience}</p></section>
   <section class="course-section status-section" aria-labelledby="status-title"><p class="eyebrow">{copy.status}</p><h2 id="status-title">{copy.soon}</h2><p>{copy.statusText} {course.price}.</p></section>
+  <CourseEnrichment slug={course.slug} lang={lang} />
   <section class="placement-cta course-section" aria-labelledby="placement-cta-title"><p class="eyebrow">GENERAL ENGLISH · CEFR</p><h2 id="placement-cta-title">{lang === 'uz' ? 'Darajangizni bilib oling' : lang === 'ru' ? 'Определите свой уровень' : 'Check your level'}</h2><p>{lang === 'uz' ? 'Kursni tanlashdan oldin qisqa placement testni ishlang.' : lang === 'ru' ? 'Пройдите короткий placement-тест перед выбором курса.' : 'Take a short placement test before choosing a course.'}</p><a href={base + `${prefix}daraja-testi/`}>{lang === 'uz' ? 'Darajangizni bilib oling →' : lang === 'ru' ? 'Узнать свой уровень →' : 'Check your level →'}</a></section>
   <CourseFaq facts={{ title: course.title, lang, overview: course.description, topics: [...course.tags], whoFor: course.targetAudience, whoNotFor: faqCopy.notFor, price: course.price, status: faqCopy.status, certificate: course.certificate, accessPayment: faqCopy.access }} />
   <Testimonials courseSlug={course.slug} lang={lang} />

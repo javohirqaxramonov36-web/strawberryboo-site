@@ -5,6 +5,7 @@ import LeadMagnetCTA from './LeadMagnetCTA.astro';
 import Testimonials from './Testimonials.astro';
 import CourseFaq from './CourseFaq.astro';
 import CourseSchema from './CourseSchema.astro';
+import CourseEnrichment from './CourseEnrichment.astro';
 import CareerOutcomePanel from './CareerOutcomePanel.astro';
 import type { CourseLocale } from '../data/localized-standard-courses';
 import coursesData from '../data/courses.json';
@@ -23,6 +24,7 @@ const faqCopy = lang === 'ru'
  <section><h2>{lang === 'ru' ? 'Что вы изучите' : 'What you will learn'}</h2><div class="modules">{course.modules.map((module: string, i: number) => <article class="course-module"><p>{String(i + 1).padStart(2, '0')}</p><h3>{module}</h3></article>)}</div></section>
  <CareerOutcomePanel slug={slug} lang={lang} />
  <section class="outcomes"><h2>{lang === 'ru' ? 'Практический результат' : 'Practical outcome'}</h2><ul>{course.outcome.map((item: string) => <li>{item}</li>)}</ul></section>
+ <CourseEnrichment slug={slug} lang={lang} />
  <Quiz title={lang === 'ru' ? 'Быстрый quiz' : 'Quick quiz'} questions={[course.quiz]} />
  <LeadMagnetCTA />
  <CourseFaq facts={{ title: course.heading, lang, overview: course.description, topics: course.modules, whoFor: faqCopy.whoFor, whoNotFor: faqCopy.notFor, price: displayPrice, status: course.status, certificate: false, accessPayment: faqCopy.access }} />

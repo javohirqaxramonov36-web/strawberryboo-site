@@ -1,0 +1,24 @@
+---
+import Base from '../layouts/Base.astro';
+const updated = '2026-08-27';
+const tools = [
+  { name: 'Claude', use: 'Murakkab matn, kod va ko‘p bosqichli vazifalar.', note: 'Model nomi, narxi va limiti o‘zgarishi mumkin; rasmiy tarifni tekshiring.', href: 'https://www.anthropic.com/claude' },
+  { name: 'Gemini va Google AI Studio', use: 'Prototip, multimodal tajriba va Google ekotizimi bilan ishlash.', note: 'API kalitni faqat server yoki maxfiy lokal konfiguratsiyada saqlang.', href: 'https://ai.google.dev/' },
+  { name: 'Ollama', use: 'Mos qurilmada mahalliy modelni internetga yubormasdan sinash.', note: 'Mahalliy ishlash kompyuter resursi va model litsenziyasiga bog‘liq.', href: 'https://ollama.com/' },
+  { name: 'NotebookLM', use: 'Yuklangan manbalar asosida savol-javob va konspekt.', note: 'Shaxsiy yoki maxfiy hujjatni yuklashdan oldin xizmat shartlarini tekshiring.', href: 'https://notebooklm.google.com/' },
+  { name: 'Cursor / OpenCode', use: 'Kod bazasida agentik tahrir, diff va test bilan ishlash.', note: 'Agentga ruxsat berilgan fayl doirasini cheklang; har bir diffni ko‘rib chiqing.', href: 'https://cursor.com/' },
+  { name: 'LMArena', use: 'Model javoblarini anonim taqqoslash uchun signal.', note: 'Reyting — sizning aniq workflow’ingizdagi kafolat emas.', href: 'https://lmarena.ai/' },
+];
+---
+<Base title="AI vositalari va modellar | Tayanch" description="AI vositalari, modellar, mahalliy ishlash va API kalit xavfsizligi bo‘yicha yangilanib turadigan amaliy xarita.">
+  <article class="tools-page">
+    <header class="tools-hero"><p class="eyebrow">TAYANCH · AI VOSITALAR</p><h1>AI vositalari va modellar xaritasi</h1><p class="lead">Bu ro‘yxat “eng zo‘ri” degan da’vo emas. Vazifangiz, maxfiylik ehtiyoji, narx va tekshirish imkoniga qarab tanlang.</p><div class="updated">Oxirgi tekshiruv: <time datetime={updated}>{updated}</time></div></header>
+    <section class="tool-grid" aria-label="AI vositalari">
+      {tools.map((tool) => <article class="tool-card"><h2>{tool.name}</h2><p>{tool.use}</p><small>{tool.note}</small><a href={tool.href} target="_blank" rel="noopener noreferrer">Rasmiy manbani ko‘rish →</a></article>)}
+    </section>
+    <section class="safety"><p class="eyebrow">XAVFSIZLIK QOIDASI</p><h2>Kalit va shaxsiy ma’lumot</h2><ul><li>API kalitni public repo, screenshot yoki frontend kodiga qo‘ymang.</li><li>Shaxsiy hujjatni noma’lum endpoint’ga yubormang; avval maqsad va saqlash shartini tekshiring.</li><li>Agent workflow’da kichik diff, test va qaytarish nuqtasini saqlang.</li></ul></section>
+  </article>
+</Base>
+<style>
+  .tools-page{max-width:980px;margin:auto}.tools-hero{padding:clamp(1.2rem,4vw,3rem) 0}.tools-hero h1{max-width:760px}.lead{max-width:760px;color:var(--muted);line-height:1.7;font-size:1.08rem}.updated{display:inline-block;margin-top:1rem;padding:.45rem .7rem;border:1px solid var(--border);border-radius:999px;color:var(--muted);font-size:.85rem}.updated time{color:var(--accent);font-weight:800}.tool-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1rem}.tool-card,.safety{padding:1.15rem;border:1px solid var(--border);border-radius:15px;background:var(--surface)}.tool-card h2,.safety h2{margin:.1rem 0 .45rem}.tool-card p,.tool-card small,.safety li{color:var(--muted);line-height:1.55}.tool-card small{display:block}.tool-card a{display:inline-block;margin-top:.8rem;color:var(--accent);font-weight:800}.safety{margin-top:1rem;border-color:color-mix(in srgb,#f59e0b 45%,var(--border))}.safety ul{padding-left:1.2rem}@media(max-width:680px){.tool-grid{grid-template-columns:1fr}}
+</style>

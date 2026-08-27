@@ -33,7 +33,7 @@ const showDiscountBanner = Astro.props.showDiscountBanner || false;
 ---
 
 <!doctype html>
-<html lang={lang}>
+<html lang={lang} data-practical-assessment-endpoint={import.meta.env.PUBLIC_PRACTICAL_ASSESSMENT_ENDPOINT || undefined}>
   <head>
     <meta charset="utf-8" />
     <!-- Security: GitHub Pages cannot send real HTTP headers, so this meta CSP is

@@ -1,0 +1,40 @@
+---
+const { courseSlug, rubric, lang = 'uz' } = Astro.props as { courseSlug: string; rubric: string; lang?: 'uz' | 'ru' | 'en' };
+const copy = lang === 'ru'
+  ? { title: 'Практическое задание', intro: 'Напишите ответ и получите обратную связь по заранее заданной рубрике.', placeholder: 'Введите свой ответ...', send: 'Отправить на проверку', note: 'Проверка подключается только через защищённый сервер. Ключ Anthropic не хранится в браузере.', working: 'Проверяем…', unavailable: 'Сервер проверки ещё не подключён.' }
+  : lang === 'en'
+    ? { title: 'Practical task', intro: 'Write an answer and receive feedback against a defined rubric.', placeholder: 'Write your answer...', send: 'Request feedback', note: 'Assessment runs only through a protected server. The Anthropic key is never stored in the browser.', working: 'Checking…', unavailable: 'The assessment server is not connected yet.' }
+    : { title: 'Amaliy topshiriq', intro: 'Javobingizni yozing va oldindan belgilangan rubrika asosida fikr-mulohaza oling.', placeholder: 'Javobingizni shu yerga yozing...', send: 'Baholashga yuborish', note: 'Baholash faqat himoyalangan server orqali ishlaydi. Anthropic kaliti brauzerda saqlanmaydi.', working: 'Tekshirilmoqda…', unavailable: 'Baholash serveri hali ulanmagan.' };
+---
+<section class="practical-assessment" data-practical-assessment data-course={courseSlug} data-rubric={rubric}>
+  <p class="eyebrow">AMALIY TEKSHIRUV</p>
+  <h2>{copy.title}</h2>
+  <p>{copy.intro}</p>
+  <label><span class="sr-only">{copy.title}</span><textarea data-practical-answer rows="8" placeholder={copy.placeholder}></textarea></label>
+  <div class="assessment-actions"><button type="button" data-practical-submit>{copy.send}</button><span data-practical-status role="status"></span></div>
+  <small>{copy.note}</small>
+</section>
+<script>
+  document.querySelectorAll('[data-practical-assessment]').forEach((root) => {
+    const answer = root.querySelector('[data-practical-answer]');
+    const submit = root.querySelector('[data-practical-submit]');
+    const status = root.querySelector('[data-practical-status]');
+    submit?.addEventListener('click', async () => {
+      const text = answer?.value.trim();
+      if (!text) { status.textContent = 'Avval javob yozing.'; return; }
+      const endpoint = document.documentElement.dataset.practicalAssessmentEndpoint;
+      if (!endpoint) { status.textContent = 'Baholash serveri hali ulanmagan.'; return; }
+      submit.disabled = true; status.textContent = 'Tekshirilmoqda…';
+      try {
+        const res = await fetch(endpoint, { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify({ course: root.dataset.course, rubric: root.dataset.rubric, answer: text }) });
+        if (!res.ok) throw new Error('Server javobi muvaffaqiyatsiz.');
+        const data = await res.json();
+        status.textContent = data.feedback || 'Fikr-mulohaza qaytdi.';
+      } catch (error) { status.textContent = error instanceof Error ? error.message : 'Xatolik yuz berdi.'; }
+      finally { submit.disabled = false; }
+    });
+  });
+</script>
+<style>
+  .practical-assessment{margin:2rem 0;padding:1.2rem;border:1px solid color-mix(in srgb,var(--accent) 45%,var(--border));border-radius:16px;background:linear-gradient(145deg,var(--surface),var(--accent-soft))}.practical-assessment h2{margin:.2rem 0 .4rem}.practical-assessment>p:not(.eyebrow){color:var(--muted);line-height:1.55}.practical-assessment textarea{width:100%;box-sizing:border-box;resize:vertical;padding:.85rem;border:1px solid var(--border);border-radius:11px;background:var(--bg);color:var(--text);font:inherit;line-height:1.55}.assessment-actions{display:flex;align-items:center;gap:.75rem;flex-wrap:wrap;margin:.75rem 0}.assessment-actions button{padding:.65rem .95rem;border:0;border-radius:9px;background:var(--btn-bg);color:#fff;font-weight:800;cursor:pointer}.assessment-actions button:disabled{opacity:.6;cursor:wait}.assessment-actions span{color:var(--muted);font-size:.9rem}.practical-assessment small{color:var(--muted);line-height:1.45}.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+</style>
