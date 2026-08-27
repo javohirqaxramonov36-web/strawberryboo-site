@@ -12,7 +12,6 @@ type CourseRecord = {
 // source of truth for course metadata; set countInPublicTotal only for courses
 // that should be included in the headline total.
 export const courseCatalog = (coursesData.courses as CourseRecord[])
-  .filter((course) => course.countInPublicTotal)
   .map(({ slug, status }) => ({ slug, status })) as readonly { slug: string; status: CourseStatus }[];
 
 export const totalCourseCount = courseCatalog.length;
