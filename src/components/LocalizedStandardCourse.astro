@@ -5,6 +5,7 @@ import LeadMagnetCTA from './LeadMagnetCTA.astro';
 import Testimonials from './Testimonials.astro';
 import CourseFaq from './CourseFaq.astro';
 import CourseSchema from './CourseSchema.astro';
+import CourseEnrichment from './CourseEnrichment.astro';
 import type { CourseLocale } from '../data/localized-standard-courses';
 const { course, slug, lang } = Astro.props as { course: any; slug: string; lang: CourseLocale };
 const faqCopy = lang === 'ru'
@@ -17,6 +18,7 @@ const faqCopy = lang === 'ru'
  <header class="course-hero"><p class="eyebrow">TAYANCH · COURSE</p><h1>{course.heading}</h1><p class="lead">{course.description}</p><div class="price"><span class="now">{course.price}</span>{course.oldPrice && <span class="old">{course.oldPrice}</span>}{course.status && <span class="badge">{course.status}</span>}</div></header>
  <section><h2>{lang === 'ru' ? 'Что вы изучите' : 'What you will learn'}</h2><div class="modules">{course.modules.map((module: string, i: number) => <article class="course-module"><p>{String(i + 1).padStart(2, '0')}</p><h3>{module}</h3></article>)}</div></section>
  <section class="outcomes"><h2>{lang === 'ru' ? 'Практический результат' : 'Practical outcome'}</h2><ul>{course.outcome.map((item: string) => <li>{item}</li>)}</ul></section>
+ <CourseEnrichment slug={slug} lang={lang} />
  <Quiz title={lang === 'ru' ? 'Быстрый quiz' : 'Quick quiz'} questions={[course.quiz]} />
  <LeadMagnetCTA />
  <CourseFaq facts={{ title: course.heading, lang, overview: course.description, topics: course.modules, whoFor: faqCopy.whoFor, whoNotFor: faqCopy.notFor, price: course.price, status: course.status, certificate: false, accessPayment: faqCopy.access }} />

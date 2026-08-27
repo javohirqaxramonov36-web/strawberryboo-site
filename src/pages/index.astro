@@ -105,6 +105,14 @@ const TG = "https://t.me/tayanch_go"; // Telegram kanal/guruh havolasi
 </section>
 
 
+<section class="catalog-extensions" aria-labelledby="catalog-extensions-title">
+  <div class="sec-head" style="margin-top:0"><h2 id="catalog-extensions-title" class="sec-title">Yo‘nalishlar</h2><a class="sec-all" href={base + 'kurslar/'}>Barcha 31 kurs →</a></div>
+  <div class="extension-grid">
+    <a href={base + 'kurslar/general-english-beginner/'}><span>GENERAL ENGLISH</span><b>A1 → C1 yo‘nalishi</b><small>6 ta bosqich · narxlar keyin belgilanadi</small></a>
+    <a href={base + 'kurslar/sat-math/'}><span>SAT · ADMISSION</span><b>Math + English + Desmos</b><small>3 ta komponent · narxlar keyin belgilanadi</small></a>
+  </div>
+</section>
+
 <section class="upcoming-courses" aria-labelledby="upcoming-courses-title">
   <div class="upcoming-heading">
     <p class="eyebrow">KELAYOTGAN KURSLAR</p>
@@ -329,7 +337,8 @@ const TG = "https://t.me/tayanch_go"; // Telegram kanal/guruh havolasi
       .wordle-cell { width: 34px; height: 34px; font-size: 15px; }
       .memory-grid { grid-template-columns: repeat(3, 1fr); }
     }
-  </style>
+  .catalog-extensions{margin:2rem 0}.extension-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1rem}.extension-grid a{display:block;padding:1.1rem;border:1px solid var(--border);border-radius:15px;background:var(--surface);text-decoration:none;color:var(--text)}.extension-grid a:hover{border-color:var(--accent);transform:translateY(-2px)}.extension-grid span{display:block;color:var(--accent);font-size:.75rem;font-weight:800;letter-spacing:.1em}.extension-grid b{display:block;margin:.35rem 0;font-size:1.15rem}.extension-grid small{color:var(--muted)}@media(max-width:620px){.extension-grid{grid-template-columns:1fr}}
+</style>
 
   <script is:inline>
     const allGames = [

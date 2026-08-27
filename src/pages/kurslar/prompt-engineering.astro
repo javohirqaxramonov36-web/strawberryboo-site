@@ -7,6 +7,8 @@ import CourseProgress from "../../components/CourseProgress.astro";
 import CourseSchema from "../../components/CourseSchema.astro";
 import Quiz from "../../components/Quiz.astro";
 import CourseTestimonialPlaceholder from "../../components/CourseTestimonialPlaceholder.astro";
+import CourseEnrichment from "../../components/CourseEnrichment.astro";
+import PracticalAssessment from "../../components/PracticalAssessment.astro";
 import CourseFaq from "../../components/CourseFaq.astro";
 import { bespokeCourseFaqFacts } from "../../data/course-faqs";
 const title = "Prompt Engineering: AI'dan sifatli javob olish | Tayanch";
@@ -151,55 +153,11 @@ const questions = [
     </div>
   </section>
 
-  <section>
-    <h2>3. AI modellari va studio'lari</h2>
-    <p>
-      Prompt yozishdan oldin to'g'ri vositani tanlash muhim. Quyida eng
-      foydali AI modellari va studio'lari (qisqacha):
-    </p>
-    <ul style="display:flex;flex-direction:column;gap:10px;padding:0;list-style:none;">
-      <li style="border:1px solid var(--border);border-radius:12px;padding:12px 14px;background:var(--surface);"><b>Claude (Anthropic)</b> — suhbat, kod yozish (Claude Code) va murakkab ko'p bosqichli ishlar uchun. Modellar: Haiku (tez), Sonnet (muvozanatli), Opus (eng kuchli).</li>
-      <li style="border:1px solid var(--border);border-radius:12px;padding:12px 14px;background:var(--surface);"><b>Google AI Studio</b> — Gemini modellari bilan tezkor prototip (bepul, brauzer-asosidagi). API kalit generatsiya qilish uchun ham ishlatiladi. 2026 aprelidan Pro-seriya faqat pullik.</li>
-      <li style="border:1px solid var(--border);border-radius:12px;padding:12px 14px;background:var(--surface);"><b>Google Antigravity</b> — agentik dasturlash muhiti (Gemini asosida). Yuqori darajadagi vazifa bersang, reja tuzadi, kod yozadi, serverni ishga tushiradi.</li>
-      <li style="border:1px solid var(--border);border-radius:12px;padding:12px 14px;background:var(--surface);"><b>Cursor</b> — AI-native kod muharriri (VS Code asosida). Agent rejimi butun kod bazasini tushunib mustaqil o'zgartiradi.</li>
-      <li style="border:1px solid var(--border);border-radius:12px;padding:12px 14px;background:var(--surface);"><b>Grok (xAI)</b> — real vaqtdagi X (Twitter) qidiruv, DeepSearch va "Big Brain" rejimi. Bepul tier juda cheklangan.</li>
-      <li style="border:1px solid var(--border);border-radius:12px;padding:12px 14px;background:var(--surface);"><b>NotebookLM (Google)</b> — hujjat-asosidagi tadqiqot yordamchisi (RAG). Faqat yuklagan manbalar asosida javob beradi, "Audio Overview" podkast yaratadi. To'liq bepul.</li>
-      <li style="border:1px solid var(--border);border-radius:12px;padding:12px 14px;background:var(--surface);"><b>WorkBuddy AI (Tencent)</b> — multi-agent ish stansiyasi. Bitta buyruq → rejalashtirish + bajarish + tayyor natija (hisobot, slayd, jadval, hujjat). Telegram/Discord orqali ham boshqariladi.</li>
-      <li style="border:1px solid var(--border);border-radius:12px;padding:12px 14px;background:var(--surface);"><b>Hermes Agent (Nous Research)</b> — ochiq manba, bepul AI agent. Vazifani hal qilib, undan "Skill" yaratadi — vaqt o'tgan sari "o'sib boradi". 400+ model tanlash imkoni.</li>
-      <li style="border:1px solid var(--border);border-radius:12px;padding:12px 14px;background:var(--surface);"><b>Manus</b> — avtonom AI agent (Monica.im). Bitta buyruqdan reja tuzadi, internetda qidiradi, kod yozadi (virtual kompyuter ichida).</li>
-      <li style="border:1px solid var(--border);border-radius:12px;padding:12px 14px;background:var(--surface);"><b>Strawberry Browser</b> — ichiga AI agentlari ("Companions") o'rnatilgan "o'zi harakatlanadigan" brauzer. Saytlarda haqiqiy amallar (bosish, forma to'ldirish, parallel tadqiqot) bajara oladi.</li>
-    </ul>
-    <p class="quiz-hint">
-      Baholash uchun: <b>LMArena</b> va <b>Design Arena</b> — AI modellarni
-      anonim tarzda solishtirib, foydalanuvchi ovozi bilan reyting beradigan
-      bepul platformalar (qaysi model yaxshiroq ekanini xolis bilish uchun).
-    </p>
-  </section>
-
-  <section>
-    <h2>4. Bepul kreditlar va API kalitlar</h2>
-    <p>
-      Ko'p vosita API kalit talab qiladi. Bepul kvota olishning ikki yo'li:
-    </p>
-    <ul>
-      <li>
-        <b>TokenHub (Tencent)</b> — bitta API key orqali 14+ modelga (DeepSeek,
-        GLM, Kimi, MiniMax, Hunyuan) kirish. Har bir model uchun <b>1 million bepul
-        token</b>; aksiya 2026-yil 31-dekabrgacha. Ro'yxatdan o'tishda real-name
-        verification talab qilinishi mumkin (Eslatma: Xitoy kompaniyasi — maxfiy
-        ma'lumotlar uchun ma'lumotlar siyosatini tekshiring).
-      </li>
-      <li>
-        <b>Google Cloud Console</b> — Gemini modeli uchun API kalit olish:
-        yangi loyiha → "Generative Language API" yoki "Vertex AI API" yoqish →
-        API key generatsiya qilish → kalitni skript/plaginga qo'yish.
-      </li>
-    </ul>
-    <div style="background:color-mix(in srgb,#ef4444 10%,transparent);border:1px solid #ef4444;border-radius:12px;padding:14px 16px;margin:1rem 0;">
-      <strong style="color:#ef4444;">XAVFSIZLIK:</strong> API kalit hech qachon
-      oshkora joyga (public repo, chat, screenshot) joylashtirilmaydi — faqat
-      plagin sozlamalarining maxfiy (secret) maydoniga yoki <code>.env</code> fayliga.
-    </div>
+  <section class="tools-link-card">
+    <p class="eyebrow">YANGILANIB TURADIGAN MANBA</p>
+    <h2>AI vositalari va modellar xaritasi</h2>
+    <p>Modellar, studio’lar, bepul kreditlar va API kalit xavfsizligi tez o‘zgaradi. Dublikat ro‘yxat o‘rniga oxirgi yangilangan sanasi ko‘rsatiladigan alohida sahifani ko‘ring.</p>
+    <a class="course-nav-link" href={import.meta.env.BASE_URL + 'ai-vositalar/'}>AI vositalari sahifasini ochish →</a>
   </section>
 
   <section>
@@ -214,6 +172,8 @@ const questions = [
   <a href={import.meta.env.BASE_URL + 'bog-lanish'} class="start-btn" style="margin-top:2rem;" data-gumroad-product="ai-sifatli-javob" target="_blank" rel="noopener noreferrer" data-i18n="pe.buy">Kursni sotib olish →</a>
   <a href={import.meta.env.BASE_URL + 'kurslar'} class="course-nav-link" style="margin-left:1rem;" data-i18n="pe.all">← Barcha kurslar</a>
 
+  <CourseEnrichment slug="prompt-engineering" lang="uz" />
+  <PracticalAssessment courseSlug="prompt-engineering" rubric="Aniqlik; rol va kontekst; cheklovlar; kutilgan format; misol; xavfsizlik" lang="uz" />
   <Quiz title="O'z bilimingizni tekshiring" titleI18n="pe.quizTitle" quizI18n="pe" questions={questions} />
   <PaymentInstructions course="Prompt Engineering" price="$29 · ≈ 360 000 so'm" />
   <CourseFaq facts={bespokeCourseFaqFacts["prompt-engineering"]} />
@@ -232,6 +192,7 @@ const questions = [
   .prompt-toggle-btn:hover{color:var(--text);}.prompt-toggle-btn:focus-visible{outline:2px solid #a5b4fc;outline-offset:2px;}.prompt-toggle-btn.is-active{background: var(--btn-bg);color:white;box-shadow:0 5px 16px color-mix(in srgb,var(--accent) 35%,transparent);}
   .prompt-compare{position:relative;z-index:1;min-height:250px;}.prompt-pane{animation:prompt-in .28s ease both;border:1px solid var(--border);border-radius:14px;padding:1.1rem 1.15rem;background:color-mix(in srgb,var(--bg) 28%,var(--surface));}.prompt-pane-bad{border-color:color-mix(in srgb,#fb7185 55%,var(--border));}.prompt-pane-good{border-color:color-mix(in srgb,#34d399 55%,var(--border));}.prompt-pane-label{display:flex;align-items:center;gap:.5rem;font-size:.75rem;font-weight:800;letter-spacing:.1em;color:var(--muted);}.prompt-pane-label span{display:grid;place-items:center;width:22px;height:22px;border-radius:50%;background:#fb7185;color:#1d1116;}.prompt-pane-good .prompt-pane-label span{background:#34d399;color:#062b20;}.prompt-code{margin:1rem 0!important;padding:1rem;border-radius:10px;background:color-mix(in srgb,var(--bg) 65%,transparent);border-left:3px solid #fb7185;color:var(--text)!important;font-size:1rem;line-height:1.65;}.prompt-pane-good .prompt-code{border-left-color:#34d399;}.prompt-pane ul{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:.65rem;margin:0;padding:0;list-style:none;}.prompt-pane li{padding:.65rem .75rem;border:1px solid color-mix(in srgb,var(--border) 80%,transparent);border-radius:9px;color:var(--muted);font-size:.87rem;}.prompt-lab-note{position:relative;z-index:1;margin-top:1rem!important;font-size:.9rem;}.prompt-lab-note b{color:var(--text);}@keyframes prompt-in{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
   @media(max-width:640px){.prompt-lab-head{flex-direction:column}.prompt-toggle{width:100%;}.prompt-toggle-btn{flex:1;padding:.65rem .45rem;font-size:.78rem}.prompt-compare{min-height:0}.prompt-pane ul{grid-template-columns:1fr}.prompt-code{font-size:.92rem;}}
+  .tools-link-card{margin:1.5rem 0;padding:1.2rem;border:1px solid color-mix(in srgb,var(--accent) 40%,var(--border));border-radius:15px;background:var(--accent-soft)}.tools-link-card h2{margin:.25rem 0 .45rem}.tools-link-card p:not(.eyebrow){color:var(--muted);line-height:1.6}.tools-link-card .course-nav-link{display:inline-block;margin-top:.35rem}
   @media(prefers-reduced-motion:reduce){.prompt-pane{animation:none}.prompt-toggle-btn{transition:none}}
 </style>
 
