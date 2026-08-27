@@ -9,6 +9,9 @@ const courseById = (slug: string) => (coursesData.courses as any[]).find((c) => 
 const title = "AI, IELTS va Admission kurslari | Tayanch";
 const description = "AI, IELTS, Admission va shaxsiy bilim bazasi bo'yicha amaliy kurslar. O'zbek tilida, bepul kurs ham bor.";
 const base = import.meta.env.BASE_URL;
+const allCourses = coursesData.courses as any[];
+const generalEnglishCourses = allCourses.filter((course) => course.cats?.includes('general-english'));
+const satCourses = allCourses.filter((course) => course.cats?.includes('sat'));
 const TG = "https://t.me/tayanch_go"; // Telegram kanal/guruh havolasi
 ---
 
@@ -98,12 +101,36 @@ const TG = "https://t.me/tayanch_go"; // Telegram kanal/guruh havolasi
       <a href={base + 'ielts-mock/'} class="mock-practice-link">Mock imtihonni sinab ko'ring →</a>
     </div>
 
-    {['admission-process','tekin-ai','mac-tezlik-sirlari','figma','vibe-coding','autocad-on-mac','chet-elda-oqish','data-analytics','backend-python'].map((s) => <CourseCard course={courseById(s)!} />)}
+    {['admission-process','tekin-ai','mac-tezlik-sirlari','figma','vibe-coding','autocad-on-mac','chet-elda-oqish','data-analytics','backend-python','financial-literacy'].map((s) => <CourseCard course={courseById(s)!} />)}
 
 
   </div>
 </section>
 
+<section class="direction-preview" aria-labelledby="direction-preview-title">
+  <div class="sec-head">
+    <h2 class="sec-title" id="direction-preview-title">Yangi yo‘nalishlar</h2>
+    <a class="sec-all" href={base + 'kurslar/'}>Barcha kurslar →</a>
+  </div>
+  <div class="direction-grid">
+    <article class="direction-card">
+      <p class="eyebrow">GENERAL ENGLISH · A1–C1</p>
+      <h3>Darajama-daraja ingliz tili</h3>
+      <p>6 ta bosqich: Beginner’dan Advanced’gacha. Hozircha narxlar belgilanmoqda.</p>
+      <div class="path-list">
+        {generalEnglishCourses.map((course, index) => <a class="path-item" href={base + course.href + '/'}><span>{index + 1}/6 · {course.title.uz}</span><small>{course.status === 'upcoming' ? 'Tez orada' : 'Mavjud'}</small></a>)}
+      </div>
+    </article>
+    <article class="direction-card">
+      <p class="eyebrow">SAT · ADMISSION</p>
+      <h3>SAT uchun 3 qismli yo‘l</h3>
+      <p>Math, English va Desmos Applications. Har bir modul alohida tayyorlanadi.</p>
+      <div class="path-list">
+        {satCourses.map((course, index) => <a class="path-item" href={base + course.href + '/'}><span>{index + 1}/3 · {course.title.uz}</span><small>Narx belgilanmoqda</small></a>)}
+      </div>
+    </article>
+  </div>
+</section>
 
 <section class="upcoming-courses" aria-labelledby="upcoming-courses-title">
   <div class="upcoming-heading">
@@ -112,17 +139,6 @@ const TG = "https://t.me/tayanch_go"; // Telegram kanal/guruh havolasi
     <p>Bu kurslar ustida ish davom etmoqda. To‘liq material va sotuv ochilganda e’lon qilinadi.</p>
   </div>
   <div class="upcoming-grid">
-    <div class="card" style="--c:#10b981">
-      <span class="badge badge-soon">Kelayotgan</span>
-      <div class="c-ic"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7h18v12H3z"/><path d="M3 7l2-3h11l2 3"/><circle cx="17" cy="13" r="1.6"/></svg></div>
-      <h2>Financial Literacy — Moliyaviy savodxonlik</h2>
-      <span class="cat">HAYOTIY KO'NIKMA</span>
-      <span class="cert-line"><svg viewBox="0 0 24 24"><circle cx="12" cy="9" r="5"/><path d="M9 13.5 7.5 21 12 18l4.5 3L15 13.5"/></svg>Sertifikat bilan</span>
-      <p>Pulni boshqarish, byudjet tuzish va moliyaviy qarorlar — talaba hayoti uchun asosiy ko'nikmalar.</p>
-      <p class="upcoming-status">Narx va dastur tez orada e'lon qilinadi</p>
-      <span class="start-btn is-disabled" aria-disabled="true">Tayyorlanmoqda</span>
-    </div>
-
     <div class="card" style="--c:#ec4899">
       <span class="badge badge-new">Tez orada</span>
       <div class="c-ic"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 21h8M12 17v4M7 4h10v5a5 5 0 0 1-10 0z"/><path d="M12 4V2M9 2h6"/></svg></div>
@@ -184,6 +200,7 @@ const TG = "https://t.me/tayanch_go"; // Telegram kanal/guruh havolasi
 
 <style>
   .founder-excerpt{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:2rem;align-items:start;margin:var(--section-gap) 0;padding:clamp(1.2rem,4vw,2rem);border:1px solid color-mix(in srgb,var(--accent) 38%,var(--border));border-radius:18px;background:linear-gradient(135deg,color-mix(in srgb,var(--accent) 10%,var(--surface)),var(--surface))}.founder-excerpt .eyebrow{margin:0 0 .5rem}.founder-excerpt h2{margin:0;font-size:clamp(1.4rem,3vw,2rem)}.founder-excerpt p{margin:0 0 1rem;color:var(--muted);line-height:1.65}.founder-excerpt .course-nav-link{font-weight:800}.founder-social{display:flex;gap:1rem;margin-top:1rem}.founder-social a{color:var(--accent);font-weight:800;text-decoration:none}@media(max-width:700px){.founder-excerpt{grid-template-columns:1fr;gap:1rem}}
+.direction-preview{margin:var(--section-gap) 0}.direction-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1rem}.direction-card{padding:1.25rem;border:1px solid var(--border);border-radius:18px;background:var(--surface)}.direction-card h3{margin:.2rem 0 .45rem}.direction-card>p:not(.eyebrow){color:var(--muted);line-height:1.55;margin:.35rem 0 1rem}.path-list{display:grid;gap:.45rem}.path-item{display:flex;justify-content:space-between;gap:.75rem;align-items:center;padding:.65rem .75rem;border:1px solid var(--border);border-radius:12px;color:var(--text);text-decoration:none;background:color-mix(in srgb,var(--bg) 55%,var(--surface))}.path-item:hover{border-color:var(--accent);color:var(--accent)}.path-item span{font-weight:700}.path-item small{color:var(--muted);white-space:nowrap}@media(max-width:700px){.direction-grid{grid-template-columns:1fr}.path-item{align-items:flex-start;flex-direction:column;gap:.2rem}}
 </style>
 
 <TelegramLeadSection />

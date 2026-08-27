@@ -43,7 +43,7 @@ Kurs katalogining yagona manbasi **`src/data/courses.json`**. Bosh sahifa, Kursl
 | `cats` | Filtr kategoriyalari: `ai`, `ielts`, `general-english`, `admission`, `sat`, `dizayn`, `hayotiy`, `bepul`, `data`, `dasturlash`. |
 | `href` | Nisbiy sahifa yo‘li: `kurslar/<slug>`. |
 | `free`, `paid`, `comingSoon` | Kurs holatini ifodalovchi boolean qiymatlar. |
-| `countInPublicTotal` | Bosh sahifadagi “X ta kurs” hisobiga kirishi kerak bo‘lsa `true`. Hozirgi public total 24 ta kursni hisoblaydi. |
+| `countInPublicTotal` | Tarixiy metadata maydoni. Bosh sahifadagi kurs soni endi `src/data/courses.json`dagi barcha 31 ta katalog yozuvidan avtomatik hisoblanadi. |
 
 ## 3. To‘lov va holat qoidalari
 

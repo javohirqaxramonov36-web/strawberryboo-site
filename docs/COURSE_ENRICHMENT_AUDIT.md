@@ -13,11 +13,11 @@
 `src/config/course-catalog.ts` endi `courses.json`dan hosil bo‘ladi; qo‘lda ikkilamchi ro‘yxat yo‘q.
 
 - Jami public record: **31** (kurslar, 1 IELTS bundle va 1 mock mahsulot record sifatida hisoblangan).
-- Hozir mavjud: **16**.
-- Kelayotgan: **15** — Vibe Coding, Data Analytics, Backend Python, 6 ta General English darajasi, 3 ta SAT komponenti, Financial Literacy, El-Yurt Umidi va Computer Literacy.
+- Hozir mavjud: **17**.
+- Kelayotgan: **14** — Vibe Coding, Data Analytics, Backend Python, 6 ta General English darajasi, 3 ta SAT komponenti, El-Yurt Umidi va Computer Literacy.
 - General English: 6 bosqich, A1–C1.
 - SAT: SAT Math, SAT English, Desmos Applications — narxlar “Narx belgilanmoqda”.
-- Financial Literacy bosh sahifa va `/kurslar/`da bir xil “Kelayotgan” statusida.
+- Financial Literacy source-of-truth bo‘yicha bepul va mavjud; bosh sahifa hamda `/kurslar/` bir xil holatni ko‘rsatadi.
 - `/kurslar/` filteridagi `Hayotiy ko'nikka` imlosi `Hayotiy ko'nikma`ga tuzatildi.
 
 Bosh sahifada General English va SAT yo‘nalishlari ham ko‘rinadigan preview blok qo‘shildi. Count badge endi `totalCourseCount`dan keladi.
